@@ -217,7 +217,7 @@
     },
     "XML": {
       "Source": "CRAN",
-      "Repository": null,
+      "Repository": "https://studio-package-manager.sandbox.ap.datim.org/datapack-git/latest/",
       "description": {
         "Package": "XML",
         "Version": "3.99-0.3",
