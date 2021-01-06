@@ -16,7 +16,7 @@ Sys.setenv(AWS_REGION = config$aws_region)
 
 options("baseurl" = config$baseurl)
 options("support_files_directory" = config$deploy_location)
-flog.appender(appender.file(config$log_path), name="datapack")
+flog.appender(appender.console(), name="datapack")
 
 DHISLogin <- function(baseurl, username, password) {
   httr::set_config(httr::config(http_version = 0))
