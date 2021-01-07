@@ -61,21 +61,32 @@ shinyServer(function(input, output, session) {
     datimExportUI(r)
   })
   
-  observeEvent(input$login_button, {
-    is_logged_in <- FALSE
-    user_input$authenticated <- DHISLogin(input$server, input$user_name, input$password)
-    if (user_input$authenticated) {
-      #user_input$user_orgunit<-getOption("organisationUnit")
-      flog.info(paste0("User ", input$user_name, " logged in."), name = "datapack")
-    } else {
-      sendSweetAlert(
-        session,
-        title = "Login failed",
-        text = "Please check your username/password!",
-        type = "error")
-      flog.info(paste0("User ", input$user_name, " login failed."), name = "datapack")
-    }
-  })  
+  observeEvent(input$login_button, 
+               {
+                 
+                 tryCatch(  {  datimutils::loginToDATIM(base_url = config$baseurl,
+                                                        username = input$user_name,
+                                                        password = input$password) },
+                            #This function throws an error if the login is not successful
+                            error=function(e) {
+                              sendSweetAlert(
+                                session,
+                                title = "Login failed",
+                                text = "Please check your username/password!",
+                                type = "error")
+                              flog.info(paste0("User ", input$user_name, " login failed."), name = "opu-app")
+                            } )
+                 
+                 if ( exists("d2_default_session"))  {
+                   
+                   flog.info(paste0("User ", d2_default_session$user_name, " logged in."), name = "opu-app")
+                   user_input$authenticated<-TRUE
+                   
+                   user_input$d2_session<-d2_default_session$clone()
+                   
+                 }
+                 
+               })
   
   epi_graph_filter <- reactiveValues( snu_filter=NULL )
   
@@ -176,7 +187,9 @@ shinyServer(function(input, output, session) {
   }
 })
   
-  user_input <- reactiveValues(authenticated = FALSE, status = "")
+  user_input <- reactiveValues(authenticated = FALSE,
+                               status = "",
+                               d2_session = NULL)
   
   # password entry UI componenets:
   #   username and password text fields, login button
@@ -184,7 +197,7 @@ shinyServer(function(input, output, session) {
     
     wellPanel(fluidRow(
       img(src='pepfar.png', align = "center"),
-      h4("Welcome to the  COP20 DataPack Validation App. Please login with your DATIM credentials:")
+      h4("Welcome to the DataPack Validation App. Please login with your DATIM credentials:")
     ),
     fluidRow(
       textInput("user_name", "Username: ",width = "600px"),
@@ -240,7 +253,7 @@ shinyServer(function(input, output, session) {
           
           incProgress(0.1, detail = ("Checking validation rules"))
           Sys.sleep(0.5)
-          d <- validatePSNUData(d)
+          d <- validatePSNUData(d, d2_session = user_input$d2_session)
           incProgress(0.1,detail="Validating mechanisms")
           Sys.sleep(0.5)
           d <- validateMechanisms(d)

@@ -14,27 +14,11 @@ logger <- flog.logger()
 config <- config::get()
 Sys.setenv(AWS_REGION = config$aws_region)
 
-options("baseurl" = config$baseurl)
 options("support_files_directory" = config$deploy_location)
 flog.appender(appender.console(), name="datapack")
 
-DHISLogin <- function(baseurl, username, password) {
-  httr::set_config(httr::config(http_version = 0))
-  url <- URLencode(URL = paste0(config$baseurl, "api/me"))
-  #Logging in here will give us a cookie to reuse
-  r <- httr::GET(url,
-                 httr::authenticate(username, password),
-                 httr::timeout(60))
-  if (r$status != 200L) {
-    return(FALSE)
-  } else {
-    me <- jsonlite::fromJSON(httr::content(r, as = "text"))
-    options("organisationUnit" = me$organisationUnits$id)
-    return(TRUE)
-  }
-}
 
-validatePSNUData <- function(d) {
+validatePSNUData <- function(d,d2_session) {
   
   vr_data<-d$datim$MER
   if (is.null(vr_data) | NROW(vr_data) == 0 ) {return(d)}
@@ -44,7 +28,8 @@ validatePSNUData <- function(d) {
     datimvalidation::remapMechs(vr_data$attributeOptionCombo,
                                 getOption("organisationUnit"),
                                 "code",
-                                "id")
+                                "id",
+                                d2session = d2_session)
   datasets_uid <- c("Pmc0yYAIi1t", "s1sxJuqXsvV")
   if ( Sys.info()["sysname"] == "Linux") {
     ncores <- parallel::detectCores() - 1
@@ -57,7 +42,8 @@ validatePSNUData <- function(d) {
   vr_violations <- datimvalidation::validateData(vr_data,
                                                  datasets = datasets_uid,
                                                  parallel = is_parallel,
-                                                 return_violations_only = TRUE)
+                                                 return_violations_only = TRUE,
+                                                 d2session = d2_session)
   
   # rules_to_keep <- c(
   #   "L76D9NGEPRS",
@@ -183,7 +169,7 @@ getCountryNameFromUID<-function(uid) {
   
   paste0(getOption("baseurl"),"api/organisationUnits/",uid,"?fields=shortName") %>%
     URLencode(.) %>%
-    httr::GET(.) %>%
+    httr::GET(., handle = user_input$d2_session$handle) %>%
     httr::content(.,"text") %>%
     jsonlite::fromJSON(.) %>% 
     purrr::pluck(.,"shortName")
