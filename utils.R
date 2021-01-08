@@ -2,7 +2,7 @@ require(datapackr)
 require(scales)
 require(futile.logger)
 require(DT)
-require(config)
+
 require(paws)
 
 #Set the maximum file size for the upload file
@@ -10,13 +10,12 @@ options(shiny.maxRequestSize = 100 * 1024 ^ 2)
 
 #Initiate logging
 logger <- flog.logger()
-#Load the local config file
-config <- config::get()
-Sys.setenv(AWS_REGION = config$aws_region)
 
-options("support_files_directory" = config$deploy_location)
-flog.appender(appender.console(), name="datapack")
+if (!file.exists(Sys.getenv("LOG_PATH"))) {
+  file.create(Sys.getenv("LOG_PATH"))
+}
 
+flog.appender(appender.file(Sys.getenv("LOG_PATH")), name="datapack")
 
 initializeS3<-function() {
   
@@ -196,12 +195,12 @@ getCountryNameFromUID<-function(uid) {
     purrr::pluck(.,"shortName")
 }
 
-archiveDataPacktoS3<-function(d,datapath,config) {
+archiveDataPacktoS3<-function(d,datapath) {
   
   d$info$country_uids<-substr(paste0(d$info$country_uids,sep="",collapse="_"),0,25)
   
   #Write an archived copy of the file
-  s3<-paws::s3()
+  s3<-initializeS3()
   tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
   object_tags<-d$info[names(d$info) %in% tags] 
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
@@ -212,7 +211,7 @@ archiveDataPacktoS3<-function(d,datapath,config) {
   close(read_file)
   
   r<-tryCatch({
-    foo<-s3$put_object(Bucket = config$s3_bucket,
+    foo<-s3$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
                        Body = raw_file,
                        Key = object_name,
                        Tagging = object_tags,
@@ -242,7 +241,7 @@ saveTimeStampLogToS3<-function(d) {
   d$info$country_uids<-substr(paste0(d$info$country_uids,sep="",collapse="_"),0,25)
   
   #Write an archived copy of the file
-  s3<-paws::s3()
+  s3<-initializeS3()
   tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
   object_tags<-d$info[names(d$info) %in% tags] 
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
@@ -275,7 +274,7 @@ saveTimeStampLogToS3<-function(d) {
   object_name<-paste0("upload_timestamp/",d$info$sane_name,".csv")
   
   r<-tryCatch({
-    foo<-s3$put_object(Bucket = config$s3_bucket,
+    foo<-s3$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
                        Body = raw_file,
                        Key = object_name,
                        Tagging = object_tags,
@@ -340,7 +339,7 @@ prepareFlatMERExport<-function(d) {
   d
 }
 
-sendMERDataToPAW<-function(d,config) {
+sendMERDataToPAW<-function(d) {
   
   d$info$country_uids<-substr(paste0(d$info$country_uids,sep="",collapse="_"),0,25)
   
@@ -369,10 +368,10 @@ sendMERDataToPAW<-function(d,config) {
   object_tags<-d$info[names(d$info) %in% tags] 
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
   object_name<-paste0("processed/",d$info$sane_name,".csv")
-  s3<-paws::s3()
+  s3<-initializeS3()
   
   r<-tryCatch({
-    foo<-s3$put_object(Bucket = config$s3_bucket,
+    foo<-s3$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
                        Body = raw_file,
                        Key = object_name,
                        Tagging = object_tags,
@@ -391,7 +390,7 @@ sendMERDataToPAW<-function(d,config) {
   return(r)
 }
 
-sendValidationSummary<-function(vr,config) {
+sendValidationSummary<-function(vr) {
   
   vr$info$country_uids<-substr(paste0(vr$info$country_uids,sep="",collapse="_"),0,25)
   validation_summary<-validationSummary(vr)
@@ -417,10 +416,10 @@ sendValidationSummary<-function(vr,config) {
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
   
   object_name<-paste0("validation_error/",vr$info$sane_name,".csv")
-  s3<-paws::s3()
+  s3<-initializeS3()
   
   r<-tryCatch({
-    foo<-s3$put_object(Bucket = config$s3_bucket,
+    foo<-s3$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
                        Body = raw_file,
                        Key = object_name,
                        Tagging = object_tags,
@@ -474,10 +473,10 @@ saveDATIMExportToS3<-function(d) {
   object_tags<-d$info[names(d$info) %in% tags] 
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
   object_name<-paste0("datim_export/",d$info$sane_name,".csv")
-  s3<-paws::s3()
+  s3<-initializeS3()
   
   r<-tryCatch({
-    foo<-s3$put_object(Bucket = config$s3_bucket,
+    foo<-s3$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
                        Body = raw_file,
                        Key = object_name,
                        Tagging = object_tags,

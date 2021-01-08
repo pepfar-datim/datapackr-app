@@ -11,7 +11,6 @@ require(paws)
 require(datapackr)
 require(scales)
 require(DT)
-require(config)
 require(purrr)
 require(praise)
 require(scales)
@@ -53,9 +52,9 @@ shinyServer(function(input, output, session) {
     d <- validation_results()
     r<-saveTimeStampLogToS3(d)
     timestampUploadUI(r)
-    r<-sendMERDataToPAW(d,config)
+    r<-sendMERDataToPAW(d)
     archiveDataPackErrorUI(r)
-    r<-sendValidationSummary(d,config)
+    r<-sendValidationSummary(d)
     validationSummaryUI(r)
     r<-saveDATIMExportToS3(d)
     datimExportUI(r)
@@ -64,7 +63,7 @@ shinyServer(function(input, output, session) {
   observeEvent(input$login_button, 
                {
                  
-                 tryCatch(  {  datimutils::loginToDATIM(base_url = config$baseurl,
+                 tryCatch(  {  datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
                                                         username = input$user_name,
                                                         password = input$password) },
                             #This function throws an error if the login is not successful
@@ -269,7 +268,7 @@ shinyServer(function(input, output, session) {
           d <- validateMechanisms(d)
           incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
           Sys.sleep(0.5)
-          r<-archiveDataPacktoS3(d,inFile$datapath,config)
+          r<-archiveDataPacktoS3(d,inFile$datapath)
           archiveDataPackErrorUI(r)
           incProgress(0.1, detail = (praise()))
           Sys.sleep(1)
