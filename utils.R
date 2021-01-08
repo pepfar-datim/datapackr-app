@@ -202,7 +202,7 @@ archiveDataPacktoS3<-function(d,datapath,config) {
   
   #Write an archived copy of the file
   s3<-paws::s3()
-  tags<-c("tool","country_uids","cop_year","has_error","sane_name")
+  tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
   object_tags<-d$info[names(d$info) %in% tags] 
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
   object_name<-paste0("datapack_archives/",gsub(" ","_",d$info$sane_name),"_",format(Sys.time(),"%Y%m%d_%H%m%s"),".xlsx")
@@ -243,7 +243,7 @@ saveTimeStampLogToS3<-function(d) {
   
   #Write an archived copy of the file
   s3<-paws::s3()
-  tags<-c("tool","country_uids","cop_year","has_error","sane_name")
+  tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
   object_tags<-d$info[names(d$info) %in% tags] 
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
   object_name<-paste0("processed/",d$info$sane_name,".csv")
@@ -365,9 +365,8 @@ sendMERDataToPAW<-function(d,config) {
   close(read_file)
   
   
-  tags<-c("tool","country_uids","cop_year","has_error","sane_name")
+  tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
   object_tags<-d$info[names(d$info) %in% tags] 
-  #TODO: Implement approval status here. All submissions from the self-service app should be marked as unapproved.
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
   object_name<-paste0("processed/",d$info$sane_name,".csv")
   s3<-paws::s3()
@@ -413,7 +412,7 @@ sendValidationSummary<-function(vr,config) {
   raw_file <- readBin(read_file, "raw", n = file.size(tmp))
   close(read_file)
   
-  tags<-c("tool","country_uids","cop_year","has_error","sane_name")
+  tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
   object_tags<-vr$info[names(vr$info) %in% tags] 
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
   
@@ -471,7 +470,7 @@ saveDATIMExportToS3<-function(d) {
   close(read_file)
   
   
-  tags<-c("tool","country_uids","cop_year","has_error","sane_name")
+  tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
   object_tags<-d$info[names(d$info) %in% tags] 
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
   object_name<-paste0("datim_export/",d$info$sane_name,".csv")

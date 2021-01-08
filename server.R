@@ -252,6 +252,8 @@ shinyServer(function(input, output, session) {
 
         d$info$sane_name<-paste0(stringr::str_extract_all(d$info$datapack_name,"[A-Za-z0-9_]",
                                                           simplify = TRUE),sep="",collapse="")
+        #All self-service datapacks should be marked as unapproved for PAW
+        d$info$approval_status<-"UNAPPROVED"
         #Keep this until we can change the schema
         
         flog.info(paste0("Initiating validation of ",d$info$datapack_name, " DataPack."), name="datapack")
