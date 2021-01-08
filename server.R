@@ -74,15 +74,14 @@ shinyServer(function(input, output, session) {
                                 title = "Login failed",
                                 text = "Please check your username/password!",
                                 type = "error")
-                              flog.info(paste0("User ", input$user_name, " login failed."), name = "opu-app")
+                              flog.info(paste0("User ", input$user_name, " login failed."), name = "datapack")
                             } )
                  
                  if ( exists("d2_default_session"))  {
                    
-                   flog.info(paste0("User ", d2_default_session$user_name, " logged in."), name = "opu-app")
                    user_input$authenticated<-TRUE
-                   
                    user_input$d2_session<-d2_default_session$clone()
+                   flog.info(paste0("User ", user_input$d2_session$me$userCredentials$username, " logged in."), name = "datapack")
                    
                  }
                  
@@ -101,6 +100,16 @@ shinyServer(function(input, output, session) {
     
     kpCascadeInput_filter$snu_filter<-input$kpCascadeInput
   })
+  
+  observeEvent(input$logout,{
+    flog.info(paste0("User ", user_input$d2_session$me$userCredentials$username, " logged out."))
+    ready$ok <- FALSE
+    user_input$authenticated<-FALSE
+    user_input$d2_session<-NULL
+    gc()
+    
+  } )
+  
   
   output$ui <- renderUI({
     
@@ -131,34 +140,33 @@ shinyServer(function(input, output, session) {
           sidebarPanel(
             shinyjs::useShinyjs(),
             id = "side-panel",
-            tagList( wiki_url ),
+            tagList(wiki_url),
             tags$hr(),
             fileInput(
               "file1",
               "Choose DataPack (Must be XLSX!):",
-              accept = c(
-                "application/xlsx",
-                ".xlsx"
-              ),
-              width="240px"
+              accept = c("application/xlsx",
+                         ".xlsx"),
+              width = "240px"
             ),
-            tags$hr(),
-            actionButton("validate","Validate"),
+            actionButton("validate", "Validate"),
             tags$hr(),
             downloadButton("downloadFlatPack", "Download FlatPack"),
             tags$hr(),
-            downloadButton("download_messages","Validation messages"),
+            downloadButton("download_messages", "Validation messages"),
             tags$hr(),
-            downloadButton("downloadValidationResults","Validation report"),
+            downloadButton("downloadValidationResults", "Validation report"),
             tags$hr(),
             actionButton("send_paw", "Send to PAW"),
             tags$hr(),
-            downloadButton("downloadDataPack","Regenerate PSNUxIM"),
+            downloadButton("downloadDataPack", "Regenerate PSNUxIM"),
             tags$hr(),
-            downloadButton("compare","Compare with DATIM"),
+            downloadButton("compare", "Compare with DATIM"),
             tags$hr(),
-            actionButton("reset_input", "Reset inputs")
+            div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("reset_input", "Reset inputs")),
+            div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("logout", "Logout"))
           ),
+          
           mainPanel(tabsetPanel(
             id = "main-panel",
             type = "tabs",
@@ -532,7 +540,10 @@ shinyServer(function(input, output, session) {
         footer = NULL,
         size = "l"
       ))
-      d <- writePSNUxIM(d,snuxim_model_data_path = config$snuxim_model )
+      
+      fetchSupportFiles()
+      
+      d <- writePSNUxIM(d,snuxim_model_data_path = basename(Sys.getenv("MODEL_PATH")) )
       flog.info(
         paste0("Datapack reloaded for for ", d$info$datapack_name) ,
         name = "datapack")
@@ -585,6 +596,7 @@ shinyServer(function(input, output, session) {
       wb <- openxlsx::createWorkbook()
       
       d<-validation_results()
+      #Requires refactor to deal with http handles
       d_compare<-datapackr::compareData_DatapackVsDatim(d)
       
       openxlsx::addWorksheet(wb,"PSNUxIM without dedupe")

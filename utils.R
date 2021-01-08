@@ -18,6 +18,27 @@ options("support_files_directory" = config$deploy_location)
 flog.appender(appender.console(), name="datapack")
 
 
+initializeS3<-function() {
+  
+  paws::s3(config = list(credentials = list(
+    creds  = list (access_key_id = Sys.getenv("AWS_ACCESS_KEY"),
+                   secret_access_key = Sys.getenv("AWS_SECRET_KEY"))
+  )))
+}
+
+fetchSupportFiles<-function() {
+  
+  if ( !file.exists(Sys.getenv("MODEL_PATH")) ) {
+    
+   s3<-initializeS3()
+    s3_object <- s3$get_object(Bucket = Sys.getenv("AWS_S3_BUCKET"), Key = Sys.getenv("MODEL_PATH"))
+    s3_object_body<-s3_object$Body
+    file_name2 <- basename(Sys.getenv("MODEL_PATH"))
+    writeBin(s3_object_body, con = file_name2)
+  }
+  
+}
+
 validatePSNUData <- function(d,d2_session) {
   
   vr_data<-d$datim$MER
@@ -346,6 +367,7 @@ sendMERDataToPAW<-function(d,config) {
   
   tags<-c("tool","country_uids","cop_year","has_error","sane_name")
   object_tags<-d$info[names(d$info) %in% tags] 
+  #TODO: Implement approval status here. All submissions from the self-service app should be marked as unapproved.
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
   object_name<-paste0("processed/",d$info$sane_name,".csv")
   s3<-paws::s3()
