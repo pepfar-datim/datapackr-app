@@ -241,7 +241,7 @@ shinyServer(function(input, output, session) {
       incProgress(0.1, detail = ("Validating your DataPack"))
       
       d<-tryCatch({
-        datapackr::unPackTool(inFile$datapath)},
+        datapackr::unPackTool(inFile$datapath, cop_year="2021")},
         error = function(e){
           return(e)
         })
