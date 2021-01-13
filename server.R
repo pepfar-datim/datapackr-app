@@ -240,8 +240,27 @@ shinyServer(function(input, output, session) {
       shinyjs::disable("validate")
       incProgress(0.1, detail = ("Validating your DataPack"))
       
+      #Get some initial information about the datapack
+      
+      #Attempt to bootstrap the tool type and COP year if it is not explicitly provided
+      tool_info<-readxl::read_excel(
+        path = inFile$datapath,
+        sheet = "Home",
+        range = "B10", #May need to be a global variable
+        col_types = "text", 
+        col_names = FALSE) %>% 
+        stringi::stri_split_fixed(pattern = " ",n=2 ) %>% 
+        unlist()
+      
+        tool<-tool_info[2]
+        cop_year<-gsub("COP","20",tool_info[1])
+      
+        flog.info(paste("Found a ",tool,"for COP year",cop_year ))
       d<-tryCatch({
-        datapackr::unPackTool(inFile$datapath, cop_year="2021")},
+        datapackr::unPackTool(inFile$datapath, 
+                              tool = tool,
+                              cop_year=cop_year,
+                              d2_session = user_input$d2_session)},
         error = function(e){
           return(e)
         })
@@ -256,52 +275,58 @@ shinyServer(function(input, output, session) {
         #Keep this until we can change the schema
         
         flog.info(paste0("Initiating validation of ",d$info$datapack_name, " DataPack."), name="datapack")
-        
-        if ( d$info$has_psnuxim  ) {
-          flog.info("Datapack with PSNUxIM tab found.")
-          
-          incProgress(0.1, detail = ("Checking validation rules"))
-          Sys.sleep(0.5)
-          d <- validatePSNUData(d, d2_session = user_input$d2_session)
-          incProgress(0.1,detail="Validating mechanisms")
-          Sys.sleep(0.5)
-          d <- validateMechanisms(d)
-          incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
-          Sys.sleep(0.5)
-          r<-archiveDataPacktoS3(d,inFile$datapath)
-          archiveDataPackErrorUI(r)
-          incProgress(0.1, detail = (praise()))
-          Sys.sleep(1)
-          d<-prepareFlatMERExport(d)
-          
-          shinyjs::enable("downloadFlatPack")
-          shinyjs::enable("download_messages")
-          shinyjs::enable("send_paw")
-          shinyjs::enable("downloadValidationResults")
-          shinyjs::enable("compare")
-          if ( d$info$missing_psnuxim_combos ) {
+        if (d$info$tool == "Data Pack") {
+          if ( d$info$has_psnuxim  ) {
+            flog.info("Datapack with PSNUxIM tab found.")
+            
+            incProgress(0.1, detail = ("Checking validation rules"))
+            Sys.sleep(0.5)
+            d <- validatePSNUData(d, d2_session = user_input$d2_session)
+            incProgress(0.1,detail="Validating mechanisms")
+            Sys.sleep(0.5)
+            d <- validateMechanisms(d)
+            incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
+            Sys.sleep(0.5)
+            r<-archiveDataPacktoS3(d,inFile$datapath)
+            archiveDataPackErrorUI(r)
+            incProgress(0.1, detail = (praise()))
+            Sys.sleep(1)
+            d<-prepareFlatMERExport(d)
+            
+            shinyjs::enable("downloadFlatPack")
+            shinyjs::enable("download_messages")
+            shinyjs::enable("send_paw")
+            shinyjs::enable("downloadValidationResults")
+            shinyjs::enable("compare")
+            if ( d$info$missing_psnuxim_combos ) {
+              shinyjs::enable("downloadDataPack")
+            }
+            updatePickerInput(session = session, inputId = "kpCascadeInput",
+                              choices = snuSelector(d))
+            updatePickerInput(session = session, inputId = "epiCascadeInput",
+                              choices = snuSelector(d))
+            
+          } else {
+            #This should occur when there is no PSNUxIM tab and they want
+            #to generate one. 
             shinyjs::enable("downloadDataPack")
+            hideTab(inputId = "main-panel", target = "Validation rules")
+            hideTab(inputId = "main-panel", target = "HTS Summary Chart")
+            hideTab(inputId = "main-panel", target = "HTS Summary Table")
+            hideTab(inputId = "main-panel", target = "HTS Yield")
+            hideTab(inputId = "main-panel", target = "VLS Testing")
+            hideTab(inputId = "main-panel", target = "Epi Cascade Pyramid")
+            hideTab(inputId = "main-panel", target = "KP Cascade Pyramid")
+            hideTab(inputId = "main-panel", target = "PSNUxIM Pivot")
+            hideTab(inputId = "main-panel", target = "HTS Recency")
           }
-          updatePickerInput(session = session, inputId = "kpCascadeInput",
-                            choices = snuSelector(d))
-          updatePickerInput(session = session, inputId = "epiCascadeInput",
-                            choices = snuSelector(d))
-          
-        } else {
-          #This should occur when there is no PSNUxIM tab and they want
-          #to generate one. 
-          shinyjs::enable("downloadDataPack")
-          hideTab(inputId = "main-panel", target = "Validation rules")
-          hideTab(inputId = "main-panel", target = "HTS Summary Chart")
-          hideTab(inputId = "main-panel", target = "HTS Summary Table")
-          hideTab(inputId = "main-panel", target = "HTS Yield")
-          hideTab(inputId = "main-panel", target = "VLS Testing")
-          hideTab(inputId = "main-panel", target = "Epi Cascade Pyramid")
-          hideTab(inputId = "main-panel", target = "KP Cascade Pyramid")
-          hideTab(inputId = "main-panel", target = "PSNUxIM Pivot")
-          hideTab(inputId = "main-panel", target = "HTS Recency")
         }
       }
+      
+      if (d$info$tool == "OPU Data Pack"){
+        flog.info("Oops.Cannot handle an OPU right now")
+      }
+
     })
     
     return(d)
