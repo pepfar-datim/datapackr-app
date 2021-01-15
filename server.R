@@ -242,7 +242,7 @@ shinyServer(function(input, output, session) {
       
       #Get some initial information about the datapack
       
-      #Attempt to bootstrap the tool type and COP year if it is not explicitly provided
+      #Attempt to bootstrap the tool type and COP year
       tool_info<-readxl::read_excel(
         path = inFile$datapath,
         sheet = "Home",
@@ -256,6 +256,7 @@ shinyServer(function(input, output, session) {
         cop_year<-gsub("COP","20",tool_info[1])
       
         flog.info(paste("Found a ",tool,"for COP year",cop_year ))
+        
       d<-tryCatch({
         datapackr::unPackTool(inFile$datapath, 
                               tool = tool,
