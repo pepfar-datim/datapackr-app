@@ -141,7 +141,7 @@
         "Author": "Douglas Bates [aut],\n  Martin Maechler [aut, cre] (<https://orcid.org/0000-0002-8685-9910>),\n  Timothy A. Davis [ctb] (SuiteSparse and 'cs' C libraries, notably\n    CHOLMOD, AMD; collaborators listed in dir(pattern =\n    '^[A-Z]+[.]txt$', full.names=TRUE, system.file('doc',\n    'SuiteSparse', package='Matrix'))),\n  Jens Oehlschlägel [ctb] (initial nearPD()),\n  Jason Riedy [ctb] (condest() and onenormest() for octave, Copyright:\n    Regents of the University of California),\n  R Core Team [ctb] (base R matrix implementation)",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-06 17:40:19 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-01-18 09:03:40 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-01-19 13:07:35 UTC; unix"
       }
     },
     "R6": {
@@ -465,7 +465,7 @@
         "Packaged": "2020-11-02 14:45:50 UTC; luke",
         "Repository": "CRAN",
         "Date/Publication": "2020-11-04 17:12:32 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:03:09 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-01-19 13:07:29 UTC; unix"
       }
     },
     "colorspace": {
@@ -678,12 +678,12 @@
         "RoxygenNote": "7.1.1",
         "Depends": "R (>= 2.10)",
         "Repository": "RSPM",
-        "RemoteSha": "5a1b88e69782d61e41dfa16a988aabd648d67a35",
-        "Version": "0.2.0.0.0.0.1609228900",
-        "Date": "2020-12-29",
+        "RemoteSha": "b8103540c4f041dcf65c267f71ceb015c74ec5cd",
+        "Version": "0.2.0.0.0.0.1610975773",
+        "Date": "2021-01-18",
         "NeedsCompilation": "no",
-        "Packaged": "2020-12-29 08:02:15 UTC; root",
-        "Built": "R 3.6.3; ; 2020-12-30 05:04:45 UTC; unix"
+        "Packaged": "2021-01-18 13:17:25 UTC; root",
+        "Built": "R 3.6.3; ; 2021-01-19 13:06:46 UTC; unix"
       }
     },
     "datapackr": {
@@ -706,14 +706,14 @@
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
         "Repository": "RSPM",
-        "RemoteSha": "0154ff997430283473735a674076f78040ec19a8",
-        "Version": "4.0.2.0.0.0.1610384887",
+        "RemoteSha": "c9a81965a010f97381ffbec29b36d47395692256",
+        "Version": "4.0.2.0.0.0.1611058615",
         "Date": "2020-1-6",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-11 17:12:06 UTC; root",
+        "Packaged": "2021-01-19 12:21:28 UTC; root",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  William Shiflett [ctb],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Max Chandler [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 3.6.3; ; 2021-01-18 09:14:03 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-01-19 13:06:49 UTC; unix"
       }
     },
     "datimutils": {
@@ -743,7 +743,7 @@
         "Packaged": "2021-01-06 07:45:42 UTC; root",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut],\n  Sam Garman [aut],\n  Maxwell Chandler [aut]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 3.6.3; ; 2021-01-06 10:02:28 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-01-19 13:06:39 UTC; unix"
       }
     },
     "datimvalidation": {
@@ -772,8 +772,8 @@
         "Version": "1.0.112.0.0.0.1608550523",
         "Date": "2020-12-18",
         "NeedsCompilation": "no",
-        "Packaged": "2020-12-21 11:40:29 UTC; root",
-        "Built": "R 3.6.3; ; 2020-12-30 05:03:32 UTC; unix"
+        "Packaged": "2020-12-29 21:46:28 UTC; root",
+        "Built": "R 3.6.3; ; 2021-01-19 13:06:42 UTC; unix"
       }
     },
     "desc": {
@@ -973,7 +973,7 @@
         "Package": "fansi",
         "Title": "ANSI Control Sequence Aware String Functions",
         "Description": "Counterparts to R string manipulation functions that account for\n   the effects of ANSI text formatting control sequences.",
-        "Version": "0.4.2",
+        "Version": "0.4.1",
         "Authors@R": "c(\n    person(\"Brodie\", \"Gaslam\", email=\"brodie.gaslam@yahoo.com\",\n    role=c(\"aut\", \"cre\")),\n    person(\"Elliott\", \"Sales De Andrade\", role=\"ctb\"),\n    person(family=\"R Core Team\",\n    email=\"R-core@r-project.org\", role=\"cph\",\n    comment=\"UTF8 byte length calcs from src/util.c\"\n    ))",
         "Depends": "R (>= 3.1.0)",
         "License": "GPL (>= 2)",
@@ -982,16 +982,16 @@
         "BugReports": "https://github.com/brodieG/fansi/issues",
         "VignetteBuilder": "knitr",
         "Suggests": "unitizer, knitr, rmarkdown",
-        "RoxygenNote": "7.1.1",
+        "RoxygenNote": "6.1.1",
         "Encoding": "UTF-8",
         "Collate": "'constants.R' 'fansi-package.R' 'has.R' 'internal.R' 'load.R'\n'misc.R' 'nchar.R' 'strip.R' 'strwrap.R' 'strtrim.R'\n'strsplit.R' 'substr2.R' 'tohtml.R' 'unhandled.R'",
         "NeedsCompilation": "yes",
-        "Packaged": "2021-01-15 02:13:47 UTC; bg",
+        "Packaged": "2020-01-06 01:58:57 UTC; bg",
         "Author": "Brodie Gaslam [aut, cre],\n  Elliott Sales De Andrade [ctb],\n  R Core Team [cph] (UTF8 byte length calcs from src/util.c)",
         "Maintainer": "Brodie Gaslam <brodie.gaslam@yahoo.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-15 12:00:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-01-18 09:03:26 UTC; unix"
+        "Date/Publication": "2020-01-08 23:01:29 UTC",
+        "Built": "R 3.6.2; x86_64-pc-linux-gnu; 2020-01-16 08:31:47 UTC; unix"
       }
     },
     "farver": {
@@ -1902,7 +1902,7 @@
         "Maintainer": "R-core <R-core@R-project.org>",
         "Repository": "CRAN",
         "Date/Publication": "2020-12-10 10:30:06 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-01-18 09:05:11 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-01-19 13:08:55 UTC; unix"
       }
     },
     "openssl": {
@@ -3597,7 +3597,7 @@
   },
   "files": {
     ".Rprofile": {
-      "checksum": "9804409256cfb076094ad726673b8822"
+      "checksum": "edb14cbd182eeb20e3a6142992610078"
     },
     "config.yml": {
       "checksum": "3298ef63ce822cf889ae67375f352616"
@@ -3606,7 +3606,7 @@
       "checksum": "31c37d9dc0af96e3c9c149f808b3ea48"
     },
     "datapack.log": {
-      "checksum": "727f990dbf5c7626a0993f1a8b407d9a"
+      "checksum": "ad4a72ee429e3eb7914edfd73dc7b7b0"
     },
     "degs_map.rds": {
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
@@ -3642,7 +3642,7 @@
       "checksum": "8ab161677aa51342ef172cb8430d7c29"
     },
     "packrat/desc/codetools": {
-      "checksum": "53df095206e31ae3119933912a9af713"
+      "checksum": "51e0d7e910d3510d6e476c1aff928d51"
     },
     "packrat/desc/colorspace": {
       "checksum": "bab18d6a244661576bb4c02806ab4ac8"
@@ -3666,16 +3666,16 @@
       "checksum": "af3d62746671376e9c0c68daf2e848a9"
     },
     "packrat/desc/datapackcommons": {
-      "checksum": "1661c547412e36896c4c393e73bc3d99"
+      "checksum": "df77beee617661a5f5f944d925eabd4d"
     },
     "packrat/desc/datapackr": {
-      "checksum": "a54e56d4c26883d2bab2d443c13a861d"
+      "checksum": "861e3c0374a2b1255cffd8b43dee0c80"
     },
     "packrat/desc/datimutils": {
-      "checksum": "17e2790b2f52ba81b7c5d76a6b6ddb39"
+      "checksum": "f7173aacd5097a8db34ff12fcd14155e"
     },
     "packrat/desc/datimvalidation": {
-      "checksum": "cd937b630a151eeb6fe8740e0d3d8934"
+      "checksum": "e760adc21a899cdccda7f38293ab6859"
     },
     "packrat/desc/desc": {
       "checksum": "d4745ab8b235bca8da3d8142efd10074"
@@ -3702,7 +3702,7 @@
       "checksum": "6962bb7e50ded52523029d21fd25343a"
     },
     "packrat/desc/fansi": {
-      "checksum": "6161a9d2b813d75e54d0192cc9159028"
+      "checksum": "1e9b8985a4fc9a81fde4a3d553b465a4"
     },
     "packrat/desc/farver": {
       "checksum": "7dd62e01d61513f3a22a33c565c44a2d"
@@ -3801,7 +3801,7 @@
       "checksum": "3a5cc9439bb26c296d9d0176a8848336"
     },
     "packrat/desc/Matrix": {
-      "checksum": "304d488575393f1e225d805239c04a67"
+      "checksum": "6d773f5edcfb0d585b5df9593954ac66"
     },
     "packrat/desc/mgcv": {
       "checksum": "b5a6e0dc2bff4a671758f29625b1c506"
@@ -3813,7 +3813,7 @@
       "checksum": "91642ad7ce5de16527ae8a22a69a976c"
     },
     "packrat/desc/nlme": {
-      "checksum": "05616d3053299b3ddcd7a79bb2c01c5e"
+      "checksum": "2936683916b10375698d872ae7aaec7b"
     },
     "packrat/desc/openssl": {
       "checksum": "7eef1729f90c8cefb2052e63c7927c98"
@@ -4014,22 +4014,25 @@
       "checksum": "c0e692997328fca72b0a258d351e8647"
     },
     "packrat/packrat.lock": {
-      "checksum": "c4279db62a03e37d10e12e864171b4ef"
-    },
-    "PSNUxIM_20200319.rds": {
-      "checksum": "c634a14ac8c696e3bdfbf080f84f2eee"
+      "checksum": "e4e33cc6c1b9e3e76a6b3336dbc99090"
     },
     "README.md": {
       "checksum": "122afca03cca21b3bc7598ec0a1a4b50"
     },
     "server.R": {
-      "checksum": "e7e671739ce62b458470c91eba36ffff"
+      "checksum": "b3765d08046e1e4e38006a7b199760c9"
+    },
+    "support_files/PSNUxIM_20210113_1.rds": {
+      "checksum": "de7a32974c956ad70a1097148d6d3e82"
+    },
+    "support_files/README": {
+      "checksum": "23d8254dae346ea59a603eb2a31ebe73"
     },
     "ui.R": {
       "checksum": "112ea97d13f284c982d07294b31e4cdd"
     },
     "utils.R": {
-      "checksum": "5ec88d7a020ddbde5f90162f6e9597ed"
+      "checksum": "1d047d30b3b06fe89de4b431c2ef3215"
     },
     "visuals.R": {
       "checksum": "44f37acbd61a88c6af6b71ba989ff3ad"

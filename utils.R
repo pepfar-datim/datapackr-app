@@ -25,15 +25,17 @@ initializeS3<-function() {
   )))
 }
 
-fetchSupportFiles<-function() {
-  
-  if ( !file.exists(Sys.getenv("MODEL_PATH")) ) {
-    
-   s3<-initializeS3()
-    s3_object <- s3$get_object(Bucket = Sys.getenv("AWS_S3_BUCKET"), Key = Sys.getenv("MODEL_PATH"))
-    s3_object_body<-s3_object$Body
-    file_name2 <- basename(Sys.getenv("MODEL_PATH"))
+fetchSupportFiles <- function() {
+  file_name2 <- paste0("./", Sys.getenv("MODEL_PATH"))
+  if (!file.exists(file_name2)) {
+    flog.info("Model found not found. Attempting to retrieve from S3.")
+    s3 <- initializeS3()
+    s3_object <-
+      s3$get_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
+                    Key = Sys.getenv("MODEL_PATH"))
+    s3_object_body <- s3_object$Body
     writeBin(s3_object_body, con = file_name2)
+    flog.info(paste0("Retreived model file to ", file_name2))
   }
   
 }
@@ -156,7 +158,7 @@ validateMechanisms<-function(d) {
     dplyr::pull(mechanism_code) %>%
     unique()
   
-  #TODO: Removve hard coding of time periods and 
+  #TODO: Remove hard coding of time periods and 
   #filter for the OU as well
   mechs<-datapackr::getMechanismView() %>%
     dplyr::filter(!is.na(startdate)) %>%

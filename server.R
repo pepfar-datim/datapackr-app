@@ -239,35 +239,16 @@ shinyServer(function(input, output, session) {
       shinyjs::disable("file1")
       shinyjs::disable("validate")
       incProgress(0.1, detail = ("Validating your DataPack"))
-      
-      #Get some initial information about the datapack
-      
-      #Attempt to bootstrap the tool type and COP year
-      tool_info<-readxl::read_excel(
-        path = inFile$datapath,
-        sheet = "Home",
-        range = "B10", #May need to be a global variable
-        col_types = "text", 
-        col_names = FALSE) %>% 
-        stringi::stri_split_fixed(pattern = " ",n=2 ) %>% 
-        unlist()
-      
-        tool<-tool_info[2]
-        cop_year<-gsub("COP","20",tool_info[1])
-      
-        flog.info(paste("Found a ",tool,"for COP year",cop_year ))
+     
         
       d<-tryCatch({
         datapackr::unPackTool(inFile$datapath, 
-                              tool = tool,
-                              cop_year=cop_year,
                               d2_session = user_input$d2_session)},
         error = function(e){
           return(e)
         })
       
       if (!inherits(d,"error") & !is.null(d)) {
-        
 
         d$info$sane_name<-paste0(stringr::str_extract_all(d$info$datapack_name,"[A-Za-z0-9_]",
                                                           simplify = TRUE),sep="",collapse="")
@@ -560,6 +541,9 @@ shinyServer(function(input, output, session) {
         paste0("Regeneration of Datapack requested for ", d$info$datapack_name)
         ,
         name = "datapack")
+      
+      
+      
       showModal(modalDialog(
         title = "Keep Calm and Carry On",
         "Do not close this dialog or browser window during DataPack generation. This will take a while!",
@@ -569,8 +553,8 @@ shinyServer(function(input, output, session) {
       ))
       
       fetchSupportFiles()
-      
-      d <- writePSNUxIM(d,snuxim_model_data_path = basename(Sys.getenv("MODEL_PATH")) )
+      support_file<-paste0("./",Sys.getenv("MODEL_PATH"))
+      d <- writePSNUxIM(d,snuxim_model_data_path = support_file )
       flog.info(
         paste0("Datapack reloaded for for ", d$info$datapack_name) ,
         name = "datapack")
