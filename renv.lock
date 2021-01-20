@@ -190,20 +190,24 @@
     },
     "datapackcommons": {
       "Package": "datapackcommons",
-      "Version": "0.2.0.0.0.0.1610975773",
-      "Source": "Repository",
-      "Repository": "RSPM",
+      "Version": "0.2.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "pepfar-datim",
+      "RemoteRepo": "data-pack-commons",
+      "RemoteRef": "master",
       "RemoteSha": "b8103540c4f041dcf65c267f71ceb015c74ec5cd",
-      "Hash": "ce6d393a3d3131e7df6b8f0788b8317e"
+      "Hash": "4369a73b7b2d4f7030074e06bf7fa744"
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "4.0.2.0.0.0.1611058615",
+      "Version": "4.0.3.0.0.0.1611069990",
       "Source": "Repository",
       "Repository": "RSPM",
       "Remotes": "jason-p-pickering/datim-validation,\npepfar-datim/data-pack-commons",
-      "RemoteSha": "c9a81965a010f97381ffbec29b36d47395692256",
-      "Hash": "1d402ebb1a5d60048272922989777795"
+      "RemoteSha": "5546a8cc6adc4a6c4036f1ef9a33148250aa94b8",
+      "Hash": "07c3815c5154551270fc18a39eb55009"
     },
     "datimutils": {
       "Package": "datimutils",
@@ -215,12 +219,15 @@
     },
     "datimvalidation": {
       "Package": "datimvalidation",
-      "Version": "1.0.112.0.0.0.1608550523",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Remotes": "pepfar-datim/datimutils",
+      "Version": "1.0.112",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "jason-p-pickering",
+      "RemoteRepo": "datim-validation",
+      "RemoteRef": "master",
       "RemoteSha": "3d4bdc8a3cd6ae4b98cdd96c9f3c7781e715f688",
-      "Hash": "c204195e4676a74968ea1b5c655c6098"
+      "Hash": "48f93132240c9842eea5f08657bd38f2"
     },
     "desc": {
       "Package": "desc",
@@ -531,6 +538,13 @@
       "Repository": "CRAN",
       "Hash": "2253a430965e222d11a2f9277cd34c2e"
     },
+    "pacman": {
+      "Package": "pacman",
+      "Version": "0.5.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "b37932b67288bc62bb81686b2f337a7d"
+    },
     "paws": {
       "Package": "paws",
       "Version": "0.1.10",
@@ -748,6 +762,13 @@
       "Repository": "CRAN",
       "Hash": "76c9e04c712a05848ae7a23d2f170a40"
     },
+    "remotes": {
+      "Package": "remotes",
+      "Version": "2.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "430a0908aee75b1fcba0e62857cab0ce"
+    },
     "renv": {
       "Package": "renv",
       "Version": "0.12.5",
@@ -915,6 +936,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "ce4f6271baa94776db692f1cb2055bee"
+    },
+    "waiter": {
+      "Package": "waiter",
+      "Version": "0.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "58bd688fb765cf778b633df0e2502003"
     },
     "waldo": {
       "Package": "waldo",
