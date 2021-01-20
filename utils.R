@@ -1,9 +1,3 @@
-require(datapackr)
-require(scales)
-require(futile.logger)
-require(DT)
-
-require(paws)
 
 #Set the maximum file size for the upload file
 options(shiny.maxRequestSize = 100 * 1024 ^ 2)

@@ -1,20 +1,6 @@
 
-library(shiny)
-library(shinyjs)
-library(shinyWidgets)
-require(magrittr)
-require(dplyr)
-require(datimvalidation)
-require(ggplot2)
-require(futile.logger)
-require(paws)
-require(datapackr)
-require(scales)
-require(DT)
-require(purrr)
-require(praise)
-require(scales)
-require(rpivotTable)
+pacman::p_load(shiny,shinyjs,shinyWidgets,magrittr,dplyr,datimvalidation,ggplot2,
+               futile.logger, paws, datapackr, scales, DT, purrr, praise,rpivotTable,waiter)
 
 source("./utils.R")
 source("./visuals.R")
@@ -135,6 +121,7 @@ shinyServer(function(input, output, session) {
                              top: 10%;
                              left: 33%;
                              right: 33%;}")),
+        use_waiter(),
         sidebarLayout(
           sidebarPanel(
             shinyjs::useShinyjs(),
@@ -524,9 +511,14 @@ shinyServer(function(input, output, session) {
   
   snu_selector <- reactive({ validation_results() %>% snuSelector() })
   
+  waiting_screen_datapack <- tagList(
+    spin_hourglass(),
+    h4("Generating your SNUxIM tab. Please wait...")
+  ) 
+  
   output$downloadDataPack <- downloadHandler(
+    
     filename = function() {
-      
       d<-validation_results()
       prefix <-d$info$sane_name
       date<-format(Sys.time(),"%Y%m%d_%H%M%S")
@@ -541,17 +533,7 @@ shinyServer(function(input, output, session) {
         paste0("Regeneration of Datapack requested for ", d$info$datapack_name)
         ,
         name = "datapack")
-      
-      
-      
-      showModal(modalDialog(
-        title = "Keep Calm and Carry On",
-        "Do not close this dialog or browser window during DataPack generation. This will take a while!",
-        easyClose = FALSE,
-        footer = NULL,
-        size = "l"
-      ))
-      
+      waiter_show(html = waiting_screen_datapack, color = "rgba(128,128,128,.8)" )
       fetchSupportFiles()
       support_file<-paste0("./",Sys.getenv("MODEL_PATH"))
       d <- writePSNUxIM(d,snuxim_model_data_path = support_file )
@@ -559,8 +541,9 @@ shinyServer(function(input, output, session) {
         paste0("Datapack reloaded for for ", d$info$datapack_name) ,
         name = "datapack")
       openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
-      removeModal()
-    }
+      waiter_hide()
+    } 
+
   )
   
   output$downloadValidationResults <- downloadHandler(
