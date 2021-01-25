@@ -230,15 +230,18 @@ shinyServer(function(input, output, session) {
         
       d<-tryCatch({
         datapackr::unPackTool(inFile$datapath, 
-                              d2_session = user_input$d2_session)},
+                              tool = "Data Pack",cop_year = "2021",
+                              d2_session = user_input$d2_session,)},
         error = function(e){
           return(e)
-        })
+        }) 
       
+      print(names(d))
       if (!inherits(d,"error") & !is.null(d)) {
-
+        print("FOO")
         d$info$sane_name<-paste0(stringr::str_extract_all(d$info$datapack_name,"[A-Za-z0-9_]",
                                                           simplify = TRUE),sep="",collapse="")
+        flog.info(d$info$same_name)
         #All self-service datapacks should be marked as unapproved for PAW
         d$info$approval_status<-"UNAPPROVED"
         #Keep this until we can change the schema
@@ -253,13 +256,13 @@ shinyServer(function(input, output, session) {
             d <- validatePSNUData(d, d2_session = user_input$d2_session)
             incProgress(0.1,detail="Validating mechanisms")
             Sys.sleep(0.5)
-            d <- validateMechanisms(d)
-            incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
-            Sys.sleep(0.5)
-            r<-archiveDataPacktoS3(d,inFile$datapath)
-            archiveDataPackErrorUI(r)
-            incProgress(0.1, detail = (praise()))
-            Sys.sleep(1)
+            d <- validateMechanisms(d, d2_session = user_input$d2_session)
+            # incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
+            # Sys.sleep(0.5)
+            # r<-archiveDataPacktoS3(d,inFile$datapath)
+            # archiveDataPackErrorUI(r)
+            # incProgress(0.1, detail = (praise()))
+            # Sys.sleep(1)
             d<-prepareFlatMERExport(d)
             
             shinyjs::enable("downloadFlatPack")

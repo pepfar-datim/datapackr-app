@@ -9,7 +9,7 @@ if (!file.exists(Sys.getenv("LOG_PATH"))) {
   file.create(Sys.getenv("LOG_PATH"))
 }
 
-flog.appender(appender.file(Sys.getenv("LOG_PATH")), name="datapack")
+flog.appender(appender.console(), name="datapack")
 
 initializeS3<-function() {
   
@@ -42,7 +42,7 @@ validatePSNUData <- function(d,d2_session) {
   # We need ALL mechanisms to be in DATIM before remapping....TODO
   vr_data$attributeOptionCombo <-
     datimvalidation::remapMechs(vr_data$attributeOptionCombo,
-                                getOption("organisationUnit"),
+                                d2_session$user_orgunit,
                                 "code",
                                 "id",
                                 d2session = d2_session)
@@ -144,7 +144,7 @@ validatePSNUData <- function(d,d2_session) {
 }
 
 #TODO: Move this back to the DataPackr....
-validateMechanisms<-function(d) {
+validateMechanisms<-function(d, d2_session) {
   
   
   if (is.null(d$data$distributedMER)) {return(d)}
@@ -154,7 +154,7 @@ validateMechanisms<-function(d) {
   
   #TODO: Remove hard coding of time periods and 
   #filter for the OU as well
-  mechs<-datapackr::getMechanismView() %>%
+  mechs<-datapackr::getMechanismView(d2_session = d2_session) %>%
     dplyr::filter(!is.na(startdate)) %>%
     dplyr::filter(!is.na(enddate)) %>%
     dplyr::filter(startdate <= as.Date('2020-10-01')) %>%
@@ -298,13 +298,10 @@ prepareFlatMERExport<-function(d) {
   
   d$data$analytics <-  d$data$analytics %>% 
     dplyr::mutate(upload_timestamp = format(Sys.time(),"%Y-%m-%d %H:%M:%S"),
-                  fiscal_year = "FY21") %>% 
-    dplyr::select( ou,
-                   ou_id,
+                  fiscal_year = "FY22") %>% 
+    dplyr::select( 
                    country_name,
                    country_uid,
-                   snu1,
-                   snu1_id,
                    psnu,
                    psnuid,
                    prioritization,

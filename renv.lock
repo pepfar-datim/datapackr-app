@@ -202,20 +202,23 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "4.0.3.0.0.0.1611069990",
+      "Version": "4.1.1",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "PEPFAR",
       "Remotes": "jason-p-pickering/datim-validation,\npepfar-datim/data-pack-commons",
-      "RemoteSha": "5546a8cc6adc4a6c4036f1ef9a33148250aa94b8",
-      "Hash": "07c3815c5154551270fc18a39eb55009"
+      "Hash": "dfaacdeddbfb65b044373a6d70e35415"
     },
     "datimutils": {
       "Package": "datimutils",
-      "Version": "0.1.1.0.0.0.1609918855",
-      "Source": "Repository",
-      "Repository": "RSPM",
+      "Version": "0.1.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "pepfar-datim",
+      "RemoteRepo": "datimutils",
+      "RemoteRef": "master",
       "RemoteSha": "85195e3386904d8ca37ec9538554549051ea7e7d",
-      "Hash": "1f1f04a724bc41ce7df9ec42de54850d"
+      "Hash": "9724b1f17093e9ec571eda22a195a7d6"
     },
     "datimvalidation": {
       "Package": "datimvalidation",
@@ -226,8 +229,8 @@
       "RemoteUsername": "jason-p-pickering",
       "RemoteRepo": "datim-validation",
       "RemoteRef": "master",
-      "RemoteSha": "3d4bdc8a3cd6ae4b98cdd96c9f3c7781e715f688",
-      "Hash": "48f93132240c9842eea5f08657bd38f2"
+      "RemoteSha": "1c3f196288984c4330a998d673376623a20e1401",
+      "Hash": "f0171b6b12769178ca1a0feb456ee239"
     },
     "desc": {
       "Package": "desc",
@@ -834,10 +837,10 @@
     },
     "shinyWidgets": {
       "Package": "shinyWidgets",
-      "Version": "0.5.5",
+      "Version": "0.5.6",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "72de5d990749bb6a14dad43647c84d9f"
+      "Hash": "cfeab56e3bc9d470208c6e645744f532"
     },
     "shinyjs": {
       "Package": "shinyjs",

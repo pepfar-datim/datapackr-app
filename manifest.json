@@ -667,7 +667,7 @@
       }
     },
     "datapackr": {
-      "Source": "PEPFAR",
+      "Source": "CRAN",
       "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
       "GithubRepo": null,
       "GithubUsername": null,
@@ -677,6 +677,8 @@
         "Package": "datapackr",
         "Type": "Package",
         "Title": "A Package that Packs and Unpacks all Data Packs",
+        "Version": "4.1.1",
+        "Date": "2021-1-22",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"William\", \"Shiflett\", email = \"wshiflett@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Chris\", \"Nemarich\", email = \"cnemarich@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Christian\", \"Domaas\", email = \"cdomaas@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Max\", \"Chandler\", email = \"mchandler@baosystems.com\",\n        role = c(\"ctb\"))\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
         "URL": "https://github.com/pepfar-datim/datapackr",
@@ -689,49 +691,52 @@
         "Encoding": "UTF-8",
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
-        "Repository": "RSPM",
-        "RemoteSha": "5546a8cc6adc4a6c4036f1ef9a33148250aa94b8",
-        "Version": "4.0.3.0.0.0.1611069990",
-        "Date": "2020-1-6",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-19 15:30:50 UTC; root",
+        "Packaged": "2021-01-25 17:07:10 UTC; jason",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  William Shiflett [ctb],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Max Chandler [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 3.6.3; ; 2021-01-20 12:20:54 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-01-25 17:07:47 UTC; unix"
       }
     },
     "datimutils": {
-      "Source": "PEPFAR",
-      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
+      "Source": "github",
+      "Repository": null,
+      "GithubRepo": "datimutils",
+      "GithubUsername": "pepfar-datim",
+      "GithubRef": "master",
+      "GithubSha1": "85195e3386904d8ca37ec9538554549051ea7e7d",
       "description": {
         "Package": "datimutils",
         "Type": "Package",
         "Title": "Utilities for interacting with the DATIM api from R",
+        "Version": "0.1.1",
+        "Date": "2019-09-11",
         "Authors@R": "\n    c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Maxwell\", \"Chandler\", email = \"mchandler@baosystems.com\",\n        role = c(\"aut\"))\n  )",
         "Description": "General utilities for interacting with the DATIM api from R.",
         "URL": "https://github.com/pepfar-datim/datimutils",
         "BugReports": "https://github.com/pepfar-datim/datimutils",
         "Depends": "R (>= 3.6.0)",
-        "Imports": "dplyr (>= 0.8.3), tidyr (>= 0.8.3), readr (>= 1.3.1), jsonlite\n(>= 1.6), purrr (>= 0.3.2), tibble (>= 2.1.1), stringr (>=\n1.4.0), stringi (>= 1.4.3), httr (>= 1.4.0), rlist (>=\n0.4.6.1), magrittr (>= 1.5), keyring, lazyeval, stats,\nlubridate, data.table, getPass, rlang",
-        "Suggests": "devtools (>= 2.0.1), httptest, knitr, rmarkdown, testthat (>=\n2.1.0)",
+        "Imports": "dplyr (>= 0.8.3),\ntidyr (>= 0.8.3),\nreadr (>= 1.3.1),\njsonlite (>= 1.6),\npurrr (>= 0.3.2),\ntibble (>= 2.1.1),\nstringr (>= 1.4.0),\nstringi (>= 1.4.3),\nhttr (>= 1.4.0),\nrlist (>= 0.4.6.1),\nmagrittr (>= 1.5),\nkeyring,\nlazyeval,\nstats,\nlubridate,\ndata.table,\ngetPass,\nrlang",
+        "Suggests": "devtools (>= 2.0.1),\nhttptest,\nknitr,\nrmarkdown,\ntestthat (>= 2.1.0)",
         "License": "GPL-3 + file LICENSE",
         "Encoding": "UTF-8",
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
         "VignetteBuilder": "knitr",
-        "Repository": "RSPM",
-        "RemoteSha": "85195e3386904d8ca37ec9538554549051ea7e7d",
-        "Version": "0.1.1.0.0.0.1609918855",
-        "Date": "2019-09-11",
-        "NeedsCompilation": "no",
-        "Packaged": "2021-01-06 07:45:42 UTC; root",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut],\n  Sam Garman [aut],\n  Maxwell Chandler [aut]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 3.6.3; ; 2021-01-19 13:06:39 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-01-18 11:40:19 UTC; unix",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteUsername": "pepfar-datim",
+        "RemoteRepo": "datimutils",
+        "RemoteRef": "master",
+        "RemoteSha": "85195e3386904d8ca37ec9538554549051ea7e7d",
+        "GithubHost": "api.github.com",
+        "GithubRepo": "datimutils",
+        "GithubUsername": "pepfar-datim",
+        "GithubRef": "master",
+        "GithubSHA1": "85195e3386904d8ca37ec9538554549051ea7e7d"
       }
     },
     "datimvalidation": {
@@ -740,7 +745,7 @@
       "GithubRepo": "datim-validation",
       "GithubUsername": "jason-p-pickering",
       "GithubRef": "master",
-      "GithubSha1": "3d4bdc8a3cd6ae4b98cdd96c9f3c7781e715f688",
+      "GithubSha1": "1c3f196288984c4330a998d673376623a20e1401",
       "description": {
         "Package": "datimvalidation",
         "Type": "Package",
@@ -760,18 +765,18 @@
         "Suggests": "doMC (>= 1.3.5), foreach (>= 1.4.4), httptest (>= 3.2.2),\nknitr (>= 1.21), methods, rmarkdown (>= 1.11), roxygen2 (>=\n6.1.1), tcltk, testthat (>= 2.0.1), covr (>= 3.2.1), stringi\n(>= 1.3.1), rprojroot (>= 1.3-2)",
         "VignetteBuilder": "knitr",
         "RoxygenNote": "7.1.1",
-        "Built": "R 3.6.3; ; 2021-01-18 11:40:21 UTC; unix",
+        "Built": "R 3.6.3; ; 2021-01-25 12:16:07 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "jason-p-pickering",
         "RemoteRepo": "datim-validation",
         "RemoteRef": "master",
-        "RemoteSha": "3d4bdc8a3cd6ae4b98cdd96c9f3c7781e715f688",
+        "RemoteSha": "1c3f196288984c4330a998d673376623a20e1401",
         "GithubHost": "api.github.com",
         "GithubRepo": "datim-validation",
         "GithubUsername": "jason-p-pickering",
         "GithubRef": "master",
-        "GithubSHA1": "3d4bdc8a3cd6ae4b98cdd96c9f3c7781e715f688"
+        "GithubSHA1": "1c3f196288984c4330a998d673376623a20e1401"
       }
     },
     "digest": {
@@ -3325,6 +3330,24 @@
     }
   },
   "files": {
+    ".R_Cache/03a3dae384653879582f4ffe31165734": {
+      "checksum": "2e5c80987efb41491674c99b227d0ed5"
+    },
+    ".R_Cache/471f8e20c7309f0642160518440f4b03": {
+      "checksum": "468f4b27e3f7290e5345ce5b9aab51b0"
+    },
+    ".R_Cache/620606191d923fe1ebef2991f9b99edd": {
+      "checksum": "12156bbbd74510f9133a2b7a34e3ddfe"
+    },
+    ".R_Cache/81938345d72cfc19f2334391c7887ef4": {
+      "checksum": "4706d7a847be86a73af4e3629eec2558"
+    },
+    ".R_Cache/c11800b7a60ec254a4ded0d6b02d6957": {
+      "checksum": "3b407971ec8235fd202f1b908e7fccd1"
+    },
+    ".R_Cache/c52c919e354af34cc81beb125d8267db": {
+      "checksum": "fd854aeac25527d66a462450e4fe9340"
+    },
     ".Rprofile": {
       "checksum": "edb14cbd182eeb20e3a6142992610078"
     },
@@ -3335,7 +3358,7 @@
       "checksum": "31c37d9dc0af96e3c9c149f808b3ea48"
     },
     "datapack.log": {
-      "checksum": "83411cd36ee7ea6f77e79785006973eb"
+      "checksum": "a07415eab4662db5960eb75d90d01bce"
     },
     "degs_map.rds": {
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
@@ -3392,13 +3415,13 @@
       "checksum": "df95ec85c3e9dd12f1ef693b06091776"
     },
     "packrat/desc/datapackr": {
-      "checksum": "3f7f64a08d269811d787e6f395158e91"
+      "checksum": "ee8c96224d6879f179e4d5d3d5995e5e"
     },
     "packrat/desc/datimutils": {
-      "checksum": "f7173aacd5097a8db34ff12fcd14155e"
+      "checksum": "af4b5435e1d5d442e9f4becd9569f239"
     },
     "packrat/desc/datimvalidation": {
-      "checksum": "c9593b246a8b786bbbf0d2e18154c47c"
+      "checksum": "128259de76d1acee8f63724862c3ecea"
     },
     "packrat/desc/digest": {
       "checksum": "13343abd600e2f9e725416d7ec9ab489"
@@ -3665,13 +3688,13 @@
       "checksum": "c0e692997328fca72b0a258d351e8647"
     },
     "packrat/packrat.lock": {
-      "checksum": "8b7329e7cbd3bfb671eda8a8e8449892"
+      "checksum": "b746c791ed6631e18e7b05071f4862db"
     },
     "README.md": {
       "checksum": "122afca03cca21b3bc7598ec0a1a4b50"
     },
     "server.R": {
-      "checksum": "9ca2f170dc6848e65f1340789b019b16"
+      "checksum": "0556bb3232af6de7f9e79bcac982756c"
     },
     "support_files/PSNUxIM_20210113_1.rds": {
       "checksum": "de7a32974c956ad70a1097148d6d3e82"
@@ -3683,7 +3706,7 @@
       "checksum": "112ea97d13f284c982d07294b31e4cdd"
     },
     "utils.R": {
-      "checksum": "dc1229e4d8eaa6bd4e08a8e48552f89f"
+      "checksum": "f72fa5baa355ca33335a5dda62b3c7a0"
     },
     "visuals.R": {
       "checksum": "44f37acbd61a88c6af6b71ba989ff3ad"
