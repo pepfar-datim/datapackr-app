@@ -179,7 +179,7 @@
     },
     "XML": {
       "Source": "CRAN",
-      "Repository": "http://www.omegahat.net/RSXML",
+      "Repository": null,
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -635,7 +635,7 @@
       "GithubRepo": "data-pack-commons",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "master",
-      "GithubSha1": "b8103540c4f041dcf65c267f71ceb015c74ec5cd",
+      "GithubSha1": "85fd17469e96f56c4e685d753e9da7299665a34a",
       "description": {
         "Package": "datapackcommons",
         "Type": "Package",
@@ -652,18 +652,18 @@
         "Suggests": "httptest,\ntestthat",
         "RoxygenNote": "7.1.1",
         "Depends": "R (>= 2.10)",
-        "Built": "R 3.6.3; ; 2021-01-18 13:23:48 UTC; unix",
+        "Built": "R 3.6.3; ; 2021-01-26 15:28:34 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "data-pack-commons",
         "RemoteRef": "master",
-        "RemoteSha": "b8103540c4f041dcf65c267f71ceb015c74ec5cd",
+        "RemoteSha": "85fd17469e96f56c4e685d753e9da7299665a34a",
         "GithubHost": "api.github.com",
         "GithubRepo": "data-pack-commons",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "master",
-        "GithubSHA1": "b8103540c4f041dcf65c267f71ceb015c74ec5cd"
+        "GithubSHA1": "85fd17469e96f56c4e685d753e9da7299665a34a"
       }
     },
     "datapackr": {
@@ -686,16 +686,21 @@
         "Depends": "R (>= 3.6.0)",
         "Imports": "dplyr (>= 0.8.3), tidyr (>= 1.0.0), tidyxl (>= 1.0.4), readxl\n(>= 1.3.1), readr (>= 1.3.1), jsonlite (>= 1.6), purrr (>=\n0.3.3), tibble (>= 2.1.3), stringr (>= 1.4.0), stringi, httr\n(>= 1.4.0), rlist (>= 0.4.6.1), magrittr (>= 1.5), crayon (>=\n1.3.4), getPass (>= 0.2-2), openxlsx, lazyeval, stats,\nlubridate (>= 1.7.4), data.table (>= 1.12.8), scales (>=\n1.0.0), datimvalidation, datapackcommons (>= 0.2.0), tidyselect\n(>= 0.2.5), glue (>= 1.3.1), rlang (>= 0.4.2), assertthat, plyr",
         "Suggests": "devtools (>= 2.0.1), httptest, testthat",
-        "Remotes": "jason-p-pickering/datim-validation,\npepfar-datim/data-pack-commons",
         "License": "GPL-2",
         "Encoding": "UTF-8",
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-25 17:07:10 UTC; jason",
+        "Packaged": "2021-01-25 16:54:34 UTC; jason",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  William Shiflett [ctb],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Max Chandler [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 3.6.3; ; 2021-01-25 17:07:47 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-01-25 16:54:35 UTC; unix",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteUsername": "pepfar-datim",
+        "RemoteRepo": "datapackr",
+        "RemoteRef": "cddcf22c5d34a5ed1e8c6d9fa5e39a3981b15657",
+        "RemoteSha": "cddcf22c5d34a5ed1e8c6d9fa5e39a3981b15657"
       }
     },
     "datimutils": {
@@ -3412,10 +3417,10 @@
       "checksum": "af3d62746671376e9c0c68daf2e848a9"
     },
     "packrat/desc/datapackcommons": {
-      "checksum": "df95ec85c3e9dd12f1ef693b06091776"
+      "checksum": "74bdfd00831c1d2184290277126b696a"
     },
     "packrat/desc/datapackr": {
-      "checksum": "ee8c96224d6879f179e4d5d3d5995e5e"
+      "checksum": "1b91bbe412a18402b961770fd632c6e0"
     },
     "packrat/desc/datimutils": {
       "checksum": "af4b5435e1d5d442e9f4becd9569f239"
@@ -3688,7 +3693,7 @@
       "checksum": "c0e692997328fca72b0a258d351e8647"
     },
     "packrat/packrat.lock": {
-      "checksum": "b746c791ed6631e18e7b05071f4862db"
+      "checksum": "838bca1497e70aa2137000cfa8ee1f36"
     },
     "README.md": {
       "checksum": "122afca03cca21b3bc7598ec0a1a4b50"
