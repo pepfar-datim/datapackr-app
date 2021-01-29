@@ -26,11 +26,11 @@ shinyServer(function(input, output, session) {
     shinyjs::enable("file1")
     shinyjs::disable("validate")
     shinyjs::disable("downloadFlatPack")
-    shinyjs::disable("downloadDataPack")
+    #shinyjs::disable("downloadDataPack")
     shinyjs::disable("download_messages")
-    shinyjs::disable("send_paw")
+    #shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
-    shinyjs::disable("compare")
+    #shinyjs::disable("compare")
     ready$ok<-FALSE
   })
   
@@ -141,13 +141,13 @@ shinyServer(function(input, output, session) {
             tags$hr(),
             downloadButton("download_messages", "Validation messages"),
             tags$hr(),
-            downloadButton("downloadValidationResults", "Validation report"),
-            tags$hr(),
-            actionButton("send_paw", "Send to PAW"),
-            tags$hr(),
-            downloadButton("downloadDataPack", "Regenerate PSNUxIM"),
-            tags$hr(),
-            downloadButton("compare", "Compare with DATIM"),
+             downloadButton("downloadValidationResults", "Validation report"),
+            # tags$hr(),
+            # actionButton("send_paw", "Send to PAW"),
+            # tags$hr(),
+            # downloadButton("downloadDataPack", "Regenerate PSNUxIM"),
+            # tags$hr(),
+            # downloadButton("compare", "Compare with DATIM"),
             tags$hr(),
             div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("reset_input", "Reset inputs")),
             div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("logout", "Logout"))
@@ -203,11 +203,11 @@ shinyServer(function(input, output, session) {
   validate<-function() {
     
     shinyjs::disable("downloadFlatPack")
-    shinyjs::disable("downloadDataPack")
+    #shinyjs::disable("downloadDataPack")
     shinyjs::disable("download_messages")
-    shinyjs::disable("send_paw")
+    #shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
-    shinyjs::disable("compare")
+    #shinyjs::disable("compare")
     
     if (!ready$ok) {
       shinyjs::disable("validate")
@@ -267,12 +267,12 @@ shinyServer(function(input, output, session) {
             
             shinyjs::enable("downloadFlatPack")
             shinyjs::enable("download_messages")
-            shinyjs::enable("send_paw")
+            #shinyjs::enable("send_paw")
             shinyjs::enable("downloadValidationResults")
-            shinyjs::enable("compare")
-            if ( d$info$missing_psnuxim_combos ) {
-              shinyjs::enable("downloadDataPack")
-            }
+            #shinyjs::enable("compare")
+            # if ( d$info$missing_psnuxim_combos ) {
+            #   shinyjs::enable("downloadDataPack")
+            # }
             updatePickerInput(session = session, inputId = "kpCascadeInput",
                               choices = snuSelector(d))
             updatePickerInput(session = session, inputId = "epiCascadeInput",
@@ -281,7 +281,7 @@ shinyServer(function(input, output, session) {
           } else {
             #This should occur when there is no PSNUxIM tab and they want
             #to generate one. 
-            shinyjs::enable("downloadDataPack")
+            #shinyjs::enable("downloadDataPack")
             hideTab(inputId = "main-panel", target = "Validation rules")
             hideTab(inputId = "main-panel", target = "HTS Summary Chart")
             hideTab(inputId = "main-panel", target = "HTS Summary Table")
