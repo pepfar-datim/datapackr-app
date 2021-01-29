@@ -443,10 +443,11 @@ shinyServer(function(input, output, session) {
     vr<-validation_results()
     
     if (!inherits(vr,"error") & !is.null(vr)){
+      hts_table<-modalitySummaryTable(vr$data$analytics)
       
-      if ( is.null(vr$data$analytics) )  { return(NULL) }
+      if ( is.null(hts_table) )  { return(NULL) }
       
-      table_formatted<-modalitySummaryTable(vr$data$analytics) %>%
+      table_formatted<- hts_table%>%
         dplyr::mutate(
           Positive = format( Positive ,big.mark=',', scientific=FALSE),
           Total = format( Total ,big.mark=',', scientific=FALSE),
@@ -670,8 +671,12 @@ shinyServer(function(input, output, session) {
                             sheet = "Rounding diffs",x = d$tests$PSNUxIM_rounding_diffs)
         
         openxlsx::addWorksheet(wb,"HTS Summary")
-        openxlsx::writeData(wb = wb,
-                            sheet = "HTS Summary", x = modalitySummaryTable(d$data$analytics))
+        hts_summary<-modalitySummaryTable(d$data$analytics)
+        if (!is.null(hts_summary)) {
+          openxlsx::writeData(wb = wb,
+                              sheet = "HTS Summary", x = hts_summary)
+        }
+
         
       }
       
