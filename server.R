@@ -242,14 +242,14 @@ shinyServer(function(input, output, session) {
       shinyjs::disable("file1")
       shinyjs::disable("validate")
       incProgress(0.1, detail = ("Validating your DataPack"))
-     
-        
-      d<-tryCatch({
-        datapackr::unPackTool(inFile$datapath, 
-                              tool = "Data Pack",cop_year = "2021",
-                              d2_session = user_input$d2_session,)},
-        error = function(e){
+
+
+      d <- tryCatch({
+        datapackr::unPackTool(inFile$datapath,
+                              d2_session = user_input$d2_session)},
+        error = function(e) {
           return(e)
+        })
 
       print(names(d))
       if (!inherits(d, "error") & !is.null(d)) {
