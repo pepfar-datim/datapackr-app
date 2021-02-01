@@ -36,7 +36,11 @@ fetchSupportFiles <- function() {
 
 validatePSNUData <- function(d, d2_session) {
 
+  if (d$info$tool == "Data Pack") {
     vr_data <- d$datim$MER
+  } else if (d$info$tool == "OPU Data Pack") {
+    vr_data <- d$datim$OPU
+  }
 
   if (is.null(vr_data) | NROW(vr_data) == 0) {
     return(d)
@@ -155,6 +159,7 @@ validatePSNUData <- function(d, d2_session) {
 validateMechanisms <- function(d, d2_session) {
 
 
+  if (d$info$tool == "Data Pack") {
     if (is.null(d$data$distributedMER)) {
       return(d)
       } else {
@@ -163,6 +168,15 @@ validateMechanisms <- function(d, d2_session) {
           unique()
 
     }
+  } else if (d$info$tool == "OPU Data Pack") {
+    if (is.null(d$data$extract)) {
+      return(d)
+    } else {
+      vr_data <- d$data$extract %>%
+        dplyr::pull(mech_code) %>%
+        unique()
+    }
+  }
 
   #TODO: Remove hard coding of time periods and
   #filter for the OU as well
@@ -321,6 +335,7 @@ prepareFlatMERExport <- function(d) {
     dplyr::mutate(upload_timestamp = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                   fiscal_year = "FY22")
 
+  if (d$info$tool == "Data Pack") {
     d$data$analytics %<>%
       dplyr::select(
         country_name,
@@ -352,6 +367,43 @@ prepareFlatMERExport <- function(d) {
         top_level,
         target_value
       )
+  } else if (d$info$tool == "OPU Data Pack") {
+    d$data$analytics %<>%
+      dplyr::select(
+        ou,
+        ou_id,
+        country_name,
+        country_uid,
+        snu1,
+        snu1_id,
+        psnu,
+        psnuid,
+        # prioritization,
+        mechanism_code,
+        mechanism_desc,
+        partner_id,
+        partner_desc,
+        funding_agency,
+        fiscal_year,
+        dataelement_id,
+        dataelement_name,
+        indicator,
+        numerator_denominator,
+        support_type,
+        hts_modality,
+        categoryoptioncombo_id,
+        categoryoptioncombo_name,
+        age,
+        sex,
+        key_population,
+        resultstatus_specific,
+        upload_timestamp,
+        disagg_type,
+        resultstatus_inclusive,
+        top_level,
+        target_value
+      )
+  }
 
   return(d)
 }

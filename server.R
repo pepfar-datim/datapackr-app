@@ -312,9 +312,34 @@ shinyServer(function(input, output, session) {
           }
         }
       }
-      
-      if (d$info$tool == "OPU Data Pack"){
-        flog.info("Oops.Cannot handle an OPU right now")
+
+      if (d$info$tool == "OPU Data Pack") {
+        incProgress(0.1, detail = ("Checking validation rules"))
+        Sys.sleep(0.5)
+        d <- validatePSNUData(d, user_input$d2_session)
+        incProgress(0.1, detail = "Validating mechanisms")
+        Sys.sleep(0.5)
+        d <- validateMechanisms(d, user_input$d2_session)
+
+        shinyjs::enable("downloadFlatPack")
+        shinyjs::enable("download_messages")
+        # shinyjs::enable("send_paw")
+        shinyjs::enable("downloadValidationResults")
+        shinyjs::enable("compare")
+        updatePickerInput(session = session, inputId = "kpCascadeInput",
+                          choices = snuSelector(d))
+        updatePickerInput(session = session, inputId = "epiCascadeInput",
+                          choices = snuSelector(d))
+
+        # hideTab(inputId = "main-panel", target = "Validation rules")
+        # hideTab(inputId = "main-panel", target = "HTS Summary Chart")
+        # hideTab(inputId = "main-panel", target = "HTS Summary Table")
+        # hideTab(inputId = "main-panel", target = "HTS Yield")
+        # hideTab(inputId = "main-panel", target = "HTS Recency")
+        # hideTab(inputId = "main-panel", target = "VLS Testing")
+        hideTab(inputId = "main-panel", target = "Epi Cascade Pyramid")
+        hideTab(inputId = "main-panel", target = "KP Cascade Pyramid")
+        # hideTab(inputId = "main-panel", target = "PSNUxIM Pivot")
       }
 
     })
@@ -511,9 +536,15 @@ shinyServer(function(input, output, session) {
 
     if (!inherits(vr, "error") & !is.null(vr)) {
 
+      if (vr$info$tool == "Data Pack") {
         vr %<>%
           purrr::pluck(., "data") %>%
           purrr::pluck(., "MER")
+      } else if (vr$info$tool == "OPU Data Pack") {
+        vr %<>%
+          purrr::pluck(., "data") %>%
+          purrr::pluck(., "extract")
+      }
 
       vr %>%
         dplyr::group_by(indicator_code) %>%
@@ -641,6 +672,7 @@ shinyServer(function(input, output, session) {
 
       d <- validation_results()
 
+      if (d$info$tool == "Data Pack") {
         #Requires refactor to deal with http handles
         d_compare <- datapackr::compareData_DatapackVsDatim(d)
 
@@ -653,6 +685,25 @@ shinyServer(function(input, output, session) {
         openxlsx::writeDataTable(wb = wb,
                                  sheet = "PSNU with dedupe",
                                  x = d_compare$psnu_w_dedup)
+      } else if (d$info$tool == "OPU Data Pack") {
+        d_compare <- datapackr::compareData_OpuDatapackVsDatim(d)
+
+        openxlsx::addWorksheet(wb, "Updated Targets")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "Updated Targets",
+                                 x = d_compare$updates)
+
+
+        openxlsx::addWorksheet(wb, "Deleted Targets")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "Deleted Targets",
+                                 x = d_compare$deletes)
+
+        openxlsx::addWorksheet(wb, "Deduplications")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "Deduplications",
+                                 x = d_compare$dedupes)
+      }
 
       datapack_name <- d$info$datapack_name
 
@@ -681,51 +732,68 @@ shinyServer(function(input, output, session) {
       wb <- openxlsx::createWorkbook()
 
       d <- validation_results()
-      mer_data <- d %>%
-        purrr::pluck(., "data") %>%
-        purrr::pluck(., "MER")
 
-      subnat_impatt <- d %>%
-        purrr::pluck(., "data") %>%
-        purrr::pluck(., "SUBNAT_IMPATT")
+      if (d$info$tool == "Data Pack") {
+        mer_data <- d %>%
+          purrr::pluck(., "data") %>%
+          purrr::pluck(., "MER")
 
-      mer_data <- dplyr::bind_rows(mer_data, subnat_impatt)
-      openxlsx::addWorksheet(wb, "MER Data")
-      openxlsx::writeDataTable(wb = wb,
-                               sheet = "MER Data", x = mer_data)
+        subnat_impatt <- d %>%
+          purrr::pluck(., "data") %>%
+          purrr::pluck(., "SUBNAT_IMPATT")
 
-      has_psnu <- d %>%
-        purrr::pluck(., "info") %>%
-        purrr::pluck(., "has_psnuxim")
+        mer_data <- dplyr::bind_rows(mer_data, subnat_impatt)
+        openxlsx::addWorksheet(wb, "MER Data")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "MER Data", x = mer_data)
 
-      if (has_psnu) {
+        has_psnu <- d %>%
+          purrr::pluck(., "info") %>%
+          purrr::pluck(., "has_psnuxim")
 
-        openxlsx::addWorksheet(wb, "Distributed MER Data")
+        if (has_psnu) {
+
+          openxlsx::addWorksheet(wb, "Distributed MER Data")
+          openxlsx::writeDataTable(wb = wb,
+                                   sheet = "Distributed MER Data",
+                                   x = d$data$analytics)
+
+          d$datim$MER$value <- as.character(d$datim$MER$value)
+          d$datim$subnat_impatt$value <- as.character(d$datim$subnat_impatt$value)
+          datim_export <- dplyr::bind_rows(d$datim$MER, d$datim$subnat_impatt)
+
+          openxlsx::addWorksheet(wb, "DATIM export")
+          openxlsx::writeData(wb = wb,
+                              sheet = "DATIM export", x = datim_export)
+
+          openxlsx::addWorksheet(wb, "Rounding diffs")
+          openxlsx::writeData(wb = wb,
+                              sheet = "Rounding diffs",
+                              x = d$tests$PSNUxIM_rounding_diffs)
+
+          openxlsx::addWorksheet(wb, "HTS Summary")
+          hts_summary <- modalitySummaryTable(d$data$analytics)
+
+          if (!is.null(hts_summary)) {
+            openxlsx::writeData(wb = wb,
+                                sheet = "HTS Summary", x = hts_summary)
+          }
+        }
+      } else if (d$info$tool == "OPU Data Pack") {
+        openxlsx::addWorksheet(wb,"Distributed MER Data")
         openxlsx::writeDataTable(wb = wb,
                                  sheet = "Distributed MER Data",
-                                 x = d$data$analytics)
+                                 x = d$data$extract)
 
-        d$datim$MER$value <- as.character(d$datim$MER$value)
-        d$datim$subnat_impatt$value <- as.character(d$datim$subnat_impatt$value)
-        datim_export <- dplyr::bind_rows(d$datim$MER, d$datim$subnat_impatt)
-
-        openxlsx::addWorksheet(wb, "DATIM export")
-        openxlsx::writeData(wb = wb,
-                            sheet = "DATIM export", x = datim_export)
-
-        openxlsx::addWorksheet(wb, "Rounding diffs")
+        openxlsx::addWorksheet(wb,"Rounding diffs")
         openxlsx::writeData(wb = wb,
                             sheet = "Rounding diffs",
                             x = d$tests$PSNUxIM_rounding_diffs)
 
-        openxlsx::addWorksheet(wb, "HTS Summary")
-        hts_summary <- modalitySummaryTable(d$data$analytics)
-        if (!is.null(hts_summary)) {
-          openxlsx::writeData(wb = wb,
-                              sheet = "HTS Summary", x = hts_summary)
-        }
-
-
+        openxlsx::addWorksheet(wb,"Analytics Summary")
+        openxlsx::writeData(wb = wb,
+                            sheet = "Analytics Summary",
+                            x = modalitySummaryTable(d$data$analytics))
       }
 
       datapack_name <- d$info$datapack_name
