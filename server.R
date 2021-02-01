@@ -212,6 +212,8 @@ shinyServer(function(input, output, session) {
     ))
   })
 
+  ## Validate Function --------------------------------------
+
   validate <- function() {
 
     shinyjs::disable("downloadFlatPack")
@@ -321,9 +323,13 @@ shinyServer(function(input, output, session) {
 
   }
 
+  ## VALIDATION RESULTS REACTIVE --------------------------------------
+
   validation_results <- reactive({
     validate()
   })
+
+  ## EPI CASCADE GRAPH --------------------------------------
 
   output$epi_cascade <- renderPlot({
 
@@ -339,6 +345,7 @@ shinyServer(function(input, output, session) {
     }
   }, height = 600, width = 800)
 
+  ## KP CASCADE GRAPH --------------------------------------
   output$kp_cascade <- renderPlot({
 
     vr <- validation_results()
@@ -352,6 +359,8 @@ shinyServer(function(input, output, session) {
       NULL
     }
   }, height = 600, width = 800)
+
+  ## PIVOT TABLE --------------------------------------
 
   output$pivot <- renderRpivotTable({
     vr <- validation_results()
@@ -368,6 +377,8 @@ shinyServer(function(input, output, session) {
       NULL
     }
   })
+
+  ## HTS RECENCY TABLE  --------------------------------------
 
   output$hts_recency <- DT::renderDataTable({
 
@@ -393,6 +404,8 @@ shinyServer(function(input, output, session) {
     }
   })
 
+  ## MODALITY GRAPH --------------------------------------
+
   output$modality_summary <- renderPlot({
 
     vr <- validation_results()
@@ -415,6 +428,8 @@ shinyServer(function(input, output, session) {
 
   }, height = 600, width = 800)
 
+  ## MODALITY YIELD GRAPH --------------------------------------
+
   output$modality_yield <- renderPlot({
 
     vr <- validation_results()
@@ -429,6 +444,8 @@ shinyServer(function(input, output, session) {
     }
 
   }, height = 400, width = 600)
+
+  ## VLS SUMMARY GRAPH --------------------------------------
 
   output$vls_summary <- renderPlot({
 
@@ -445,6 +462,8 @@ shinyServer(function(input, output, session) {
     }
 
   }, height = 600, width = 800)
+
+  ## MODALITY TABLE --------------------------------------
 
   output$modality_table <- DT::renderDataTable({
 
@@ -484,6 +503,8 @@ shinyServer(function(input, output, session) {
     }
   })
 
+  ## INDICATOR SUMMARY TABLE --------------------------------------
+
   output$indicator_summary <- DT::renderDataTable({
 
     vr <- validation_results()
@@ -506,6 +527,8 @@ shinyServer(function(input, output, session) {
     }
   })
 
+  ## VALIDATION RULES TABLE  --------------------------------------
+
   output$vr_rules <- DT::renderDataTable({
 
     vr <- validation_results() %>%
@@ -525,15 +548,20 @@ shinyServer(function(input, output, session) {
     }
   })
 
+  ## SNU SELECTOR REACTIVE --------------------------------------
+
   snu_selector <- reactive({
     validation_results() %>%
       snuSelector()
     })
 
+  ## WAITING SCREEN --------------------------------------
   waiting_screen_datapack <- tagList(
     spin_hourglass(),
     h4("Generating your SNUxIM tab. Please wait...")
   )
+
+  ## DOWNLOAD DATA PACK BUTTON --------------------------------------
 
   output$downloadDataPack <- downloadHandler(
 
@@ -565,6 +593,8 @@ shinyServer(function(input, output, session) {
 
   )
 
+  ## DOWNLOAD VALIDATION RESULTS BUTTON --------------------------------------
+
   output$downloadValidationResults <- downloadHandler(
     filename = function() {
 
@@ -593,6 +623,7 @@ shinyServer(function(input, output, session) {
     }
   )
 
+  ## DOWNLOAD DATIM COMPARISON BUTTON --------------------------------------
 
   output$compare <- downloadHandler(
     filename = function() {
@@ -632,6 +663,8 @@ shinyServer(function(input, output, session) {
 
     }
   )
+
+  ## DOWNLOAD FLATPACK BUTTON --------------------------------------
 
   output$downloadFlatPack <- downloadHandler(
     filename = function() {
@@ -705,6 +738,8 @@ shinyServer(function(input, output, session) {
     }
   )
 
+  ## VALIDATION MESSAGES UI --------------------------------------
+
   output$messages <- renderUI({
 
     vr <- validation_results()
@@ -731,6 +766,8 @@ shinyServer(function(input, output, session) {
       }
     }
   })
+
+  ## DOWNLOAD MESSAGES BUTTON --------------------------------------
 
   output$download_messages <- downloadHandler(
     filename = function() {
