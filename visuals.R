@@ -48,7 +48,7 @@ modalitySummaryChart <- function(df) {
     coord_flip() +
     scale_fill_manual(values = c(	"#948d79", "#548dc0", "#59BFB3")) +
     labs(y = "", x = "",
-         title = "COP20/FY21 Testing Targets",
+         title = "COP21/FY22 Testing Targets", # TODO Conditionally render title
          subtitle = "modalities ordered by total tests") +
     theme(legend.position = "bottom",
           legend.title = element_blank(),
@@ -118,7 +118,7 @@ modalityYieldChart <- function(df) {
     coord_flip() +
     scale_fill_manual(values = c("#2166AC")) +
     labs(y = "", x = "",
-         title = "COP20/FY21 Testing Yields",
+         title = "COP21/FY22 Testing Yields", # TODO Conditionally render title
          subtitle = "Modalities ordered by yield rates") +
     theme(legend.position = "bottom",
           legend.title = element_blank(),
@@ -362,12 +362,17 @@ subnatPyramidsChart <- function(d, epi_graph_filter_results) {
              position = "identity",
              mapping = aes(y = -value)) +
     coord_flip() +
-    labs( x = "", y = "\u2190 Males | Females \u2192",
-          title = "COP20/FY21 Epidemic Cascade Age & Sex Pyramid",
-          subtitle = "Comparison of Population with HIV, on Treatment, and Virally Suppressed") +
-    geom_hline(yintercept = 0, size=1) +
-    scale_fill_manual(values = c(	"#B2182B", "#EF8A62","#67A9CF")) +
-    scale_y_continuous(limits = c(-y_lim,y_lim), labels = function(x){scales::comma(abs(x))}) +
+    labs(x = "", y = "\u2190 Males | Females \u2192",
+         #TODO Conditionally render title
+         title = "COP21/FY22 Epidemic Cascade Age & Sex Pyramid",
+         subtitle = paste0("Comparison of Population with HIV, ",
+                           "on Treatment, and Virally Suppressed")) +
+    geom_hline(yintercept = 0, size = 1) +
+    scale_fill_manual(values = c(	"#B2182B", "#EF8A62", "#67A9CF")) +
+    scale_y_continuous(limits = c(-y_lim, y_lim),
+                       labels = function(x) {
+                         scales::comma(abs(x))
+                         }) +
     theme(legend.position = "bottom",
           legend.title = element_blank(),
           text = element_text(color = "#595959", size = 14),
@@ -425,13 +430,16 @@ kpCascadeChart <- function(d, kpCascadeInput_filter) {
     geom_bar(data = df,
              stat = "identity",
              position = "identity") +
-    geom_text(aes(label = scales::comma(value),vjust=-0.25)) +
-    labs( x = "", y = "",
-          title = "COP20/FY21 Epidemic Cascade Age & Sex Pyramid",
-          subtitle = "Comparison of General and Key Populations with HIV, on Treatment, and Virally Suppressed") +
-    geom_hline(yintercept = 0, size=1) +
-    scale_fill_manual(values = c("#ceb966","#9cb084","#6bb1c9","#6585cf","#7e6bc9","#a379bb")) +
-    scale_y_continuous(limits = c(0,y_lim*1.1), labels = scales::comma) +
+    geom_text(aes(label = scales::comma(value), vjust = -0.25)) +
+    labs(x = "", y = "",
+         #TODO Conditionally render title
+         title = "COP21/FY22 Epidemic Cascade Age & Sex Pyramid",
+         subtitle = paste0("Comparison of General and Key Populations",
+                           " with HIV, on Treatment, and Virally Suppressed")) +
+           geom_hline(yintercept = 0, size = 1) +
+    scale_fill_manual(values = c("#ceb966", "#9cb084", "#6bb1c9",
+                                 "#6585cf", "#7e6bc9", "#a379bb")) +
+    scale_y_continuous(limits = c(0, y_lim * 1.1), labels = scales::comma) +
     theme(legend.position = "bottom",
           legend.title = element_blank(),
           text = element_text(color = "#595959", size = 14),
@@ -481,12 +489,14 @@ vlsTestingChart <- function(df) {
     geom_bar(data = df,
              stat = "identity",
              position = "identity") +
-    coord_flip(ylim=c(y_lim,1)) +
-    labs( x = "", y = "",
-          title = "COP20/FY21 Viral Load Testing Coverage",
-          subtitle = "Percentage of Population Currently on Treatment Eligible and Targeted for VLS Testing") +
-    geom_hline(yintercept = 0, size=1) +
-    scale_fill_manual(values = c(	"#B2182B", "#EF8A62","#67A9CF")) +
+    coord_flip(ylim = c(y_lim, 1)) +
+    labs(x = "", y = "",
+         # TODO Conditionally render title
+         title = "COP21/FY22 Viral Load Testing Coverage",
+         subtitle = paste0("Percentage of Population Currently on Treatment",
+                           " Eligible and Targeted for VLS Testing")) +
+    geom_hline(yintercept = 0, size = 1) +
+    scale_fill_manual(values = c(	"#B2182B", "#EF8A62", "#67A9CF")) +
     scale_y_continuous(labels = percent) +
     theme(legend.position = "bottom",
           legend.title = element_blank(),
