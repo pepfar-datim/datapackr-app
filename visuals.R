@@ -20,6 +20,148 @@ PSNUxIM_pivot<-function(d){
               , width="70%", height="700px")
 }
 
+
+#Should probably move this to datapackr
+preparePrioTable<-function(d,d2_session){
+  
+  memo_indicators<- tibble::tribble(
+    ~ind,~options, ~in_partner_table,
+    "HTS_INDEX","<15",TRUE,
+    "HTS_INDEX","15+",TRUE,
+    "HTS_INDEX","Total",FALSE,
+    "HTS_TST","<15",TRUE,
+    "HTS_TST","15+",TRUE,
+    "HTS_TST","Total",FALSE,
+    "HTS_TST_POS","<15",TRUE,
+    "HTS_TST_POS","15+",TRUE,
+    "HTS_TST_POS","Total",FALSE,
+    "TX_NEW","<15",TRUE,
+    "TX_NEW","15+",TRUE,
+    "TX_NEW","Total",FALSE,
+    "TX_CURR","<15",TRUE,
+    "TX_CURR","15+",TRUE,
+    "TX_CURR","Total",FALSE,
+    "TX_PVLS","<15",TRUE,
+    "TX_PVLS","15+",TRUE,
+    "TX_PVLS","Total",FALSE,
+    "CXCA_SCRN","Total",TRUE,
+    "OVC_SERV","<18",TRUE,
+    "OVC_SERV","18+",TRUE,
+    "OVC_SERV","Total",FALSE,
+    "OVC_HIVSTAT", "Total",TRUE,
+    "PMTCT_STAT","<15",TRUE,
+    "PMTCT_STAT","15+",TRUE,
+    "PMTCT_STAT","Total",FALSE,
+    "PMTCT_STAT_POS","<15",TRUE,
+    "PMTCT_STAT_POS","15+",TRUE,
+    "PMTCT_STAT_POS","Total",FALSE,
+    "PMTCT_ART","<15",TRUE,
+    "PMTCT_ART","15+",TRUE,
+    "PMTCT_ART","Total",FALSE,
+    "PMTCT_EID","Total",TRUE,
+    "PP_PREV","<15",TRUE,
+    "PP_PREV","15+",TRUE,
+    "PP_PREV","Total",FALSE,
+    "KP_PREV","Total",TRUE,
+    "KP_MAT","Total",TRUE,
+    "VMMC_CIRC","Total",TRUE,
+    "HTS_SELF","<15",TRUE,
+    "HTS_SELF","15+",TRUE,
+    "HTS_SELF","Total",FALSE,
+    "PrEP_NEW","Total",TRUE,
+    "PrEP_CURR","Total",TRUE,
+    "TB_STAT","<15",TRUE,
+    "TB_STAT","15+",TRUE,
+    "TB_STAT","Total",FALSE,
+    "TB_ART","<15",TRUE,
+    "TB_ART","15+",TRUE,
+    "TB_ART","Total",FALSE,
+    "TB_PREV","<15",TRUE,
+    "TB_PREV","15+",TRUE,
+    "TB_PREV","Total",FALSE,
+    "TX_TB","<15",TRUE,
+    "TX_TB","15+",TRUE,
+    "TX_TB","Total",FALSE,
+    "GEND_GBV","Total",TRUE)  
+
+  
+  df_cols<-datapackr::prioritization_dict() %>% 
+    dplyr::rename(col_name = name)
+  
+  df_rows<-memo_indicators %>% dplyr::select(ind,options)
+  
+  df_base<-tidyr::crossing(df_rows,dplyr::select(df_cols,col_name)) %>% 
+    dplyr::arrange(ind,options,col_name) %>% 
+    dplyr::mutate(value = 0) %>% 
+    dplyr::rename("indicator" = ind,
+                  age_coarse = options,
+                  prioritization = col_name)
+  
+  
+      lt15<-datimutils::getMetadata("categoryOptionGroups/X2PpJrdZaxH?fields=categoryOptions[id,name]",
+                                    d2_session = d2_session) %>% 
+        purrr::pluck("categoryOptions") %>% 
+        dplyr::mutate(age_coarse="<15")
+      gt15<-datimutils::getMetadata("categoryOptionGroups/HkQZzpC7cUo?fields=categoryOptions[id,name]", 
+                                    d2_session = d2_session) %>% 
+        purrr::pluck("categoryOptions") %>% 
+        dplyr::mutate(age_coarse="15+")
+      
+      lt15_single<-  tibble::tribble(
+        ~age,~age_coarse,
+        "<15","<15")
+      
+      age_groups<-dplyr::bind_rows(lt15,gt15) %>% 
+        dplyr::rename(age = name) %>% 
+        dplyr::select(-id) %>% 
+        dplyr::mutate(age = stringr::str_replace(age,"1-4","01-04")) %>% 
+        dplyr::mutate(age = stringr::str_replace(age,"5-9","05-09")) %>% 
+        dplyr::mutate(age = stringr::str_replace(age,"<1","<01")) %>% 
+        dplyr::bind_rows(.,lt15_single)
+        
+
+  
+  df <- d  %>% 
+    purrr::pluck("data") %>% 
+    purrr::pluck("analytics") %>% 
+    dplyr::select(indicator,
+                  prioritization,
+                  age,
+                  value = target_value) %>% 
+    dplyr::filter(indicator %in% unique(memo_indicators$ind)) %>% 
+    dplyr::left_join(age_groups,by=c("age")) %>% 
+    dplyr::mutate( age_coarse = dplyr::case_when( indicator %in% c("CXCA_SCRN","OVC_HIVSTAT","KP_PREV","PMTCT_EID","KP_MAT","VMMC_CIRC","PrEP_NEW","PrEP_CURR","GEND_GBV")  ~ "Total",
+                                    TRUE ~ age_coarse)) %>% 
+    dplyr::select(-age)
+  
+  
+  df_totals<-df %>% 
+    group_by(indicator,prioritization) %>% 
+    dplyr::summarise(value = sum(value)) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::mutate(age_coarse = "Total") %>% 
+    dplyr::select(names(df))
+  
+  df_final<-dplyr::bind_rows(df,df_totals,df_base) %>% 
+    dplyr::group_by(indicator,age_coarse,prioritization) %>% 
+    dplyr::summarise(value = sum(value)) %>% 
+    dplyr::distinct() %>% 
+    dplyr::ungroup() %>% 
+    dplyr::mutate(prioritization = factor(prioritization,levels = df_cols$col_name)) %>% 
+    dplyr::mutate(indicator = factor(indicator,levels = unique(df_rows$ind))) %>% 
+    dplyr::arrange(indicator,prioritization) %>% 
+    tidyr::pivot_wider(names_from = prioritization ,values_from = "value") %>% 
+    dplyr::mutate("Total *" = rowSums(.[3:7]) ) %>% 
+    dplyr::rename("Age" = age_coarse)
+  
+  
+  d$data$prio_table<-df_final
+  
+  return(d)
+
+}
+
+
 modalitySummaryChart <- function(df) {
   
   df %>% 

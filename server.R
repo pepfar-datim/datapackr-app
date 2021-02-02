@@ -174,7 +174,8 @@ shinyServer(function(input, output, session) {
                                  choices= "", 
                                  options = list(`actions-box` = TRUE),multiple = T),
                      plotOutput("kp_cascade")),
-            tabPanel("PSNUxIM Pivot",rpivotTableOutput({"pivot"}))
+            tabPanel("PSNUxIM Pivot",rpivotTableOutput({"pivot"})),
+            tabPanel("Prioritization",DT::dataTableOutput("prio_table"))
             
           ))
         ))
@@ -264,7 +265,7 @@ shinyServer(function(input, output, session) {
             # incProgress(0.1, detail = (praise()))
             # Sys.sleep(1)
             d<-prepareFlatMERExport(d)
-            
+            d<-preparePrioTable(d,d2_session = user_input$d2_session)
             shinyjs::enable("downloadFlatPack")
             shinyjs::enable("download_messages")
             #shinyjs::enable("send_paw")
@@ -347,6 +348,26 @@ shinyServer(function(input, output, session) {
       NULL
     }
   })
+  
+  output$prio_table <- DT::renderDataTable({
+    prio_table<-validation_results() %>% 
+      purrr::pluck("data") %>% 
+      purrr::pluck("prio_table")
+    
+    if (!inherits(prio_table,"error") & !is.null(prio_table)){
+      
+      DT::datatable(prio_table,options = list(pageLength = 50, 
+                                     columnDefs = list(list(className = 'dt-right', 
+                                                            targets = 3:8)))) %>% 
+        formatCurrency(3:8, '',digits =0)
+
+      
+    } else {
+      print("WHOOPS!")
+      NULL
+    }
+  })
+  
   
   output$hts_recency<-DT::renderDataTable({ 
     
