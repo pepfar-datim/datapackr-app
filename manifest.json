@@ -179,7 +179,7 @@
     },
     "XML": {
       "Source": "CRAN",
-      "Repository": "http://www.omegahat.net/RSXML,
+      "Repository": "http://www.omegahat.net/RSXML",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
