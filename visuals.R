@@ -514,11 +514,12 @@ vlsTestingChart <- function(df) {
 snuSelector <- function(d) {
 
   if (!inherits(d, "error") & !is.null(d)) {
-    d  %>%
+    d %>%
       purrr::pluck(., "data") %>%
       purrr::pluck(., "analytics") %>%
       purrr::pluck(., "snu1") %>%
-      unique()
+      unique() %>%
+      setNames(., .)
 
   } else {
     NULL
