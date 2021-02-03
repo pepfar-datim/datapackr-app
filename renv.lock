@@ -1,18 +1,14 @@
 {
   "R": {
-    "Version": "4.0.3",
+    "Version": "3.6.3",
     "Repositories": [
       {
         "Name": "CRAN",
-        "URL": "https://cran.rstudio.com"
+        "URL": "https://ftpmirror1.infania.net/mirror/CRAN"
       },
       {
-        "Name": "Connect Prod",
+        "Name": "PEPFAR",
         "URL": "https://rstudio-package.ap.datim.org/prod/latest"
-      },
-      {
-        "Name": "Connect Test",
-        "URL": "https://rstudio-package.testing.ap.datim.org/test/latest"
       }
     ]
   },
@@ -206,11 +202,12 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "4.2.2",
+      "Version": "4.1.3.0.0.0.1611868478",
       "Source": "Repository",
-      "Repository": "Connect Test",
+      "Repository": "RSPM",
       "Remotes": "jason-p-pickering/datim-validation,\npepfar-datim/data-pack-commons",
-      "Hash": "eafeca5d7c955e7431e2baf4811e4c99"
+      "RemoteSha": "28b8cc63f17b8179a268b3397a77e841241e5b76",
+      "Hash": "801da47055d5f215d7608dadcaa63a80"
     },
     "datimutils": {
       "Package": "datimutils",

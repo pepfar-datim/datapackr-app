@@ -294,10 +294,10 @@ recencyComparison <- function(d) {
 
 subnatPyramidsChart <- function(d, epi_graph_filter_results) {
 
-  # indicator_map <- datapackr::map_DataPack_DATIM_DEs_COCs[, c("dataelement",
-  #                                                             "indicator_code")] %>%
-  #   dplyr::distinct() %>%
-  #   dplyr::rename(dataelement_id = dataelement)
+  indicator_map <- datapackr::map_DataPack_DATIM_DEs_COCs[, c("dataelement",
+                                                              "indicator_code")] %>%
+    dplyr::distinct() %>%
+    dplyr::rename(dataelement_id = dataelement)
 
   df <- d %>%
     purrr::pluck(., "data") %>%
@@ -317,10 +317,10 @@ subnatPyramidsChart <- function(d, epi_graph_filter_results) {
   }
 
   df %<>%
-    # dplyr::inner_join(indicator_map, by = "dataelement_id") %>%
-    dplyr::filter(indicator_code == "TX_CURR.T" |
-                    indicator_code == "TX_PVLS.N.Routine.T"  |
-                    indicator_code == "PLHIV.T_1")
+    dplyr::inner_join(indicator_map, by = "dataelement_id") %>%
+    dplyr::filter(indicator_code == "TX_CURR.N.Age_Sex_HIVStatus.T" |
+                    indicator_code == "TX_PVLS.N.Age_Sex_Indication_HIVStatus.T.Routine"  |
+                    indicator_code == "PLHIV.NA.Age/Sex/HIVStatus.T")
 
   if (NROW(df) == 0) {
     return(NULL)
@@ -335,9 +335,9 @@ subnatPyramidsChart <- function(d, epi_graph_filter_results) {
                   Sex = sex) %>%
     dplyr::arrange(indicator_code, desc(indicator_code)) %>%
     dplyr::mutate(indicator_code = ifelse(
-      indicator_code == "PLHIV.T_1", "PLHIV", ifelse(
-        indicator_code == "TX_CURR.T", "TX_CURR", ifelse(
-          indicator_code == "TX_PVLS.N.Routine.T",
+      indicator_code == "PLHIV.NA.Age/Sex/HIVStatus.T", "PLHIV", ifelse(
+        indicator_code == "TX_CURR.N.Age_Sex_HIVStatus.T", "TX_CURR", ifelse(
+          indicator_code == "TX_PVLS.N.Age_Sex_Indication_HIVStatus.T.Routine",
           "TX_PVLS", NA
         )
       )
