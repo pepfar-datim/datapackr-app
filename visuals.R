@@ -136,49 +136,49 @@ recencyComparison <- function(d) {
     structure(
       .Data = list(
         indicator_code = c(
-          "HTS_INDEX_COM.N.Age_Sex_Result.T.NewPos",
-          "HTS_INDEX_COM.N.Age_Sex_Result.T.NewNeg",
-          "HTS_INDEX_FAC.N.Age_Sex_Result.T.NewPos",
-          "HTS_INDEX_FAC.N.Age_Sex_Result.T.NewNeg",
-          "HTS_TST_Inpat.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_Inpat.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_Pediatric.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_Pediatric.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_Malnutrition.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_Malnutrition.N.Age_Sex_Result.T.Negative",
-          "TB_STAT.N.Age_Sex_KnownNewPosNeg.T.NewPos",
-          "TB_STAT.N.Age_Sex_KnownNewPosNeg.T.NewNeg",
-          "PMTCT_STAT.N.Age_Sex_KnownNewResult.T.NewPos",
-          "PMTCT_STAT.N.Age_Sex_KnownNewResult.T.NewNeg",
-          "HTS_TST_PMTCTPostANC1.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_PMTCTPostANC1.N.Age_Sex_Result.T.Negative",
-          "VMMC_CIRC.N.Age_Sex_HIVStatus.T.Positive",
-          "VMMC_CIRC.N.Age_Sex_HIVStatus.T.Negative",
-          "HTS_TST_STIClinic.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_STIClinic.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_EmergencyWard.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_EmergencyWard.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_OtherPITC.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_OtherPITC.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_VCT.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_VCT.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_MobileMod.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_MobileMod.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_OtherMod.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_OtherMod.N.Age_Sex_Result.T.Negative",
-          "HTS_RECENT_IndexMod.N.Age_Sex_Result.T",
-          "HTS_RECENT_Index.N.Age_Sex_Result.T",
-          "HTS_RECENT_Inpat.N.Age_Sex_Result.T",
-          "HTS_RECENT_TB.N.Age_Sex_Result.T",
-          "HTS_RECENT_PMTCT.N.Age_Sex_Result.T",
-          "HTS_RECENT_PMTCTPostANC1.N.Age_Sex_Result.T",
-          "HTS_RECENT_VMMC.N.Age_Sex_Result.T",
-          "HTS_RECENT_STIClinic.N.Age_Sex_Result.T",
-          "HTS_RECENT_Emergency.N.Age_Sex_Result.T",
-          "HTS_RECENT_OtherPITC.N.Age_Sex_Result.T",
-          "HTS_RECENT_VCT.N.Age_Sex_Result.T",
-          "HTS_RECENT_MobileMod.N.Age_Sex_Result.T",
-          "HTS_RECENT_OtherMod.N.Age_Sex_Result.T"
+          "HTS_INDEX_COM.New.Pos.T",
+          "HTS_INDEX_COM.New.Neg.T",
+          "HTS_INDEX_FAC.New.Pos.T",
+          "HTS_INDEX_FAC.New.Neg.T",
+          "HTS_TST_Inpat.Pos.T",
+          "HTS_TST_Inpat.Neg.T",
+          "HTS_TST_Peds.Pos.T",
+          "HTS_TST_Peds.Neg.T",
+          "HTS_TST_Maln.Pos.T",
+          "HTS_TST_Maln.Neg.T",
+          "TB_STAT.N.New.Pos.T",
+          "TB_STAT.N.New.Neg.T",
+          "PMTCT_STAT.N.New.Pos.T",
+          "PMTCT_STAT.N.New.Neg.T",
+          "HTS_TST.PostANC1.Pos.T",
+          "HTS_TST.PostANC1.Neg.T",
+          "VMMC_CIRC.Pos.T",
+          "VMMC_CIRC.Neg.T",
+          "HTS_TST.STI.Pos.T",
+          "HTS_TST.STI.Neg.T",
+          "HTS_TST.EW.Pos.T",
+          "HTS_TST.EW.Neg.T",
+          "HTS_TST.VCT.Pos.T",
+          "HTS_TST.VCT.Neg.T",
+          "HTS_TST.MobileCom.Pos.T",
+          "HTS_TST.MobileCom.Neg.T",
+          "HTS_TST_Other.Pos.T",
+          "HTS_TST_Other.Neg.T",
+          "HTS_TST_OtherCom.Pos.T",
+          "HTS_TST_OtherCom.Neg.T",
+          "HTS_RECENT.IndexCom.T",
+          "HTS_RECENT.IndexFac.T",
+          "HTS_RECENT.Inpat.T",
+          "HTS_RECENT.TB.T",
+          "HTS_RECENT.PMTCT_STAT.T",
+          "HTS_RECENT.PostANC1.T",
+          "HTS_RECENT.VMMC.T",
+          "HTS_RECENT.STI.T",
+          "HTS_RECENT.EW.T",
+          "HTS_RECENT.VCT.T",
+          "HTS_RECENT.MobileCom.T",
+          "HTS_RECENT.Other.T",
+          "HTS_RECENT.OtherCom.T"
         ),
         hts_recency_compare = c(
           "Community - Index",
@@ -203,12 +203,12 @@ recencyComparison <- function(d) {
           "Facility - STI Clinic",
           "Facility - Emergency Ward",
           "Facility - Emergency Ward",
-          "Facility - Other PITC",
-          "Facility - Other PITC",
           "Facility - VCT",
           "Facility - VCT",
           "Community - Mobile",
           "Community - Mobile",
+          "Facility - Other PITC",
+          "Facility - Other PITC",
           "Community - Other Services",
           "Community - Other Services",
           "Community - Index",
@@ -220,9 +220,9 @@ recencyComparison <- function(d) {
           "Facility - VMMC",
           "Facility - STI Clinic",
           "Facility - Emergency Ward",
-          "Facility - Other PITC",
           "Facility - VCT",
           "Community - Mobile",
+          "Facility - Other PITC",
           "Community - Other Services"
         )
       ),
@@ -231,19 +231,19 @@ recencyComparison <- function(d) {
       class = "data.frame"
     )
 
-  indicator_map <-
-    datapackr::map_DataPack_DATIM_DEs_COCs[, c("dataelement",
-                                               "indicator_code")] %>%
-    dplyr::distinct() %>%
-    dplyr::rename(dataelement_id = dataelement)
-
-  hts_recency_map <- dplyr::inner_join(indicator_map, hts_mechs) %>%
-    dplyr::select(dataelement_id, hts_recency_compare)
+  # indicator_map <-
+  #   datapackr::map_DataPack_DATIM_DEs_COCs[, c("dataelement",
+  #                                              "indicator_code")] %>%
+  #   dplyr::distinct() %>%
+  #   dplyr::rename(dataelement_id = dataelement)
+  #
+  # hts_recency_map <- dplyr::inner_join(indicator_map, hts_mechs) %>%
+  #   dplyr::select(dataelement_id, hts_recency_compare)
 
   df <- d %>%
     purrr::pluck(., "data") %>%
     purrr::pluck(., "analytics") %>%
-    dplyr::inner_join(hts_recency_map, by = "dataelement_id") %>%
+    dplyr::inner_join(hts_mechs, by = "indicator_code") %>%
     dplyr::filter(resultstatus_inclusive == "Positive") %>%
     dplyr::filter(!(
       resultstatus_specific %in% c("Known at Entry Positive", "Status Unknown")
@@ -276,7 +276,7 @@ recencyComparison <- function(d) {
   if (!can_proceed) {
     return(NULL)
   } else  {
-    df %>%
+    df %<>%
       dplyr::select("Modality" = hts_recency_compare,
                     HTS_RECENT,
                     "HTS_TST_POS" = HTS_TST) %>%
@@ -287,6 +287,8 @@ recencyComparison <- function(d) {
         HTS_TST_POS = format(HTS_TST_POS, big.mark = ",", scientific = FALSE),
         `HTS_RECENT (%)` = format(round(`HTS_RECENT (%)`, 2), nsmall = 2)
       )
+
+    return(df)
   }
 }
 
