@@ -554,7 +554,7 @@ shinyServer(function(input, output, session) {
         dplyr::arrange(indicator_code)
 
     } else {
-      NULL
+      data.frame(message = "No data is available to display. An error may have occurred.")
     }
   })
 
@@ -567,7 +567,7 @@ shinyServer(function(input, output, session) {
       purrr::pluck(., "vr_rules_check")
 
     if (inherits(vr, "error")  | is.null(vr)) {
-      NULL
+      data.frame(message = "No data is available to display. An error may have occurred.")
     }
 
     if (NROW(vr) == 0) {
