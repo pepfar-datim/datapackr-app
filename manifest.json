@@ -179,7 +179,7 @@
     },
     "XML": {
       "Source": "CRAN",
-      "Repository": "http://www.omegahat.net/RSXML",
+      "Repository": "http://www.omegahat.net/RSXML,
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -630,7 +630,7 @@
       }
     },
     "datapackcommons": {
-      "Source": "CRAN",
+      "Source": "PEPFAR",
       "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
       "GithubRepo": null,
       "GithubUsername": null,
@@ -640,7 +640,6 @@
         "Package": "datapackcommons",
         "Type": "Package",
         "Title": "Common Utilities for with with the PEPFAR DataPack",
-        "Version": "0.2.2",
         "Author": "Who wrote it",
         "Maintainer": "The package maintainer <yourself@somewhere.net>",
         "Description": "More about what it does (maybe more than one line)\n    Use four spaces when indenting paragraphs within the Description.",
@@ -648,17 +647,17 @@
         "Encoding": "UTF-8",
         "LazyData": "true",
         "URL": "https://github.com/pepfar-datim/data-pack-commons",
-        "Imports": "assertthat,\ndatimvalidation,\ndplyr,\nglue,\nhttr,\njsonlite,\nlubridate,\nmagrittr,\nplyr,\npurrr,\nreadr,\nrlist,\nstringr,\ntibble,\ntidyr",
-        "Suggests": "doMC,\nhttptest,\ntestthat",
+        "Imports": "assertthat, datimvalidation, dplyr, glue, httr, jsonlite,\nlubridate, magrittr, plyr, purrr, readr, rlist, stringr,\ntibble, tidyr",
+        "Suggests": "doMC, httptest, testthat",
         "RoxygenNote": "7.1.1",
         "Depends": "R (>= 2.10)",
-        "Built": "R 3.6.3; ; 2021-01-29 07:23:51 UTC; unix",
-        "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteUsername": "pepfar-datim",
-        "RemoteRepo": "data-pack-commons",
-        "RemoteRef": "master",
-        "RemoteSha": "ff8b57047f28e52a0ea1dcb733382d9822ca55bc"
+        "Repository": "RSPM",
+        "RemoteSha": "ff8b57047f28e52a0ea1dcb733382d9822ca55bc",
+        "Version": "0.2.2.0.0.0.1612206672",
+        "Date": "2021-02-01",
+        "NeedsCompilation": "no",
+        "Packaged": "2021-02-01 19:12:31 UTC; root",
+        "Built": "R 3.6.3; ; 2021-02-03 14:19:42 UTC; unix"
       }
     },
     "datapackr": {
@@ -3421,7 +3420,7 @@
       "checksum": "af3d62746671376e9c0c68daf2e848a9"
     },
     "packrat/desc/datapackcommons": {
-      "checksum": "4a304588ceffce7354277ecf693d7d45"
+      "checksum": "6d7d84b5128e67c16da8fa233c399004"
     },
     "packrat/desc/datapackr": {
       "checksum": "03cbd1d5dd0dd9419049b96726cd5d32"
@@ -3697,7 +3696,7 @@
       "checksum": "c0e692997328fca72b0a258d351e8647"
     },
     "packrat/packrat.lock": {
-      "checksum": "7739cdaaa7dab90a2db01872e07b856a"
+      "checksum": "a0570201d5a3566c1883a637335d6edb"
     },
     "README.md": {
       "checksum": "122afca03cca21b3bc7598ec0a1a4b50"
