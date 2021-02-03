@@ -217,12 +217,12 @@ shinyServer(function(input, output, session) {
   validate <- function() {
 
     shinyjs::disable("downloadFlatPack")
-    #shinyjs::disable("downloadDataPack")
+    shinyjs::disable("downloadDataPack")
     shinyjs::disable("download_messages")
-    #shinyjs::disable("send_paw")
+    shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
-    #shinyjs::disable("compare")
-    
+    shinyjs::disable("compare")
+
     if (!ready$ok) {
       shinyjs::disable("validate")
       return(NULL)
@@ -287,10 +287,10 @@ shinyServer(function(input, output, session) {
             shinyjs::enable("download_messages")
             #shinyjs::enable("send_paw")
             shinyjs::enable("downloadValidationResults")
-            #shinyjs::enable("compare")
-            # if ( d$info$missing_psnuxim_combos ) {
-            #   shinyjs::enable("downloadDataPack")
-            # }
+            shinyjs::enable("compare")
+            if ( d$info$missing_psnuxim_combos ) {
+              shinyjs::enable("downloadDataPack")
+            }
             updatePickerInput(session = session, inputId = "kpCascadeInput",
                               choices = snuSelector(d))
             updatePickerInput(session = session, inputId = "epiCascadeInput",
@@ -299,7 +299,7 @@ shinyServer(function(input, output, session) {
           } else {
             #This should occur when there is no PSNUxIM tab and they want
             #to generate one.
-            #shinyjs::enable("downloadDataPack")
+            shinyjs::enable("downloadDataPack")
             hideTab(inputId = "main-panel", target = "Validation rules")
             hideTab(inputId = "main-panel", target = "HTS Summary Chart")
             hideTab(inputId = "main-panel", target = "HTS Summary Table")
