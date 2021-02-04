@@ -26,7 +26,7 @@ shinyServer(function(input, output, session) {
     shinyjs::enable("file1")
     shinyjs::disable("validate")
     shinyjs::disable("downloadFlatPack")
-    #shinyjs::disable("downloadDataPack")
+    shinyjs::disable("downloadDataPack")
     shinyjs::disable("download_messages")
     #shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
@@ -145,7 +145,7 @@ shinyServer(function(input, output, session) {
             # tags$hr(),
             # actionButton("send_paw", "Send to PAW"),
             # tags$hr(),
-            # downloadButton("downloadDataPack", "Regenerate PSNUxIM"),
+            downloadButton("downloadDataPack", "Regenerate PSNUxIM"),
             # tags$hr(),
             # downloadButton("compare", "Compare with DATIM"),
             tags$hr(),
@@ -204,7 +204,7 @@ shinyServer(function(input, output, session) {
   validate<-function() {
     
     shinyjs::disable("downloadFlatPack")
-    #shinyjs::disable("downloadDataPack")
+    shinyjs::disable("downloadDataPack")
     shinyjs::disable("download_messages")
     #shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
@@ -271,9 +271,9 @@ shinyServer(function(input, output, session) {
             #shinyjs::enable("send_paw")
             shinyjs::enable("downloadValidationResults")
             #shinyjs::enable("compare")
-            # if ( d$info$missing_psnuxim_combos ) {
-            #   shinyjs::enable("downloadDataPack")
-            # }
+            if ( d$info$missing_psnuxim_combos ) {
+              shinyjs::enable("downloadDataPack")
+             }
             updatePickerInput(session = session, inputId = "kpCascadeInput",
                               choices = snuSelector(d))
             updatePickerInput(session = session, inputId = "epiCascadeInput",
@@ -282,7 +282,7 @@ shinyServer(function(input, output, session) {
           } else {
             #This should occur when there is no PSNUxIM tab and they want
             #to generate one. 
-            #shinyjs::enable("downloadDataPack")
+            shinyjs::enable("downloadDataPack")
             hideTab(inputId = "main-panel", target = "Validation rules")
             hideTab(inputId = "main-panel", target = "HTS Summary Chart")
             hideTab(inputId = "main-panel", target = "HTS Summary Table")
@@ -560,7 +560,7 @@ shinyServer(function(input, output, session) {
         name = "datapack")
       waiter_show(html = waiting_screen_datapack, color = "rgba(128,128,128,.8)" )
       fetchSupportFiles()
-      support_file<-paste0("./",Sys.getenv("SNUXIM_MODEL_DATA_PATH"))
+      support_file<-paste0("./support_files/snuxim_model_data.rds")
       d <- writePSNUxIM(d,snuxim_model_data_path = support_file )
       flog.info(
         paste0("Datapack reloaded for for ", d$info$datapack_name) ,

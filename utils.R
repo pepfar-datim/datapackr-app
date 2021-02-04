@@ -20,13 +20,13 @@ initializeS3<-function() {
 }
 
 fetchSupportFiles <- function() {
-  file_name2 <- paste0("./", Sys.getenv("SNUXIM_MODEL_DATA_PATH"))
+  file_name2 <- paste0("./support_files/snuxim_model_data.rds")
   if (!file.exists(file_name2)) {
     flog.info("Model found not found. Attempting to retrieve from S3.")
     s3 <- initializeS3()
     s3_object <-
       s3$get_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
-                    Key = Sys.getenv("SNUXIM_MODEL_DATA_PATH"))
+                    Key = paste0("/support_files/snuxim_model_data.rds"))
     s3_object_body <- s3_object$Body
     writeBin(s3_object_body, con = file_name2)
     flog.info(paste0("Retreived model file to ", file_name2))
