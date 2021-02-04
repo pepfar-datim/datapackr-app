@@ -1,20 +1,20 @@
 PSNUxIM_pivot<-function(d){
-  
-  pivot<- d  %>% 
-    purrr::pluck("data") %>% 
-    purrr::pluck("analytics") %>% 
+
+  pivot<- d  %>%
+    purrr::pluck("data") %>%
+    purrr::pluck("analytics") %>%
     dplyr::select(indicator,
                   dataelement_name,
                   psnu,
                   mechanism_code,
                   partner= partner_desc,
                   agency = funding_agency,
-                  value = target_value) %>% 
-    dplyr::group_by(indicator,dataelement_name,psnu,mechanism_code,partner,agency) %>% 
-    dplyr::summarise(value = sum(value)) %>% 
-    dplyr::ungroup() %>% 
+                  value = target_value) %>%
+    dplyr::group_by(indicator,dataelement_name,psnu,mechanism_code,partner,agency) %>%
+    dplyr::summarise(value = sum(value)) %>%
+    dplyr::ungroup() %>%
     dplyr::mutate(mechanism_code = ifelse(mechanism_code == "HllvX50cXC0","default",mechanism_code))
-  
+
   rpivotTable(data =   pivot   ,  rows = c( "dataelement_name"),
               vals = "value", aggregatorName = "Integer Sum", rendererName = "Table"
               , width="70%", height="700px")
@@ -23,7 +23,7 @@ PSNUxIM_pivot<-function(d){
 
 #Should probably move this to datapackr
 preparePrioTable<-function(d,d2_session){
-  
+
   memo_indicators<- tibble::tribble(
     ~ind,~options, ~in_partner_table,
     "HTS_INDEX","<15",TRUE,
@@ -82,94 +82,94 @@ preparePrioTable<-function(d,d2_session){
     "TX_TB","<15",TRUE,
     "TX_TB","15+",TRUE,
     "TX_TB","Total",FALSE,
-    "GEND_GBV","Total",TRUE)  
+    "GEND_GBV","Total",TRUE)
 
-  
-  df_cols<-datapackr::prioritization_dict() %>% 
+
+  df_cols<-datapackr::prioritization_dict() %>%
     dplyr::rename(col_name = name)
-  
+
   df_rows<-memo_indicators %>% dplyr::select(ind,options)
-  
-  df_base<-tidyr::crossing(df_rows,dplyr::select(df_cols,col_name)) %>% 
-    dplyr::arrange(ind,options,col_name) %>% 
-    dplyr::mutate(value = 0) %>% 
+
+  df_base<-tidyr::crossing(df_rows,dplyr::select(df_cols,col_name)) %>%
+    dplyr::arrange(ind,options,col_name) %>%
+    dplyr::mutate(value = 0) %>%
     dplyr::rename("indicator" = ind,
                   age_coarse = options,
                   prioritization = col_name)
-  
-  
+
+
       lt15<-datimutils::getMetadata("categoryOptionGroups/X2PpJrdZaxH?fields=categoryOptions[id,name]",
-                                    d2_session = d2_session) %>% 
-        purrr::pluck("categoryOptions") %>% 
+                                    d2_session = d2_session) %>%
+        purrr::pluck("categoryOptions") %>%
         dplyr::mutate(age_coarse="<15")
-      gt15<-datimutils::getMetadata("categoryOptionGroups/HkQZzpC7cUo?fields=categoryOptions[id,name]", 
-                                    d2_session = d2_session) %>% 
-        purrr::pluck("categoryOptions") %>% 
+      gt15<-datimutils::getMetadata("categoryOptionGroups/HkQZzpC7cUo?fields=categoryOptions[id,name]",
+                                    d2_session = d2_session) %>%
+        purrr::pluck("categoryOptions") %>%
         dplyr::mutate(age_coarse="15+")
-      
+
       lt15_single<-  tibble::tribble(
         ~age,~age_coarse,
         "<15","<15")
-      
-      age_groups<-dplyr::bind_rows(lt15,gt15) %>% 
-        dplyr::rename(age = name) %>% 
-        dplyr::select(-id) %>% 
-        dplyr::mutate(age = stringr::str_replace(age,"1-4","01-04")) %>% 
-        dplyr::mutate(age = stringr::str_replace(age,"5-9","05-09")) %>% 
-        dplyr::mutate(age = stringr::str_replace(age,"<1","<01")) %>% 
-        dplyr::bind_rows(.,lt15_single)
-        
 
-  
-  df <- d  %>% 
-    purrr::pluck("data") %>% 
-    purrr::pluck("analytics") %>% 
+      age_groups<-dplyr::bind_rows(lt15,gt15) %>%
+        dplyr::rename(age = name) %>%
+        dplyr::select(-id) %>%
+        dplyr::mutate(age = stringr::str_replace(age,"1-4","01-04")) %>%
+        dplyr::mutate(age = stringr::str_replace(age,"5-9","05-09")) %>%
+        dplyr::mutate(age = stringr::str_replace(age,"<1","<01")) %>%
+        dplyr::bind_rows(.,lt15_single)
+
+
+
+  df <- d  %>%
+    purrr::pluck("data") %>%
+    purrr::pluck("analytics") %>%
     dplyr::select(indicator,
                   prioritization,
                   age,
-                  value = target_value) %>% 
-    dplyr::filter(indicator %in% unique(memo_indicators$ind)) %>% 
-    dplyr::left_join(age_groups,by=c("age")) %>% 
+                  value = target_value) %>%
+    dplyr::filter(indicator %in% unique(memo_indicators$ind)) %>%
+    dplyr::left_join(age_groups,by=c("age")) %>%
     dplyr::mutate( age_coarse = dplyr::case_when( indicator %in% c("CXCA_SCRN","OVC_HIVSTAT","KP_PREV","PMTCT_EID","KP_MAT","VMMC_CIRC","PrEP_NEW","PrEP_CURR","GEND_GBV")  ~ "Total",
-                                    TRUE ~ age_coarse)) %>% 
+                                    TRUE ~ age_coarse)) %>%
     dplyr::select(-age)
-  
-  
-  df_totals<-df %>% 
-    group_by(indicator,prioritization) %>% 
-    dplyr::summarise(value = sum(value)) %>% 
-    dplyr::ungroup() %>% 
-    dplyr::mutate(age_coarse = "Total") %>% 
+
+
+  df_totals<-df %>%
+    group_by(indicator,prioritization) %>%
+    dplyr::summarise(value = sum(value)) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(age_coarse = "Total") %>%
     dplyr::select(names(df))
-  
-  df_final<-dplyr::bind_rows(df,df_totals,df_base) %>% 
-    dplyr::group_by(indicator,age_coarse,prioritization) %>% 
-    dplyr::summarise(value = sum(value)) %>% 
-    dplyr::distinct() %>% 
-    dplyr::ungroup() %>% 
-    dplyr::mutate(prioritization = factor(prioritization,levels = df_cols$col_name)) %>% 
-    dplyr::mutate(indicator = factor(indicator,levels = unique(df_rows$ind))) %>% 
-    dplyr::arrange(indicator,prioritization) %>% 
-    tidyr::pivot_wider(names_from = prioritization ,values_from = "value") %>% 
-    dplyr::mutate("Total *" = rowSums(.[3:7]) ) %>% 
+
+  df_final<-dplyr::bind_rows(df,df_totals,df_base) %>%
+    dplyr::group_by(indicator,age_coarse,prioritization) %>%
+    dplyr::summarise(value = sum(value)) %>%
+    dplyr::distinct() %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(prioritization = factor(prioritization,levels = df_cols$col_name)) %>%
+    dplyr::mutate(indicator = factor(indicator,levels = unique(df_rows$ind))) %>%
+    dplyr::arrange(indicator,prioritization) %>%
+    tidyr::pivot_wider(names_from = prioritization ,values_from = "value") %>%
+    dplyr::mutate("Total *" = rowSums(.[3:7]) ) %>%
     dplyr::rename("Age" = age_coarse)
-  
-  
+
+
   d$data$prio_table<-df_final
-  
+
   return(d)
 
 }
 
 modalitySummaryChart <- function(df) {
-  
-  df %>% 
+
+  df %>%
     dplyr::filter(!is.na(hts_modality)) %>%
-    dplyr::filter(resultstatus_specific != "Known at Entry Positive") %>% 
+    dplyr::filter(resultstatus_specific != "Known at Entry Positive") %>%
     dplyr::group_by(resultstatus_inclusive, hts_modality) %>%
     dplyr::summarise(value = sum(target_value)) %>%
     dplyr::ungroup() %>%
-    dplyr::arrange(resultstatus_inclusive, desc(resultstatus_inclusive)) %>% 
+    dplyr::arrange(resultstatus_inclusive, desc(resultstatus_inclusive)) %>%
     dplyr::mutate(resultstatus_inclusive = factor(resultstatus_inclusive, c("Unknown","Negative", "Positive"))) %>%
     ggplot(aes(
       y = value,
@@ -191,49 +191,49 @@ modalitySummaryChart <- function(df) {
           panel.background = element_blank(),
           panel.grid.major.x = element_line(color = "#595959"),
           panel.grid.minor.y = element_blank())
-  
+
 }
 
 modalitySummaryTable<-function(df){
-  
-  hts<- df %>% 
+
+  hts<- df %>%
     dplyr::filter(!is.na(hts_modality)) %>%
-    dplyr::filter(resultstatus_specific != "Known at Entry Positive") %>% 
+    dplyr::filter(resultstatus_specific != "Known at Entry Positive") %>%
     dplyr::group_by(resultstatus_inclusive, hts_modality) %>%
     dplyr::summarise(value = sum(target_value)) %>%
     dplyr::ungroup() %>%
-    dplyr::arrange(resultstatus_inclusive, desc(resultstatus_inclusive)) %>% 
+    dplyr::arrange(resultstatus_inclusive, desc(resultstatus_inclusive)) %>%
     dplyr::mutate(resultstatus_inclusive = factor(resultstatus_inclusive, c("Unknown","Negative", "Positive")))
    if (NROW(hts) > 0) {
-      hts %<>% 
-       tidyr::pivot_wider(names_from = resultstatus_inclusive, values_from = value ) %>% 
+      hts %<>%
+       tidyr::pivot_wider(names_from = resultstatus_inclusive, values_from = value ) %>%
        dplyr::mutate(yield = Positive/(Negative + Positive) * 100,
                      modality_share = Positive / sum(Positive) * 100 ,
-                     Total = Positive + Negative) %>% 
+                     Total = Positive + Negative) %>%
        dplyr::select(hts_modality,Positive,Total,yield,modality_share)
-     
-     hts_total<- hts %>% 
-       dplyr::select(Positive,Total) %>% 
-       dplyr::mutate(hts_modality = "Total") %>% 
-       dplyr::group_by(hts_modality) %>% 
-       dplyr::summarise_all(sum) %>% 
+
+     hts_total<- hts %>%
+       dplyr::select(Positive,Total) %>%
+       dplyr::mutate(hts_modality = "Total") %>%
+       dplyr::group_by(hts_modality) %>%
+       dplyr::summarise_all(sum) %>%
        dplyr::mutate(yield = Positive/Total * 100,
                      modality_share = 100)
-     
+
      dplyr::bind_rows(hts,hts_total)
    } else {
      return(NULL)
    }
 
-  
+
 }
 
 modalityYieldChart <- function(df) {
-  
+
   df <- modalitySummaryTable(df)
-  
+
   x_lim <- max(df$yield)
-  
+
   df %>%
     ggplot(aes(
       y = yield,
@@ -255,7 +255,7 @@ modalityYieldChart <- function(df) {
           panel.background = element_blank(),
           panel.grid.major.x = element_line(color = "#595959"),
           panel.grid.minor.y = element_blank())
-  
+
 }
 
 recencyComparison <- function(d) {
@@ -263,49 +263,49 @@ recencyComparison <- function(d) {
     structure(
       .Data = list(
         indicator_code = c(
-          "HTS_INDEX_COM.N.Age_Sex_Result.T.NewPos",
-          "HTS_INDEX_COM.N.Age_Sex_Result.T.NewNeg",
-          "HTS_INDEX_FAC.N.Age_Sex_Result.T.NewPos",
-          "HTS_INDEX_FAC.N.Age_Sex_Result.T.NewNeg",
-          "HTS_TST_Inpat.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_Inpat.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_Pediatric.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_Pediatric.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_Malnutrition.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_Malnutrition.N.Age_Sex_Result.T.Negative",
-          "TB_STAT.N.Age_Sex_KnownNewPosNeg.T.NewPos",
-          "TB_STAT.N.Age_Sex_KnownNewPosNeg.T.NewNeg",
-          "PMTCT_STAT.N.Age_Sex_KnownNewResult.T.NewPos",
-          "PMTCT_STAT.N.Age_Sex_KnownNewResult.T.NewNeg",
-          "HTS_TST_PMTCTPostANC1.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_PMTCTPostANC1.N.Age_Sex_Result.T.Negative",
-          "VMMC_CIRC.N.Age_Sex_HIVStatus.T.Positive",
-          "VMMC_CIRC.N.Age_Sex_HIVStatus.T.Negative",
-          "HTS_TST_STIClinic.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_STIClinic.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_EmergencyWard.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_EmergencyWard.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_OtherPITC.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_OtherPITC.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_VCT.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_VCT.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_MobileMod.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_MobileMod.N.Age_Sex_Result.T.Negative",
-          "HTS_TST_OtherMod.N.Age_Sex_Result.T.Positive",
-          "HTS_TST_OtherMod.N.Age_Sex_Result.T.Negative",
-          "HTS_RECENT_IndexMod.N.Age_Sex_Result.T",
-          "HTS_RECENT_Index.N.Age_Sex_Result.T",
-          "HTS_RECENT_Inpat.N.Age_Sex_Result.T",
-          "HTS_RECENT_TB.N.Age_Sex_Result.T",
-          "HTS_RECENT_PMTCT.N.Age_Sex_Result.T",
-          "HTS_RECENT_PMTCTPostANC1.N.Age_Sex_Result.T",
-          "HTS_RECENT_VMMC.N.Age_Sex_Result.T",
-          "HTS_RECENT_STIClinic.N.Age_Sex_Result.T",
-          "HTS_RECENT_Emergency.N.Age_Sex_Result.T",
-          "HTS_RECENT_OtherPITC.N.Age_Sex_Result.T",
-          "HTS_RECENT_VCT.N.Age_Sex_Result.T",
-          "HTS_RECENT_MobileMod.N.Age_Sex_Result.T",
-          "HTS_RECENT_OtherMod.N.Age_Sex_Result.T"
+          "HTS_INDEX_COM.New.Pos.T",
+          "HTS_INDEX_COM.New.Neg.T",
+          "HTS_INDEX_FAC.New.Pos.T",
+          "HTS_INDEX_FAC.New.Neg.T",
+          "HTS_TST_Inpat.Pos.T",
+          "HTS_TST_Inpat.Neg.T",
+          "HTS_TST_Peds.Pos.T",
+          "HTS_TST_Peds.Neg.T",
+          "HTS_TST_Maln.Pos.T",
+          "HTS_TST_Maln.Neg.T",
+          "TB_STAT.N.New.Pos.T",
+          "TB_STAT.N.New.Neg.T",
+          "PMTCT_STAT.N.New.Pos.T",
+          "PMTCT_STAT.N.New.Neg.T",
+          "HTS_TST.PostANC1.Pos.T",
+          "HTS_TST.PostANC1.Neg.T",
+          "VMMC_CIRC.Pos.T",
+          "VMMC_CIRC.Neg.T",
+          "HTS_TST.STI.Pos.T",
+          "HTS_TST.STI.Neg.T",
+          "HTS_TST.EW.Pos.T",
+          "HTS_TST.EW.Neg.T",
+          "HTS_TST.VCT.Pos.T",
+          "HTS_TST.VCT.Neg.T",
+          "HTS_TST.MobileCom.Pos.T",
+          "HTS_TST.MobileCom.Neg.T",
+          "HTS_TST_Other.Pos.T",
+          "HTS_TST_Other.Neg.T",
+          "HTS_TST_OtherCom.Pos.T",
+          "HTS_TST_OtherCom.Neg.T",
+          "HTS_RECENT.IndexCom.T",
+          "HTS_RECENT.IndexFac.T",
+          "HTS_RECENT.Inpat.T",
+          "HTS_RECENT.TB.T",
+          "HTS_RECENT.PMTCT_STAT.T",
+          "HTS_RECENT.PostANC1.T",
+          "HTS_RECENT.VMMC.T",
+          "HTS_RECENT.STI.T",
+          "HTS_RECENT.EW.T",
+          "HTS_RECENT.VCT.T",
+          "HTS_RECENT.MobileCom.T",
+          "HTS_RECENT.Other.T",
+          "HTS_RECENT.OtherCom.T"
         ),
         hts_recency_compare = c(
           "Community - Index",
@@ -330,12 +330,12 @@ recencyComparison <- function(d) {
           "Facility - STI Clinic",
           "Facility - Emergency Ward",
           "Facility - Emergency Ward",
-          "Facility - Other PITC",
-          "Facility - Other PITC",
           "Facility - VCT",
           "Facility - VCT",
           "Community - Mobile",
           "Community - Mobile",
+          "Facility - Other PITC",
+          "Facility - Other PITC",
           "Community - Other Services",
           "Community - Other Services",
           "Community - Index",
@@ -347,9 +347,9 @@ recencyComparison <- function(d) {
           "Facility - VMMC",
           "Facility - STI Clinic",
           "Facility - Emergency Ward",
-          "Facility - Other PITC",
           "Facility - VCT",
           "Community - Mobile",
+          "Facility - Other PITC",
           "Community - Other Services"
         )
       ),
@@ -357,19 +357,19 @@ recencyComparison <- function(d) {
       row.names = c(NA, 43L),
       class = "data.frame"
     )
-  
+
   indicator_map <-
     datapackr::map_DataPack_DATIM_DEs_COCs[, c("dataelement", "indicator_code")] %>%
     dplyr::distinct() %>%
     dplyr::rename(dataelement_id = dataelement)
-  
+
   hts_recency_map <- dplyr::inner_join(indicator_map, hts_mechs) %>%
     dplyr::select(dataelement_id, hts_recency_compare)
-  
+
   df <- d %>%
     purrr::pluck(., "data") %>%
     purrr::pluck(., "analytics") %>%
-    dplyr::inner_join(hts_recency_map , by = "dataelement_id") %>%
+    dplyr::inner_join(., hts_recency_map , by = "dataelement_id") %>%
     dplyr::filter(resultstatus_inclusive == "Positive") %>%
     dplyr::filter(!(
       resultstatus_specific %in% c("Known at Entry Positive", "Status Unknown")
@@ -392,10 +392,10 @@ recencyComparison <- function(d) {
     dplyr::rename(technical_area = indicator) %>%
     tidyr::pivot_wider(names_from = technical_area, values_from = value,
                        values_fill = list(value = 0))
-  
-  can_proceed <- NROW(df) > 0 & 
+
+  can_proceed <- NROW(df) > 0 &
     dplyr::setequal(names(df),c("hts_recency_compare","HTS_TST","HTS_RECENT"))
-  
+
   if ( !can_proceed ) {
     return(NULL)
   } else  {
@@ -410,48 +410,48 @@ recencyComparison <- function(d) {
         HTS_TST_POS = format(HTS_TST_POS , big.mark = ',', scientific = FALSE),
         `HTS_RECENT (%)` = format(round(`HTS_RECENT (%)`, 2), nsmall = 2)
       )
-  } 
+  }
 }
 
 subnatPyramidsChart <- function(d,epi_graph_filter_results){
-  
-  
+
+
   df <- d %>%
     purrr::pluck(.,"data") %>%
-    purrr::pluck(.,"analytics") 
-  
+    purrr::pluck(.,"analytics")
+
   if (is.null(df)) {return(NULL)}
-  
+
   if( length(epi_graph_filter_results) > 0 & !is.null(epi_graph_filter_results)) {
     df %<>% dplyr::filter(snu1 %in% epi_graph_filter_results )
   }
-  
+
   if ( NROW(df) == 0 ) { return(NULL) }
-  
+
   df %<>%
-    dplyr::filter(., indicator_code == "TX_CURR.N.Age_Sex_HIVStatus.T" | 
-                    indicator_code == "TX_PVLS.N.Age_Sex_Indication_HIVStatus.T.Routine"  | 
-                    indicator_code == "PLHIV.NA.Age/Sex/HIVStatus.T") %>%
-    dplyr::select(age,sex,indicator_code,target_value) %>% 
+    dplyr::filter(., indicator_code == "TX_CURR.T" |
+                    indicator_code == "TX_PVLS.N.Routine.T"  |
+                    indicator_code == "PLHIV.T_1") %>%
+    dplyr::select(age,sex,indicator_code,target_value) %>%
     dplyr::group_by(age,sex,indicator_code) %>%
     dplyr::summarise(value = sum(target_value)) %>%
     dplyr::ungroup() %>%
     dplyr::rename(Age = age,
-                  Sex = sex) %>% 
+                  Sex = sex) %>%
     dplyr::arrange(indicator_code, desc(indicator_code)) %>%
     dplyr::mutate(indicator_code = ifelse(
-      indicator_code == "PLHIV.NA.Age/Sex/HIVStatus.T","PLHIV",ifelse(
-        indicator_code == "TX_CURR.N.Age_Sex_HIVStatus.T","TX_CURR",ifelse(
-          indicator_code == "TX_PVLS.N.Age_Sex_Indication_HIVStatus.T.Routine","TX_PVLS",NA
+      indicator_code == "PLHIV.T_1","PLHIV",ifelse(
+        indicator_code == "TX_CURR.T","TX_CURR",ifelse(
+          indicator_code == "TX_PVLS.N.Routine.T","TX_PVLS",NA
         )
-      ) 
+      )
     )
-    ) 
-  
+    )
+
   if ( NROW(df) == 0 ) {return(NULL)}
-  
+
   y_lim<-max(df$value)
-  
+
   df %>%
     ggplot(aes(x = Age, y = value, fill = indicator_code)) +
     geom_bar(data = df %>% dplyr::filter( Sex == "Female") %>% dplyr::arrange(indicator_code),
@@ -476,30 +476,30 @@ subnatPyramidsChart <- function(d,epi_graph_filter_results){
           panel.background = element_blank(),
           panel.grid.major.x = element_line(color = "#595959"),
           panel.grid.minor.y = element_blank())
-  
+
 }
 
 kpCascadeChart <- function(d,kpCascadeInput_filter){
-  
+
   df <- d %>%
     purrr::pluck(.,"data") %>%
-    purrr::pluck(.,"analytics") 
-  
+    purrr::pluck(.,"analytics")
+
   if (is.null(df)) {return(NULL)}
-  
+
   if( length(kpCascadeInput_filter) > 0 & !is.null(kpCascadeInput_filter)) {
     df %<>% dplyr::filter(snu1 %in% kpCascadeInput_filter )
   }
-  
+
   if ( NROW(df) == 0 ) { return(NULL) }
-  
-  
+
+
   df %<>%
-    dplyr::filter(dataelement_name == "IMPATT.PLHIV (N, SUBNAT, Age/Sex/HIVStatus) TARGET:" | 
+    dplyr::filter(dataelement_name == "IMPATT.PLHIV (N, SUBNAT, Age/Sex/HIVStatus) TARGET:" |
                     dataelement_name == "KP_ESTIMATES (N, SUBNAT, PositiveEstimate/HIVStatus) TARGET: Estimated Key Pop" |
-                    dataelement_name == "TX_CURR (N, DSD, Age/Sex/HIVStatus) TARGET: Receiving ART" | 
+                    dataelement_name == "TX_CURR (N, DSD, Age/Sex/HIVStatus) TARGET: Receiving ART" |
                     dataelement_name == "TX_CURR (N, DSD, KeyPop/HIVStatus) TARGET: Receiving ART" |
-                    dataelement_name == "TX_PVLS (N, DSD, Age/Sex/Indication/HIVStatus) TARGET: Viral Load Documented"  | 
+                    dataelement_name == "TX_PVLS (N, DSD, Age/Sex/Indication/HIVStatus) TARGET: Viral Load Documented"  |
                     dataelement_name == "TX_PVLS (N, DSD, KeyPop/HIVStatus) TARGET: Viral Load Documented"
     ) %>%
     dplyr::mutate(indicator = ifelse(indicator == "KP_ESTIMATES","PLHIV",indicator)) %>%
@@ -509,11 +509,11 @@ kpCascadeChart <- function(d,kpCascadeInput_filter){
     dplyr::summarise(value = sum(target_value)) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(lbl = paste0(indicator,".",kp))
-  
+
   if ( NROW(df) == 0 ) {return(NULL)}
-  
+
   y_lim<-max(df$value)
-  
+
   df %>%
     ggplot(aes(x = indicator, y = value, fill = lbl)) +
     geom_bar(data = df,
@@ -534,17 +534,17 @@ kpCascadeChart <- function(d,kpCascadeInput_filter){
           panel.background = element_blank(),
           panel.grid.minor.x = element_blank(),
           panel.grid.major.y = element_line(color = "#595959"))
-  
+
 }
 
 vlsTestingChart <- function(df) {
-  
+
   if (is.null(df)) {return(NULL)}
-  
+
   df %<>%
-    dplyr::filter(indicator == "TX_CURR" | 
+    dplyr::filter(indicator == "TX_CURR" |
                     indicator == "TX_PVLS") %>%
-    dplyr::select(SNU1 = snu1,indicator,numerator_denominator,target_value) %>% 
+    dplyr::select(SNU1 = snu1,indicator,numerator_denominator,target_value) %>%
     dplyr::mutate(indicator = ifelse(
       indicator == "TX_CURR","TX_CURR",ifelse(
         indicator == "TX_PVLS" & numerator_denominator == "Numerator","TX_PVLS (N)",ifelse(
@@ -557,11 +557,11 @@ vlsTestingChart <- function(df) {
     dplyr::mutate(sort_col = min(freq)) %>%
     dplyr::ungroup() %>%
     dplyr::arrange(desc(sort_col),indicator)
-  
+
   if ( NROW(df) == 0 ) {return(NULL)}
-  
+
   y_lim <- (min(df$freq)%/%.1)/10
-  
+
   df %>%
     ggplot(aes(x = reorder(SNU1,sort_col), y = freq, fill = indicator)) +
     geom_bar(data = df,
@@ -582,23 +582,23 @@ vlsTestingChart <- function(df) {
           panel.background = element_blank(),
           panel.grid.major.x = element_line(color = "#595959"),
           panel.grid.minor.y = element_blank())
-  
+
 }
 
 snuSelector <- function(df){
-  
+
   if (!inherits(df,"error") & !is.null(df)){
-    foo<-df  %>% 
+    foo<-df  %>%
       purrr::pluck(.,"data") %>%
       purrr::pluck(.,"analytics") %>%
-      dplyr::pull(.,"snu1") %>% 
+      dplyr::pull(.,"snu1") %>%
       unique()
     print("snuSelector")
     print(foo)
     foo
-    
+
   } else {
     NULL
   }
-  
+
 }
