@@ -295,6 +295,7 @@ shinyServer(function(input, output, session) {
           } else {
             #This should occur when there is no PSNUxIM tab and they want
             #to generate one.
+            shinyjs::enable("downloadFlatPack")
             shinyjs::enable("downloadDataPack")
             hideTab(inputId = "main-panel", target = "Validation rules")
             hideTab(inputId = "main-panel", target = "HTS Summary Chart")
