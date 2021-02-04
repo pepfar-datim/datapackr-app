@@ -239,7 +239,6 @@ shinyServer(function(input, output, session) {
       
       print(names(d))
       if (!inherits(d,"error") & !is.null(d)) {
-        print("FOO")
         d$info$sane_name<-paste0(stringr::str_extract_all(d$info$datapack_name,"[A-Za-z0-9_]",
                                                           simplify = TRUE),sep="",collapse="")
         flog.info(d$info$same_name)
@@ -271,11 +270,14 @@ shinyServer(function(input, output, session) {
             #shinyjs::enable("send_paw")
             shinyjs::enable("downloadValidationResults")
             #shinyjs::enable("compare")
+            
             if ( d$info$missing_psnuxim_combos ) {
               shinyjs::enable("downloadDataPack")
-             }
+            }
+            
             updatePickerInput(session = session, inputId = "kpCascadeInput",
                               choices = snuSelector(d))
+            print(snuSelector(d))
             updatePickerInput(session = session, inputId = "epiCascadeInput",
                               choices = snuSelector(d))
             
@@ -363,7 +365,6 @@ shinyServer(function(input, output, session) {
 
       
     } else {
-      print("WHOOPS!")
       NULL
     }
   })
