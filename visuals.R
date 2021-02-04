@@ -428,7 +428,7 @@ subnatPyramidsChart <- function(d,epi_graph_filter_results){
   
   if ( NROW(df) == 0 ) { return(NULL) }
   
-  df %>%
+  df %<>%
     dplyr::filter(., indicator_code == "TX_CURR.N.Age_Sex_HIVStatus.T" | 
                     indicator_code == "TX_PVLS.N.Age_Sex_Indication_HIVStatus.T.Routine"  | 
                     indicator_code == "PLHIV.NA.Age/Sex/HIVStatus.T") %>%
