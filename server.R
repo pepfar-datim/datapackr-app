@@ -238,7 +238,6 @@ shinyServer(function(input, output, session) {
           return(e)
         })
 
-      print(names(d))
       if (!inherits(d,"error") & !is.null(d)) {
         d$info$sane_name<-paste0(stringr::str_extract_all(d$info$datapack_name,"[A-Za-z0-9_]",
                                                           simplify = TRUE),sep="",collapse="")
@@ -262,8 +261,8 @@ shinyServer(function(input, output, session) {
             # Sys.sleep(0.5)
             # r<-archiveDataPacktoS3(d,inFile$datapath)
             # archiveDataPackErrorUI(r)
-            # incProgress(0.1, detail = (praise()))
-            # Sys.sleep(1)
+            incProgress(0.1, detail = (praise()))
+             Sys.sleep(1)
             d<-prepareFlatMERExport(d)
             d<-preparePrioTable(d,d2_session = user_input$d2_session)
             shinyjs::enable("downloadFlatPack")
@@ -278,7 +277,6 @@ shinyServer(function(input, output, session) {
 
             updatePickerInput(session = session, inputId = "kpCascadeInput",
                               choices = snuSelector(d))
-            print(snuSelector(d))
             updatePickerInput(session = session, inputId = "epiCascadeInput",
                               choices = snuSelector(d))
 
