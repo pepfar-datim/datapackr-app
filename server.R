@@ -306,6 +306,7 @@ shinyServer(function(input, output, session) {
             hideTab(inputId = "main-panel", target = "KP Cascade Pyramid")
             hideTab(inputId = "main-panel", target = "PSNUxIM Pivot")
             hideTab(inputId = "main-panel", target = "HTS Recency")
+            hideTab(inputId = "main-panel", target = "Prioritization")
           }
         }
       }
