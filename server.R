@@ -226,7 +226,7 @@ shinyServer(function(input, output, session) {
       
       shinyjs::disable("file1")
       shinyjs::disable("validate")
-      incProgress(0.1, detail = ("Validating your DataPack"))
+      incProgress(0.1, detail = ("Unpacking your DataPack"))
      
         
       d<-tryCatch({
@@ -560,7 +560,7 @@ shinyServer(function(input, output, session) {
         name = "datapack")
       waiter_show(html = waiting_screen_datapack, color = "rgba(128,128,128,.8)" )
       fetchSupportFiles()
-      support_file<-paste0("./",Sys.getenv("MODEL_PATH"))
+      support_file<-paste0("./",Sys.getenv("SNUXIM_MODEL_DATA_PATH"))
       d <- writePSNUxIM(d,snuxim_model_data_path = support_file )
       flog.info(
         paste0("Datapack reloaded for for ", d$info$datapack_name) ,
