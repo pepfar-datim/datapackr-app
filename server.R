@@ -282,6 +282,16 @@ shinyServer(function(input, output, session) {
             updatePickerInput(session = session, inputId = "epiCascadeInput",
                               choices = snuSelector(d))
 
+            showTab(inputId = "main-panel", target = "Validation rules")
+            showTab(inputId = "main-panel", target = "HTS Summary Chart")
+            showTab(inputId = "main-panel", target = "HTS Summary Table")
+            showTab(inputId = "main-panel", target = "HTS Yield")
+            showTab(inputId = "main-panel", target = "VLS Testing")
+            showTab(inputId = "main-panel", target = "Epi Cascade Pyramid")
+            showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
+            showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
+            showTab(inputId = "main-panel", target = "HTS Recency")
+
           } else {
             #This should occur when there is no PSNUxIM tab and they want
             #to generate one.
