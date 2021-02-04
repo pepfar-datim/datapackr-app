@@ -161,7 +161,6 @@ preparePrioTable<-function(d,d2_session){
 
 }
 
-
 modalitySummaryChart <- function(df) {
   
   df %>% 
@@ -416,9 +415,6 @@ recencyComparison <- function(d) {
 
 subnatPyramidsChart <- function(d,epi_graph_filter_results){
   
-  indicator_map<- datapackr::map_DataPack_DATIM_DEs_COCs[,c("dataelement","indicator_code")] %>% 
-    dplyr::distinct() %>% 
-    dplyr::rename(dataelement_id = dataelement)
   
   df <- d %>%
     purrr::pluck(.,"data") %>%
@@ -432,9 +428,8 @@ subnatPyramidsChart <- function(d,epi_graph_filter_results){
   
   if ( NROW(df) == 0 ) { return(NULL) }
   
-  df %<>%
-    dplyr::inner_join( indicator_map , by = "dataelement_id") %>% 
-    dplyr::filter(indicator_code == "TX_CURR.N.Age_Sex_HIVStatus.T" | 
+  df %>%
+    dplyr::filter(., indicator_code == "TX_CURR.N.Age_Sex_HIVStatus.T" | 
                     indicator_code == "TX_PVLS.N.Age_Sex_Indication_HIVStatus.T.Routine"  | 
                     indicator_code == "PLHIV.NA.Age/Sex/HIVStatus.T") %>%
     dplyr::select(age,sex,indicator_code,target_value) %>% 
@@ -593,11 +588,14 @@ vlsTestingChart <- function(df) {
 snuSelector <- function(df){
   
   if (!inherits(df,"error") & !is.null(df)){
-    df  %>% 
+    foo<-df  %>% 
       purrr::pluck(.,"data") %>%
       purrr::pluck(.,"analytics") %>%
-      purrr::pluck(.,"snu1") %>% 
+      dplyr::pull(.,"snu1") %>% 
       unique()
+    print("snuSelector")
+    print(foo)
+    foo
     
   } else {
     NULL
