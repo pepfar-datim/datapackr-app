@@ -99,10 +99,24 @@
     },
     "brio": {
       "Package": "brio",
-      "Version": "1.1.0",
+      "Version": "1.1.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "570a24963009b9cce0869a0463c83580"
+      "Hash": "36758510e65a457efeefa50e1e7f0576"
+    },
+    "bslib": {
+      "Package": "bslib",
+      "Version": "0.2.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4830a372b241d78ed6f53731ee3023ac"
+    },
+    "cachem": {
+      "Package": "cachem",
+      "Version": "1.0.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "803b5d36ec15fe3314905749a5619767"
     },
     "callr": {
       "Package": "callr",
@@ -120,10 +134,10 @@
     },
     "cli": {
       "Package": "cli",
-      "Version": "2.2.0",
+      "Version": "2.3.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "3ef298932294b775fa0a3eeaa3a645b0"
+      "Hash": "26fb4f0871c8e5b84d77f6dc22f2ee0a"
     },
     "clipr": {
       "Package": "clipr",
@@ -155,17 +169,17 @@
     },
     "cpp11": {
       "Package": "cpp11",
-      "Version": "0.2.5",
+      "Version": "0.2.6",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "8b9a10255e862eb99e38fa8b0caa6c0d"
+      "Hash": "f08909ebdad90b19d8d3930da4220564"
     },
     "crayon": {
       "Package": "crayon",
-      "Version": "1.3.4",
+      "Version": "1.4.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "0d57bc8e27b7ba9e45dba825ebc0de6b"
+      "Hash": "fcff9126a4928a96c94e3df85b024899"
     },
     "crosstalk": {
       "Package": "crosstalk",
@@ -263,10 +277,10 @@
     },
     "dplyr": {
       "Package": "dplyr",
-      "Version": "1.0.3",
+      "Version": "1.0.4",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "365f8c3650ab95582e600f160fd5fb88"
+      "Hash": "01c82e3b053eb7660a8ace8d932265b8"
     },
     "ellipsis": {
       "Package": "ellipsis",
@@ -298,10 +312,10 @@
     },
     "fastmap": {
       "Package": "fastmap",
-      "Version": "1.0.1",
+      "Version": "1.1.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "83ab58a0518afe3d17e41da01af13b60"
+      "Hash": "77bd60a6157420d4ffa93b27cf6a58b8"
     },
     "filelock": {
       "Package": "filelock",
@@ -323,6 +337,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "ad36e26eeeb7393886d8a0e19bc6ee42"
+    },
+    "fs": {
+      "Package": "fs",
+      "Version": "1.5.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "44594a07a42e5f91fac9f93fda6d0109"
     },
     "futile.logger": {
       "Package": "futile.logger",
@@ -382,10 +403,10 @@
     },
     "htmltools": {
       "Package": "htmltools",
-      "Version": "0.5.1",
+      "Version": "0.5.1.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "4d5452ff42a254e861282931190d052a"
+      "Hash": "af2c2531e55df5cf230c4b5444fc973c"
     },
     "htmlwidgets": {
       "Package": "htmlwidgets",
@@ -428,6 +449,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "64778782a89480e9a644f69aad9a2877"
+    },
+    "jquerylib": {
+      "Package": "jquerylib",
+      "Version": "0.1.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "5ff50b36f7f0832f8421745af333e73c"
     },
     "jsonlite": {
       "Package": "jsonlite",
@@ -522,10 +550,10 @@
     },
     "nlme": {
       "Package": "nlme",
-      "Version": "3.1-151",
+      "Version": "3.1-152",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "42c8ba2b6a32a6bf0874e93e3bd86a43"
+      "Hash": "35de1ce639f20b5e10f7f46260730c65"
     },
     "openssl": {
       "Package": "openssl",
@@ -571,10 +599,10 @@
     },
     "paws.common": {
       "Package": "paws.common",
-      "Version": "0.3.7",
+      "Version": "0.3.8",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "7c612de43126907feeecd060fa7debab"
+      "Hash": "9e98820ac0530fc99197afd814979e82"
     },
     "paws.compute": {
       "Package": "paws.compute",
@@ -732,10 +760,10 @@
     },
     "rappdirs": {
       "Package": "rappdirs",
-      "Version": "0.3.1",
+      "Version": "0.3.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "8c8298583adbbe76f3c2220eef71bebc"
+      "Hash": "5e3c5dc0b071b21fa128676560dbe94d"
     },
     "readr": {
       "Package": "readr",
@@ -821,6 +849,13 @@
       "Repository": "CRAN",
       "Hash": "06c85365a03fdaf699966cc1d3cf53ea"
     },
+    "sass": {
+      "Package": "sass",
+      "Version": "0.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "3ef1adfe46b7b144b970d74ce33ab0d6"
+    },
     "scales": {
       "Package": "scales",
       "Version": "1.1.1",
@@ -830,17 +865,17 @@
     },
     "shiny": {
       "Package": "shiny",
-      "Version": "1.5.0",
+      "Version": "1.6.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "ee4ed72d7a5047d9e73cf922ad66e9c9"
+      "Hash": "6e3b6ae7fe02b5859e4bb277f218b8ae"
     },
     "shinyWidgets": {
       "Package": "shinyWidgets",
-      "Version": "0.5.6",
+      "Version": "0.5.7",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "cfeab56e3bc9d470208c6e645744f532"
+      "Hash": "67f284ca3b12634dfabbbb5c247f5966"
     },
     "shinyjs": {
       "Package": "shinyjs",
@@ -893,10 +928,10 @@
     },
     "tibble": {
       "Package": "tibble",
-      "Version": "3.0.5",
+      "Version": "3.0.6",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "a1958587eb651a02273d685fff3819b1"
+      "Hash": "9c6c10e594f32096ede0c7d373ccbddd"
     },
     "tidyr": {
       "Package": "tidyr",
@@ -956,10 +991,10 @@
     },
     "withr": {
       "Package": "withr",
-      "Version": "2.4.0",
+      "Version": "2.4.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "8e07f30a26bc288326edcfe14883fbac"
+      "Hash": "caf4781c674ffa549a4676d2d77b13cc"
     },
     "xml2": {
       "Package": "xml2",
