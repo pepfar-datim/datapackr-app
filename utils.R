@@ -11,13 +11,7 @@ if (!file.exists(Sys.getenv("LOG_PATH"))) {
 
 flog.appender(appender.console(), name="datapack")
 
-initializeS3<-function() {
-  
-  paws::s3(config = list(credentials = list(
-    creds  = list (access_key_id = Sys.getenv("AWS_ACCESS_KEY"),
-                   secret_access_key = Sys.getenv("AWS_SECRET_KEY"))
-  )))
-}
+
 
 fetchSupportFiles <- function() {
   file_name2 <- paste0("./support_files/snuxim_model_data.rds")
@@ -236,7 +230,7 @@ saveTimeStampLogToS3<-function(d) {
   d$info$country_uids<-substr(paste0(d$info$country_uids,sep="",collapse="_"),0,25)
   
   #Write an archived copy of the file
-  s3<-initializeS3()
+  s3<-paws::s3()
   tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
   object_tags<-d$info[names(d$info) %in% tags] 
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
@@ -306,11 +300,11 @@ sendMERDataToPAW<-function(d) {
   
   d$info$country_uids<-substr(paste0(d$info$country_uids,sep="",collapse="_"),0,25)
   
-  #Write the flatpacked output
+  #Write the combined DATIM export for MER and SUBNATT data
   tmp <- tempfile()
   mer_data<-d$data$analytics
   
-  #Need better error checking here I think. 
+  #Need better error checking here
   write.table(
     mer_data,
     file = tmp,
@@ -330,11 +324,11 @@ sendMERDataToPAW<-function(d) {
   tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
   object_tags<-d$info[names(d$info) %in% tags] 
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
-  object_name<-paste0("processed/",d$info$sane_name,".csv")
-  s3<-initializeS3()
+  object_name<-paste0("datim_export/cop21/",d$info$sane_name,".csv")
+  svc<-paws::s3()
   
   r<-tryCatch({
-    foo<-s3$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
+    foo<-svc$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
                        Body = raw_file,
                        Key = object_name,
                        Tagging = object_tags,
@@ -379,7 +373,7 @@ sendValidationSummary<-function(vr) {
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
   
   object_name<-paste0("validation_error/",vr$info$sane_name,".csv")
-  s3<-initializeS3()
+  s3<-paws::s3()
   
   r<-tryCatch({
     foo<-s3$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
@@ -436,7 +430,7 @@ saveDATIMExportToS3<-function(d) {
   object_tags<-d$info[names(d$info) %in% tags] 
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
   object_name<-paste0("datim_export/",d$info$sane_name,".csv")
-  s3<-initializeS3()
+  s3<-paws::s3()
   
   r<-tryCatch({
     foo<-s3$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
