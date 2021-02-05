@@ -28,7 +28,7 @@ shinyServer(function(input, output, session) {
     shinyjs::disable("downloadFlatPack")
     shinyjs::disable("downloadDataPack")
     shinyjs::disable("download_messages")
-    #shinyjs::disable("send_paw")
+    shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
     #shinyjs::disable("compare")
     ready$ok<-FALSE
@@ -142,9 +142,9 @@ shinyServer(function(input, output, session) {
             downloadButton("download_messages", "Validation messages"),
             tags$hr(),
              downloadButton("downloadValidationResults", "Validation report"),
-            # tags$hr(),
-            # actionButton("send_paw", "Send to PAW"),
-            # tags$hr(),
+            tags$hr(),
+            actionButton("send_paw", "Send to PAW"),
+            tags$hr(),
             downloadButton("downloadDataPack", "Regenerate PSNUxIM"),
             # tags$hr(),
             # downloadButton("compare", "Compare with DATIM"),
@@ -207,7 +207,7 @@ shinyServer(function(input, output, session) {
     shinyjs::disable("downloadFlatPack")
     shinyjs::disable("downloadDataPack")
     shinyjs::disable("download_messages")
-    #shinyjs::disable("send_paw")
+    shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
     #shinyjs::disable("compare")
 
@@ -256,17 +256,17 @@ shinyServer(function(input, output, session) {
             incProgress(0.1,detail="Validating mechanisms")
             Sys.sleep(0.5)
             d <- validateMechanisms(d, d2_session = user_input$d2_session)
-            # incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
-            # Sys.sleep(0.5)
-            # r<-archiveDataPacktoS3(d,inFile$datapath)
-            # archiveDataPackErrorUI(r)
+            incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
+            Sys.sleep(0.5)
+            r<-archiveDataPacktoS3(d,inFile$datapath)
+            archiveDataPackErrorUI(r)
             incProgress(0.1, detail = (praise()))
-             Sys.sleep(1)
+            Sys.sleep(1)
             d<-prepareFlatMERExport(d)
             d<-preparePrioTable(d,d2_session = user_input$d2_session)
             shinyjs::enable("downloadFlatPack")
             shinyjs::enable("download_messages")
-            #shinyjs::enable("send_paw")
+            shinyjs::enable("send_paw")
             shinyjs::enable("downloadValidationResults")
             #shinyjs::enable("compare")
 
