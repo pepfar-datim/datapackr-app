@@ -190,15 +190,11 @@
     },
     "datapackcommons": {
       "Package": "datapackcommons",
-      "Version": "0.2.2",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "pepfar-datim",
-      "RemoteRepo": "data-pack-commons",
-      "RemoteRef": "master",
+      "Version": "0.2.2.0.0.0.1612206672",
+      "Source": "Repository",
+      "Repository": "RSPM",
       "RemoteSha": "ff8b57047f28e52a0ea1dcb733382d9822ca55bc",
-      "Hash": "99b21163c1dcf679cafd54889ec4c155"
+      "Hash": "fbcc2990e075700a89e31232642aa605"
     },
     "datapackr": {
       "Package": "datapackr",
