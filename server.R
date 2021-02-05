@@ -33,8 +33,15 @@ shinyServer(function(input, output, session) {
     #shinyjs::disable("compare")
     ready$ok<-FALSE
   })
-
+  
+  
+  waiting_screen_paw<-tagList(
+    spin_ring(),
+    h4("Transferring files to PAW. Please wait...")
+  )
+  
   observeEvent(input$send_paw, {
+    waiter_show(html = waiting_screen_paw, color = "rgba(128,128,128,.8)" )
     d <- validation_results()
     r<-saveTimeStampLogToS3(d)
     timestampUploadUI(r)
@@ -43,6 +50,7 @@ shinyServer(function(input, output, session) {
     r<-sendValidationSummary(d)
     validationSummaryUI(r)
     r<-saveDATIMExportToS3(d)
+    waiter_hide()
     datimExportUI(r)
   })
 
@@ -81,8 +89,6 @@ shinyServer(function(input, output, session) {
   kpCascadeInput_filter <- reactiveValues( snu_filter=NULL )
 
   observeEvent(input$kpCascadeInput,{
-
-
     kpCascadeInput_filter$snu_filter<-input$kpCascadeInput
   })
 
@@ -141,7 +147,7 @@ shinyServer(function(input, output, session) {
             tags$hr(),
             downloadButton("download_messages", "Validation messages"),
             tags$hr(),
-             downloadButton("downloadValidationResults", "Validation report"),
+            downloadButton("downloadValidationResults", "Validation report"),
             tags$hr(),
             actionButton("send_paw", "Send to PAW"),
             tags$hr(),
@@ -579,8 +585,9 @@ shinyServer(function(input, output, session) {
 
   waiting_screen_datapack <- tagList(
     spin_hourglass(),
-    h4("Generating your SNUxIM tab. Please wait...")
+        h4("Generating your SNUxIM tab. Please wait...")
   )
+  
 
   output$downloadDataPack <- downloadHandler(
 

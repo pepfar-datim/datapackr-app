@@ -12,10 +12,9 @@ if (!file.exists(Sys.getenv("LOG_PATH"))) {
 flog.appender(appender.console(), name="datapack")
 
 
-
 fetchSupportFiles <- function() {
   file_name2 <- paste0("./support_files/snuxim_model_data.rds")
-    s3 <- initializeS3()
+    s3 <- paws::s3()
     s3_object <-
       s3$get_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
                     Key = paste0("/support_files/snuxim_model_data.rds"))
@@ -189,7 +188,7 @@ archiveDataPacktoS3<-function(d,datapath) {
   d$info$country_uids<-substr(paste0(d$info$country_uids,sep="",collapse="_"),0,25)
   
   #Write an archived copy of the file
-  s3<-initializeS3()
+  s3<-paws::s3()
   tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
   object_tags<-d$info[names(d$info) %in% tags] 
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
