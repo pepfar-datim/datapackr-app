@@ -630,7 +630,7 @@
       }
     },
     "datapackcommons": {
-      "Source": "PEPFAR",
+      "Source": "CRAN",
       "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
       "GithubRepo": null,
       "GithubUsername": null,
@@ -640,6 +640,7 @@
         "Package": "datapackcommons",
         "Type": "Package",
         "Title": "Common Utilities for with with the PEPFAR DataPack",
+        "Version": "0.2.2",
         "Author": "Who wrote it",
         "Maintainer": "The package maintainer <yourself@somewhere.net>",
         "Description": "More about what it does (maybe more than one line)\n    Use four spaces when indenting paragraphs within the Description.",
@@ -647,26 +648,26 @@
         "Encoding": "UTF-8",
         "LazyData": "true",
         "URL": "https://github.com/pepfar-datim/data-pack-commons",
-        "Imports": "assertthat, datimvalidation, dplyr, glue, httr, jsonlite,\nlubridate, magrittr, plyr, purrr, readr, rlist, stringr,\ntibble, tidyr",
-        "Suggests": "doMC, httptest, testthat",
+        "Imports": "assertthat,\ndatimvalidation,\ndplyr,\nglue,\nhttr,\njsonlite,\nlubridate,\nmagrittr,\nplyr,\npurrr,\nreadr,\nrlist,\nstringr,\ntibble,\ntidyr",
+        "Suggests": "doMC,\nhttptest,\ntestthat",
         "RoxygenNote": "7.1.1",
         "Depends": "R (>= 2.10)",
-        "Repository": "RSPM",
-        "RemoteSha": "ff8b57047f28e52a0ea1dcb733382d9822ca55bc",
-        "Version": "0.2.2.0.0.0.1612206672",
-        "Date": "2021-02-01",
-        "NeedsCompilation": "no",
-        "Packaged": "2021-02-01 19:12:31 UTC; root",
-        "Built": "R 3.6.3; ; 2021-02-03 14:19:42 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-01-29 07:23:51 UTC; unix",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteUsername": "pepfar-datim",
+        "RemoteRepo": "data-pack-commons",
+        "RemoteRef": "master",
+        "RemoteSha": "ff8b57047f28e52a0ea1dcb733382d9822ca55bc"
       }
     },
     "datapackr": {
-      "Source": "github",
-      "Repository": null,
-      "GithubRepo": "datapackr",
-      "GithubUsername": "pepfar-datim",
-      "GithubRef": "testing",
-      "GithubSha1": "24c7a036cdf502d5bbd202a5fd13372c19b1e8fe",
+      "Source": "CRAN",
+      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -692,12 +693,7 @@
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "testing",
-        "RemoteSha": "24c7a036cdf502d5bbd202a5fd13372c19b1e8fe",
-        "GithubHost": "api.github.com",
-        "GithubRepo": "datapackr",
-        "GithubUsername": "pepfar-datim",
-        "GithubRef": "testing",
-        "GithubSHA1": "24c7a036cdf502d5bbd202a5fd13372c19b1e8fe"
+        "RemoteSha": "d47604ab9d98d9e963d03b3101b349a919ac84aa"
       }
     },
     "datimutils": {
@@ -3354,7 +3350,7 @@
       "checksum": "70cff23e1c665049566b5636b7df85e2"
     },
     ".Rprofile": {
-      "checksum": "edb14cbd182eeb20e3a6142992610078"
+      "checksum": "0fdf2a913b6701b54882c6d3146520e8"
     },
     "config.yml": {
       "checksum": "3298ef63ce822cf889ae67375f352616"
@@ -3420,10 +3416,10 @@
       "checksum": "af3d62746671376e9c0c68daf2e848a9"
     },
     "packrat/desc/datapackcommons": {
-      "checksum": "6d7d84b5128e67c16da8fa233c399004"
+      "checksum": "4a304588ceffce7354277ecf693d7d45"
     },
     "packrat/desc/datapackr": {
-      "checksum": "03cbd1d5dd0dd9419049b96726cd5d32"
+      "checksum": "318b7c14a4bc1ef018e24e340d2b3b89"
     },
     "packrat/desc/datimutils": {
       "checksum": "af4b5435e1d5d442e9f4becd9569f239"
@@ -3696,13 +3692,13 @@
       "checksum": "c0e692997328fca72b0a258d351e8647"
     },
     "packrat/packrat.lock": {
-      "checksum": "a0570201d5a3566c1883a637335d6edb"
+      "checksum": "8e361ae0518b11827f683dbf349ffa34"
     },
     "README.md": {
       "checksum": "122afca03cca21b3bc7598ec0a1a4b50"
     },
     "server.R": {
-      "checksum": "626859462faa7faae705c8e20e33273b"
+      "checksum": "a0d7b780b036b80fdfc01baac7ae718c"
     },
     "support_files/PSNUxIM_20210113_1.rds": {
       "checksum": "de7a32974c956ad70a1097148d6d3e82"
@@ -3710,17 +3706,23 @@
     "support_files/README": {
       "checksum": "23d8254dae346ea59a603eb2a31ebe73"
     },
+    "support_files/snuxim_model_data.rds": {
+      "checksum": "61b225d99e5af683ca9c68460f127ce2"
+    },
     "ui.R": {
       "checksum": "112ea97d13f284c982d07294b31e4cdd"
     },
     "utils.R": {
-      "checksum": "f72fa5baa355ca33335a5dda62b3c7a0"
+      "checksum": "1c5c7d245d6a44f942a29717bd178f6e"
     },
     "visuals.R": {
-      "checksum": "20f1abb800d6360ff92c1426f5ab3aba"
+      "checksum": "768600b3a7b1ef54d50b8642e9a589d3"
     },
     "www/pepfar.png": {
       "checksum": "cd04d9e778b00519de3e0e2afc97eb28"
+    },
+    "Zambia.csv": {
+      "checksum": "d95efd45ee78ee5feebe5bd4256dff48"
     }
   },
   "users": null
