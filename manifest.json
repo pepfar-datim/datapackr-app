@@ -33,7 +33,7 @@
         "Packaged": "2021-01-09 03:50:01 UTC; edd",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-11 22:50:06 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:03:06 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:25:45 UTC; unix"
       }
     },
     "DT": {
@@ -64,7 +64,7 @@
         "Author": "Yihui Xie [aut, cre],\n  Joe Cheng [aut],\n  Xianying Tan [aut],\n  JJ Allaire [ctb],\n  Maximilian Girlich [ctb],\n  Greg Freedman Ellis [ctb],\n  Johannes Rauh [ctb],\n  jQuery contributors [ctb, cph] (jQuery in htmlwidgets/lib),\n  SpryMedia Limited [ctb, cph] (DataTables in htmlwidgets/lib),\n  Brian Reavis [ctb, cph] (selectize.js in htmlwidgets/lib),\n  Leon Gersen [ctb, cph] (noUiSlider in htmlwidgets/lib),\n  Bartek Szopka [ctb, cph] (jquery.highlight.js in htmlwidgets/lib),\n  RStudio, PBC [cph]",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-06 16:01:25 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:13:49 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-01 09:20:53 UTC; unix"
       }
     },
     "ISOweek": {
@@ -174,7 +174,7 @@
         "Packaged": "2021-01-14 13:44:02 UTC; edd",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-15 13:10:13 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-01-18 09:05:32 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-01-25 16:56:16 UTC; unix"
       }
     },
     "XML": {
@@ -469,7 +469,7 @@
         "Packaged": "2020-11-02 14:45:50 UTC; luke",
         "Repository": "CRAN",
         "Date/Publication": "2020-11-04 17:12:32 UTC",
-        "Built": "R 3.6.3; ; 2021-01-19 13:07:29 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:25:47 UTC; unix"
       }
     },
     "colorspace": {
@@ -623,7 +623,7 @@
         "Maintainer": "Carson Sievert <carson@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-12 10:00:02 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:06:14 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:25:51 UTC; unix"
       }
     },
     "curl": {
@@ -692,7 +692,7 @@
       }
     },
     "datapackcommons": {
-      "Source": "PEPFAR",
+      "Source": "CRAN",
       "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
       "GithubRepo": null,
       "GithubUsername": null,
@@ -702,6 +702,7 @@
         "Package": "datapackcommons",
         "Type": "Package",
         "Title": "Common Utilities for with with the PEPFAR DataPack",
+        "Version": "0.2.2",
         "Author": "Who wrote it",
         "Maintainer": "The package maintainer <yourself@somewhere.net>",
         "Description": "More about what it does (maybe more than one line)\n    Use four spaces when indenting paragraphs within the Description.",
@@ -709,31 +710,31 @@
         "Encoding": "UTF-8",
         "LazyData": "true",
         "URL": "https://github.com/pepfar-datim/data-pack-commons",
-        "Imports": "assertthat, datimvalidation, dplyr, glue, httr, jsonlite,\nlubridate, magrittr, plyr, purrr, readr, rlist, stringr,\ntibble, tidyr",
-        "Suggests": "doMC, httptest, testthat",
+        "Imports": "assertthat,\ndatimvalidation,\ndplyr,\nglue,\nhttr,\njsonlite,\nlubridate,\nmagrittr,\nplyr,\npurrr,\nreadr,\nrlist,\nstringr,\ntibble,\ntidyr",
+        "Suggests": "doMC,\nhttptest,\ntestthat",
         "RoxygenNote": "7.1.1",
         "Depends": "R (>= 2.10)",
-        "Repository": "RSPM",
-        "RemoteSha": "ff8b57047f28e52a0ea1dcb733382d9822ca55bc",
-        "Version": "0.2.2.0.0.0.1612206672",
-        "Date": "2021-02-01",
-        "NeedsCompilation": "no",
-        "Packaged": "2021-02-01 19:12:31 UTC; root",
-        "Built": "R 3.6.3; ; 2021-02-03 14:19:42 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-01-29 07:23:51 UTC; unix",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteUsername": "pepfar-datim",
+        "RemoteRepo": "data-pack-commons",
+        "RemoteRef": "master",
+        "RemoteSha": "ff8b57047f28e52a0ea1dcb733382d9822ca55bc"
       }
     },
     "datapackr": {
-      "Source": "CRAN",
-      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
+      "Source": "github",
+      "Repository": null,
+      "GithubRepo": "datapackr",
+      "GithubUsername": "pepfar-datim",
+      "GithubRef": "testing",
+      "GithubSha1": "29c5e023c28de4568f62aacad1f60650b1c8551d",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
         "Title": "A Package that Packs and Unpacks all Data Packs",
-        "Version": "4.2.1",
+        "Version": "4.2.4",
         "Date": "2021-1-28",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"William\", \"Shiflett\", email = \"wshiflett@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Chris\", \"Nemarich\", email = \"cnemarich@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Christian\", \"Domaas\", email = \"cdomaas@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Max\", \"Chandler\", email = \"mchandler@baosystems.com\",\n        role = c(\"ctb\"))\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
@@ -748,13 +749,18 @@
         "RoxygenNote": "7.1.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  William Shiflett [ctb],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Max Chandler [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 3.6.3; ; 2021-02-03 06:56:55 UTC; unix",
+        "Built": "R 3.6.3; ; 2021-02-05 09:41:53 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "testing",
-        "RemoteSha": "d47604ab9d98d9e963d03b3101b349a919ac84aa"
+        "RemoteSha": "29c5e023c28de4568f62aacad1f60650b1c8551d",
+        "GithubHost": "api.github.com",
+        "GithubRepo": "datapackr",
+        "GithubUsername": "pepfar-datim",
+        "GithubRef": "testing",
+        "GithubSHA1": "29c5e023c28de4568f62aacad1f60650b1c8551d"
       }
     },
     "datimutils": {
@@ -988,7 +994,7 @@
         "Maintainer": "Brodie Gaslam <brodie.gaslam@yahoo.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-15 12:00:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-01-18 09:03:26 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-01-25 16:55:56 UTC; unix"
       }
     },
     "farver": {
@@ -1270,7 +1276,7 @@
         "Maintainer": "Kirill Müller <krlmlr+r@mailbox.org>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-13 17:30:02 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:03:31 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:25:53 UTC; unix"
       }
     },
     "htmltools": {
@@ -1368,7 +1374,7 @@
         "Maintainer": "Winston Chang <winston@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-13 06:40:06 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-01-18 09:06:18 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-02-05 08:26:03 UTC; unix"
       }
     },
     "httr": {
@@ -1915,7 +1921,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-17 21:20:02 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:13:55 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:33:35 UTC; unix"
       }
     },
     "paws.analytics": {
@@ -1946,7 +1952,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-16 21:00:02 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:08:35 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:32:13 UTC; unix"
       }
     },
     "paws.application.integration": {
@@ -1977,7 +1983,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-16 21:20:02 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:09:00 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:33:08 UTC; unix"
       }
     },
     "paws.common": {
@@ -2039,7 +2045,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-16 21:50:02 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:09:08 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:29:43 UTC; unix"
       }
     },
     "paws.cost.management": {
@@ -2070,7 +2076,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-16 22:00:03 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:09:49 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:33:15 UTC; unix"
       }
     },
     "paws.customer.engagement": {
@@ -2101,7 +2107,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-17 13:30:02 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:09:55 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:33:19 UTC; unix"
       }
     },
     "paws.database": {
@@ -2132,7 +2138,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-16 20:50:02 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:10:14 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:30:32 UTC; unix"
       }
     },
     "paws.machine.learning": {
@@ -2163,7 +2169,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-17 13:40:03 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:10:46 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:31:52 UTC; unix"
       }
     },
     "paws.management": {
@@ -2194,7 +2200,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-17 14:30:02 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:11:15 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:31:23 UTC; unix"
       }
     },
     "paws.networking": {
@@ -2225,7 +2231,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-17 14:40:02 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:11:59 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:30:58 UTC; unix"
       }
     },
     "paws.security.identity": {
@@ -2256,7 +2262,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-17 15:10:03 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:12:30 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:32:36 UTC; unix"
       }
     },
     "paws.storage": {
@@ -2287,7 +2293,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-01-17 15:40:03 UTC",
-        "Built": "R 3.6.3; ; 2021-01-18 09:13:09 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-05 08:30:19 UTC; unix"
       }
     },
     "pillar": {
@@ -3493,7 +3499,7 @@
       "checksum": "70cff23e1c665049566b5636b7df85e2"
     },
     ".Rprofile": {
-      "checksum": "0fdf2a913b6701b54882c6d3146520e8"
+      "checksum": "0d0007e984c5b9aacc2c494119c02a9e"
     },
     "config.yml": {
       "checksum": "3298ef63ce822cf889ae67375f352616"
@@ -3503,6 +3509,9 @@
     },
     "datapack.log": {
       "checksum": "a07415eab4662db5960eb75d90d01bce"
+    },
+    "datapackr_4.2.1.0.0.0.1612307225.tar.gz": {
+      "checksum": "db82a2d2a6c41a578491bf4b4a0f85b4"
     },
     "degs_map.rds": {
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
@@ -3523,7 +3532,7 @@
       "checksum": "9e4d46da755550b31c44a8e7e0aa054c"
     },
     "packrat/desc/BH": {
-      "checksum": "e1f466e97221a222b4f9f954e86fa7e0"
+      "checksum": "ee0861079114cb06550acb5abd597866"
     },
     "packrat/desc/bslib": {
       "checksum": "f4ca6428bd1f800f9b9300bdcf830636"
@@ -3541,7 +3550,7 @@
       "checksum": "8ab161677aa51342ef172cb8430d7c29"
     },
     "packrat/desc/codetools": {
-      "checksum": "51e0d7e910d3510d6e476c1aff928d51"
+      "checksum": "312f9a4f244df08c403de1d7aba5bd88"
     },
     "packrat/desc/colorspace": {
       "checksum": "bab18d6a244661576bb4c02806ab4ac8"
@@ -3556,7 +3565,7 @@
       "checksum": "781c5b65ae4064b56bb6072ca345d7de"
     },
     "packrat/desc/crosstalk": {
-      "checksum": "92a4099060c098400d74a71a438064e2"
+      "checksum": "d28d955b750cf1930f651a6b09c1a8e1"
     },
     "packrat/desc/curl": {
       "checksum": "cab899c648475c3400623a52a742d5b7"
@@ -3565,10 +3574,10 @@
       "checksum": "af3d62746671376e9c0c68daf2e848a9"
     },
     "packrat/desc/datapackcommons": {
-      "checksum": "6d7d84b5128e67c16da8fa233c399004"
+      "checksum": "4a304588ceffce7354277ecf693d7d45"
     },
     "packrat/desc/datapackr": {
-      "checksum": "318b7c14a4bc1ef018e24e340d2b3b89"
+      "checksum": "5e6d4f3e2b80c5de9bd7d513448bbd3e"
     },
     "packrat/desc/datimutils": {
       "checksum": "af4b5435e1d5d442e9f4becd9569f239"
@@ -3586,13 +3595,13 @@
       "checksum": "dd4de0760df58fd3ff66eb34ef719cb2"
     },
     "packrat/desc/DT": {
-      "checksum": "d075b345c74c409afd485525ca03aea6"
+      "checksum": "939490b89f020a4a063197fad11ba7a8"
     },
     "packrat/desc/ellipsis": {
       "checksum": "11e660f00d2cde4db98a1d1ae4fe7f9e"
     },
     "packrat/desc/fansi": {
-      "checksum": "6161a9d2b813d75e54d0192cc9159028"
+      "checksum": "3cccae2c599932c7cbdf9e1a16a967bf"
     },
     "packrat/desc/farver": {
       "checksum": "7dd62e01d61513f3a22a33c565c44a2d"
@@ -3619,7 +3628,7 @@
       "checksum": "3b22943d54d5b2f84f2125c2ca3f79c5"
     },
     "packrat/desc/hms": {
-      "checksum": "6ae4b9ac8d35d3177fcd5d3551ceb30a"
+      "checksum": "935aa83f307968a67860a76469898d62"
     },
     "packrat/desc/htmltools": {
       "checksum": "a53fabcaa9f6ea02444e87f4a5419d31"
@@ -3628,7 +3637,7 @@
       "checksum": "0855db14dca2c0345a2325de34fcaab0"
     },
     "packrat/desc/httpuv": {
-      "checksum": "8ae708a4586d55f6e08b9eadac7e8c83"
+      "checksum": "74836b3b9331f99fd1586490f7e95f5f"
     },
     "packrat/desc/httr": {
       "checksum": "4a4a80014d27fcfaf1ba212f9a11c823"
@@ -3685,43 +3694,43 @@
       "checksum": "d12dbf8bd661feb8692e2b36382e5613"
     },
     "packrat/desc/paws": {
-      "checksum": "1b2ff61fc0f94c221cd29bca27a7ffaa"
+      "checksum": "f24964f6132095d8e78edb81f5b6732f"
     },
     "packrat/desc/paws.analytics": {
-      "checksum": "e58ed13240376c8bd20aeb9f692b6edb"
+      "checksum": "2d75a150f917504bc12f24dcd1316d5b"
     },
     "packrat/desc/paws.application.integration": {
-      "checksum": "52c3234003103ab9d631fa11e2f8a947"
+      "checksum": "581566a49c50238a7c56feb40925995e"
     },
     "packrat/desc/paws.common": {
       "checksum": "1c0f0b03a2d10f93d784ba24e6561ee4"
     },
     "packrat/desc/paws.compute": {
-      "checksum": "be4af06739476ddcf354aacc4c6227f9"
+      "checksum": "45a0c51a9e31fa24907b3b37aa4dcd0a"
     },
     "packrat/desc/paws.cost.management": {
-      "checksum": "3dd05bad6c0de9e95a220f754eaf1dbd"
+      "checksum": "eb7ae070600accd84d82b5e97bb68f99"
     },
     "packrat/desc/paws.customer.engagement": {
-      "checksum": "7753a39ee764b384b52a72b83a670886"
+      "checksum": "8d909194d4b07a15518599c1c853625f"
     },
     "packrat/desc/paws.database": {
-      "checksum": "156ae2a880aaa26023029f8b02b5460f"
+      "checksum": "951a8e329fa2c506912f6856dfb66f94"
     },
     "packrat/desc/paws.machine.learning": {
-      "checksum": "38907bef07932e36c1d259d8d880205c"
+      "checksum": "d9b8c35b795e633e09c2c1e11f406868"
     },
     "packrat/desc/paws.management": {
-      "checksum": "f1b856aa9688e3fa6467a9ff9b46b1ad"
+      "checksum": "98626fba41f022aa3398407785ee392c"
     },
     "packrat/desc/paws.networking": {
-      "checksum": "c1c2daef6ca3f2e3ae0c04ae1d2eafe9"
+      "checksum": "bcea0f3d80290d6603d567e0f7b048a3"
     },
     "packrat/desc/paws.security.identity": {
-      "checksum": "56599402d8d1526290c5f8ad37d422ab"
+      "checksum": "f6d6f99cbf8b877988a7a93e6b9970c0"
     },
     "packrat/desc/paws.storage": {
-      "checksum": "37f09798fb366fcaa3d11958e9ca498c"
+      "checksum": "bc8129aea5b0f8a666044411b556f449"
     },
     "packrat/desc/pillar": {
       "checksum": "07560cb7651c0ba56c6a6c904038244b"
@@ -3757,7 +3766,7 @@
       "checksum": "8b4c76528322a866d0ada90893fba819"
     },
     "packrat/desc/Rcpp": {
-      "checksum": "f3a995f0ef207f320b3c670f3e544af9"
+      "checksum": "58656c6593bb4e358d0e59f817bcf296"
     },
     "packrat/desc/readr": {
       "checksum": "6e6b598e8e88628b28e8bfb23e8aa288"
@@ -3850,13 +3859,13 @@
       "checksum": "c0e692997328fca72b0a258d351e8647"
     },
     "packrat/packrat.lock": {
-      "checksum": "446960eecd8b82156c75e5f7df4928f1"
+      "checksum": "05b90b443d37c6a553e5db0eaf6bacf2"
     },
     "README.md": {
       "checksum": "122afca03cca21b3bc7598ec0a1a4b50"
     },
     "server.R": {
-      "checksum": "a0d7b780b036b80fdfc01baac7ae718c"
+      "checksum": "cec724bce53d2bdf612cb8f486bf31bf"
     },
     "support_files/PSNUxIM_20210113_1.rds": {
       "checksum": "de7a32974c956ad70a1097148d6d3e82"
@@ -3871,7 +3880,7 @@
       "checksum": "112ea97d13f284c982d07294b31e4cdd"
     },
     "utils.R": {
-      "checksum": "1c5c7d245d6a44f942a29717bd178f6e"
+      "checksum": "7265ec6a6ff1aac386d4a3b7b9ec8b04"
     },
     "visuals.R": {
       "checksum": "768600b3a7b1ef54d50b8642e9a589d3"
