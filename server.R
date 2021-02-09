@@ -618,14 +618,15 @@ shinyServer(function(input, output, session) {
         size = "l"
       ))
       flog.info("Fetching support files")
-      fetchSupportFiles()
-      support_file<-paste0("./support_files/snuxim_model_data.rds")
+      
+      support_file<-fetchSupportFiles()
       if (!file.exists(support_file)) {
         flog.error("Could not find model support file.")
         stop("WOMP!")
       }
 
       d <- writePSNUxIM(d,snuxim_model_data_path = support_file )
+      unlink(support_file)
       flog.info(
         paste0("Datapack reloaded for for ", d$info$datapack_name) ,
         name = "datapack")
