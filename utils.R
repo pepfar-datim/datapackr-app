@@ -295,7 +295,8 @@ sendMERDataToPAW<-function(d) {
   tmp <- tempfile()
   mer_data<-dplyr::bind_rows(d$datim$MER,d$datim$subnat_impatt) %>% 
     dplyr::mutate(categoryOptionCombo = case_when(is.na(categoryOptionCombo) ~ "HllvX50cXC0",
-                                                   TRUE ~categoryOptionCombo ))
+                                                   TRUE ~categoryOptionCombo )) %>% 
+    tidyr::drop_na()
   
   #Need better error checking here
   write.table(
