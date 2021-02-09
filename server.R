@@ -253,6 +253,8 @@ shinyServer(function(input, output, session) {
 
         flog.info(paste0("Initiating validation of ",d$info$datapack_name, " DataPack."), name="datapack")
         if (d$info$tool == "Data Pack") {
+          
+          
           if ( d$info$has_psnuxim  ) {
             flog.info("Datapack with PSNUxIM tab found.")
 
@@ -300,6 +302,8 @@ shinyServer(function(input, output, session) {
             #to generate one.
             shinyjs::enable("downloadFlatPack")
             shinyjs::enable("downloadDataPack")
+            shinyjs::enable("download_messages")
+            shinyjs::enable("send_paw")
             hideTab(inputId = "main-panel", target = "Validation rules")
             hideTab(inputId = "main-panel", target = "HTS Summary Chart")
             hideTab(inputId = "main-panel", target = "HTS Summary Table")
@@ -606,15 +610,27 @@ shinyServer(function(input, output, session) {
         paste0("Regeneration of Datapack requested for ", d$info$datapack_name)
         ,
         name = "datapack")
-      waiter_show(html = waiting_screen_datapack, color = "rgba(128,128,128,.8)" )
+      showModal(modalDialog(
+        title = "Keep Calm and Carry On",
+        "Do not close this dialog or browser window during DataPack generation. This will take a while!",
+        easyClose = FALSE,
+        footer = NULL,
+        size = "l"
+      ))
+      flog.info("Fetching support files")
       fetchSupportFiles()
       support_file<-paste0("./support_files/snuxim_model_data.rds")
+      if (!file.exists(support_file)) {
+        flog.error("Could not find model support file.")
+        stop("WOMP!")
+      }
+
       d <- writePSNUxIM(d,snuxim_model_data_path = support_file )
       flog.info(
         paste0("Datapack reloaded for for ", d$info$datapack_name) ,
         name = "datapack")
       openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
-      waiter_hide()
+      removeModal()
     }
 
   )
