@@ -293,7 +293,9 @@ sendMERDataToPAW<-function(d) {
   
   #Write the combined DATIM export for MER and SUBNATT data
   tmp <- tempfile()
-  mer_data<-dplyr::bind_rows(d$datim$MER,d$datim$subnat_impatt)
+  mer_data<-dplyr::bind_rows(d$datim$MER,d$datim$subnat_impatt) %>% 
+    dplyr::mutate(categoryOptionCombo = case_when(is.na(categoryOptionCombo) ~ "HllvX50cXC0",
+                                                   TRUE ~categoryOptionCombo ))
   
   #Need better error checking here
   write.table(
