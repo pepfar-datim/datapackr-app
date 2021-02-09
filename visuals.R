@@ -98,66 +98,52 @@ preparePrioTable<-function(d,d2_session){
                   prioritization = col_name)
 
 
-      lt15<-datimutils::getMetadata("categoryOptionGroups/X2PpJrdZaxH?fields=categoryOptions[id,name]",
-                                    d2_session = d2_session) %>%
-        purrr::pluck("categoryOptions") %>%
-        dplyr::mutate(age_coarse="<15")
-      gt15<-datimutils::getMetadata("categoryOptionGroups/HkQZzpC7cUo?fields=categoryOptions[id,name]",
-                                    d2_session = d2_session) %>%
-        purrr::pluck("categoryOptions") %>%
-        dplyr::mutate(age_coarse="15+")
-
-      lt15_single<-  tibble::tribble(
-        ~age,~age_coarse,
-        "<15","<15")
-
-      age_groups<-dplyr::bind_rows(lt15,gt15) %>%
-        dplyr::rename(age = name) %>%
-        dplyr::select(-id) %>%
-        dplyr::mutate(age = stringr::str_replace(age,"1-4","01-04")) %>%
-        dplyr::mutate(age = stringr::str_replace(age,"5-9","05-09")) %>%
-        dplyr::mutate(age = stringr::str_replace(age,"<1","<01")) %>%
-        dplyr::bind_rows(.,lt15_single)
-
-
-
+      
+  
+  
+  #Fetch inidicators from the COP21 memo group
+  #TODO: Make this work for both COP years?
+  inds <-
+    datimutils::getIndicatorGroups("TslxbFe3VUZ", 
+                                   d2_session = d2_session, 
+                                   fields = "indicators[id,name,numerator,denominator]") %>% 
+    dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ",""))
+  
   df <- d  %>%
     purrr::pluck("data") %>%
     purrr::pluck("analytics") %>%
-    dplyr::select(indicator,
+    dplyr::select(dataelement_id,
+                  categoryoptioncombo_id,
                   prioritization,
-                  age,
-                  value = target_value) %>%
-    dplyr::filter(indicator %in% unique(memo_indicators$ind)) %>%
-    dplyr::left_join(age_groups,by=c("age")) %>%
-    dplyr::mutate( age_coarse = dplyr::case_when( indicator %in% c("CXCA_SCRN","OVC_HIVSTAT","KP_PREV","PMTCT_EID","KP_MAT","VMMC_CIRC","PrEP_NEW","PrEP_CURR","GEND_GBV")  ~ "Total",
-                                    TRUE ~ age_coarse)) %>%
-    dplyr::select(-age)
+                  value = target_value) %>% 
+    dplyr::group_by(dataelement_id,categoryoptioncombo_id,prioritization) %>% 
+    dplyr::summarise(value = sum(value)) %>% 
+    dplyr::mutate(combi =paste0("#{",dataelement_id,".", categoryoptioncombo_id,"}")) 
 
 
-  df_totals<-df %>%
-    group_by(indicator,prioritization) %>%
-    dplyr::summarise(value = sum(value)) %>%
-    dplyr::ungroup() %>%
-    dplyr::mutate(age_coarse = "Total") %>%
-    dplyr::select(names(df))
-
-  df_final<-dplyr::bind_rows(df,df_totals,df_base) %>%
-    dplyr::group_by(indicator,age_coarse,prioritization) %>%
-    dplyr::summarise(value = sum(value)) %>%
-    dplyr::distinct() %>%
-    dplyr::ungroup() %>%
-    dplyr::mutate(prioritization = factor(prioritization,levels = df_cols$col_name)) %>%
-    dplyr::mutate(indicator = factor(indicator,levels = unique(df_rows$ind))) %>%
-    dplyr::arrange(indicator,prioritization) %>%
-    tidyr::pivot_wider(names_from = prioritization ,values_from = "value") %>%
-    dplyr::mutate("Total *" = rowSums(.[3:7]) ) %>%
-    dplyr::rename("Age" = age_coarse)
+  # df_final<-dplyr::bind_rows(df,df_totals,df_base) %>%
+  #   dplyr::group_by(indicator,age_coarse,prioritization) %>%
+  #   dplyr::summarise(value = sum(value)) %>%
+  #   dplyr::distinct() %>%
+  #   dplyr::ungroup() %>%
+  #   dplyr::mutate(prioritization = factor(prioritization,levels = df_cols$col_name)) %>%
+  #   dplyr::mutate(indicator = factor(indicator,levels = unique(df_rows$ind))) %>%
+  #   dplyr::arrange(indicator,prioritization) %>%
+  #   tidyr::pivot_wider(names_from = prioritization ,values_from = "value") %>%
+  #   dplyr::mutate("Total *" = rowSums(.[3:7]) ) %>%
+  #   dplyr::rename("Age" = age_coarse)
 
 
-  d$data$prio_table<-df_final
+    plyr::ddply(df, plyr::.(prioritization),
+                function(x)
+                  evaluateIndicators(x$combi, x$value,inds)) %>% 
+    dplyr::select(indicator = name,
+                  prioritization,
+                  value = result) %>% 
+    dplyr::arrange(indicator,prioritization) %>% 
+    tidyr::pivot_wider(names_from = prioritization ,values_from = "value") 
 
-  return(d)
+
 
 }
 
