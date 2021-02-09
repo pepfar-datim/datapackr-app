@@ -185,13 +185,9 @@ getCountryNameFromUID<-function(uid) {
 
 archiveDataPacktoS3<-function(d,datapath) {
   
-  d$info$country_uids<-substr(paste0(d$info$country_uids,sep="",collapse="_"),0,25)
-  
   #Write an archived copy of the file
   s3<-paws::s3()
-  tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
-  object_tags<-d$info[names(d$info) %in% tags] 
-  object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
+  object_tags<-createS3BucketTags(d)
   object_name<-paste0("datapack_archives/",gsub(" ","_",d$info$sane_name),"_",format(Sys.time(),"%Y%m%d_%H%m%s"),".xlsx")
   # Load the file as a raw binary
   read_file <- file(datapath, "rb")
@@ -225,22 +221,18 @@ archiveDataPackErrorUI <- function(r) {
 }
 
 saveTimeStampLogToS3<-function(d) {
-  
-  d$info$country_uids<-substr(paste0(d$info$country_uids,sep="",collapse="_"),0,25)
-  
+
+
   #Write an archived copy of the file
   s3<-paws::s3()
-  tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
-  object_tags<-d$info[names(d$info) %in% tags] 
-  object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
+  object_tags<-createS3BucketTags(d)
   object_name<-paste0("processed/",d$info$sane_name,".csv")
-  
   #Save a timestamp of the upload
   timestamp_info<-list(
     ou=d$info$datapack_name,
     ou_id=d$info$country_uids,
     country_name=d$info$datapack_name,
-    country_uid=d$info$country_uids,
+    country_uids=paste(d$info$country_uids,sep="",collapse=","),
     upload_timestamp=strftime(as.POSIXlt(Sys.time(), "UTC") , "%Y-%m-%d %H:%M:%S"),
     filename=object_name
   )
@@ -297,11 +289,11 @@ prepareFlatMERExport<-function(d) {
 
 sendMERDataToPAW<-function(d) {
   
-  d$info$country_uids<-substr(paste0(d$info$country_uids,sep="",collapse="_"),0,25)
+  
   
   #Write the combined DATIM export for MER and SUBNATT data
   tmp <- tempfile()
-  mer_data<-dplyr::bind(d$datim$MER,d$datim$subnat_impatt)
+  mer_data<-dplyr::bind_rows(d$datim$MER,d$datim$subnat_impatt)
   
   #Need better error checking here
   write.table(
@@ -319,11 +311,9 @@ sendMERDataToPAW<-function(d) {
   raw_file <- readBin(read_file, "raw", n = file.size(tmp))
   close(read_file)
   
-  
-  tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
-  object_tags<-d$info[names(d$info) %in% tags] 
-  object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
+  object_tags<-createS3BucketTags(d)
   object_name<-paste0("datim_export/cop21/",d$info$sane_name,".csv")
+  
   svc<-paws::s3()
   
   r<-tryCatch({
@@ -346,10 +336,10 @@ sendMERDataToPAW<-function(d) {
   return(r)
 }
 
-sendValidationSummary<-function(vr) {
+sendValidationSummary<-function(d) {
   
-  vr$info$country_uids<-substr(paste0(vr$info$country_uids,sep="",collapse="_"),0,25)
-  validation_summary<-validationSummary(vr)
+
+  validation_summary<-validationSummary(d)
   
   tmp <- tempfile()
   #Need better error checking here I think. 
@@ -367,11 +357,8 @@ sendValidationSummary<-function(vr) {
   raw_file <- readBin(read_file, "raw", n = file.size(tmp))
   close(read_file)
   
-  tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
-  object_tags<-vr$info[names(vr$info) %in% tags] 
-  object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
-  
-  object_name<-paste0("validation_error/",vr$info$sane_name,".csv")
+  object_tags<-createS3BucketTags(d)
+  object_name<-paste0("validation_error/",d$info$sane_name,".csv")
   s3<-paws::s3()
   
   r<-tryCatch({
@@ -425,9 +412,7 @@ saveDATIMExportToS3<-function(d) {
   close(read_file)
   
   
-  tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status")
-  object_tags<-d$info[names(d$info) %in% tags] 
-  object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
+  object_tags<-createS3BucketTags(d)
   object_name<-paste0("datim_export/",d$info$sane_name,".csv")
   s3<-paws::s3()
   
@@ -463,7 +448,7 @@ datimExportUI<-function(r) {
 }
 
 
-evaluateIndicators<-function(combis,values,indicators) {
+evaluateIndicators<-function(combis,values,inds) {
   
   indicators_empty<-data.frame(id=character())
   
@@ -508,4 +493,14 @@ evaluateIndicators<-function(combis,values,indicators) {
   matches$formula<-paste0("(",matches$numerator,"/",matches$denominator,")")
   matches$result<-vapply(matches$formula,function(x) {eval(parse(text=x))},FUN.VALUE=double(1))
   return(matches)
+}
+
+
+createS3BucketTags<-function(d) {
+  d$info$country_uids<-paste0(d$info$country_uids,sep="",collapse=",")
+  tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status","source_user")
+  object_tags<-d$info[names(d$info) %in% tags]
+  object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
+  
+  return(object_tags)
 }

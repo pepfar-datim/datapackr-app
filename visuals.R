@@ -96,10 +96,6 @@ preparePrioTable<-function(d,d2_session){
     dplyr::rename("indicator" = ind,
                   age_coarse = options,
                   prioritization = col_name)
-
-
-      
-  
   
   #Fetch inidicators from the COP21 memo group
   #TODO: Make this work for both COP years?
@@ -134,7 +130,7 @@ preparePrioTable<-function(d,d2_session){
   #   dplyr::rename("Age" = age_coarse)
 
 
-    plyr::ddply(df, plyr::.(prioritization),
+  d$data$prio_table<-plyr::ddply(df, plyr::.(prioritization),
                 function(x)
                   evaluateIndicators(x$combi, x$value,inds)) %>% 
     dplyr::select(indicator = name,
@@ -143,6 +139,8 @@ preparePrioTable<-function(d,d2_session){
     dplyr::arrange(indicator,prioritization) %>% 
     tidyr::pivot_wider(names_from = prioritization ,values_from = "value") 
 
+
+  return(d)
 
 
 }

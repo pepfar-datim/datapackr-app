@@ -245,8 +245,10 @@ shinyServer(function(input, output, session) {
         })
 
       if (!inherits(d,"error") & !is.null(d)) {
+        #Create some addditional metadadta for S3 tagging
         d$info$sane_name<-paste0(stringr::str_extract_all(d$info$datapack_name,"[A-Za-z0-9_]",
                                                           simplify = TRUE),sep="",collapse="")
+        d$info$source_user<-user_input$d2_session$me$userCredentials$username
         #All self-service datapacks should be marked as unapproved for PAW
         d$info$approval_status<-"UNAPPROVED"
         #Keep this until we can change the schema
@@ -268,10 +270,12 @@ shinyServer(function(input, output, session) {
             Sys.sleep(0.5)
             r<-archiveDataPacktoS3(d,inFile$datapath)
             archiveDataPackErrorUI(r)
-            incProgress(0.1, detail = (praise()))
             Sys.sleep(1)
+            incProgress(0.1, detail = ("Preparing a flat export file"))
             d<-prepareFlatMERExport(d)
+            incProgress(0.1, detail = ("Preparing a prioritization table"))
             d<-preparePrioTable(d,d2_session = user_input$d2_session)
+            incProgress(0.1, detail = (praise()))
             shinyjs::enable("downloadFlatPack")
             shinyjs::enable("download_messages")
             shinyjs::enable("send_paw")
@@ -378,10 +382,10 @@ shinyServer(function(input, output, session) {
 
     if (!inherits(prio_table,"error") & !is.null(prio_table)){
 
-      DT::datatable(prio_table,options = list(pageLength = 50,
-                                     columnDefs = list(list(className = 'dt-right',
-                                                            targets = 3:8)))) %>%
-        formatCurrency(3:8, '',digits =0)
+          DT::datatable(prio_table,options = list(pageLength = 50,
+                                         columnDefs = list(list(className = 'dt-right',
+                                                                targets = 2:7)))) %>%
+            formatCurrency(2:7, '',digits =0)
 
 
     } else {
