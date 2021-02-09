@@ -301,7 +301,7 @@ sendMERDataToPAW<-function(d) {
   
   #Write the combined DATIM export for MER and SUBNATT data
   tmp <- tempfile()
-  mer_data<-d$data$analytics
+  mer_data<-dplyr::bind(d$datim$MER,d$datim$subnat_impatt)
   
   #Need better error checking here
   write.table(
@@ -460,4 +460,52 @@ datimExportUI<-function(r) {
     showModal(modalDialog(title = "Congrats!",
                           "Export to PAW was successful."))
   }
+}
+
+
+evaluateIndicators<-function(combis,values,indicators) {
+  
+  indicators_empty<-data.frame(id=character())
+  
+  this.des <-
+    vapply(combis, function(x) {
+      unlist(strsplit(x, "\\."))[[1]]
+    }, FUN.VALUE = character(1))
+  totals_df<-data.frame(exp = this.des,values=values,stringsAsFactors = FALSE) %>% 
+    dplyr::group_by(exp) %>% 
+    dplyr::summarise(values = sum(values)) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::mutate(exp=paste0(exp,"}"))
+  matches_indicator <- function(x) {
+    agrepl(x, inds$numerator) |
+      agrepl(x, inds$denominator)
+  }
+  this.des<-unique(this.des)  
+  matches_v <- lapply(this.des,matches_indicator) %>% Reduce("|",.)
+  matches <-inds[matches_v,]
+  #Return something empty here if we have no indicator matches
+  matches$numerator <-
+    stringi::stri_replace_all_fixed(matches$numerator,
+                                    combis, values, vectorize_all =
+                                      FALSE)
+  matches$denominator <-
+    stringi::stri_replace_all_fixed(matches$denominator,
+                                    combis, values,
+                                    vectorize_all =
+                                      FALSE)
+  
+  #Substitute totals
+  matches$numerator<-stringi::stri_replace_all_fixed(matches$numerator,
+                                                     totals_df$exp, totals_df$values, vectorize_all=FALSE)
+  matches$denominator<-stringi::stri_replace_all_fixed(matches$denominator,
+                                                       totals_df$exp, totals_df$values,
+                                                       vectorize_all=FALSE)
+  expression.pattern<-"#\\{[a-zA-Z][a-zA-Z0-9]{10}(\\.[a-zA-Z][a-zA-Z0-9]{10})?\\}"
+  matches$numerator <-
+    gsub(expression.pattern, "0", matches$numerator)
+  matches$denominator <-
+    gsub(expression.pattern, "0", matches$denominator)
+  matches$formula<-paste0("(",matches$numerator,"/",matches$denominator,")")
+  matches$result<-vapply(matches$formula,function(x) {eval(parse(text=x))},FUN.VALUE=double(1))
+  return(matches)
 }
