@@ -614,13 +614,7 @@ shinyServer(function(input, output, session) {
         paste0("Regeneration of Datapack requested for ", d$info$datapack_name)
         ,
         name = "datapack")
-      showModal(modalDialog(
-        title = "Keep Calm and Carry On",
-        "Do not close this dialog or browser window during DataPack generation. This will take a while!",
-        easyClose = FALSE,
-        footer = NULL,
-        size = "l"
-      ))
+      waiter_show(html = waiting_screen_datapack, color = "rgba(128,128,128,.8)" )
       flog.info("Fetching support files")
       
       support_file<-fetchSupportFiles()
@@ -635,7 +629,7 @@ shinyServer(function(input, output, session) {
         paste0("Datapack reloaded for for ", d$info$datapack_name) ,
         name = "datapack")
       openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
-      removeModal()
+      waiter_hide()
     }
 
   )

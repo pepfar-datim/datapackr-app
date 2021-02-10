@@ -13,17 +13,26 @@ flog.appender(appender.console(), name="datapack")
 
 
 fetchSupportFiles <- function() {
-  file_name2 <- paste0("./support_files/snuxim_model_data.rds")
+  
+
     s3 <- paws::s3()
     s3_object <-
       s3$get_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
                     Key = paste0("/support_files/snuxim_model_data.rds"))
     s3_object_body <- s3_object$Body
-    unlink(file_name2)
-    writeBin(s3_object_body, con = file_name2)
+    
+    file_name2 <- paste0(getwd(),"/support_files/snuxim_model_data.rds")
+    if (file.exists(file_name2)) {
+      unlink(file_name2)
+    }
+    
+    con<-file(file_name2,"wb")
+    writeBin(s3_object_body, con = con)
+    close(con)
     flog.info(paste0("Retreived model file to ", file_name2))
+    if(!file.exists(file_name2)) {stop("Could not retreive support file.")}
   
-  
+  return(file_name2)
 }
 
 validatePSNUData <- function(d,d2_session) {
