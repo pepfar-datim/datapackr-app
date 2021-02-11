@@ -384,8 +384,8 @@ shinyServer(function(input, output, session) {
 
           DT::datatable(prio_table,options = list(pageLength = 50,
                                          columnDefs = list(list(className = 'dt-right',
-                                                                targets = 2:7)))) %>%
-            formatCurrency(2:7, '',digits =0)
+                                                                targets = 3:9)))) %>%
+            formatCurrency(3:9, '',digits =0)
 
 
     } else {

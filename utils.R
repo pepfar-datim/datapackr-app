@@ -462,7 +462,13 @@ datimExportUI<-function(r) {
 
 evaluateIndicators<-function(combis,values,inds) {
   
-  indicators_empty<-data.frame(id=character())
+  indicators_empty<-data.frame("Indicator" = character(),
+                               "N_OR_D" = character(),
+                               "Age" = character(),
+                               id = character(),
+                               numerator = numeric(),
+                               denominator = numeric(),
+                               value  = numeric())
   
   this.des <-
     vapply(combis, function(x) {
@@ -481,6 +487,8 @@ evaluateIndicators<-function(combis,values,inds) {
   matches_v <- lapply(this.des,matches_indicator) %>% Reduce("|",.)
   matches <-inds[matches_v,]
   #Return something empty here if we have no indicator matches
+  
+  if (nrow(matches) == 0) {return(indicators_empty)}
   matches$numerator <-
     stringi::stri_replace_all_fixed(matches$numerator,
                                     combis, values, vectorize_all =
@@ -502,9 +510,11 @@ evaluateIndicators<-function(combis,values,inds) {
     gsub(expression.pattern, "0", matches$numerator)
   matches$denominator <-
     gsub(expression.pattern, "0", matches$denominator)
-  matches$formula<-paste0("(",matches$numerator,"/",matches$denominator,")")
-  matches$result<-vapply(matches$formula,function(x) {eval(parse(text=x))},FUN.VALUE=double(1))
-  return(matches)
+  matches$numerator<-vapply(matches$numerator,function(x) {eval(parse(text=x))},FUN.VALUE=double(1))
+  matches$denominator<-vapply(matches$denominator,function(x) {eval(parse(text=x))},FUN.VALUE=double(1))
+  matches$value<-matches$numerator/matches$denominator
+  
+  matches
 }
 
 

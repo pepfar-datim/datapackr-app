@@ -102,8 +102,8 @@ preparePrioTable<-function(d,d2_session){
   inds <-
     datimutils::getIndicatorGroups("TslxbFe3VUZ", 
                                    d2_session = d2_session, 
-                                   fields = "indicators[id,name,numerator,denominator]") %>% 
-    dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ",""))
+                                   fields = "indicators[id,name,numerator,denominator]") 
+
   
   df <- d  %>%
     purrr::pluck("data") %>%
@@ -130,15 +130,29 @@ preparePrioTable<-function(d,d2_session){
   #   dplyr::rename("Age" = age_coarse)
 
 
-  d$data$prio_table<-plyr::ddply(df, plyr::.(prioritization),
-                function(x)
-                  evaluateIndicators(x$combi, x$value,inds)) %>% 
-    dplyr::select(indicator = name,
-                  prioritization,
-                  value = result) %>% 
-    dplyr::arrange(indicator,prioritization) %>% 
-    tidyr::pivot_wider(names_from = prioritization ,values_from = "value") 
+      d$data$prio_table<-plyr::ddply(df, plyr::.(prioritization),
+                    function(x)
+                      evaluateIndicators(x$combi, x$value,inds)) %>% 
+        dplyr::select(-id,-numerator,-denominator) %>% 
+        tidyr::complete(.,prioritization,name,fill=list(value=0)) %>% 
+        tidyr::pivot_wider(names_from = prioritization ,values_from = "value") %>% 
+        dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ","")) %>% 
+        dplyr::mutate(name = stringr::str_trim(name)) %>% 
+        tidyr::separate("name",into=c("Indicator","N_OR_D","Age"),sep=" ") %>%
+        dplyr::mutate(Indicator = case_when(Indicator == "GEND_GBV" & N_OR_D == "Physical" ~ "GEND_GBV Physical and Emotional Violence",
+                                            Indicator == "GEND_GBV" & N_OR_D == "Sexual" ~ "GEND_GBV Sexual Violence",
+                                            TRUE ~ Indicator)) %>% 
+        dplyr::select(-"N_OR_D") %>% 
+        dplyr::mutate(Age = case_when(Age == "15-" ~ "<15",
+                                      Age == "15+" ~ "15+",
+                                      Age == "18-" ~"<18",
+                                      Age == "18+" ~ "18+",
+                                      TRUE ~ "Total")) %>% 
+        dplyr::mutate( Age = case_when( Indicator %in% c("CXCA_SCRN","OVC_HIVSTAT","KP_PREV","PMTCT_EID","KP_MAT","VMMC_CIRC","PrEP_NEW","PrEP_CURR","GEND_GBV", "TX_TB")  ~ "Total",
+                                        TRUE ~ Age)) %>% 
 
+        mutate("Total" = rowSums(across(where(is.numeric)))) %>% 
+        dplyr::arrange("Indicator","Age")
 
   return(d)
 
