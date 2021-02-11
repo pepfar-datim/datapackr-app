@@ -342,18 +342,11 @@ recencyComparison <- function(d) {
       class = "data.frame"
     )
 
-  indicator_map <-
-    datapackr::map_DataPack_DATIM_DEs_COCs[, c("dataelement", "indicator_code")] %>%
-    dplyr::distinct() %>%
-    dplyr::rename(dataelement_id = dataelement)
-
-  hts_recency_map <- dplyr::inner_join(indicator_map, hts_mechs) %>%
-    dplyr::select(dataelement_id, hts_recency_compare)
 
   df <- d %>%
     purrr::pluck(., "data") %>%
     purrr::pluck(., "analytics") %>%
-    dplyr::inner_join(., hts_recency_map , by = "dataelement_id") %>%
+    dplyr::inner_join(., hts_mechs , by = "indicator_code") %>%
     dplyr::filter(resultstatus_inclusive == "Positive") %>%
     dplyr::filter(!(
       resultstatus_specific %in% c("Known at Entry Positive", "Status Unknown")
