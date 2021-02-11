@@ -212,12 +212,15 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "4.2.1.0.0.0.1612538067",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Remotes": "jason-p-pickering/datim-validation,\npepfar-datim/data-pack-commons",
-      "RemoteSha": "65ff696e11c5b6c03f75afc1c640ce14c9d96de5",
-      "Hash": "d391ea8b48c29e6906e9fb557205e24f"
+      "Version": "4.2.2",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "pepfar-datim",
+      "RemoteRepo": "datapackr",
+      "RemoteRef": "testing",
+      "RemoteSha": "51251ba8a2de4150132c9df7d67504ef3f40046f",
+      "Hash": "ad7d5f7db78cd54fde08ffafba2d063b"
     },
     "datimutils": {
       "Package": "datimutils",
