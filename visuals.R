@@ -229,7 +229,7 @@ modalitySummaryTable<-function(df){
 modalityYieldChart <- function(df) {
 
   df <- modalitySummaryTable(df)
-
+  if (NROW(df)  == 0 ) {return(NULL)}
   x_lim <- max(df$yield)
 
   df %>%

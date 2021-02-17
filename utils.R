@@ -37,7 +37,16 @@ fetchSupportFiles <- function() {
 
 validatePSNUData <- function(d,d2_session) {
   
-  vr_data<-d$datim$MER
+  if (d$info$tool == "Data Pack") {
+    vr_data<-d$datim$MER
+  }
+  
+  if (d$info$tool == "OPU Data Pack") {
+    vr_data<-d$datim$OPU
+  }
+    
+  
+
   if (is.null(vr_data) | NROW(vr_data) == 0 ) {return(d)}
   
   # We need ALL mechanisms to be in DATIM before remapping....TODO
@@ -148,8 +157,7 @@ validatePSNUData <- function(d,d2_session) {
 validateMechanisms<-function(d, d2_session) {
   
   
-  if (is.null(d$data$distributedMER)) {return(d)}
-  vr_data <- d$data$distributedMER %>%
+  vr_data <- d$data$analytics%>%
     dplyr::pull(mechanism_code) %>%
     unique()
   
@@ -287,14 +295,6 @@ timestampUploadUI<-function(r) {
   
 }
 
-prepareFlatMERExport<-function(d) {
-  
-  d$data$analytics <-  d$data$analytics %>% 
-    dplyr::mutate(upload_timestamp = format(Sys.time(),"%Y-%m-%d %H:%M:%S"),
-                  fiscal_year = "FY22")
-  
-  d
-}
 
 sendMERDataToPAW<-function(d) {
   

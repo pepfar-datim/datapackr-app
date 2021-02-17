@@ -59,7 +59,9 @@ shinyServer(function(input, output, session) {
 
                  tryCatch(  {  datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
                                                         username = input$user_name,
-                                                        password = input$password) },
+                                                        password = input$password,
+                                                d2_session_envir = parent.env(environment()))
+                   },
                             #This function throws an error if the login is not successful
                             error=function(e) {
                               sendSweetAlert(
@@ -238,7 +240,6 @@ shinyServer(function(input, output, session) {
 
       d<-tryCatch({
         datapackr::unPackTool(inFile$datapath,
-                              tool = "Data Pack",cop_year = "2021",
                               d2_session = user_input$d2_session,)},
         error = function(e){
           return(e)
@@ -255,11 +256,9 @@ shinyServer(function(input, output, session) {
 
         flog.info(paste0("Initiating validation of ",d$info$datapack_name, " DataPack."), name="datapack")
         if (d$info$tool == "Data Pack") {
-          
-          
+        
           if ( d$info$has_psnuxim  ) {
             flog.info("Datapack with PSNUxIM tab found.")
-
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
             d <- validatePSNUData(d, d2_session = user_input$d2_session)
@@ -271,8 +270,6 @@ shinyServer(function(input, output, session) {
             r<-archiveDataPacktoS3(d,inFile$datapath)
             archiveDataPackErrorUI(r)
             Sys.sleep(1)
-            incProgress(0.1, detail = ("Preparing a flat export file"))
-            d<-prepareFlatMERExport(d)
             incProgress(0.1, detail = ("Preparing a prioritization table"))
             d<-preparePrioTable(d,d2_session = user_input$d2_session)
             incProgress(0.1, detail = (praise()))
@@ -323,7 +320,36 @@ shinyServer(function(input, output, session) {
       }
 
       if (d$info$tool == "OPU Data Pack"){
-        flog.info("Oops.Cannot handle an OPU right now")
+        flog.info("Datapack with PSNUxIM tab found.")
+        incProgress(0.1, detail = ("Checking validation rules"))
+        Sys.sleep(0.5)
+        d <- validatePSNUData(d, d2_session = user_input$d2_session)
+        incProgress(0.1,detail="Validating mechanisms")
+        Sys.sleep(0.5)
+        d <- validateMechanisms(d, d2_session = user_input$d2_session)
+       
+        incProgress(0.1, detail = (praise()))
+        shinyjs::enable("downloadFlatPack")
+        shinyjs::enable("download_messages")
+        shinyjs::disable("send_paw")
+        shinyjs::enable("downloadValidationResults")
+        shinyjs::enable("compare")
+        
+        updatePickerInput(session = session, inputId = "kpCascadeInput",
+                          choices = snuSelector(d))
+        updatePickerInput(session = session, inputId = "epiCascadeInput",
+                          choices = snuSelector(d))
+        
+        showTab(inputId = "main-panel", target = "Validation rules")
+        showTab(inputId = "main-panel", target = "HTS Summary Chart")
+        showTab(inputId = "main-panel", target = "HTS Summary Table")
+        showTab(inputId = "main-panel", target = "HTS Yield")
+        showTab(inputId = "main-panel", target = "VLS Testing")
+        showTab(inputId = "main-panel", target = "Epi Cascade Pyramid")
+        showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
+        showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
+        showTab(inputId = "main-panel", target = "HTS Recency")
+        
       }
 
     })
@@ -528,9 +554,9 @@ shinyServer(function(input, output, session) {
 
       vr  %>%
         purrr::pluck(.,"data") %>%
-        purrr::pluck(.,"MER") %>%
+        purrr::pluck(.,"analytics") %>%
         dplyr::group_by(indicator_code) %>%
-        dplyr::summarise(value = format( round(sum(value)) ,big.mark=',', scientific=FALSE)) %>%
+        dplyr::summarise(value = format( round(sum(target_value)) ,big.mark=',', scientific=FALSE)) %>%
         dplyr::arrange(indicator_code)
 
 
@@ -545,21 +571,11 @@ shinyServer(function(input, output, session) {
 
     if (!inherits(vr, "error") & !is.null(vr)) {
 
-      if (vr$info$tool == "Data Pack") {
-        vr %<>%
-          purrr::pluck(., "data") %>%
-          purrr::pluck(., "MER") %>%
-          dplyr::left_join(., datapackr::valid_PSNUs, by = c("psnuid" = "psnu_uid"))
-      } else if (vr$info$tool == "OPU Data Pack") {
-        vr %<>%
-          purrr::pluck(., "data") %>%
-          purrr::pluck(., "extract") %>%
-          dplyr::left_join(., datapackr::valid_PSNUs, by = c(psnuid = psnu_uid))
-      }
-
       vr %>%
+        purrr::pluck(.,"data") %>%
+        purrr::pluck(.,"analytics") %>%
         dplyr::group_by(snu1, indicator_code) %>%
-        dplyr::summarise(value = format(round(sum(value)),
+        dplyr::summarise(value = format(round(sum(target_value)),
                                         big.mark = ",",
                                         scientific = FALSE)) %>%
         dplyr::arrange(snu1, indicator_code)
