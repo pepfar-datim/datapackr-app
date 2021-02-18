@@ -57,9 +57,9 @@ validatePSNUData <- function(d,d2_session) {
                                 "id",
                                 d2session = d2_session)
   datasets_uid <- 
-    if ( vr$info$cop_year = "2020" ) {
+    if ( vr$info$cop_year == "2020" ) {
       c("Pmc0yYAIi1t", "s1sxJuqXsvV")
-    } else if  ( vr$info$cop_year = "2021" ) {
+    } else if  ( vr$info$cop_year == "2021" ) {
       c("YfZot37BbTm", "Pmc0yYAIi1t")
     }
 
