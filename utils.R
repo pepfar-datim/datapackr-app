@@ -44,8 +44,7 @@ validatePSNUData <- function(d,d2_session) {
   if (d$info$tool == "OPU Data Pack") {
     vr_data<-d$datim$OPU
   }
-    
-  
+
 
   if (is.null(vr_data) | NROW(vr_data) == 0 ) {return(d)}
   
@@ -164,13 +163,26 @@ validatePSNUData <- function(d,d2_session) {
 
 #TODO: Move this back to the DataPackr....
 validateMechanisms<-function(d, d2_session) {
-  
-  
-  vr_data <- d$data$analytics%>%
-    dplyr::pull(mechanism_code) %>%
-    unique()
-  
-  #TODO: Remove hard coding of time periods and 
+
+  if (d$info$tool == "Data Pack") {
+    if (is.null(d$data$distributedMER)) {
+      return(d)
+    } else {
+      vr_data <- d$data$distributedMER %>%
+        dplyr::pull(mechanism_code) %>%
+        unique()
+    }
+  } else if (d$info$tool == "OPU Data Pack") {
+    if (is.null(d$data$extract)) {
+      return(d)
+    } else {
+      vr_data <- d$data$extract %>%
+        dplyr::pull(mech_code) %>%
+        unique()
+    }
+  }
+
+  #TODO: Remove hard coding of time periods and
   #filter for the OU as well
   mechs<-datapackr::getMechanismView(d2_session = d2_session) %>%
     dplyr::filter(!is.na(startdate)) %>%

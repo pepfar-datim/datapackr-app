@@ -30,7 +30,7 @@ shinyServer(function(input, output, session) {
     shinyjs::disable("download_messages")
     shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
-    #shinyjs::disable("compare")
+    shinyjs::disable("compare")
     ready$ok<-FALSE
   })
   
@@ -154,8 +154,8 @@ shinyServer(function(input, output, session) {
             actionButton("send_paw", "Send to PAW"),
             tags$hr(),
             downloadButton("downloadDataPack", "Regenerate PSNUxIM"),
-            # tags$hr(),
-            # downloadButton("compare", "Compare with DATIM"),
+            tags$hr(),
+            downloadButton("compare", "Compare with DATIM"),
             tags$hr(),
             div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("reset_input", "Reset inputs")),
             div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("logout", "Logout"))
@@ -217,7 +217,7 @@ shinyServer(function(input, output, session) {
     shinyjs::disable("download_messages")
     shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
-    #shinyjs::disable("compare")
+    shinyjs::disable("compare")
 
     if (!ready$ok) {
       shinyjs::disable("validate")
@@ -277,7 +277,8 @@ shinyServer(function(input, output, session) {
             shinyjs::enable("download_messages")
             shinyjs::enable("send_paw")
             shinyjs::enable("downloadValidationResults")
-            #shinyjs::enable("compare")
+
+            shinyjs::hide("compare")
 
             if ( d$info$missing_psnuxim_combos ) {
               shinyjs::enable("downloadDataPack")
@@ -306,6 +307,9 @@ shinyServer(function(input, output, session) {
             shinyjs::enable("downloadDataPack")
             shinyjs::enable("download_messages")
             shinyjs::enable("send_paw")
+
+            shinyjs::hide("compare")
+
             hideTab(inputId = "main-panel", target = "Validation rules")
             hideTab(inputId = "main-panel", target = "HTS Summary Chart")
             hideTab(inputId = "main-panel", target = "HTS Summary Table")
@@ -325,32 +329,34 @@ shinyServer(function(input, output, session) {
         incProgress(0.1, detail = ("Checking validation rules"))
         Sys.sleep(0.5)
         d <- validatePSNUData(d, d2_session = user_input$d2_session)
-        incProgress(0.1,detail="Validating mechanisms")
+        incProgress(0.1, detail = "Validating mechanisms")
         Sys.sleep(0.5)
         d <- validateMechanisms(d, d2_session = user_input$d2_session)
-       
         incProgress(0.1, detail = (praise()))
+
         shinyjs::enable("downloadFlatPack")
         shinyjs::enable("download_messages")
-        shinyjs::hide("downloadDataPack")
-        shinyjs::hide("send_paw")
         shinyjs::enable("downloadValidationResults")
         shinyjs::enable("compare")
-        
+
+        shinyjs::hide("send_paw")
+        shinyjs::hide("downloadDataPack")
+
         updatePickerInput(session = session, inputId = "kpCascadeInput",
                           choices = snuSelector(d))
         updatePickerInput(session = session, inputId = "epiCascadeInput",
                           choices = snuSelector(d))
-        
+
         showTab(inputId = "main-panel", target = "Validation rules")
         showTab(inputId = "main-panel", target = "HTS Summary Chart")
         showTab(inputId = "main-panel", target = "HTS Summary Table")
         showTab(inputId = "main-panel", target = "HTS Yield")
-        showTab(inputId = "main-panel", target = "VLS Testing")
-        showTab(inputId = "main-panel", target = "Epi Cascade Pyramid")
-        showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
-        showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
         showTab(inputId = "main-panel", target = "HTS Recency")
+        showTab(inputId = "main-panel", target = "VLS Testing")
+        showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
+
+        hideTab(inputId = "main-panel", target = "Epi Cascade Pyramid")
+        hideTab(inputId = "main-panel", target = "KP Cascade Pyramid")
         hideTab(inputId = "main-panel", target = "Prioritization")
       }
 
@@ -554,9 +560,17 @@ shinyServer(function(input, output, session) {
 
     if (!inherits(vr,"error") & !is.null(vr)){
 
-      vr  %>%
-        purrr::pluck(.,"data") %>%
-        purrr::pluck(.,"analytics") %>%
+      if (vr$info$tool == "Data Pack") {
+        df <- vr  %>%
+          purrr::pluck(.,"data") %>%
+          purrr::pluck(.,"MER")
+      } else if (vr$info$tool == "OPU Data Pack") {
+        df <- vr %>%
+          purrr::pluck(., "data") %>%
+          purrr::pluck(., "extract")
+      }
+
+      df %>%
         dplyr::group_by(indicator_code) %>%
         dplyr::summarise(value = format( round(sum(target_value)) ,big.mark=',', scientific=FALSE)) %>%
         dplyr::arrange(indicator_code)
@@ -696,17 +710,37 @@ shinyServer(function(input, output, session) {
       wb <- openxlsx::createWorkbook()
 
       d<-validation_results()
-      #Requires refactor to deal with http handles
-      d_compare<-datapackr::compareData_DatapackVsDatim(d)
 
-      openxlsx::addWorksheet(wb,"PSNUxIM without dedupe")
-      openxlsx::writeDataTable(wb = wb,
-                               sheet = "PSNUxIM without dedupe",x = d_compare$psnu_x_im_wo_dedup)
+      if (d$info$tool == "Data Pack") {
+        #Requires refactor to deal with http handles
+        d_compare<-datapackr::compareData_DatapackVsDatim(d, d2_session = user_input$d2_session)
 
+        openxlsx::addWorksheet(wb,"PSNUxIM without dedupe")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "PSNUxIM without dedupe",x = d_compare$psnu_x_im_wo_dedup)
 
-      openxlsx::addWorksheet(wb,"PSNU with dedupe")
-      openxlsx::writeDataTable(wb = wb,
-                               sheet = "PSNU with dedupe",x = d_compare$psnu_w_dedup)
+        openxlsx::addWorksheet(wb,"PSNU with dedupe")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "PSNU with dedupe",x = d_compare$psnu_w_dedup)
+
+      } else if (d$info$tool == "OPU Data Pack") {
+        d_compare <- datapackr::compareData_OpuDatapackVsDatim(d, d2_session = user_input$d2_session)
+
+        openxlsx::addWorksheet(wb, "Updated Targets")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "Updated Targets",
+                                 x = d_compare$updates)
+
+        openxlsx::addWorksheet(wb, "Deleted Targets")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "Deleted Targets",
+                                 x = d_compare$deletes)
+
+        openxlsx::addWorksheet(wb, "Deduplications")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "Deduplications",
+                                 x = d_compare$dedupes)
+      }
 
       datapack_name <-d$info$datapack_name
 
@@ -746,12 +780,12 @@ shinyServer(function(input, output, session) {
         subnat_impatt <- d %>%
           purrr::pluck(.,"data") %>%
           purrr::pluck(.,"SUBNAT_IMPATT")
-        
+
         mer_data<-dplyr::bind_rows(mer_data,subnat_impatt)
         openxlsx::addWorksheet(wb,"MER Data")
         openxlsx::writeDataTable(wb = wb,
                                  sheet = "MER Data",x = mer_data)
-        
+
         has_psnu<-d %>%
           purrr::pluck(.,"info") %>%
           purrr::pluck(.,"has_psnuxim")
@@ -777,13 +811,11 @@ shinyServer(function(input, output, session) {
           
           openxlsx::addWorksheet(wb,"HTS Summary")
           hts_summary<-modalitySummaryTable(d$data$analytics)
-          
+
           if (!is.null(hts_summary)) {
             openxlsx::writeData(wb = wb,
                                 sheet = "HTS Summary", x = hts_summary)
           }
-          
-          
         }
       }
      
@@ -796,7 +828,7 @@ shinyServer(function(input, output, session) {
         openxlsx::addWorksheet(wb,"DATIM export")
         openxlsx::writeData(wb = wb,
                             sheet = "DATIM export",x = d$datim$OPU)
-        
+
       }
 
       datapack_name <-d$info$datapack_name
