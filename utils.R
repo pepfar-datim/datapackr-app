@@ -176,8 +176,16 @@ validateMechanisms<-function(d, d2_session) {
     dplyr::filter(enddate >= as.Date('2021-09-30')) %>%
     dplyr::pull(mechanism_code)
   
-  #Allow for the pseudo dedupe mechanism
-  mechs <- append("99999",mechs)
+  #Allow for the dedupe mechanisms in COP20 OPU Data Packs
+  if (d$info$tool = "OPU Data Pack" & d$info$cop_year == 2020 ) {
+    mechs <- append(c("00000","00001"),mechs)
+  }
+  
+  #Allow for the dedupe mechanisms in COP21 Data packs
+  if (d$info$tool = "Data Pack" & d$info$cop_year == 2021 ) {
+    mechs <- append(c("00000","00001"),mechs)
+  }
+
   
   bad_mechs<-vr_data[!(vr_data %in% mechs)]
   
