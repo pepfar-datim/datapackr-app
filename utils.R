@@ -56,7 +56,13 @@ validatePSNUData <- function(d,d2_session) {
                                 "code",
                                 "id",
                                 d2session = d2_session)
-  datasets_uid <- c("Pmc0yYAIi1t", "s1sxJuqXsvV")
+  datasets_uid <- 
+    if ( vr$info$cop_year = "2020" ) {
+      c("Pmc0yYAIi1t", "s1sxJuqXsvV")
+    } else if  ( vr$info$cop_year = "2021" ) {
+      c("YfZot37BbTm", "Pmc0yYAIi1t")
+    }
+
   if ( Sys.info()["sysname"] == "Linux") {
     ncores <- parallel::detectCores() - 1
     doMC::registerDoMC( cores = ncores )
@@ -243,7 +249,12 @@ saveTimeStampLogToS3<-function(d) {
   #Write an archived copy of the file
   s3<-paws::s3()
   object_tags<-createS3BucketTags(d)
-  object_name<-paste0("processed/",d$info$sane_name,".csv")
+  object_name <-
+    paste0("processed/",
+           gsub("^20", "cop", d$info$cop_year),
+           "/",
+           d$info$sane_name,
+           ".csv")
   #Save a timestamp of the upload
   timestamp_info<-list(
     ou=d$info$datapack_name,
@@ -268,7 +279,14 @@ saveTimeStampLogToS3<-function(d) {
   read_file <- file(tmp, "rb")
   raw_file <- readBin(read_file, "raw", n = file.size(tmp))
   close(read_file)
-  object_name<-paste0("upload_timestamp/",d$info$sane_name,".csv")
+  object_name <-
+    paste0(
+      "upload_timestamp/",
+      gsub("^20", "cop", d$info$cop_year),
+      "/",
+      d$info$sane_name,
+      ".csv"
+    )
   
   r<-tryCatch({
     foo<-s3$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
@@ -295,14 +313,13 @@ timestampUploadUI<-function(r) {
   
 }
 
-
 sendMERDataToPAW<-function(d) {
   
   
   
   #Write the combined DATIM export for MER and SUBNATT data
   tmp <- tempfile()
-  mer_data<-dplyr::bind_rows(d$datim$MER,d$datim$subnat_impatt) %>% 
+  mer_data<-dplyr::bind_rows(d$datim) %>% 
     dplyr::mutate(categoryOptionCombo = case_when(is.na(categoryOptionCombo) ~ "HllvX50cXC0",
                                                    TRUE ~categoryOptionCombo )) %>% 
     tidyr::drop_na()
@@ -370,7 +387,7 @@ sendValidationSummary<-function(d) {
   close(read_file)
   
   object_tags<-createS3BucketTags(d)
-  object_name<-paste0("validation_error/",d$info$sane_name,".csv")
+  object_name<-paste0("validation_error/",gsub("^20","cop",d$info$cop_year),"/",d$info$sane_name,".csv")
   s3<-paws::s3()
   
   r<-tryCatch({
@@ -425,7 +442,8 @@ saveDATIMExportToS3<-function(d) {
   
   
   object_tags<-createS3BucketTags(d)
-  object_name<-paste0("datim_export/",d$info$sane_name,".csv")
+  
+  object_name<-paste0("datim_export/",gsub("^20","cop",d$info$cop_year),"/",d$info$sane_name,".csv")
   s3<-paws::s3()
   
   r<-tryCatch({
