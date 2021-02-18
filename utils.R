@@ -132,13 +132,16 @@ validatePSNUData <- function(d,d2_session) {
                       "Diff (%)" = diff,
                       "Diff (Absolute)" = abs_diff)
       
-      flog.info(
+      warning_message<-     
         paste0(
           NROW(vr_violations),
           " validation rule issues found in ",
           d$info$datapack_name,
           " DataPack."
-        ),
+        )
+      d$info$warning_msg<-append(d$info$warning_msg,warning_message)
+      flog.info(
+        warning_message,
         name = "datapack"
       )
     } else {
