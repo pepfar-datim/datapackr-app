@@ -258,7 +258,7 @@ shinyServer(function(input, output, session) {
         if (d$info$tool == "Data Pack") {
         
           if ( d$info$has_psnuxim  ) {
-            flog.info("Datapack with PSNUxIM tab found.")
+            flog.info(paste(d$info$tool," with PSNUxIM tab found."))
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
             d <- validatePSNUData(d, d2_session = user_input$d2_session)
@@ -297,6 +297,7 @@ shinyServer(function(input, output, session) {
             showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
             showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
             showTab(inputId = "main-panel", target = "HTS Recency")
+            showTab(inputId = "main-panel", target = "Prioritization")
 
           } else {
             #This should occur when there is no PSNUxIM tab and they want
@@ -331,7 +332,7 @@ shinyServer(function(input, output, session) {
         incProgress(0.1, detail = (praise()))
         shinyjs::enable("downloadFlatPack")
         shinyjs::enable("download_messages")
-        shinyjs::disable("send_paw")
+        shinyjs::hide("send_paw")
         shinyjs::enable("downloadValidationResults")
         shinyjs::enable("compare")
         
@@ -349,7 +350,7 @@ shinyServer(function(input, output, session) {
         showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
         showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
         showTab(inputId = "main-panel", target = "HTS Recency")
-        
+        hideTab(inputId = "main-panel", target = "Prioritization")
       }
 
     })
