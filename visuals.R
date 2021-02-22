@@ -97,8 +97,8 @@ preparePrioTable<-function(d,d2_session){
                   age_coarse = options,
                   prioritization = col_name)
   
-  #Fetch inidicators from the COP21 memo group
-  #TODO: Make this work for both COP years?
+  #Fetch indicators from the COP21 memo group
+  #TODO: Make this work for both COP years.!
   inds <-
     datimutils::getIndicatorGroups("TslxbFe3VUZ", 
                                    d2_session = d2_session, 

@@ -30,7 +30,7 @@ shinyServer(function(input, output, session) {
     shinyjs::disable("download_messages")
     shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
-    #shinyjs::disable("compare")
+    shinyjs::disable("compare")
     ready$ok<-FALSE
   })
   
@@ -154,8 +154,8 @@ shinyServer(function(input, output, session) {
             actionButton("send_paw", "Send to PAW"),
             tags$hr(),
             downloadButton("downloadDataPack", "Regenerate PSNUxIM"),
-            # tags$hr(),
-            # downloadButton("compare", "Compare with DATIM"),
+            tags$hr(),
+            downloadButton("compare", "Compare with DATIM"),
             tags$hr(),
             div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("reset_input", "Reset inputs")),
             div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("logout", "Logout"))
@@ -184,7 +184,7 @@ shinyServer(function(input, output, session) {
                                  options = list(`actions-box` = TRUE),multiple = T),
                      plotOutput("kp_cascade")),
             tabPanel("PSNUxIM Pivot",rpivotTableOutput({"pivot"})),
-            tabPanel("Prioritization",DT::dataTableOutput("prio_table"))
+            tabPanel("Prioritization (DRAFT)",DT::dataTableOutput("prio_table"))
 
           ))
         ))
@@ -217,7 +217,7 @@ shinyServer(function(input, output, session) {
     shinyjs::disable("download_messages")
     shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
-    #shinyjs::disable("compare")
+    shinyjs::disable("compare")
 
     if (!ready$ok) {
       shinyjs::disable("validate")
@@ -277,7 +277,7 @@ shinyServer(function(input, output, session) {
             shinyjs::enable("download_messages")
             shinyjs::enable("send_paw")
             shinyjs::enable("downloadValidationResults")
-            #shinyjs::enable("compare")
+            shinyjs::enable("compare")
 
             if ( d$info$missing_psnuxim_combos ) {
               shinyjs::enable("downloadDataPack")
@@ -328,12 +328,18 @@ shinyServer(function(input, output, session) {
         incProgress(0.1,detail="Validating mechanisms")
         Sys.sleep(0.5)
         d <- validateMechanisms(d, d2_session = user_input$d2_session)
-       
+        incProgress(0.1,detail="Updating prioritization levels from DATIM")
+        Sys.sleep(0.5)
+        #Move this to datapackr
+        d<-updateExistingPrioritization(d,d2_session = user_input$d2_session)
+        incProgress(0.1, detail = ("Preparing a prioritization table"))
+        d<-preparePrioTable(d,d2_session = user_input$d2_session)
         incProgress(0.1, detail = (praise()))
+        Sys.sleep(0.5)
         shinyjs::enable("downloadFlatPack")
         shinyjs::enable("download_messages")
-        shinyjs::hide("downloadDataPack")
-        shinyjs::hide("send_paw")
+        shinyjs::disable("downloadDataPack")
+        shinyjs::disable("send_paw")
         shinyjs::enable("downloadValidationResults")
         shinyjs::enable("compare")
         
@@ -351,7 +357,7 @@ shinyServer(function(input, output, session) {
         showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
         showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
         showTab(inputId = "main-panel", target = "HTS Recency")
-        hideTab(inputId = "main-panel", target = "Prioritization")
+        showTab(inputId = "main-panel", target = "Prioritization")
       }
 
     })
@@ -412,8 +418,8 @@ shinyServer(function(input, output, session) {
 
           DT::datatable(prio_table,options = list(pageLength = 50,
                                          columnDefs = list(list(className = 'dt-right',
-                                                                targets = 3:9)))) %>%
-            formatCurrency(3:9, '',digits =0)
+                                                                targets = 3:dim(prio_table)[2])))) %>%
+            formatCurrency(3:dim(prio_table)[2], '',digits =0)
 
 
     } else {
@@ -696,17 +702,43 @@ shinyServer(function(input, output, session) {
       wb <- openxlsx::createWorkbook()
 
       d<-validation_results()
-      #Requires refactor to deal with http handles
-      d_compare<-datapackr::compareData_DatapackVsDatim(d)
 
-      openxlsx::addWorksheet(wb,"PSNUxIM without dedupe")
-      openxlsx::writeDataTable(wb = wb,
-                               sheet = "PSNUxIM without dedupe",x = d_compare$psnu_x_im_wo_dedup)
+      if (d$info$tool == "OPU Data Pack") {
+        d_compare<-datapackr::compareData_OpuDatapackVsDatim(d, d2_session = user_input$d2_session) 
+        
+        remap_names<-function(x) {
+          x %>% dplyr::rename( dataElement = "data_element_uid",
+                               orgUnit = "org_unit_uid",
+                               categoryOptionCombo = "category_option_combo_uid",
+                               attributeOptionCombo = "attribute_option_combo_code") 
+        }
+        d_compare<-lapply(d_compare,remap_names)
+        
+        d_compare<-lapply(d_compare,function(x) adorn_import_file(x,
+                                                      cop_year = d$info$cop_year,
+                                                      d2_session = user_input$d2_session))
+        
+        for(name in names(d_compare)){
+          foo <- d_compare %>% purrr::pluck(name)
+          openxlsx::addWorksheet(wb,name)
+          openxlsx::writeDataTable(wb = wb,
+                                   sheet = name,x = foo)
+          
+        }
 
+      } else if (d$info$tool == "Data Pack") {
+        d_compare<-datapackr::compareData_DatapackVsDatim(d,d2_session = user_input$d2_session)
+        openxlsx::addWorksheet(wb,"PSNUxIM without dedupe")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "PSNUxIM without dedupe",x = d_compare$psnu_x_im_wo_dedup)
+        
+        
+        openxlsx::addWorksheet(wb,"PSNU with dedupe")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "PSNU with dedupe",x = d_compare$psnu_w_dedup)
+      }
+  
 
-      openxlsx::addWorksheet(wb,"PSNU with dedupe")
-      openxlsx::writeDataTable(wb = wb,
-                               sheet = "PSNU with dedupe",x = d_compare$psnu_w_dedup)
 
       datapack_name <-d$info$datapack_name
 

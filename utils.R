@@ -172,7 +172,8 @@ validateMechanisms<-function(d, d2_session) {
   
   #TODO: Remove hard coding of time periods and 
   #filter for the OU as well
-  mechs<-datapackr::getMechanismView(d2_session = d2_session) %>%
+  mechs<-datapackr::getMechanismView(d2_session = d2_session,
+                                     update_stale_cache = TRUE) %>%
     dplyr::filter(!is.na(startdate)) %>%
     dplyr::filter(!is.na(enddate)) %>%
     dplyr::filter(startdate <= as.Date('2020-10-01')) %>%
@@ -488,7 +489,6 @@ datimExportUI<-function(r) {
   }
 }
 
-
 evaluateIndicators<-function(combis,values,inds) {
   
   indicators_empty<-data.frame("Indicator" = character(),
@@ -546,7 +546,6 @@ evaluateIndicators<-function(combis,values,inds) {
   matches
 }
 
-
 createS3BucketTags<-function(d) {
   d$info$country_uids<-paste0(d$info$country_uids,sep="",collapse=",")
   tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status","source_user")
@@ -554,4 +553,25 @@ createS3BucketTags<-function(d) {
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
   
   return(object_tags)
+}
+
+updateExistingPrioritization<-function(d,d2_session) {
+  
+period<- paste0( (d$info$cop_year -1 ),"Oct") 
+ous<-   d$data$analytics$psnu_uid %>% unique() %>% paste(sep="",collapse=";") 
+dx <-"r4zbW3owX9n"
+  
+prios<-datimutils::getAnalytics(dx="r4zbW3owX9n",pe_f =period, ou = ous,d2_session = d2_session ) %>% 
+  dplyr::select(-Data) %>% 
+  dplyr::rename("psnu_uid" = "Organisation unit",
+                "value" = "Value") %>% 
+  dplyr::left_join(datapackr::prioritization_dict()) %>% 
+  dplyr::select(psnu_uid,
+                "prioritization" = "name")
+
+d$data$analytics %<>% 
+  dplyr::select(-prioritization) %>% 
+  dplyr::left_join(prios,by="psnu_uid")
+
+d
 }
