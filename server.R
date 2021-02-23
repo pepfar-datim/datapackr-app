@@ -183,8 +183,10 @@ shinyServer(function(input, output, session) {
                                  choices= "",
                                  options = list(`actions-box` = TRUE),multiple = T),
                      plotOutput("kp_cascade")),
-            tabPanel("PSNUxIM Pivot",rpivotTableOutput({"pivot"})),
-            tabPanel("Prioritization (DRAFT)",DT::dataTableOutput("prio_table"))
+            tabPanel("PSNUxIM Pivot",rpivotTable::rpivotTableOutput({"pivot"})),
+            tabPanel("Prioritization (DRAFT)",
+                     h5("memo_disclaimer","Note: This is a draft memo table. Final figures may differ."),
+                     DT::dataTableOutput("prio_table"))
 
           ))
         ))
