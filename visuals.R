@@ -99,8 +99,15 @@ preparePrioTable<-function(d,d2_session){
   
   #Fetch indicators from the COP21 memo group
   #TODO: Make this work for both COP years.!
+  
+  if (d$info$cop_year == 2020) {
+    ind_group <-"TslxbFe3VUZ"
+  } else if (d$info$cop_year == 2021) {
+    #TODO: Fix this with the real indicator group once it has been finalzied
+    ind_group <-"TslxbFe3VUZ"
+  }
   inds <-
-    datimutils::getIndicatorGroups("TslxbFe3VUZ", 
+    datimutils::getIndicatorGroups(ind_group, 
                                    d2_session = d2_session, 
                                    fields = "indicators[id,name,numerator,denominator]") 
 
@@ -114,45 +121,46 @@ preparePrioTable<-function(d,d2_session){
                   value = target_value) %>% 
     dplyr::group_by(dataelement_id,categoryoptioncombo_id,prioritization) %>% 
     dplyr::summarise(value = sum(value)) %>% 
-    dplyr::mutate(combi =paste0("#{",dataelement_id,".", categoryoptioncombo_id,"}")) 
-
-
-  # df_final<-dplyr::bind_rows(df,df_totals,df_base) %>%
-  #   dplyr::group_by(indicator,age_coarse,prioritization) %>%
-  #   dplyr::summarise(value = sum(value)) %>%
-  #   dplyr::distinct() %>%
-  #   dplyr::ungroup() %>%
-  #   dplyr::mutate(prioritization = factor(prioritization,levels = df_cols$col_name)) %>%
-  #   dplyr::mutate(indicator = factor(indicator,levels = unique(df_rows$ind))) %>%
-  #   dplyr::arrange(indicator,prioritization) %>%
-  #   tidyr::pivot_wider(names_from = prioritization ,values_from = "value") %>%
-  #   dplyr::mutate("Total *" = rowSums(.[3:7]) ) %>%
-  #   dplyr::rename("Age" = age_coarse)
-
-
-      d$data$prio_table<-plyr::ddply(df, plyr::.(prioritization),
+    dplyr::mutate(combi =paste0("#{",dataelement_id,".", categoryoptioncombo_id,"}")) %>% 
+    plyr::ddply(., plyr::.(prioritization),
                     function(x)
                       evaluateIndicators(x$combi, x$value,inds)) %>% 
-        dplyr::select(-id,-numerator,-denominator) %>% 
-        tidyr::complete(.,prioritization,name,fill=list(value=0)) %>% 
-        tidyr::pivot_wider(names_from = prioritization ,values_from = "value") %>% 
-        dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ","")) %>% 
-        dplyr::mutate(name = stringr::str_trim(name)) %>% 
-        tidyr::separate("name",into=c("Indicator","N_OR_D","Age"),sep=" ") %>%
-        dplyr::mutate(Indicator = case_when(Indicator == "GEND_GBV" & N_OR_D == "Physical" ~ "GEND_GBV Physical and Emotional Violence",
-                                            Indicator == "GEND_GBV" & N_OR_D == "Sexual" ~ "GEND_GBV Sexual Violence",
-                                            TRUE ~ Indicator)) %>% 
-        dplyr::select(-"N_OR_D") %>% 
-        dplyr::mutate(Age = case_when(Age == "15-" ~ "<15",
-                                      Age == "15+" ~ "15+",
-                                      Age == "18-" ~"<18",
-                                      Age == "18+" ~ "18+",
-                                      TRUE ~ "Total")) %>% 
-        dplyr::mutate( Age = case_when( Indicator %in% c("CXCA_SCRN","OVC_HIVSTAT","KP_PREV","PMTCT_EID","KP_MAT","VMMC_CIRC","PrEP_NEW","PrEP_CURR","GEND_GBV", "TX_TB")  ~ "Total",
-                                        TRUE ~ Age)) %>% 
+    dplyr::select(-id,-numerator,-denominator) %>% 
+    tidyr::complete(.,prioritization,name,fill=list(value=0)) %>% 
+    dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ","")) %>% 
+    dplyr::mutate(name = stringr::str_trim(name)) %>% 
+    tidyr::separate("name",into=c("Indicator","N_OR_D","Age"),sep=" ") %>%
+    dplyr::mutate(Indicator = case_when(Indicator == "GEND_GBV" & N_OR_D == "Physical" ~ "GEND_GBV Physical and Emotional Violence",
+                                        Indicator == "GEND_GBV" & N_OR_D == "Sexual" ~ "GEND_GBV Sexual Violence",
+                                        TRUE ~ Indicator)) %>% 
+    dplyr::select(-"N_OR_D") %>% 
+    dplyr::mutate(Age = case_when(Age == "15-" ~ "<15",
+                                  Age == "15+" ~ "15+",
+                                  Age == "18-" ~"<18",
+                                  Age == "18+" ~ "18+",
+                                  TRUE ~ "Total")) %>% 
+    dplyr::mutate( Age = case_when( Indicator %in% c("CXCA_SCRN","OVC_HIVSTAT","KP_PREV","PMTCT_EID","KP_MAT","VMMC_CIRC","PrEP_NEW","PrEP_CURR","GEND_GBV", "TX_TB")  ~ "Total",
+                                    TRUE ~ Age)) %>% 
+    dplyr::group_by(Age,Indicator,prioritization) %>% 
+    dplyr::summarise(value = sum(value)) %>% 
+    dplyr::ungroup()
+  
+  df_total<- df %>% 
+    dplyr::filter(Age != "Total") %>% 
+    dplyr::select(-Age) %>% 
+    group_by(prioritization,Indicator) %>% 
+    dplyr::summarise(value = sum(value)) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::mutate(Age = "Total") %>% 
+    dplyr::select(names(df))
+  
+  d$data$prio_table <- dplyr::bind_rows(df,df_total) %>% 
+    dplyr::mutate(Age = factor(Age,levels = (unique(Age)))) %>% 
+    dplyr::arrange(Indicator,Age) %>% 
+  tidyr::pivot_wider(names_from = prioritization ,values_from = "value") %>% 
+    mutate("Total" = rowSums(across(where(is.numeric)))) %>% 
+    dplyr::select("Indicator","Age",3:dim(.)[2])
 
-        mutate("Total" = rowSums(across(where(is.numeric)))) %>% 
-        dplyr::arrange("Indicator","Age")
 
   return(d)
 
