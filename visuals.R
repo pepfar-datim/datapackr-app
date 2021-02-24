@@ -21,10 +21,11 @@ PSNUxIM_pivot<-function(d){
 }
 
 
-#Should probably move this to datapackr
-preparePrioTable<-function(d,d2_session){
-
-  memo_indicators<- tibble::tribble(
+memoStructure<-function(cop_year="2020") {
+  
+  #TODO: Fix this once we get the COP21 indicators finalized
+  # if (cop_year == "2020") {
+  row_order<-tibble::tribble(
     ~ind,~options, ~in_partner_table,
     "HTS_INDEX","<15",TRUE,
     "HTS_INDEX","15+",TRUE,
@@ -82,20 +83,47 @@ preparePrioTable<-function(d,d2_session){
     "TX_TB","<15",TRUE,
     "TX_TB","15+",TRUE,
     "TX_TB","Total",FALSE,
-    "GEND_GBV","Total",TRUE)
+    "GEND_GBV","Total",TRUE)  
+  
+  col_order<-
+    
+    tibble::tribble(
+      ~value, ~name, ~col_order,
+      0, "No Prioritization",7,
+      1, "Scale-up: Saturation",2,
+      2, "Scale-up: Aggressive",3,
+      4, "Sustained",4,
+      5, "Centrally Supported",5,
+      6, "Sustained: Commodities",6,
+      7, "Attained",1,
+      # 8, "Not PEPFAR Supported",8 Check and be sure this should not be in the memo
+    ) %>%
+    dplyr::mutate(Prioritization = paste0(value, " - ", name))
+  #     
+  # }
+  # 
+  
+  list(row_order=row_order,col_order=col_order) 
+}
 
 
-  df_cols<-datapackr::prioritization_dict() %>%
-    dplyr::rename(col_name = name)
+#Should probably move this to datapackr
+preparePrioTable<-function(d,d2_session){
 
-  df_rows<-memo_indicators %>% dplyr::select(ind,options)
+  df_cols<-memoStructure(cop_year = d$info$cop_year) %>%
+    purrr::pluck("col_order")
+  
+  df_rows<-memoStructure(cop_year = d$info$cop_year) %>% 
+    purrr::pluck("row_order") %>% 
+    dplyr::select(ind,options) %>% 
+    dplyr::mutate(row_order = dplyr::row_number())
 
-  df_base<-tidyr::crossing(df_rows,dplyr::select(df_cols,col_name)) %>%
-    dplyr::arrange(ind,options,col_name) %>%
+  df_base<-tidyr::crossing(df_rows,dplyr::select(df_cols,name)) %>%
+    dplyr::arrange(ind,options,name) %>%
     dplyr::mutate(value = 0) %>%
     dplyr::rename("indicator" = ind,
                   age_coarse = options,
-                  prioritization = col_name)
+                  prioritization = name)
   
   #Fetch indicators from the COP21 memo group
   #TODO: Make this work for both COP years.!
@@ -154,9 +182,13 @@ preparePrioTable<-function(d,d2_session){
     dplyr::mutate(Age = "Total") %>% 
     dplyr::select(names(df))
   
-  d$data$prio_table <- dplyr::bind_rows(df,df_total) %>% 
-    dplyr::mutate(Age = factor(Age,levels = (unique(Age)))) %>% 
-    dplyr::arrange(Indicator,Age) %>% 
+      d$data$prio_table <- dplyr::bind_rows(df,df_total) %>% 
+        dplyr::mutate(Age = factor(Age,levels = (unique(Age)))) %>% 
+        dplyr::left_join(df_rows,by=c("Indicator" = "ind", "Age" = "options")) %>% 
+        dplyr::left_join((df_cols %>% dplyr::select(name,col_order)),by=c("prioritization"="name")) %>% 
+        dplyr::select(Indicator,Age,prioritization,value,row_order,col_order) %>% 
+    dplyr::arrange(col_order,row_order,Age) %>% 
+        dplyr::select(-row_order,-col_order) %>% 
   tidyr::pivot_wider(names_from = prioritization ,values_from = "value") %>% 
     mutate("Total" = rowSums(across(where(is.numeric)))) %>% 
     dplyr::select("Indicator","Age",3:dim(.)[2])
