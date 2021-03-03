@@ -294,7 +294,13 @@ shinyServer(function(input, output, session) {
             shinyjs::enable("download_messages")
             shinyjs::enable("send_paw")
             shinyjs::enable("downloadValidationResults")
-            shinyjs::enable("compare")
+            #TODO: Fix this once COP 2021 comparisons are functional
+            if (d$info$cop_year == 2020) {
+              shinyjs::enable("compare")
+            } else {
+              shinyjs::disable("compare")
+            }
+            
 
             if ( d$info$missing_psnuxim_combos ) {
               shinyjs::enable("downloadDataPack")
@@ -358,7 +364,13 @@ shinyServer(function(input, output, session) {
         shinyjs::disable("downloadDataPack")
         shinyjs::disable("send_paw")
         shinyjs::enable("downloadValidationResults")
-        shinyjs::enable("compare")
+        
+        #TODO: Fix this once COP 2021 comparisons are functional
+        if (d$info$cop_year == 2020) {
+          shinyjs::enable("compare")
+        } else {
+          shinyjs::disable("compare")
+        }
         
         updatePickerInput(session = session, inputId = "kpCascadeInput",
                           choices = snuSelector(d))
