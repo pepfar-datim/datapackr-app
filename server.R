@@ -2,8 +2,19 @@
 pacman::p_load(shiny,shinyjs,shinyWidgets,magrittr,dplyr,datimvalidation,ggplot2,
                futile.logger, paws, datapackr, scales, DT, purrr, praise,rpivotTable,waiter)
 
-source("./utils.R")
-source("./visuals.R")
+
+#Set the maximum file size for the upload file
+options(shiny.maxRequestSize = 100 * 1024 ^ 2)
+
+#Initiate logging
+logger <- flog.logger()
+
+if (!file.exists(Sys.getenv("LOG_PATH"))) {
+  file.create(Sys.getenv("LOG_PATH"))
+}
+
+flog.appender(appender.console(), name="datapack")
+
 
 shinyServer(function(input, output, session) {
 
@@ -242,7 +253,7 @@ shinyServer(function(input, output, session) {
 
       d<-tryCatch({
         datapackr::unPackTool(inFile$datapath,
-                              d2_session = user_input$d2_session,)},
+                              d2_session = user_input$d2_session)},
         error = function(e){
           return(e)
         })
@@ -267,14 +278,18 @@ shinyServer(function(input, output, session) {
             incProgress(0.1,detail="Validating mechanisms")
             Sys.sleep(0.5)
             d <- validateMechanisms(d, d2_session = user_input$d2_session)
-            incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
-            Sys.sleep(0.5)
-            r<-archiveDataPacktoS3(d,inFile$datapath)
-            archiveDataPackErrorUI(r)
-            Sys.sleep(1)
+
+            if (Sys.getenv("SEND_DATAPACK_ARCHIVE") == "TRUE" ) {
+              incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
+              Sys.sleep(0.5)
+              r<-archiveDataPacktoS3(d,inFile$datapath)
+              archiveDataPackErrorUI(r)
+              Sys.sleep(1)
+            }
+
             incProgress(0.1, detail = ("Preparing a prioritization table"))
+            Sys.sleep(1)
             d<-preparePrioTable(d,d2_session = user_input$d2_session)
-            incProgress(0.1, detail = (praise()))
             shinyjs::enable("downloadFlatPack")
             shinyjs::enable("download_messages")
             shinyjs::enable("send_paw")

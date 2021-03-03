@@ -1,16 +1,4 @@
 
-#Set the maximum file size for the upload file
-options(shiny.maxRequestSize = 100 * 1024 ^ 2)
-
-#Initiate logging
-logger <- flog.logger()
-
-if (!file.exists(Sys.getenv("LOG_PATH"))) {
-  file.create(Sys.getenv("LOG_PATH"))
-}
-
-flog.appender(appender.console(), name="datapack")
-
 
 fetchSupportFiles <- function() {
   
@@ -503,11 +491,13 @@ evaluateIndicators<-function(combis,values,inds) {
     vapply(combis, function(x) {
       unlist(strsplit(x, "\\."))[[1]]
     }, FUN.VALUE = character(1))
+  
   totals_df<-data.frame(exp = this.des,values=values,stringsAsFactors = FALSE) %>% 
     dplyr::group_by(exp) %>% 
     dplyr::summarise(values = sum(values)) %>% 
     dplyr::ungroup() %>% 
     dplyr::mutate(exp=paste0(exp,"}"))
+  
   matches_indicator <- function(x) {
     agrepl(x, inds$numerator) |
       agrepl(x, inds$denominator)
