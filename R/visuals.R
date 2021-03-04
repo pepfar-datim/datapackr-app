@@ -96,7 +96,7 @@ memoStructure<-function(cop_year="2020") {
       5, "Centrally Supported",5,
       6, "Sustained: Commodities",6,
       7, "Attained",1,
-      # 8, "Not PEPFAR Supported",8 Check and be sure this should not be in the memo
+      8, "Not PEPFAR Supported",8
     ) %>%
     dplyr::mutate(Prioritization = paste0(value, " - ", name))
   #     
@@ -129,16 +129,20 @@ preparePrioTable<-function(d,d2_session){
   #TODO: Make this work for both COP years.!
   
   if (d$info$cop_year == 2020) {
-    ind_group <-"TslxbFe3VUZ"
+    
   } else if (d$info$cop_year == 2021) {
-    #TODO: Fix this with the real indicator group once it has been finalzied
-    ind_group <-"TslxbFe3VUZ"
+    #TODO: Fix this with the real indicator group once it has been deployed to prod
+    ind_group <-"wWi08ToZ2gR"
+    #ind_group <-"TslxbFe3VUZ"
+
   }
   inds <-
     datimutils::getIndicatorGroups(ind_group, 
                                    d2_session = d2_session, 
                                    fields = "indicators[id,name,numerator,denominator]") 
 
+  
+  if (class(inds) != "data.frame") { stop("No indicator metadata  was returned from DATIM")}
   
   df <- d  %>%
     purrr::pluck("data") %>%
