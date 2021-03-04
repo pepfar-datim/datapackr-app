@@ -2,8 +2,19 @@
 pacman::p_load(shiny,shinyjs,shinyWidgets,magrittr,dplyr,datimvalidation,ggplot2,
                futile.logger, paws, datapackr, scales, DT, purrr, praise,rpivotTable,waiter)
 
-source("./utils.R")
-source("./visuals.R")
+
+#Set the maximum file size for the upload file
+options(shiny.maxRequestSize = 100 * 1024 ^ 2)
+
+#Initiate logging
+logger <- flog.logger()
+
+if (!file.exists(Sys.getenv("LOG_PATH"))) {
+  file.create(Sys.getenv("LOG_PATH"))
+}
+
+flog.appender(appender.console(), name="datapack")
+
 
 shinyServer(function(input, output, session) {
 
@@ -30,7 +41,7 @@ shinyServer(function(input, output, session) {
     shinyjs::disable("download_messages")
     shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
-    #shinyjs::disable("compare")
+    shinyjs::disable("compare")
     ready$ok<-FALSE
   })
   
@@ -59,7 +70,9 @@ shinyServer(function(input, output, session) {
 
                  tryCatch(  {  datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
                                                         username = input$user_name,
-                                                        password = input$password) },
+                                                        password = input$password,
+                                                d2_session_envir = parent.env(environment()))
+                   },
                             #This function throws an error if the login is not successful
                             error=function(e) {
                               sendSweetAlert(
@@ -152,8 +165,8 @@ shinyServer(function(input, output, session) {
             actionButton("send_paw", "Send to PAW"),
             tags$hr(),
             downloadButton("downloadDataPack", "Regenerate PSNUxIM"),
-            # tags$hr(),
-            # downloadButton("compare", "Compare with DATIM"),
+            tags$hr(),
+            downloadButton("compare", "Compare with DATIM"),
             tags$hr(),
             div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("reset_input", "Reset inputs")),
             div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("logout", "Logout"))
@@ -181,8 +194,10 @@ shinyServer(function(input, output, session) {
                                  choices= "",
                                  options = list(`actions-box` = TRUE),multiple = T),
                      plotOutput("kp_cascade")),
-            tabPanel("PSNUxIM Pivot",rpivotTableOutput({"pivot"})),
-            tabPanel("Prioritization",DT::dataTableOutput("prio_table"))
+            tabPanel("PSNUxIM Pivot",rpivotTable::rpivotTableOutput({"pivot"})),
+            tabPanel("Prioritization (DRAFT)",
+                     h5("Note: This is a draft memo table. Final figures may differ."),
+                     DT::dataTableOutput("prio_table"))
 
           ))
         ))
@@ -215,7 +230,7 @@ shinyServer(function(input, output, session) {
     shinyjs::disable("download_messages")
     shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
-    #shinyjs::disable("compare")
+    shinyjs::disable("compare")
 
     if (!ready$ok) {
       shinyjs::disable("validate")
@@ -238,8 +253,7 @@ shinyServer(function(input, output, session) {
 
       d<-tryCatch({
         datapackr::unPackTool(inFile$datapath,
-                              tool = "Data Pack",cop_year = "2021",
-                              d2_session = user_input$d2_session,)},
+                              d2_session = user_input$d2_session)},
         error = function(e){
           return(e)
         })
@@ -255,32 +269,38 @@ shinyServer(function(input, output, session) {
 
         flog.info(paste0("Initiating validation of ",d$info$datapack_name, " DataPack."), name="datapack")
         if (d$info$tool == "Data Pack") {
-          
-          
+        
           if ( d$info$has_psnuxim  ) {
-            flog.info("Datapack with PSNUxIM tab found.")
-
+            flog.info(paste(d$info$tool," with PSNUxIM tab found."))
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
             d <- validatePSNUData(d, d2_session = user_input$d2_session)
             incProgress(0.1,detail="Validating mechanisms")
             Sys.sleep(0.5)
             d <- validateMechanisms(d, d2_session = user_input$d2_session)
-            incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
-            Sys.sleep(0.5)
-            r<-archiveDataPacktoS3(d,inFile$datapath)
-            archiveDataPackErrorUI(r)
-            Sys.sleep(1)
-            incProgress(0.1, detail = ("Preparing a flat export file"))
-            d<-prepareFlatMERExport(d)
+
+            if (Sys.getenv("SEND_DATAPACK_ARCHIVE") == "TRUE" ) {
+              incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
+              Sys.sleep(0.5)
+              r<-archiveDataPacktoS3(d,inFile$datapath)
+              archiveDataPackErrorUI(r)
+              Sys.sleep(1)
+            }
+
             incProgress(0.1, detail = ("Preparing a prioritization table"))
+            Sys.sleep(1)
             d<-preparePrioTable(d,d2_session = user_input$d2_session)
-            incProgress(0.1, detail = (praise()))
             shinyjs::enable("downloadFlatPack")
             shinyjs::enable("download_messages")
             shinyjs::enable("send_paw")
             shinyjs::enable("downloadValidationResults")
-            #shinyjs::enable("compare")
+            #TODO: Fix this once COP 2021 comparisons are functional
+            if (d$info$cop_year == 2020) {
+              shinyjs::enable("compare")
+            } else {
+              shinyjs::disable("compare")
+            }
+            
 
             if ( d$info$missing_psnuxim_combos ) {
               shinyjs::enable("downloadDataPack")
@@ -300,6 +320,7 @@ shinyServer(function(input, output, session) {
             showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
             showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
             showTab(inputId = "main-panel", target = "HTS Recency")
+            showTab(inputId = "main-panel", target = "Prioritization")
 
           } else {
             #This should occur when there is no PSNUxIM tab and they want
@@ -323,7 +344,49 @@ shinyServer(function(input, output, session) {
       }
 
       if (d$info$tool == "OPU Data Pack"){
-        flog.info("Oops.Cannot handle an OPU right now")
+        flog.info("Datapack with PSNUxIM tab found.")
+        incProgress(0.1, detail = ("Checking validation rules"))
+        Sys.sleep(0.5)
+        d <- validatePSNUData(d, d2_session = user_input$d2_session)
+        incProgress(0.1,detail="Validating mechanisms")
+        Sys.sleep(0.5)
+        d <- validateMechanisms(d, d2_session = user_input$d2_session)
+        incProgress(0.1,detail="Updating prioritization levels from DATIM")
+        Sys.sleep(0.5)
+        #Move this to datapackr
+        d<-updateExistingPrioritization(d,d2_session = user_input$d2_session)
+        incProgress(0.1, detail = ("Preparing a prioritization table"))
+        d<-preparePrioTable(d,d2_session = user_input$d2_session)
+        incProgress(0.1, detail = (praise()))
+        Sys.sleep(0.5)
+        shinyjs::enable("downloadFlatPack")
+        shinyjs::enable("download_messages")
+        shinyjs::disable("downloadDataPack")
+        shinyjs::disable("send_paw")
+        shinyjs::enable("downloadValidationResults")
+        
+        #TODO: Fix this once COP 2021 comparisons are functional
+        if (d$info$cop_year == 2020) {
+          shinyjs::enable("compare")
+        } else {
+          shinyjs::disable("compare")
+        }
+        
+        updatePickerInput(session = session, inputId = "kpCascadeInput",
+                          choices = snuSelector(d))
+        updatePickerInput(session = session, inputId = "epiCascadeInput",
+                          choices = snuSelector(d))
+        
+        showTab(inputId = "main-panel", target = "Validation rules")
+        showTab(inputId = "main-panel", target = "HTS Summary Chart")
+        showTab(inputId = "main-panel", target = "HTS Summary Table")
+        showTab(inputId = "main-panel", target = "HTS Yield")
+        showTab(inputId = "main-panel", target = "VLS Testing")
+        showTab(inputId = "main-panel", target = "Epi Cascade Pyramid")
+        showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
+        showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
+        showTab(inputId = "main-panel", target = "HTS Recency")
+        showTab(inputId = "main-panel", target = "Prioritization")
       }
 
     })
@@ -384,8 +447,8 @@ shinyServer(function(input, output, session) {
 
           DT::datatable(prio_table,options = list(pageLength = 50,
                                          columnDefs = list(list(className = 'dt-right',
-                                                                targets = 2:7)))) %>%
-            formatCurrency(2:7, '',digits =0)
+                                                                targets = 3:dim(prio_table)[2])))) %>%
+            formatCurrency(3:dim(prio_table)[2], '',digits =0)
 
 
     } else {
@@ -528,9 +591,9 @@ shinyServer(function(input, output, session) {
 
       vr  %>%
         purrr::pluck(.,"data") %>%
-        purrr::pluck(.,"MER") %>%
+        purrr::pluck(.,"analytics") %>%
         dplyr::group_by(indicator_code) %>%
-        dplyr::summarise(value = format( round(sum(value)) ,big.mark=',', scientific=FALSE)) %>%
+        dplyr::summarise(value = format( round(sum(target_value)) ,big.mark=',', scientific=FALSE)) %>%
         dplyr::arrange(indicator_code)
 
 
@@ -545,21 +608,11 @@ shinyServer(function(input, output, session) {
 
     if (!inherits(vr, "error") & !is.null(vr)) {
 
-      if (vr$info$tool == "Data Pack") {
-        vr %<>%
-          purrr::pluck(., "data") %>%
-          purrr::pluck(., "MER") %>%
-          dplyr::left_join(., datapackr::valid_PSNUs, by = c("psnuid" = "psnu_uid"))
-      } else if (vr$info$tool == "OPU Data Pack") {
-        vr %<>%
-          purrr::pluck(., "data") %>%
-          purrr::pluck(., "extract") %>%
-          dplyr::left_join(., datapackr::valid_PSNUs, by = c(psnuid = psnu_uid))
-      }
-
       vr %>%
+        purrr::pluck(.,"data") %>%
+        purrr::pluck(.,"analytics") %>%
         dplyr::group_by(snu1, indicator_code) %>%
-        dplyr::summarise(value = format(round(sum(value)),
+        dplyr::summarise(value = format(round(sum(target_value)),
                                         big.mark = ",",
                                         scientific = FALSE)) %>%
         dplyr::arrange(snu1, indicator_code)
@@ -678,17 +731,43 @@ shinyServer(function(input, output, session) {
       wb <- openxlsx::createWorkbook()
 
       d<-validation_results()
-      #Requires refactor to deal with http handles
-      d_compare<-datapackr::compareData_DatapackVsDatim(d)
 
-      openxlsx::addWorksheet(wb,"PSNUxIM without dedupe")
-      openxlsx::writeDataTable(wb = wb,
-                               sheet = "PSNUxIM without dedupe",x = d_compare$psnu_x_im_wo_dedup)
+      if (d$info$tool == "OPU Data Pack") {
+        d_compare<-datapackr::compareData_OpuDatapackVsDatim(d, d2_session = user_input$d2_session) 
+        
+        remap_names<-function(x) {
+          x %>% dplyr::rename( dataElement = "data_element_uid",
+                               orgUnit = "org_unit_uid",
+                               categoryOptionCombo = "category_option_combo_uid",
+                               attributeOptionCombo = "attribute_option_combo_code") 
+        }
+        d_compare<-lapply(d_compare,remap_names)
+        
+        d_compare<-lapply(d_compare,function(x) adorn_import_file(x,
+                                                      cop_year = d$info$cop_year,
+                                                      d2_session = user_input$d2_session))
+        
+        for(name in names(d_compare)){
+          foo <- d_compare %>% purrr::pluck(name)
+          openxlsx::addWorksheet(wb,name)
+          openxlsx::writeDataTable(wb = wb,
+                                   sheet = name,x = foo)
+          
+        }
 
+      } else if (d$info$tool == "Data Pack") {
+        d_compare<-datapackr::compareData_DatapackVsDatim(d,d2_session = user_input$d2_session)
+        openxlsx::addWorksheet(wb,"PSNUxIM without dedupe")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "PSNUxIM without dedupe",x = d_compare$psnu_x_im_wo_dedup)
+        
+        
+        openxlsx::addWorksheet(wb,"PSNU with dedupe")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "PSNU with dedupe",x = d_compare$psnu_w_dedup)
+      }
+  
 
-      openxlsx::addWorksheet(wb,"PSNU with dedupe")
-      openxlsx::writeDataTable(wb = wb,
-                               sheet = "PSNU with dedupe",x = d_compare$psnu_w_dedup)
 
       datapack_name <-d$info$datapack_name
 
@@ -718,50 +797,67 @@ shinyServer(function(input, output, session) {
       wb <- openxlsx::createWorkbook()
 
       d<-validation_results()
-      mer_data <- d %>%
-        purrr::pluck(.,"data") %>%
-        purrr::pluck(.,"MER")
-
-      subnat_impatt <- d %>%
-        purrr::pluck(.,"data") %>%
-        purrr::pluck(.,"SUBNAT_IMPATT")
-
-      mer_data<-dplyr::bind_rows(mer_data,subnat_impatt)
-      openxlsx::addWorksheet(wb,"MER Data")
-      openxlsx::writeDataTable(wb = wb,
-                               sheet = "MER Data",x = mer_data)
-
-      has_psnu<-d %>%
-        purrr::pluck(.,"info") %>%
-        purrr::pluck(.,"has_psnuxim")
-
-      if (has_psnu) {
-
-
-        openxlsx::addWorksheet(wb,"Distributed MER Data")
+      
+      if (d$info$tool == "Data Pack") {
+        
+        mer_data <- d %>%
+          purrr::pluck(.,"data") %>%
+          purrr::pluck(.,"MER")
+        
+        subnat_impatt <- d %>%
+          purrr::pluck(.,"data") %>%
+          purrr::pluck(.,"SUBNAT_IMPATT")
+        
+        mer_data<-dplyr::bind_rows(mer_data,subnat_impatt)
+        openxlsx::addWorksheet(wb,"MER Data")
         openxlsx::writeDataTable(wb = wb,
-                                 sheet = "Distributed MER Data",x = d$data$analytics)
-
-        d$datim$MER$value<-as.character(d$datim$MER$value)
-        d$datim$subnat_impatt$value<-as.character(d$datim$subnat_impatt$value)
-        datim_export<-dplyr::bind_rows(d$datim$MER,d$datim$subnat_impatt)
-
+                                 sheet = "MER Data",x = mer_data)
+        
+        has_psnu<-d %>%
+          purrr::pluck(.,"info") %>%
+          purrr::pluck(.,"has_psnuxim")
+        
+        if (has_psnu) {
+          
+          
+          openxlsx::addWorksheet(wb,"Distributed MER Data")
+          openxlsx::writeDataTable(wb = wb,
+                                   sheet = "Distributed MER Data",x = d$data$analytics)
+          
+          d$datim$MER$value<-as.character(d$datim$MER$value)
+          d$datim$subnat_impatt$value<-as.character(d$datim$subnat_impatt$value)
+          datim_export<-dplyr::bind_rows(d$datim$MER,d$datim$subnat_impatt)
+          
+          openxlsx::addWorksheet(wb,"DATIM export")
+          openxlsx::writeData(wb = wb,
+                              sheet = "DATIM export",x = datim_export)
+          
+          openxlsx::addWorksheet(wb,"Rounding diffs")
+          openxlsx::writeData(wb = wb,
+                              sheet = "Rounding diffs",x = d$tests$PSNUxIM_rounding_diffs)
+          
+          openxlsx::addWorksheet(wb,"HTS Summary")
+          hts_summary<-modalitySummaryTable(d$data$analytics)
+          
+          if (!is.null(hts_summary)) {
+            openxlsx::writeData(wb = wb,
+                                sheet = "HTS Summary", x = hts_summary)
+          }
+          
+          
+        }
+      }
+     
+      if (d$info$tool == "OPU Data Pack") {
+        openxlsx::addWorksheet(wb,"Analytics")
+        
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "Analytics",x = d$data$analytics)
+        
         openxlsx::addWorksheet(wb,"DATIM export")
         openxlsx::writeData(wb = wb,
-                            sheet = "DATIM export",x = datim_export)
-
-        openxlsx::addWorksheet(wb,"Rounding diffs")
-        openxlsx::writeData(wb = wb,
-                            sheet = "Rounding diffs",x = d$tests$PSNUxIM_rounding_diffs)
-
-        openxlsx::addWorksheet(wb,"HTS Summary")
-        hts_summary<-modalitySummaryTable(d$data$analytics)
-        if (!is.null(hts_summary)) {
-          openxlsx::writeData(wb = wb,
-                              sheet = "HTS Summary", x = hts_summary)
-        }
-
-
+                            sheet = "DATIM export",x = d$datim$OPU)
+        
       }
 
       datapack_name <-d$info$datapack_name

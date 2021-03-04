@@ -1,16 +1,4 @@
 
-#Set the maximum file size for the upload file
-options(shiny.maxRequestSize = 100 * 1024 ^ 2)
-
-#Initiate logging
-logger <- flog.logger()
-
-if (!file.exists(Sys.getenv("LOG_PATH"))) {
-  file.create(Sys.getenv("LOG_PATH"))
-}
-
-flog.appender(appender.console(), name="datapack")
-
 
 fetchSupportFiles <- function() {
   
@@ -37,7 +25,16 @@ fetchSupportFiles <- function() {
 
 validatePSNUData <- function(d,d2_session) {
   
-  vr_data<-d$datim$MER
+  if (d$info$tool == "Data Pack") {
+    vr_data<-d$datim$MER
+  }
+  
+  if (d$info$tool == "OPU Data Pack") {
+    vr_data<-d$datim$OPU
+  }
+    
+  
+
   if (is.null(vr_data) | NROW(vr_data) == 0 ) {return(d)}
   
   # We need ALL mechanisms to be in DATIM before remapping....TODO
@@ -47,7 +44,13 @@ validatePSNUData <- function(d,d2_session) {
                                 "code",
                                 "id",
                                 d2session = d2_session)
-  datasets_uid <- c("Pmc0yYAIi1t", "s1sxJuqXsvV")
+  datasets_uid <- 
+    if ( d$info$cop_year == "2020" ) {
+      c("Pmc0yYAIi1t", "s1sxJuqXsvV")
+    } else if  ( d$info$cop_year == "2021" ) {
+      c("YfZot37BbTm", "Pmc0yYAIi1t")
+    }
+
   if ( Sys.info()["sysname"] == "Linux") {
     ncores <- parallel::detectCores() - 1
     doMC::registerDoMC( cores = ncores )
@@ -117,13 +120,16 @@ validatePSNUData <- function(d,d2_session) {
                       "Diff (%)" = diff,
                       "Diff (Absolute)" = abs_diff)
       
-      flog.info(
+      warning_message<-     
         paste0(
           NROW(vr_violations),
           " validation rule issues found in ",
           d$info$datapack_name,
           " DataPack."
-        ),
+        )
+      d$info$warning_msg<-append(d$info$warning_msg,warning_message)
+      flog.info(
+        warning_message,
         name = "datapack"
       )
     } else {
@@ -148,22 +154,30 @@ validatePSNUData <- function(d,d2_session) {
 validateMechanisms<-function(d, d2_session) {
   
   
-  if (is.null(d$data$distributedMER)) {return(d)}
-  vr_data <- d$data$distributedMER %>%
+  vr_data <- d$data$analytics%>%
     dplyr::pull(mechanism_code) %>%
     unique()
   
   #TODO: Remove hard coding of time periods and 
   #filter for the OU as well
-  mechs<-datapackr::getMechanismView(d2_session = d2_session) %>%
+  mechs<-datapackr::getMechanismView(d2_session = d2_session,
+                                     update_stale_cache = TRUE) %>%
     dplyr::filter(!is.na(startdate)) %>%
     dplyr::filter(!is.na(enddate)) %>%
     dplyr::filter(startdate <= as.Date('2020-10-01')) %>%
     dplyr::filter(enddate >= as.Date('2021-09-30')) %>%
     dplyr::pull(mechanism_code)
   
-  #Allow for the pseudo dedupe mechanism
-  mechs <- append("99999",mechs)
+  #Allow for the dedupe mechanisms in COP20 OPU Data Packs
+  if (d$info$tool == "OPU Data Pack" & d$info$cop_year == 2020 ) {
+    mechs <- append(c("00000","00001"),mechs)
+  }
+  
+  #Allow for the dedupe mechanisms in COP21 Data packs
+  if (d$info$tool == "Data Pack" & d$info$cop_year == 2021 ) {
+    mechs <- append(c("00000","00001"),mechs)
+  }
+
   
   bad_mechs<-vr_data[!(vr_data %in% mechs)]
   
@@ -235,7 +249,12 @@ saveTimeStampLogToS3<-function(d) {
   #Write an archived copy of the file
   s3<-paws::s3()
   object_tags<-createS3BucketTags(d)
-  object_name<-paste0("processed/",d$info$sane_name,".csv")
+  object_name <-
+    paste0("processed/",
+           gsub("^20", "cop", d$info$cop_year),
+           "/",
+           d$info$sane_name,
+           ".csv")
   #Save a timestamp of the upload
   timestamp_info<-list(
     ou=d$info$datapack_name,
@@ -260,7 +279,14 @@ saveTimeStampLogToS3<-function(d) {
   read_file <- file(tmp, "rb")
   raw_file <- readBin(read_file, "raw", n = file.size(tmp))
   close(read_file)
-  object_name<-paste0("upload_timestamp/",d$info$sane_name,".csv")
+  object_name <-
+    paste0(
+      "upload_timestamp/",
+      gsub("^20", "cop", d$info$cop_year),
+      "/",
+      d$info$sane_name,
+      ".csv"
+    )
   
   r<-tryCatch({
     foo<-s3$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
@@ -287,22 +313,13 @@ timestampUploadUI<-function(r) {
   
 }
 
-prepareFlatMERExport<-function(d) {
-  
-  d$data$analytics <-  d$data$analytics %>% 
-    dplyr::mutate(upload_timestamp = format(Sys.time(),"%Y-%m-%d %H:%M:%S"),
-                  fiscal_year = "FY22")
-  
-  d
-}
-
 sendMERDataToPAW<-function(d) {
   
   
   
   #Write the combined DATIM export for MER and SUBNATT data
   tmp <- tempfile()
-  mer_data<-dplyr::bind_rows(d$datim$MER,d$datim$subnat_impatt) %>% 
+  mer_data<-dplyr::bind_rows(d$datim) %>% 
     dplyr::mutate(categoryOptionCombo = case_when(is.na(categoryOptionCombo) ~ "HllvX50cXC0",
                                                    TRUE ~categoryOptionCombo )) %>% 
     tidyr::drop_na()
@@ -370,7 +387,7 @@ sendValidationSummary<-function(d) {
   close(read_file)
   
   object_tags<-createS3BucketTags(d)
-  object_name<-paste0("validation_error/",d$info$sane_name,".csv")
+  object_name<-paste0("validation_error/",gsub("^20","cop",d$info$cop_year),"/",d$info$sane_name,".csv")
   s3<-paws::s3()
   
   r<-tryCatch({
@@ -425,7 +442,8 @@ saveDATIMExportToS3<-function(d) {
   
   
   object_tags<-createS3BucketTags(d)
-  object_name<-paste0("datim_export/",d$info$sane_name,".csv")
+  
+  object_name<-paste0("datim_export/",gsub("^20","cop",d$info$cop_year),"/",d$info$sane_name,".csv")
   s3<-paws::s3()
   
   r<-tryCatch({
@@ -459,20 +477,27 @@ datimExportUI<-function(r) {
   }
 }
 
-
 evaluateIndicators<-function(combis,values,inds) {
   
-  indicators_empty<-data.frame(id=character())
+  indicators_empty<-data.frame("Indicator" = character(),
+                               "N_OR_D" = character(),
+                               "Age" = character(),
+                               id = character(),
+                               numerator = numeric(),
+                               denominator = numeric(),
+                               value  = numeric())
   
   this.des <-
     vapply(combis, function(x) {
       unlist(strsplit(x, "\\."))[[1]]
     }, FUN.VALUE = character(1))
+  
   totals_df<-data.frame(exp = this.des,values=values,stringsAsFactors = FALSE) %>% 
     dplyr::group_by(exp) %>% 
     dplyr::summarise(values = sum(values)) %>% 
     dplyr::ungroup() %>% 
     dplyr::mutate(exp=paste0(exp,"}"))
+  
   matches_indicator <- function(x) {
     agrepl(x, inds$numerator) |
       agrepl(x, inds$denominator)
@@ -481,6 +506,8 @@ evaluateIndicators<-function(combis,values,inds) {
   matches_v <- lapply(this.des,matches_indicator) %>% Reduce("|",.)
   matches <-inds[matches_v,]
   #Return something empty here if we have no indicator matches
+  
+  if (nrow(matches) == 0) {return(indicators_empty)}
   matches$numerator <-
     stringi::stri_replace_all_fixed(matches$numerator,
                                     combis, values, vectorize_all =
@@ -502,11 +529,12 @@ evaluateIndicators<-function(combis,values,inds) {
     gsub(expression.pattern, "0", matches$numerator)
   matches$denominator <-
     gsub(expression.pattern, "0", matches$denominator)
-  matches$formula<-paste0("(",matches$numerator,"/",matches$denominator,")")
-  matches$result<-vapply(matches$formula,function(x) {eval(parse(text=x))},FUN.VALUE=double(1))
-  return(matches)
+  matches$numerator<-vapply(matches$numerator,function(x) {eval(parse(text=x))},FUN.VALUE=double(1))
+  matches$denominator<-vapply(matches$denominator,function(x) {eval(parse(text=x))},FUN.VALUE=double(1))
+  matches$value<-matches$numerator/matches$denominator
+  
+  matches
 }
-
 
 createS3BucketTags<-function(d) {
   d$info$country_uids<-paste0(d$info$country_uids,sep="",collapse=",")
@@ -515,4 +543,25 @@ createS3BucketTags<-function(d) {
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))
   
   return(object_tags)
+}
+
+updateExistingPrioritization<-function(d,d2_session) {
+  
+period<- paste0( (d$info$cop_year -1 ),"Oct") 
+ous<-   d$data$analytics$psnu_uid %>% unique() %>% paste(sep="",collapse=";") 
+dx <-"r4zbW3owX9n"
+  
+prios<-datimutils::getAnalytics(dx="r4zbW3owX9n",pe_f =period, ou = ous,d2_session = d2_session ) %>% 
+  dplyr::select(-Data) %>% 
+  dplyr::rename("psnu_uid" = "Organisation unit",
+                "value" = "Value") %>% 
+  dplyr::left_join(datapackr::prioritization_dict()) %>% 
+  dplyr::select(psnu_uid,
+                "prioritization" = "name")
+
+d$data$analytics %<>% 
+  dplyr::select(-prioritization) %>% 
+  dplyr::left_join(prios,by="psnu_uid")
+
+d
 }

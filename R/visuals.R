@@ -21,10 +21,11 @@ PSNUxIM_pivot<-function(d){
 }
 
 
-#Should probably move this to datapackr
-preparePrioTable<-function(d,d2_session){
-
-  memo_indicators<- tibble::tribble(
+memoStructure<-function(cop_year="2020") {
+  
+  #TODO: Fix this once we get the COP21 indicators finalized
+  # if (cop_year == "2020") {
+  row_order<-tibble::tribble(
     ~ind,~options, ~in_partner_table,
     "HTS_INDEX","<15",TRUE,
     "HTS_INDEX","15+",TRUE,
@@ -82,28 +83,66 @@ preparePrioTable<-function(d,d2_session){
     "TX_TB","<15",TRUE,
     "TX_TB","15+",TRUE,
     "TX_TB","Total",FALSE,
-    "GEND_GBV","Total",TRUE)
+    "GEND_GBV","Total",TRUE)  
+  
+  col_order<-
+    
+    tibble::tribble(
+      ~value, ~name, ~col_order,
+      0, "No Prioritization",7,
+      1, "Scale-up: Saturation",2,
+      2, "Scale-up: Aggressive",3,
+      4, "Sustained",4,
+      5, "Centrally Supported",5,
+      6, "Sustained: Commodities",6,
+      7, "Attained",1,
+      8, "Not PEPFAR Supported",8
+    ) %>%
+    dplyr::mutate(Prioritization = paste0(value, " - ", name))
+  #     
+  # }
+  # 
+  
+  list(row_order=row_order,col_order=col_order) 
+}
 
 
-  df_cols<-datapackr::prioritization_dict() %>%
-    dplyr::rename(col_name = name)
+#Should probably move this to datapackr
+preparePrioTable<-function(d,d2_session){
 
-  df_rows<-memo_indicators %>% dplyr::select(ind,options)
+  df_cols<-memoStructure(cop_year = d$info$cop_year) %>%
+    purrr::pluck("col_order")
+  
+  df_rows<-memoStructure(cop_year = d$info$cop_year) %>% 
+    purrr::pluck("row_order") %>% 
+    dplyr::select(ind,options) %>% 
+    dplyr::mutate(row_order = dplyr::row_number())
 
-  df_base<-tidyr::crossing(df_rows,dplyr::select(df_cols,col_name)) %>%
-    dplyr::arrange(ind,options,col_name) %>%
+  df_base<-tidyr::crossing(df_rows,dplyr::select(df_cols,name)) %>%
+    dplyr::arrange(ind,options,name) %>%
     dplyr::mutate(value = 0) %>%
     dplyr::rename("indicator" = ind,
                   age_coarse = options,
-                  prioritization = col_name)
+                  prioritization = name)
   
-  #Fetch inidicators from the COP21 memo group
-  #TODO: Make this work for both COP years?
+  #Fetch indicators from the COP21 memo group
+  #TODO: Make this work for both COP years.!
+  
+  if (d$info$cop_year == 2020) {
+    
+  } else if (d$info$cop_year == 2021) {
+    #TODO: Fix this with the real indicator group once it has been deployed to prod
+    ind_group <-"wWi08ToZ2gR"
+    #ind_group <-"TslxbFe3VUZ"
+
+  }
   inds <-
-    datimutils::getIndicatorGroups("TslxbFe3VUZ", 
+    datimutils::getIndicatorGroups(ind_group, 
                                    d2_session = d2_session, 
-                                   fields = "indicators[id,name,numerator,denominator]") %>% 
-    dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ",""))
+                                   fields = "indicators[id,name,numerator,denominator]") 
+
+  
+  if (class(inds) != "data.frame") { stop("No indicator metadata  was returned from DATIM")}
   
   df <- d  %>%
     purrr::pluck("data") %>%
@@ -114,30 +153,49 @@ preparePrioTable<-function(d,d2_session){
                   value = target_value) %>% 
     dplyr::group_by(dataelement_id,categoryoptioncombo_id,prioritization) %>% 
     dplyr::summarise(value = sum(value)) %>% 
-    dplyr::mutate(combi =paste0("#{",dataelement_id,".", categoryoptioncombo_id,"}")) 
-
-
-  # df_final<-dplyr::bind_rows(df,df_totals,df_base) %>%
-  #   dplyr::group_by(indicator,age_coarse,prioritization) %>%
-  #   dplyr::summarise(value = sum(value)) %>%
-  #   dplyr::distinct() %>%
-  #   dplyr::ungroup() %>%
-  #   dplyr::mutate(prioritization = factor(prioritization,levels = df_cols$col_name)) %>%
-  #   dplyr::mutate(indicator = factor(indicator,levels = unique(df_rows$ind))) %>%
-  #   dplyr::arrange(indicator,prioritization) %>%
-  #   tidyr::pivot_wider(names_from = prioritization ,values_from = "value") %>%
-  #   dplyr::mutate("Total *" = rowSums(.[3:7]) ) %>%
-  #   dplyr::rename("Age" = age_coarse)
-
-
-  d$data$prio_table<-plyr::ddply(df, plyr::.(prioritization),
-                function(x)
-                  evaluateIndicators(x$combi, x$value,inds)) %>% 
-    dplyr::select(indicator = name,
-                  prioritization,
-                  value = result) %>% 
-    dplyr::arrange(indicator,prioritization) %>% 
-    tidyr::pivot_wider(names_from = prioritization ,values_from = "value") 
+    dplyr::mutate(combi =paste0("#{",dataelement_id,".", categoryoptioncombo_id,"}")) %>% 
+    plyr::ddply(., plyr::.(prioritization),
+                    function(x)
+                      evaluateIndicators(x$combi, x$value,inds)) %>% 
+    dplyr::select(-id,-numerator,-denominator) %>% 
+    tidyr::complete(.,prioritization,name,fill=list(value=0)) %>% 
+    dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ","")) %>% 
+    dplyr::mutate(name = stringr::str_trim(name)) %>% 
+    tidyr::separate("name",into=c("Indicator","N_OR_D","Age"),sep=" ") %>%
+    dplyr::mutate(Indicator = case_when(Indicator == "GEND_GBV" & N_OR_D == "Physical" ~ "GEND_GBV Physical and Emotional Violence",
+                                        Indicator == "GEND_GBV" & N_OR_D == "Sexual" ~ "GEND_GBV Sexual Violence",
+                                        TRUE ~ Indicator)) %>% 
+    dplyr::select(-"N_OR_D") %>% 
+    dplyr::mutate(Age = case_when(Age == "15-" ~ "<15",
+                                  Age == "15+" ~ "15+",
+                                  Age == "18-" ~"<18",
+                                  Age == "18+" ~ "18+",
+                                  TRUE ~ "Total")) %>% 
+    dplyr::mutate( Age = case_when( Indicator %in% c("CXCA_SCRN","OVC_HIVSTAT","KP_PREV","PMTCT_EID","KP_MAT","VMMC_CIRC","PrEP_NEW","PrEP_CURR","GEND_GBV", "TX_TB")  ~ "Total",
+                                    TRUE ~ Age)) %>% 
+    dplyr::group_by(Age,Indicator,prioritization) %>% 
+    dplyr::summarise(value = sum(value)) %>% 
+    dplyr::ungroup()
+  
+  df_total<- df %>% 
+    dplyr::filter(Age != "Total") %>% 
+    dplyr::select(-Age) %>% 
+    group_by(prioritization,Indicator) %>% 
+    dplyr::summarise(value = sum(value)) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::mutate(Age = "Total") %>% 
+    dplyr::select(names(df))
+  
+      d$data$prio_table <- dplyr::bind_rows(df,df_total) %>% 
+        dplyr::mutate(Age = factor(Age,levels = (unique(Age)))) %>% 
+        dplyr::left_join(df_rows,by=c("Indicator" = "ind", "Age" = "options")) %>% 
+        dplyr::left_join((df_cols %>% dplyr::select(name,col_order)),by=c("prioritization"="name")) %>% 
+        dplyr::select(Indicator,Age,prioritization,value,row_order,col_order) %>% 
+    dplyr::arrange(col_order,row_order,Age) %>% 
+        dplyr::select(-row_order,-col_order) %>% 
+  tidyr::pivot_wider(names_from = prioritization ,values_from = "value") %>% 
+    mutate("Total" = rowSums(across(where(is.numeric)))) %>% 
+    dplyr::select("Indicator","Age",3:dim(.)[2])
 
 
   return(d)
@@ -215,7 +273,7 @@ modalitySummaryTable<-function(df){
 modalityYieldChart <- function(df) {
 
   df <- modalitySummaryTable(df)
-
+  if (NROW(df)  == 0 ) {return(NULL)}
   x_lim <- max(df$yield)
 
   df %>%
@@ -342,18 +400,11 @@ recencyComparison <- function(d) {
       class = "data.frame"
     )
 
-  indicator_map <-
-    datapackr::map_DataPack_DATIM_DEs_COCs[, c("dataelement", "indicator_code")] %>%
-    dplyr::distinct() %>%
-    dplyr::rename(dataelement_id = dataelement)
-
-  hts_recency_map <- dplyr::inner_join(indicator_map, hts_mechs) %>%
-    dplyr::select(dataelement_id, hts_recency_compare)
 
   df <- d %>%
     purrr::pluck(., "data") %>%
     purrr::pluck(., "analytics") %>%
-    dplyr::inner_join(., hts_recency_map , by = "dataelement_id") %>%
+    dplyr::inner_join(., hts_mechs , by = "indicator_code") %>%
     dplyr::filter(resultstatus_inclusive == "Positive") %>%
     dplyr::filter(!(
       resultstatus_specific %in% c("Known at Entry Positive", "Status Unknown")
