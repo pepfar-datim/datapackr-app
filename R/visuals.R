@@ -132,7 +132,7 @@ preparePrioTable<-function(d,d2_session){
     ind_group <-"wWi08ToZ2gR"
   } else if (d$info$cop_year == 2021) {
     #TODO: Fix this with the real indicator group once it has been deployed to prod
-    ind_group <-"TslxbFe3VUZ"
+    ind_group <-"gAE0KTEBb9P"
   } else {
     flog.info("Indicator group was not found")
     return(NULL)
