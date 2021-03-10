@@ -130,8 +130,8 @@ shinyServer(function(input, output, session) {
       )
     } else {
 
-      wiki_url <- a("Datapack Wiki",
-                    href="https://github.com/pepfar-datim/Data-Pack-Feedback/wiki",
+      wiki_url <- a("Datapack User Guide",
+                    href="https://apps.datim.org/datapack-userguide",
                     target = "_blank")
 
       fluidPage(
