@@ -130,8 +130,8 @@ shinyServer(function(input, output, session) {
       )
     } else {
 
-      wiki_url <- a("Datapack Wiki",
-                    href="https://github.com/pepfar-datim/Data-Pack-Feedback/wiki",
+      wiki_url <- a("Datapack User Guide",
+                    href="https://apps.datim.org/datapack-userguide/",
                     target = "_blank")
 
       fluidPage(
@@ -813,17 +813,19 @@ shinyServer(function(input, output, session) {
         openxlsx::writeDataTable(wb = wb,
                                  sheet = "MER Data",x = mer_data)
         
+        
+        openxlsx::addWorksheet(wb,"Analytics")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "Analytics",x = d$data$analytics)
+        
+        
         has_psnu<-d %>%
           purrr::pluck(.,"info") %>%
           purrr::pluck(.,"has_psnuxim")
         
         if (has_psnu) {
           
-          
-          openxlsx::addWorksheet(wb,"Distributed MER Data")
-          openxlsx::writeDataTable(wb = wb,
-                                   sheet = "Distributed MER Data",x = d$data$analytics)
-          
+
           d$datim$MER$value<-as.character(d$datim$MER$value)
           d$datim$subnat_impatt$value<-as.character(d$datim$subnat_impatt$value)
           datim_export<-dplyr::bind_rows(d$datim$MER,d$datim$subnat_impatt)
@@ -832,10 +834,7 @@ shinyServer(function(input, output, session) {
           openxlsx::writeData(wb = wb,
                               sheet = "DATIM export",x = datim_export)
           
-          openxlsx::addWorksheet(wb,"Rounding diffs")
-          openxlsx::writeData(wb = wb,
-                              sheet = "Rounding diffs",x = d$tests$PSNUxIM_rounding_diffs)
-          
+
           openxlsx::addWorksheet(wb,"HTS Summary")
           hts_summary<-modalitySummaryTable(d$data$analytics)
           
@@ -844,6 +843,9 @@ shinyServer(function(input, output, session) {
                                 sheet = "HTS Summary", x = hts_summary)
           }
           
+          openxlsx::addWorksheet(wb,"Prioritization (DRAFT)")
+          openxlsx::writeData(wb = wb,
+                              sheet = "Prioritization (DRAFT)",x = d$data$prio_table)
           
         }
       }
