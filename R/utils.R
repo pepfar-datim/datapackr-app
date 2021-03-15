@@ -87,10 +87,6 @@ validatePSNUData <- function(d,d2_session) {
   
   rules_to_ignore<-c("RLXOqAeHN04","KdqWm8ZvWoO")
   
-  if (d$info$cop_year == 2020) {
-    rules_to_ignore<-c(rules_to_ignore,"JoKXq9knuI6","ApCcAi965Ud")
-  }
-  
   vr_violations<-vr_violations[!(vr_violations$id %in% rules_to_ignore),]
   
   if ( NROW(vr_violations) > 0 ) {
