@@ -144,7 +144,8 @@ preparePrioTable<-function(d,d2_session){
                                    fields = "indicators[id,name,numerator,denominator]") 
 
   
-  if (class(inds) != "data.frame") { stop("No indicator metadata  was returned from DATIM")}
+  if (class(inds) != "data.frame") { warning("No indicator metadata  was returned from DATIM")
+    return(d)}
   
   df <- d  %>%
     purrr::pluck("data") %>%
