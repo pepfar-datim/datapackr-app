@@ -6,11 +6,12 @@ PSNUxIM_pivot<-function(d){
     dplyr::select(indicator,
                   dataelement_name,
                   psnu,
+                  prioritization,
                   mechanism_code,
                   partner= partner_desc,
                   agency = funding_agency,
                   value = target_value) %>%
-    dplyr::group_by(indicator,dataelement_name,psnu,mechanism_code,partner,agency) %>%
+    dplyr::group_by(indicator,dataelement_name,psnu,prioritization,mechanism_code,partner,agency) %>%
     dplyr::summarise(value = sum(value)) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(mechanism_code = ifelse(mechanism_code == "HllvX50cXC0","default",mechanism_code))
@@ -176,7 +177,9 @@ preparePrioTable<-function(d,d2_session){
                                     TRUE ~ Age)) %>% 
     dplyr::group_by(Age,Indicator,prioritization) %>% 
     dplyr::summarise(value = sum(value)) %>% 
-    dplyr::ungroup()
+    dplyr::ungroup() %>% 
+    dplyr::mutate(prioritization = case_when(is.na(prioritization) ~ "No Prioritization",
+                                             TRUE ~ prioritization))
   
   df_total<- df %>% 
     dplyr::filter(Age != "Total") %>% 
