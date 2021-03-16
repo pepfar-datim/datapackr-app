@@ -179,7 +179,7 @@
     },
     "XML": {
       "Source": "CRAN",
-      "Repository": "http://www.omegahat.net/RSXML",
+      "Repository": "http://www.omegahat.net/RSXML",,
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -788,7 +788,7 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "testing",
-      "GithubSha1": "a7b4b2bc7529272dead8f47b1c6c55fceb88e64c",
+      "GithubSha1": "a4ac3a5c74b9a907fdbaa119966fbcab1409d85c",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -808,18 +808,18 @@
         "RoxygenNote": "7.1.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  William Shiflett [ctb],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Max Chandler [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 3.6.3; ; 2021-02-17 12:02:59 UTC; unix",
+        "Built": "R 3.6.3; ; 2021-02-24 07:54:43 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "testing",
-        "RemoteSha": "a7b4b2bc7529272dead8f47b1c6c55fceb88e64c",
+        "RemoteSha": "a4ac3a5c74b9a907fdbaa119966fbcab1409d85c",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "testing",
-        "GithubSHA1": "a7b4b2bc7529272dead8f47b1c6c55fceb88e64c"
+        "GithubSHA1": "a4ac3a5c74b9a907fdbaa119966fbcab1409d85c"
       }
     },
     "datimutils": {
@@ -3965,7 +3965,7 @@
       "checksum": "4706d7a847be86a73af4e3629eec2558"
     },
     ".R_Cache/3d270a2c8c31251890fac0d5e4103bfb": {
-      "checksum": "468f4b27e3f7290e5345ce5b9aab51b0"
+      "checksum": "f53f3e6f23e317ce6aef28ba00d20116"
     },
     ".R_Cache/3f88c044cd2236fc55232f2818f9b057": {
       "checksum": "3b407971ec8235fd202f1b908e7fccd1"
@@ -3980,10 +3980,10 @@
       "checksum": "af857095d2ab3e411853387eb5533817"
     },
     ".R_Cache/63bbcc65947f025eb311e2046d260df3": {
-      "checksum": "e7194d1fbb1bfb1c84ba3b82d952b805"
+      "checksum": "7751f6e43d9f79c54cc134011de158c5"
     },
     ".R_Cache/7ff38b767688a572d2194adc1d3de560": {
-      "checksum": "df1ede3f6cb2474c17efc7f7a6b02c49"
+      "checksum": "c8fcba7989fa1fc9d1ba30d15d09e48d"
     },
     ".R_Cache/81938345d72cfc19f2334391c7887ef4": {
       "checksum": "4706d7a847be86a73af4e3629eec2558"
@@ -3997,14 +3997,17 @@
     ".R_Cache/c52c919e354af34cc81beb125d8267db": {
       "checksum": "e5247d5a42de0716dcf9af942242f19f"
     },
+    ".R_Cache/cb617c41186575e015da157a71063c1b": {
+      "checksum": "c31730630a97043c2cf04001d91690c7"
+    },
     ".R_Cache/cc6ef08603f092533c77e20494ba6899": {
-      "checksum": "99b369f0c0a452b0a85989846ee3c95e"
+      "checksum": "5bcb37eeea8374ed0e79d4ff981be465"
     },
     ".RData": {
       "checksum": "667ffda2807aa6a8022bea9d49690f5e"
     },
     ".Rprofile": {
-      "checksum": "17d5830a5af7b0c38a4534201a10f643"
+      "checksum": "6f4a802d2259cc3484b919a85222a304"
     },
     "config.yml": {
       "checksum": "3298ef63ce822cf889ae67375f352616"
@@ -4021,6 +4024,9 @@
     "degs_map.rds": {
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
+    "import_subnatt.csv": {
+      "checksum": "1dfa4859b3c999158a95ed447f73f5c7"
+    },
     "import.csv": {
       "checksum": "5cd35dd8703a2bfb66c7faf76f79bcaf"
     },
@@ -4028,7 +4034,7 @@
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "b5bf9c38c96cfbdd9a7b1f12f8cdf337"
+      "checksum": "4d709e8d27dc3a6434d32985ad5f79ad"
     },
     "packrat/desc/askpass": {
       "checksum": "380709e21e4865be4b17c1a077d292e4"
@@ -4091,7 +4097,7 @@
       "checksum": "6d7d84b5128e67c16da8fa233c399004"
     },
     "packrat/desc/datapackr": {
-      "checksum": "55f9a0ac4432bda037489d55eb61715c"
+      "checksum": "c6b232f74b8c5733923ddade9a95ed56"
     },
     "packrat/desc/datimutils": {
       "checksum": "af4b5435e1d5d442e9f4becd9569f239"
@@ -4412,22 +4418,22 @@
       "checksum": "c0e692997328fca72b0a258d351e8647"
     },
     "packrat/packrat.lock": {
-      "checksum": "f0f16b4eb54524d40da4e80e117ba18f"
+      "checksum": "ce5930bb9bf47fb3c459a0d3cc8dbb8a"
     },
     "R/utils.R": {
-      "checksum": "640dc2461f2c651d78be9a254b9979b9"
+      "checksum": "704d2e74d85809d715314c7a385560a6"
     },
     "R/visuals.R": {
-      "checksum": "6624c36d7491a5e77b928e73ef2b6e85"
+      "checksum": "bde1fd11869ced7683cfdae4527e2906"
     },
     "README.md": {
       "checksum": "122afca03cca21b3bc7598ec0a1a4b50"
     },
     "server.R": {
-      "checksum": "603e9fc52ba56c0d18b70e70201897d8"
+      "checksum": "f0bdf1e0278bbf3f254b14f8eb70034d"
     },
     "support_files/mechs.rds": {
-      "checksum": "b5bf9c38c96cfbdd9a7b1f12f8cdf337"
+      "checksum": "f65b18ec7216d0c60600ba3077c25e1b"
     },
     "support_files/README": {
       "checksum": "23d8254dae346ea59a603eb2a31ebe73"
@@ -4443,6 +4449,9 @@
     },
     "www/pepfar.png": {
       "checksum": "cd04d9e778b00519de3e0e2afc97eb28"
+    },
+    "zambia.csv": {
+      "checksum": "622e93942221e0b67dc8e7699cf63737"
     },
     "Zambia.csv": {
       "checksum": "bdbc7e776adc50190895530762967385"
