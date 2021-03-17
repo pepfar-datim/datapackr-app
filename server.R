@@ -293,6 +293,10 @@ shinyServer(function(input, output, session) {
             incProgress(0.1, detail = ("Preparing a modality summary"))
             d<-formatModalitySummaryTable(d)
             Sys.sleep(1)
+            incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
+            d<-recencyComparison(d)
+            Sys.sleep(1)
+            
             shinyjs::enable("downloadFlatPack")
             shinyjs::enable("download_messages")
             shinyjs::enable("send_paw")
@@ -362,6 +366,9 @@ shinyServer(function(input, output, session) {
         d<-preparePrioTable(d,d2_session = user_input$d2_session)
         incProgress(0.1, detail = ("Preparing a modality summary"))
         d<-formatModalitySummaryTable(d)
+        Sys.sleep(1)
+        incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
+        d<-recencyComparison(d)
         Sys.sleep(1)
         
         shinyjs::enable("downloadFlatPack")
@@ -466,11 +473,9 @@ shinyServer(function(input, output, session) {
 
     vr<-validation_results()
 
-    if (!inherits(vr,"error") & !is.null(vr)){
+    if (!inherits(vr,"error") & !is.null(vr$data$recency)){
 
-      if (  is.null(vr$data$analytics) ) { return(NULL) }
-      r<-recencyComparison(vr)
-      DT::datatable(r,
+      DT::datatable(vr$data$recency,
                     options = list(pageLength = 25,columnDefs = list(list(
                       className = 'dt-right', targets = 2),
                       list(
@@ -520,21 +525,6 @@ shinyServer(function(input, output, session) {
 
   },height = 400,width = 600)
 
-  output$modality_yield <- renderPlot({
-
-    vr<-validation_results()
-
-    if (!inherits(vr,"error") & !is.null(vr)){
-      vr  %>%
-        purrr::pluck(.,"data") %>%
-        purrr::pluck(.,"analytics") %>%
-        modalityYieldChart()
-
-    } else {
-      NULL
-    }
-
-  },height = 400,width = 600)
 
   output$vls_summary <- renderPlot({
 
@@ -808,6 +798,13 @@ shinyServer(function(input, output, session) {
                                sheet = "SNU Summary",x = snu_summary)
       
 
+      if (!is.null(d$data$recency)) {
+        openxlsx::addWorksheet(wb,"HTS Recency")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "HTS Recency", x = d$data$recency)
+      }
+      
+      
       if (!is.null(d$data$modality_summary)) {
         openxlsx::addWorksheet(wb,"HTS Summary")
         openxlsx::writeDataTable(wb = wb,

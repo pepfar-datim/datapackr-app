@@ -458,10 +458,9 @@ recencyComparison <- function(d) {
   can_proceed <- NROW(df) > 0 &
     dplyr::setequal(names(df),c("hts_recency_compare","HTS_TST","HTS_RECENT"))
 
-  if ( !can_proceed ) {
-    return(NULL)
-  } else  {
-    df %>%
+  if ( can_proceed ) {
+
+    d$data$recency <- df %>%
       dplyr::select("Modality" = hts_recency_compare,
                     HTS_RECENT,
                     "HTS_TST_POS" = HTS_TST) %>%
@@ -473,6 +472,9 @@ recencyComparison <- function(d) {
         `HTS_RECENT (%)` = format(round(`HTS_RECENT (%)`, 2), nsmall = 2)
       )
   }
+  
+  d
+  
 }
 
 subnatPyramidsChart <- function(d,epi_graph_filter_results){
