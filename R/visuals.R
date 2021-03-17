@@ -275,6 +275,28 @@ modalitySummaryTable<-function(df){
 
 }
 
+formatModalitySummaryTable <- function(d) {
+  if (!is.null(d$data$analytics)) {
+    d$data$modality_summary <-
+      modalitySummaryTable(d$data$analytics) %>% 
+    dplyr::mutate(
+      Positive = format(Positive , big.mark = ',', scientific = FALSE),
+      Total = format(Total , big.mark = ',', scientific = FALSE),
+      yield = format(round(yield, 2), nsmall = 2),
+      modality_share = format(round(modality_share, 2), nsmall = 2)
+    ) %>%
+      dplyr::select(
+        Modality = hts_modality,
+        Positive,
+        Total,
+        "Yield (%)" = yield,
+        "Percent of HTS_POS" = modality_share
+      )
+  }
+  
+  d
+}
+
 modalityYieldChart <- function(df) {
 
   df <- modalitySummaryTable(df)
