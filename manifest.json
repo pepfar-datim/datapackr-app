@@ -858,22 +858,21 @@
       }
     },
     "datimvalidation": {
-      "Source": "github",
-      "Repository": null,
-      "GithubRepo": "datim-validation",
-      "GithubUsername": "jason-p-pickering",
-      "GithubRef": "master",
-      "GithubSha1": "9f3707ab2bca2a61444eb9e5fc081d38a9415174",
+      "Source": "PEPFAR",
+      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "datimvalidation",
         "Type": "Package",
         "Title": "External Validation Routines for Data Payloads in DATIM",
-        "Version": "1.0.114",
-        "Date": "2021-03-09",
         "Author": "Jason P. Pickering",
         "Maintainer": "Jason P. Pickering <jason.p.pickering@gmail.com>",
         "Description": "A comprehensive set of tools to validate data payloads\n        intended for import into 'DATIM' <https://www.datim.org/>.\n        DATIM is the 'PEPFAR' <https://www.state.gov/pepfar/> specific\n        instance of 'DHIS2' <https://www.dhis2.org/>. These scripts are\n        provided for the 'PEPFAR' data exchange community in order to\n        validate their prospective data payloads prior to submission\n        for import.",
         "License": "BSD_3_clause + file LICENSE",
+        "Remotes": "pepfar-datim/datimutils",
         "SystemRequirements": "Active user account on 'DATIM'\n<https://www.datim.org/>",
         "URL": "https://github.com/jason-p-pickering/datim-validation",
         "BugReports": "https://github.com/jason-p-pickering/datim-validation/issues",
@@ -883,18 +882,13 @@
         "Suggests": "doMC (>= 1.3.5), foreach (>= 1.4.4), httptest (>= 3.2.2),\nknitr (>= 1.21), methods, rmarkdown (>= 1.11), roxygen2 (>=\n6.1.1), tcltk, testthat (>= 2.0.1), covr (>= 3.2.1), stringi\n(>= 1.3.1), rprojroot (>= 1.3-2)",
         "VignetteBuilder": "knitr",
         "RoxygenNote": "7.1.1",
-        "Built": "R 3.6.3; ; 2021-03-16 06:10:32 UTC; unix",
-        "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteUsername": "jason-p-pickering",
-        "RemoteRepo": "datim-validation",
-        "RemoteRef": "master",
-        "RemoteSha": "9f3707ab2bca2a61444eb9e5fc081d38a9415174",
-        "GithubHost": "api.github.com",
-        "GithubRepo": "datim-validation",
-        "GithubUsername": "jason-p-pickering",
-        "GithubRef": "master",
-        "GithubSHA1": "9f3707ab2bca2a61444eb9e5fc081d38a9415174"
+        "Repository": "RSPM",
+        "RemoteSha": "588b19569b96a3c033acf653377373f08c3a32e0",
+        "Version": "1.0.118.0.0.0.1616404626",
+        "Date": "2021-03-22",
+        "NeedsCompilation": "no",
+        "Packaged": "2021-03-22 09:18:58 UTC; root",
+        "Built": "R 3.6.3; ; 2021-03-22 09:29:13 UTC; unix"
       }
     },
     "desc": {
@@ -4001,13 +3995,16 @@
       "checksum": "667ffda2807aa6a8022bea9d49690f5e"
     },
     ".Rprofile": {
-      "checksum": "6f4a802d2259cc3484b919a85222a304"
+      "checksum": "c08b5dea906fa7c60aaa1c1e00a104b2"
     },
     "config.yml": {
       "checksum": "3298ef63ce822cf889ae67375f352616"
     },
     "config.yml.sample": {
       "checksum": "31c37d9dc0af96e3c9c149f808b3ea48"
+    },
+    "cop_validation_rules.rds": {
+      "checksum": "b4d96a5b9fe926e1c92335bf4ab40f9c"
     },
     "cop20_indicator_group.json": {
       "checksum": "2c6e75810b8b4830a52e0b6fe79081ba"
@@ -4097,7 +4094,7 @@
       "checksum": "af4b5435e1d5d442e9f4becd9569f239"
     },
     "packrat/desc/datimvalidation": {
-      "checksum": "fc6b52c72312990261b52c81ca346f1e"
+      "checksum": "a27cda794cd4473d52677473236f870c"
     },
     "packrat/desc/desc": {
       "checksum": "d4745ab8b235bca8da3d8142efd10074"
@@ -4412,25 +4409,46 @@
       "checksum": "c0e692997328fca72b0a258d351e8647"
     },
     "packrat/packrat.lock": {
-      "checksum": "3995339c3a4186def49ec158deee303e"
+      "checksum": "8d014adfafe5425448f21ab2afa5ae1e"
     },
     "R/utils.R": {
-      "checksum": "704d2e74d85809d715314c7a385560a6"
+      "checksum": "0e46f9c8c40a2c21018239df6fce25be"
     },
     "R/visuals.R": {
-      "checksum": "bde1fd11869ced7683cfdae4527e2906"
+      "checksum": "f6945b291f11fb66765adfacaf284712"
     },
     "README.md": {
       "checksum": "122afca03cca21b3bc7598ec0a1a4b50"
     },
     "server.R": {
-      "checksum": "4144dd35c29b2057aee10f8da846495d"
+      "checksum": "5b4d94804edc8386341d599ea8d8e85e"
+    },
+    "support_files/cop_validation_rules.rds": {
+      "checksum": "b4d96a5b9fe926e1c92335bf4ab40f9c"
+    },
+    "support_files/cop20_validation_rules.rds": {
+      "checksum": "7e5ec5cd9c33bcdfce134faffd51bfe6"
     },
     "support_files/mechs.rds": {
       "checksum": "f65b18ec7216d0c60600ba3077c25e1b"
     },
+    "support_files/modifiedValidationRules.json": {
+      "checksum": "e8c9c27cc18d80f06ddbfb56155a9ca3"
+    },
+    "support_files/newValidationRules.json": {
+      "checksum": "954c3b7e8c75b788f50f031726a37491"
+    },
+    "support_files/oldValidationRules.json": {
+      "checksum": "790720097eb1aee73824acf17f1de9bd"
+    },
+    "support_files/process_validation_rules.R": {
+      "checksum": "e42db72df3ccd12f8bcb5b71f7b5a34d"
+    },
     "support_files/README": {
       "checksum": "23d8254dae346ea59a603eb2a31ebe73"
+    },
+    "test_pivot.xlsx": {
+      "checksum": "2da36c8df85cd2100594f617c6feb265"
     },
     "tests/testthat.R": {
       "checksum": "ef70c660f50319ff7fe4fde5bfd85f2a"

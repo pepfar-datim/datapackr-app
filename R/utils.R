@@ -49,6 +49,7 @@ validatePSNUData <- function(d,d2_session) {
       c("Pmc0yYAIi1t", "s1sxJuqXsvV")
     } else if  ( d$info$cop_year == "2021" ) {
       c("YfZot37BbTm", "Pmc0yYAIi1t")
+
     }
 
   if ( Sys.info()["sysname"] == "Linux") {
@@ -59,10 +60,14 @@ validatePSNUData <- function(d,d2_session) {
     is_parallel <- FALSE
   }
   
+  vr_rules<-readRDS("support_files/cop_validation_rules.rds") %>% 
+    purrr::pluck(.,as.character(d$info$cop_year))
+  
   vr_violations <- datimvalidation::validateData(vr_data,
                                                  datasets = datasets_uid,
                                                  parallel = is_parallel,
                                                  return_violations_only = TRUE,
+                                                 vr = vr_rules,
                                                  d2session = d2_session)
   
   # rules_to_keep <- c(

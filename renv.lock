@@ -233,15 +233,12 @@
     },
     "datimvalidation": {
       "Package": "datimvalidation",
-      "Version": "1.0.114",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "jason-p-pickering",
-      "RemoteRepo": "datim-validation",
-      "RemoteRef": "master",
-      "RemoteSha": "9f3707ab2bca2a61444eb9e5fc081d38a9415174",
-      "Hash": "fa8cee76a47e8f9b4a7f491cc4fe563a"
+      "Version": "1.0.118.0.0.0.1616404626",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Remotes": "pepfar-datim/datimutils",
+      "RemoteSha": "588b19569b96a3c033acf653377373f08c3a32e0",
+      "Hash": "5ae8c3840ecefc75e0e021d1a44480eb"
     },
     "desc": {
       "Package": "desc",
