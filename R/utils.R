@@ -69,12 +69,10 @@ validatePSNUData <- function(d,d2_session) {
                                                  return_violations_only = TRUE,
                                                  vr = vr_rules,
                                                  d2session = d2_session)
-  
-  vr_violations<-vr_violations[!(vr_violations$id %in% rules_to_ignore),]
+
   
   if ( NROW(vr_violations) > 0 ) {
     
-
     diff <- gsub(" [<>]= ", "/", vr_violations$formula)
     vr_violations$diff <- sapply( diff, function(x) { round( ( eval( parse( text = x ) ) - 1) * 100, 2 ) })
     vr_violations$diff <-ifelse(vr_violations$rightSide.expression == 0 | vr_violations$leftSide.expression == 0,
