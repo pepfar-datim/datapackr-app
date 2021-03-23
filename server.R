@@ -288,8 +288,15 @@ shinyServer(function(input, output, session) {
             }
 
             incProgress(0.1, detail = ("Preparing a prioritization table"))
-            Sys.sleep(1)
             d<-preparePrioTable(d,d2_session = user_input$d2_session)
+            Sys.sleep(1)
+            incProgress(0.1, detail = ("Preparing a modality summary"))
+            d<-formatModalitySummaryTable(d)
+            Sys.sleep(1)
+            incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
+            d<-recencyComparison(d)
+            Sys.sleep(1)
+            
             shinyjs::enable("downloadFlatPack")
             shinyjs::enable("download_messages")
             shinyjs::enable("send_paw")
@@ -357,8 +364,13 @@ shinyServer(function(input, output, session) {
         d<-updateExistingPrioritization(d,d2_session = user_input$d2_session)
         incProgress(0.1, detail = ("Preparing a prioritization table"))
         d<-preparePrioTable(d,d2_session = user_input$d2_session)
-        incProgress(0.1, detail = (praise()))
-        Sys.sleep(0.5)
+        incProgress(0.1, detail = ("Preparing a modality summary"))
+        d<-formatModalitySummaryTable(d)
+        Sys.sleep(1)
+        incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
+        d<-recencyComparison(d)
+        Sys.sleep(1)
+        
         shinyjs::enable("downloadFlatPack")
         shinyjs::enable("download_messages")
         shinyjs::disable("downloadDataPack")
@@ -461,11 +473,9 @@ shinyServer(function(input, output, session) {
 
     vr<-validation_results()
 
-    if (!inherits(vr,"error") & !is.null(vr)){
+    if (!inherits(vr,"error") & !is.null(vr$data$recency)){
 
-      if (  is.null(vr$data$analytics) ) { return(NULL) }
-      r<-recencyComparison(vr)
-      DT::datatable(r,
+      DT::datatable(vr$data$recency,
                     options = list(pageLength = 25,columnDefs = list(list(
                       className = 'dt-right', targets = 2),
                       list(
@@ -515,21 +525,6 @@ shinyServer(function(input, output, session) {
 
   },height = 400,width = 600)
 
-  output$modality_yield <- renderPlot({
-
-    vr<-validation_results()
-
-    if (!inherits(vr,"error") & !is.null(vr)){
-      vr  %>%
-        purrr::pluck(.,"data") %>%
-        purrr::pluck(.,"analytics") %>%
-        modalityYieldChart()
-
-    } else {
-      NULL
-    }
-
-  },height = 400,width = 600)
 
   output$vls_summary <- renderPlot({
 
@@ -549,26 +544,11 @@ shinyServer(function(input, output, session) {
 
   output$modality_table<-DT::renderDataTable({
 
-    vr<-validation_results()
+    d<-validation_results()
 
-    if (!inherits(vr,"error") & !is.null(vr)){
-      hts_table<-modalitySummaryTable(vr$data$analytics)
+    if (!inherits(d,"error") & !is.null(d$data$modality_summary)){
 
-      if ( is.null(hts_table) )  { return(NULL) }
-
-      table_formatted<- hts_table%>%
-        dplyr::mutate(
-          Positive = format( Positive ,big.mark=',', scientific=FALSE),
-          Total = format( Total ,big.mark=',', scientific=FALSE),
-          yield = format(round(yield, 2), nsmall = 2),
-          modality_share = format(round(modality_share, 2), nsmall = 2)) %>%
-        dplyr::select(Modality = hts_modality,
-                      Positive,
-                      Total,
-                      "Yield (%)"= yield,
-                      "Percent of HTS_POS" = modality_share)
-
-      DT::datatable(table_formatted,
+      DT::datatable(d$data$modality_summary,
                     options = list(pageLength = 25,columnDefs = list(list(
                       className = 'dt-right', targets = 2),
                       list(
@@ -798,6 +778,45 @@ shinyServer(function(input, output, session) {
 
       d<-validation_results()
       
+      
+      #Common to both OPUs and Datapacks
+      openxlsx::addWorksheet(wb,"Analytics")
+      openxlsx::writeDataTable(wb = wb,
+                               sheet = "Analytics",x = d$data$analytics)
+      
+      
+      #TODO. How to handle indicators which should not be summed
+      snu_summary <- d %>%
+        purrr::pluck(.,"data") %>%
+        purrr::pluck(.,"analytics") %>%
+        dplyr::group_by(snu1, indicator_code) %>% 
+        dplyr::summarise(value = sum(target_value)) %>% 
+        dplyr::arrange(snu1, indicator_code)
+      
+      openxlsx::addWorksheet(wb,"SNU Summary")
+      openxlsx::writeDataTable(wb = wb,
+                               sheet = "SNU Summary",x = snu_summary)
+      
+
+      if (!is.null(d$data$recency)) {
+        openxlsx::addWorksheet(wb,"HTS Recency")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "HTS Recency", x = d$data$recency)
+      }
+      
+      
+      if (!is.null(d$data$modality_summary)) {
+        openxlsx::addWorksheet(wb,"HTS Summary")
+        openxlsx::writeDataTable(wb = wb,
+                            sheet = "HTS Summary", x = d$data$modality_summary)
+      }
+      
+      if (!is.null(d$data$prio_table)) {
+        openxlsx::addWorksheet(wb,"Prioritization (DRAFT)")
+        openxlsx::writeData(wb = wb,
+                            sheet = "Prioritization (DRAFT)",x = d$data$prio_table) }
+
+      #Datapack specific
       if (d$info$tool == "Data Pack") {
         
         mer_data <- d %>%
@@ -813,19 +832,13 @@ shinyServer(function(input, output, session) {
         openxlsx::writeDataTable(wb = wb,
                                  sheet = "MER Data",x = mer_data)
         
-        
-        openxlsx::addWorksheet(wb,"Analytics")
-        openxlsx::writeDataTable(wb = wb,
-                                 sheet = "Analytics",x = d$data$analytics)
-        
-        
+
         has_psnu<-d %>%
           purrr::pluck(.,"info") %>%
           purrr::pluck(.,"has_psnuxim")
         
         if (has_psnu) {
           
-
           d$datim$MER$value<-as.character(d$datim$MER$value)
           d$datim$subnat_impatt$value<-as.character(d$datim$subnat_impatt$value)
           datim_export<-dplyr::bind_rows(d$datim$MER,d$datim$subnat_impatt)
@@ -834,27 +847,12 @@ shinyServer(function(input, output, session) {
           openxlsx::writeData(wb = wb,
                               sheet = "DATIM export",x = datim_export)
           
-
-          openxlsx::addWorksheet(wb,"HTS Summary")
-          hts_summary<-modalitySummaryTable(d$data$analytics)
-          
-          if (!is.null(hts_summary)) {
-            openxlsx::writeData(wb = wb,
-                                sheet = "HTS Summary", x = hts_summary)
-          }
-          
-          openxlsx::addWorksheet(wb,"Prioritization (DRAFT)")
-          openxlsx::writeData(wb = wb,
-                              sheet = "Prioritization (DRAFT)",x = d$data$prio_table)
           
         }
       }
      
+      #OPU specific 
       if (d$info$tool == "OPU Data Pack") {
-        openxlsx::addWorksheet(wb,"Analytics")
-        
-        openxlsx::writeDataTable(wb = wb,
-                                 sheet = "Analytics",x = d$data$analytics)
         
         openxlsx::addWorksheet(wb,"DATIM export")
         openxlsx::writeData(wb = wb,
