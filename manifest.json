@@ -3995,7 +3995,10 @@
       "checksum": "667ffda2807aa6a8022bea9d49690f5e"
     },
     ".Rprofile": {
-      "checksum": "c08b5dea906fa7c60aaa1c1e00a104b2"
+      "checksum": "d6b5c0e455fc3e1bb356003f1b61ef54"
+    },
+    "cdi_prio.update.csv": {
+      "checksum": "dddf7afffb3badb95a6c0248ede44a51"
     },
     "config.yml": {
       "checksum": "3298ef63ce822cf889ae67375f352616"
@@ -4412,7 +4415,7 @@
       "checksum": "8d014adfafe5425448f21ab2afa5ae1e"
     },
     "R/utils.R": {
-      "checksum": "0e46f9c8c40a2c21018239df6fce25be"
+      "checksum": "88679ca8ffca87b1f865788efd1f5dd5"
     },
     "R/visuals.R": {
       "checksum": "f6945b291f11fb66765adfacaf284712"
@@ -4422,6 +4425,18 @@
     },
     "server.R": {
       "checksum": "5b4d94804edc8386341d599ea8d8e85e"
+    },
+    "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
+      "checksum": "0bef07c12dd12344e71bc53358edb424"
+    },
+    "support_files/4_OPU Data Pack_Uganda_20210217150227_20210316.xlsx": {
+      "checksum": "ea33a331a45d7ea91291b420f07e1dff"
+    },
+    "support_files/4_OPU Data Pack_Uganda_20210217150227_20210316.zip": {
+      "checksum": "87bbeb6db8907fdc7bbbca1de383efc5"
+    },
+    "support_files/cop_20_approval_memo__20210323_095517.xlsx": {
+      "checksum": "7236f38be90e7cfaae38a9e53c4bb65b"
     },
     "support_files/cop_validation_rules.rds": {
       "checksum": "b4d96a5b9fe926e1c92335bf4ab40f9c"
