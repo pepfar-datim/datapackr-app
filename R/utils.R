@@ -128,7 +128,7 @@ validatePSNUData <- function(d,d2_session) {
 validateMechanisms<-function(d, d2_session) {
   
   
-  vr_data <- d$data$analytics%>%
+  mechs_data <- d$data$analytics%>%
     dplyr::pull(mechanism_code) %>%
     unique()
   
@@ -136,9 +136,9 @@ validateMechanisms<-function(d, d2_session) {
   
   operating_unit<-getOperatingUnitFromCountryUIDs(d$info$country_uids)
 
-  mechs<-datapackr::getMechanismView(d2_session = d2_session,
+  mechs_datim<-datapackr::getMechanismView(d2_session = d2_session,
                                      update_stale_cache = TRUE) %>%
-    dplyr::filter( ou == operating_unit) %>% 
+    dplyr::filter( ou == operating_unit$ou) %>% 
     dplyr::filter(!is.na(startdate)) %>%
     dplyr::filter(!is.na(enddate)) %>%
     dplyr::filter(startdate <= period_info$startDate) %>%
@@ -147,16 +147,16 @@ validateMechanisms<-function(d, d2_session) {
   
   #Allow for the dedupe mechanisms in COP20 OPU Data Packs
   if (d$info$tool == "OPU Data Pack" & d$info$cop_year == 2020 ) {
-    mechs <- append(c("00000","00001"),mechs)
+    mechs_datim <- append(c("00000","00001"),mechs_datim)
   }
   
   #Allow for the dedupe mechanisms in COP21 Data packs
   if (d$info$tool == "Data Pack" & d$info$cop_year == 2021 ) {
-    mechs <- append(c("00000","00001"),mechs)
+    mechs_datim <- append(c("00000","00001"),mechs_datim)
   }
 
   
-  bad_mechs<-vr_data[!(vr_data %in% mechs)]
+  bad_mechs<-mechs_data[!(mechs_data %in% mechs_datim)]
   
   if (length(bad_mechs) > 0 ) {
     
