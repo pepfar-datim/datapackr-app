@@ -132,14 +132,17 @@ validateMechanisms<-function(d, d2_session) {
     dplyr::pull(mechanism_code) %>%
     unique()
   
-  #TODO: Remove hard coding of time periods and 
-  #filter for the OU as well
+  period_info<-datimvalidation::getPeriodFromISO(paste0(d$info$cop_year,"Oct"))
+  
+  operating_unit<-getOperatingUnitFromCountryUIDs(d$info$country_uids)
+
   mechs<-datapackr::getMechanismView(d2_session = d2_session,
                                      update_stale_cache = TRUE) %>%
+    dplyr::filter( ou == operation_unit) %>% 
     dplyr::filter(!is.na(startdate)) %>%
     dplyr::filter(!is.na(enddate)) %>%
-    dplyr::filter(startdate <= as.Date('2020-10-01')) %>%
-    dplyr::filter(enddate >= as.Date('2021-09-30')) %>%
+    dplyr::filter(startdate <= period_info$startDate) %>%
+    dplyr::filter(enddate >= period_info$endDate ) %>%
     dplyr::pull(mechanism_code)
   
   #Allow for the dedupe mechanisms in COP20 OPU Data Packs
@@ -167,6 +170,19 @@ validateMechanisms<-function(d, d2_session) {
   
   d
   
+}
+
+getOperatingUnitFromCountryUIDs<-function(country_uids) {
+  ou<-datapackr::valid_PSNUs %>% 
+    dplyr::select(ou,ou_id,country_name,country_uid) %>%  
+    dplyr::distinct() %>% 
+    dplyr::filter(country_uid %in% country_uids) %>% 
+    dplyr::select(ou,ou_id) %>% 
+    dplyr::distinct()
+  
+  if ( NROW(ou) != 1) {  stop("Datapacks cannot belong to multiple operating units") }
+  
+  ou
 }
 
 getCountryNameFromUID<-function(uid) {
