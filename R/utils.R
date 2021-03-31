@@ -138,7 +138,7 @@ validateMechanisms<-function(d, d2_session) {
 
   mechs<-datapackr::getMechanismView(d2_session = d2_session,
                                      update_stale_cache = TRUE) %>%
-    dplyr::filter( ou == operation_unit) %>% 
+    dplyr::filter( ou == operating_unit) %>% 
     dplyr::filter(!is.na(startdate)) %>%
     dplyr::filter(!is.na(enddate)) %>%
     dplyr::filter(startdate <= period_info$startDate) %>%
