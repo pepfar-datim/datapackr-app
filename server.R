@@ -715,14 +715,7 @@ shinyServer(function(input, output, session) {
       if (d$info$tool == "OPU Data Pack") {
         d_compare<-datapackr::compareData_OpuDatapackVsDatim(d, d2_session = user_input$d2_session) 
         
-        remap_names<-function(x) {
-          x %>% dplyr::rename( dataElement = "data_element_uid",
-                               orgUnit = "org_unit_uid",
-                               categoryOptionCombo = "category_option_combo_uid",
-                               attributeOptionCombo = "attribute_option_combo_code") 
-        }
-        d_compare<-lapply(d_compare,remap_names)
-        
+      
         d_compare<-lapply(d_compare,function(x) adorn_import_file(x,
                                                       cop_year = d$info$cop_year,
                                                       d2_session = user_input$d2_session))
