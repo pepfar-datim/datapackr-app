@@ -128,9 +128,7 @@ validatePSNUData <- function(d,d2_session) {
 validateMechanisms<-function(d, d2_session) {
   
   
-  mechs_data <- d$data$analytics%>%
-    dplyr::pull(mechanism_code) %>%
-    unique()
+  mechs_data <- unique(d$datim$MER$attributeOptionCombo)
   
   period_info<-datimvalidation::getPeriodFromISO(paste0(d$info$cop_year,"Oct"))
   
