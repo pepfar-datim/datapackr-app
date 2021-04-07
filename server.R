@@ -644,6 +644,7 @@ shinyServer(function(input, output, session) {
     content = function(file) {
 
       d <- validation_results()
+      
       shinyjs::disable("downloadDataPack")
       flog.info(
         paste0("Regeneration of Datapack requested for ", d$info$datapack_name)
