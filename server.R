@@ -156,6 +156,8 @@ shinyServer(function(input, output, session) {
             ),
             actionButton("validate", "Validate"),
             tags$hr(),
+            selectInput("downloadType","Download file",downloadTypes()),
+            tags$hr(),
             downloadButton("downloadFlatPack", "Download FlatPack"),
             tags$hr(),
             downloadButton("download_messages", "Validation messages"),

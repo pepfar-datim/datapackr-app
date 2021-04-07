@@ -1,4 +1,25 @@
 
+downloadTypes <- function() {
+  download_names <-
+    c(
+      "FlatPack",
+      "CSO Flatpack",
+      "Messages",
+      "Validation rules",
+      "New PSNUxIM",
+      "Comparison"
+    )
+  download_types <-
+    c("flatpack",
+      "cso_flatpack",
+      "messages",
+      "vr_rules",
+      "datapack",
+      "comparison")
+  names(download_types) <- download_names
+  
+  download_types
+}
 
 fetchSupportFiles <- function() {
   
