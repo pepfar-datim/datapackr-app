@@ -909,9 +909,7 @@ shinyServer(function(input, output, session) {
     },
     content = function(file) {
       d<-validation_results()
-
-
-      writeLines(vr$info$warning_msg, file)
+      writeLines(d$info$warning_msg, file)
     }
   )
   
