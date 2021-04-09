@@ -37,6 +37,7 @@ shinyServer(function(input, output, session) {
     shinyjs::enable("file1")
     shinyjs::disable("validate")
     shinyjs::disable("downloadFlatPack")
+    shinyjs::disable("downloadCSOFlatPack")
     shinyjs::disable("downloadDataPack")
     shinyjs::disable("download_messages")
     shinyjs::disable("send_paw")
@@ -158,6 +159,8 @@ shinyServer(function(input, output, session) {
             tags$hr(),
             downloadButton("downloadFlatPack", "Download FlatPack"),
             tags$hr(),
+            downloadButton("downloadCSOFlatPack","Download CSO Flatpack"),
+            tags$hr(),
             downloadButton("download_messages", "Validation messages"),
             tags$hr(),
             downloadButton("downloadValidationResults", "Validation report"),
@@ -226,6 +229,7 @@ shinyServer(function(input, output, session) {
   validate<-function() {
 
     shinyjs::disable("downloadFlatPack")
+    shinyjs::disable("downloadCSOFlatPack")
     shinyjs::disable("downloadDataPack")
     shinyjs::disable("download_messages")
     shinyjs::disable("send_paw")
@@ -298,6 +302,7 @@ shinyServer(function(input, output, session) {
             Sys.sleep(1)
             
             shinyjs::enable("downloadFlatPack")
+            shinyjs::enable("downloadCSOFlatPack")
             shinyjs::enable("download_messages")
             shinyjs::enable("send_paw")
             shinyjs::enable("downloadValidationResults")
@@ -333,6 +338,7 @@ shinyServer(function(input, output, session) {
             #This should occur when there is no PSNUxIM tab and they want
             #to generate one.
             shinyjs::enable("downloadFlatPack")
+            shinyjs::enable("downloadCSOFlatPack")
             shinyjs::enable("downloadDataPack")
             shinyjs::enable("download_messages")
             shinyjs::enable("send_paw")
@@ -372,6 +378,7 @@ shinyServer(function(input, output, session) {
         Sys.sleep(1)
         
         shinyjs::enable("downloadFlatPack")
+        shinyjs::enable("downloadCSOFlatPack")
         shinyjs::enable("download_messages")
         shinyjs::disable("downloadDataPack")
         shinyjs::disable("send_paw")
@@ -901,9 +908,36 @@ shinyServer(function(input, output, session) {
       paste("DataPack_Validation_Messages_", Sys.Date(), ".txt", sep = "")
     },
     content = function(file) {
-      vr<-validation_results()
+      d<-validation_results()
+
 
       writeLines(vr$info$warning_msg, file)
     }
   )
+  
+  output$downloadCSOFlatPack <- downloadHandler(
+    filename = function(){
+      paste("cso_flatpack", Sys.Date(), ".xlsx", sep = "")
+    },
+    content = function(file) {
+      vr<-validation_results()
+      cso_indicators<-d$info$schema %>% 
+        dplyr::filter(value_type == "integer") %>% 
+        dplyr::pull(indicator_code) %>% unique(.)
+      
+      cso_data<-d$data$analytics %>%
+        dplyr::filter(indicator_code %in% cso_indicators) %>% 
+        dplyr::filter(stringr::str_detect(psnu,"_Military",negate = TRUE)) %>% 
+        dplyr::group_by(ou,country_name,snu1,psnu,indicator_code,dataelement_name,support_type,hts_modality,age,sex,key_population,resultstatus_specific,resultstatus_inclusive,top_level) %>% 
+        dplyr::summarize(value = sum(target_value))
+      
+      wb <- openxlsx::createWorkbook()
+      openxlsx::addWorksheet(wb,"CSO export")
+      openxlsx::writeData(wb = wb,
+                          sheet = "CSO export",x = cso_data)
+      openxlsx::saveWorkbook(wb,file=file,overwrite = TRUE)
+    }
+  )
+  
+  
   })
