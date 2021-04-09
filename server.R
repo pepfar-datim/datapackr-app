@@ -920,7 +920,7 @@ shinyServer(function(input, output, session) {
       paste("cso_flatpack", Sys.Date(), ".xlsx", sep = "")
     },
     content = function(file) {
-      vr<-validation_results()
+      d<-validation_results()
       cso_indicators<-d$info$schema %>% 
         dplyr::filter(value_type == "integer") %>% 
         dplyr::pull(indicator_code) %>% unique(.)
