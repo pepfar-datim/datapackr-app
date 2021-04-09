@@ -157,6 +157,7 @@ shinyServer(function(input, output, session) {
             actionButton("validate", "Validate"),
             tags$hr(),
             selectInput("downloadType","Download file",downloadTypes()),
+            downloadButton("downloadOutputs","Download reports"),
             tags$hr(),
             downloadButton("downloadFlatPack", "Download FlatPack"),
             tags$hr(),
@@ -869,35 +870,6 @@ shinyServer(function(input, output, session) {
     }
   )
 
-  output$messages <- renderUI({
-
-    vr<-validation_results()
-
-    messages<-NULL
-
-    if ( is.null(vr)) {
-      return(NULL)
-    }
-
-    if ( inherits(vr,"error") ) {
-      return( paste0("ERROR! ",vr$message) )
-
-    } else {
-
-      messages <- validation_results() %>%
-        purrr::pluck(., "info") %>%
-        purrr::pluck(., "warning_msg")
-
-      if (!is.null(messages))  {
-        lapply(messages, function(x)
-          tags$li(x))
-      } else
-      {
-        tags$li("No Issues with Integrity Checks: Congratulations!")
-      }
-    }
-  })
-
 
   output$download_messages <- downloadHandler(
     filename = function(){
@@ -909,4 +881,28 @@ shinyServer(function(input, output, session) {
       writeLines(vr$info$warning_msg, file)
     }
   )
+  
+  output$downloadOutputs <- downloadHandler(
+    filename = function(){
+      prefix <- input$downloadType
+      date <- date<-format(Sys.time(),"%Y%m%d_%H%M%S")
+      suffix <- if (input$downloadType %in% c("messages")) {
+        ".txt"
+      } else {
+        ".xlsx"
+      }
+      
+      paste0(prefix,"_",date,suffix)
+    },
+    content = function(file){
+      
+      vr<-validation_results()
+      if (input$downloadType == "messages") {
+        writeLines(vr$info$warning_msg, file)
+      }
+      
+    }
+  )
+  
+  
   })

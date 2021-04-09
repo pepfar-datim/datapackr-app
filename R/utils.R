@@ -13,7 +13,7 @@ downloadTypes <- function() {
     c("flatpack",
       "cso_flatpack",
       "messages",
-      "vr_rules",
+      "validation_results",
       "datapack",
       "comparison")
   names(download_types) <- download_names
