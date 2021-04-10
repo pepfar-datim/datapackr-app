@@ -274,7 +274,8 @@ shinyServer(function(input, output, session) {
         flog.info(paste0("Initiating validation of ",d$info$datapack_name, " DataPack."), name="datapack")
         if (d$info$tool == "Data Pack") {
         
-          if ( d$info$has_psnuxim  ) {
+          if ( d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0 ) {
+            
             flog.info(paste(d$info$tool," with PSNUxIM tab found."))
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
@@ -332,9 +333,29 @@ shinyServer(function(input, output, session) {
             showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
             showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
             showTab(inputId = "main-panel", target = "HTS Recency")
-            showTab(inputId = "main-panel", target = "Prioritization")
+            showTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
 
-          } else {
+          } else if ( d$info$has_psnuxim & NROW(d$data$SNUxIM) == 0 ) {
+            msg<-"ERROR! Your DataPack contains a PSNUxIM tab, but the formulas appear to be empty. Please ensure that the formulas have been properly populated in the PSNUxIM tab."
+            d$info$warning_msg<-append(d$info$warning_msg,msg)
+            
+            shinyjs::enable("downloadFlatPack")
+            shinyjs::enable("downloadCSOFlatPack")
+            shinyjs::enable("downloadDataPack")
+            shinyjs::enable("download_messages")
+            shinyjs::enable("send_paw")
+            hideTab(inputId = "main-panel", target = "Validation rules")
+            hideTab(inputId = "main-panel", target = "HTS Summary Chart")
+            hideTab(inputId = "main-panel", target = "HTS Summary Table")
+            hideTab(inputId = "main-panel", target = "HTS Yield")
+            hideTab(inputId = "main-panel", target = "VLS Testing")
+            showTab(inputId = "main-panel", target = "Epi Cascade Pyramid")
+            hideTab(inputId = "main-panel", target = "KP Cascade Pyramid")
+            hideTab(inputId = "main-panel", target = "PSNUxIM Pivot")
+            hideTab(inputId = "main-panel", target = "HTS Recency")
+            hideTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
+            
+          } else  {
             #This should occur when there is no PSNUxIM tab and they want
             #to generate one.
             shinyjs::enable("downloadFlatPack")
@@ -351,7 +372,7 @@ shinyServer(function(input, output, session) {
             hideTab(inputId = "main-panel", target = "KP Cascade Pyramid")
             hideTab(inputId = "main-panel", target = "PSNUxIM Pivot")
             hideTab(inputId = "main-panel", target = "HTS Recency")
-            hideTab(inputId = "main-panel", target = "Prioritization")
+            hideTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
           }
         }
       }
