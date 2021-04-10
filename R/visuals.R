@@ -150,6 +150,7 @@ preparePrioTable<-function(d,d2_session){
   df <- d  %>%
     purrr::pluck("data") %>%
     purrr::pluck("analytics") %>%
+    dplyr::filter(!is.na(target_value)) %>% 
     dplyr::select(dataelement_id,
                   categoryoptioncombo_id,
                   prioritization,
@@ -159,7 +160,11 @@ preparePrioTable<-function(d,d2_session){
     dplyr::mutate(combi =paste0("#{",dataelement_id,".", categoryoptioncombo_id,"}")) %>% 
     plyr::ddply(., plyr::.(prioritization),
                     function(x)
-                      evaluateIndicators(x$combi, x$value,inds)) %>% 
+                      evaluateIndicators(x$combi, x$value,inds)) 
+  
+  if (NROW(df) == 0) {return(d)}
+  
+  df %>% 
     dplyr::select(-id,-numerator,-denominator) %>% 
     tidyr::complete(.,prioritization,name,fill=list(value=0)) %>% 
     dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ","")) %>% 
@@ -251,7 +256,8 @@ modalitySummaryTable<-function(df){
     dplyr::ungroup() %>%
     dplyr::arrange(resultstatus_inclusive, desc(resultstatus_inclusive)) %>%
     dplyr::mutate(resultstatus_inclusive = factor(resultstatus_inclusive, c("Unknown","Negative", "Positive")))
-   if (NROW(hts) > 0) {
+   
+  if (NROW(hts) > 0) {
       hts %<>%
        tidyr::pivot_wider(names_from = resultstatus_inclusive, values_from = value ) %>%
        dplyr::mutate(yield = Positive/(Negative + Positive) * 100,
@@ -276,10 +282,14 @@ modalitySummaryTable<-function(df){
 }
 
 formatModalitySummaryTable <- function(d) {
+  
   if (!is.null(d$data$analytics)) {
-    d$data$modality_summary <-
-      modalitySummaryTable(d$data$analytics) %>% 
-    dplyr::mutate(
+    
+    df <-modalitySummaryTable(d$data$analytics) 
+    
+    if (is.null(d$data$modality_summary)) {return(d)}
+  
+    df %<>% dplyr::mutate(
       Positive = format(Positive , big.mark = ',', scientific = FALSE),
       Total = format(Total , big.mark = ',', scientific = FALSE),
       yield = format(round(yield, 2), nsmall = 2),
@@ -293,6 +303,8 @@ formatModalitySummaryTable <- function(d) {
         "Percent of HTS_POS" = modality_share
       )
   }
+  
+  d$data$modality_summary<-df
   
   d
 }
