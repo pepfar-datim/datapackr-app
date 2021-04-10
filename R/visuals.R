@@ -164,7 +164,7 @@ preparePrioTable<-function(d,d2_session){
   
   if (NROW(df) == 0) {return(d)}
   
-  df %>% 
+  df %<>% 
     dplyr::select(-id,-numerator,-denominator) %>% 
     tidyr::complete(.,prioritization,name,fill=list(value=0)) %>% 
     dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ","")) %>% 
