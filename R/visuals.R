@@ -287,7 +287,7 @@ formatModalitySummaryTable <- function(d) {
     
     df <-modalitySummaryTable(d$data$analytics) 
     
-    if (is.null(d$data$modality_summary)) {return(d)}
+    if (is.null(df)) {return(d)}
   
     df %<>% dplyr::mutate(
       Positive = format(Positive , big.mark = ',', scientific = FALSE),
