@@ -597,13 +597,10 @@ shinyServer(function(input, output, session) {
 
     if (!inherits(vr,"error") & !is.null(vr)){
 
-      vr  %>%
-        purrr::pluck(.,"data") %>%
-        purrr::pluck(.,"analytics") %>%
-        dplyr::group_by(indicator_code) %>%
-        dplyr::summarise(value = format( round(sum(target_value)) ,big.mark=',', scientific=FALSE)) %>%
-        dplyr::arrange(indicator_code)
-
+         prepareSNUSummaryTable(vr) %>% 
+          dplyr::group_by(indicator_code) %>%
+          dplyr::summarise(value = format( round(sum(value,na.rm=TRUE)) ,big.mark=',', scientific=FALSE)) %>%
+          dplyr::arrange(indicator_code)
 
     } else {
       NULL
@@ -616,14 +613,8 @@ shinyServer(function(input, output, session) {
 
     if (!inherits(vr, "error") & !is.null(vr)) {
 
-      vr %>%
-        purrr::pluck(.,"data") %>%
-        purrr::pluck(.,"analytics") %>%
-        dplyr::group_by(snu1, indicator_code) %>%
-        dplyr::summarise(value = format(round(sum(target_value)),
-                                        big.mark = ",",
-                                        scientific = FALSE)) %>%
-        dplyr::arrange(snu1, indicator_code)
+      prepareSNUSummaryTable(vr) %>% 
+        dplyr::mutate(value = format( round_trunc(value), big.mark=',',scientific=FALSE))
 
     } else {
       data.frame(message = "No data is available to display. An error may have occurred.")
@@ -807,12 +798,7 @@ shinyServer(function(input, output, session) {
       
       
       #TODO. How to handle indicators which should not be summed
-      snu_summary <- d %>%
-        purrr::pluck(.,"data") %>%
-        purrr::pluck(.,"analytics") %>%
-        dplyr::group_by(snu1, indicator_code) %>% 
-        dplyr::summarise(value = sum(target_value)) %>% 
-        dplyr::arrange(snu1, indicator_code)
+      snu_summary <- prepareSNUSummaryTable(d)
       
       openxlsx::addWorksheet(wb,"SNU Summary")
       openxlsx::writeDataTable(wb = wb,
