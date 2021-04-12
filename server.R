@@ -57,7 +57,7 @@ shinyServer(function(input, output, session) {
     d <- validation_results()
     r<-saveTimeStampLogToS3(d)
     timestampUploadUI(r)
-    r<-sendMERDataToPAW(d)
+    #r<-sendMERDataToPAW(d)
     archiveDataPackErrorUI(r)
     r<-sendValidationSummary(d)
     validationSummaryUI(r)
@@ -223,6 +223,10 @@ shinyServer(function(input, output, session) {
       textInput("user_name", "Username: ",width = "600px"),
       passwordInput("password", "Password:",width = "600px"),
       actionButton("login_button", "Log in!")
+    ),
+    fluidRow(
+      tags$hr(),
+      tags$h4("Please be sure you fully populate the PSNUxIM tab when receiving a new DataPack. Consult the user guide for further information!")
     ))
   })
 
