@@ -37,6 +37,10 @@ validatePSNUData <- function(d,d2_session) {
 
   if (is.null(vr_data) | NROW(vr_data) == 0 ) {return(d)}
   
+  #Deal with negative values in dedupe
+  vr_data %<>% dplyr::mutate(value = case_when(attributeOptionCombo %in% c("00000","00001") ~ abs(value),
+                                               TRUE ~ value))
+  
   # We need ALL mechanisms to be in DATIM before remapping....TODO
   vr_data$attributeOptionCombo <-
     datimvalidation::remapMechs(vr_data$attributeOptionCombo,
@@ -44,6 +48,9 @@ validatePSNUData <- function(d,d2_session) {
                                 "code",
                                 "id",
                                 d2session = d2_session)
+  
+
+  
   datasets_uid <- 
     if ( d$info$cop_year == "2020" ) {
       c("Pmc0yYAIi1t", "s1sxJuqXsvV")
@@ -248,12 +255,15 @@ saveTimeStampLogToS3<-function(d) {
            d$info$sane_name,
            ".csv")
   #Save a timestamp of the upload
+  #options(digits.secs=6)
   timestamp_info<-list(
     ou=d$info$datapack_name,
     ou_id=d$info$country_uids,
     country_name=d$info$datapack_name,
     country_uids=paste(d$info$country_uids,sep="",collapse=","),
     upload_timestamp=strftime(as.POSIXlt(Sys.time(), "UTC") , "%Y-%m-%d %H:%M:%S"),
+    #uuid=d$info$uuid,
+    #upload_timestamp=strftime(as.POSIXlt(Sys.time(), "UTC") , "%Y-%m-%d %H:%M:%OS"),
     filename=object_name
   )
   

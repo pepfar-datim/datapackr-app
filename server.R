@@ -273,6 +273,8 @@ shinyServer(function(input, output, session) {
         d$info$source_user<-user_input$d2_session$me$userCredentials$username
         #All self-service datapacks should be marked as unapproved for PAW
         d$info$approval_status<-"UNAPPROVED"
+        #Generate a unique identifier
+        d$info$uuid<-uuid::UUIDgenerate()
         #Keep this until we can change the schema
 
         flog.info(paste0("Initiating validation of ",d$info$datapack_name, " DataPack."), name="datapack")
