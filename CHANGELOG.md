@@ -1,5 +1,5 @@
 ## April 14, 2021
-* [DP-214](https://jira.pepfar.net/browse/DP-214) Fix issue with HTS tables and visuals related to known positives
+* [DP-214](https://jira.pepfar.net/browse/DP-214) Fix issue with HTS tables and visuals related to known positives being included in calculations.
 
 ## April 13, 2021
 * Fixed issue related to validation rules and dedupe values
