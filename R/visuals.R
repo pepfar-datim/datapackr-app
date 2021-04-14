@@ -250,7 +250,7 @@ modalitySummaryTable<-function(df){
 
   hts<- df %>%
     dplyr::filter(!is.na(hts_modality)) %>%
-    dplyr::filter(resultstatus_specific != "Known at Entry Positive") %>%
+    dplyr::filter( !( resultstatus_specific %in% c("Known at Entry Positive","Known Positives")))%>%
     dplyr::group_by(resultstatus_inclusive, hts_modality) %>%
     dplyr::summarise(value = sum(target_value)) %>%
     dplyr::ungroup() %>%
