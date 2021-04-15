@@ -1,7 +1,8 @@
-## April 115, 2021
+## April 15, 2021
 * [DP-216](https://jira.pepfar.net/browse/DP-216) Fix issue related to incorrect indicator group being used in the prioritization table. 
 * Update datapackr to 4.3.4
 * Add uuid package
+* Add version information to login screen
 
 ## April 14, 2021
 * [DP-214](https://jira.pepfar.net/browse/DP-214) Fix issue with HTS tables and visuals related to known positives being included in calculations.
