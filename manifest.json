@@ -13,10 +13,6 @@
     "BH": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "BH",
         "Type": "Package",
@@ -39,10 +35,6 @@
     "DT": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "DT",
         "Type": "Package",
@@ -70,10 +62,6 @@
     "ISOweek": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "ISOweek",
         "Type": "Package",
@@ -97,10 +85,6 @@
     "R6": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "R6",
         "Title": "Encapsulated Classes with Reference Semantics",
@@ -126,10 +110,6 @@
     "RColorBrewer": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "RColorBrewer",
         "Version": "1.1-2",
@@ -151,10 +131,6 @@
     "Rcpp": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "Rcpp",
         "Title": "Seamless R and C++ Integration",
@@ -179,11 +155,7 @@
     },
     "XML": {
       "Source": "CRAN",
-      "Repository": "http://www.omegahat.net/RSXML",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
+      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
       "description": {
         "Package": "XML",
         "Version": "3.99-0.3",
@@ -208,10 +180,6 @@
     "askpass": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "askpass",
         "Type": "Package",
@@ -240,10 +208,6 @@
     "assertthat": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "assertthat",
         "Title": "Easy Pre and Post Assertions",
@@ -267,10 +231,6 @@
     "base64enc": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "base64enc",
         "Version": "0.1-3",
@@ -292,10 +252,6 @@
     "brio": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "brio",
         "Title": "Basic R Input Output",
@@ -321,10 +277,6 @@
     "bslib": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "bslib",
         "Title": "Custom 'Bootstrap' 'Sass' Themes for 'shiny' and 'rmarkdown'",
@@ -353,13 +305,9 @@
     "cachem": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "cachem",
-        "Version": "1.0.3",
+        "Version": "1.0.4",
         "Title": "Cache R Objects with Automatic Pruning",
         "Description": "Key-value stores with automatic pruning. Caches can limit\n    either their total size or the age of the oldest object (or both),\n    automatically pruning objects to maintain the constraints.",
         "Authors@R": "c(\n    person(\"Winston\", \"Chang\", , \"winston@rstudio.com\", c(\"aut\", \"cre\")),\n    person(family = \"RStudio\", role = c(\"cph\", \"fnd\")))",
@@ -372,52 +320,43 @@
         "Suggests": "testthat",
         "RoxygenNote": "7.1.1",
         "NeedsCompilation": "yes",
-        "Packaged": "2021-02-04 16:19:42 UTC; winston",
+        "Packaged": "2021-02-12 18:28:56 UTC; winston",
         "Author": "Winston Chang [aut, cre],\n  RStudio [cph, fnd]",
         "Maintainer": "Winston Chang <winston@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-02-04 18:00:11 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-02-05 07:33:26 UTC; unix"
+        "Date/Publication": "2021-02-13 07:30:05 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:49:38 UTC; unix"
       }
     },
     "callr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "callr",
         "Title": "Call R from R",
-        "Version": "3.5.1",
+        "Version": "3.6.0",
         "Authors@R": "c(\n    person(\"Gábor\", \"Csárdi\", role = c(\"aut\", \"cre\", \"cph\"),\n           email = \"csardi.gabor@gmail.com\",\n\t   comment = c(ORCID = \"0000-0001-7098-9676\")),\n    person(\"Winston\", \"Chang\", role = \"aut\"),\n    person(\"RStudio\", role = c(\"cph\", \"fnd\")),\n    person(\"Mango Solutions\", role  = c(\"cph\", \"fnd\")))",
         "Description": "It is sometimes useful to perform a computation in a\n    separate R process, without affecting the current R process at all.\n    This packages does exactly that.",
         "License": "MIT + file LICENSE",
-        "LazyData": "true",
-        "URL": "https://github.com/r-lib/callr#readme",
+        "URL": "https://callr.r-lib.org, https://github.com/r-lib/callr#readme",
         "BugReports": "https://github.com/r-lib/callr/issues",
-        "RoxygenNote": "7.1.1.9000",
-        "Imports": "processx (>= 3.4.4), R6, utils",
+        "RoxygenNote": "7.1.1.9001",
+        "Imports": "processx (>= 3.5.0), R6, utils",
         "Suggests": "cli, covr, crayon, fansi, pingr, ps, rprojroot, spelling,\ntestthat, tibble, withr (>= 2.3.0)",
         "Encoding": "UTF-8",
         "Language": "en-US",
         "NeedsCompilation": "no",
-        "Packaged": "2020-10-13 12:15:24 UTC; gaborcsardi",
+        "Packaged": "2021-03-26 08:14:50 UTC; gaborcsardi",
         "Author": "Gábor Csárdi [aut, cre, cph] (<https://orcid.org/0000-0001-7098-9676>),\n  Winston Chang [aut],\n  RStudio [cph, fnd],\n  Mango Solutions [cph, fnd]",
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-10-13 13:10:02 UTC",
-        "Built": "R 3.6.3; ; 2020-10-14 09:24:24 UTC; unix"
+        "Date/Publication": "2021-03-28 06:51:10 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:58:16 UTC; unix"
       }
     },
     "cellranger": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "cellranger",
         "Title": "Translate Spreadsheet Cell Ranges to Rows and Columns",
@@ -445,41 +384,33 @@
     "cli": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "cli",
         "Title": "Helpers for Developing Command Line Interfaces",
-        "Version": "2.3.0",
+        "Version": "2.4.0",
         "Authors@R": "c(\n    person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\", c(\"aut\", \"cre\")),\n    person(\"Hadley\", \"Wickham\", role = c(\"ctb\")),\n    person(\"Kirill\", \"Müller\", role = c(\"ctb\")),\n    person(\"RStudio\", role = \"cph\")\n    )",
         "Description": "A suite of tools to build attractive command line interfaces\n    ('CLIs'), from semantic elements: headings, lists, alerts, paragraphs,\n    etc. Supports custom themes via a 'CSS'-like language. It also contains a\n    number of lower level 'CLI' elements: rules, boxes, trees, and\n    'Unicode' symbols with 'ASCII' alternatives. It support ANSI colors and\n    text styles as well.",
         "License": "MIT + file LICENSE",
-        "LazyData": "true",
         "URL": "https://github.com/r-lib/cli#readme",
         "BugReports": "https://github.com/r-lib/cli/issues",
-        "RoxygenNote": "7.1.1",
+        "RoxygenNote": "7.1.1.9001",
         "Depends": "R (>= 2.10)",
-        "Imports": "assertthat, glue, methods, utils",
+        "Imports": "glue, methods, utils",
         "Suggests": "callr, covr, grDevices, htmlwidgets, knitr, mockery, ps (>=\n1.3.4.9000), rmarkdown, rstudioapi, prettycode (>= 1.1.0),\ntestthat, withr",
+        "Config/testthat/edition": "3",
         "Encoding": "UTF-8",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-30 12:41:32 UTC; gaborcsardi",
+        "Packaged": "2021-04-04 13:22:00 UTC; gaborcsardi",
         "Author": "Gábor Csárdi [aut, cre],\n  Hadley Wickham [ctb],\n  Kirill Müller [ctb],\n  RStudio [cph]",
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-31 16:50:02 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 07:31:09 UTC; unix"
+        "Date/Publication": "2021-04-05 14:20:11 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:49:40 UTC; unix"
       }
     },
     "clipr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "clipr",
@@ -510,10 +441,6 @@
     "codetools": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "codetools",
         "Version": "0.2-18",
@@ -535,10 +462,6 @@
     "colorspace": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "colorspace",
         "Version": "2.0-0",
@@ -567,10 +490,6 @@
     "commonmark": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "commonmark",
         "Type": "Package",
@@ -595,14 +514,10 @@
     "cpp11": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "cpp11",
         "Title": "A C++11 Interface for R's C Interface",
-        "Version": "0.2.6",
+        "Version": "0.2.7",
         "Authors@R": "\n    c(person(given = \"Jim\",\n             family = \"Hester\",\n             role = c(\"aut\", \"cre\"),\n             email = \"jim.hester@rstudio.com\",\n             comment = c(ORCID = \"0000-0002-2739-7082\")),\n      person(given = \"Romain\",\n             family = \"François\",\n             role = \"ctb\"),\n      person(given = \"Benjamin\",\n             family = \"Kietzman\",\n             role = \"ctb\"),\n      person(given = \"RStudio\",\n             role = c(\"cph\", \"fnd\")))",
         "Description": "Provides a header only, C++11 interface to R's C\n    interface.  Compared to other approaches 'cpp11' strives to be safe\n    against long jumps from the C API as well as C++ exceptions, conform\n    to normal R function semantics and supports interaction with 'ALTREP'\n    vectors.",
         "License": "MIT + file LICENSE",
@@ -613,29 +528,24 @@
         "Config/testthat/edition": "3",
         "Config/Needs/cpp11/cpp_register": "brio, cli, decor, desc, glue, tibble,\nvctrs",
         "Encoding": "UTF-8",
-        "LazyData": "true",
         "RoxygenNote": "7.1.1",
         "SystemRequirements": "C++11",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-28 19:04:03 UTC; jhester",
+        "Packaged": "2021-03-29 13:18:07 UTC; jhester",
         "Author": "Jim Hester [aut, cre] (<https://orcid.org/0000-0002-2739-7082>),\n  Romain François [ctb],\n  Benjamin Kietzman [ctb],\n  RStudio [cph, fnd]",
         "Maintainer": "Jim Hester <jim.hester@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-29 10:10:05 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 07:31:13 UTC; unix"
+        "Date/Publication": "2021-03-29 14:20:04 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:49:45 UTC; unix"
       }
     },
     "crayon": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "crayon",
         "Title": "Colored Terminal Output",
-        "Version": "1.4.0",
+        "Version": "1.4.1",
         "Authors@R": "c(\n    person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\",\n    role = c(\"aut\", \"cre\")),\n    person(\n    \"Brodie\", \"Gaslam\", email=\"brodie.gaslam@yahoo.com\",\n    role=c(\"ctb\"))\n    )",
         "Description": "Colored terminal output on terminals that support 'ANSI'\n    color and highlight codes. It also works in 'Emacs' 'ESS'. 'ANSI'\n    color support is automatically detected. Colors and highlighting can\n    be combined and nested. New styles can also be created easily.\n    This package was inspired by the 'chalk' 'JavaScript' project.",
         "License": "MIT + file LICENSE",
@@ -648,21 +558,17 @@
         "RoxygenNote": "7.1.1",
         "Encoding": "UTF-8",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-30 17:41:55 UTC; gaborcsardi",
+        "Packaged": "2021-02-08 18:57:04 UTC; gaborcsardi",
         "Author": "Gábor Csárdi [aut, cre],\n  Brodie Gaslam [ctb]",
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-30 18:30:02 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 07:31:14 UTC; unix"
+        "Date/Publication": "2021-02-08 19:50:02 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:49:47 UTC; unix"
       }
     },
     "crosstalk": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "crosstalk",
         "Type": "Package",
@@ -689,10 +595,6 @@
     "curl": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "curl",
         "Type": "Package",
@@ -723,46 +625,37 @@
     "data.table": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "data.table",
-        "Version": "1.13.6",
+        "Version": "1.14.0",
         "Title": "Extension of `data.frame`",
-        "Authors@R": "c(\n  person(\"Matt\",\"Dowle\",           role=c(\"aut\",\"cre\"), email=\"mattjdowle@gmail.com\"),\n  person(\"Arun\",\"Srinivasan\",      role=\"aut\",          email=\"arunkumar.sriniv@gmail.com\"),\n  person(\"Jan\",\"Gorecki\",          role=\"ctb\"),\n  person(\"Michael\",\"Chirico\",      role=\"ctb\"),\n  person(\"Pasha\",\"Stetsenko\",      role=\"ctb\"),\n  person(\"Tom\",\"Short\",            role=\"ctb\"),\n  person(\"Steve\",\"Lianoglou\",      role=\"ctb\"),\n  person(\"Eduard\",\"Antonyan\",      role=\"ctb\"),\n  person(\"Markus\",\"Bonsch\",        role=\"ctb\"),\n  person(\"Hugh\",\"Parsonage\",       role=\"ctb\"),\n  person(\"Scott\",\"Ritchie\",        role=\"ctb\"),\n  person(\"Kun\",\"Ren\",              role=\"ctb\"),\n  person(\"Xianying\",\"Tan\",         role=\"ctb\"),\n  person(\"Rick\",\"Saporta\",         role=\"ctb\"),\n  person(\"Otto\",\"Seiskari\",        role=\"ctb\"),\n  person(\"Xianghui\",\"Dong\",        role=\"ctb\"),\n  person(\"Michel\",\"Lang\",          role=\"ctb\"),\n  person(\"Watal\",\"Iwasaki\",        role=\"ctb\"),\n  person(\"Seth\",\"Wenchel\",         role=\"ctb\"),\n  person(\"Karl\",\"Broman\",          role=\"ctb\"),\n  person(\"Tobias\",\"Schmidt\",       role=\"ctb\"),\n  person(\"David\",\"Arenburg\",       role=\"ctb\"),\n  person(\"Ethan\",\"Smith\",          role=\"ctb\"),\n  person(\"Francois\",\"Cocquemas\",   role=\"ctb\"),\n  person(\"Matthieu\",\"Gomez\",       role=\"ctb\"),\n  person(\"Philippe\",\"Chataignon\",  role=\"ctb\"),\n  person(\"Nello\",\"Blaser\",         role=\"ctb\"),\n  person(\"Dmitry\",\"Selivanov\",     role=\"ctb\"),\n  person(\"Andrey\",\"Riabushenko\",   role=\"ctb\"),\n  person(\"Cheng\",\"Lee\",            role=\"ctb\"),\n  person(\"Declan\",\"Groves\",        role=\"ctb\"),\n  person(\"Daniel\",\"Possenriede\",   role=\"ctb\"),\n  person(\"Felipe\",\"Parages\",       role=\"ctb\"),\n  person(\"Denes\",\"Toth\",           role=\"ctb\"),\n  person(\"Mus\",\"Yaramaz-David\",    role=\"ctb\"),\n  person(\"Ayappan\",\"Perumal\",      role=\"ctb\"),\n  person(\"James\",\"Sams\",           role=\"ctb\"),\n  person(\"Martin\",\"Morgan\",        role=\"ctb\"),\n  person(\"Michael\",\"Quinn\",        role=\"ctb\"),\n  person(\"@javrucebo\",\"\",          role=\"ctb\"),\n  person(\"@marc-outins\",\"\",        role=\"ctb\"),\n  person(\"Roy\",\"Storey\",           role=\"ctb\"),\n  person(\"Manish\",\"Saraswat\",      role=\"ctb\"),\n  person(\"Morgan\",\"Jacob\",         role=\"ctb\"),\n  person(\"Michael\",\"Schubmehl\",    role=\"ctb\"),\n  person(\"Davis\",\"Vaughan\",        role=\"ctb\"),\n  person(\"Toby\",\"Hocking\",         role=\"ctb\"),\n  person(\"Leonardo\",\"Silvestri\",   role=\"ctb\"),\n  person(\"Tyson\",\"Barrett\",        role=\"ctb\"),\n  person(\"Jim\",\"Hester\",           role=\"ctb\"),\n  person(\"Anthony\",\"Damico\",       role=\"ctb\"),\n  person(\"Sebastian\",\"Freundt\",    role=\"ctb\"),\n  person(\"David\",\"Simons\",         role=\"ctb\"),\n  person(\"Elliott\",\"Sales de Andrade\", role=\"ctb\"),\n  person(\"Cole\",\"Miller\",          role=\"ctb\"),\n  person(\"Jens Peder\",\"Meldgaard\", role=\"ctb\"),\n  person(\"Vaclav\",\"Tlapak\",        role=\"ctb\"),\n  person(\"Kevin\",\"Ushey\",          role=\"ctb\"),\n  person(\"Dirk\",\"Eddelbuettel\",    role=\"ctb\"))",
+        "Authors@R": "c(\n  person(\"Matt\",\"Dowle\",           role=c(\"aut\",\"cre\"), email=\"mattjdowle@gmail.com\"),\n  person(\"Arun\",\"Srinivasan\",      role=\"aut\",          email=\"asrini@pm.me\"),\n  person(\"Jan\",\"Gorecki\",          role=\"ctb\"),\n  person(\"Michael\",\"Chirico\",      role=\"ctb\"),\n  person(\"Pasha\",\"Stetsenko\",      role=\"ctb\"),\n  person(\"Tom\",\"Short\",            role=\"ctb\"),\n  person(\"Steve\",\"Lianoglou\",      role=\"ctb\"),\n  person(\"Eduard\",\"Antonyan\",      role=\"ctb\"),\n  person(\"Markus\",\"Bonsch\",        role=\"ctb\"),\n  person(\"Hugh\",\"Parsonage\",       role=\"ctb\"),\n  person(\"Scott\",\"Ritchie\",        role=\"ctb\"),\n  person(\"Kun\",\"Ren\",              role=\"ctb\"),\n  person(\"Xianying\",\"Tan\",         role=\"ctb\"),\n  person(\"Rick\",\"Saporta\",         role=\"ctb\"),\n  person(\"Otto\",\"Seiskari\",        role=\"ctb\"),\n  person(\"Xianghui\",\"Dong\",        role=\"ctb\"),\n  person(\"Michel\",\"Lang\",          role=\"ctb\"),\n  person(\"Watal\",\"Iwasaki\",        role=\"ctb\"),\n  person(\"Seth\",\"Wenchel\",         role=\"ctb\"),\n  person(\"Karl\",\"Broman\",          role=\"ctb\"),\n  person(\"Tobias\",\"Schmidt\",       role=\"ctb\"),\n  person(\"David\",\"Arenburg\",       role=\"ctb\"),\n  person(\"Ethan\",\"Smith\",          role=\"ctb\"),\n  person(\"Francois\",\"Cocquemas\",   role=\"ctb\"),\n  person(\"Matthieu\",\"Gomez\",       role=\"ctb\"),\n  person(\"Philippe\",\"Chataignon\",  role=\"ctb\"),\n  person(\"Nello\",\"Blaser\",         role=\"ctb\"),\n  person(\"Dmitry\",\"Selivanov\",     role=\"ctb\"),\n  person(\"Andrey\",\"Riabushenko\",   role=\"ctb\"),\n  person(\"Cheng\",\"Lee\",            role=\"ctb\"),\n  person(\"Declan\",\"Groves\",        role=\"ctb\"),\n  person(\"Daniel\",\"Possenriede\",   role=\"ctb\"),\n  person(\"Felipe\",\"Parages\",       role=\"ctb\"),\n  person(\"Denes\",\"Toth\",           role=\"ctb\"),\n  person(\"Mus\",\"Yaramaz-David\",    role=\"ctb\"),\n  person(\"Ayappan\",\"Perumal\",      role=\"ctb\"),\n  person(\"James\",\"Sams\",           role=\"ctb\"),\n  person(\"Martin\",\"Morgan\",        role=\"ctb\"),\n  person(\"Michael\",\"Quinn\",        role=\"ctb\"),\n  person(\"@javrucebo\",\"\",          role=\"ctb\"),\n  person(\"@marc-outins\",\"\",        role=\"ctb\"),\n  person(\"Roy\",\"Storey\",           role=\"ctb\"),\n  person(\"Manish\",\"Saraswat\",      role=\"ctb\"),\n  person(\"Morgan\",\"Jacob\",         role=\"ctb\"),\n  person(\"Michael\",\"Schubmehl\",    role=\"ctb\"),\n  person(\"Davis\",\"Vaughan\",        role=\"ctb\"),\n  person(\"Toby\",\"Hocking\",         role=\"ctb\"),\n  person(\"Leonardo\",\"Silvestri\",   role=\"ctb\"),\n  person(\"Tyson\",\"Barrett\",        role=\"ctb\"),\n  person(\"Jim\",\"Hester\",           role=\"ctb\"),\n  person(\"Anthony\",\"Damico\",       role=\"ctb\"),\n  person(\"Sebastian\",\"Freundt\",    role=\"ctb\"),\n  person(\"David\",\"Simons\",         role=\"ctb\"),\n  person(\"Elliott\",\"Sales de Andrade\", role=\"ctb\"),\n  person(\"Cole\",\"Miller\",          role=\"ctb\"),\n  person(\"Jens Peder\",\"Meldgaard\", role=\"ctb\"),\n  person(\"Vaclav\",\"Tlapak\",        role=\"ctb\"),\n  person(\"Kevin\",\"Ushey\",          role=\"ctb\"),\n  person(\"Dirk\",\"Eddelbuettel\",    role=\"ctb\"),\n  person(\"Ben\",\"Schwen\",           role=\"ctb\"))",
         "Depends": "R (>= 3.1.0)",
         "Imports": "methods",
         "Suggests": "bit64 (>= 4.0.0), bit (>= 4.0.4), curl, R.utils, xts,\nnanotime, zoo (>= 1.8-1), yaml, knitr, rmarkdown",
         "SystemRequirements": "zlib",
         "Description": "Fast aggregation of large data (e.g. 100GB in RAM), fast ordered joins, fast add/modify/delete of columns by group using no copies at all, list columns, friendly and fast character-separated-value read/write. Offers a natural and flexible syntax, for faster development.",
         "License": "MPL-2.0 | file LICENSE",
-        "URL": "https://Rdatatable.gitlab.io/data.table,\nhttps://github.com/Rdatatable/data.table",
+        "URL": "https://r-datatable.com, https://Rdatatable.gitlab.io/data.table,\nhttps://github.com/Rdatatable/data.table",
         "BugReports": "https://github.com/Rdatatable/data.table/issues",
         "VignetteBuilder": "knitr",
         "ByteCompile": "TRUE",
         "NeedsCompilation": "yes",
-        "Packaged": "2020-12-15 07:08:14 UTC; mdowle",
-        "Author": "Matt Dowle [aut, cre],\n  Arun Srinivasan [aut],\n  Jan Gorecki [ctb],\n  Michael Chirico [ctb],\n  Pasha Stetsenko [ctb],\n  Tom Short [ctb],\n  Steve Lianoglou [ctb],\n  Eduard Antonyan [ctb],\n  Markus Bonsch [ctb],\n  Hugh Parsonage [ctb],\n  Scott Ritchie [ctb],\n  Kun Ren [ctb],\n  Xianying Tan [ctb],\n  Rick Saporta [ctb],\n  Otto Seiskari [ctb],\n  Xianghui Dong [ctb],\n  Michel Lang [ctb],\n  Watal Iwasaki [ctb],\n  Seth Wenchel [ctb],\n  Karl Broman [ctb],\n  Tobias Schmidt [ctb],\n  David Arenburg [ctb],\n  Ethan Smith [ctb],\n  Francois Cocquemas [ctb],\n  Matthieu Gomez [ctb],\n  Philippe Chataignon [ctb],\n  Nello Blaser [ctb],\n  Dmitry Selivanov [ctb],\n  Andrey Riabushenko [ctb],\n  Cheng Lee [ctb],\n  Declan Groves [ctb],\n  Daniel Possenriede [ctb],\n  Felipe Parages [ctb],\n  Denes Toth [ctb],\n  Mus Yaramaz-David [ctb],\n  Ayappan Perumal [ctb],\n  James Sams [ctb],\n  Martin Morgan [ctb],\n  Michael Quinn [ctb],\n  @javrucebo [ctb],\n  @marc-outins [ctb],\n  Roy Storey [ctb],\n  Manish Saraswat [ctb],\n  Morgan Jacob [ctb],\n  Michael Schubmehl [ctb],\n  Davis Vaughan [ctb],\n  Toby Hocking [ctb],\n  Leonardo Silvestri [ctb],\n  Tyson Barrett [ctb],\n  Jim Hester [ctb],\n  Anthony Damico [ctb],\n  Sebastian Freundt [ctb],\n  David Simons [ctb],\n  Elliott Sales de Andrade [ctb],\n  Cole Miller [ctb],\n  Jens Peder Meldgaard [ctb],\n  Vaclav Tlapak [ctb],\n  Kevin Ushey [ctb],\n  Dirk Eddelbuettel [ctb]",
+        "Packaged": "2021-02-20 22:16:11 UTC; mdowle",
+        "Author": "Matt Dowle [aut, cre],\n  Arun Srinivasan [aut],\n  Jan Gorecki [ctb],\n  Michael Chirico [ctb],\n  Pasha Stetsenko [ctb],\n  Tom Short [ctb],\n  Steve Lianoglou [ctb],\n  Eduard Antonyan [ctb],\n  Markus Bonsch [ctb],\n  Hugh Parsonage [ctb],\n  Scott Ritchie [ctb],\n  Kun Ren [ctb],\n  Xianying Tan [ctb],\n  Rick Saporta [ctb],\n  Otto Seiskari [ctb],\n  Xianghui Dong [ctb],\n  Michel Lang [ctb],\n  Watal Iwasaki [ctb],\n  Seth Wenchel [ctb],\n  Karl Broman [ctb],\n  Tobias Schmidt [ctb],\n  David Arenburg [ctb],\n  Ethan Smith [ctb],\n  Francois Cocquemas [ctb],\n  Matthieu Gomez [ctb],\n  Philippe Chataignon [ctb],\n  Nello Blaser [ctb],\n  Dmitry Selivanov [ctb],\n  Andrey Riabushenko [ctb],\n  Cheng Lee [ctb],\n  Declan Groves [ctb],\n  Daniel Possenriede [ctb],\n  Felipe Parages [ctb],\n  Denes Toth [ctb],\n  Mus Yaramaz-David [ctb],\n  Ayappan Perumal [ctb],\n  James Sams [ctb],\n  Martin Morgan [ctb],\n  Michael Quinn [ctb],\n  @javrucebo [ctb],\n  @marc-outins [ctb],\n  Roy Storey [ctb],\n  Manish Saraswat [ctb],\n  Morgan Jacob [ctb],\n  Michael Schubmehl [ctb],\n  Davis Vaughan [ctb],\n  Toby Hocking [ctb],\n  Leonardo Silvestri [ctb],\n  Tyson Barrett [ctb],\n  Jim Hester [ctb],\n  Anthony Damico [ctb],\n  Sebastian Freundt [ctb],\n  David Simons [ctb],\n  Elliott Sales de Andrade [ctb],\n  Cole Miller [ctb],\n  Jens Peder Meldgaard [ctb],\n  Vaclav Tlapak [ctb],\n  Kevin Ushey [ctb],\n  Dirk Eddelbuettel [ctb],\n  Ben Schwen [ctb]",
         "Maintainer": "Matt Dowle <mattjdowle@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-12-30 15:50:03 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-01-05 08:23:39 UTC; unix"
+        "Date/Publication": "2021-02-21 06:00:02 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:49:50 UTC; unix"
       }
     },
     "datapackcommons": {
-      "Source": "github",
-      "Repository": null,
-      "GithubRepo": "data-pack-commons",
-      "GithubUsername": "pepfar-datim",
-      "GithubRef": "master",
-      "GithubSha1": "60ff42a1fd417ff0805a7b083d41764a0c6b0267",
+      "Source": "PEPFAR",
+      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
       "description": {
         "Package": "datapackcommons",
         "Type": "Package",
         "Title": "Common Utilities for with with the PEPFAR DataPack",
-        "Version": "0.2.3",
         "Author": "Who wrote it",
         "Maintainer": "The package maintainer <yourself@somewhere.net>",
         "Description": "More about what it does (maybe more than one line)\n    Use four spaces when indenting paragraphs within the Description.",
@@ -770,31 +663,22 @@
         "Encoding": "UTF-8",
         "LazyData": "true",
         "URL": "https://github.com/pepfar-datim/data-pack-commons",
-        "Imports": "assertthat,\ndplyr,\nglue,\nhttr,\njsonlite,\nlubridate,\nmagrittr,\nplyr,\npurrr,\nreadr,\nrlist,\nstringr,\ntibble,\ntidyr",
-        "Suggests": "doMC,\nhttptest,\ntestthat,\ndatimvalidation",
+        "Imports": "assertthat, dplyr, glue, httr, jsonlite, lubridate, magrittr,\nplyr, purrr, readr, rlist, stringr, tibble, tidyr",
+        "Suggests": "doMC, httptest, testthat, datimvalidation",
         "RoxygenNote": "7.1.1",
         "Depends": "R (>= 2.10)",
-        "Built": "R 3.6.3; ; 2021-04-15 05:23:24 UTC; unix",
-        "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteUsername": "pepfar-datim",
-        "RemoteRepo": "data-pack-commons",
-        "RemoteRef": "master",
+        "Repository": "RSPM",
         "RemoteSha": "60ff42a1fd417ff0805a7b083d41764a0c6b0267",
-        "GithubHost": "api.github.com",
-        "GithubRepo": "data-pack-commons",
-        "GithubUsername": "pepfar-datim",
-        "GithubRef": "master",
-        "GithubSHA1": "60ff42a1fd417ff0805a7b083d41764a0c6b0267"
+        "Version": "0.2.3.0.0.0.1618420532",
+        "Date": "2021-04-14",
+        "NeedsCompilation": "no",
+        "Packaged": "2021-04-14 19:00:06 UTC; root",
+        "Built": "R 3.6.3; ; 2021-04-15 08:59:16 UTC; unix"
       }
     },
     "datapackr": {
       "Source": "PEPFAR",
       "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -812,74 +696,58 @@
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
         "Repository": "RSPM",
-        "RemoteSha": "7df57f5631fe873202b8f26fb514e35ea4a6f983",
-        "Version": "4.3.2.0.0.0.1617189324",
-        "Date": "2021-3-31",
+        "RemoteSha": "72d5cee7fd2fd91b324e30d37cb6cb7342c504fe",
+        "Version": "4.3.5.0.0.0.1618473490",
+        "Date": "2021-4-15",
         "NeedsCompilation": "no",
-        "Packaged": "2021-03-31 11:20:24 UTC; root",
+        "Packaged": "2021-04-15 08:03:02 UTC; root",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  William Shiflett [ctb],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Max Chandler [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 3.6.3; ; 2021-03-31 11:31:23 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-04-15 08:59:26 UTC; unix"
       }
     },
     "datimutils": {
-      "Source": "github",
-      "Repository": null,
-      "GithubRepo": "datimutils",
-      "GithubUsername": "pepfar-datim",
-      "GithubRef": "master",
-      "GithubSha1": "85195e3386904d8ca37ec9538554549051ea7e7d",
+      "Source": "PEPFAR",
+      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
       "description": {
         "Package": "datimutils",
         "Type": "Package",
         "Title": "Utilities for interacting with the DATIM api from R",
-        "Version": "0.1.1",
-        "Date": "2019-09-11",
         "Authors@R": "\n    c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Maxwell\", \"Chandler\", email = \"mchandler@baosystems.com\",\n        role = c(\"aut\"))\n  )",
         "Description": "General utilities for interacting with the DATIM api from R.",
         "URL": "https://github.com/pepfar-datim/datimutils",
         "BugReports": "https://github.com/pepfar-datim/datimutils",
         "Depends": "R (>= 3.6.0)",
-        "Imports": "dplyr (>= 0.8.3),\ntidyr (>= 0.8.3),\nreadr (>= 1.3.1),\njsonlite (>= 1.6),\npurrr (>= 0.3.2),\ntibble (>= 2.1.1),\nstringr (>= 1.4.0),\nstringi (>= 1.4.3),\nhttr (>= 1.4.0),\nrlist (>= 0.4.6.1),\nmagrittr (>= 1.5),\nkeyring,\nlazyeval,\nstats,\nlubridate,\ndata.table,\ngetPass,\nrlang",
-        "Suggests": "devtools (>= 2.0.1),\nhttptest,\nknitr,\nrmarkdown,\ntestthat (>= 2.1.0)",
+        "Imports": "dplyr (>= 0.8.3), tidyr (>= 0.8.3), readr (>= 1.3.1), jsonlite\n(>= 1.6), purrr (>= 0.3.2), tibble (>= 2.1.1), stringr (>=\n1.4.0), stringi (>= 1.4.3), httr (>= 1.4.0), rlist (>=\n0.4.6.1), magrittr (>= 1.5), keyring, lazyeval, stats,\nlubridate, data.table, getPass, rlang",
+        "Suggests": "devtools (>= 2.0.1), httptest, knitr, rmarkdown, testthat (>=\n2.1.0)",
         "License": "GPL-3 + file LICENSE",
         "Encoding": "UTF-8",
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
         "VignetteBuilder": "knitr",
+        "Repository": "RSPM",
+        "RemoteSha": "85195e3386904d8ca37ec9538554549051ea7e7d",
+        "Version": "0.1.1.0.0.0.1609918855",
+        "Date": "2019-09-11",
+        "NeedsCompilation": "no",
+        "Packaged": "2021-01-06 07:45:42 UTC; root",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut],\n  Sam Garman [aut],\n  Maxwell Chandler [aut]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 3.6.3; ; 2021-01-18 11:40:19 UTC; unix",
-        "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteUsername": "pepfar-datim",
-        "RemoteRepo": "datimutils",
-        "RemoteRef": "master",
-        "RemoteSha": "85195e3386904d8ca37ec9538554549051ea7e7d",
-        "GithubHost": "api.github.com",
-        "GithubRepo": "datimutils",
-        "GithubUsername": "pepfar-datim",
-        "GithubRef": "master",
-        "GithubSHA1": "85195e3386904d8ca37ec9538554549051ea7e7d"
+        "Built": "R 3.6.3; ; 2021-04-15 08:59:19 UTC; unix"
       }
     },
     "datimvalidation": {
-      "Source": "github",
-      "Repository": null,
-      "GithubRepo": "datim-validation",
-      "GithubUsername": "jason-p-pickering",
-      "GithubRef": "master",
-      "GithubSha1": "61e5ff51d8f31f786c765915c5b0b8d28a52109e",
+      "Source": "PEPFAR",
+      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
       "description": {
         "Package": "datimvalidation",
         "Type": "Package",
         "Title": "External Validation Routines for Data Payloads in DATIM",
-        "Version": "1.0.118",
-        "Date": "2021-03-22",
         "Author": "Jason P. Pickering",
         "Maintainer": "Jason P. Pickering <jason.p.pickering@gmail.com>",
         "Description": "A comprehensive set of tools to validate data payloads\n        intended for import into 'DATIM' <https://www.datim.org/>.\n        DATIM is the 'PEPFAR' <https://www.state.gov/pepfar/> specific\n        instance of 'DHIS2' <https://www.dhis2.org/>. These scripts are\n        provided for the 'PEPFAR' data exchange community in order to\n        validate their prospective data payloads prior to submission\n        for import.",
         "License": "BSD_3_clause + file LICENSE",
+        "Remotes": "pepfar-datim/datimutils",
         "SystemRequirements": "Active user account on 'DATIM'\n<https://www.datim.org/>",
         "URL": "https://github.com/jason-p-pickering/datim-validation",
         "BugReports": "https://github.com/jason-p-pickering/datim-validation/issues",
@@ -889,32 +757,23 @@
         "Suggests": "doMC (>= 1.3.5), foreach (>= 1.4.4), httptest (>= 3.2.2),\nknitr (>= 1.21), methods, rmarkdown (>= 1.11), roxygen2 (>=\n6.1.1), tcltk, testthat (>= 2.0.1), covr (>= 3.2.1), stringi\n(>= 1.3.1), rprojroot (>= 1.3-2)",
         "VignetteBuilder": "knitr",
         "RoxygenNote": "7.1.1",
-        "Built": "R 3.6.3; ; 2021-03-30 08:40:19 UTC; unix",
-        "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteUsername": "jason-p-pickering",
-        "RemoteRepo": "datim-validation",
-        "RemoteRef": "master",
+        "Repository": "RSPM",
         "RemoteSha": "61e5ff51d8f31f786c765915c5b0b8d28a52109e",
-        "GithubHost": "api.github.com",
-        "GithubRepo": "datim-validation",
-        "GithubUsername": "jason-p-pickering",
-        "GithubRef": "master",
-        "GithubSHA1": "61e5ff51d8f31f786c765915c5b0b8d28a52109e"
+        "Version": "1.0.118.0.0.0.1617007828",
+        "Date": "2021-03-22",
+        "NeedsCompilation": "no",
+        "Packaged": "2021-03-29 08:51:01 UTC; root",
+        "Built": "R 3.6.3; ; 2021-04-15 08:59:21 UTC; unix"
       }
     },
     "desc": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "desc",
         "Title": "Manipulate DESCRIPTION Files",
-        "Version": "1.2.0",
-        "Authors@R": "c(\n    person(\"Gábor\", \"Csárdi\",, \"csardi.gabor@gmail.com\", role = c(\"aut\", \"cre\")),\n    person(\"Kirill\", \"Müller\", role = c(\"aut\")),\n    person(\"Jim\", \"Hester\", email = \"james.f.hester@gmail.com\", role = c(\"aut\")))",
+        "Version": "1.3.0",
+        "Authors@R": "\n    c(person(given = \"Gábor\",\n             family = \"Csárdi\",\n             role = c(\"aut\", \"cre\"),\n             email = \"csardi.gabor@gmail.com\"),\n      person(given = \"Kirill\",\n             family = \"Müller\",\n             role = \"aut\"),\n      person(given = \"Jim\",\n             family = \"Hester\",\n             role = \"aut\",\n             email = \"james.f.hester@gmail.com\"),\n      person(given = \"Maëlle\",\n             family = \"Salmon\",\n             role = \"ctb\",\n             comment = c(ORCID = \"0000-0002-2815-0399\")))",
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Description": "Tools to read, write, create, and manipulate DESCRIPTION files.\n    It is intended for packages that create or manipulate other packages.",
         "License": "MIT + file LICENSE",
@@ -922,60 +781,53 @@
         "URL": "https://github.com/r-lib/desc#readme",
         "BugReports": "https://github.com/r-lib/desc/issues",
         "Depends": "R (>= 3.1.0)",
-        "Suggests": "covr, testthat, whoami, withr",
-        "Imports": "assertthat, utils, R6, crayon, rprojroot",
+        "Suggests": "covr, testthat, whoami, withr, spelling, gh",
+        "Imports": "utils, R6, crayon, rprojroot",
         "Encoding": "UTF-8",
-        "RoxygenNote": "6.0.1.9000",
+        "RoxygenNote": "7.1.1.9000",
         "Collate": "'assertions.R' 'authors-at-r.R' 'built.R' 'classes.R'\n'collate.R' 'constants.R' 'deps.R' 'description.R' 'encoding.R'\n'latex.R' 'non-oo-api.R' 'package-archives.R' 'read.R'\n'remotes.R' 'str.R' 'syntax_checks.R' 'urls.R' 'utils.R'\n'validate.R' 'version.R'",
+        "Language": "en-US",
         "NeedsCompilation": "no",
-        "Packaged": "2018-05-01 20:22:08 UTC; gaborcsardi",
-        "Author": "Gábor Csárdi [aut, cre],\n  Kirill Müller [aut],\n  Jim Hester [aut]",
+        "Packaged": "2021-03-05 18:50:38 UTC; gaborcsardi",
+        "Author": "Gábor Csárdi [aut, cre],\n  Kirill Müller [aut],\n  Jim Hester [aut],\n  Maëlle Salmon [ctb] (<https://orcid.org/0000-0002-2815-0399>)",
         "Repository": "CRAN",
-        "Date/Publication": "2018-05-01 20:48:05 UTC",
-        "Built": "R 3.6.0; ; 2019-02-15 12:17:08 UTC; unix"
+        "Date/Publication": "2021-03-05 19:30:02 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:53:29 UTC; unix"
       }
     },
     "diffobj": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "diffobj",
         "Type": "Package",
         "Title": "Diffs for R Objects",
         "Description": "Generate a colorized diff of two R objects for an intuitive\n    visualization of their differences.",
-        "Version": "0.3.3",
+        "Version": "0.3.4",
         "Authors@R": "c(\n    person(\n    \"Brodie\", \"Gaslam\", email=\"brodie.gaslam@yahoo.com\",\n    role=c(\"aut\", \"cre\")),\n    person(\n    \"Michael B.\", \"Allen\", email=\"ioplex@gmail.com\",\n    role=c(\"ctb\", \"cph\"),\n    comment=\"Original C implementation of Myers Diff Algorithm\"))",
         "Depends": "R (>= 3.1.0)",
         "License": "GPL (>= 2)",
         "LazyData": "true",
         "URL": "https://github.com/brodieG/diffobj",
         "BugReports": "https://github.com/brodieG/diffobj/issues",
-        "RoxygenNote": "7.1.0",
+        "RoxygenNote": "7.1.1",
         "VignetteBuilder": "knitr",
         "Encoding": "UTF-8",
         "Suggests": "knitr, rmarkdown",
         "Collate": "'capt.R' 'options.R' 'pager.R' 'check.R' 'finalizer.R'\n'misc.R' 'html.R' 'styles.R' 's4.R' 'core.R' 'diff.R' 'get.R'\n'guides.R' 'hunks.R' 'layout.R' 'myerssimple.R' 'rdiff.R'\n'rds.R' 'set.R' 'subset.R' 'summmary.R' 'system.R' 'text.R'\n'tochar.R' 'trim.R' 'word.R'",
         "Imports": "crayon (>= 1.3.2), tools, methods, utils, stats",
         "NeedsCompilation": "yes",
-        "Packaged": "2021-01-06 01:37:42 UTC; bg",
+        "Packaged": "2021-03-14 13:45:21 UTC; bg",
         "Author": "Brodie Gaslam [aut, cre],\n  Michael B. Allen [ctb, cph] (Original C implementation of Myers Diff\n    Algorithm)",
         "Maintainer": "Brodie Gaslam <brodie.gaslam@yahoo.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-07 07:00:48 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-02-05 08:25:55 UTC; unix"
+        "Date/Publication": "2021-03-22 22:30:24 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:53:32 UTC; unix"
       }
     },
     "digest": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "digest",
         "Author": "Dirk Eddelbuettel <edd@debian.org> with contributions \n by Antoine Lucas, Jarek Tuszynski, Henrik Bengtsson, Simon Urbanek,\n Mario Frasca, Bryan Lewis, Murray Stokely, Hannes Muehleisen,\n Duncan Murdoch, Jim Hester, Wush Wu, Qiang Kou, Thierry Onkelinx, \n Michel Lang, Viliam Simko, Kurt Hornik, Radford Neal, Kendon Bell,\n Matthew de Queljoe, Ion Suruceanu, Bill Denney, Dirk Schumacher,\n and Winston Chang.",
@@ -1001,10 +853,6 @@
     "doMC": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "doMC",
         "Type": "Package",
@@ -1029,43 +877,36 @@
     "dplyr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "dplyr",
         "Title": "A Grammar of Data Manipulation",
-        "Version": "1.0.4",
+        "Version": "1.0.5",
         "Authors@R": "\n    c(person(given = \"Hadley\",\n             family = \"Wickham\",\n             role = c(\"aut\", \"cre\"),\n             email = \"hadley@rstudio.com\",\n             comment = c(ORCID = \"0000-0003-4757-117X\")),\n      person(given = \"Romain\",\n             family = \"François\",\n             role = \"aut\",\n             comment = c(ORCID = \"0000-0002-2444-4226\")),\n      person(given = \"Lionel\",\n             family = \"Henry\",\n             role = \"aut\"),\n      person(given = \"Kirill\",\n             family = \"Müller\",\n             role = \"aut\",\n             comment = c(ORCID = \"0000-0002-1416-3412\")),\n      person(given = \"RStudio\",\n             role = c(\"cph\", \"fnd\")))",
         "Description": "A fast, consistent tool for working with data frame\n    like objects, both in memory and out of memory.",
         "License": "MIT + file LICENSE",
         "URL": "https://dplyr.tidyverse.org, https://github.com/tidyverse/dplyr",
         "BugReports": "https://github.com/tidyverse/dplyr/issues",
         "Depends": "R (>= 3.3.0)",
-        "Imports": "ellipsis, generics, glue (>= 1.3.2), lifecycle (>= 0.2.0),\nmagrittr (>= 1.5), methods, R6, rlang (>= 0.4.9), tibble (>=\n2.1.3), tidyselect (>= 1.1.0), utils, vctrs (>= 0.3.5)",
-        "Suggests": "bench, broom, callr, covr, DBI, dbplyr (>= 1.4.3), knitr,\nLahman, lobstr, microbenchmark, nycflights13, purrr, rmarkdown,\nRMySQL, RPostgreSQL, RSQLite, testthat (>= 2.1.0), withr",
+        "Imports": "ellipsis, generics, glue (>= 1.3.2), lifecycle (>= 1.0.0),\nmagrittr (>= 1.5), methods, R6, rlang (>= 0.4.10), tibble (>=\n2.1.3), tidyselect (>= 1.1.0), utils, vctrs (>= 0.3.5)",
+        "Suggests": "bench, broom, callr, covr, DBI, dbplyr (>= 1.4.3), knitr,\nLahman, lobstr, microbenchmark, nycflights13, purrr, rmarkdown,\nRMySQL, RPostgreSQL, RSQLite, testthat (>= 3.0.2), tidyr, withr",
         "VignetteBuilder": "knitr",
         "Encoding": "UTF-8",
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
+        "Config/testthat/edition": "3",
         "NeedsCompilation": "yes",
-        "Packaged": "2021-02-01 10:59:21 UTC; romainfrancois",
+        "Packaged": "2021-02-19 10:54:12 UTC; romainfrancois",
         "Author": "Hadley Wickham [aut, cre] (<https://orcid.org/0000-0003-4757-117X>),\n  Romain François [aut] (<https://orcid.org/0000-0002-2444-4226>),\n  Lionel Henry [aut],\n  Kirill Müller [aut] (<https://orcid.org/0000-0002-1416-3412>),\n  RStudio [cph, fnd]",
         "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-02-02 17:10:03 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-02-05 07:31:19 UTC; unix"
+        "Date/Publication": "2021-03-05 11:00:02 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:58:32 UTC; unix"
       }
     },
     "ellipsis": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "ellipsis",
         "Version": "0.3.1",
@@ -1093,10 +934,6 @@
     "evaluate": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "evaluate",
         "Type": "Package",
@@ -1124,10 +961,6 @@
     "fansi": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "fansi",
         "Title": "ANSI Control Sequence Aware String Functions",
@@ -1156,40 +989,32 @@
     "farver": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "farver",
         "Type": "Package",
         "Title": "High Performance Colour Space Manipulation",
-        "Version": "2.0.3",
+        "Version": "2.1.0",
         "Authors@R": "\n    c(person(given = \"Thomas Lin\",\n             family = \"Pedersen\",\n             role = c(\"cre\", \"aut\"),\n             email = \"thomasp85@gmail.com\",\n             comment = c(ORCID = \"0000-0002-5147-4711\")),\n      person(given = \"Berendea\",\n             family = \"Nicolae\",\n             role = \"aut\",\n             comment = \"Author of the ColorSpace C++ library\"),\n      person(given = \"Romain\", \n             family = \"François\", \n             role = \"aut\", \n             email = \"romain@purrple.cat\",\n             comment = c(ORCID = \"0000-0002-2444-4226\")) \n      )",
         "Maintainer": "Thomas Lin Pedersen <thomasp85@gmail.com>",
         "Description": "The encoding of colour can be handled in many different ways, using\n    different colour spaces. As different colour spaces have different uses,\n    efficient conversion between these representations are important. The \n    'farver' package provides a set of functions that gives access to very fast\n    colour space conversion and comparisons implemented in C++, and offers \n    speed improvements over the 'convertColor' function in the 'grDevices' \n    package.",
         "License": "MIT + file LICENSE",
         "Encoding": "UTF-8",
         "SystemRequirements": "C++11",
-        "RoxygenNote": "7.0.2",
+        "RoxygenNote": "7.1.1",
         "URL": "https://farver.data-imaginist.com,\nhttps://github.com/thomasp85/farver",
         "BugReports": "https://github.com/thomasp85/farver/issues",
         "Suggests": "testthat (>= 2.1.0), covr",
         "NeedsCompilation": "yes",
-        "Packaged": "2020-01-16 10:42:44 UTC; thomas",
+        "Packaged": "2021-02-28 19:00:15 UTC; thomas",
         "Author": "Thomas Lin Pedersen [cre, aut]\n    (<https://orcid.org/0000-0002-5147-4711>),\n  Berendea Nicolae [aut] (Author of the ColorSpace C++ library),\n  Romain François [aut] (<https://orcid.org/0000-0002-2444-4226>)",
         "Repository": "CRAN",
-        "Date/Publication": "2020-01-16 13:40:07 UTC",
-        "Built": "R 3.6.2; x86_64-pc-linux-gnu; 2020-01-30 10:48:25 UTC; unix"
+        "Date/Publication": "2021-02-28 19:30:02 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:50:14 UTC; unix"
       }
     },
     "fastmap": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "fastmap",
         "Title": "Fast Data Structures",
@@ -1215,10 +1040,6 @@
     "filelock": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "filelock",
         "Title": "Portable File Locking",
@@ -1243,10 +1064,6 @@
     "foreach": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "foreach",
         "Type": "Package",
@@ -1275,10 +1092,6 @@
     "fs": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "fs",
         "Title": "Cross-Platform File System Operations Based on 'libuv'",
@@ -1311,10 +1124,6 @@
     "generics": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "generics",
         "Title": "Common S3 Generics not Provided by Base R Methods Related to\nModel Fitting",
@@ -1342,10 +1151,6 @@
     "getPass": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "getPass",
         "Type": "Package",
@@ -1373,10 +1178,6 @@
     "glue": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "glue",
         "Title": "Interpreted String Literals",
@@ -1406,10 +1207,6 @@
     "hms": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "hms",
         "Title": "Pretty Time of Day",
@@ -1438,10 +1235,6 @@
     "htmltools": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "htmltools",
         "Type": "Package",
@@ -1471,10 +1264,6 @@
     "htmlwidgets": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "htmlwidgets",
         "Type": "Package",
@@ -1502,10 +1291,6 @@
     "httpuv": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "httpuv",
         "Type": "Package",
@@ -1536,10 +1321,6 @@
     "httr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "httr",
         "Title": "Tools for Working with URLs and HTTP",
@@ -1567,10 +1348,6 @@
     "ini": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "ini",
         "Type": "Package",
@@ -1596,10 +1373,6 @@
     "iterators": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "iterators",
         "Type": "Package",
@@ -1623,10 +1396,6 @@
     "jquerylib": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "jquerylib",
         "Title": "Obtain 'jQuery' as an HTML Dependency Object",
@@ -1651,10 +1420,6 @@
     "jsonlite": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "jsonlite",
         "Version": "1.7.2",
@@ -1681,10 +1446,6 @@
     "keyring": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "keyring",
         "Title": "Access the System Credential Store from R",
@@ -1713,10 +1474,6 @@
     "labeling": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "labeling",
         "Type": "Package",
@@ -1739,10 +1496,6 @@
     "later": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "later",
         "Type": "Package",
@@ -1770,10 +1523,6 @@
     "lazyeval": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "lazyeval",
         "Version": "0.2.2",
@@ -1798,47 +1547,40 @@
     "lifecycle": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "lifecycle",
         "Title": "Manage the Life Cycle of your Package Functions",
-        "Version": "0.2.0",
-        "Authors@R": "\n    c(\n      person(given = \"Lionel\", family = \"Henry\", role = c(\"aut\", \"cre\"), email = \"lionel@rstudio.com\"),\n      person(given = \"RStudio\", role = \"cph\")\n    )",
-        "Description": "Manage the life cycle of your exported functions with\n    shared conventions, documentation badges, and non-invasive\n    deprecation warnings. The 'lifecycle' package defines four\n    development stages (experimental, maturing, stable, and\n    questioning) and three deprecation stages (soft-deprecated,\n    deprecated, and defunct). It makes it easy to insert badges\n    corresponding to these stages in your documentation. Usage of\n    deprecated functions are signalled with increasing levels of\n    non-invasive verbosity.",
-        "License": "GPL-3",
-        "Encoding": "UTF-8",
-        "LazyData": "true",
-        "Depends": "R (>= 3.2)",
-        "Imports": "glue, rlang (>= 0.4.0)",
-        "Suggests": "covr, crayon, knitr, rmarkdown, testthat (>= 2.1.0)",
-        "RoxygenNote": "7.0.2",
+        "Version": "1.0.0",
+        "Authors@R": "\n    c(person(given = \"Lionel\",\n             family = \"Henry\",\n             role = c(\"aut\", \"cre\"),\n             email = \"lionel@rstudio.com\"),\n      person(given = \"Hadley\",\n             family = \"Wickham\",\n             role = \"aut\",\n             email = \"hadley@rstudio.com\",\n             comment = c(ORCID = \"0000-0003-4757-117X\")),\n      person(given = \"RStudio\",\n             role = \"cph\"))",
+        "Description": "Manage the life cycle of your exported functions\n    with shared conventions, documentation badges, and user-friendly\n    deprecation warnings.",
+        "License": "MIT + file LICENSE",
         "URL": "https://lifecycle.r-lib.org/, https://github.com/r-lib/lifecycle",
         "BugReports": "https://github.com/r-lib/lifecycle/issues",
+        "Depends": "R (>= 3.3)",
+        "Imports": "glue, rlang (>= 0.4.10)",
+        "Suggests": "covr, crayon, knitr, rmarkdown, testthat (>= 3.0.1), tibble",
         "VignetteBuilder": "knitr",
+        "Config/testthat/edition": "3",
+        "Encoding": "UTF-8",
+        "LazyData": "true",
+        "RoxygenNote": "7.1.1",
         "NeedsCompilation": "no",
-        "Packaged": "2020-03-06 15:50:11 UTC; lionel",
-        "Author": "Lionel Henry [aut, cre],\n  RStudio [cph]",
+        "Packaged": "2021-02-15 13:48:33 UTC; hadley",
+        "Author": "Lionel Henry [aut, cre],\n  Hadley Wickham [aut] (<https://orcid.org/0000-0003-4757-117X>),\n  RStudio [cph]",
         "Maintainer": "Lionel Henry <lionel@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-03-06 16:20:02 UTC",
-        "Built": "R 3.6.3; ; 2020-08-12 12:56:51 UTC; unix"
+        "Date/Publication": "2021-02-15 15:20:06 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:51:07 UTC; unix"
       }
     },
     "lubridate": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "lubridate",
         "Title": "Make Dealing with Dates a Little Easier",
-        "Version": "1.7.9.2",
+        "Version": "1.7.10",
         "Authors@R": "\n    c(person(given = \"Vitalie\",\n             family = \"Spinu\",\n             role = c(\"aut\", \"cre\"),\n             email = \"spinuvit@gmail.com\"),\n      person(given = \"Garrett\",\n             family = \"Grolemund\",\n             role = \"aut\"),\n      person(given = \"Hadley\",\n             family = \"Wickham\",\n             role = \"aut\"),\n      person(given = \"Ian\",\n             family = \"Lyttle\",\n             role = \"ctb\"),\n      person(given = \"Imanuel\",\n             family = \"Costigan\",\n             role = \"ctb\"),\n      person(given = \"Jason\",\n             family = \"Law\",\n             role = \"ctb\"),\n      person(given = \"Doug\",\n             family = \"Mitarotonda\",\n             role = \"ctb\"),\n      person(given = \"Joseph\",\n             family = \"Larmarange\",\n             role = \"ctb\"),\n      person(given = \"Jonathan\",\n             family = \"Boiser\",\n             role = \"ctb\"),\n      person(given = \"Chel Hee\",\n             family = \"Lee\",\n             role = \"ctb\"),\n      person(\"Google Inc.\", role = c(\"ctb\", \"cph\")))",
         "Maintainer": "Vitalie Spinu <spinuvit@gmail.com>",
         "Description": "Functions to work with date-times and time-spans:\n    fast and user friendly parsing of date-time data, extraction and\n    updating of components of a date-time (years, months, days, hours,\n    minutes, and seconds), algebraic manipulation on date-time and\n    time-span objects. The 'lubridate' package has a consistent and\n    memorable syntax that makes working with dates easy and fun.  Parts of\n    the 'CCTZ' source code, released under the Apache 2.0 License, are\n    included in this package. See <https://github.com/google/cctz> for\n    more details.",
@@ -1857,20 +1599,16 @@
         "SystemRequirements": "A system with zoneinfo data (e.g.\n/usr/share/zoneinfo) as well as a recent-enough C++11 compiler\n(such as g++-4.8 or later). On Windows the zoneinfo included\nwith R is used.",
         "Collate": "'Dates.r' 'POSIXt.r' 'RcppExports.R' 'util.r' 'parse.r'\n'timespans.r' 'intervals.r' 'difftimes.r' 'durations.r'\n'periods.r' 'accessors-date.R' 'accessors-day.r'\n'accessors-dst.r' 'accessors-hour.r' 'accessors-minute.r'\n'accessors-month.r' 'accessors-quarter.r' 'accessors-second.r'\n'accessors-tz.r' 'accessors-week.r' 'accessors-year.r'\n'am-pm.r' 'time-zones.r' 'numeric.r' 'coercion.r' 'constants.r'\n'cyclic_encoding.r' 'data.r' 'decimal-dates.r' 'deprecated.r'\n'format_ISO8601.r' 'guess.r' 'hidden.r' 'instants.r'\n'leap-years.r' 'ops-addition.r' 'ops-compare.r'\n'ops-division.r' 'ops-integer-division.r' 'ops-m+.r'\n'ops-modulo.r' 'ops-multiplication.r' 'ops-subtraction.r'\n'package.r' 'pretty.r' 'round.r' 'stamp.r' 'update.r' 'vctrs.R'\n'zzz.R'",
         "NeedsCompilation": "yes",
-        "Packaged": "2020-11-11 19:57:49 UTC; vspinu",
+        "Packaged": "2021-02-26 13:24:01 UTC; vspinu",
         "Author": "Vitalie Spinu [aut, cre],\n  Garrett Grolemund [aut],\n  Hadley Wickham [aut],\n  Ian Lyttle [ctb],\n  Imanuel Costigan [ctb],\n  Jason Law [ctb],\n  Doug Mitarotonda [ctb],\n  Joseph Larmarange [ctb],\n  Jonathan Boiser [ctb],\n  Chel Hee Lee [ctb],\n  Google Inc. [ctb, cph]",
         "Repository": "CRAN",
-        "Date/Publication": "2020-11-13 15:30:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2020-11-24 10:04:49 UTC; unix"
+        "Date/Publication": "2021-02-26 15:00:09 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:51:10 UTC; unix"
       }
     },
     "magrittr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "magrittr",
@@ -1898,15 +1636,11 @@
     "mime": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "mime",
         "Type": "Package",
         "Title": "Map Filenames to MIME Types",
-        "Version": "0.9",
+        "Version": "0.10",
         "Authors@R": "c(\n    person(\"Yihui\", \"Xie\", role = c(\"aut\", \"cre\"), email = \"xie@yihui.name\", comment = c(ORCID = \"0000-0003-0645-5666\")),\n    person(\"Jeffrey\", \"Horner\", role = \"ctb\"),\n    person(\"Beilei\", \"Bian\", role = \"ctb\")\n    )",
         "Description": "Guesses the MIME type from a filename extension using the data\n    derived from /etc/mime.types in UNIX-type systems.",
         "Imports": "tools",
@@ -1914,24 +1648,20 @@
         "URL": "https://github.com/yihui/mime",
         "BugReports": "https://github.com/yihui/mime/issues",
         "LazyData": "TRUE",
-        "RoxygenNote": "7.0.2",
+        "RoxygenNote": "7.1.1",
         "Encoding": "UTF-8",
         "NeedsCompilation": "yes",
-        "Packaged": "2020-02-04 17:11:45 UTC; yihui",
+        "Packaged": "2021-02-12 21:48:56 UTC; yihui",
         "Author": "Yihui Xie [aut, cre] (<https://orcid.org/0000-0003-0645-5666>),\n  Jeffrey Horner [ctb],\n  Beilei Bian [ctb]",
         "Maintainer": "Yihui Xie <xie@yihui.name>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-02-04 18:20:06 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2020-08-12 12:53:02 UTC; unix"
+        "Date/Publication": "2021-02-13 07:30:02 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:52:21 UTC; unix"
       }
     },
     "munsell": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "munsell",
         "Type": "Package",
@@ -1955,10 +1685,6 @@
     "openssl": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "openssl",
         "Type": "Package",
@@ -1987,10 +1713,6 @@
     "openxlsx": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "openxlsx",
@@ -2023,10 +1745,6 @@
     "pacman": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "pacman",
         "Type": "Package",
@@ -2053,44 +1771,36 @@
     "paws": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "paws",
         "Title": "Amazon Web Services Software Development Kit",
-        "Version": "0.1.10",
+        "Version": "0.1.11",
         "Authors@R": "\n    c(person(given = \"David\",\n             family = \"Kretch\",\n             role = c(\"aut\", \"cre\"),\n             email = \"david.kretch@gmail.com\"),\n      person(given = \"Adam\",\n             family = \"Banker\",\n             role = \"aut\",\n             email = \"adam.banker39@gmail.com\"),\n      person(given = \"Amazon.com, Inc.\",\n             role = \"cph\"))",
         "Description": "Interface to Amazon Web Services <https://aws.amazon.com>,\n    including storage, database, and compute services, such as 'Simple\n    Storage Service' ('S3'), 'DynamoDB' 'NoSQL' database, and 'Lambda'\n    functions-as-a-service.",
         "License": "Apache License (>= 2.0)",
         "URL": "https://github.com/paws-r/paws",
         "BugReports": "https://github.com/paws-r/paws/issues",
-        "Imports": "paws.compute (>= 0.1.10), paws.storage (>= 0.1.10),\npaws.database (>= 0.1.10), paws.networking (>= 0.1.10),\npaws.management (>= 0.1.10), paws.machine.learning (>= 0.1.10),\npaws.analytics (>= 0.1.10), paws.security.identity (>= 0.1.10),\npaws.application.integration (>= 0.1.10), paws.cost.management\n(>= 0.1.10), paws.customer.engagement (>= 0.1.10)",
+        "Imports": "paws.compute (>= 0.1.11), paws.storage (>= 0.1.11),\npaws.database (>= 0.1.11), paws.networking (>= 0.1.11),\npaws.management (>= 0.1.11), paws.machine.learning (>= 0.1.11),\npaws.analytics (>= 0.1.11), paws.security.identity (>= 0.1.11),\npaws.application.integration (>= 0.1.11), paws.cost.management\n(>= 0.1.11), paws.customer.engagement (>= 0.1.11)",
         "Suggests": "testthat",
         "Encoding": "UTF-8",
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-17 20:54:49 UTC; david.kretch",
+        "Packaged": "2021-03-13 03:32:32 UTC; david.kretch",
         "Author": "David Kretch [aut, cre],\n  Adam Banker [aut],\n  Amazon.com, Inc. [cph]",
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-17 21:20:02 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 08:33:35 UTC; unix"
+        "Date/Publication": "2021-03-13 23:10:03 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:58:21 UTC; unix"
       }
     },
     "paws.analytics": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "paws.analytics",
         "Title": "Amazon Web Services Analytics Services",
-        "Version": "0.1.10",
+        "Version": "0.1.11",
         "Authors@R": "\n    c(person(given = \"David\",\n             family = \"Kretch\",\n             role = c(\"aut\", \"cre\"),\n             email = \"david.kretch@gmail.com\"),\n      person(given = \"Adam\",\n             family = \"Banker\",\n             role = \"aut\",\n             email = \"adam.banker39@gmail.com\"),\n      person(given = \"Amazon.com, Inc.\",\n             role = \"cph\"))",
         "Description": "Interface to Amazon Web Services 'analytics' services,\n    including 'Elastic MapReduce' 'Hadoop' and 'Spark' big data service,\n    'Elasticsearch' search engine, and more <https://aws.amazon.com/>.",
         "License": "Apache License (>= 2.0)",
@@ -2103,25 +1813,21 @@
         "RoxygenNote": "7.1.1",
         "Collate": "'athena_service.R' 'athena_interfaces.R' 'athena_operations.R'\n'cloudsearch_service.R' 'cloudsearch_interfaces.R'\n'cloudsearch_operations.R' 'cloudsearchdomain_service.R'\n'cloudsearchdomain_interfaces.R'\n'cloudsearchdomain_operations.R' 'datapipeline_service.R'\n'datapipeline_interfaces.R' 'datapipeline_operations.R'\n'elasticsearchservice_service.R'\n'elasticsearchservice_interfaces.R'\n'elasticsearchservice_operations.R' 'emr_service.R'\n'emr_interfaces.R' 'emr_operations.R' 'firehose_service.R'\n'firehose_interfaces.R' 'firehose_operations.R'\n'glue_service.R' 'glue_interfaces.R' 'glue_operations.R'\n'kafka_service.R' 'kafka_interfaces.R' 'kafka_operations.R'\n'kinesis_service.R' 'kinesis_interfaces.R'\n'kinesis_operations.R' 'kinesisanalytics_service.R'\n'kinesisanalytics_interfaces.R' 'kinesisanalytics_operations.R'\n'kinesisanalyticsv2_service.R'\n'kinesisanalyticsv2_interfaces.R'\n'kinesisanalyticsv2_operations.R' 'mturk_service.R'\n'mturk_interfaces.R' 'mturk_operations.R'\n'quicksight_service.R' 'quicksight_interfaces.R'\n'quicksight_operations.R'",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-16 20:40:44 UTC; david.kretch",
+        "Packaged": "2021-03-07 21:05:15 UTC; david.kretch",
         "Author": "David Kretch [aut, cre],\n  Adam Banker [aut],\n  Amazon.com, Inc. [cph]",
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-16 21:00:02 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 08:32:13 UTC; unix"
+        "Date/Publication": "2021-03-07 22:50:05 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:53:44 UTC; unix"
       }
     },
     "paws.application.integration": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "paws.application.integration",
         "Title": "Amazon Web Services Application Integration Services",
-        "Version": "0.1.10",
+        "Version": "0.1.11",
         "Authors@R": "\n    c(person(given = \"David\",\n             family = \"Kretch\",\n             role = c(\"aut\", \"cre\"),\n             email = \"david.kretch@gmail.com\"),\n      person(given = \"Adam\",\n             family = \"Banker\",\n             role = \"aut\",\n             email = \"adam.banker39@gmail.com\"),\n      person(given = \"Amazon.com, Inc.\",\n             role = \"cph\"))",
         "Description": "Interface to Amazon Web Services application integration\n    services, including 'Simple Queue Service' ('SQS') message queue,\n    'Simple Notification Service' ('SNS') publish/subscribe messaging, and\n    more <https://aws.amazon.com/>.",
         "License": "Apache License (>= 2.0)",
@@ -2134,56 +1840,48 @@
         "RoxygenNote": "7.1.1",
         "Collate": "'eventbridge_service.R' 'eventbridge_interfaces.R'\n'eventbridge_operations.R' 'mq_service.R' 'mq_interfaces.R'\n'mq_operations.R' 'sfn_service.R' 'sfn_interfaces.R'\n'sfn_operations.R' 'sns_service.R' 'sns_interfaces.R'\n'sns_operations.R' 'sqs_service.R' 'sqs_interfaces.R'\n'sqs_operations.R' 'swf_service.R' 'swf_interfaces.R'\n'swf_operations.R'",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-16 20:54:35 UTC; david.kretch",
+        "Packaged": "2021-03-09 03:49:06 UTC; david.kretch",
         "Author": "David Kretch [aut, cre],\n  Adam Banker [aut],\n  Amazon.com, Inc. [cph]",
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-16 21:20:02 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 08:33:08 UTC; unix"
+        "Date/Publication": "2021-03-09 14:20:02 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:54:09 UTC; unix"
       }
     },
     "paws.common": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "paws.common",
         "Type": "Package",
         "Title": "Paws Low-Level Amazon Web Services API",
-        "Version": "0.3.8",
+        "Version": "0.3.9",
         "Authors@R": "c(\n        person(\"David\", \"Kretch\", email = \"david.kretch@gmail.com\", role = c(\"aut\", \"cre\")),\n        person(\"Adam\", \"Banker\", email = \"adam.banker39@gmail.com\", role = \"aut\"),\n        person(\"Amazon.com, Inc.\", role = \"cph\")\n    )",
         "Description": "Functions for making low-level API requests to Amazon Web Services\n    <https://aws.amazon.com>. The functions handle building, signing, and\n    sending requests, and receiving responses. They are designed to help build \n    higher-level interfaces to individual services, such as Simple Storage\n    Service (S3).",
         "License": "Apache License (>= 2.0)",
         "Encoding": "UTF-8",
         "LazyData": "true",
         "Imports": "base64enc, digest, httr, ini, jsonlite, methods, utils, xml2",
-        "Suggests": "covr, testthat",
+        "Suggests": "covr, rstudioapi, testthat",
         "SystemRequirements": "pandoc (>= 1.12.3) - http://pandoc.org",
         "RoxygenNote": "7.1.1",
-        "Collate": "'struct.R' 'handlers.R' 'credential_sts.R' 'url.R' 'net.R'\n'credential_providers.R' 'credentials.R' 'client.R' 'config.R'\n'convert.R' 'service.R' 'custom_dynamodb.R' 'custom_rds.R'\n'xmlutil.R' 'util.R' 'stream.R' 'custom_s3.R' 'dateutil.R'\n'error.R' 'handlers_core.R' 'handlers_ec2query.R'\n'handlers_jsonrpc.R' 'handlers_query.R' 'handlers_rest.R'\n'handlers_restjson.R' 'handlers_restxml.R' 'idempotency.R'\n'jsonutil.R' 'populate.R' 'populateutil.R' 'tags.R'\n'queryutil.R' 'request.R' 'signer_v4.R' 'signer_s3.R'\n'signer_s3v4.R' 'signer_v2.R' 'time.R'",
+        "Collate": "'struct.R' 'handlers.R' 'dateutil.R' 'credential_sts.R'\n'url.R' 'net.R' 'credential_providers.R' 'credentials.R'\n'client.R' 'config.R' 'convert.R' 'service.R'\n'custom_dynamodb.R' 'custom_rds.R' 'xmlutil.R' 'util.R'\n'stream.R' 'custom_s3.R' 'error.R' 'handlers_core.R'\n'handlers_ec2query.R' 'handlers_jsonrpc.R' 'handlers_query.R'\n'handlers_rest.R' 'handlers_restjson.R' 'handlers_restxml.R'\n'idempotency.R' 'jsonutil.R' 'populate.R' 'populateutil.R'\n'tags.R' 'queryutil.R' 'request.R' 'signer_v4.R' 'signer_s3.R'\n'signer_s3v4.R' 'signer_v2.R' 'time.R'",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-25 15:27:59 UTC; david.kretch",
+        "Packaged": "2021-02-25 23:13:11 UTC; david.kretch",
         "Author": "David Kretch [aut, cre],\n  Adam Banker [aut],\n  Amazon.com, Inc. [cph]",
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-25 16:00:05 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 07:31:46 UTC; unix"
+        "Date/Publication": "2021-02-26 06:00:16 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:52:28 UTC; unix"
       }
     },
     "paws.compute": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "paws.compute",
         "Title": "Amazon Web Services Compute Services",
-        "Version": "0.1.10",
+        "Version": "0.1.11",
         "Authors@R": "\n    c(person(given = \"David\",\n             family = \"Kretch\",\n             role = c(\"aut\", \"cre\"),\n             email = \"david.kretch@gmail.com\"),\n      person(given = \"Adam\",\n             family = \"Banker\",\n             role = \"aut\",\n             email = \"adam.banker39@gmail.com\"),\n      person(given = \"Amazon.com, Inc.\",\n             role = \"cph\"))",
         "Description": "Interface to Amazon Web Services compute services, including\n    'Elastic Compute Cloud' ('EC2'), 'Lambda' functions-as-a-service,\n    containers, batch processing, and more <https://aws.amazon.com/>.",
         "License": "Apache License (>= 2.0)",
@@ -2196,25 +1894,21 @@
         "RoxygenNote": "7.1.1",
         "Collate": "'batch_service.R' 'batch_interfaces.R' 'batch_operations.R'\n'ec2_service.R' 'ec2_interfaces.R' 'ec2_operations.R'\n'ec2instanceconnect_service.R'\n'ec2instanceconnect_interfaces.R'\n'ec2instanceconnect_operations.R' 'ecr_service.R'\n'ecr_interfaces.R' 'ecr_operations.R' 'ecs_service.R'\n'ecs_interfaces.R' 'ecs_operations.R' 'eks_service.R'\n'eks_interfaces.R' 'eks_operations.R'\n'elasticbeanstalk_service.R' 'elasticbeanstalk_interfaces.R'\n'elasticbeanstalk_operations.R' 'lambda_service.R'\n'lambda_interfaces.R' 'lambda_operations.R'\n'lightsail_service.R' 'lightsail_interfaces.R'\n'lightsail_operations.R'\n'serverlessapplicationrepository_service.R'\n'serverlessapplicationrepository_interfaces.R'\n'serverlessapplicationrepository_operations.R'",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-16 21:23:22 UTC; david.kretch",
+        "Packaged": "2021-03-07 14:16:23 UTC; david.kretch",
         "Author": "David Kretch [aut, cre],\n  Adam Banker [aut],\n  Amazon.com, Inc. [cph]",
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-16 21:50:02 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 08:29:43 UTC; unix"
+        "Date/Publication": "2021-03-07 14:50:02 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:54:18 UTC; unix"
       }
     },
     "paws.cost.management": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "paws.cost.management",
         "Title": "Amazon Web Services Cost Management Services",
-        "Version": "0.1.10",
+        "Version": "0.1.11",
         "Authors@R": "\n    c(person(given = \"David\",\n             family = \"Kretch\",\n             role = c(\"aut\", \"cre\"),\n             email = \"david.kretch@gmail.com\"),\n      person(given = \"Adam\",\n             family = \"Banker\",\n             role = \"aut\",\n             email = \"adam.banker39@gmail.com\"),\n      person(given = \"Amazon.com, Inc.\",\n             role = \"cph\"))",
         "Description": "Interface to Amazon Web Services cost management services,\n    including cost and usage reports, budgets, pricing, and more\n    <https://aws.amazon.com/>.",
         "License": "Apache License (>= 2.0)",
@@ -2227,25 +1921,21 @@
         "RoxygenNote": "7.1.1",
         "Collate": "'budgets_service.R' 'budgets_interfaces.R'\n'budgets_operations.R' 'costandusagereportservice_service.R'\n'costandusagereportservice_interfaces.R'\n'costandusagereportservice_operations.R'\n'costexplorer_service.R' 'costexplorer_interfaces.R'\n'costexplorer_operations.R'\n'marketplacecommerceanalytics_service.R'\n'marketplacecommerceanalytics_interfaces.R'\n'marketplacecommerceanalytics_operations.R'\n'marketplaceentitlementservice_service.R'\n'marketplaceentitlementservice_interfaces.R'\n'marketplaceentitlementservice_operations.R'\n'marketplacemetering_service.R'\n'marketplacemetering_interfaces.R'\n'marketplacemetering_operations.R' 'pricing_service.R'\n'pricing_interfaces.R' 'pricing_operations.R'",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-16 21:36:17 UTC; david.kretch",
+        "Packaged": "2021-03-09 05:28:50 UTC; david.kretch",
         "Author": "David Kretch [aut, cre],\n  Adam Banker [aut],\n  Amazon.com, Inc. [cph]",
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-16 22:00:03 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 08:33:15 UTC; unix"
+        "Date/Publication": "2021-03-09 07:50:25 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:54:57 UTC; unix"
       }
     },
     "paws.customer.engagement": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "paws.customer.engagement",
         "Title": "Amazon Web Services Customer Engagement Services",
-        "Version": "0.1.10",
+        "Version": "0.1.11",
         "Authors@R": "\n    c(person(given = \"David\",\n             family = \"Kretch\",\n             role = c(\"aut\", \"cre\"),\n             email = \"david.kretch@gmail.com\"),\n      person(given = \"Adam\",\n             family = \"Banker\",\n             role = \"aut\",\n             email = \"adam.banker39@gmail.com\"),\n      person(given = \"Amazon.com, Inc.\",\n             role = \"cph\"))",
         "Description": "Interface to Amazon Web Services customer engagement\n    services, including 'Simple Email Service', 'Connect' contact center\n    service, and more <https://aws.amazon.com/>.",
         "License": "Apache License (>= 2.0)",
@@ -2258,25 +1948,21 @@
         "RoxygenNote": "7.1.1",
         "Collate": "'connect_service.R' 'connect_interfaces.R'\n'connect_operations.R' 'pinpoint_service.R'\n'pinpoint_interfaces.R' 'pinpoint_operations.R'\n'pinpointemail_service.R' 'pinpointemail_interfaces.R'\n'pinpointemail_operations.R' 'pinpointsmsvoice_service.R'\n'pinpointsmsvoice_interfaces.R' 'pinpointsmsvoice_operations.R'\n'ses_service.R' 'ses_interfaces.R' 'ses_operations.R'",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-17 12:58:13 UTC; david.kretch",
+        "Packaged": "2021-03-11 00:08:07 UTC; david.kretch",
         "Author": "David Kretch [aut, cre],\n  Adam Banker [aut],\n  Amazon.com, Inc. [cph]",
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-17 13:30:02 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 08:33:19 UTC; unix"
+        "Date/Publication": "2021-03-11 06:20:05 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:55:03 UTC; unix"
       }
     },
     "paws.database": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "paws.database",
         "Title": "Amazon Web Services Database Services",
-        "Version": "0.1.10",
+        "Version": "0.1.11",
         "Authors@R": "\n    c(person(given = \"David\",\n             family = \"Kretch\",\n             role = c(\"aut\", \"cre\"),\n             email = \"david.kretch@gmail.com\"),\n      person(given = \"Adam\",\n             family = \"Banker\",\n             role = \"aut\",\n             email = \"adam.banker39@gmail.com\"),\n      person(given = \"Amazon.com, Inc.\",\n             role = \"cph\"))",
         "Description": "Interface to Amazon Web Services database services, including\n    'Relational Database Service' ('RDS'), 'DynamoDB' 'NoSQL' database,\n    and more <https://aws.amazon.com/>.",
         "License": "Apache License (>= 2.0)",
@@ -2289,25 +1975,21 @@
         "RoxygenNote": "7.1.1",
         "Collate": "'dax_service.R' 'dax_interfaces.R' 'dax_operations.R'\n'docdb_service.R' 'docdb_interfaces.R' 'docdb_operations.R'\n'dynamodb_service.R' 'dynamodb_interfaces.R'\n'dynamodb_operations.R' 'dynamodbstreams_service.R'\n'dynamodbstreams_interfaces.R' 'dynamodbstreams_operations.R'\n'elasticache_service.R' 'elasticache_interfaces.R'\n'elasticache_operations.R' 'neptune_service.R'\n'neptune_interfaces.R' 'neptune_operations.R' 'rds_service.R'\n'rds_operations.R' 'rds_custom.R' 'rds_interfaces.R'\n'rdsdataservice_service.R' 'rdsdataservice_interfaces.R'\n'rdsdataservice_operations.R' 'redshift_service.R'\n'redshift_interfaces.R' 'redshift_operations.R'\n'simpledb_service.R' 'simpledb_interfaces.R'\n'simpledb_operations.R'",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-16 20:18:49 UTC; david.kretch",
+        "Packaged": "2021-03-09 02:20:26 UTC; david.kretch",
         "Author": "David Kretch [aut, cre],\n  Adam Banker [aut],\n  Amazon.com, Inc. [cph]",
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-16 20:50:02 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 08:30:32 UTC; unix"
+        "Date/Publication": "2021-03-09 16:40:02 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:55:21 UTC; unix"
       }
     },
     "paws.machine.learning": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "paws.machine.learning",
         "Title": "Amazon Web Services Machine Learning Services",
-        "Version": "0.1.10",
+        "Version": "0.1.11",
         "Authors@R": "\n    c(person(given = \"David\",\n             family = \"Kretch\",\n             role = c(\"aut\", \"cre\"),\n             email = \"david.kretch@gmail.com\"),\n      person(given = \"Adam\",\n             family = \"Banker\",\n             role = \"aut\",\n             email = \"adam.banker39@gmail.com\"),\n      person(given = \"Amazon.com, Inc.\",\n             role = \"cph\"))",
         "Description": "Interface to Amazon Web Services machine learning services,\n    including 'SageMaker' managed machine learning service, natural\n    language processing, speech recognition, translation, and more\n    <https://aws.amazon.com/machine-learning/>.",
         "License": "Apache License (>= 2.0)",
@@ -2320,25 +2002,21 @@
         "RoxygenNote": "7.1.1",
         "Collate": "'comprehend_service.R' 'comprehend_interfaces.R'\n'comprehend_operations.R' 'comprehendmedical_service.R'\n'comprehendmedical_interfaces.R'\n'comprehendmedical_operations.R'\n'lexmodelbuildingservice_service.R'\n'lexmodelbuildingservice_interfaces.R'\n'lexmodelbuildingservice_operations.R'\n'lexruntimeservice_service.R' 'lexruntimeservice_interfaces.R'\n'lexruntimeservice_operations.R' 'machinelearning_service.R'\n'machinelearning_interfaces.R' 'machinelearning_operations.R'\n'personalize_service.R' 'personalize_interfaces.R'\n'personalize_operations.R' 'personalizeevents_service.R'\n'personalizeevents_interfaces.R'\n'personalizeevents_operations.R' 'personalizeruntime_service.R'\n'personalizeruntime_interfaces.R'\n'personalizeruntime_operations.R' 'polly_service.R'\n'polly_interfaces.R' 'polly_operations.R'\n'rekognition_service.R' 'rekognition_interfaces.R'\n'rekognition_operations.R' 'sagemaker_service.R'\n'sagemaker_interfaces.R' 'sagemaker_operations.R'\n'sagemakerruntime_service.R' 'sagemakerruntime_interfaces.R'\n'sagemakerruntime_operations.R' 'textract_service.R'\n'textract_interfaces.R' 'textract_operations.R'\n'transcribeservice_service.R' 'transcribeservice_interfaces.R'\n'transcribeservice_operations.R' 'translate_service.R'\n'translate_interfaces.R' 'translate_operations.R'",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-17 13:17:33 UTC; david.kretch",
+        "Packaged": "2021-03-07 19:37:37 UTC; david.kretch",
         "Author": "David Kretch [aut, cre],\n  Adam Banker [aut],\n  Amazon.com, Inc. [cph]",
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-17 13:40:03 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 08:31:52 UTC; unix"
+        "Date/Publication": "2021-03-07 20:40:02 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:55:50 UTC; unix"
       }
     },
     "paws.management": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "paws.management",
         "Title": "Amazon Web Services Management & Governance Services",
-        "Version": "0.1.10",
+        "Version": "0.1.11",
         "Authors@R": "\n    c(person(given = \"David\",\n             family = \"Kretch\",\n             role = c(\"aut\", \"cre\"),\n             email = \"david.kretch@gmail.com\"),\n      person(given = \"Adam\",\n             family = \"Banker\",\n             role = \"aut\",\n             email = \"adam.banker39@gmail.com\"),\n      person(given = \"Amazon.com, Inc.\",\n             role = \"cph\"))",
         "Description": "Interface to Amazon Web Services management and governance\n    services, including 'CloudWatch' application and infrastructure\n    monitoring, 'Auto Scaling' for automatically scaling resources, and\n    more <https://aws.amazon.com/>.",
         "License": "Apache License (>= 2.0)",
@@ -2351,25 +2029,21 @@
         "RoxygenNote": "7.1.1",
         "Collate": "'applicationautoscaling_service.R'\n'applicationautoscaling_interfaces.R'\n'applicationautoscaling_operations.R'\n'applicationinsights_service.R'\n'applicationinsights_interfaces.R'\n'applicationinsights_operations.R' 'autoscaling_service.R'\n'autoscaling_interfaces.R' 'autoscaling_operations.R'\n'autoscalingplans_service.R' 'autoscalingplans_interfaces.R'\n'autoscalingplans_operations.R' 'cloudformation_service.R'\n'cloudformation_interfaces.R' 'cloudformation_operations.R'\n'cloudtrail_service.R' 'cloudtrail_interfaces.R'\n'cloudtrail_operations.R' 'cloudwatch_service.R'\n'cloudwatch_interfaces.R' 'cloudwatch_operations.R'\n'cloudwatchevents_service.R' 'cloudwatchevents_interfaces.R'\n'cloudwatchevents_operations.R' 'cloudwatchlogs_service.R'\n'cloudwatchlogs_interfaces.R' 'cloudwatchlogs_operations.R'\n'configservice_service.R' 'configservice_interfaces.R'\n'configservice_operations.R' 'health_service.R'\n'health_interfaces.R' 'health_operations.R'\n'licensemanager_service.R' 'licensemanager_interfaces.R'\n'licensemanager_operations.R' 'opsworks_service.R'\n'opsworks_interfaces.R' 'opsworks_operations.R'\n'opsworkscm_service.R' 'opsworkscm_interfaces.R'\n'opsworkscm_operations.R' 'organizations_service.R'\n'organizations_interfaces.R' 'organizations_operations.R'\n'pi_service.R' 'pi_interfaces.R' 'pi_operations.R'\n'resourcegroups_service.R' 'resourcegroups_interfaces.R'\n'resourcegroups_operations.R'\n'resourcegroupstaggingapi_service.R'\n'resourcegroupstaggingapi_interfaces.R'\n'resourcegroupstaggingapi_operations.R'\n'servicecatalog_service.R' 'servicecatalog_interfaces.R'\n'servicecatalog_operations.R' 'servicequotas_service.R'\n'servicequotas_interfaces.R' 'servicequotas_operations.R'\n'ssm_service.R' 'ssm_interfaces.R' 'ssm_operations.R'\n'support_service.R' 'support_interfaces.R'\n'support_operations.R'",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-17 13:48:32 UTC; david.kretch",
+        "Packaged": "2021-03-07 16:43:42 UTC; david.kretch",
         "Author": "David Kretch [aut, cre],\n  Adam Banker [aut],\n  Amazon.com, Inc. [cph]",
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-17 14:30:02 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 08:31:23 UTC; unix"
+        "Date/Publication": "2021-03-07 17:30:05 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:56:14 UTC; unix"
       }
     },
     "paws.networking": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "paws.networking",
         "Title": "Amazon Web Services Networking & Content Delivery Services",
-        "Version": "0.1.10",
+        "Version": "0.1.11",
         "Authors@R": "\n    c(person(given = \"David\",\n             family = \"Kretch\",\n             role = c(\"aut\", \"cre\"),\n             email = \"david.kretch@gmail.com\"),\n      person(given = \"Adam\",\n             family = \"Banker\",\n             role = \"aut\",\n             email = \"adam.banker39@gmail.com\"),\n      person(given = \"Amazon.com, Inc.\",\n             role = \"cph\"))",
         "Description": "Interface to Amazon Web Services networking and content\n    delivery services, including 'Route 53' Domain Name System service,\n    'CloudFront' content delivery, load balancing, and more\n    <https://aws.amazon.com/>.",
         "License": "Apache License (>= 2.0)",
@@ -2382,25 +2056,21 @@
         "RoxygenNote": "7.1.1",
         "Collate": "'apigateway_service.R' 'apigateway_interfaces.R'\n'apigateway_operations.R' 'apigatewaymanagementapi_service.R'\n'apigatewaymanagementapi_interfaces.R'\n'apigatewaymanagementapi_operations.R' 'apigatewayv2_service.R'\n'apigatewayv2_interfaces.R' 'apigatewayv2_operations.R'\n'appmesh_service.R' 'appmesh_interfaces.R'\n'appmesh_operations.R' 'cloudfront_service.R'\n'cloudfront_interfaces.R' 'cloudfront_operations.R'\n'directconnect_service.R' 'directconnect_interfaces.R'\n'directconnect_operations.R' 'elb_service.R' 'elb_interfaces.R'\n'elb_operations.R' 'elbv2_service.R' 'elbv2_interfaces.R'\n'elbv2_operations.R' 'globalaccelerator_service.R'\n'globalaccelerator_interfaces.R'\n'globalaccelerator_operations.R' 'route53_service.R'\n'route53_interfaces.R' 'route53_operations.R'\n'route53domains_service.R' 'route53domains_interfaces.R'\n'route53domains_operations.R' 'route53resolver_service.R'\n'route53resolver_interfaces.R' 'route53resolver_operations.R'\n'servicediscovery_service.R' 'servicediscovery_interfaces.R'\n'servicediscovery_operations.R'",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-17 14:06:27 UTC; david.kretch",
+        "Packaged": "2021-03-07 15:51:57 UTC; david.kretch",
         "Author": "David Kretch [aut, cre],\n  Adam Banker [aut],\n  Amazon.com, Inc. [cph]",
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-17 14:40:02 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 08:30:58 UTC; unix"
+        "Date/Publication": "2021-03-07 16:20:02 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:56:46 UTC; unix"
       }
     },
     "paws.security.identity": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "paws.security.identity",
         "Title": "Amazon Web Services Security, Identity, & Compliance Services",
-        "Version": "0.1.10",
+        "Version": "0.1.11",
         "Authors@R": "\n    c(person(given = \"David\",\n             family = \"Kretch\",\n             role = c(\"aut\", \"cre\"),\n             email = \"david.kretch@gmail.com\"),\n      person(given = \"Adam\",\n             family = \"Banker\",\n             role = \"aut\",\n             email = \"adam.banker39@gmail.com\"),\n      person(given = \"Amazon.com, Inc.\",\n             role = \"cph\"))",
         "Description": "Interface to Amazon Web Services security, identity, and\n    compliance services, including the 'Identity & Access Management'\n    ('IAM') service for managing access to services and resources, and\n    more <https://aws.amazon.com/>.",
         "License": "Apache License (>= 2.0)",
@@ -2413,25 +2083,21 @@
         "RoxygenNote": "7.1.1",
         "Collate": "'acm_service.R' 'acm_interfaces.R' 'acm_operations.R'\n'acmpca_service.R' 'acmpca_interfaces.R' 'acmpca_operations.R'\n'clouddirectory_service.R' 'clouddirectory_interfaces.R'\n'clouddirectory_operations.R' 'cloudhsm_service.R'\n'cloudhsm_interfaces.R' 'cloudhsm_operations.R'\n'cloudhsmv2_service.R' 'cloudhsmv2_interfaces.R'\n'cloudhsmv2_operations.R' 'cognitoidentity_service.R'\n'cognitoidentity_interfaces.R' 'cognitoidentity_operations.R'\n'cognitoidentityprovider_service.R'\n'cognitoidentityprovider_interfaces.R'\n'cognitoidentityprovider_operations.R' 'cognitosync_service.R'\n'cognitosync_interfaces.R' 'cognitosync_operations.R'\n'directoryservice_service.R' 'directoryservice_interfaces.R'\n'directoryservice_operations.R' 'fms_service.R'\n'fms_interfaces.R' 'fms_operations.R' 'guardduty_service.R'\n'guardduty_interfaces.R' 'guardduty_operations.R'\n'iam_service.R' 'iam_interfaces.R' 'iam_operations.R'\n'inspector_service.R' 'inspector_interfaces.R'\n'inspector_operations.R' 'kms_service.R' 'kms_interfaces.R'\n'kms_operations.R' 'macie_service.R' 'macie_interfaces.R'\n'macie_operations.R' 'ram_service.R' 'ram_interfaces.R'\n'ram_operations.R' 'secretsmanager_service.R'\n'secretsmanager_interfaces.R' 'secretsmanager_operations.R'\n'securityhub_service.R' 'securityhub_interfaces.R'\n'securityhub_operations.R' 'shield_service.R'\n'shield_interfaces.R' 'shield_operations.R' 'sts_service.R'\n'sts_interfaces.R' 'sts_operations.R' 'waf_service.R'\n'waf_interfaces.R' 'waf_operations.R' 'wafregional_service.R'\n'wafregional_interfaces.R' 'wafregional_operations.R'",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-17 14:41:18 UTC; david.kretch",
+        "Packaged": "2021-03-09 03:11:27 UTC; david.kretch",
         "Author": "David Kretch [aut, cre],\n  Adam Banker [aut],\n  Amazon.com, Inc. [cph]",
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-17 15:10:03 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 08:32:36 UTC; unix"
+        "Date/Publication": "2021-03-09 14:00:02 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:57:14 UTC; unix"
       }
     },
     "paws.storage": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "paws.storage",
         "Title": "Amazon Web Services Storage Services",
-        "Version": "0.1.10",
+        "Version": "0.1.11",
         "Authors@R": "\n    c(person(given = \"David\",\n             family = \"Kretch\",\n             role = c(\"aut\", \"cre\"),\n             email = \"david.kretch@gmail.com\"),\n      person(given = \"Adam\",\n             family = \"Banker\",\n             role = \"aut\",\n             email = \"adam.banker39@gmail.com\"),\n      person(given = \"Amazon.com, Inc.\",\n             role = \"cph\"))",
         "Description": "Interface to Amazon Web Services storage services, including\n    'Simple Storage Service' ('S3') and more <https://aws.amazon.com/>.",
         "License": "Apache License (>= 2.0)",
@@ -2444,51 +2110,46 @@
         "RoxygenNote": "7.1.1",
         "Collate": "'backup_service.R' 'backup_interfaces.R' 'backup_operations.R'\n'dlm_service.R' 'dlm_interfaces.R' 'dlm_operations.R'\n'efs_service.R' 'efs_interfaces.R' 'efs_operations.R'\n'fsx_service.R' 'fsx_interfaces.R' 'fsx_operations.R'\n'glacier_service.R' 'glacier_interfaces.R'\n'glacier_operations.R' 's3_service.R' 's3_interfaces.R'\n's3_operations.R' 's3control_service.R'\n's3control_interfaces.R' 's3control_operations.R'\n'storagegateway_service.R' 'storagegateway_interfaces.R'\n'storagegateway_operations.R'",
         "NeedsCompilation": "no",
-        "Packaged": "2021-01-17 15:15:19 UTC; david.kretch",
+        "Packaged": "2021-03-07 14:49:24 UTC; david.kretch",
         "Author": "David Kretch [aut, cre],\n  Adam Banker [aut],\n  Amazon.com, Inc. [cph]",
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-17 15:40:03 UTC",
-        "Built": "R 3.6.3; ; 2021-02-05 08:30:19 UTC; unix"
+        "Date/Publication": "2021-03-07 15:20:02 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:57:48 UTC; unix"
       }
     },
     "pillar": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "pillar",
         "Title": "Coloured Formatting for Columns",
-        "Version": "1.4.7",
+        "Version": "1.6.0",
         "Authors@R": "\n    c(person(given = \"Kirill\",\n             family = \"M\\u00fcller\",\n             role = c(\"aut\", \"cre\"),\n             email = \"krlmlr+r@mailbox.org\"),\n      person(given = \"Hadley\",\n             family = \"Wickham\",\n             role = \"aut\"),\n      person(given = \"RStudio\",\n             role = \"cph\"))",
         "Description": "Provides 'pillar' and 'colonnade' generics designed\n    for formatting columns of data using the full range of colours\n    provided by modern terminals.",
-        "License": "GPL-3",
-        "URL": "https://github.com/r-lib/pillar",
+        "License": "MIT + file LICENSE",
+        "URL": "https://pillar.r-lib.org/, https://github.com/r-lib/pillar",
         "BugReports": "https://github.com/r-lib/pillar/issues",
-        "Imports": "cli, crayon (>= 1.3.4), ellipsis, fansi, lifecycle, rlang (>=\n0.3.0), utf8 (>= 1.1.0), vctrs (>= 0.2.0)",
-        "Suggests": "bit64, knitr, lubridate, testthat (>= 2.0.0), withr",
+        "Imports": "cli, crayon (>= 1.3.4), ellipsis, fansi, lifecycle, rlang (>=\n0.3.0), utf8 (>= 1.1.0), utils, vctrs (>= 0.2.0)",
+        "Suggests": "bit64, debugme, DiagrammeR, dplyr, ggplot2, knitr, lubridate,\nnycflights13, palmerpenguins, rmarkdown, scales, stringi,\nsurvival, testthat (>= 3.0.2), tibble, withr",
+        "VignetteBuilder": "knitr",
         "Encoding": "UTF-8",
-        "LazyData": "true",
-        "RoxygenNote": "7.1.1.9000",
+        "RoxygenNote": "7.1.1.9001",
+        "Config/testthat/edition": "3",
+        "Config/testthat/parallel": "true",
+        "Config/testthat/start-first": "format_multi_fuzz, format_multi_fuzz_2,\nformat_multi, ctl_colonnade, ctl_colonnade_1, ctl_colonnade_2",
         "NeedsCompilation": "no",
-        "Packaged": "2020-11-20 06:09:25 UTC; kirill",
+        "Packaged": "2021-04-13 04:37:32 UTC; kirill",
         "Author": "Kirill Müller [aut, cre],\n  Hadley Wickham [aut],\n  RStudio [cph]",
         "Maintainer": "Kirill Müller <krlmlr+r@mailbox.org>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-11-20 06:50:02 UTC",
-        "Built": "R 3.6.3; ; 2020-11-24 10:06:56 UTC; unix"
+        "Date/Publication": "2021-04-13 07:20:02 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:58:03 UTC; unix"
       }
     },
     "piton": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "piton",
         "Type": "Package",
@@ -2515,44 +2176,9 @@
         "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2020-11-24 10:02:32 UTC; unix"
       }
     },
-    "pkgbuild": {
-      "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
-      "description": {
-        "Package": "pkgbuild",
-        "Title": "Find Tools Needed to Build R Packages",
-        "Version": "1.2.0",
-        "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", role = \"aut\"),\n    person(\"Jim\", \"Hester\", , \"jim.hester@rstudio.com\", role = c(\"aut\", \"cre\")),\n    person(\"RStudio\", role = \"cph\")\n  )",
-        "Description": "Provides functions used to build R packages. Locates compilers\n  needed to build R packages on various platforms and ensures the PATH is\n  configured appropriately so R can use them.",
-        "Imports": "callr (>= 3.2.0), cli, crayon, desc, prettyunits, R6,\nrprojroot, withr (>= 2.1.2)",
-        "Suggests": "Rcpp, cpp11, testthat, covr",
-        "License": "MIT + file LICENSE",
-        "Encoding": "UTF-8",
-        "LazyData": "true",
-        "RoxygenNote": "7.1.1",
-        "URL": "https://github.com/r-lib/pkgbuild",
-        "BugReports": "https://github.com/r-lib/pkgbuild/issues",
-        "Depends": "R (>= 3.1)",
-        "NeedsCompilation": "no",
-        "Packaged": "2020-12-15 21:11:03 UTC; jhester",
-        "Author": "Hadley Wickham [aut],\n  Jim Hester [aut, cre],\n  RStudio [cph]",
-        "Maintainer": "Jim Hester <jim.hester@rstudio.com>",
-        "Repository": "CRAN",
-        "Date/Publication": "2020-12-15 22:20:02 UTC",
-        "Built": "R 3.6.3; ; 2020-12-29 17:35:18 UTC; unix"
-      }
-    },
     "pkgconfig": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "pkgconfig",
         "Title": "Private Configuration for 'R' Packages",
@@ -2577,40 +2203,31 @@
     "pkgload": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "pkgload",
         "Title": "Simulate Package Installation and Attach",
-        "Version": "1.1.0",
+        "Version": "1.2.1",
         "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", role = \"aut\"),\n    person(\"Jim\", \"Hester\", , \"jim.hester@rstudio.com\", role = c(\"aut\", \"cre\")),\n    person(\"Winston\", \"Chang\", role = \"aut\"),\n    person(\"RStudio\", role = \"cph\"),\n    person(\"R Core team\", role = \"ctb\",\n      comment = \"Some namespace and vignette code extracted from base R\")\n    )",
         "Description": "Simulates the process of installing a package\n    and then attaching it. This is a key part of the 'devtools' package as it\n    allows you to rapidly iterate while developing a package.",
         "License": "GPL-3",
         "URL": "https://github.com/r-lib/pkgload",
         "BugReports": "https://github.com/r-lib/pkgload/issues",
-        "Imports": "cli, crayon, desc, methods, pkgbuild, rlang, rprojroot,\nrstudioapi, utils, withr",
-        "Suggests": "bitops, covr, Rcpp, testthat",
+        "Imports": "cli, crayon, desc, methods, rlang, rprojroot, rstudioapi,\nutils, withr",
+        "Suggests": "bitops, covr, pkgbuild, Rcpp, testthat",
         "Encoding": "UTF-8",
-        "LazyData": "true",
-        "RoxygenNote": "7.1.0",
+        "RoxygenNote": "7.1.1",
         "NeedsCompilation": "yes",
-        "Packaged": "2020-05-28 17:51:35 UTC; jhester",
+        "Packaged": "2021-04-06 14:02:11 UTC; jhester",
         "Author": "Hadley Wickham [aut],\n  Jim Hester [aut, cre],\n  Winston Chang [aut],\n  RStudio [cph],\n  R Core team [ctb] (Some namespace and vignette code extracted from base\n    R)",
         "Maintainer": "Jim Hester <jim.hester@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-05-29 05:10:08 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2020-08-12 13:08:43 UTC; unix"
+        "Date/Publication": "2021-04-06 15:10:02 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:58:25 UTC; unix"
       }
     },
     "plyr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "plyr",
         "Title": "Tools for Splitting, Applying and Combining Data",
@@ -2639,10 +2256,6 @@
     "praise": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "praise",
         "Title": "Praise Users",
@@ -2666,10 +2279,6 @@
     "prettyunits": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "prettyunits",
         "Title": "Pretty, Human Readable Formatting of Quantities",
@@ -2694,40 +2303,31 @@
     "processx": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "processx",
         "Title": "Execute and Control System Processes",
-        "Version": "3.4.5",
+        "Version": "3.5.1",
         "Authors@R": "c(\n    person(\"Gábor\", \"Csárdi\", role = c(\"aut\", \"cre\", \"cph\"),\n           email = \"csardi.gabor@gmail.com\",\n\t   comment = c(ORCID = \"0000-0001-7098-9676\")),\n    person(\"Winston\", \"Chang\", role = \"aut\"),\n    person(\"RStudio\", role = c(\"cph\", \"fnd\")),\n    person(\"Mango Solutions\", role  = c(\"cph\", \"fnd\")))",
         "Description": "Tools to run system processes in the background.\n    It can check if a background process is running; wait on a background\n    process to finish; get the exit status of finished processes; kill\n    background processes. It can read the standard output and error of\n    the processes, using non-blocking connections. 'processx' can poll\n    a process for standard output or error, with a timeout. It can also\n    poll several processes at once.",
         "License": "MIT + file LICENSE",
-        "LazyData": "true",
         "URL": "https://processx.r-lib.org,\nhttps://github.com/r-lib/processx#readme",
         "BugReports": "https://github.com/r-lib/processx/issues",
-        "RoxygenNote": "7.1.1",
+        "RoxygenNote": "7.1.1.9001",
         "Imports": "ps (>= 1.2.0), R6, utils",
-        "Suggests": "callr (>= 3.2.0), codetools, covr, crayon, curl, debugme,\nparallel, testthat, withr",
+        "Suggests": "callr (>= 3.2.0), cli, codetools, covr, curl, debugme,\nparallel, testthat, withr",
         "Encoding": "UTF-8",
         "NeedsCompilation": "yes",
-        "Packaged": "2020-11-30 11:08:13 UTC; gaborcsardi",
+        "Packaged": "2021-04-04 15:19:18 UTC; gaborcsardi",
         "Author": "Gábor Csárdi [aut, cre, cph] (<https://orcid.org/0000-0001-7098-9676>),\n  Winston Chang [aut],\n  RStudio [cph, fnd],\n  Mango Solutions [cph, fnd]",
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-11-30 11:40:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2020-12-29 17:37:21 UTC; unix"
+        "Date/Publication": "2021-04-04 16:00:02 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:58:07 UTC; unix"
       }
     },
     "progress": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "progress",
         "Title": "Terminal Progress Bars",
@@ -2753,46 +2353,39 @@
     "promises": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "promises",
         "Type": "Package",
         "Title": "Abstractions for Promise-Based Asynchronous Programming",
-        "Version": "1.1.1",
+        "Version": "1.2.0.1",
         "Authors@R": "c(\n      person(\"Joe\", \"Cheng\", email = \"joe@rstudio.com\", role = c(\"aut\", \"cre\")),\n      person(\"RStudio\", role = c(\"cph\", \"fnd\"))\n    )",
         "Description": "Provides fundamental abstractions for doing asynchronous programming\n    in R using promises. Asynchronous programming is useful for allowing a single\n    R process to orchestrate multiple tasks in the background while also attending\n    to something else. Semantics are similar to 'JavaScript' promises, but with a\n    syntax that is idiomatic R.",
         "License": "MIT + file LICENSE",
         "Imports": "R6, Rcpp, later, rlang, stats, magrittr",
-        "Suggests": "testthat, future, knitr, rmarkdown",
+        "Suggests": "testthat, future (>= 1.21.0), fastmap (>= 1.1.0), purrr,\nknitr, rmarkdown, vembedr, spelling",
         "LinkingTo": "later, Rcpp",
-        "RoxygenNote": "7.1.0",
+        "RoxygenNote": "7.1.1",
         "Encoding": "UTF-8",
         "LazyData": "true",
         "VignetteBuilder": "knitr",
-        "URL": "https://rstudio.github.io/promises,\nhttps://github.com/rstudio/promises",
+        "URL": "https://rstudio.github.io/promises/,\nhttps://github.com/rstudio/promises",
         "BugReports": "https://github.com/rstudio/promises/issues",
+        "Language": "en-US",
         "NeedsCompilation": "yes",
-        "Packaged": "2020-06-09 21:23:18 UTC; winston",
+        "Packaged": "2021-02-11 18:18:47 UTC; barret",
         "Author": "Joe Cheng [aut, cre],\n  RStudio [cph, fnd]",
         "Maintainer": "Joe Cheng <joe@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-06-09 21:50:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2020-08-12 13:03:19 UTC; unix"
+        "Date/Publication": "2021-02-11 19:00:02 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:52:32 UTC; unix"
       }
     },
     "ps": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "ps",
-        "Version": "1.5.0",
+        "Version": "1.6.0",
         "Title": "List, Query, Manipulate System Processes",
         "Description": "List, query and manipulate all system processes, on 'Windows',\n    'Linux' and 'macOS'.",
         "Authors@R": "c(\n    person(\"Jay\", \"Loden\", role = \"aut\"),\n    person(\"Dave\", \"Daeschler\", role = \"aut\"),\n    person(\"Giampaolo\", \"Rodola'\", role = \"aut\"),\n    person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\", c(\"aut\", \"cre\")),\n    person(\"RStudio\", role = \"cph\"))",
@@ -2803,24 +2396,20 @@
         "Depends": "R (>= 3.1)",
         "Imports": "utils",
         "Suggests": "callr, covr, curl, pingr, processx (>= 3.1.0), R6, rlang,\ntestthat, tibble",
-        "RoxygenNote": "7.1.1",
+        "RoxygenNote": "7.1.1.9001",
         "Biarch": "true",
         "NeedsCompilation": "yes",
-        "Packaged": "2020-12-05 10:22:34 UTC; gaborcsardi",
+        "Packaged": "2021-02-28 20:25:46 UTC; gaborcsardi",
         "Author": "Jay Loden [aut],\n  Dave Daeschler [aut],\n  Giampaolo Rodola' [aut],\n  Gábor Csárdi [aut, cre],\n  RStudio [cph]",
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-12-05 16:40:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2020-12-29 17:35:21 UTC; unix"
+        "Date/Publication": "2021-02-28 20:50:02 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:52:43 UTC; unix"
       }
     },
     "purrr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "purrr",
         "Title": "Functional Programming Tools",
@@ -2849,10 +2438,6 @@
     "rappdirs": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "rappdirs",
@@ -2881,10 +2466,6 @@
     "readr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "readr",
         "Title": "Read Rectangular Text Data",
@@ -2919,10 +2500,6 @@
     "readxl": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "readxl",
         "Title": "Read Excel Files",
@@ -2952,10 +2529,6 @@
     "rematch": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "rematch",
         "Title": "Match Regular Expressions with a Nicer 'API'",
@@ -2980,10 +2553,6 @@
     "rematch2": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "rematch2",
         "Title": "Tidy Output from Regular Expression Matching",
@@ -3010,42 +2579,34 @@
     "remotes": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "remotes",
         "Title": "R Package Installation from Remote Repositories, Including\n'GitHub'",
-        "Version": "2.2.0",
+        "Version": "2.3.0",
         "Authors@R": "c(\n    person(\"Jim\", \"Hester\", , \"jim.hester@rstudio.com\", role = c(\"aut\", \"cre\")),\n    person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\", role = c(\"aut\")),\n    person(\"Hadley\", \"Wickham\", role = c(\"aut\")),\n    person(\"Winston\", \"Chang\", role = \"aut\"),\n    person(\"RStudio\", role = \"cph\"),\n    person(\"Martin\", \"Morgan\", role = \"aut\"),\n    person(\"Dan\", \"Tenenbaum\", role = \"aut\"),\n    person(\"Mango Solutions\", role = \"cph\")\n    )",
         "Description": "Download and install R packages stored in 'GitHub', 'GitLab', \n    'Bitbucket', 'Bioconductor', or plain 'subversion' or 'git' repositories. \n    This package provides the 'install_*' functions in 'devtools'. Indeed most \n    of the code was copied over from 'devtools'.",
         "License": "GPL (>= 2)",
         "URL": "https://remotes.r-lib.org, https://github.com/r-lib/remotes#readme",
         "BugReports": "https://github.com/r-lib/remotes/issues",
         "Imports": "methods, stats, tools, utils",
-        "Suggests": "brew, callr, codetools, curl, covr, git2r (>= 0.23.0), knitr,\nmockery, pkgbuild (>= 1.0.1), pingr, rmarkdown, rprojroot,\ntestthat, withr",
+        "Suggests": "brew, callr, codetools, curl, covr, git2r (>= 0.23.0), knitr,\nmockery, pkgbuild (>= 1.0.1), pingr, rmarkdown, rprojroot,\ntestthat, webfakes, withr",
         "Depends": "R (>= 3.0.0)",
         "VignetteBuilder": "knitr",
         "RoxygenNote": "7.1.1",
         "SystemRequirements": "Subversion for install_svn, git for install_git",
         "Encoding": "UTF-8",
         "NeedsCompilation": "no",
-        "Packaged": "2020-07-20 18:04:55 UTC; jhester",
+        "Packaged": "2021-04-01 14:52:52 UTC; jhester",
         "Author": "Jim Hester [aut, cre],\n  Gábor Csárdi [aut],\n  Hadley Wickham [aut],\n  Winston Chang [aut],\n  RStudio [cph],\n  Martin Morgan [aut],\n  Dan Tenenbaum [aut],\n  Mango Solutions [cph]",
         "Maintainer": "Jim Hester <jim.hester@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-07-21 08:40:07 UTC",
-        "Built": "R 3.6.3; ; 2020-08-12 12:53:49 UTC; unix"
+        "Date/Publication": "2021-04-01 16:50:06 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:52:47 UTC; unix"
       }
     },
     "reshape2": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "reshape2",
         "Title": "Flexibly Reshape Data: A Reboot of the Reshape Package",
@@ -3073,10 +2634,6 @@
     "rlang": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "rlang",
         "Version": "0.4.10",
@@ -3108,10 +2665,6 @@
     "rlist": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "rlist",
         "Type": "Package",
@@ -3140,10 +2693,6 @@
     "rpivotTable": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "rpivotTable",
         "Title": "Build Powerful Pivot Tables and Dynamically Slice & Dice your\nData",
@@ -3171,10 +2720,6 @@
     "rprojroot": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "rprojroot",
         "Title": "Finding Files in Project Subdirectories",
@@ -3203,10 +2748,6 @@
     "rstudioapi": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "rstudioapi",
         "Title": "Safely Access the RStudio API",
@@ -3232,10 +2773,6 @@
     "sass": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "sass",
@@ -3265,10 +2802,6 @@
     "scales": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "scales",
         "Title": "Scale Functions for Visualization",
@@ -3296,10 +2829,6 @@
     "shiny": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "shiny",
         "Type": "Package",
@@ -3329,10 +2858,6 @@
     "shinyjs": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "shinyjs",
         "Title": "Easily Improve the User Experience of Your Shiny Apps in Seconds",
@@ -3361,10 +2886,6 @@
     "sodium": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "sodium",
         "Type": "Package",
@@ -3390,10 +2911,6 @@
     "sourcetools": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "sourcetools",
         "Type": "Package",
@@ -3419,10 +2936,6 @@
     "stringi": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "stringi",
         "Version": "1.5.3",
@@ -3451,10 +2964,6 @@
     "stringr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "stringr",
         "Title": "Simple, Consistent Wrappers for Common String Operations",
@@ -3483,10 +2992,6 @@
     "sys": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "sys",
         "Type": "Package",
@@ -3514,21 +3019,17 @@
     "testthat": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "testthat",
         "Title": "Unit Testing for R",
-        "Version": "3.0.1",
+        "Version": "3.0.2",
         "Authors@R": "\n    c(person(given = \"Hadley\",\n             family = \"Wickham\",\n             role = c(\"aut\", \"cre\"),\n             email = \"hadley@rstudio.com\"),\n      person(given = \"RStudio\",\n             role = c(\"cph\", \"fnd\")),\n      person(given = \"R Core team\",\n             role = \"ctb\",\n             comment = \"Implementation of utils::recover()\"))",
         "Description": "Software testing is important, but, in part because\n    it is frustrating and boring, many of us avoid it. 'testthat' is a\n    testing framework for R that is easy to learn and use, and integrates\n    with your existing 'workflow'.",
         "License": "MIT + file LICENSE",
         "URL": "https://testthat.r-lib.org, https://github.com/r-lib/testthat",
         "BugReports": "https://github.com/r-lib/testthat/issues",
         "Depends": "R (>= 3.1)",
-        "Imports": "brio, callr (>= 3.5.1), cli (>= 2.2.0), crayon (>= 1.3.4),\ndesc, digest, ellipsis (>= 0.2.0), evaluate, jsonlite,\nlifecycle, magrittr, methods, pkgload, praise, processx, ps (>=\n1.3.4), R6 (>= 2.2.0), rlang (>= 0.4.9), utils, waldo (>=\n0.2.1), withr (>= 2.3.0)",
+        "Imports": "brio, callr (>= 3.5.1), cli (>= 2.2.0), crayon (>= 1.3.4),\ndesc, digest, ellipsis (>= 0.2.0), evaluate, jsonlite,\nlifecycle, magrittr, methods, pkgload, praise, processx, ps (>=\n1.3.4), R6 (>= 2.2.0), rlang (>= 0.4.9), utils, waldo (>=\n0.2.4), withr (>= 2.3.0)",
         "Suggests": "covr, curl (>= 0.9.5), diffviewer (>= 0.1.0), knitr, mockery,\nrmarkdown, rstudioapi, shiny, usethis, vctrs (>= 0.1.0), xml2",
         "VignetteBuilder": "knitr",
         "Config/testthat/edition": "3",
@@ -3537,90 +3038,79 @@
         "Encoding": "UTF-8",
         "RoxygenNote": "7.1.1",
         "NeedsCompilation": "yes",
-        "Packaged": "2020-12-15 17:55:51 UTC; hadley",
+        "Packaged": "2021-02-12 19:39:23 UTC; hadley",
         "Author": "Hadley Wickham [aut, cre],\n  RStudio [cph, fnd],\n  R Core team [ctb] (Implementation of utils::recover())",
         "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-12-17 10:00:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2020-12-29 17:39:13 UTC; unix"
+        "Date/Publication": "2021-02-14 16:50:03 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:58:44 UTC; unix"
       }
     },
     "tibble": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "tibble",
         "Title": "Simple Data Frames",
-        "Version": "3.0.6",
+        "Version": "3.1.0",
         "Authors@R": "\n    c(person(given = \"Kirill\",\n             family = \"M\\u00fcller\",\n             role = c(\"aut\", \"cre\"),\n             email = \"krlmlr+r@mailbox.org\"),\n      person(given = \"Hadley\",\n             family = \"Wickham\",\n             role = \"aut\",\n             email = \"hadley@rstudio.com\"),\n      person(given = \"Romain\",\n             family = \"Francois\",\n             role = \"ctb\",\n             email = \"romain@r-enthusiasts.com\"),\n      person(given = \"Jennifer\",\n             family = \"Bryan\",\n             role = \"ctb\",\n             email = \"jenny@rstudio.com\"),\n      person(given = \"RStudio\",\n             role = \"cph\"))",
         "Description": "Provides a 'tbl_df' class (the 'tibble') that\n    provides stricter checking and better formatting than the traditional\n    data frame.",
         "License": "MIT + file LICENSE",
         "URL": "https://tibble.tidyverse.org/, https://github.com/tidyverse/tibble",
         "BugReports": "https://github.com/tidyverse/tibble/issues",
         "Depends": "R (>= 3.1.0)",
-        "Imports": "cli, crayon (>= 1.3.4), ellipsis (>= 0.2.0), fansi (>= 0.4.0),\nlifecycle (>= 0.2.0), magrittr, methods, pillar (>= 1.4.3),\npkgconfig, rlang (>= 0.4.3), utils, vctrs (>= 0.3.2)",
-        "Suggests": "bench, bit64, blob, covr, DiagrammeR, dplyr, evaluate,\nformattable, ggplot2, hms, htmltools, import, knitr, lubridate,\nmockr, nycflights13, purrr, rmarkdown, testthat (>= 3.0.1),\ntidyr, withr",
+        "Imports": "ellipsis (>= 0.2.0), fansi (>= 0.4.0), lifecycle (>= 0.2.0),\nmagrittr, methods, pillar (>= 1.5.0), pkgconfig, rlang (>=\n0.4.3), utils, vctrs (>= 0.3.2)",
+        "Suggests": "bench, bit64, blob, cli, covr, crayon (>= 1.3.4), DiagrammeR,\ndplyr, evaluate, formattable, ggplot2, hms, htmltools, import,\nknitr, lubridate, mockr, nycflights13, purrr, rmarkdown,\ntestthat (>= 3.0.2), tidyr, withr",
         "VignetteBuilder": "knitr",
         "Encoding": "UTF-8",
         "LazyData": "yes",
-        "RoxygenNote": "7.1.1.9000",
+        "RoxygenNote": "7.1.1.9001",
         "Config/testthat/edition": "3",
         "Config/testthat/parallel": "true",
-        "Config/testthat/start-first": "subsetting, as_tibble, add",
+        "Config/testthat/start-first": "subsetting, as_tibble, add, invariants",
         "NeedsCompilation": "yes",
-        "Packaged": "2021-01-28 16:53:19 UTC; kirill",
+        "Packaged": "2021-02-25 06:57:46 UTC; kirill",
         "Author": "Kirill Müller [aut, cre],\n  Hadley Wickham [aut],\n  Romain Francois [ctb],\n  Jennifer Bryan [ctb],\n  RStudio [cph]",
         "Maintainer": "Kirill Müller <krlmlr+r@mailbox.org>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-01-29 10:20:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-02-05 07:31:16 UTC; unix"
+        "Date/Publication": "2021-02-25 15:50:02 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:58:28 UTC; unix"
       }
     },
     "tidyr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "tidyr",
         "Title": "Tidy Messy Data",
-        "Version": "1.1.2",
+        "Version": "1.1.3",
         "Authors@R": "\n    c(person(given = \"Hadley\",\n             family = \"Wickham\",\n             role = c(\"aut\", \"cre\"),\n             email = \"hadley@rstudio.com\"),\n      person(given = \"RStudio\",\n             role = \"cph\"))",
-        "Description": "Tools to help to create tidy data, where each column is a \n    variable, each row is an observation, and each cell contains a single value.  \n    'tidyr' contains tools for changing the shape (pivoting) and hierarchy\n    (nesting and 'unnesting') of a dataset, turning deeply nested lists\n    into rectangular data frames ('rectangling'), and extracting values out \n    of string columns. It also includes tools for working with missing values \n    (both implicit and explicit).",
+        "Description": "Tools to help to create tidy data, where each\n    column is a variable, each row is an observation, and each cell\n    contains a single value.  'tidyr' contains tools for changing the\n    shape (pivoting) and hierarchy (nesting and 'unnesting') of a dataset,\n    turning deeply nested lists into rectangular data frames\n    ('rectangling'), and extracting values out of string columns. It also\n    includes tools for working with missing values (both implicit and\n    explicit).",
         "License": "MIT + file LICENSE",
         "URL": "https://tidyr.tidyverse.org, https://github.com/tidyverse/tidyr",
         "BugReports": "https://github.com/tidyverse/tidyr/issues",
         "Depends": "R (>= 3.1)",
-        "Imports": "dplyr (>= 0.8.2), ellipsis (>= 0.1.0), glue, magrittr, purrr,\nrlang, tibble (>= 2.1.1), tidyselect (>= 1.1.0), utils, vctrs\n(>= 0.3.0), lifecycle",
-        "Suggests": "covr, jsonlite, knitr, repurrrsive (>= 1.0.0), rmarkdown,\nreadr, testthat (>= 2.1.0)",
-        "LinkingTo": "cpp11 (>= 0.2.1)",
+        "Imports": "dplyr (>= 0.8.2), ellipsis (>= 0.1.0), glue, lifecycle,\nmagrittr, purrr, rlang, tibble (>= 2.1.1), tidyselect (>=\n1.1.0), utils, vctrs (>= 0.3.6)",
+        "Suggests": "covr, data.table, jsonlite, knitr, readr, repurrrsive (>=\n1.0.0), rmarkdown, testthat (>= 3.0.0)",
+        "LinkingTo": "cpp11 (>= 0.2.6)",
         "VignetteBuilder": "knitr",
-        "SystemRequirements": "C++11",
         "Encoding": "UTF-8",
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
+        "SystemRequirements": "C++11",
+        "Config/testthat/edition": "3",
         "NeedsCompilation": "yes",
-        "Packaged": "2020-08-26 15:43:09 UTC; hadley",
+        "Packaged": "2021-03-02 14:39:15 UTC; hadley",
         "Author": "Hadley Wickham [aut, cre],\n  RStudio [cph]",
         "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-08-27 12:20:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2020-09-23 11:13:38 UTC; unix"
+        "Date/Publication": "2021-03-03 09:20:06 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:59:07 UTC; unix"
       }
     },
     "tidyselect": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "tidyselect",
         "Title": "Select from a Set of Strings",
@@ -3650,10 +3140,6 @@
     "tidyxl": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "tidyxl",
         "Title": "Read Untidy Excel Files",
@@ -3683,40 +3169,33 @@
     "utf8": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "utf8",
-        "Version": "1.1.4",
         "Title": "Unicode Text Processing",
-        "Authors@R": "c(\n  person(c(\"Patrick\", \"O.\"), \"Perry\",\n         role = c(\"aut\", \"cph\", \"cre\"),\n         email = \"patperry@gmail.com\"),\n  person(\"Unicode, Inc.\",\n         role = c(\"cph\", \"dtc\"),\n         comment = \"Unicode Character Database\"))",
-        "Depends": "R (>= 2.10)",
-        "Suggests": "knitr, rmarkdown, testthat",
-        "Description": "Process and print 'UTF-8' encoded international text (Unicode). Input, validate, normalize, encode, format, and display.",
+        "Version": "1.2.1",
+        "Authors@R": "\n    c(person(given = c(\"Patrick\", \"O.\"),\n             family = \"Perry\",\n             role = c(\"aut\", \"cph\")),\n      person(given = \"Kirill\",\n             family = \"M\\u00fcller\",\n             role = \"cre\",\n             email = \"krlmlr+r@mailbox.org\"),\n      person(given = \"Unicode, Inc.\",\n             role = c(\"cph\", \"dtc\"),\n             comment = \"Unicode Character Database\"))",
+        "Description": "Process and print 'UTF-8' encoded international\n    text (Unicode). Input, validate, normalize, encode, format, and\n    display.",
         "License": "Apache License (== 2.0) | file LICENSE",
-        "URL": "https://github.com/patperry/r-utf8",
+        "URL": "https://ptrckprry.com/r-utf8/, https://github.com/patperry/r-utf8",
         "BugReports": "https://github.com/patperry/r-utf8/issues",
-        "LazyData": "Yes",
-        "Encoding": "UTF-8",
+        "Depends": "R (>= 2.10)",
+        "Suggests": "covr, knitr, rlang, rmarkdown, testthat (>= 3.0.0)",
         "VignetteBuilder": "knitr, rmarkdown",
+        "Config/testthat/edition": "3",
+        "Encoding": "UTF-8",
+        "LazyData": "Yes",
         "NeedsCompilation": "yes",
-        "Packaged": "2018-05-24 15:00:57 UTC; ptrck",
-        "Author": "Patrick O. Perry [aut, cph, cre],\n  Unicode, Inc. [cph, dtc] (Unicode Character Database)",
-        "Maintainer": "Patrick O. Perry <patperry@gmail.com>",
+        "Packaged": "2021-03-12 03:51:46 UTC; kirill",
+        "Author": "Patrick O. Perry [aut, cph],\n  Kirill Müller [cre],\n  Unicode, Inc. [cph, dtc] (Unicode Character Database)",
+        "Maintainer": "Kirill Müller <krlmlr+r@mailbox.org>",
         "Repository": "CRAN",
-        "Date/Publication": "2018-05-24 17:09:15 UTC",
-        "Built": "R 3.6.0; x86_64-pc-linux-gnu; 2019-02-15 11:30:00 UTC; unix"
+        "Date/Publication": "2021-03-12 21:30:02 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:53:05 UTC; unix"
       }
     },
     "uuid": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "uuid",
         "Version": "0.1-4",
@@ -3737,105 +3216,87 @@
     "vctrs": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "vctrs",
         "Title": "Vector Helpers",
-        "Version": "0.3.6",
+        "Version": "0.3.7",
         "Authors@R": "\n    c(person(given = \"Hadley\",\n             family = \"Wickham\",\n             role = \"aut\",\n             email = \"hadley@rstudio.com\"),\n      person(given = \"Lionel\",\n             family = \"Henry\",\n             role = c(\"aut\", \"cre\"),\n             email = \"lionel@rstudio.com\"),\n      person(given = \"Davis\",\n             family = \"Vaughan\",\n             role = \"aut\",\n             email = \"davis@rstudio.com\"),\n      person(given = \"data.table team\",\n             role = \"cph\",\n             comment = \"Radix sort based on data.table's forder() and their contribution to R's order()\"),\n      person(given = \"RStudio\",\n             role = \"cph\"))",
         "Description": "Defines new notions of prototype and size that are\n    used to provide tools for consistent and well-founded type-coercion\n    and size-recycling, and are in turn connected to ideas of type- and\n    size-stability useful for analysing function interfaces.",
         "License": "MIT + file LICENSE",
         "URL": "https://vctrs.r-lib.org/",
         "BugReports": "https://github.com/r-lib/vctrs/issues",
         "Depends": "R (>= 3.3)",
-        "Imports": "ellipsis (>= 0.2.0), digest, glue, rlang (>= 0.4.7)",
+        "Imports": "ellipsis (>= 0.2.0), glue, rlang (>= 0.4.10)",
         "Suggests": "bit64, covr, crayon, dplyr (>= 0.8.5), generics, knitr,\npillar (>= 1.4.4), pkgdown, rmarkdown, testthat (>= 2.3.0),\ntibble, withr, xml2, waldo (>= 0.2.0), zeallot",
         "VignetteBuilder": "knitr",
         "Encoding": "UTF-8",
         "Language": "en-GB",
-        "LazyData": "true",
         "RoxygenNote": "7.1.1",
         "NeedsCompilation": "yes",
-        "Packaged": "2020-12-17 09:22:46 UTC; lionel",
+        "Packaged": "2021-03-29 09:15:46 UTC; lionel",
         "Author": "Hadley Wickham [aut],\n  Lionel Henry [aut, cre],\n  Davis Vaughan [aut],\n  data.table team [cph] (Radix sort based on data.table's forder() and\n    their contribution to R's order()),\n  RStudio [cph]",
         "Maintainer": "Lionel Henry <lionel@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-12-17 10:30:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2020-12-29 17:38:49 UTC; unix"
+        "Date/Publication": "2021-03-29 10:20:05 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:53:10 UTC; unix"
       }
     },
     "viridisLite": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "viridisLite",
         "Type": "Package",
-        "Title": "Default Color Maps from 'matplotlib' (Lite Version)",
-        "Version": "0.3.0",
-        "Authors@R": "c(\n      person(\"Simon\", \"Garnier\", email = \"garnier@njit.edu\", role = c(\"aut\", \"cre\")),\n      person(\"Noam\", \"Ross\", email = \"noam.ross@gmail.com\", role = c(\"ctb\", \"cph\")),\n      person(\"Bob\", \"Rudis\", email = \"bob@rud.is\", role = c(\"ctb\", \"cph\")),\n      person(\"Marco\", \"Sciaini\", email = \"sciaini.marco@gmail.com\", role = c(\"ctb\", \"cph\")),\n      person(\"Cédric\", \"Scherer\", email = \"scherer@izw-berlin.de\", role = c(\"ctb\", \"cph\"))\n  )",
+        "Title": "Colorblind-Friendly Color Maps (Lite Version)",
+        "Version": "0.4.0",
+        "Authors@R": "c(\n      person(\"Simon\", \"Garnier\", email = \"garnier@njit.edu\", role = c(\"aut\", \"cre\")),\n      person(\"Noam\", \"Ross\", email = \"noam.ross@gmail.com\", role = c(\"ctb\", \"cph\")),\n      person(\"Bob\", \"Rudis\", email = \"bob@rud.is\", role = c(\"ctb\", \"cph\")),\n      person(\"Marco\", \"Sciaini\", email = \"sciaini.marco@gmail.com\", role = c(\"ctb\", \"cph\")),\n      person(\"Antônio Pedro\", \"Camargo\", role = c(\"ctb\", \"cph\")),\n      person(\"Cédric\", \"Scherer\", email = \"scherer@izw-berlin.de\", role = c(\"ctb\", \"cph\"))\n  )",
         "Maintainer": "Simon Garnier <garnier@njit.edu>",
-        "Description": "Implementation of the 'viridis' - the default -, 'magma', 'plasma', \n    'inferno', and 'cividis' color maps for 'R'. 'viridis', 'magma', 'plasma', \n    and 'inferno' are ported from 'matplotlib' <http://matplotlib.org/>, a \n    popular plotting library for 'python'. 'cividis', was developed by Jamie R. \n    Nuñez and Sean M. Colby. These color maps are designed in such a way that \n    they will analytically be perfectly perceptually-uniform, both in regular \n    form and also when converted to black-and-white. They are also designed to \n    be perceived by readers with the most common form of color blindness (all \n    color maps in this package) and color vision deficiency ('cividis' only). \n    This is the 'lite' version of the more complete 'viridis' package that can \n    be found at <https://cran.r-project.org/package=viridis>.",
+        "Description": "Color maps designed to improve graph readability for readers with \n    common forms of color blindness and/or color vision deficiency. The color \n    maps are also perceptually-uniform, both in regular form and also when \n    converted to black-and-white for printing. This is the 'lite' version of the \n    'viridis' package that also contains 'ggplot2' bindings for discrete and \n    continuous color and fill scales and can be found at \n    <https://cran.r-project.org/package=viridis>.",
         "License": "MIT + file LICENSE",
-        "LazyData": "TRUE",
         "Encoding": "UTF-8",
         "Depends": "R (>= 2.10)",
         "Suggests": "hexbin (>= 1.27.0), ggplot2 (>= 1.0.1), testthat, covr",
-        "URL": "https://github.com/sjmgarnier/viridisLite",
-        "BugReports": "https://github.com/sjmgarnier/viridisLite/issues",
-        "RoxygenNote": "6.0.1",
+        "URL": "https://sjmgarnier.github.io/viridisLite/,\nhttps://github.com/sjmgarnier/viridisLite/",
+        "BugReports": "https://github.com/sjmgarnier/viridisLite/issues/",
+        "RoxygenNote": "7.1.1",
         "NeedsCompilation": "no",
-        "Packaged": "2018-02-01 17:33:56 UTC; simon",
-        "Author": "Simon Garnier [aut, cre],\n  Noam Ross [ctb, cph],\n  Bob Rudis [ctb, cph],\n  Marco Sciaini [ctb, cph],\n  Cédric Scherer [ctb, cph]",
+        "Packaged": "2021-04-11 18:02:57 UTC; simon",
+        "Author": "Simon Garnier [aut, cre],\n  Noam Ross [ctb, cph],\n  Bob Rudis [ctb, cph],\n  Marco Sciaini [ctb, cph],\n  Antônio Pedro Camargo [ctb, cph],\n  Cédric Scherer [ctb, cph]",
         "Repository": "CRAN",
-        "Date/Publication": "2018-02-01 22:45:56 UTC",
-        "Built": "R 3.6.0; ; 2019-02-18 16:15:52 UTC; unix"
+        "Date/Publication": "2021-04-13 15:00:02 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:53:24 UTC; unix"
       }
     },
     "waldo": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "waldo",
         "Title": "Find Differences Between R Objects",
-        "Version": "0.2.3",
+        "Version": "0.2.5",
         "Authors@R": "\n    c(person(given = \"Hadley\",\n             family = \"Wickham\",\n             role = c(\"aut\", \"cre\"),\n             email = \"hadley@rstudio.com\"),\n      person(given = \"RStudio\",\n             role = \"cph\"))",
         "Description": "Compare complex R objects and reveal the key\n    differences.  Designed particularly for use in testing packages where\n    being able to quickly isolate key differences makes understanding test\n    failures much easier.",
         "License": "MIT + file LICENSE",
         "URL": "https://github.com/r-lib/waldo",
         "BugReports": "https://github.com/r-lib/waldo/issues",
-        "Imports": "cli, diffobj, fansi, glue, methods, rematch2, rlang, tibble",
-        "Suggests": "testthat, covr, R6",
+        "Imports": "cli, diffobj, fansi, glue, methods, rematch2, rlang (>=\n0.4.10), tibble",
+        "Suggests": "testthat (>= 3.0.0), covr, R6",
         "Encoding": "UTF-8",
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
         "Config/testthat/edition": "3",
         "NeedsCompilation": "no",
-        "Packaged": "2020-11-09 14:55:30 UTC; hadley",
+        "Packaged": "2021-03-08 15:24:08 UTC; hadley",
         "Author": "Hadley Wickham [aut, cre],\n  RStudio [cph]",
         "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2020-11-09 16:30:02 UTC",
-        "Built": "R 3.6.3; ; 2020-11-24 10:04:26 UTC; unix"
+        "Date/Publication": "2021-03-08 16:42:05 UTC",
+        "Built": "R 3.6.3; ; 2021-04-15 08:58:41 UTC; unix"
       }
     },
     "withr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "withr",
         "Title": "Run Code 'With' Temporarily Modified Global State",
@@ -3865,10 +3326,6 @@
     "xml2": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "xml2",
         "Title": "Parse XML",
@@ -3898,10 +3355,6 @@
     "xtable": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "xtable",
         "Version": "1.8-4",
@@ -3927,10 +3380,6 @@
     "yaml": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "yaml",
         "Type": "Package",
@@ -3954,10 +3403,6 @@
     "zip": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
       "description": {
         "Package": "zip",
         "Title": "Cross-Platform 'zip' Compression",
@@ -4052,13 +3497,13 @@
       "checksum": "cac72063b696bc96b1257e972cb41aae"
     },
     ".Rprofile": {
-      "checksum": "d6b5c0e455fc3e1bb356003f1b61ef54"
+      "checksum": "b052d3de5c615d92e32b95477d145bb8"
     },
     "cdi_prio.update.csv": {
       "checksum": "dddf7afffb3badb95a6c0248ede44a51"
     },
     "CHANGELOG.md": {
-      "checksum": "52383d98e8eb6ac8807506722f70b96f"
+      "checksum": "3e507177eb143967fb6ddb58559b8df4"
     },
     "config.yml": {
       "checksum": "3298ef63ce822cf889ae67375f352616"
@@ -4090,393 +3535,6 @@
     "mechs.rds": {
       "checksum": "7d73dbf5d0f186b32792cdbbc4fc5735"
     },
-    "packrat/desc/askpass": {
-      "checksum": "380709e21e4865be4b17c1a077d292e4"
-    },
-    "packrat/desc/assertthat": {
-      "checksum": "706fccebed8f87f31ef8bc7e7a8cb450"
-    },
-    "packrat/desc/base64enc": {
-      "checksum": "9e4d46da755550b31c44a8e7e0aa054c"
-    },
-    "packrat/desc/BH": {
-      "checksum": "ee0861079114cb06550acb5abd597866"
-    },
-    "packrat/desc/brio": {
-      "checksum": "5d1295113aaa6139dc4fa7c0529f7339"
-    },
-    "packrat/desc/bslib": {
-      "checksum": "f4ca6428bd1f800f9b9300bdcf830636"
-    },
-    "packrat/desc/cachem": {
-      "checksum": "da9ed6b75c33c30b1b065c924e2a1940"
-    },
-    "packrat/desc/callr": {
-      "checksum": "549e5b683d00bbe211c7451417963833"
-    },
-    "packrat/desc/cellranger": {
-      "checksum": "d71b6fcf787d16e99cdbd7f655f4fb6c"
-    },
-    "packrat/desc/cli": {
-      "checksum": "c45677bd2a75c3cb6a6a88e1854c950d"
-    },
-    "packrat/desc/clipr": {
-      "checksum": "8ab161677aa51342ef172cb8430d7c29"
-    },
-    "packrat/desc/codetools": {
-      "checksum": "312f9a4f244df08c403de1d7aba5bd88"
-    },
-    "packrat/desc/colorspace": {
-      "checksum": "bab18d6a244661576bb4c02806ab4ac8"
-    },
-    "packrat/desc/commonmark": {
-      "checksum": "dc9444fafb1a31e3947b7c292920c248"
-    },
-    "packrat/desc/cpp11": {
-      "checksum": "55626217b0ec4515d6881e8a2fee98c6"
-    },
-    "packrat/desc/crayon": {
-      "checksum": "781c5b65ae4064b56bb6072ca345d7de"
-    },
-    "packrat/desc/crosstalk": {
-      "checksum": "d28d955b750cf1930f651a6b09c1a8e1"
-    },
-    "packrat/desc/curl": {
-      "checksum": "cab899c648475c3400623a52a742d5b7"
-    },
-    "packrat/desc/data.table": {
-      "checksum": "af3d62746671376e9c0c68daf2e848a9"
-    },
-    "packrat/desc/datapackcommons": {
-      "checksum": "f57098e621d9306d2cf4fd654ef109c1"
-    },
-    "packrat/desc/datapackr": {
-      "checksum": "49a8d39015b518505bf4906f3311fff4"
-    },
-    "packrat/desc/datimutils": {
-      "checksum": "af4b5435e1d5d442e9f4becd9569f239"
-    },
-    "packrat/desc/datimvalidation": {
-      "checksum": "be24b8f3b0e80faf032a91f41abdc6a4"
-    },
-    "packrat/desc/desc": {
-      "checksum": "d4745ab8b235bca8da3d8142efd10074"
-    },
-    "packrat/desc/diffobj": {
-      "checksum": "8974c65270b1f214299788658f7d43b2"
-    },
-    "packrat/desc/digest": {
-      "checksum": "13343abd600e2f9e725416d7ec9ab489"
-    },
-    "packrat/desc/doMC": {
-      "checksum": "6a8933ce53e084243d4a32bc8ad5a298"
-    },
-    "packrat/desc/dplyr": {
-      "checksum": "dd4de0760df58fd3ff66eb34ef719cb2"
-    },
-    "packrat/desc/DT": {
-      "checksum": "939490b89f020a4a063197fad11ba7a8"
-    },
-    "packrat/desc/ellipsis": {
-      "checksum": "11e660f00d2cde4db98a1d1ae4fe7f9e"
-    },
-    "packrat/desc/evaluate": {
-      "checksum": "6962bb7e50ded52523029d21fd25343a"
-    },
-    "packrat/desc/fansi": {
-      "checksum": "3cccae2c599932c7cbdf9e1a16a967bf"
-    },
-    "packrat/desc/farver": {
-      "checksum": "7dd62e01d61513f3a22a33c565c44a2d"
-    },
-    "packrat/desc/fastmap": {
-      "checksum": "3314b7291265a320b7f2a2e0ffc2054a"
-    },
-    "packrat/desc/filelock": {
-      "checksum": "9ac020ee6661771a27eeb6bcbc6b05bd"
-    },
-    "packrat/desc/foreach": {
-      "checksum": "35c694f2862fd3b6ba1064c691243931"
-    },
-    "packrat/desc/fs": {
-      "checksum": "44eed12670b4da71261793f3ab1dddb0"
-    },
-    "packrat/desc/generics": {
-      "checksum": "872c9b89fc4ff6b1e522a25a150cd738"
-    },
-    "packrat/desc/getPass": {
-      "checksum": "68645557807b2681977391e8a6e315aa"
-    },
-    "packrat/desc/glue": {
-      "checksum": "3b22943d54d5b2f84f2125c2ca3f79c5"
-    },
-    "packrat/desc/hms": {
-      "checksum": "935aa83f307968a67860a76469898d62"
-    },
-    "packrat/desc/htmltools": {
-      "checksum": "a53fabcaa9f6ea02444e87f4a5419d31"
-    },
-    "packrat/desc/htmlwidgets": {
-      "checksum": "0855db14dca2c0345a2325de34fcaab0"
-    },
-    "packrat/desc/httpuv": {
-      "checksum": "74836b3b9331f99fd1586490f7e95f5f"
-    },
-    "packrat/desc/httr": {
-      "checksum": "4a4a80014d27fcfaf1ba212f9a11c823"
-    },
-    "packrat/desc/ini": {
-      "checksum": "ead7c7f2ebf6b74af4bbb0f50888ba75"
-    },
-    "packrat/desc/ISOweek": {
-      "checksum": "bcf1d50bf77dead5389ed9193ff6c5f8"
-    },
-    "packrat/desc/iterators": {
-      "checksum": "d9e734544993f3af04431680e009f2fa"
-    },
-    "packrat/desc/jquerylib": {
-      "checksum": "28fa64ff9dd45d601bd90f8c0a84ad4d"
-    },
-    "packrat/desc/jsonlite": {
-      "checksum": "fca96b99a6b034143af33a9acdcd1936"
-    },
-    "packrat/desc/keyring": {
-      "checksum": "d5f600589a1f65a822c42467963f8873"
-    },
-    "packrat/desc/labeling": {
-      "checksum": "641f8409fcc9ec1713a572cb3364882d"
-    },
-    "packrat/desc/later": {
-      "checksum": "b38bf686587e91ea7738175a411de777"
-    },
-    "packrat/desc/lazyeval": {
-      "checksum": "5fb8b9e5f98b2c57c8432617f6db6039"
-    },
-    "packrat/desc/lifecycle": {
-      "checksum": "23c25fa497e9449b18eca8e89f66729a"
-    },
-    "packrat/desc/lubridate": {
-      "checksum": "c8aef30ff0b13d76048fabe22c8ccdee"
-    },
-    "packrat/desc/magrittr": {
-      "checksum": "ad7ab1ec508398d9090dfece1ee6f5d1"
-    },
-    "packrat/desc/mime": {
-      "checksum": "c127b376cb044f7228793e926ba64f97"
-    },
-    "packrat/desc/munsell": {
-      "checksum": "91642ad7ce5de16527ae8a22a69a976c"
-    },
-    "packrat/desc/openssl": {
-      "checksum": "7eef1729f90c8cefb2052e63c7927c98"
-    },
-    "packrat/desc/openxlsx": {
-      "checksum": "75c9f7f0ad214205709b973bbf2a8700"
-    },
-    "packrat/desc/pacman": {
-      "checksum": "d12dbf8bd661feb8692e2b36382e5613"
-    },
-    "packrat/desc/paws": {
-      "checksum": "f24964f6132095d8e78edb81f5b6732f"
-    },
-    "packrat/desc/paws.analytics": {
-      "checksum": "2d75a150f917504bc12f24dcd1316d5b"
-    },
-    "packrat/desc/paws.application.integration": {
-      "checksum": "581566a49c50238a7c56feb40925995e"
-    },
-    "packrat/desc/paws.common": {
-      "checksum": "1c0f0b03a2d10f93d784ba24e6561ee4"
-    },
-    "packrat/desc/paws.compute": {
-      "checksum": "45a0c51a9e31fa24907b3b37aa4dcd0a"
-    },
-    "packrat/desc/paws.cost.management": {
-      "checksum": "eb7ae070600accd84d82b5e97bb68f99"
-    },
-    "packrat/desc/paws.customer.engagement": {
-      "checksum": "8d909194d4b07a15518599c1c853625f"
-    },
-    "packrat/desc/paws.database": {
-      "checksum": "951a8e329fa2c506912f6856dfb66f94"
-    },
-    "packrat/desc/paws.machine.learning": {
-      "checksum": "d9b8c35b795e633e09c2c1e11f406868"
-    },
-    "packrat/desc/paws.management": {
-      "checksum": "98626fba41f022aa3398407785ee392c"
-    },
-    "packrat/desc/paws.networking": {
-      "checksum": "bcea0f3d80290d6603d567e0f7b048a3"
-    },
-    "packrat/desc/paws.security.identity": {
-      "checksum": "f6d6f99cbf8b877988a7a93e6b9970c0"
-    },
-    "packrat/desc/paws.storage": {
-      "checksum": "bc8129aea5b0f8a666044411b556f449"
-    },
-    "packrat/desc/pillar": {
-      "checksum": "07560cb7651c0ba56c6a6c904038244b"
-    },
-    "packrat/desc/piton": {
-      "checksum": "4378d8d7534cc08ca34e5ebd38ead2e2"
-    },
-    "packrat/desc/pkgbuild": {
-      "checksum": "7d0d26e850dee18ef3c5d795335b244e"
-    },
-    "packrat/desc/pkgconfig": {
-      "checksum": "61fb7eb7e15300434fac6ba89924c0a1"
-    },
-    "packrat/desc/pkgload": {
-      "checksum": "40c2139fe2000792ac679c56c5543dae"
-    },
-    "packrat/desc/plyr": {
-      "checksum": "fa13435b070bef64543eb76b4b7a4919"
-    },
-    "packrat/desc/praise": {
-      "checksum": "f94e6f7f9a0d489e043e0696b8979af8"
-    },
-    "packrat/desc/prettyunits": {
-      "checksum": "44be27d45b0aff3e928847b0a69ca027"
-    },
-    "packrat/desc/processx": {
-      "checksum": "8f9aa0cfa30b589dc20a292801932b85"
-    },
-    "packrat/desc/progress": {
-      "checksum": "e2083fd29ade1fa5f588948456d3859c"
-    },
-    "packrat/desc/promises": {
-      "checksum": "5c752f93b8e4a8ba023974f24bfa4a3e"
-    },
-    "packrat/desc/ps": {
-      "checksum": "a0a460111e06c28cae421c06788b7aab"
-    },
-    "packrat/desc/purrr": {
-      "checksum": "214b9325e0280f38b9d9a44224ca8f27"
-    },
-    "packrat/desc/R6": {
-      "checksum": "8a9a6fd6ebb2448ea821be28f490223d"
-    },
-    "packrat/desc/rappdirs": {
-      "checksum": "063353dfd98cfef73bd1266b1d6e472b"
-    },
-    "packrat/desc/RColorBrewer": {
-      "checksum": "8b4c76528322a866d0ada90893fba819"
-    },
-    "packrat/desc/Rcpp": {
-      "checksum": "58656c6593bb4e358d0e59f817bcf296"
-    },
-    "packrat/desc/readr": {
-      "checksum": "6e6b598e8e88628b28e8bfb23e8aa288"
-    },
-    "packrat/desc/readxl": {
-      "checksum": "bd68ae0631b025f2fabe0710b896d4b7"
-    },
-    "packrat/desc/rematch": {
-      "checksum": "b5b106227eece22bc6ba6883d36be04e"
-    },
-    "packrat/desc/rematch2": {
-      "checksum": "ab428513e4f7491d760f00ab10bc8e87"
-    },
-    "packrat/desc/remotes": {
-      "checksum": "e2c664612b0d59c37582840560c28b7a"
-    },
-    "packrat/desc/reshape2": {
-      "checksum": "fe522b871cb5a1bd72310848623b8e42"
-    },
-    "packrat/desc/rlang": {
-      "checksum": "20afb81c4ccae252ce219f43d95882a1"
-    },
-    "packrat/desc/rlist": {
-      "checksum": "0439e445355223c96f253cd386d2f03c"
-    },
-    "packrat/desc/rpivotTable": {
-      "checksum": "ed4f3441cd82692f4964834540347b46"
-    },
-    "packrat/desc/rprojroot": {
-      "checksum": "cb880b54a01eb49413c36d340621b2ea"
-    },
-    "packrat/desc/rstudioapi": {
-      "checksum": "9e431158e06fc5904583758082329477"
-    },
-    "packrat/desc/sass": {
-      "checksum": "7f626251181fa1d708526cb41f794b28"
-    },
-    "packrat/desc/scales": {
-      "checksum": "c19fe0b4ebf9ca2a9f3ce23949b557bd"
-    },
-    "packrat/desc/shiny": {
-      "checksum": "bf39a83ca8b956687a248bf6c94735e2"
-    },
-    "packrat/desc/shinyjs": {
-      "checksum": "47f3e0c57651868af9985a32c4780c29"
-    },
-    "packrat/desc/sodium": {
-      "checksum": "d71db593891b890b6b144044713bfd0b"
-    },
-    "packrat/desc/sourcetools": {
-      "checksum": "507765f0e40d0810774be848455a2cf6"
-    },
-    "packrat/desc/stringi": {
-      "checksum": "a3f2c1706616758266feec3fb877caef"
-    },
-    "packrat/desc/stringr": {
-      "checksum": "82fc4fa40e916c74b860128be6d8e6ce"
-    },
-    "packrat/desc/sys": {
-      "checksum": "12be3bd373e22b5275ab7acd9cbbb922"
-    },
-    "packrat/desc/testthat": {
-      "checksum": "f7b09614fceec6fab2168a3b1410b1a1"
-    },
-    "packrat/desc/tibble": {
-      "checksum": "452a5717a57982eeae4c42d96f83e8b8"
-    },
-    "packrat/desc/tidyr": {
-      "checksum": "9bbd045b14dcd0b2db19ae3e3ffcd3be"
-    },
-    "packrat/desc/tidyselect": {
-      "checksum": "94666cb1590d5f1709459f4b416640a1"
-    },
-    "packrat/desc/tidyxl": {
-      "checksum": "a83dbd18442373f94d86d14be9d7e270"
-    },
-    "packrat/desc/utf8": {
-      "checksum": "c98ce9415f46906d07fe733a39e4daeb"
-    },
-    "packrat/desc/uuid": {
-      "checksum": "23bc84526309a166d20f336d1f44f1fb"
-    },
-    "packrat/desc/vctrs": {
-      "checksum": "3cc670e4d6b9a8e81c84ddb1b664ec13"
-    },
-    "packrat/desc/viridisLite": {
-      "checksum": "ed2ff7959cf9a0afb9aa697767636d34"
-    },
-    "packrat/desc/waldo": {
-      "checksum": "3f72c265212a974bab040f86ca32d5bc"
-    },
-    "packrat/desc/withr": {
-      "checksum": "e2bd941b6faeab96aee787a135e7e867"
-    },
-    "packrat/desc/XML": {
-      "checksum": "e5470a908c50209f1df2f98f6b556c8a"
-    },
-    "packrat/desc/xml2": {
-      "checksum": "12f4e75f6e46c1bebed9cea28265fe6d"
-    },
-    "packrat/desc/xtable": {
-      "checksum": "d731a5a01be3e297b0f5e6bbe086850f"
-    },
-    "packrat/desc/yaml": {
-      "checksum": "6759923584508f670bf91000dcc2e0f1"
-    },
-    "packrat/desc/zip": {
-      "checksum": "c0e692997328fca72b0a258d351e8647"
-    },
-    "packrat/packrat.lock": {
-      "checksum": "afee79f032e19abf130d772982db6eb4"
-    },
     "R/utils.R": {
       "checksum": "31929a27a2add4a235c05d58161cb1ed"
     },
@@ -4487,7 +3545,7 @@
       "checksum": "eef665cd63e15044507de68a54e50b45"
     },
     "server.R": {
-      "checksum": "e6f878f4e3efcde34ca9099bbbad6b30"
+      "checksum": "a73923d0ae71be88c60d061b08645490"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
