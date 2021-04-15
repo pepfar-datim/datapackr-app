@@ -250,9 +250,7 @@ shinyServer(function(input, output, session) {
       tags$div(HTML('<ul><li><h4>Please be sure you fully populate the PSNUxIM tab when receiving a new DataPack. 
            Consult <a href="https://apps.datim.org/datapack-userguide/" target = "_blank" > the user guide</a> for further information!.</h4></li>
                     <li><h4>See the latest updates to the app <a href="https://github.com/pepfar-datim/datapackr-app/blob/master/CHANGELOG.md" target ="_blank">here.</h4></a></li></ul>'))
-    ),
-    tags$hr(),
-    fluidRow(HTML(getVersionInfo())))
+    ))
   })
 
   validate<-function() {
