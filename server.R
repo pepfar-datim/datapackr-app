@@ -6,7 +6,7 @@ pacman::p_load(shiny,shinyjs,shinyWidgets,magrittr,dplyr,datimvalidation,ggplot2
 #Set the maximum file size for the upload file
 options(shiny.maxRequestSize = 100 * 1024 ^ 2)
 #Allow unsanitized error messages
-options(shiny.sanitize.errors = FALSE))
+options(shiny.sanitize.errors = FALSE)
 #Initiate logging
 logger <- flog.logger()
 
