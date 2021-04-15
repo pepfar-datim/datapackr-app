@@ -1,4 +1,8 @@
-
+getVersionInfo<-function() {
+  paste0("Version: ",gert::git_branch(),"@",substr(gert::git_log(max=1)$commit,0,10)) %>% 
+    paste('<div style="font-size:small;text-align: center;"><p>',.) %>% 
+    paste(.,"</p></div>")
+}
 
 fetchSupportFiles <- function() {
   

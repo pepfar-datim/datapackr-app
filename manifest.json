@@ -566,6 +566,35 @@
         "Built": "R 3.6.3; ; 2021-04-15 08:49:47 UTC; unix"
       }
     },
+    "credentials": {
+      "Source": "CRAN",
+      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "description": {
+        "Package": "credentials",
+        "Type": "Package",
+        "Title": "Tools for Managing SSH and Git Credentials",
+        "Version": "1.3.0",
+        "Authors@R": "person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), \n    email = \"jeroen@berkeley.edu\", comment = c(ORCID = \"0000-0002-4035-0289\"))",
+        "Description": "Setup and retrieve HTTPS and SSH credentials for use with 'git' and \n    other services. For HTTPS remotes the package interfaces the 'git-credential' \n    utility which 'git' uses to store HTTP usernames and passwords. For SSH \n    remotes we provide convenient functions to find or generate appropriate SSH \n    keys. The package both helps the user to setup a local git installation, and\n    also provides a back-end for git/ssh client libraries to authenticate with \n    existing user credentials.",
+        "License": "MIT + file LICENSE",
+        "SystemRequirements": "git (optional)",
+        "Encoding": "UTF-8",
+        "Imports": "openssl (>= 1.3), sys (>= 2.1), curl, jsonlite, askpass",
+        "Suggests": "testthat, knitr, rmarkdown",
+        "RoxygenNote": "7.1.1",
+        "VignetteBuilder": "knitr",
+        "Language": "en-US",
+        "URL": "https://docs.ropensci.org/credentials (website)\nhttps://github.com/r-lib/credentials",
+        "BugReports": "https://github.com/r-lib/credentials/issues",
+        "NeedsCompilation": "no",
+        "Packaged": "2020-07-21 08:38:12 UTC; jeroen",
+        "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>)",
+        "Maintainer": "Jeroen Ooms <jeroen@berkeley.edu>",
+        "Repository": "CRAN",
+        "Date/Publication": "2020-07-21 09:10:06 UTC",
+        "Built": "R 3.6.3; ; 2020-12-29 17:36:37 UTC; unix"
+      }
+    },
     "crosstalk": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
@@ -1146,6 +1175,35 @@
         "Repository": "CRAN",
         "Date/Publication": "2020-10-31 06:10:15 UTC",
         "Built": "R 3.6.3; ; 2020-11-24 10:01:24 UTC; unix"
+      }
+    },
+    "gert": {
+      "Source": "CRAN",
+      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "description": {
+        "Type": "Package",
+        "Package": "gert",
+        "Title": "Simple Git Client for R",
+        "Version": "1.3.0",
+        "Authors@R": "c(\n    person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), email = \"jeroen@berkeley.edu\",\n      comment = c(ORCID = \"0000-0002-4035-0289\")),\n    person(\"Jennifer\", \"Bryan\", role = \"ctb\", email = \"jenny@rstudio.com\",\n      comment = c(ORCID = \"0000-0002-6983-2759\")))",
+        "Description": "Simple git client for R based on 'libgit2' with support for SSH and \n    HTTPS remotes. All functions in 'gert' use basic R data types (such as vectors\n    and data-frames) for their arguments and return values. User credentials are\n    shared with command line 'git' through the git-credential store and ssh keys\n    stored on disk or ssh-agent.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://docs.ropensci.org/gert/ (website),\nhttps://github.com/r-lib/gert (devel), https://libgit2.org\n(upstream)",
+        "BugReports": "https://github.com/r-lib/gert/issues",
+        "Imports": "askpass, credentials (>= 1.2.1), openssl (>= 1.4.1),\nrstudioapi (>= 0.11), sys, zip (>= 2.1.0)",
+        "Suggests": "spelling, knitr, rmarkdown, testthat",
+        "VignetteBuilder": "knitr",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.1.1",
+        "SystemRequirements": "libgit2 (>= 0.26): libgit2-devel (rpm) or\nlibgit2-dev (deb)",
+        "Language": "en-US",
+        "NeedsCompilation": "yes",
+        "Packaged": "2021-03-29 11:10:50 UTC; jeroen",
+        "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>),\n  Jennifer Bryan [ctb] (<https://orcid.org/0000-0002-6983-2759>)",
+        "Maintainer": "Jeroen Ooms <jeroen@berkeley.edu>",
+        "Repository": "CRAN",
+        "Date/Publication": "2021-03-29 12:30:08 UTC",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 12:32:10 UTC; unix"
       }
     },
     "getPass": {
@@ -3499,7 +3557,7 @@
       "checksum": "cac72063b696bc96b1257e972cb41aae"
     },
     ".Rprofile": {
-      "checksum": "dbded88f3289ddab2a523e187372393c"
+      "checksum": "373f3ae4f2e7dbd4036a20d4bb7c3258"
     },
     "cdi_prio.update.csv": {
       "checksum": "dddf7afffb3badb95a6c0248ede44a51"
@@ -3538,7 +3596,7 @@
       "checksum": "7d73dbf5d0f186b32792cdbbc4fc5735"
     },
     "R/utils.R": {
-      "checksum": "31929a27a2add4a235c05d58161cb1ed"
+      "checksum": "34ceb4ce14d9795f9d110d7f77de89fb"
     },
     "R/visuals.R": {
       "checksum": "c37879310345ed73a8c3f8daca7f60b3"
@@ -3547,7 +3605,7 @@
       "checksum": "eef665cd63e15044507de68a54e50b45"
     },
     "server.R": {
-      "checksum": "a73923d0ae71be88c60d061b08645490"
+      "checksum": "56a0c7c9e592e2e636e306bd332b054c"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
@@ -3584,6 +3642,9 @@
     },
     "support_files/README": {
       "checksum": "23d8254dae346ea59a603eb2a31ebe73"
+    },
+    "support_files/snuxim_model_data.rds": {
+      "checksum": "95be0c2f2e25bd283983f9f43be1b1ab"
     },
     "test_pivot.xlsx": {
       "checksum": "2da36c8df85cd2100594f617c6feb265"
