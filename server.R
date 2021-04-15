@@ -5,7 +5,8 @@ pacman::p_load(shiny,shinyjs,shinyWidgets,magrittr,dplyr,datimvalidation,ggplot2
 
 #Set the maximum file size for the upload file
 options(shiny.maxRequestSize = 100 * 1024 ^ 2)
-
+#Allow unsanitized error messages
+options(shiny.sanitize.errors = FALSE))
 #Initiate logging
 logger <- flog.logger()
 
@@ -179,28 +180,48 @@ shinyServer(function(input, output, session) {
             id = "main-panel",
             type = "tabs",
             tabPanel("Messages", tags$ul(uiOutput('messages'))),
-            tabPanel("Indicator summary", dataTableOutput("indicator_summary")),
-            tabPanel("SNU-level summary", dataTableOutput("snu_summary")),
-            tabPanel("Validation rules", dataTableOutput("vr_rules")),
-            tabPanel("HTS Summary Chart", plotOutput("modality_summary")),
-            tabPanel("HTS Summary Table",dataTableOutput("modality_table")),
-            tabPanel("HTS Yield",plotOutput("modality_yield")),
-            tabPanel("HTS Recency",dataTableOutput("hts_recency")),
-            tabPanel("VLS Testing",plotOutput("vls_summary")),
+            tabPanel("Indicator summary", dataTableOutput("indicator_summary"),
+                     tags$h4("Data source: Main DataPack tabs")),
+            tabPanel("SNU-level summary", 
+                     dataTableOutput("snu_summary"),
+                     tags$h4("Data source: Main DataPack tabs")),
+            tabPanel("Validation rules", 
+                     dataTableOutput("vr_rules"),
+                     tags$h4("Data source: PSNUxIM tab")),
+            tabPanel("HTS Summary Chart", 
+                     fluidRow(column(width=12,div(style="height:700px",plotOutput("modality_summary")))),
+                     fluidRow(column(width=12,tags$h4("Data source: PSNUxIM tab")))),
+            tabPanel("HTS Summary Table",
+                     dataTableOutput("modality_table"),
+                     tags$h4("Data source: PSNUxIM tab")),
+            tabPanel("HTS Yield",
+                     fluidRow(column(width=12,div(style="height:700px",plotOutput("modality_yield")))),
+                     fluidRow(tags$h4("Data source: PSNUxIM tab"))),
+            tabPanel("HTS Recency",
+                     dataTableOutput("hts_recency"),
+                     tags$h4("Data source: PSNUxIM tab")),
+            tabPanel("VLS Testing",
+                     fluidRow(column(width=12,div(style="height:700px",plotOutput("vls_summary")))),
+                     fluidRow(column(width=12,tags$h4("Data source: PSNUxIM tab")))),
             tabPanel("Epi Cascade Pyramid",
                      pickerInput("epiCascadeInput","SNU1",
                                  choices= "",
                                  options = list(`actions-box` = TRUE),multiple = T),
-                     plotOutput("epi_cascade")),
+                     fluidRow(column(width=12,div(style="height:700px",plotOutput("epi_cascade")))),
+                     fluidRow(tags$h4("Data source: SUBNATT/IMPATT data & PSNUxIM tab"))),
             tabPanel("KP Cascade Pyramid",
                      pickerInput("kpCascadeInput","SNU1",
                                  choices= "",
                                  options = list(`actions-box` = TRUE),multiple = T),
-                     plotOutput("kp_cascade")),
-            tabPanel("PSNUxIM Pivot",rpivotTable::rpivotTableOutput({"pivot"})),
+                     fluidRow(column(width=12,div(style="height:700px",plotOutput("kp_cascade")))),
+                     fluidRow(tags$h4("Data source: Data source: SUBNATT/IMPATT data & PSNUxIM tab"))),
+            tabPanel("PSNUxIM Pivot",
+                     fluidRow(column(width=12,div(rpivotTable::rpivotTableOutput({"pivot"})))),
+                     fluidRow(tags$h4("Data source: PSNUxIM tab"))),
             tabPanel("Prioritization (DRAFT)",
+                     DT::dataTableOutput("prio_table"),
                      h5("Note: This is a draft memo table. Final figures may differ."),
-                     DT::dataTableOutput("prio_table"))
+                     tags$h4("Data source: PSNUxIM tab"))
 
           ))
         ))
