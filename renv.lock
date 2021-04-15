@@ -960,10 +960,10 @@
     },
     "viridisLite": {
       "Package": "viridisLite",
-      "Version": "0.4.0",
+      "Version": "0.3.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "55e157e2aa88161bdb0754218470d204"
+      "Hash": "ce4f6271baa94776db692f1cb2055bee"
     },
     "waiter": {
       "Package": "waiter",
