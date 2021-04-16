@@ -213,9 +213,14 @@ preparePrioTable<-function(d,d2_session){
 
 }
 
-modalitySummaryChart <- function(df) {
+modalitySummaryChart <- function(d) {
 
-  df %>%
+  cop_year<-as.numeric(stringr::str_replace(d$info$cop_year,"^20",""))
+  chart_label<-paste0("COP",cop_year,"/FY",cop_year + 1," Testing Targets")
+  
+  d %>%
+    purrr::pluck("data") %>% 
+    purrr::pluck("analytics") %>% 
     dplyr::filter(!is.na(hts_modality)) %>%
     dplyr::filter( !( resultstatus_specific %in% c("Known at Entry Positive","Known Positives")))%>%
     dplyr::group_by(resultstatus_inclusive, hts_modality) %>%
@@ -233,7 +238,7 @@ modalitySummaryChart <- function(df) {
     coord_flip() +
     scale_fill_manual(values = c(	"#948d79", "#548dc0", "#59BFB3")) +
     labs(y = "", x = "",
-         title = "COP20/FY21 Testing Targets",
+         title = chart_label,
          subtitle = "modalities ordered by total tests") +
     theme(legend.position = "bottom",
           legend.title = element_blank(),
@@ -246,9 +251,11 @@ modalitySummaryChart <- function(df) {
 
 }
 
-modalitySummaryTable<-function(df){
+modalitySummaryTable<-function(d){
 
-  hts<- df %>%
+  hts<- d %>%
+    purrr::pluck("data") %>% 
+    purrr::pluck("analytics") %>% 
     dplyr::filter(!is.na(hts_modality)) %>%
     dplyr::filter( !( resultstatus_specific %in% c("Known at Entry Positive","Known Positives")))%>%
     dplyr::group_by(resultstatus_inclusive, hts_modality) %>%
@@ -273,23 +280,22 @@ modalitySummaryTable<-function(df){
        dplyr::mutate(yield = Positive/Total * 100,
                      modality_share = 100)
 
-     dplyr::bind_rows(hts,hts_total)
+     d$data$modality_summary<-dplyr::bind_rows(hts,hts_total)
+     
+     d
+     
    } else {
-     return(NULL)
+     return(d)
    }
 
 
 }
 
 formatModalitySummaryTable <- function(d) {
-  
-  if (!is.null(d$data$analytics)) {
+  df <- d$data$modality_summary
+  if (is.null(df)) {return(NULL)}
     
-    df <-modalitySummaryTable(d$data$analytics) 
-    
-    if (is.null(df)) {return(d)}
-  
-    df %<>% dplyr::mutate(
+    df %>% dplyr::mutate(
       Positive = format(Positive , big.mark = ',', scientific = FALSE),
       Total = format(Total , big.mark = ',', scientific = FALSE),
       yield = format(round(yield, 2), nsmall = 2),
@@ -302,16 +308,13 @@ formatModalitySummaryTable <- function(d) {
         "Yield (%)" = yield,
         "Percent of HTS_POS" = modality_share
       )
-  }
   
-  d$data$modality_summary<-df
-  
-  d
+
 }
 
-modalityYieldChart <- function(df) {
+modalityYieldChart <- function(d) {
 
-  df <- modalitySummaryTable(df)
+  df <- d$data$modality_summary
   if (NROW(df)  == 0 ) {return(NULL)}
   x_lim <- max(df$yield)
 
@@ -446,7 +449,7 @@ recencyComparison <- function(d) {
     dplyr::inner_join(., hts_mechs , by = "indicator_code") %>%
     dplyr::filter(resultstatus_inclusive == "Positive") %>%
     dplyr::filter(!(
-      resultstatus_specific %in% c("Known at Entry Positive", "Status Unknown")
+      resultstatus_specific %in% c("Known at Entry Positive", "Status Unknown","Known Positives")
     )) %>%
     dplyr::group_by(hts_recency_compare, indicator) %>%
     dplyr::summarise(value = sum(target_value)) %>%

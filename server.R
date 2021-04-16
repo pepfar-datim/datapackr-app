@@ -327,7 +327,7 @@ shinyServer(function(input, output, session) {
             d<-preparePrioTable(d,d2_session = user_input$d2_session)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Preparing a modality summary"))
-            d<-formatModalitySummaryTable(d)
+            d<-modalitySummaryTable(d)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
             d<-recencyComparison(d)
@@ -423,7 +423,7 @@ shinyServer(function(input, output, session) {
         incProgress(0.1, detail = ("Preparing a prioritization table"))
         d<-preparePrioTable(d,d2_session = user_input$d2_session)
         incProgress(0.1, detail = ("Preparing a modality summary"))
-        d<-formatModalitySummaryTable(d)
+        d<-modalitySummaryTable(d)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
         d<-recencyComparison(d)
@@ -559,7 +559,7 @@ shinyServer(function(input, output, session) {
         purrr::pluck(.,"analytics")
 
       if (is.null(analytics)) {return(NULL)} else {
-        modalitySummaryChart(analytics)
+        modalitySummaryChart(vr)
       }
 
     } else {
@@ -573,10 +573,8 @@ shinyServer(function(input, output, session) {
     vr<-validation_results()
 
     if (!inherits(vr,"error") & !is.null(vr)){
-      vr  %>%
-        purrr::pluck(.,"data") %>%
-        purrr::pluck(.,"analytics") %>%
-        modalityYieldChart()
+
+        modalityYieldChart(vr)
 
     } else {
       NULL
@@ -607,7 +605,7 @@ shinyServer(function(input, output, session) {
 
     if (!inherits(d,"error") & !is.null(d$data$modality_summary)){
 
-      DT::datatable(d$data$modality_summary,
+      DT::datatable(formatModalitySummaryTable(d),
                     options = list(pageLength = 25,columnDefs = list(list(
                       className = 'dt-right', targets = 2),
                       list(
@@ -846,7 +844,7 @@ shinyServer(function(input, output, session) {
       if (!is.null(d$data$modality_summary)) {
         openxlsx::addWorksheet(wb,"HTS Summary")
         openxlsx::writeDataTable(wb = wb,
-                            sheet = "HTS Summary", x = d$data$modality_summary)
+                            sheet = "HTS Summary", x = formatModalitySummary(d))
       }
       
       if (!is.null(d$data$prio_table)) {
