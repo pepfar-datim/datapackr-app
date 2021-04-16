@@ -315,6 +315,9 @@ formatModalitySummaryTable <- function(d) {
 modalityYieldChart <- function(d) {
 
   df <- d$data$modality_summary
+  cop_year<-as.numeric(stringr::str_replace(d$info$cop_year,"^20",""))
+  chart_label<-paste0("COP",cop_year,"/FY",cop_year + 1," Testing Yields")
+  
   if (NROW(df)  == 0 ) {return(NULL)}
   x_lim <- max(df$yield)
 
@@ -329,7 +332,7 @@ modalityYieldChart <- function(d) {
     coord_flip() +
     scale_fill_manual(values = c("#2166AC")) +
     labs(y = "", x = "",
-         title = "COP20/FY21 Testing Yields",
+         title = chart_label,
          subtitle = "Modalities ordered by yield rates") +
     theme(legend.position = "bottom",
           legend.title = element_blank(),
