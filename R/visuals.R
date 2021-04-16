@@ -677,12 +677,19 @@ snuSelector <- function(df){
 }
 
 prepareSNUSummaryTable<-function(d) {
+  
   can_sum <- d$info$schema %>% 
     dplyr::filter(value_type == "integer") %>% 
     dplyr::pull(indicator_code) %>% 
     unique(.)
   
-  df <-dplyr::bind_rows(d$data$MER,d$data$SUBNAT_IMPATT)
+  if (d$info$tool =="Data Pack") {
+    df <-dplyr::bind_rows(d$data$MER,d$data$SUBNAT_IMPATT)
+  } else if (d$info$tool == "OPU Data Pack") {
+     df <- d$data$extract
+  }
+  
+  if (NROW(df) == 0) { return(d)}
   
   snus<-datapackr::valid_PSNUs %>% 
     dplyr::select(ou,country_name,snu1,psnu,psnu_uid)
