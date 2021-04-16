@@ -315,7 +315,7 @@ modalityYieldChart <- function(df) {
   if (NROW(df)  == 0 ) {return(NULL)}
   x_lim <- max(df$yield)
 
-  df %>%
+  df %>% dplyr::filter(hts_modality != "Total") %>% #Omit totals
     ggplot(aes(
       y = yield,
       x = reorder(hts_modality, yield)
