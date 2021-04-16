@@ -844,7 +844,7 @@ shinyServer(function(input, output, session) {
       if (!is.null(d$data$modality_summary)) {
         openxlsx::addWorksheet(wb,"HTS Summary")
         openxlsx::writeDataTable(wb = wb,
-                            sheet = "HTS Summary", x = formatModalitySummary(d))
+                            sheet = "HTS Summary", x = formatModalitySummaryTable(d))
       }
       
       if (!is.null(d$data$prio_table)) {
