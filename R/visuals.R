@@ -21,7 +21,6 @@ PSNUxIM_pivot<-function(d){
               , width="70%", height="700px")
 }
 
-
 memoStructure<-function(cop_year="2020") {
   
   #TODO: Fix this once we get the COP21 indicators finalized
@@ -106,7 +105,6 @@ memoStructure<-function(cop_year="2020") {
   
   list(row_order=row_order,col_order=col_order) 
 }
-
 
 #Should probably move this to datapackr
 preparePrioTable<-function(d,d2_session){

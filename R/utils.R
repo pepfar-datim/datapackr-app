@@ -254,7 +254,6 @@ archiveDataPackErrorUI <- function(r) {
 
 saveTimeStampLogToS3<-function(d) {
 
-
   #Write an archived copy of the file
   s3<-paws::s3()
   object_tags<-createS3BucketTags(d)
@@ -267,8 +266,8 @@ saveTimeStampLogToS3<-function(d) {
   #Save a timestamp of the upload
   #options(digits.secs=6)
   timestamp_info<-list(
-    ou=d$info$datapack_name,
-    ou_id=d$info$country_uids,
+    ou=d$info$operating_unit$ou,
+    ou_id=d$info$operating_unit$ou_id,
     country_name=d$info$datapack_name,
     country_uids=paste(d$info$country_uids,sep="",collapse=","),
     upload_timestamp=strftime(as.POSIXlt(Sys.time(), "UTC") , "%Y-%m-%d %H:%M:%S"),
@@ -377,10 +376,25 @@ sendMERDataToPAW<-function(d) {
   return(r)
 }
 
+
+validationSummary2<-function (d) 
+{
+  tests_rows <- purrr::map(d$tests, NROW) %>% plyr::ldply(., 
+                                                          data.frame) %>% `colnames<-`(c("test_name", "count"))
+  tests_names <- purrr::map(d$tests, function(x) attr(x, "test_name")) %>% 
+    plyr::ldply(., data.frame) %>% `colnames<-`(c("test_name", 
+                                                  "validation_issue_category"))
+  dplyr::left_join(tests_names, tests_rows, by = "test_name") %>% 
+    dplyr::mutate(ou = d$info$operating_unit$ou, 
+                  ou_id = d$info$operating_unit$ou_id, 
+                  country_name = d$info$datapack_name, 
+                  country_uid = paste(d$info$country_uids,sep="",collapse=",")) %>% 
+    dplyr::filter(count > 0)
+}
 sendValidationSummary<-function(d) {
   
 
-  validation_summary<-validationSummary(d)
+  validation_summary<-validationSummary2(d)
   
   tmp <- tempfile()
   #Need better error checking here I think. 
@@ -454,7 +468,6 @@ saveDATIMExportToS3<-function(d) {
   read_file <- file(tmp, "rb")
   raw_file <- readBin(read_file, "raw", n = file.size(tmp))
   close(read_file)
-  
   
   object_tags<-createS3BucketTags(d)
   
@@ -552,7 +565,8 @@ evaluateIndicators<-function(combis,values,inds) {
 }
 
 createS3BucketTags<-function(d) {
-  d$info$country_uids<-paste0(d$info$country_uids,sep="",collapse=",")
+  d$info$country_uids<-paste0(d$info$country_uids,sep="",collapse="_")
+  #d$info$country_uids<-d$info$operating_unit$ou_id
   tags<-c("tool","country_uids","cop_year","has_error","sane_name","approval_status","source_user")
   object_tags<-d$info[names(d$info) %in% tags]
   object_tags<-URLencode(paste(names(object_tags),object_tags,sep="=",collapse="&"))

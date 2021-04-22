@@ -1,3 +1,11 @@
+## April 22,2021
+* [DP-226](https://jira.pepfar.net/browse/DP-226) Datpacks with multiple country UIDs cause an error
+
+## April 16, 2021
+* [DP-220](https://jira.pepfar.net/browse/DP-220) Visuals in Self-Service App broken for certain OPU Workbooks
+* [DP-221](https://jira.pepfar.net/browse/DP-221) HTS Yield Rates graph shows "Total"
+* [DP-219](https://jira.pepfar.net/browse/DP-219) Fix Fiscal year in HTS charts 
+
 ## April 15, 2021
 * [DP-216](https://jira.pepfar.net/browse/DP-216) Fix issue related to incorrect indicator group being used in the prioritization table. 
 * Update datapackr to 4.3.4

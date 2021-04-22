@@ -300,7 +300,7 @@ shinyServer(function(input, output, session) {
         d$info$approval_status<-"UNAPPROVED"
         #Generate a unique identifier
         d$info$uuid<-uuid::UUIDgenerate()
-        #Keep this until we can change the schema
+        d$info$operating_unit<-getOperatingUnitFromCountryUIDs(d$info$country_uids)
 
         flog.info(paste0("Initiating validation of ",d$info$datapack_name, " DataPack."), name="datapack")
         if (d$info$tool == "Data Pack") {
