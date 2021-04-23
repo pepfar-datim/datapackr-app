@@ -216,12 +216,12 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "4.3.7.0.0.0.1619128246",
+      "Version": "4.4.0.0.0.0.1619171493",
       "Source": "Repository",
       "Repository": "RSPM",
       "Remotes": "jason-p-pickering/datim-validation,\npepfar-datim/data-pack-commons",
-      "RemoteSha": "81931b3a6268325d94ee10e5cce429c19b6e2865",
-      "Hash": "374203ccc38bc101296f4b0d5f06ea04"
+      "RemoteSha": "92b22deba4b4589ac956c5a60e1ade77b33a71b6",
+      "Hash": "6871c1eb1ad7b17691854116ef8b3653"
     },
     "datimutils": {
       "Package": "datimutils",
@@ -356,12 +356,26 @@
       "Repository": "CRAN",
       "Hash": "0d9bf02413ddc2bbe8da9ce369dcdd2b"
     },
+    "fuzzyjoin": {
+      "Package": "fuzzyjoin",
+      "Version": "0.1.6",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "24af5fc67dbeaac6d776a8e6630aacd9"
+    },
     "generics": {
       "Package": "generics",
       "Version": "0.1.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "4d243a9c10b00589889fe32314ffd902"
+    },
+    "geosphere": {
+      "Package": "geosphere",
+      "Version": "1.5-10",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "eee36211f74e4dbc80eae9d504b58f0b"
     },
     "getPass": {
       "Package": "getPass",
@@ -887,6 +901,20 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "947e4e02a79effa5d512473e10f41797"
+    },
+    "sp": {
+      "Package": "sp",
+      "Version": "1.4-5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "dfd843ee98246cf932823acf613b05dd"
+    },
+    "stringdist": {
+      "Package": "stringdist",
+      "Version": "0.9.6.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "1ab14e88df14b856dd4d2e34a80c0ba6"
     },
     "stringi": {
       "Package": "stringi",

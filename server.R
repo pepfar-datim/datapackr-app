@@ -291,6 +291,10 @@ shinyServer(function(input, output, session) {
           return(e)
         })
 
+      if( inherits(d,"error") ) {
+        return("An error occurred. Please contact DATIM support.")
+      }
+      
       if (!inherits(d,"error") & !is.null(d)) {
         #Create some addditional metadadta for S3 tagging
         d$info$sane_name<-paste0(stringr::str_extract_all(d$info$datapack_name,"[A-Za-z0-9_]",
