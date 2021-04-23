@@ -13,6 +13,10 @@
     "BH": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "BH",
         "Type": "Package",
@@ -35,6 +39,10 @@
     "DT": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "DT",
         "Type": "Package",
@@ -62,6 +70,10 @@
     "ISOweek": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "ISOweek",
         "Type": "Package",
@@ -85,6 +97,10 @@
     "R6": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "R6",
         "Title": "Encapsulated Classes with Reference Semantics",
@@ -110,6 +126,10 @@
     "RColorBrewer": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "RColorBrewer",
         "Version": "1.1-2",
@@ -131,6 +151,10 @@
     "Rcpp": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "Rcpp",
         "Title": "Seamless R and C++ Integration",
@@ -156,6 +180,10 @@
     "XML": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "XML",
         "Version": "3.99-0.3",
@@ -180,6 +208,10 @@
     "askpass": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "askpass",
         "Type": "Package",
@@ -208,6 +240,10 @@
     "assertthat": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "assertthat",
         "Title": "Easy Pre and Post Assertions",
@@ -231,6 +267,10 @@
     "base64enc": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "base64enc",
         "Version": "0.1-3",
@@ -252,6 +292,10 @@
     "brio": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "brio",
         "Title": "Basic R Input Output",
@@ -277,6 +321,10 @@
     "bslib": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "bslib",
         "Title": "Custom 'Bootstrap' 'Sass' Themes for 'shiny' and 'rmarkdown'",
@@ -305,6 +353,10 @@
     "cachem": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "cachem",
         "Version": "1.0.4",
@@ -331,6 +383,10 @@
     "callr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "callr",
         "Title": "Call R from R",
@@ -357,6 +413,10 @@
     "cellranger": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "cellranger",
         "Title": "Translate Spreadsheet Cell Ranges to Rows and Columns",
@@ -384,6 +444,10 @@
     "cli": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "cli",
         "Title": "Helpers for Developing Command Line Interfaces",
@@ -411,6 +475,10 @@
     "clipr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "clipr",
@@ -441,6 +509,10 @@
     "codetools": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "codetools",
         "Version": "0.2-18",
@@ -462,6 +534,10 @@
     "colorspace": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "colorspace",
         "Version": "2.0-0",
@@ -490,6 +566,10 @@
     "commonmark": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "commonmark",
         "Type": "Package",
@@ -514,6 +594,10 @@
     "cpp11": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "cpp11",
         "Title": "A C++11 Interface for R's C Interface",
@@ -542,6 +626,10 @@
     "crayon": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "crayon",
         "Title": "Colored Terminal Output",
@@ -566,38 +654,13 @@
         "Built": "R 3.6.3; ; 2021-04-15 08:49:47 UTC; unix"
       }
     },
-    "credentials": {
-      "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "description": {
-        "Package": "credentials",
-        "Type": "Package",
-        "Title": "Tools for Managing SSH and Git Credentials",
-        "Version": "1.3.0",
-        "Authors@R": "person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), \n    email = \"jeroen@berkeley.edu\", comment = c(ORCID = \"0000-0002-4035-0289\"))",
-        "Description": "Setup and retrieve HTTPS and SSH credentials for use with 'git' and \n    other services. For HTTPS remotes the package interfaces the 'git-credential' \n    utility which 'git' uses to store HTTP usernames and passwords. For SSH \n    remotes we provide convenient functions to find or generate appropriate SSH \n    keys. The package both helps the user to setup a local git installation, and\n    also provides a back-end for git/ssh client libraries to authenticate with \n    existing user credentials.",
-        "License": "MIT + file LICENSE",
-        "SystemRequirements": "git (optional)",
-        "Encoding": "UTF-8",
-        "Imports": "openssl (>= 1.3), sys (>= 2.1), curl, jsonlite, askpass",
-        "Suggests": "testthat, knitr, rmarkdown",
-        "RoxygenNote": "7.1.1",
-        "VignetteBuilder": "knitr",
-        "Language": "en-US",
-        "URL": "https://docs.ropensci.org/credentials (website)\nhttps://github.com/r-lib/credentials",
-        "BugReports": "https://github.com/r-lib/credentials/issues",
-        "NeedsCompilation": "no",
-        "Packaged": "2020-07-21 08:38:12 UTC; jeroen",
-        "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>)",
-        "Maintainer": "Jeroen Ooms <jeroen@berkeley.edu>",
-        "Repository": "CRAN",
-        "Date/Publication": "2020-07-21 09:10:06 UTC",
-        "Built": "R 3.6.3; ; 2020-12-29 17:36:37 UTC; unix"
-      }
-    },
     "crosstalk": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "crosstalk",
         "Type": "Package",
@@ -624,6 +687,10 @@
     "curl": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "curl",
         "Type": "Package",
@@ -654,6 +721,10 @@
     "data.table": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "data.table",
         "Version": "1.14.0",
@@ -679,12 +750,17 @@
       }
     },
     "datapackcommons": {
-      "Source": "PEPFAR",
-      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
+      "Source": "github",
+      "Repository": null,
+      "GithubRepo": "data-pack-commons",
+      "GithubUsername": "pepfar-datim",
+      "GithubRef": "master",
+      "GithubSha1": "0a37ed3e242db9a240a7e5708f869ba3508cb5d1",
       "description": {
         "Package": "datapackcommons",
         "Type": "Package",
         "Title": "Common Utilities for with with the PEPFAR DataPack",
+        "Version": "0.2.3",
         "Author": "Who wrote it",
         "Maintainer": "The package maintainer <yourself@somewhere.net>",
         "Description": "More about what it does (maybe more than one line)\n    Use four spaces when indenting paragraphs within the Description.",
@@ -692,22 +768,31 @@
         "Encoding": "UTF-8",
         "LazyData": "true",
         "URL": "https://github.com/pepfar-datim/data-pack-commons",
-        "Imports": "assertthat, dplyr, glue, httr, jsonlite, lubridate, magrittr,\nplyr, purrr, readr, rlist, stringr, tibble, tidyr",
-        "Suggests": "doMC, httptest, testthat, datimvalidation",
+        "Imports": "assertthat,\ndplyr,\nglue,\nhttr,\njsonlite,\nlubridate,\nmagrittr,\nplyr,\npurrr,\nreadr,\nrlist,\nstringr,\ntibble,\ntidyr",
+        "Suggests": "doMC,\nhttptest,\ntestthat,\ndatimvalidation",
         "RoxygenNote": "7.1.1",
         "Depends": "R (>= 2.10)",
-        "Repository": "RSPM",
-        "RemoteSha": "60ff42a1fd417ff0805a7b083d41764a0c6b0267",
-        "Version": "0.2.3.0.0.0.1618420532",
-        "Date": "2021-04-14",
-        "NeedsCompilation": "no",
-        "Packaged": "2021-04-14 19:00:06 UTC; root",
-        "Built": "R 3.6.3; ; 2021-04-15 08:59:16 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-04-19 15:21:49 UTC; unix",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteUsername": "pepfar-datim",
+        "RemoteRepo": "data-pack-commons",
+        "RemoteRef": "master",
+        "RemoteSha": "0a37ed3e242db9a240a7e5708f869ba3508cb5d1",
+        "GithubHost": "api.github.com",
+        "GithubRepo": "data-pack-commons",
+        "GithubUsername": "pepfar-datim",
+        "GithubRef": "master",
+        "GithubSHA1": "0a37ed3e242db9a240a7e5708f869ba3508cb5d1"
       }
     },
     "datapackr": {
       "Source": "PEPFAR",
       "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -725,19 +810,23 @@
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
         "Repository": "RSPM",
-        "RemoteSha": "72d5cee7fd2fd91b324e30d37cb6cb7342c504fe",
-        "Version": "4.3.5.0.0.0.1618473490",
-        "Date": "2021-4-15",
+        "RemoteSha": "81931b3a6268325d94ee10e5cce429c19b6e2865",
+        "Version": "4.3.7.0.0.0.1619128246",
+        "Date": "2021-4-22",
         "NeedsCompilation": "no",
-        "Packaged": "2021-04-15 08:03:02 UTC; root",
+        "Packaged": "2021-04-22 21:55:29 UTC; root",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  William Shiflett [ctb],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Max Chandler [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 3.6.3; ; 2021-04-15 08:59:26 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-04-23 04:53:45 UTC; unix"
       }
     },
     "datimutils": {
       "Source": "PEPFAR",
       "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "datimutils",
         "Type": "Package",
@@ -766,17 +855,22 @@
       }
     },
     "datimvalidation": {
-      "Source": "PEPFAR",
-      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
+      "Source": "github",
+      "Repository": null,
+      "GithubRepo": "datim-validation",
+      "GithubUsername": "jason-p-pickering",
+      "GithubRef": "master",
+      "GithubSha1": "61e5ff51d8f31f786c765915c5b0b8d28a52109e",
       "description": {
         "Package": "datimvalidation",
         "Type": "Package",
         "Title": "External Validation Routines for Data Payloads in DATIM",
+        "Version": "1.0.118",
+        "Date": "2021-03-22",
         "Author": "Jason P. Pickering",
         "Maintainer": "Jason P. Pickering <jason.p.pickering@gmail.com>",
         "Description": "A comprehensive set of tools to validate data payloads\n        intended for import into 'DATIM' <https://www.datim.org/>.\n        DATIM is the 'PEPFAR' <https://www.state.gov/pepfar/> specific\n        instance of 'DHIS2' <https://www.dhis2.org/>. These scripts are\n        provided for the 'PEPFAR' data exchange community in order to\n        validate their prospective data payloads prior to submission\n        for import.",
         "License": "BSD_3_clause + file LICENSE",
-        "Remotes": "pepfar-datim/datimutils",
         "SystemRequirements": "Active user account on 'DATIM'\n<https://www.datim.org/>",
         "URL": "https://github.com/jason-p-pickering/datim-validation",
         "BugReports": "https://github.com/jason-p-pickering/datim-validation/issues",
@@ -786,18 +880,27 @@
         "Suggests": "doMC (>= 1.3.5), foreach (>= 1.4.4), httptest (>= 3.2.2),\nknitr (>= 1.21), methods, rmarkdown (>= 1.11), roxygen2 (>=\n6.1.1), tcltk, testthat (>= 2.0.1), covr (>= 3.2.1), stringi\n(>= 1.3.1), rprojroot (>= 1.3-2)",
         "VignetteBuilder": "knitr",
         "RoxygenNote": "7.1.1",
-        "Repository": "RSPM",
+        "Built": "R 3.6.3; ; 2021-03-30 08:40:19 UTC; unix",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteUsername": "jason-p-pickering",
+        "RemoteRepo": "datim-validation",
+        "RemoteRef": "master",
         "RemoteSha": "61e5ff51d8f31f786c765915c5b0b8d28a52109e",
-        "Version": "1.0.118.0.0.0.1617007828",
-        "Date": "2021-03-22",
-        "NeedsCompilation": "no",
-        "Packaged": "2021-03-29 08:51:01 UTC; root",
-        "Built": "R 3.6.3; ; 2021-04-15 08:59:21 UTC; unix"
+        "GithubHost": "api.github.com",
+        "GithubRepo": "datim-validation",
+        "GithubUsername": "jason-p-pickering",
+        "GithubRef": "master",
+        "GithubSHA1": "61e5ff51d8f31f786c765915c5b0b8d28a52109e"
       }
     },
     "desc": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "desc",
         "Title": "Manipulate DESCRIPTION Files",
@@ -827,6 +930,10 @@
     "diffobj": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "diffobj",
         "Type": "Package",
@@ -857,6 +964,10 @@
     "digest": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "digest",
         "Author": "Dirk Eddelbuettel <edd@debian.org> with contributions \n by Antoine Lucas, Jarek Tuszynski, Henrik Bengtsson, Simon Urbanek,\n Mario Frasca, Bryan Lewis, Murray Stokely, Hannes Muehleisen,\n Duncan Murdoch, Jim Hester, Wush Wu, Qiang Kou, Thierry Onkelinx, \n Michel Lang, Viliam Simko, Kurt Hornik, Radford Neal, Kendon Bell,\n Matthew de Queljoe, Ion Suruceanu, Bill Denney, Dirk Schumacher,\n and Winston Chang.",
@@ -882,6 +993,10 @@
     "doMC": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "doMC",
         "Type": "Package",
@@ -906,6 +1021,10 @@
     "dplyr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "dplyr",
@@ -936,6 +1055,10 @@
     "ellipsis": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "ellipsis",
         "Version": "0.3.1",
@@ -963,6 +1086,10 @@
     "evaluate": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "evaluate",
         "Type": "Package",
@@ -990,6 +1117,10 @@
     "fansi": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "fansi",
         "Title": "ANSI Control Sequence Aware String Functions",
@@ -1018,6 +1149,10 @@
     "farver": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "farver",
         "Type": "Package",
@@ -1044,6 +1179,10 @@
     "fastmap": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "fastmap",
         "Title": "Fast Data Structures",
@@ -1069,6 +1208,10 @@
     "filelock": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "filelock",
         "Title": "Portable File Locking",
@@ -1093,6 +1236,10 @@
     "foreach": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "foreach",
         "Type": "Package",
@@ -1121,6 +1268,10 @@
     "fs": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "fs",
         "Title": "Cross-Platform File System Operations Based on 'libuv'",
@@ -1153,6 +1304,10 @@
     "generics": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "generics",
         "Title": "Common S3 Generics not Provided by Base R Methods Related to\nModel Fitting",
@@ -1177,38 +1332,13 @@
         "Built": "R 3.6.3; ; 2020-11-24 10:01:24 UTC; unix"
       }
     },
-    "gert": {
-      "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "description": {
-        "Type": "Package",
-        "Package": "gert",
-        "Title": "Simple Git Client for R",
-        "Version": "1.3.0",
-        "Authors@R": "c(\n    person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), email = \"jeroen@berkeley.edu\",\n      comment = c(ORCID = \"0000-0002-4035-0289\")),\n    person(\"Jennifer\", \"Bryan\", role = \"ctb\", email = \"jenny@rstudio.com\",\n      comment = c(ORCID = \"0000-0002-6983-2759\")))",
-        "Description": "Simple git client for R based on 'libgit2' with support for SSH and \n    HTTPS remotes. All functions in 'gert' use basic R data types (such as vectors\n    and data-frames) for their arguments and return values. User credentials are\n    shared with command line 'git' through the git-credential store and ssh keys\n    stored on disk or ssh-agent.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://docs.ropensci.org/gert/ (website),\nhttps://github.com/r-lib/gert (devel), https://libgit2.org\n(upstream)",
-        "BugReports": "https://github.com/r-lib/gert/issues",
-        "Imports": "askpass, credentials (>= 1.2.1), openssl (>= 1.4.1),\nrstudioapi (>= 0.11), sys, zip (>= 2.1.0)",
-        "Suggests": "spelling, knitr, rmarkdown, testthat",
-        "VignetteBuilder": "knitr",
-        "Encoding": "UTF-8",
-        "RoxygenNote": "7.1.1",
-        "SystemRequirements": "libgit2 (>= 0.26): libgit2-devel (rpm) or\nlibgit2-dev (deb)",
-        "Language": "en-US",
-        "NeedsCompilation": "yes",
-        "Packaged": "2021-03-29 11:10:50 UTC; jeroen",
-        "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>),\n  Jennifer Bryan [ctb] (<https://orcid.org/0000-0002-6983-2759>)",
-        "Maintainer": "Jeroen Ooms <jeroen@berkeley.edu>",
-        "Repository": "CRAN",
-        "Date/Publication": "2021-03-29 12:30:08 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 12:32:10 UTC; unix"
-      }
-    },
     "getPass": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "getPass",
         "Type": "Package",
@@ -1236,6 +1366,10 @@
     "glue": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "glue",
         "Title": "Interpreted String Literals",
@@ -1265,6 +1399,10 @@
     "hms": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "hms",
         "Title": "Pretty Time of Day",
@@ -1293,6 +1431,10 @@
     "htmltools": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "htmltools",
         "Type": "Package",
@@ -1322,6 +1464,10 @@
     "htmlwidgets": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "htmlwidgets",
         "Type": "Package",
@@ -1349,6 +1495,10 @@
     "httpuv": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "httpuv",
         "Type": "Package",
@@ -1379,6 +1529,10 @@
     "httr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "httr",
         "Title": "Tools for Working with URLs and HTTP",
@@ -1406,6 +1560,10 @@
     "ini": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "ini",
         "Type": "Package",
@@ -1431,6 +1589,10 @@
     "iterators": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "iterators",
         "Type": "Package",
@@ -1454,6 +1616,10 @@
     "jquerylib": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "jquerylib",
         "Title": "Obtain 'jQuery' as an HTML Dependency Object",
@@ -1478,6 +1644,10 @@
     "jsonlite": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "jsonlite",
         "Version": "1.7.2",
@@ -1504,6 +1674,10 @@
     "keyring": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "keyring",
         "Title": "Access the System Credential Store from R",
@@ -1532,6 +1706,10 @@
     "labeling": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "labeling",
         "Type": "Package",
@@ -1554,6 +1732,10 @@
     "later": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "later",
         "Type": "Package",
@@ -1581,6 +1763,10 @@
     "lazyeval": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "lazyeval",
         "Version": "0.2.2",
@@ -1605,6 +1791,10 @@
     "lifecycle": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "lifecycle",
         "Title": "Manage the Life Cycle of your Package Functions",
@@ -1634,6 +1824,10 @@
     "lubridate": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "lubridate",
@@ -1667,6 +1861,10 @@
     "magrittr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "magrittr",
@@ -1694,6 +1892,10 @@
     "mime": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "mime",
         "Type": "Package",
@@ -1720,6 +1922,10 @@
     "munsell": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "munsell",
         "Type": "Package",
@@ -1743,6 +1949,10 @@
     "openssl": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "openssl",
         "Type": "Package",
@@ -1771,6 +1981,10 @@
     "openxlsx": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "openxlsx",
@@ -1803,6 +2017,10 @@
     "pacman": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "pacman",
         "Type": "Package",
@@ -1829,6 +2047,10 @@
     "paws": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "paws",
         "Title": "Amazon Web Services Software Development Kit",
@@ -1855,6 +2077,10 @@
     "paws.analytics": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "paws.analytics",
         "Title": "Amazon Web Services Analytics Services",
@@ -1882,6 +2108,10 @@
     "paws.application.integration": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "paws.application.integration",
         "Title": "Amazon Web Services Application Integration Services",
@@ -1909,6 +2139,10 @@
     "paws.common": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "paws.common",
         "Type": "Package",
@@ -1936,6 +2170,10 @@
     "paws.compute": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "paws.compute",
         "Title": "Amazon Web Services Compute Services",
@@ -1963,6 +2201,10 @@
     "paws.cost.management": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "paws.cost.management",
         "Title": "Amazon Web Services Cost Management Services",
@@ -1990,6 +2232,10 @@
     "paws.customer.engagement": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "paws.customer.engagement",
         "Title": "Amazon Web Services Customer Engagement Services",
@@ -2017,6 +2263,10 @@
     "paws.database": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "paws.database",
         "Title": "Amazon Web Services Database Services",
@@ -2044,6 +2294,10 @@
     "paws.machine.learning": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "paws.machine.learning",
         "Title": "Amazon Web Services Machine Learning Services",
@@ -2071,6 +2325,10 @@
     "paws.management": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "paws.management",
         "Title": "Amazon Web Services Management & Governance Services",
@@ -2098,6 +2356,10 @@
     "paws.networking": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "paws.networking",
         "Title": "Amazon Web Services Networking & Content Delivery Services",
@@ -2125,6 +2387,10 @@
     "paws.security.identity": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "paws.security.identity",
         "Title": "Amazon Web Services Security, Identity, & Compliance Services",
@@ -2152,6 +2418,10 @@
     "paws.storage": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "paws.storage",
         "Title": "Amazon Web Services Storage Services",
@@ -2179,6 +2449,10 @@
     "pillar": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "pillar",
         "Title": "Coloured Formatting for Columns",
@@ -2209,6 +2483,10 @@
     "piton": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "piton",
         "Type": "Package",
@@ -2238,6 +2516,10 @@
     "pkgconfig": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "pkgconfig",
         "Title": "Private Configuration for 'R' Packages",
@@ -2262,6 +2544,10 @@
     "pkgload": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "pkgload",
         "Title": "Simulate Package Installation and Attach",
@@ -2287,6 +2573,10 @@
     "plyr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "plyr",
         "Title": "Tools for Splitting, Applying and Combining Data",
@@ -2315,6 +2605,10 @@
     "praise": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "praise",
         "Title": "Praise Users",
@@ -2338,6 +2632,10 @@
     "prettyunits": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "prettyunits",
         "Title": "Pretty, Human Readable Formatting of Quantities",
@@ -2362,6 +2660,10 @@
     "processx": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "processx",
         "Title": "Execute and Control System Processes",
@@ -2387,6 +2689,10 @@
     "progress": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "progress",
         "Title": "Terminal Progress Bars",
@@ -2412,6 +2718,10 @@
     "promises": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "promises",
         "Type": "Package",
@@ -2442,6 +2752,10 @@
     "ps": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "ps",
         "Version": "1.6.0",
@@ -2469,6 +2783,10 @@
     "purrr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "purrr",
         "Title": "Functional Programming Tools",
@@ -2497,6 +2815,10 @@
     "rappdirs": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "rappdirs",
@@ -2525,6 +2847,10 @@
     "readr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "readr",
         "Title": "Read Rectangular Text Data",
@@ -2559,6 +2885,10 @@
     "readxl": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "readxl",
         "Title": "Read Excel Files",
@@ -2588,6 +2918,10 @@
     "rematch": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "rematch",
         "Title": "Match Regular Expressions with a Nicer 'API'",
@@ -2612,6 +2946,10 @@
     "rematch2": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "rematch2",
         "Title": "Tidy Output from Regular Expression Matching",
@@ -2638,6 +2976,10 @@
     "remotes": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "remotes",
         "Title": "R Package Installation from Remote Repositories, Including\n'GitHub'",
@@ -2666,6 +3008,10 @@
     "reshape2": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "reshape2",
         "Title": "Flexibly Reshape Data: A Reboot of the Reshape Package",
@@ -2693,6 +3039,10 @@
     "rlang": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "rlang",
         "Version": "0.4.10",
@@ -2724,6 +3074,10 @@
     "rlist": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "rlist",
         "Type": "Package",
@@ -2752,6 +3106,10 @@
     "rpivotTable": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "rpivotTable",
         "Title": "Build Powerful Pivot Tables and Dynamically Slice & Dice your\nData",
@@ -2779,6 +3137,10 @@
     "rprojroot": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "rprojroot",
         "Title": "Finding Files in Project Subdirectories",
@@ -2807,6 +3169,10 @@
     "rstudioapi": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "rstudioapi",
         "Title": "Safely Access the RStudio API",
@@ -2832,6 +3198,10 @@
     "sass": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Type": "Package",
         "Package": "sass",
@@ -2861,6 +3231,10 @@
     "scales": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "scales",
         "Title": "Scale Functions for Visualization",
@@ -2888,6 +3262,10 @@
     "shiny": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "shiny",
         "Type": "Package",
@@ -2917,6 +3295,10 @@
     "shinyjs": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "shinyjs",
         "Title": "Easily Improve the User Experience of Your Shiny Apps in Seconds",
@@ -2945,6 +3327,10 @@
     "sodium": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "sodium",
         "Type": "Package",
@@ -2970,6 +3356,10 @@
     "sourcetools": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "sourcetools",
         "Type": "Package",
@@ -2995,6 +3385,10 @@
     "stringi": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "stringi",
         "Version": "1.5.3",
@@ -3023,6 +3417,10 @@
     "stringr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "stringr",
         "Title": "Simple, Consistent Wrappers for Common String Operations",
@@ -3051,6 +3449,10 @@
     "sys": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "sys",
         "Type": "Package",
@@ -3078,6 +3480,10 @@
     "testthat": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "testthat",
         "Title": "Unit Testing for R",
@@ -3108,6 +3514,10 @@
     "tibble": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "tibble",
         "Title": "Simple Data Frames",
@@ -3139,6 +3549,10 @@
     "tidyr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "tidyr",
         "Title": "Tidy Messy Data",
@@ -3170,6 +3584,10 @@
     "tidyselect": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "tidyselect",
         "Title": "Select from a Set of Strings",
@@ -3199,6 +3617,10 @@
     "tidyxl": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "tidyxl",
         "Title": "Read Untidy Excel Files",
@@ -3228,6 +3650,10 @@
     "utf8": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "utf8",
         "Title": "Unicode Text Processing",
@@ -3255,6 +3681,10 @@
     "uuid": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "uuid",
         "Version": "0.1-4",
@@ -3275,6 +3705,10 @@
     "vctrs": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "vctrs",
         "Title": "Vector Helpers",
@@ -3303,6 +3737,10 @@
     "viridisLite": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "viridisLite",
         "Type": "Package",
@@ -3330,6 +3768,10 @@
     "waldo": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "waldo",
         "Title": "Find Differences Between R Objects",
@@ -3357,6 +3799,10 @@
     "withr": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "withr",
         "Title": "Run Code 'With' Temporarily Modified Global State",
@@ -3386,6 +3832,10 @@
     "xml2": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "xml2",
         "Title": "Parse XML",
@@ -3415,6 +3865,10 @@
     "xtable": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "xtable",
         "Version": "1.8-4",
@@ -3440,6 +3894,10 @@
     "yaml": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "yaml",
         "Type": "Package",
@@ -3463,6 +3921,10 @@
     "zip": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "zip",
         "Title": "Cross-Platform 'zip' Compression",
@@ -3557,13 +4019,13 @@
       "checksum": "cac72063b696bc96b1257e972cb41aae"
     },
     ".Rprofile": {
-      "checksum": "373f3ae4f2e7dbd4036a20d4bb7c3258"
+      "checksum": "d1661e00148eff42a851690983987fc4"
     },
     "cdi_prio.update.csv": {
       "checksum": "dddf7afffb3badb95a6c0248ede44a51"
     },
     "CHANGELOG.md": {
-      "checksum": "3e507177eb143967fb6ddb58559b8df4"
+      "checksum": "3fa947309871f5ddde7fff884caa38a0"
     },
     "config.yml": {
       "checksum": "3298ef63ce822cf889ae67375f352616"
@@ -3583,6 +4045,9 @@
     "degs_map.rds": {
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
+    "DESCRIPTION": {
+      "checksum": "181083a8a192b45cdb69702e5809dfa6"
+    },
     "import_subnatt.csv": {
       "checksum": "1dfa4859b3c999158a95ed447f73f5c7"
     },
@@ -3593,19 +4058,19 @@
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "7d73dbf5d0f186b32792cdbbc4fc5735"
+      "checksum": "c9d6d169015482845e9625217dd569ca"
     },
     "R/utils.R": {
-      "checksum": "34ceb4ce14d9795f9d110d7f77de89fb"
+      "checksum": "65de8ea5214b7d77b1316516e7025fd6"
     },
     "R/visuals.R": {
-      "checksum": "c37879310345ed73a8c3f8daca7f60b3"
+      "checksum": "3108b5df0ed0baecc44e20944be007e8"
     },
     "README.md": {
       "checksum": "eef665cd63e15044507de68a54e50b45"
     },
     "server.R": {
-      "checksum": "56a0c7c9e592e2e636e306bd332b054c"
+      "checksum": "c96805882e7573dc001472d5fe0d71be"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
@@ -3626,7 +4091,7 @@
       "checksum": "7e5ec5cd9c33bcdfce134faffd51bfe6"
     },
     "support_files/mechs.rds": {
-      "checksum": "7d73dbf5d0f186b32792cdbbc4fc5735"
+      "checksum": "c9d6d169015482845e9625217dd569ca"
     },
     "support_files/modifiedValidationRules.json": {
       "checksum": "e8c9c27cc18d80f06ddbfb56155a9ca3"
@@ -3642,9 +4107,6 @@
     },
     "support_files/README": {
       "checksum": "23d8254dae346ea59a603eb2a31ebe73"
-    },
-    "support_files/snuxim_model_data.rds": {
-      "checksum": "95be0c2f2e25bd283983f9f43be1b1ab"
     },
     "test_pivot.xlsx": {
       "checksum": "2da36c8df85cd2100594f617c6feb265"
