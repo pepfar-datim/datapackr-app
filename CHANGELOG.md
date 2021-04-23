@@ -1,6 +1,7 @@
 
 ## April 23, 2021
 * Update to datapackr 4.3.7
+* Update to datapackr 4.4.0
 
 
 ## April 22,2021
