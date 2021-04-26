@@ -262,7 +262,16 @@ modalitySummaryTable<-function(d){
     dplyr::arrange(resultstatus_inclusive, desc(resultstatus_inclusive)) %>%
     dplyr::mutate(resultstatus_inclusive = factor(resultstatus_inclusive, c("Unknown","Negative", "Positive")))
    
-  if (NROW(hts) > 0) {
+   
+   structure_check<-hts %>% 
+      dplyr::group_by(resultstatus_inclusive) %>% 
+      dplyr::summarise(value = sum(value,na.rm = TRUE)) %>% 
+      dplyr::mutate(greater_than_zero = value > 0)
+   
+   is_ok<-Reduce("&",structure_check$greater_than_zero) &  
+     Reduce("&",c("Negative","Positive" )%in%  structure_check$resultstatus_inclusive)
+  
+    if (NROW(hts) > 0 & is_ok) {
       hts %<>%
        tidyr::pivot_wider(names_from = resultstatus_inclusive, values_from = value ) %>%
        dplyr::mutate(yield = Positive/(Negative + Positive) * 100,
