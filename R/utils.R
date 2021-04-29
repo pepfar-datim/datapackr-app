@@ -81,7 +81,6 @@ validatePSNUData <- function(d,d2_session) {
     purrr::pluck(.,as.character(d$info$cop_year))
   
   vr_violations <- datimvalidation::validateData(vr_data,
-                                                 datasets = datasets_uid,
                                                  parallel = is_parallel,
                                                  return_violations_only = TRUE,
                                                  vr = vr_rules,
@@ -377,8 +376,7 @@ sendMERDataToPAW<-function(d) {
 }
 
 
-validationSummary2<-function (d) 
-{
+validationSummary2<-function (d) {
   tests_rows <- purrr::map(d$tests, NROW) %>% plyr::ldply(., 
                                                           data.frame) %>% `colnames<-`(c("test_name", "count"))
   tests_names <- purrr::map(d$tests, function(x) attr(x, "test_name")) %>% 
@@ -391,7 +389,7 @@ validationSummary2<-function (d)
                   country_uid = paste(d$info$country_uids,sep="",collapse=",")) %>% 
     dplyr::filter(count > 0)
 }
-sendValidationSummary<-function(d) {
+sendValidationSummary<-function(d,s3_folder,include_timestamp=FALSE) {
   
 
   validation_summary<-validationSummary2(d)
@@ -413,7 +411,28 @@ sendValidationSummary<-function(d) {
   close(read_file)
   
   object_tags<-createS3BucketTags(d)
-  object_name<-paste0("validation_error/",gsub("^20","cop",d$info$cop_year),"/",d$info$sane_name,".csv")
+  if (include_timestamp) {
+    object_name <-
+      paste0(
+        s3_folder,
+        "/",
+        gsub("^20", "cop", d$info$cop_year),
+        "/",
+        d$info$sane_name,
+        "_",
+        format(Sys.time(), "%Y%m%d_%H%M%OS"),
+        ".csv"
+      )
+  } else {
+    object_name <-
+      paste0(s3_folder,
+             "/",
+             gsub("^20", "cop", d$info$cop_year),
+             "/",
+             d$info$sane_name,
+             ".csv")
+  }
+
   s3<-paws::s3()
   
   r<-tryCatch({

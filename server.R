@@ -60,7 +60,7 @@ shinyServer(function(input, output, session) {
     timestampUploadUI(r)
     #r<-sendMERDataToPAW(d)
     archiveDataPackErrorUI(r)
-    r<-sendValidationSummary(d)
+    r<-sendValidationSummary(d,"validation_error")
     validationSummaryUI(r)
     r<-saveDATIMExportToS3(d)
     waiter_hide()
@@ -336,6 +336,9 @@ shinyServer(function(input, output, session) {
             incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
             d<-recencyComparison(d)
             Sys.sleep(1)
+            incProgress(0.1, detail = ("Finishing up."))
+            r<-sendValidationSummary(d,"app_analytics",include_timestamp = TRUE)
+            validationSummaryUI(r)
             
             shinyjs::enable("downloadFlatPack")
             shinyjs::enable("downloadCSOFlatPack")
