@@ -180,6 +180,7 @@ shinyServer(function(input, output, session) {
             id = "main-panel",
             type = "tabs",
             tabPanel("Messages", tags$ul(uiOutput('messages'))),
+            tabPanel("Analytics checks", tags$ul(uiOutput('analytics_checks'))),
             tabPanel("Indicator summary", dataTableOutput("indicator_summary"),
                      tags$h4("Data source: Main DataPack tabs")),
             tabPanel("SNU-level summary", 
@@ -335,6 +336,10 @@ shinyServer(function(input, output, session) {
             Sys.sleep(1)
             incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
             d<-recencyComparison(d)
+            Sys.sleep(1)
+            incProgress(0.1, detail = ("Performing analytics checks"))
+            model_ok<-fetchModelFile("support_files/datapack_modeLdata.rds")
+            d<-checkAnalytics(d,model_data_path ="support_files/datapack_modeLdata.rds", d2_session = user_input$d2_session )
             Sys.sleep(1)
             incProgress(0.1, detail = ("Finishing up."))
             r<-sendValidationSummary(d,"app_analytics",include_timestamp = TRUE)
@@ -705,7 +710,7 @@ shinyServer(function(input, output, session) {
       waiter_show(html = waiting_screen_datapack, color = "rgba(128,128,128,.8)" )
       flog.info("Fetching support files")
       
-      support_file<-fetchSupportFiles()
+      support_file<-fetchSupportFiles("/support_files/snuxim_model_data.rds")
       if (!file.exists(support_file)) {
         flog.error("Could not find model support file.")
         stop("WOMP!")
@@ -944,8 +949,36 @@ shinyServer(function(input, output, session) {
       }
     }
   })
-
-
+  
+  output$analytics_checks <- renderUI({
+    
+    vr<-validation_results()
+    
+    messages<-NULL
+    
+    if ( is.null(vr)) {
+      return(NULL)
+    }
+    
+    if ( inherits(vr,"error") ) {
+      return( paste0("ERROR! ",vr$message) )
+      
+    } else {
+      
+      messages <- validation_results() %>%
+        purrr::pluck(., "info") %>%
+        purrr::pluck(., "analytics_warning_msg")
+      
+      if (!is.null(messages))  {
+        lapply(messages, function(x)
+          tags$li(x))
+      } else
+      {
+        tags$li("No Issues with Analytics Checks: Congratulations!")
+      }
+    }
+  })
+  
   output$download_messages <- downloadHandler(
     filename = function(){
       paste("DataPack_Validation_Messages_", Sys.Date(), ".txt", sep = "")

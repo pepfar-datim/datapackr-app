@@ -10,16 +10,44 @@ getVersionInfo<-function() {
     paste(.,"</p></div>")
 }
 
-fetchSupportFiles <- function() {
+
+fetchModelFile<-function(model_path="support_files/datapack_modeLdata.rds") {
+  
+  can_read_file <- file.access(model_path, 4) == 0
+  can_write_file <-file.access(dirname(model_path), 2) == 0
+  max_cache_age <- "1 day"
+
+  if (file.exists(model_path) & can_read_file) {
+    is_fresh <-
+      lubridate::as.duration(lubridate::interval(file.info(model_path)$mtime,Sys.time())) < lubridate::duration(max_cache_age)
+  } else{
+    is_fresh<-FALSE
+  }
+  
+  if (!is_fresh & can_write_file) {
+    interactive_print("Fetching new model file from S3")
+    fetchSupportFiles(model_path)
+    return(TRUE)
+  
+  } else {
+    return(FALSE)
+  }
+  
+
+  
+}
+
+fetchSupportFiles <- function(path) {
   
 
     s3 <- paws::s3()
     s3_object <-
       s3$get_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
-                    Key = paste0("/support_files/snuxim_model_data.rds"))
+                    Key = path)
     s3_object_body <- s3_object$Body
     
-    file_name2 <- paste0(getwd(),"/support_files/snuxim_model_data.rds")
+    #Hmm...use of getwd() is really not a good idea.
+    file_name2 <- paste0(getwd(),path)
     if (file.exists(file_name2)) {
       unlink(file_name2)
     }
@@ -27,7 +55,7 @@ fetchSupportFiles <- function() {
     con<-file(file_name2,"wb")
     writeBin(s3_object_body, con = con)
     close(con)
-    flog.info(paste0("Retreived model file to ", file_name2))
+    flog.info(paste0("Retreived support file to ", file_name2))
     if(!file.exists(file_name2)) {stop("Could not retreive support file.")}
   
   return(file_name2)
