@@ -205,6 +205,44 @@
         "Built": "R 3.6.2; x86_64-pc-linux-gnu; 2020-01-30 10:48:14 UTC; unix"
       }
     },
+    "ansistrings": {
+      "Source": "github",
+      "Repository": null,
+      "GithubRepo": "ansistrings",
+      "GithubUsername": "r-lib",
+      "GithubRef": "master",
+      "GithubSha1": "3ad2a2e9598266b691edfb2087d932c8121d1c1b",
+      "description": {
+        "Package": "ansistrings",
+        "Title": "Manipulation of 'ANSI' colored strings",
+        "Version": "1.0.0.9000",
+        "Author": "Gábor Csárdi",
+        "Authors@R": "c(\n    person(\n    \"Gábor\", \"Csárdi\", email=\"csardi.gabor@gmail.com\",\n    role=c(\"aut\", \"cre\")),\n    person(\n    \"Brodie\", \"Gaslam\", email=\"brodie.gaslam@yahoo.com\",\n    role=c(\"aut\"))\n    )",
+        "Description": "String manipulation functions for 'ANSI' colored strings.\n    Substrings, split strings, wraps strings, and keeps the coloring proper.",
+        "License": "MIT + file LICENSE",
+        "LazyData": "true",
+        "URL": "https://github.com/r-lib/ansistrings",
+        "BugReports": "https://github.com/r-lib/ansistrings/issues",
+        "Roxygen": "list(markdown = TRUE)",
+        "RoxygenNote": "6.0.1.9000",
+        "Imports": "crayon,\nutils",
+        "Suggests": "testthat,\nwebshot",
+        "Encoding": "UTF-8",
+        "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-30 13:47:25 UTC; unix",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteUsername": "r-lib",
+        "RemoteRepo": "ansistrings",
+        "RemoteRef": "master",
+        "RemoteSha": "3ad2a2e9598266b691edfb2087d932c8121d1c1b",
+        "GithubHost": "api.github.com",
+        "GithubRepo": "ansistrings",
+        "GithubUsername": "r-lib",
+        "GithubRef": "master",
+        "GithubSHA1": "3ad2a2e9598266b691edfb2087d932c8121d1c1b"
+      }
+    },
     "askpass": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
@@ -791,14 +829,14 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "testing",
-      "GithubSha1": "00dce8eb15a9e5f6ebc590b233484865afc1da0d",
+      "GithubRef": "dev",
+      "GithubSha1": "a8c6f668c25b6596614efaf8a87cce740b9ff130",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
         "Title": "A Package that Packs and Unpacks all Data Packs",
-        "Version": "4.4.1",
-        "Date": "2021-4-23",
+        "Version": "4.4.2",
+        "Date": "2021-4-29",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"William\", \"Shiflett\", email = \"wshiflett@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Chris\", \"Nemarich\", email = \"cnemarich@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Christian\", \"Domaas\", email = \"cdomaas@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Max\", \"Chandler\", email = \"mchandler@baosystems.com\",\n        role = c(\"ctb\"))\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
         "URL": "https://github.com/pepfar-datim/datapackr",
@@ -812,18 +850,18 @@
         "RoxygenNote": "7.1.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  William Shiflett [ctb],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Max Chandler [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 3.6.3; ; 2021-04-27 07:44:23 UTC; unix",
+        "Built": "R 3.6.3; ; 2021-04-30 11:11:57 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "testing",
-        "RemoteSha": "00dce8eb15a9e5f6ebc590b233484865afc1da0d",
+        "RemoteRef": "dev",
+        "RemoteSha": "a8c6f668c25b6596614efaf8a87cce740b9ff130",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "testing",
-        "GithubSHA1": "00dce8eb15a9e5f6ebc590b233484865afc1da0d",
+        "GithubRef": "dev",
+        "GithubSHA1": "a8c6f668c25b6596614efaf8a87cce740b9ff130",
         "Remotes": "jason-p-pickering/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -869,21 +907,22 @@
       }
     },
     "datimvalidation": {
-      "Source": "PEPFAR",
-      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
+      "Source": "github",
+      "Repository": null,
+      "GithubRepo": "datim-validation",
+      "GithubUsername": "jason-p-pickering",
+      "GithubRef": "master",
+      "GithubSha1": "bc550850e5f767c23e9cc72938438ff7207dba54",
       "description": {
         "Package": "datimvalidation",
         "Type": "Package",
         "Title": "External Validation Routines for Data Payloads in DATIM",
+        "Version": "1.1.2",
+        "Date": "2021-04-27",
         "Author": "Jason P. Pickering",
         "Maintainer": "Jason P. Pickering <jason.p.pickering@gmail.com>",
         "Description": "A comprehensive set of tools to validate data payloads\n        intended for import into 'DATIM' <https://www.datim.org/>.\n        DATIM is the 'PEPFAR' <https://www.state.gov/pepfar/> specific\n        instance of 'DHIS2' <https://www.dhis2.org/>. These scripts are\n        provided for the 'PEPFAR' data exchange community in order to\n        validate their prospective data payloads prior to submission\n        for import.",
         "License": "BSD_3_clause + file LICENSE",
-        "Remotes": "pepfar-datim/datimutils",
         "SystemRequirements": "Active user account on 'DATIM'\n<https://www.datim.org/>",
         "URL": "https://github.com/jason-p-pickering/datim-validation",
         "BugReports": "https://github.com/jason-p-pickering/datim-validation/issues",
@@ -893,13 +932,18 @@
         "Suggests": "doMC (>= 1.3.5), foreach (>= 1.4.4), httptest (>= 3.2.2),\nknitr (>= 1.21), methods, rmarkdown (>= 1.11), roxygen2 (>=\n6.1.1), tcltk, testthat (>= 2.0.1), covr (>= 3.2.1), stringi\n(>= 1.3.1), rprojroot (>= 1.3-2)",
         "VignetteBuilder": "knitr",
         "RoxygenNote": "7.1.1",
-        "Repository": "RSPM",
+        "Built": "R 3.6.3; ; 2021-04-28 14:05:16 UTC; unix",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteUsername": "jason-p-pickering",
+        "RemoteRepo": "datim-validation",
+        "RemoteRef": "master",
         "RemoteSha": "bc550850e5f767c23e9cc72938438ff7207dba54",
-        "Version": "1.1.2.0.0.0.1619515373",
-        "Date": "2021-04-27",
-        "NeedsCompilation": "no",
-        "Packaged": "2021-04-27 09:31:37 UTC; root",
-        "Built": "R 3.6.3; ; 2021-04-27 10:26:17 UTC; unix"
+        "GithubHost": "api.github.com",
+        "GithubRepo": "datim-validation",
+        "GithubUsername": "jason-p-pickering",
+        "GithubRef": "master",
+        "GithubSHA1": "bc550850e5f767c23e9cc72938438ff7207dba54"
       }
     },
     "desc": {
@@ -4187,7 +4231,7 @@
       "checksum": "cac72063b696bc96b1257e972cb41aae"
     },
     ".Rprofile": {
-      "checksum": "405fea4a65dbcb191bdfe5bef7825b29"
+      "checksum": "96c85357c653b56405bbad7d46ae8016"
     },
     "cdi_prio.update.csv": {
       "checksum": "dddf7afffb3badb95a6c0248ede44a51"
@@ -4214,7 +4258,7 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "DESCRIPTION": {
-      "checksum": "4c8c8fd0b372354e6127c378c5d2d935"
+      "checksum": "16b442b54017fdc804e56d7792f7dfaa"
     },
     "import_subnatt.csv": {
       "checksum": "1dfa4859b3c999158a95ed447f73f5c7"
@@ -4229,7 +4273,7 @@
       "checksum": "c9d6d169015482845e9625217dd569ca"
     },
     "R/utils.R": {
-      "checksum": "5931db24f19503e1bb88e61f1f27b216"
+      "checksum": "3f8182fa2fa153634184f533cf65c76c"
     },
     "R/visuals.R": {
       "checksum": "bdf205f5d0b78b1a64e5c2977727eab4"
@@ -4238,7 +4282,7 @@
       "checksum": "eef665cd63e15044507de68a54e50b45"
     },
     "server.R": {
-      "checksum": "b4e01193f6fa3d6439ff7a942e01dde5"
+      "checksum": "d66a352a26520ab2d0c8dca7b0b3e54c"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
@@ -4258,8 +4302,14 @@
     "support_files/cop20_validation_rules.rds": {
       "checksum": "7e5ec5cd9c33bcdfce134faffd51bfe6"
     },
+    "support_files/datapack_model_data.rds": {
+      "checksum": "b2ecdc282382ca0515146129d9319a24"
+    },
     "support_files/mechs.rds": {
       "checksum": "c9d6d169015482845e9625217dd569ca"
+    },
+    "support_files/model_data_pack_input_21_20210202_1_flat.rds": {
+      "checksum": "75318ab8927e10b549a262f8eb810426"
     },
     "support_files/modifiedValidationRules.json": {
       "checksum": "e8c9c27cc18d80f06ddbfb56155a9ca3"

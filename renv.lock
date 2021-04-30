@@ -76,6 +76,18 @@
       "Repository": "CRAN",
       "Hash": "c1616606f097075542c12fb8a10a071e"
     },
+    "ansistrings": {
+      "Package": "ansistrings",
+      "Version": "1.0.0.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "r-lib",
+      "RemoteRepo": "ansistrings",
+      "RemoteRef": "master",
+      "RemoteSha": "3ad2a2e9598266b691edfb2087d932c8121d1c1b",
+      "Hash": "5128cc7db678b718ac0edf06694484ec"
+    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.1",
@@ -216,16 +228,16 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "4.4.1",
+      "Version": "4.4.2",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
-      "RemoteRef": "testing",
-      "RemoteSha": "00dce8eb15a9e5f6ebc590b233484865afc1da0d",
+      "RemoteRef": "dev",
+      "RemoteSha": "a8c6f668c25b6596614efaf8a87cce740b9ff130",
       "Remotes": "jason-p-pickering/datim-validation, pepfar-datim/data-pack-commons",
-      "Hash": "52810448a63d7e0368e4001bfa526533"
+      "Hash": "d0f86560475dce36e0f4b61ef63a9dc0"
     },
     "datimutils": {
       "Package": "datimutils",
@@ -241,12 +253,15 @@
     },
     "datimvalidation": {
       "Package": "datimvalidation",
-      "Version": "1.1.2.0.0.0.1619515373",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Remotes": "pepfar-datim/datimutils",
+      "Version": "1.1.2",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "jason-p-pickering",
+      "RemoteRepo": "datim-validation",
+      "RemoteRef": "master",
       "RemoteSha": "bc550850e5f767c23e9cc72938438ff7207dba54",
-      "Hash": "fa13527cdc265da63e5d1770f0650905"
+      "Hash": "949e926690723023b86ea93bf7161d22"
     },
     "desc": {
       "Package": "desc",

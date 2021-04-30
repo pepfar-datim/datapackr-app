@@ -11,8 +11,9 @@ getVersionInfo<-function() {
 }
 
 
-fetchModelFile<-function(model_path="support_files/datapack_modeLdata.rds") {
+fetchModelFile<-function(model_path="support_files/datapack_model_data.rds") {
   
+
   can_read_file <- file.access(model_path, 4) == 0
   can_write_file <-file.access(dirname(model_path), 2) == 0
   max_cache_age <- "1 day"
@@ -26,13 +27,14 @@ fetchModelFile<-function(model_path="support_files/datapack_modeLdata.rds") {
   
   if (!is_fresh & can_write_file) {
     interactive_print("Fetching new model file from S3")
-    fetchSupportFiles(model_path)
-    return(TRUE)
-  
+    dest_file<-fetchSupportFiles(model_path)
+
   } else {
-    return(FALSE)
+    interactive_print("Found cached model file.")
+    dest_file<-paste0(getwd(),"/",model_path)
   }
   
+  return(dest_file)
 
   
 }
@@ -47,7 +49,7 @@ fetchSupportFiles <- function(path) {
     s3_object_body <- s3_object$Body
     
     #Hmm...use of getwd() is really not a good idea.
-    file_name2 <- paste0(getwd(),path)
+    file_name2 <- paste0(getwd(),"/",path)
     if (file.exists(file_name2)) {
       unlink(file_name2)
     }

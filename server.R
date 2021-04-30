@@ -180,7 +180,7 @@ shinyServer(function(input, output, session) {
             id = "main-panel",
             type = "tabs",
             tabPanel("Messages", tags$ul(uiOutput('messages'))),
-            tabPanel("Analytics checks", tags$ul(uiOutput('analytics_checks'))),
+            tabPanel("Analytics checks", tags$div(uiOutput('analytics_checks'))),
             tabPanel("Indicator summary", dataTableOutput("indicator_summary"),
                      tags$h4("Data source: Main DataPack tabs")),
             tabPanel("SNU-level summary", 
@@ -297,7 +297,7 @@ shinyServer(function(input, output, session) {
       }
       
       if (!inherits(d,"error") & !is.null(d)) {
-        #Create some addditional metadadta for S3 tagging
+        #Create some additional metadadta for S3 tagging
         d$info$sane_name<-paste0(stringr::str_extract_all(d$info$datapack_name,"[A-Za-z0-9_]",
                                                           simplify = TRUE),sep="",collapse="")
         d$info$source_user<-user_input$d2_session$me$userCredentials$username
@@ -338,8 +338,8 @@ shinyServer(function(input, output, session) {
             d<-recencyComparison(d)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Performing analytics checks"))
-            model_ok<-fetchModelFile("support_files/datapack_modeLdata.rds")
-            d<-checkAnalytics(d,model_data_path ="support_files/datapack_modeLdata.rds", d2_session = user_input$d2_session )
+            full_model_path<-fetchModelFile("support_files/datapack_model_data.rds")
+            d<-checkAnalytics(d,model_data_path =full_model_path, d2_session = user_input$d2_session )
             Sys.sleep(1)
             incProgress(0.1, detail = ("Finishing up."))
             r<-sendValidationSummary(d,"app_analytics",include_timestamp = TRUE)
@@ -965,13 +965,13 @@ shinyServer(function(input, output, session) {
       
     } else {
       
-      messages <- validation_results() %>%
+      messages <- vr %>%
         purrr::pluck(., "info") %>%
-        purrr::pluck(., "analytics_warning_msg")
+        purrr::pluck(., "analytics_warning_msg") %>% 
+        purrr::map(.,function(x) HTML(x))
       
       if (!is.null(messages))  {
-        lapply(messages, function(x)
-          tags$li(x))
+        shiny::HTML(ansistrings::ansi_to_html(messages))
       } else
       {
         tags$li("No Issues with Analytics Checks: Congratulations!")
