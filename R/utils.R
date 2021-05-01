@@ -361,7 +361,7 @@ sendMERDataToPAW<-function(d) {
   tmp <- tempfile()
   mer_data<-dplyr::bind_rows(d$datim) %>% 
     dplyr::mutate(categoryOptionCombo = case_when(is.na(categoryOptionCombo) ~ "HllvX50cXC0",
-                                                   TRUE ~categoryOptionCombo )) %>% 
+                                                  TRUE ~categoryOptionCombo )) %>% 
     tidyr::drop_na()
   
   #Need better error checking here
@@ -387,10 +387,10 @@ sendMERDataToPAW<-function(d) {
   
   r<-tryCatch({
     foo<-svc$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
-                       Body = raw_file,
-                       Key = object_name,
-                       Tagging = object_tags,
-                       ContentType = "text/csv")
+                        Body = raw_file,
+                        Key = object_name,
+                        Tagging = object_tags,
+                        ContentType = "text/csv")
     flog.info("Flatpack sent to AP", name = "datapack")
     TRUE
   },
@@ -405,7 +405,6 @@ sendMERDataToPAW<-function(d) {
   return(r)
 }
 
-
 validationSummary2<-function (d) {
   tests_rows <- purrr::map(d$tests, NROW) %>% plyr::ldply(., 
                                                           data.frame) %>% `colnames<-`(c("test_name", "count"))
@@ -419,6 +418,7 @@ validationSummary2<-function (d) {
                   country_uid = paste(d$info$country_uids,sep="",collapse=",")) %>% 
     dplyr::filter(count > 0)
 }
+
 sendValidationSummary<-function(d,s3_folder,include_timestamp=FALSE) {
   
 
@@ -585,32 +585,34 @@ evaluateIndicators<-function(combis,values,inds) {
   #Return something empty here if we have no indicator matches
   
   if (nrow(matches) == 0) {return(indicators_empty)}
-  matches$numerator <-
-    stringi::stri_replace_all_fixed(matches$numerator,
-                                    combis, values, vectorize_all =
-                                      FALSE)
-  matches$denominator <-
-    stringi::stri_replace_all_fixed(matches$denominator,
-                                    combis, values,
-                                    vectorize_all =
-                                      FALSE)
   
-  #Substitute totals
-  matches$numerator<-stringi::stri_replace_all_fixed(matches$numerator,
-                                                     totals_df$exp, totals_df$values, vectorize_all=FALSE)
-  matches$denominator<-stringi::stri_replace_all_fixed(matches$denominator,
-                                                       totals_df$exp, totals_df$values,
-                                                       vectorize_all=FALSE)
-  expression.pattern<-"#\\{[a-zA-Z][a-zA-Z0-9]{10}(\\.[a-zA-Z][a-zA-Z0-9]{10})?\\}"
-  matches$numerator <-
-    gsub(expression.pattern, "0", matches$numerator)
-  matches$denominator <-
-    gsub(expression.pattern, "0", matches$denominator)
-  matches$numerator<-vapply(matches$numerator,function(x) {eval(parse(text=x))},FUN.VALUE=double(1))
-  matches$denominator<-vapply(matches$denominator,function(x) {eval(parse(text=x))},FUN.VALUE=double(1))
-  matches$value<-matches$numerator/matches$denominator
   
-  matches
+  replaceCombisWithValues<-function(x,combis.this=combis,values.this=values) {
+    stringi::stri_replace_all_fixed(x,
+                                    combis.this, values.this, vectorize_all =
+                                      FALSE)
+  }
+  
+  replaceTotalsWithValues<-function(x) replaceCombisWithValues(x,combis=totals_df$exp,values=totals_df$values)
+  
+  replaceExpressionsWithZeros<-function(x) {
+    expression.pattern<-"#\\{[a-zA-Z][a-zA-Z0-9]{10}(\\.[a-zA-Z][a-zA-Z0-9]{10})?\\}"
+    gsub(expression.pattern, "0", x)
+  }
+  
+  evaluateExpression<-function(exp) {
+    vapply(exp,function(x) {eval(parse(text=x))},FUN.VALUE=double(1))
+  }
+  
+  
+  matches %>% purrr::modify_at(.,c("numerator","denominator"),replaceCombisWithValues) %>% 
+    purrr::modify_at(.,c("numerator","denominator"),replaceTotalsWithValues) %>% 
+    purrr::modify_at(.,c("numerator","denominator"),replaceExpressionsWithZeros) %>% 
+    purrr::modify_at(.,c("numerator","denominator"),evaluateExpression) %>% 
+    dplyr::mutate(value = numerator / denominator)
+  
+
+
 }
 
 createS3BucketTags<-function(d) {
