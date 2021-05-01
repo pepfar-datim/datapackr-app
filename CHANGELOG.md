@@ -1,6 +1,19 @@
+## May 1, 2021
+* Update to datapackr 4.5.0
+* Include analytics checks in app
+
+## April 29, 2021
+* Added initial app analytics function
+
+## April 28, 2021
+* Better error checking with missing HTS modalities
+
+## April 26, 2021
+* Fix bug in HTS summary table
 
 ## April 23, 2021
 * Update to datapackr 4.3.7
+* Update to datapackr 4.4.0
 * Update to datapackr 4.4.0
 
 
