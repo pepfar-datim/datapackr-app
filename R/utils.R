@@ -579,9 +579,14 @@ evaluateIndicators<-function(combis,values,inds) {
     agrepl(x, inds$numerator) |
       agrepl(x, inds$denominator)
   }
-  this.des<-unique(this.des)  
-  matches_v <- lapply(this.des,matches_indicator) %>% Reduce("|",.)
-  matches <-inds[matches_v,]
+  
+
+  matches <- this.des %>% 
+    unique(.) %>% 
+    purrr::map(.,matches_indicator) %>% 
+    Reduce("|",.) %>% 
+    dplyr::filter(inds,.)
+  
   #Return something empty here if we have no indicator matches
   
   if (nrow(matches) == 0) {return(indicators_empty)}
