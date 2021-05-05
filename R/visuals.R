@@ -541,7 +541,9 @@ subnatPyramidsChart <- function(d,epi_graph_filter_results){
   if ( NROW(df) == 0 ) {return(NULL)}
 
   y_lim<-max(df$value)
-
+  cop_year<-as.numeric(stringr::str_replace(d$info$cop_year,"^20",""))
+  chart_label<-paste0("COP",cop_year,"/FY",cop_year + 1," Epidemic Cascade Age & Sex Pyramid")
+  
   df %>%
     ggplot(aes(x = Age, y = value, fill = indicator_code)) +
     geom_bar(data = df %>% dplyr::filter( Sex == "Female") %>% dplyr::arrange(indicator_code),
@@ -553,7 +555,7 @@ subnatPyramidsChart <- function(d,epi_graph_filter_results){
              mapping = aes(y = -value)) +
     coord_flip() +
     labs( x = "", y = "\u2190 Males | Females \u2192",
-          title = "COP20/FY21 Epidemic Cascade Age & Sex Pyramid",
+          title = chart_label,
           subtitle = "Comparison of Population with HIV, on Treatment, and Virally Suppressed") +
     geom_hline(yintercept = 0, size=1) +
     scale_fill_manual(values = c(	"#B2182B", "#EF8A62","#67A9CF")) +
@@ -603,6 +605,8 @@ kpCascadeChart <- function(d,kpCascadeInput_filter){
   if ( NROW(df) == 0 ) {return(NULL)}
 
   y_lim<-max(df$value)
+  cop_year<-as.numeric(stringr::str_replace(d$info$cop_year,"^20",""))
+  chart_label<-paste0("COP",cop_year,"/FY",cop_year + 1," Epidemic Cascade Age & Sex Pyramid")
 
   df %>%
     ggplot(aes(x = indicator, y = value, fill = lbl)) +
@@ -611,7 +615,7 @@ kpCascadeChart <- function(d,kpCascadeInput_filter){
              position = "identity") +
     geom_text(aes(label = scales::comma(value),vjust=-0.25)) +
     labs( x = "", y = "",
-          title = "COP20/FY21 Epidemic Cascade Age & Sex Pyramid",
+          title = chart_label,
           subtitle = "Comparison of General and Key Populations with HIV, on Treatment, and Virally Suppressed") +
     geom_hline(yintercept = 0, size=1) +
     scale_fill_manual(values = c("#ceb966","#9cb084","#6bb1c9","#6585cf","#7e6bc9","#a379bb")) +
@@ -651,6 +655,8 @@ vlsTestingChart <- function(df) {
   if ( NROW(df) == 0 ) {return(NULL)}
 
   y_lim <- (min(df$freq)%/%.1)/10
+  cop_year<-as.numeric(stringr::str_replace(d$info$cop_year,"^20",""))
+  chart_label<-paste0("COP",cop_year,"/FY",cop_year + 1," Viral Load Testing Coverage")
 
   df %>%
     ggplot(aes(x = reorder(SNU1,sort_col), y = freq, fill = indicator)) +
@@ -659,7 +665,7 @@ vlsTestingChart <- function(df) {
              position = "identity") +
     coord_flip(ylim=c(y_lim,1)) +
     labs( x = "", y = "",
-          title = "COP20/FY21 Viral Load Testing Coverage",
+          title = chart_label,
           subtitle = "Percentage of Population Currently on Treatment Eligible and Targeted for VLS Testing") +
     geom_hline(yintercept = 0, size=1) +
     scale_fill_manual(values = c(	"#B2182B", "#EF8A62","#67A9CF")) +
