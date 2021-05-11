@@ -156,8 +156,8 @@ shinyServer(function(input, output, session) {
             ),
             actionButton("validate", "Validate"),
             tags$hr(),
-            selectInput("downloadType","Download file",downloadTypes()),
-            downloadButton("downloadOutputs","Download reports"),
+            selectInput("downloadType","Download type",downloadTypes()),
+            downloadButton("downloadOutputs","Download"),
             tags$hr(),
             actionButton("send_paw", "Send to PAW"),
             tags$hr(),
@@ -340,7 +340,6 @@ shinyServer(function(input, output, session) {
               shinyjs::disable("compare")
             }
             
-
             if ( d$info$missing_psnuxim_combos ) {
               shinyjs::enable("downloadDataPack")
             }
@@ -568,7 +567,6 @@ shinyServer(function(input, output, session) {
 
   },height = 400,width = 600)
 
-
   output$vls_summary <- renderPlot({
 
     vr<-validation_results()
@@ -658,8 +656,6 @@ shinyServer(function(input, output, session) {
 
   snu_selector <- reactive({ validation_results() %>% snuSelector() })
 
-
-
   output$messages <- renderUI({
 
     vr<-validation_results()
@@ -734,8 +730,7 @@ shinyServer(function(input, output, session) {
     h4("Generating your FlatPack™. Please wait...")
   )
   
-  
-  
+
   output$downloadOutputs <- downloadHandler(
     filename = function(){
       prefix <- input$downloadType
