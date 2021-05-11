@@ -37,10 +37,8 @@ shinyServer(function(input, output, session) {
     shinyjs::reset("side-panel")
     shinyjs::enable("file1")
     shinyjs::disable("validate")
-    shinyjs::disable("downloadFlatPack")
-    shinyjs::disable("downloadCSOFlatPack")
     shinyjs::disable("downloadDataPack")
-    shinyjs::disable("download_messages")
+    #shinyjs::disable("download_messages")
     shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
     shinyjs::disable("compare")
@@ -158,19 +156,10 @@ shinyServer(function(input, output, session) {
             ),
             actionButton("validate", "Validate"),
             tags$hr(),
-            downloadButton("downloadFlatPack", "Download FlatPack"),
-            tags$hr(),
-            downloadButton("downloadCSOFlatPack","Download CSO Flatpack"),
-            tags$hr(),
-            downloadButton("download_messages", "Validation messages"),
-            tags$hr(),
-            downloadButton("downloadValidationResults", "Validation report"),
+            selectInput("downloadType","Download file",downloadTypes()),
+            downloadButton("downloadOutputs","Download reports"),
             tags$hr(),
             actionButton("send_paw", "Send to PAW"),
-            tags$hr(),
-            downloadButton("downloadDataPack", "Regenerate PSNUxIM"),
-            tags$hr(),
-            downloadButton("compare", "Compare with DATIM"),
             tags$hr(),
             div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("reset_input", "Reset inputs")),
             div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("logout", "Logout"))
@@ -258,10 +247,6 @@ shinyServer(function(input, output, session) {
 
   validate<-function() {
 
-    shinyjs::disable("downloadFlatPack")
-    shinyjs::disable("downloadCSOFlatPack")
-    shinyjs::disable("downloadDataPack")
-    shinyjs::disable("download_messages")
     shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
     shinyjs::disable("compare")
@@ -345,9 +330,7 @@ shinyServer(function(input, output, session) {
             r<-sendValidationSummary(d,"app_analytics",include_timestamp = TRUE)
             validationSummaryUI(r)
             
-            shinyjs::enable("downloadFlatPack")
-            shinyjs::enable("downloadCSOFlatPack")
-            shinyjs::enable("download_messages")
+
             shinyjs::enable("send_paw")
             shinyjs::enable("downloadValidationResults")
             #TODO: Fix this once COP 2021 comparisons are functional
@@ -382,10 +365,8 @@ shinyServer(function(input, output, session) {
             msg<-"ERROR! Your DataPack contains a PSNUxIM tab, but the formulas appear to be empty. Please ensure that the formulas have been properly populated in the PSNUxIM tab."
             d$info$warning_msg<-append(d$info$warning_msg,msg)
             
-            shinyjs::enable("downloadFlatPack")
-            shinyjs::enable("downloadCSOFlatPack")
-            shinyjs::enable("downloadDataPack")
-            shinyjs::enable("download_messages")
+
+            #shinyjs::enable("download_messages")
             shinyjs::enable("send_paw")
             hideTab(inputId = "main-panel", target = "Validation rules")
             hideTab(inputId = "main-panel", target = "HTS Summary Chart")
@@ -401,10 +382,7 @@ shinyServer(function(input, output, session) {
           } else  {
             #This should occur when there is no PSNUxIM tab and they want
             #to generate one.
-            shinyjs::enable("downloadFlatPack")
-            shinyjs::enable("downloadCSOFlatPack")
-            shinyjs::enable("downloadDataPack")
-            shinyjs::enable("download_messages")
+
             shinyjs::enable("send_paw")
             hideTab(inputId = "main-panel", target = "Validation rules")
             hideTab(inputId = "main-panel", target = "HTS Summary Chart")
@@ -441,10 +419,7 @@ shinyServer(function(input, output, session) {
         d<-recencyComparison(d)
         Sys.sleep(1)
         
-        shinyjs::enable("downloadFlatPack")
-        shinyjs::enable("downloadCSOFlatPack")
-        shinyjs::enable("download_messages")
-        shinyjs::disable("downloadDataPack")
+
         shinyjs::disable("send_paw")
         shinyjs::enable("downloadValidationResults")
         
@@ -538,7 +513,6 @@ shinyServer(function(input, output, session) {
       NULL
     }
   })
-
 
   output$hts_recency<-DT::renderDataTable({
 
@@ -684,242 +658,7 @@ shinyServer(function(input, output, session) {
 
   snu_selector <- reactive({ validation_results() %>% snuSelector() })
 
-  waiting_screen_datapack <- tagList(
-    spin_hourglass(),
-        h4("Generating your SNUxIM tab. Please wait...")
-  )
-  
 
-  output$downloadDataPack <- downloadHandler(
-
-    filename = function() {
-      d<-validation_results()
-      prefix <-d$info$sane_name
-      date<-format(Sys.time(),"%Y%m%d_%H%M%S")
-      paste0(paste(prefix,date,sep="_"),".xlsx")
-
-    },
-    content = function(file) {
-
-      d <- validation_results()
-      shinyjs::disable("downloadDataPack")
-      flog.info(
-        paste0("Regeneration of Datapack requested for ", d$info$datapack_name)
-        ,
-        name = "datapack")
-      waiter_show(html = waiting_screen_datapack, color = "rgba(128,128,128,.8)" )
-      flog.info("Fetching support files")
-      
-      support_file<-fetchSupportFiles("/support_files/snuxim_model_data.rds")
-      if (!file.exists(support_file)) {
-        flog.error("Could not find model support file.")
-        stop("WOMP!")
-      }
-
-      d <- writePSNUxIM(d,snuxim_model_data_path = support_file )
-      unlink(support_file)
-      flog.info(
-        paste0("Datapack reloaded for for ", d$info$datapack_name) ,
-        name = "datapack")
-      openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
-      waiter_hide()
-    }
-
-  )
-
-  output$downloadValidationResults <- downloadHandler(
-    filename = function() {
-
-      prefix <- "validation_results"
-
-      date<-format(Sys.time(),"%Y%m%d_%H%M%S")
-
-      paste0(paste(prefix,date,sep="_"),".xlsx")
-    },
-    content = function(file) {
-
-      d <- validation_results()
-
-      sheets_with_data<-d$tests[lapply(d$tests,NROW) > 0]
-
-      if (length(sheets_with_data)>0) {
-        openxlsx::write.xlsx(sheets_with_data, file = file)
-      } else {
-        shinyjs::disable("downloadValidationResults")
-        showModal(modalDialog(
-          title = "Perfect score!",
-          "No validation issues, so nothing to download!"
-        ))
-      }
-
-    }
-  )
-
-
-  output$compare <- downloadHandler(
-    filename = function() {
-
-      prefix <- "comparison"
-
-      date<-format(Sys.time(),"%Y%m%d_%H%M%S")
-
-      paste0(paste(prefix,date,sep="_"),".xlsx")
-    },
-    content = function(file) {
-
-      #Create a new workbook
-      wb <- openxlsx::createWorkbook()
-
-      d<-validation_results()
-
-      if (d$info$tool == "OPU Data Pack") {
-        d_compare<-datapackr::compareData_OpuDatapackVsDatim(d, d2_session = user_input$d2_session) 
-        
-      
-        d_compare<-lapply(d_compare,function(x) adorn_import_file(x,
-                                                      cop_year = d$info$cop_year,
-                                                      d2_session = user_input$d2_session))
-        
-        for(name in names(d_compare)){
-          foo <- d_compare %>% purrr::pluck(name)
-          openxlsx::addWorksheet(wb,name)
-          openxlsx::writeDataTable(wb = wb,
-                                   sheet = name,x = foo)
-          
-        }
-
-      } else if (d$info$tool == "Data Pack") {
-        d_compare<-datapackr::compareData_DatapackVsDatim(d,d2_session = user_input$d2_session)
-        openxlsx::addWorksheet(wb,"PSNUxIM without dedupe")
-        openxlsx::writeDataTable(wb = wb,
-                                 sheet = "PSNUxIM without dedupe",x = d_compare$psnu_x_im_wo_dedup)
-        
-        
-        openxlsx::addWorksheet(wb,"PSNU with dedupe")
-        openxlsx::writeDataTable(wb = wb,
-                                 sheet = "PSNU with dedupe",x = d_compare$psnu_w_dedup)
-      }
-  
-
-
-      datapack_name <-d$info$datapack_name
-
-      flog.info(
-        paste0("Comparison requested for ", datapack_name)
-        ,
-        name = "datapack"
-      )
-
-      openxlsx::saveWorkbook(wb,file=file,overwrite = TRUE)
-
-    }
-  )
-
-  output$downloadFlatPack <- downloadHandler(
-    filename = function() {
-
-      prefix <- "flatpack"
-
-      date<-format(Sys.time(),"%Y%m%d_%H%M%S")
-
-      paste0(paste(prefix,date,sep="_"),".xlsx")
-    },
-    content = function(file) {
-
-      #Create a new workbook
-      wb <- openxlsx::createWorkbook()
-
-      d<-validation_results()
-      
-      
-      #Common to both OPUs and Datapacks
-      openxlsx::addWorksheet(wb,"Analytics")
-      openxlsx::writeDataTable(wb = wb,
-                               sheet = "Analytics",x = d$data$analytics)
-      
-      
-      #TODO. How to handle indicators which should not be summed
-      snu_summary <- prepareSNUSummaryTable(d)
-      
-      openxlsx::addWorksheet(wb,"SNU Summary")
-      openxlsx::writeDataTable(wb = wb,
-                               sheet = "SNU Summary",x = snu_summary)
-      
-
-      if (!is.null(d$data$recency)) {
-        openxlsx::addWorksheet(wb,"HTS Recency")
-        openxlsx::writeDataTable(wb = wb,
-                                 sheet = "HTS Recency", x = d$data$recency)
-      }
-      
-      
-      if (!is.null(d$data$modality_summary)) {
-        openxlsx::addWorksheet(wb,"HTS Summary")
-        openxlsx::writeDataTable(wb = wb,
-                            sheet = "HTS Summary", x = formatModalitySummaryTable(d))
-      }
-      
-      if (!is.null(d$data$prio_table)) {
-        openxlsx::addWorksheet(wb,"Prioritization (DRAFT)")
-        openxlsx::writeData(wb = wb,
-                            sheet = "Prioritization (DRAFT)",x = d$data$prio_table) }
-
-      #Datapack specific
-      if (d$info$tool == "Data Pack") {
-        
-        mer_data <- d %>%
-          purrr::pluck(.,"data") %>%
-          purrr::pluck(.,"MER")
-        
-        subnat_impatt <- d %>%
-          purrr::pluck(.,"data") %>%
-          purrr::pluck(.,"SUBNAT_IMPATT")
-        
-        mer_data<-dplyr::bind_rows(mer_data,subnat_impatt)
-        openxlsx::addWorksheet(wb,"MER Data")
-        openxlsx::writeDataTable(wb = wb,
-                                 sheet = "MER Data",x = mer_data)
-        
-
-        has_psnu<-d %>%
-          purrr::pluck(.,"info") %>%
-          purrr::pluck(.,"has_psnuxim")
-        
-        if (has_psnu) {
-          
-          d$datim$MER$value<-as.character(d$datim$MER$value)
-          d$datim$subnat_impatt$value<-as.character(d$datim$subnat_impatt$value)
-          datim_export<-dplyr::bind_rows(d$datim$MER,d$datim$subnat_impatt)
-          
-          openxlsx::addWorksheet(wb,"DATIM export")
-          openxlsx::writeData(wb = wb,
-                              sheet = "DATIM export",x = datim_export)
-          
-          
-        }
-      }
-     
-      #OPU specific 
-      if (d$info$tool == "OPU Data Pack") {
-        
-        openxlsx::addWorksheet(wb,"DATIM export")
-        openxlsx::writeData(wb = wb,
-                            sheet = "DATIM export",x = d$datim$OPU)
-        
-      }
-
-      datapack_name <-d$info$datapack_name
-
-      flog.info(
-        paste0("Flatpack requested for ", datapack_name)
-        ,
-        name = "datapack"
-      )
-
-      openxlsx::saveWorkbook(wb,file=file,overwrite = TRUE)
-
-    }
-  )
 
   output$messages <- renderUI({
 
@@ -979,39 +718,231 @@ shinyServer(function(input, output, session) {
     }
   })
   
-  output$download_messages <- downloadHandler(
+  
+  waiting_screen_datapack <- tagList(
+    spin_hourglass(),
+    h4("Generating your SNUxIM tab. Please wait...")
+  )
+  
+  waiting_screen_comparison<-tagList(
+    spin_hourglass(),
+    h4("Generating a comparison to DATIM. Please wait...")
+  )
+  
+  waiting_screen_flatpack<-tagList(
+    spin_hourglass(),
+    h4("Generating your FlatPack™. Please wait...")
+  )
+  
+  
+  
+  output$downloadOutputs <- downloadHandler(
     filename = function(){
-      paste("DataPack_Validation_Messages_", Sys.Date(), ".txt", sep = "")
+      prefix <- input$downloadType
+      date <- date<-format(Sys.time(),"%Y%m%d_%H%M%S")
+      suffix <- if (input$downloadType %in% c("messages")) {
+        ".txt"
+      } else {
+        ".xlsx"
+      }
+      
+      paste0(prefix,"_",date,suffix)
     },
-    content = function(file) {
+    content = function(file){
+      
       d<-validation_results()
-      writeLines(d$info$warning_msg, file)
+      
+      if (input$downloadType == "messages") {
+        writeLines(d$info$warning_msg, file)
+      }
+      
+      if (input$downloadType =="cso_flatpack") {
+
+        cso_indicators<-d$info$schema %>% 
+          dplyr::filter(value_type == "integer") %>% 
+          dplyr::pull(indicator_code) %>% unique(.)
+        
+        cso_data<-d$data$analytics %>%
+          dplyr::filter(indicator_code %in% cso_indicators) %>% 
+          dplyr::filter(stringr::str_detect(psnu,"_Military",negate = TRUE)) %>% 
+          dplyr::group_by(ou,country_name,snu1,psnu,indicator_code,dataelement_name,support_type,hts_modality,age,sex,key_population,resultstatus_specific,resultstatus_inclusive,top_level) %>% 
+          dplyr::summarize(value = sum(target_value))
+        
+        wb <- openxlsx::createWorkbook()
+        openxlsx::addWorksheet(wb,"CSO export")
+        openxlsx::writeData(wb = wb,
+                            sheet = "CSO export",x = cso_data)
+        openxlsx::saveWorkbook(wb,file=file,overwrite = TRUE)
+      }
+      
+      if (input$downloadType =="flatpack") {
+        
+        waiter_show(html = waiting_screen_flatpack, color = "rgba(128,128,128,.8)" )
+        #Create a new workbook
+        wb <- openxlsx::createWorkbook()
+        #Common to both OPUs and Datapacks
+        openxlsx::addWorksheet(wb,"Analytics")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "Analytics",x = d$data$analytics)
+        #TODO. How to handle indicators which should not be summed
+        snu_summary <- prepareSNUSummaryTable(d)
+        openxlsx::addWorksheet(wb,"SNU Summary")
+        openxlsx::writeDataTable(wb = wb,
+                                 sheet = "SNU Summary",x = snu_summary)
+        if (!is.null(d$data$recency)) {
+          openxlsx::addWorksheet(wb,"HTS Recency")
+          openxlsx::writeDataTable(wb = wb,
+                                   sheet = "HTS Recency", x = d$data$recency)
+        }
+        if (!is.null(d$data$modality_summary)) {
+          openxlsx::addWorksheet(wb,"HTS Summary")
+          openxlsx::writeDataTable(wb = wb,
+                                   sheet = "HTS Summary", x = formatModalitySummaryTable(d))
+        }
+        if (!is.null(d$data$prio_table)) {
+          openxlsx::addWorksheet(wb,"Prioritization (DRAFT)")
+          openxlsx::writeData(wb = wb,
+                              sheet = "Prioritization (DRAFT)",x = d$data$prio_table) }
+        #Datapack specific
+        if (d$info$tool == "Data Pack") {
+          
+          mer_data <- d %>%
+            purrr::pluck(.,"data") %>%
+            purrr::pluck(.,"MER")
+          
+          subnat_impatt <- d %>%
+            purrr::pluck(.,"data") %>%
+            purrr::pluck(.,"SUBNAT_IMPATT")
+          
+          mer_data<-dplyr::bind_rows(mer_data,subnat_impatt)
+          openxlsx::addWorksheet(wb,"MER Data")
+          openxlsx::writeDataTable(wb = wb,
+                                   sheet = "MER Data",x = mer_data)
+
+          has_psnu<-d %>%
+            purrr::pluck(.,"info") %>%
+            purrr::pluck(.,"has_psnuxim")
+          
+          if (has_psnu) {
+            
+            d$datim$MER$value<-as.character(d$datim$MER$value)
+            d$datim$subnat_impatt$value<-as.character(d$datim$subnat_impatt$value)
+            datim_export<-dplyr::bind_rows(d$datim$MER,d$datim$subnat_impatt)
+            
+            openxlsx::addWorksheet(wb,"DATIM export")
+            openxlsx::writeData(wb = wb,
+                                sheet = "DATIM export",x = datim_export)
+          }
+        }
+        
+        #OPU specific 
+        if (d$info$tool == "OPU Data Pack") {
+          
+          openxlsx::addWorksheet(wb,"DATIM export")
+          openxlsx::writeData(wb = wb,
+                              sheet = "DATIM export",x = d$datim$OPU)
+          
+        }
+        
+        datapack_name <-d$info$datapack_name
+        
+        flog.info(
+          paste0("Flatpack requested for ", datapack_name)
+          ,
+          name = "datapack"
+        )
+        
+        openxlsx::saveWorkbook(wb,file=file,overwrite = TRUE)
+        waiter_hide()
+      }
+      
+      if (input$downloadType == "vr_rules") {
+        
+        sheets_with_data<-d$tests[lapply(d$tests,NROW) > 0]
+        
+        if (length(sheets_with_data)>0) {
+          openxlsx::write.xlsx(sheets_with_data, file = file)
+        } else {
+          showModal(modalDialog(
+            title = "Perfect score!",
+            "No validation issues, so nothing to download!"
+          ))
+        }
+      }
+      
+      if (input$downloadType == "datapack") {
+        
+        flog.info(
+          paste0("Regeneration of Datapack requested for ", d$info$datapack_name)
+          ,
+          name = "datapack")
+        waiter_show(html = waiting_screen_datapack, color = "rgba(128,128,128,.8)" )
+        flog.info("Fetching support files")
+        
+        support_file<-fetchSupportFiles("/support_files/snuxim_model_data.rds")
+        if (!file.exists(support_file)) {
+          flog.error("Could not find model support file.")
+          stop("WOMP!")
+        }
+        
+        d <- writePSNUxIM(d,snuxim_model_data_path = support_file )
+        unlink(support_file)
+        flog.info(
+          paste0("Datapack reloaded for for ", d$info$datapack_name) ,
+          name = "datapack")
+        openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
+        waiter_hide()
+      }
+      
+      if (input$downloadType =="comparison") {
+        waiter_show(html = waiting_screen_comparison, color = "rgba(128,128,128,.8)" )
+        #Create a new workbook
+        wb <- openxlsx::createWorkbook()
+        d<-validation_results()
+        if (d$info$tool == "OPU Data Pack") {
+          d_compare<-datapackr::compareData_OpuDatapackVsDatim(d, d2_session = user_input$d2_session) 
+          
+          
+          d_compare<-lapply(d_compare,function(x) adorn_import_file(x,
+                                                                    cop_year = d$info$cop_year,
+                                                                    d2_session = user_input$d2_session))
+          
+          for(name in names(d_compare)){
+            foo <- d_compare %>% purrr::pluck(name)
+            openxlsx::addWorksheet(wb,name)
+            openxlsx::writeDataTable(wb = wb,
+                                     sheet = name,x = foo)
+            
+          }
+          
+        } else if (d$info$tool == "Data Pack") {
+          d_compare<-datapackr::compareData_DatapackVsDatim(d,d2_session = user_input$d2_session)
+          openxlsx::addWorksheet(wb,"PSNUxIM without dedupe")
+          openxlsx::writeDataTable(wb = wb,
+                                   sheet = "PSNUxIM without dedupe",x = d_compare$psnu_x_im_wo_dedup)
+          
+          
+          openxlsx::addWorksheet(wb,"PSNU with dedupe")
+          openxlsx::writeDataTable(wb = wb,
+                                   sheet = "PSNU with dedupe",x = d_compare$psnu_w_dedup)
+        }
+        
+        
+        
+        datapack_name <-d$info$datapack_name
+        
+        flog.info(
+          paste0("Comparison requested for ", datapack_name)
+          ,
+          name = "datapack"
+        )
+        
+        openxlsx::saveWorkbook(wb,file=file,overwrite = TRUE)
+        waiter_hide()
+      }
     }
   )
   
-  output$downloadCSOFlatPack <- downloadHandler(
-    filename = function(){
-      paste("cso_flatpack", Sys.Date(), ".xlsx", sep = "")
-    },
-    content = function(file) {
-      d<-validation_results()
-      cso_indicators<-d$info$schema %>% 
-        dplyr::filter(value_type == "integer") %>% 
-        dplyr::pull(indicator_code) %>% unique(.)
-      
-      cso_data<-d$data$analytics %>%
-        dplyr::filter(indicator_code %in% cso_indicators) %>% 
-        dplyr::filter(stringr::str_detect(psnu,"_Military",negate = TRUE)) %>% 
-        dplyr::group_by(ou,country_name,snu1,psnu,indicator_code,dataelement_name,support_type,hts_modality,age,sex,key_population,resultstatus_specific,resultstatus_inclusive,top_level) %>% 
-        dplyr::summarize(value = sum(target_value))
-      
-      wb <- openxlsx::createWorkbook()
-      openxlsx::addWorksheet(wb,"CSO export")
-      openxlsx::writeData(wb = wb,
-                          sheet = "CSO export",x = cso_data)
-      openxlsx::saveWorkbook(wb,file=file,overwrite = TRUE)
-    }
-  )
   
   
   })
