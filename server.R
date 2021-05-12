@@ -899,34 +899,19 @@ shinyServer(function(input, output, session) {
         d<-validation_results()
         if (d$info$tool == "OPU Data Pack") {
           d_compare<-datapackr::compareData_OpuDatapackVsDatim(d, d2_session = user_input$d2_session) 
-          
-          
           d_compare<-lapply(d_compare,function(x) adorn_import_file(x,
                                                                     cop_year = d$info$cop_year,
                                                                     d2_session = user_input$d2_session))
-          
+        } else if (d$info$tool == "Data Pack") {
+          d_compare<-datapackr::compareData_DatapackVsDatim(d,d2_session = user_input$d2_session)
+        }
+    
           for(name in names(d_compare)){
             foo <- d_compare %>% purrr::pluck(name)
             openxlsx::addWorksheet(wb,name)
             openxlsx::writeDataTable(wb = wb,
-                                     sheet = name,x = foo)
+                                     sheet = name,x = foo) }
             
-          }
-          
-        } else if (d$info$tool == "Data Pack") {
-          d_compare<-datapackr::compareData_DatapackVsDatim(d,d2_session = user_input$d2_session)
-          openxlsx::addWorksheet(wb,"PSNUxIM without dedupe")
-          openxlsx::writeDataTable(wb = wb,
-                                   sheet = "PSNUxIM without dedupe",x = d_compare$psnu_x_im_wo_dedup)
-          
-          
-          openxlsx::addWorksheet(wb,"PSNU with dedupe")
-          openxlsx::writeDataTable(wb = wb,
-                                   sheet = "PSNU with dedupe",x = d_compare$psnu_w_dedup)
-        }
-        
-        
-        
         datapack_name <-d$info$datapack_name
         
         flog.info(
