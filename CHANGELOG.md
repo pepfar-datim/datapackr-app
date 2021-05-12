@@ -1,3 +1,6 @@
+## May 12, 2021
+* Fix bug on VLS testing visual
+
 ## May 11, 2021
 * [DP-247](https://jira.pepfar.net/browse/DP-247) AGYW_PREV was doubling for DREAMS countries who set targets below the PSNU level
 * TX_TB age disaggs were not being displayed
