@@ -655,7 +655,7 @@ vlsTestingChart <- function(df) {
   if ( NROW(df) == 0 ) {return(NULL)}
 
   y_lim <- (min(df$freq)%/%.1)/10
-  cop_year<-as.numeric(stringr::str_replace(d$info$cop_year,"^20",""))
+  cop_year<-as.numeric(stringr::str_replace(df$info$cop_year,"^20",""))
   chart_label<-paste0("COP",cop_year,"/FY",cop_year + 1," Viral Load Testing Coverage")
 
   df %>%
