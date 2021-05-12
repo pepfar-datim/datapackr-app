@@ -246,10 +246,9 @@ shinyServer(function(input, output, session) {
   })
 
   validate<-function() {
-
+    shinyjs::disable("downloadType")
+    shinyjs::disable("downloadOutputs")
     shinyjs::disable("send_paw")
-    shinyjs::disable("downloadValidationResults")
-    shinyjs::disable("compare")
 
     if (!ready$ok) {
       shinyjs::disable("validate")
@@ -330,19 +329,20 @@ shinyServer(function(input, output, session) {
             r<-sendValidationSummary(d,"app_analytics",include_timestamp = TRUE)
             validationSummaryUI(r)
             
-
+            shinyjs::enable("downloadType")
+            shinyjs::enable("downloadOutputs")
             shinyjs::enable("send_paw")
-            shinyjs::enable("downloadValidationResults")
-            #TODO: Fix this once COP 2021 comparisons are functional
-            if (d$info$cop_year == 2020) {
-              shinyjs::enable("compare")
-            } else {
-              shinyjs::disable("compare")
-            }
-            
-            if ( d$info$missing_psnuxim_combos ) {
-              shinyjs::enable("downloadDataPack")
-            }
+
+            # #TODO: The list of available download types needs to change here...
+            # if (d$info$cop_year == 2020) {
+            #   shinyjs::enable("compare")
+            # } else {
+            #   shinyjs::disable("compare")
+            # }
+            # 
+            # if ( d$info$missing_psnuxim_combos ) {
+            #   shinyjs::enable("downloadDataPack")
+            # }
 
             updatePickerInput(session = session, inputId = "kpCascadeInput",
                               choices = snuSelector(d))
@@ -365,7 +365,8 @@ shinyServer(function(input, output, session) {
             d$info$warning_msg<-append(d$info$warning_msg,msg)
             
 
-            #shinyjs::enable("download_messages")
+            shinyjs::enable("downloadType")
+            shinyjs::enable("downloadOutputs")
             shinyjs::enable("send_paw")
             hideTab(inputId = "main-panel", target = "Validation rules")
             hideTab(inputId = "main-panel", target = "HTS Summary Chart")
@@ -381,7 +382,8 @@ shinyServer(function(input, output, session) {
           } else  {
             #This should occur when there is no PSNUxIM tab and they want
             #to generate one.
-
+            shinyjs::enable("downloadType")
+            shinyjs::enable("downloadOutputs")
             shinyjs::enable("send_paw")
             hideTab(inputId = "main-panel", target = "Validation rules")
             hideTab(inputId = "main-panel", target = "HTS Summary Chart")
@@ -418,16 +420,17 @@ shinyServer(function(input, output, session) {
         d<-recencyComparison(d)
         Sys.sleep(1)
         
-
+        shinyjs::enable("downloadType")
+        shinyjs::enable("downloadOutputs")
         shinyjs::disable("send_paw")
-        shinyjs::enable("downloadValidationResults")
+
         
-        #TODO: Fix this once COP 2021 comparisons are functional
-        if (d$info$cop_year == 2020) {
-          shinyjs::enable("compare")
-        } else {
-          shinyjs::disable("compare")
-        }
+        # #TODO: Fix this once COP 2021 comparisons are functional
+        # if (d$info$cop_year == 2020) {
+        #   shinyjs::enable("compare")
+        # } else {
+        #   shinyjs::disable("compare")
+        # }
         
         updatePickerInput(session = session, inputId = "kpCascadeInput",
                           choices = snuSelector(d))

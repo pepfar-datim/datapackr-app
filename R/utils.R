@@ -33,7 +33,6 @@ getVersionInfo<-function() {
     paste(.,"</p></div>")
 }
 
-
 fetchModelFile<-function(model_path="support_files/datapack_model_data.rds") {
   
 
