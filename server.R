@@ -294,7 +294,9 @@ shinyServer(function(input, output, session) {
         
         updatePickerInput(session = session, inputId="downloadType",
                           choices=downloadTypes(tool_type= d$info$tool,
-                                                needs_psnuxim = d$info$newSNUxIM))
+                                                needs_psnuxim = d$info$missing_psnuxim_combos))
+        shinyjs::enable("downloadType")
+        shinyjs::enable("downloadOutputs")
         
         flog.info(paste0("Initiating validation of ",d$info$datapack_name, " DataPack."), name="datapack")
         if (d$info$tool == "Data Pack") {
