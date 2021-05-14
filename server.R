@@ -291,6 +291,11 @@ shinyServer(function(input, output, session) {
         d$info$uuid<-uuid::UUIDgenerate()
         d$info$operating_unit<-getOperatingUnitFromCountryUIDs(d$info$country_uids)
 
+        
+        updatePickerInput(session = session, inputId="downloadType",
+                          choices=downloadTypes(tool_type= d$info$tool,
+                                                needs_psnuxim = d$info$newSNUxIM))
+        
         flog.info(paste0("Initiating validation of ",d$info$datapack_name, " DataPack."), name="datapack")
         if (d$info$tool == "Data Pack") {
         
@@ -322,8 +327,15 @@ shinyServer(function(input, output, session) {
             d<-recencyComparison(d)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Performing analytics checks"))
-            full_model_path<-fetchModelFile("support_files/datapack_model_data.rds")
-            d<-checkAnalytics(d,model_data_path =full_model_path, d2_session = user_input$d2_session )
+            model_data_path<-"support_files/datapack_model_data.rds"
+            full_model_path<-tryCatch({fetchModelFile(model_data_path) },
+                                      error = {
+                                        flog.warn("Could  not fetch model file")
+                                        return(NA)} )
+            if (!is.na(full_model_path)) {
+              d<-checkAnalytics(d,model_data_path =full_model_path, d2_session = user_input$d2_session )
+            }
+           
             Sys.sleep(1)
             incProgress(0.1, detail = ("Finishing up."))
             r<-sendValidationSummary(d,"app_analytics",include_timestamp = TRUE)
@@ -419,11 +431,6 @@ shinyServer(function(input, output, session) {
         incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
         d<-recencyComparison(d)
         Sys.sleep(1)
-        
-      
-        updateInputPicker(session = session, inputId="downloadType",
-                          choices=downloadTypes(tool_type= d$info$tool,
-                                                needs_psnuxim = d$info$newSNUxIM))
         shinyjs::enable("downloadType")
         shinyjs::enable("downloadOutputs")
         shinyjs::disable("send_paw")
