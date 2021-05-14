@@ -420,6 +420,10 @@ shinyServer(function(input, output, session) {
         d<-recencyComparison(d)
         Sys.sleep(1)
         
+      
+        updateInputPicker(session = session, inputId="downloadType",
+                          choices=downloadTypes(tool_type= d$info$tool,
+                                                needs_psnuxim = d$info$newSNUxIM))
         shinyjs::enable("downloadType")
         shinyjs::enable("downloadOutputs")
         shinyjs::disable("send_paw")

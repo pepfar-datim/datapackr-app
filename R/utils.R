@@ -1,4 +1,7 @@
-downloadTypes <- function() {
+downloadTypes <- function(tool_type="Data Pack",needs_psnuxim=FALSE) {
+  
+  if (is.null(needs_psnuxim)) { needs_psnuxim<-FALSE}
+  
   download_names <-
     c(
       "FlatPack",
@@ -16,7 +19,13 @@ downloadTypes <- function() {
       "datapack",
       "comparison")
   
+  
   names(download_types) <- download_names
+  
+  if (tool_type == "OPU Data Pack" | !needs_psnuxim ) {
+    download_types<- download_types[!(download_types %in% c("datapack"))]
+  }
+  
   
   download_types
 }
