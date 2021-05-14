@@ -156,7 +156,7 @@ shinyServer(function(input, output, session) {
             ),
             actionButton("validate", "Validate"),
             tags$hr(),
-            selectInput("downloadType","Download type",downloadTypes()),
+            selectInput("downloadType","Download type",NULL),
             downloadButton("downloadOutputs","Download"),
             tags$hr(),
             actionButton("send_paw", "Send to PAW"),
@@ -292,7 +292,7 @@ shinyServer(function(input, output, session) {
         d$info$operating_unit<-getOperatingUnitFromCountryUIDs(d$info$country_uids)
 
         
-        updatePickerInput(session = session, inputId="downloadType",
+        updateSelectInput(session = session, inputId="downloadType",
                           choices=downloadTypes(tool_type= d$info$tool,
                                                 needs_psnuxim = d$info$missing_psnuxim_combos))
         shinyjs::enable("downloadType")
