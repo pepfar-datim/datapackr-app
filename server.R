@@ -330,6 +330,7 @@ shinyServer(function(input, output, session) {
             Sys.sleep(1)
             incProgress(0.1, detail = ("Performing analytics checks"))
             model_data_path<-"support_files/datapack_model_data.rds"
+<<<<<<< HEAD
             full_model_path<-tryCatch({fetchModelFile(model_data_path) },
                                       error = {
                                         flog.warn("Could  not fetch model file")
@@ -337,6 +338,11 @@ shinyServer(function(input, output, session) {
             if (!is.na(full_model_path)) {
               d<-checkAnalytics(d,model_data_path =full_model_path, d2_session = user_input$d2_session )
             }
+=======
+            full_model_path<-fetchModelFile(model_data_path)
+            d<-checkAnalytics(d,model_data_path =full_model_path, d2_session = user_input$d2_session )
+          
+>>>>>>> 6bfaf802bf236be59f132cd66b715a8d4101adfa
            
             Sys.sleep(1)
             incProgress(0.1, detail = ("Finishing up."))
