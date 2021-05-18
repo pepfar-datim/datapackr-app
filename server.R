@@ -291,14 +291,15 @@ shinyServer(function(input, output, session) {
         d$info$uuid<-uuid::UUIDgenerate()
         d$info$operating_unit<-getOperatingUnitFromCountryUIDs(d$info$country_uids)
 
-        d$info$needs_psnuxim <- d$info$missing_psnuxim_combos | (NROW(d$data$SNUxIM) == 1 & is.na(d$data$SNUxIM[[1,1]]))
-        updateSelectInput(session = session, inputId="downloadType",
-                          choices=downloadTypes(tool_type= d$info$tool,
-                                                needs_psnuxim = d$info$needs_psnuxim))
+
 
         flog.info(paste0("Initiating validation of ",d$info$datapack_name, " DataPack."), name="datapack")
         if (d$info$tool == "Data Pack") {
-        
+          
+          d$info$needs_psnuxim <- d$info$missing_psnuxim_combos | (NROW(d$data$SNUxIM) == 1 & is.na(d$data$SNUxIM[[1,1]]))
+          updateSelectInput(session = session, inputId="downloadType",
+                            choices=downloadTypes(tool_type= d$info$tool,
+                                                  needs_psnuxim = d$info$needs_psnuxim))
           if ( d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0 ) {
             
             flog.info(paste(d$info$tool," with PSNUxIM tab found."))
@@ -406,6 +407,10 @@ shinyServer(function(input, output, session) {
       }
 
       if (d$info$tool == "OPU Data Pack"){
+        d$info$needs_psnuxim <- FALSE
+        updateSelectInput(session = session, inputId="downloadType",
+                          choices=downloadTypes(tool_type= d$info$tool,
+                                                needs_psnuxim = d$info$needs_psnuxim))
         flog.info("Datapack with PSNUxIM tab found.")
         incProgress(0.1, detail = ("Checking validation rules"))
         Sys.sleep(0.5)
