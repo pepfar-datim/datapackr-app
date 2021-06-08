@@ -1,6 +1,7 @@
 
 pacman::p_load(shiny,shinyjs,shinyWidgets,magrittr,dplyr,datimvalidation,ggplot2,
-               futile.logger, paws, datapackr, scales, DT, purrr, praise,rpivotTable,waiter)
+               futile.logger, paws, datapackr, scales, DT, purrr, praise,rpivotTable,waiter,
+               flextable,officer)
 
 
 #Set the maximum file size for the upload file

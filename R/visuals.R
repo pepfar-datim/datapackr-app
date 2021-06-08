@@ -106,6 +106,141 @@ memoStructure<-function(cop_year="2020") {
   list(row_order=row_order,col_order=col_order) 
 }
 
+prepareMechSummaryTable_datapack<-function(d,d2_session) {
+  
+  if (d$info$cop_year == 2020) {
+    ind_group <-"wWi08ToZ2gR"
+  } else if (d$info$cop_year == 2021) {
+    #TODO: Fix this with the real indicator group once it has been deployed to prod
+    ind_group <-"TslxbFe3VUZ"
+  } else {
+    flog.info("Indicator group was not found")
+    return(NULL)
+  }
+  inds <-
+    datimutils::getIndicatorGroups(ind_group, 
+                                   d2_session = d2_session, 
+                                   fields = "indicators[id,name,numerator,denominator]") 
+  
+  
+  if (class(inds) != "data.frame") { warning("No indicator metadata  was returned from DATIM")
+    return(d)}
+  
+  
+  df <- d  %>%
+    purrr::pluck("data") %>%
+    purrr::pluck("analytics") %>%
+    dplyr::filter(!is.na(target_value)) %>% 
+    dplyr::select(dataelement_id,
+                  categoryoptioncombo_id,
+                  mechanism_code,
+                  value = target_value) %>% 
+    dplyr::group_by(dataelement_id,categoryoptioncombo_id,mechanism_code) %>% 
+    dplyr::summarise(value = sum(value)) %>% 
+    dplyr::mutate(combi =paste0("#{",dataelement_id,".", categoryoptioncombo_id,"}")) %>% 
+    plyr::ddply(., plyr::.(mechanism_code),
+                function(x)
+                  evaluateIndicators(x$combi, x$value,inds)) %>% 
+    dplyr::select(-numerator,-denominator) %>% 
+    dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ","")) %>% 
+    dplyr::mutate(name = stringr::str_trim(name)) %>% 
+    tidyr::separate("name",into=c("Indicator","N_OR_D","Age"),sep=" ") %>%
+    dplyr::mutate(Indicator = dplyr::case_when(Indicator == "GEND_GBV" & N_OR_D == "Physical" ~ "GEND_GBV Physical and Emotional Violence",
+                                               Indicator == "GEND_GBV" & N_OR_D == "Sexual" ~ "GEND_GBV Sexual Violence",
+                                               TRUE ~ Indicator)) %>% 
+    dplyr::select(-"N_OR_D") %>% 
+    dplyr::mutate(Age = dplyr::case_when(Age == "15-" ~ "<15",
+                                         Age == "15+" ~ "15+",
+                                         Age == "18-" ~"<18",
+                                         Age == "18+" ~ "18+",
+                                         TRUE ~ "Total")) %>% 
+    dplyr::mutate( Age = dplyr::case_when( Indicator %in% c("CXCA_SCRN","OVC_HIVSTAT","KP_PREV","PMTCT_EID","KP_MAT","VMMC_CIRC","PrEP_NEW","PrEP_CURR","GEND_GBV")  ~ "Total",
+                                           TRUE ~ Age)) 
+  
+  df_totals<-df %>% 
+    dplyr::filter(Age != 'Total') %>% 
+    dplyr::group_by(mechanism_code,Indicator, id) %>% 
+    dplyr::summarise(value = sum(value,na.rm=TRUE)) %>% 
+    dplyr::mutate(Age = 'Total')
+  
+  d$data$memo$by_mechanism_datapack<-dplyr::bind_rows(df,df_totals) %>% 
+    dplyr::select(-id) %>% 
+    dplyr::arrange(mechanism_code,Indicator,Age) 
+   
+    return(d)
+  
+}
+
+prepareMechSummaryTable_datim<-function(d,d2_session) {
+  
+  if (d$info$cop_year == 2020) {
+    ind_group <-"wWi08ToZ2gR"
+  } else if (d$info$cop_year == 2021) {
+    #TODO: Fix this with the real indicator group once it has been deployed to prod
+    ind_group <-"TslxbFe3VUZ"
+  } else {
+    flog.info("Indicator group was not found")
+    return(NULL)
+  }
+  inds <-
+    datimutils::getIndicatorGroups(ind_group, 
+                                   d2_session = d2_session, 
+                                   fields = "indicators[id,name,numerator,denominator]") 
+  
+  
+  if (class(inds) != "data.frame") { warning("No indicator metadata  was returned from DATIM")
+    return(d)}
+  
+  
+  df<-datimutils::getAnalytics( "dimension=SH885jaRe0o",
+                                dx=inds$id,
+                                ou = d$info$country_uids,
+                                pe_f = paste0(d$info$cop_year,"Oct"),
+                                d2_session = d2_session
+  ) %>% 
+    dplyr::inner_join(inds,by=c(`Data` = "id")) %>% 
+    dplyr::select(-numerator,-denominator) %>% 
+  dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ","")) %>% 
+    dplyr::mutate(name = stringr::str_trim(name)) %>% 
+    tidyr::separate("name",into=c("Indicator","N_OR_D","Age"),sep=" ") %>%
+    dplyr::mutate(Indicator = dplyr::case_when(Indicator == "GEND_GBV" & N_OR_D == "Physical" ~ "GEND_GBV Physical and Emotional Violence",
+                                               Indicator == "GEND_GBV" & N_OR_D == "Sexual" ~ "GEND_GBV Sexual Violence",
+                                               TRUE ~ Indicator)) %>% 
+    dplyr::select(-"N_OR_D") %>% 
+    dplyr::mutate(Age = dplyr::case_when(Age == "15-" ~ "<15",
+                                         Age == "15+" ~ "15+",
+                                         Age == "18-" ~"<18",
+                                         Age == "18+" ~ "18+",
+                                         TRUE ~ "Total")) %>% 
+    dplyr::mutate( Age = dplyr::case_when( Indicator %in% c("CXCA_SCRN","OVC_HIVSTAT","KP_PREV","PMTCT_EID","KP_MAT","VMMC_CIRC","PrEP_NEW","PrEP_CURR","GEND_GBV")  ~ "Total",
+                                           TRUE ~ Age)) 
+  
+    mech_cocs_cos_map <- api_call("categoryOptionCombos",
+                          d2_session = d2_session) %>%
+    api_filter("categoryCombo.name", "like", "Funding Mechanism") %>%
+    api_fields("id,code,categoryOptions[id]") %>%
+    api_get(d2_session = d2_session) %>% 
+    dplyr::rename(categoryOptionCombo.id = id) %>% 
+    tidyr::unnest(categoryOptions,names_repair = "universal" ) %>% 
+    dplyr::rename(categoryOption.id = id)
+
+  df %<>% dplyr::inner_join(mech_cocs_cos_map,by=c(`Funding Mechanism` = "categoryOption.id")) %>% 
+    dplyr::select(Indicator,Age,mechanism_code=code,datim_value = Value)
+  
+  
+  d$data$memo$by_mechanism_datim<-df
+  
+  return(d)
+  
+  
+}
+
+prepareMechComparisonTable<-function(d) {
+  df<-dplyr::full_join(d$data$memo$by_mechanism_datim, d$data$memo$by_mechanism_datapack) %>% 
+    dplyr::mutate_if(is.numeric, function(x) ifelse(is.na(x),0,x)) %>% 
+    dplyr::mutate(diff= value - datim_value,
+                  diff_percent = diff/value)
+
 #Should probably move this to datapackr
 preparePrioTable<-function(d,d2_session){
 
@@ -158,7 +293,22 @@ preparePrioTable<-function(d,d2_session){
     dplyr::mutate(combi =paste0("#{",dataelement_id,".", categoryoptioncombo_id,"}")) %>% 
     plyr::ddply(., plyr::.(prioritization),
                     function(x)
-                      evaluateIndicators(x$combi, x$value,inds)) 
+                      evaluateIndicators(x$combi, x$value,inds)) %>% 
+    dplyr::select(-id,-numerator,-denominator) %>% 
+    dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ","")) %>% 
+    dplyr::mutate(name = stringr::str_trim(name)) %>% 
+    tidyr::separate("name",into=c("Indicator","N_OR_D","Age"),sep=" ") %>%
+    dplyr::mutate(Indicator = dplyr::case_when(Indicator == "GEND_GBV" & N_OR_D == "Physical" ~ "GEND_GBV Physical and Emotional Violence",
+                                        Indicator == "GEND_GBV" & N_OR_D == "Sexual" ~ "GEND_GBV Sexual Violence",
+                                        TRUE ~ Indicator)) %>% 
+    dplyr::select(-"N_OR_D") %>% 
+    dplyr::mutate(Age = dplyr::case_when(Age == "15-" ~ "<15",
+                                  Age == "15+" ~ "15+",
+                                  Age == "18-" ~"<18",
+                                  Age == "18+" ~ "18+",
+                                  TRUE ~ "Total")) %>% 
+    dplyr::mutate( Age = dplyr::case_when( Indicator %in% c("CXCA_SCRN","OVC_HIVSTAT","KP_PREV","PMTCT_EID","KP_MAT","VMMC_CIRC","PrEP_NEW","PrEP_CURR","GEND_GBV")  ~ "Total",
+                                    TRUE ~ Age)) 
   
   if (NROW(df) == 0) {return(d)}
   
@@ -720,4 +870,114 @@ prepareSNUSummaryTable<-function(d) {
     dplyr::group_by(ou,country_name,snu1,psnu,indicator_code) %>%
     dplyr::summarise(value = sum(value,na.rm = TRUE)) %>% 
     dplyr::arrange(indicator_code,ou,country_name,snu1,psnu)
+}
+
+
+outputPrioTableToDOCX<-function(d) {
+
+  d <- memo_data()
+  
+  ou_name<-d$ou
+  
+  #Transform all zeros to dashes
+  d$prio %<>% 
+    dplyr::mutate_if(is.numeric, 
+                     function(x) ifelse(x == 0 ,"-",formatC(x, format="f", big.mark=",",digits = 0))) 
+  
+  style_para_prio<-fp_par(text.align = "right",
+                          padding.right = 0.04,
+                          padding.bottom = 0,
+                          padding.top = 0,
+                          line_spacing = 1)
+  
+  style_header_prio<-fp_par(text.align = "center",
+                            padding.right = 0,
+                            padding.bottom = 0,
+                            padding.top = 0,
+                            line_spacing = 1)
+  
+  
+  header_old<-names(d$prio)
+  header_new<-c(ou_name,ou_name,header_old[3:dim(d$prio)[2]])
+  
+  prio_table<-flextable(d$prio) %>% 
+    merge_v(.,j="Indicator") %>% 
+    delete_part(.,part = "header") %>% 
+    add_header_row(.,values = header_new) %>% 
+    add_header_row(., values = c(ou_name, ou_name,rep("SNU Prioritizations", ( dim(d$prio)[2] - 2 )))) %>% 
+    merge_h(., part = "header") %>% 
+    merge_v(.,part="header") %>% 
+    bg(.,bg = "#CCC0D9", part = "header") %>% 
+    bg(., i = ~ Age == "Total", bg = "#E4DFEC", part = "body") %>% #Highlight total rows
+    bold(., i = ~ Age == "Total", bold = TRUE, part = "body")  %>% 
+    bg(.,j= "Indicator", bg = "#FFFFFF" , part="body") %>% 
+    bold(., j = "Indicator", bold = FALSE) %>% 
+    bold(.,bold = TRUE,part = "header") %>% 
+    fontsize(., size = 7, part = "all") %>%
+    style(.,pr_p = style_header_prio,part="header") %>% 
+    style(.,pr_p = style_para_prio,part = "body") %>%
+    align(.,j=1:2,align = "center") %>%  #Align first two columns center
+    flextable::add_footer_lines(.,values="* Totals may be greater than the sum of categories due to activities outside of the SNU prioritization areas outlined above")
+  
+  fontname<-"Arial"
+  if ( gdtools::font_family_exists(fontname) ) {
+    prio_table <- font(prio_table,fontname = fontname,part = "header") 
+  } 
+  
+  doc <- read_docx()
+  doc<-body_add_flextable(doc,value=prio_table)
+  doc<-body_add_break(doc,pos="after")
+  
+  #Partners tables
+  
+  d$partners %<>% 
+    dplyr::mutate_if(is.numeric, 
+                     function(x) ifelse(x == 0 ,"-",formatC(x, format="f", big.mark=",",digits = 0))) 
+  
+  sub_heading<-names(d$partners)[3:length(d$partners)] %>% 
+    stringr::str_split(.," ") %>% 
+    purrr::map(purrr::pluck(2)) %>%
+    unlist() %>% 
+    c("Funding Agency","Partner",.)
+  
+  group_heading<-names(d$partners)[3:length(d$partners)] %>% 
+    stringr::str_split(.," ") %>% 
+    purrr::map(purrr::pluck(1)) %>% 
+    unlist() %>% 
+    c("Funding Agency","Partner",.)
+  
+  chunks<-list(c(1:14),c(1:2,15:25),c(1:2,26:34),c(1:2,35:43))
+  
+  renderPartnerTable<-function(chunk) {
+    
+    partner_table<- flextable(d$partners[,chunk]) %>% 
+      bg(., i = ~ Partner == "", bg = "#D3D3D3", part = "body") %>% 
+      bold(.,i = ~ Partner == "", bold=TRUE) %>% 
+      delete_part(.,part = "header") %>% 
+      add_header_row(.,values=sub_heading[chunk]) %>% 
+      add_header_row(.,top = TRUE,values = group_heading[chunk] ) %>% 
+      merge_h(.,part="header") %>% 
+      merge_v(.,part = "header")  %>% 
+      fontsize(., size = 7, part = "all") %>% 
+      style(.,pr_p = style_para_prio,part = "body") %>% 
+      width(.,j=1:2,0.75) %>% 
+      width(.,j=3:(length(chunk)-2),0.4)
+    
+    fontname<-"Arial"
+    if ( gdtools::font_family_exists(fontname) ) {
+      partner_table <- font(partner_table,fontname = fontname, part = "all") 
+    } 
+    
+    partner_table
+  }
+  
+  for (i in 1:length(chunks)) {
+    chunk<-chunks[[i]]
+    partner_table_ft<-renderPartnerTable(chunk = chunk)
+    doc<-body_add_flextable(doc,partner_table_ft)
+    doc<-body_add_break(doc,pos="after")
+  }
+  
+  print(doc,target=file)
+}
 }
