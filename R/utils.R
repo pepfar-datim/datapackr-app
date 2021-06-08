@@ -663,11 +663,21 @@ createS3BucketTags<-function(d) {
 
 updateExistingPrioritization<-function(d,d2_session) {
   
-period<- paste0( (d$info$cop_year),"Oct") 
-ous<-   d$data$analytics$psnu_uid %>% unique() %>% paste(sep="",collapse=";") 
-dx <-"r4zbW3owX9n"
-  
-prios<-datimutils::getAnalytics(dx="r4zbW3owX9n",pe_f =period, ou = ous,d2_session = d2_session ) 
+
+psnus<-   d$data$analytics$psnu_uid %>% unique() %>% unlist()
+
+#Break up into 2048 character URLS (approximately)
+n_requests<-ceiling(nchar(paste(psnus,sep="",collapse=";"))/2048)
+n_groups<-split(sample(psnus),1:n_requests)
+
+
+getPrioTable<-function(x) {
+  datimutils::getAnalytics(dx="r4zbW3owX9n",
+                           pe_f =paste0( (d$info$cop_year),"Oct"),
+                           ou = x,
+                           d2_session = d2_session ) }
+
+prios<-n_groups %>% purrr::map_dfr(getPrioTable)
 
 if (is.null(prios)) {
   interactive_print("No prioritization information found. Skipping update.")
