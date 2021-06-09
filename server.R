@@ -325,6 +325,9 @@ shinyServer(function(input, output, session) {
             incProgress(0.1, detail = ("Preparing a prioritization table"))
             d<-preparePrioTable(d,d2_session = user_input$d2_session)
             Sys.sleep(1)
+            incProgress(0.1, detail = ("Preparing a partners table"))
+            d<-preparePartnerMemoTable(d,user_input$d2_session)
+            Sys.sleep(1)
             incProgress(0.1, detail = ("Preparing a modality summary"))
             d<-modalitySummaryTable(d)
             Sys.sleep(1)
@@ -429,6 +432,10 @@ shinyServer(function(input, output, session) {
         d<-updateExistingPrioritization(d,d2_session = user_input$d2_session)
         incProgress(0.1, detail = ("Preparing a prioritization table"))
         d<-preparePrioTable(d,d2_session = user_input$d2_session)
+        Sys.sleep(1)
+        incProgress(0.1, detail = ("Preparing a partners table"))
+        d<-preparePartnerMemoTable(d,user_input$d2_session)
+        Sys.sleep(1)
         incProgress(0.1, detail = ("Preparing a modality summary"))
         d<-modalitySummaryTable(d)
         Sys.sleep(1)
@@ -991,59 +998,59 @@ shinyServer(function(input, output, session) {
           prio_table <- font(prio_table,fontname = fontname,part = "header") 
         } 
         
-        doc <- read_docx()
+        doc <- read_docx(path = "support_files/draft_memo_template.docx")
         doc<-body_add_flextable(doc,value=prio_table)
         doc<-body_add_break(doc,pos="after")
         
-        # #Partners tables
-        # 
-        # d$partners %<>% 
-        #   dplyr::mutate_if(is.numeric, 
-        #                    function(x) ifelse(x == 0 ,"-",formatC(x, format="f", big.mark=",",digits = 0))) 
-        # 
-        # sub_heading<-names(d$partners)[3:length(d$partners)] %>% 
-        #   stringr::str_split(.," ") %>% 
-        #   purrr::map(purrr::pluck(2)) %>%
-        #   unlist() %>% 
-        #   c("Funding Agency","Partner",.)
-        # 
-        # group_heading<-names(d$partners)[3:length(d$partners)] %>% 
-        #   stringr::str_split(.," ") %>% 
-        #   purrr::map(purrr::pluck(1)) %>% 
-        #   unlist() %>% 
-        #   c("Funding Agency","Partner",.)
-        # 
-        # chunks<-list(c(1:14),c(1:2,15:25),c(1:2,26:34),c(1:2,35:43))
-        # 
-        # renderPartnerTable<-function(chunk) {
-        #   
-        #   partner_table<- flextable(d$partners[,chunk]) %>% 
-        #     bg(., i = ~ Partner == "", bg = "#D3D3D3", part = "body") %>% 
-        #     bold(.,i = ~ Partner == "", bold=TRUE) %>% 
-        #     delete_part(.,part = "header") %>% 
-        #     add_header_row(.,values=sub_heading[chunk]) %>% 
-        #     add_header_row(.,top = TRUE,values = group_heading[chunk] ) %>% 
-        #     merge_h(.,part="header") %>% 
-        #     merge_v(.,part = "header")  %>% 
-        #     fontsize(., size = 7, part = "all") %>% 
-        #     style(.,pr_p = style_para_prio,part = "body") %>% 
-        #     width(.,j=1:2,0.75) %>% 
-        #     width(.,j=3:(length(chunk)-2),0.4)
-        #   
-        #   fontname<-"Arial"
-        #   if ( gdtools::font_family_exists(fontname) ) {
-        #     partner_table <- font(partner_table,fontname = fontname, part = "all") 
-        #   } 
-        #   
-        #   partner_table
-        # }
-        # 
-        # for (i in 1:length(chunks)) {
-        #   chunk<-chunks[[i]]
-        #   partner_table_ft<-renderPartnerTable(chunk = chunk)
-        #   doc<-body_add_flextable(doc,partner_table_ft)
-        #   doc<-body_add_break(doc,pos="after")
-        # }
+        #Partners tables
+
+        partners_table <-d$data$partners_table %>% 
+          dplyr::mutate_if(is.numeric,
+                           function(x) ifelse(x == 0 ,"-",formatC(x, format="f", big.mark=",",digits = 0)))
+
+        sub_heading<-names(partners_table)[3:length(d$partners)] %>%
+          stringr::str_split(.," ") %>%
+          purrr::map(purrr::pluck(2)) %>%
+          unlist() %>%
+          c("Funding Agency","Partner",.)
+
+        group_heading<-names(partners_table)[3:length(partners_table)] %>%
+          stringr::str_split(.," ") %>%
+          purrr::map(purrr::pluck(1)) %>%
+          unlist() %>%
+          c("Funding Agency","Partner",.)
+
+        chunks<-list(c(1:14),c(1:2,15:25),c(1:2,26:34),c(1:2,35:43))
+
+        renderPartnerTable<-function(chunk) {
+
+          partner_table<- flextable(partners_table[,chunk]) %>%
+            bg(., i = ~ Partner == "", bg = "#D3D3D3", part = "body") %>%
+            bold(.,i = ~ Partner == "", bold=TRUE) %>%
+            delete_part(.,part = "header") %>%
+            add_header_row(.,values=sub_heading[chunk]) %>%
+            add_header_row(.,top = TRUE,values = group_heading[chunk] ) %>%
+            merge_h(.,part="header") %>%
+            merge_v(.,part = "header")  %>%
+            fontsize(., size = 7, part = "all") %>%
+            style(.,pr_p = style_para_prio,part = "body") %>%
+            width(.,j=1:2,0.75) %>%
+            width(.,j=3:(length(chunk)-2),0.4)
+
+          fontname<-"Arial"
+          if ( gdtools::font_family_exists(fontname) ) {
+            partner_table <- font(partner_table,fontname = fontname, part = "all")
+          }
+
+          partner_table
+        }
+
+        for (i in 1:length(chunks)) {
+          chunk<-chunks[[i]]
+          partner_table_ft<-renderPartnerTable(chunk = chunk)
+          doc<-body_add_flextable(doc,partner_table_ft)
+          doc<-body_add_break(doc,pos="after")
+        }
         
         
         print(doc,target=file)

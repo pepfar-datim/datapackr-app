@@ -23,8 +23,7 @@ PSNUxIM_pivot<-function(d){
 
 memoStructure<-function(cop_year="2020") {
   
-  #TODO: Fix this once we get the COP21 indicators finalized
-  # if (cop_year == "2020") {
+  if (cop_year == "2020") {
   row_order<-tibble::tribble(
     ~ind,~options, ~in_partner_table,
     "HTS_INDEX","<15",TRUE,
@@ -83,29 +82,112 @@ memoStructure<-function(cop_year="2020") {
     "TX_TB","<15",TRUE,
     "TX_TB","15+",TRUE,
     "TX_TB","Total",FALSE,
-    "GEND_GBV","Total",TRUE)  
+    "GEND_GBV","Total",TRUE)  }
   
-  col_order<-
-    
-    tibble::tribble(
-      ~value, ~name, ~col_order,
-      0, "No Prioritization",7,
-      1, "Scale-up: Saturation",2,
-      2, "Scale-up: Aggressive",3,
-      4, "Sustained",4,
-      5, "Centrally Supported",5,
-      6, "Sustained: Commodities",6,
-      7, "Attained",1,
-      8, "Not PEPFAR Supported",8
-    ) %>%
-    dplyr::mutate(Prioritization = paste0(value, " - ", name))
-  #     
-  # }
-  # 
+  if (cop_year == "2021") {
+    row_order<-tibble::tribble(
+      ~ind,~options, ~in_partner_table,
+      "HTS_INDEX","<15",TRUE,
+      "HTS_INDEX","15+",TRUE,
+      "HTS_INDEX","Total",FALSE,
+      "HTS_TST","<15",TRUE,
+      "HTS_TST","15+",TRUE,
+      "HTS_TST","Total",FALSE,
+      "HTS_TST_POS","<15",TRUE,
+      "HTS_TST_POS","15+",TRUE,
+      "HTS_TST_POS","Total",FALSE,
+      "TX_NEW","<15",TRUE,
+      "TX_NEW","15+",TRUE,
+      "TX_NEW","Total",FALSE,
+      "TX_CURR","<15",TRUE,
+      "TX_CURR","15+",TRUE,
+      "TX_CURR","Total",FALSE,
+      "TX_PVLS","<15",TRUE,
+      "TX_PVLS","15+",TRUE,
+      "TX_PVLS","Total",FALSE,
+      "CXCA_SCRN","Total",TRUE,
+      "OVC_SERV","<18",TRUE,
+      "OVC_SERV","18+",TRUE,
+      "OVC_SERV","Total",FALSE,
+      "OVC_HIVSTAT", "Total",TRUE,
+      "PMTCT_STAT","<15",TRUE,
+      "PMTCT_STAT","15+",TRUE,
+      "PMTCT_STAT","Total",FALSE,
+      "PMTCT_STAT_POS","<15",TRUE,
+      "PMTCT_STAT_POS","15+",TRUE,
+      "PMTCT_STAT_POS","Total",FALSE,
+      "PMTCT_ART","<15",TRUE,
+      "PMTCT_ART","15+",TRUE,
+      "PMTCT_ART","Total",FALSE,
+      "PMTCT_EID","Total",TRUE,
+      "PP_PREV","<15",TRUE,
+      "PP_PREV","15+",TRUE,
+      "PP_PREV","Total",FALSE,
+      "KP_PREV","Total",TRUE,
+      "KP_MAT","Total",TRUE,
+      "VMMC_CIRC","Total",TRUE,
+      "HTS_SELF","<15",TRUE,
+      "HTS_SELF","15+",TRUE,
+      "HTS_SELF","Total",FALSE,
+      "PrEP_NEW","Total",TRUE,
+      "PrEP_CURR","Total",TRUE,
+      "TB_STAT","<15",TRUE,
+      "TB_STAT","15+",TRUE,
+      "TB_STAT","Total",FALSE,
+      "TB_ART","<15",TRUE,
+      "TB_ART","15+",TRUE,
+      "TB_ART","Total",FALSE,
+      "TB_PREV","<15",TRUE,
+      "TB_PREV","15+",TRUE,
+      "TB_PREV","Total",FALSE,
+      "TX_TB","<15",TRUE,
+      "TX_TB","15+",TRUE,
+      "TX_TB","Total",FALSE,
+      "GEND_GBV","Total",TRUE,
+      "AGYW_PREV","Total",FALSE)  
+  }
+
+col_order<-
   
+  tibble::tribble(
+    ~value, ~name, ~col_order,
+    0, "No Prioritization",7,
+    1, "Scale-up: Saturation",2,
+    2, "Scale-up: Aggressive",3,
+    4, "Sustained",4,
+    5, "Centrally Supported",5,
+    6, "Sustained: Commodities",6,
+    7, "Attained",1,
+    8, "Not PEPFAR Supported",8
+  ) %>%
+  dplyr::mutate(Prioritization = paste0(value, " - ", name))
+
   list(row_order=row_order,col_order=col_order) 
 }
 
+getMemoIndicators<-function(d,d2_session) {
+  #Fetch indicators from the COP21 memo group
+  #TODO: Make this work for both COP years.!
+  
+  if (d$info$cop_year == 2020) {
+    ind_group <-"wWi08ToZ2gR"
+  } else if (d$info$cop_year == 2021) {
+    #TODO: Fix this with the real indicator group once it has been deployed to prod
+    ind_group <-"TslxbFe3VUZ"
+  } else {
+    flog.info("Indicator group was not found")
+    return(NULL)
+  }
+  inds <-
+    datimutils::getIndicatorGroups(ind_group, 
+                                   d2_session = d2_session, 
+                                   fields = "indicators[id,name,numerator,denominator]") 
+  
+  
+  if (class(inds) != "data.frame") { stop("No indicator metadata  was returned from DATIM") }
+    
+    inds
+}
 #Should probably move this to datapackr
 preparePrioTable<-function(d,d2_session){
 
@@ -124,26 +206,7 @@ preparePrioTable<-function(d,d2_session){
                   age_coarse = options,
                   prioritization = name)
   
-  #Fetch indicators from the COP21 memo group
-  #TODO: Make this work for both COP years.!
-  
-  if (d$info$cop_year == 2020) {
-    ind_group <-"wWi08ToZ2gR"
-  } else if (d$info$cop_year == 2021) {
-    #TODO: Fix this with the real indicator group once it has been deployed to prod
-    ind_group <-"TslxbFe3VUZ"
-  } else {
-    flog.info("Indicator group was not found")
-    return(NULL)
-  }
-  inds <-
-    datimutils::getIndicatorGroups(ind_group, 
-                                   d2_session = d2_session, 
-                                   fields = "indicators[id,name,numerator,denominator]") 
-
-  
-  if (class(inds) != "data.frame") { warning("No indicator metadata  was returned from DATIM")
-    return(d)}
+  inds<-getMemoIndicators(d,d2_session)
   
   df <- d  %>%
     purrr::pluck("data") %>%
@@ -208,6 +271,77 @@ preparePrioTable<-function(d,d2_session){
 
   return(d)
 
+
+}
+
+preparePartnerMemoTable<-function(d,d2_session) {
+  inds<-getMemoIndicators(d,d2_session)
+  
+  df <- d  %>%
+    purrr::pluck("data") %>%
+    purrr::pluck("analytics") %>%
+    dplyr::filter(!is.na(target_value)) %>% 
+    dplyr::select(dataelement_id,
+                  categoryoptioncombo_id,
+                  funding_agency,
+                  partner_desc,
+                  value = target_value) %>% 
+    dplyr::group_by(dataelement_id,categoryoptioncombo_id,funding_agency,partner_desc) %>% 
+    dplyr::summarise(value = sum(value)) %>% 
+    dplyr::mutate(combi =paste0("#{",dataelement_id,".", categoryoptioncombo_id,"}")) %>% 
+    plyr::ddply(., plyr::.(funding_agency,partner_desc),
+                function(x)
+                  evaluateIndicators(x$combi, x$value,inds)) %>% 
+    dplyr::rename("Agency" = funding_agency, "Partner" = partner_desc, Value = value) %>% 
+    dplyr::select(-id,-numerator,-denominator) %>% 
+    dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ","")) %>% 
+    dplyr::mutate(name = stringr::str_trim(name)) %>% 
+    tidyr::separate("name",into=c("Indicator","N_OR_D","Age"),sep=" ") %>%
+    dplyr::mutate(Indicator = case_when(Indicator == "GEND_GBV" & N_OR_D == "Physical" ~ "GEND_GBV Physical and Emotional Violence",
+                                        Indicator == "GEND_GBV" & N_OR_D == "Sexual" ~ "GEND_GBV Sexual Violence",
+                                        TRUE ~ Indicator)) %>% 
+    dplyr::select(-"N_OR_D") %>% 
+    dplyr::mutate(Age = case_when(Age == "15-" ~ "<15",
+                                  Age == "15+" ~ "15+",
+                                  Age == "18-" ~"<18",
+                                  Age == "18+" ~ "18+",
+                                  TRUE ~ "Total")) %>% 
+    dplyr::mutate( Age = case_when( Indicator %in% c("CXCA_SCRN","OVC_HIVSTAT","KP_PREV","PMTCT_EID","KP_MAT","VMMC_CIRC","PrEP_NEW","PrEP_CURR","GEND_GBV")  ~ "Total",
+                                    TRUE ~ Age)) %>% 
+    tidyr::complete(.,tidyr::nesting(Agency,Partner),Indicator,Age,fill=list(Value=0)) %>% 
+    tidyr::drop_na()
+  
+  d_base<-tidyr::crossing(df_rows,dplyr::distinct(unique(df[,c("Partner","Agency")]))) %>% 
+    dplyr::mutate(Value = 0) %>% 
+    dplyr::rename("Indicator" = ind,
+                  Age = options)
+  
+  #Agency level totals
+  d_totals<-dplyr::bind_rows(df,d_base) %>% 
+    dplyr::group_by(`Agency`,`Indicator`,`Age`) %>% 
+    dplyr::summarise(`Value` = sum(`Value`)) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::mutate(`Partner` = '')
+  
+  d_indicators<- memoStructure(d$info$cop_year) %>% 
+    purrr::pluck("row_order") %>% 
+    dplyr::filter(in_partner_table) %>%
+    dplyr::select(ind,options) %>% 
+    dplyr::mutate(indicator_name = factor(paste(ind, options)))
+  
+  #Return the final data frame 
+  d$data$partners_table<-dplyr::bind_rows(d_totals,df) %>% 
+    dplyr::mutate(indicator_name = paste(`Indicator`, `Age`)) %>% 
+    #dplyr::mutate(indicator_name = factor(indicator_name,levels=unique(d_indicators$indicator_name))) %>% 
+    dplyr::mutate(`Label` = indicator_name) %>% 
+    dplyr::rename(`Funding Agency` = `Agency`) %>% 
+    dplyr::arrange(`Funding Agency`,`Partner`,indicator_name) %>% 
+    dplyr::select(`Funding Agency`,`Partner`,`Label`,`Value`) %>% 
+    tidyr::pivot_wider(names_from = `Label`, values_from = `Value`, values_fill = 0) %>% 
+    dplyr::select(`Funding Agency`,`Partner`,d_indicators$indicator_name)
+  
+  return(d)
+  
 
 }
 
