@@ -202,9 +202,10 @@ preparePrioTable<-function(d,d2_session){
   df_base<-tidyr::crossing(df_rows,dplyr::select(df_cols,name)) %>%
     dplyr::arrange(ind,options,name) %>%
     dplyr::mutate(value = 0) %>%
-    dplyr::rename("indicator" = ind,
-                  age_coarse = options,
-                  prioritization = name)
+    dplyr::select("Indicator" = ind,
+                  Age = options,
+                  prioritization = name,
+                  value)
   
   inds<-getMemoIndicators(d,d2_session)
   
@@ -257,7 +258,10 @@ preparePrioTable<-function(d,d2_session){
     dplyr::mutate(Age = "Total") %>% 
     dplyr::select(names(df))
   
-      d$data$prio_table <- dplyr::bind_rows(df,df_total) %>% 
+      d$data$prio_table <- dplyr::bind_rows(df,df_total,df_base) %>% 
+        dplyr::group_by(Indicator,Age,prioritization) %>% 
+        dplyr::summarise(value = sum(value)) %>% 
+        dplyr::ungroup() %>% 
         dplyr::mutate(Age = factor(Age,levels = (unique(Age)))) %>% 
         dplyr::left_join(df_rows,by=c("Indicator" = "ind", "Age" = "options")) %>% 
         dplyr::left_join((df_cols %>% dplyr::select(name,col_order)),by=c("prioritization"="name")) %>% 
