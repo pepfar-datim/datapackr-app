@@ -1,4 +1,4 @@
-downloadTypes <- function(tool_type="Data Pack",needs_psnuxim=FALSE) {
+downloadTypes <- function(tool_type="Data Pack",needs_psnuxim=FALSE, memo_authorized = FALSE) {
   
   if (is.null(needs_psnuxim)) { needs_psnuxim<-FALSE}
   
@@ -9,7 +9,8 @@ downloadTypes <- function(tool_type="Data Pack",needs_psnuxim=FALSE) {
       "Messages",
       "Validation report",
       "New PSNUxIM",
-      "Comparison"
+      "Comparison",
+      "COP Memo"
     )
   download_types <-
     c("flatpack",
@@ -17,13 +18,18 @@ downloadTypes <- function(tool_type="Data Pack",needs_psnuxim=FALSE) {
       "messages",
       "vr_rules",
       "datapack",
-      "comparison")
+      "comparison",
+      "memo")
   
   
   names(download_types) <- download_names
   
   if (tool_type == "OPU Data Pack" | !needs_psnuxim ) {
     download_types<- download_types[!(download_types %in% c("datapack"))]
+  }
+  
+  if (!memo_authorized) {
+    download_types<- download_types[!(download_types %in% c("memo"))]
   }
   
   
