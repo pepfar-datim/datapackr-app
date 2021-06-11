@@ -955,15 +955,17 @@ shinyServer(function(input, output, session) {
           purrr::pluck("data") %>%
           purrr::pluck("prio_table")
           
-        #Remove NOT PEPFAR supported if its only zeros, otherwise, show this, since its potentially problematic
-        if (prio_table %>%  dplyr::select("Not PEPFAR Supported") %>% sum(.,na.rm = TRUE) == 0) {
-          prio_table %<>%  select(-`Not PEPFAR Supported`)
-        } 
+        #Remove any columns which are all zeros to save space. 
+        column_filter <-
+          d$data$prio_table %>% summarise(across(where(is.numeric), ~ sum(.x, na.rm = FALSE) != 0)) %>%  
+          t() %>%  as.data.frame() %>% 
+          dplyr::filter(!V1) %>% row.names()
+        
+        prio_table %<>% dplyr::select(-column_filter)
         
         prio_table %<>% dplyr::mutate_if(is.numeric, 
                          function(x) ifelse(x == 0 ,"-",formatC(x, format="f", big.mark=",",digits = 0))) 
-        
-  
+
         style_para_prio<-fp_par(text.align = "right",
                                 padding.right = 0.04,
                                 padding.bottom = 0,
@@ -1002,7 +1004,7 @@ shinyServer(function(input, output, session) {
         
         fontname<-"Arial"
         if ( gdtools::font_family_exists(fontname) ) {
-          prio_table <- font(prio_table,fontname = fontname,part = "header") 
+          prio_table <- font(prio_table,fontname = fontname,part = "all") 
         } 
 
         
