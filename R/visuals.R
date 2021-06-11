@@ -923,7 +923,7 @@ memo_getPrioritizationTable <- function(d, d2_session, cop_year = "2020", includ
     dplyr::rename("psnu_uid" = `Organisation unit` ) %>% 
     dplyr::mutate(Value = as.numeric(Value))  %>%
     dplyr::inner_join(inds,by=c(`Data` = "id")) %>% 
-    dplyr::select(-Data,-numerator,-denominator) %>% 
+    dplyr::select(-Data) %>% 
     dplyr::mutate(name =  stringr::str_replace_all(name,"^COP2[01] Targets ","")) %>% 
     dplyr::mutate(name = stringr::str_trim(name)) %>% 
     tidyr::separate("name",into=c("Indicator","N_OR_D","Age"),sep=" ") %>%
@@ -945,8 +945,7 @@ memo_getPrioritizationTable <- function(d, d2_session, cop_year = "2020", includ
     dplyr::group_by(`Indicator`,`Age`,`prioritization`) %>% 
     dplyr::summarise(Value = sum(Value)) %>% 
     dplyr::ungroup() %>% 
-    dplyr::rename("col_name" = "prioritization") %>% 
-    dplyr::mutate(col_name = stringr::str_replace(col_name,"Scale-up","Scale-Up")) 
+    dplyr::rename("col_name" = "prioritization")
   
   df_totals<-df %>%
     dplyr::filter(Age != 'Total') %>% 
@@ -1022,10 +1021,20 @@ comparePrioTables<-function(d) {
     tidyr::pivot_longer(.,cols=3:dim(.)[2],values_to="values_datapack",names_to="Prioritization")
   
   prio_datim<-d$data$memo$datim$prio %>% 
-    tidyr::pivot_longer(.,cols=3:dim(.)[2],values_to="values_datim",names_to="Prioritization")
+    tidyr::pivot_longer(.,cols=3:dim(.)[2],values_to="values_datim",names_to="Prioritization") 
   
   df<-dplyr::full_join(prio_dp,prio_datim) %>% 
+    dplyr::mutate(values_datim = dplyr::case_when(is.na(values_datim) ~ 0,
+                                           TRUE ~ values_datim),
+                  values_datapack =dplyr::case_when(is.na(values_datapack) ~ 0,
+                                                    TRUE ~ values_datapack) ) %>% 
     dplyr::mutate(diff = values_datapack- values_datim,
-                  diff_percent = values_datapack/(values_datapack-values_datim))
+                  diff_percent = values_datapack/(values_datapack-values_datim),
+                  is_same = dplyr::near(values_datapack,values_datim,tol = 1e-5)) %>% 
+    dplyr::mutate(
+                  diff_percent = case_when(is_same ~ 0,
+                                           TRUE ~ diff_percent))
   
+  d$data$memo$compare$prio<-df
+  return(d)
 }

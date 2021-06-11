@@ -213,7 +213,10 @@ shinyServer(function(input, output, session) {
             tabPanel("Prioritization (DRAFT)",
                      DT::dataTableOutput("prio_table"),
                      h5("Note: This is a draft memo table. Final figures may differ."),
-                     tags$h4("Data source: PSNUxIM tab"))
+                     tags$h4("Data source: PSNUxIM tab")),
+            tabPanel("Memo Comparison",
+                     fluidRow(column(width=12,div(rpivotTable::rpivotTableOutput({"memo_compare"})))),
+                     fluidRow(tags$h4("Data source: PSNUxIM tab & DATIM")))
 
           ))
         ))
@@ -339,6 +342,12 @@ shinyServer(function(input, output, session) {
             full_model_path<-fetchModelFile(model_data_path)
             d<-checkAnalytics(d,model_data_path =full_model_path, d2_session = user_input$d2_session )
             Sys.sleep(1)
+            incProgress(0.1, detail = ("Fetching existing COP Memo table"))
+            d<-memo_getPrioritizationTable(d,d2_session = user_input$d2_session)
+            Sys.sleep(1)
+            incProgress(0.1, detail = ("Comparing COP Memo tables"))
+            d<-comparePrioTables(d)
+            Sys.sleep(1)
             incProgress(0.1, detail = ("Finishing up."))
             r<-sendValidationSummary(d,"app_analytics",include_timestamp = TRUE)
             validationSummaryUI(r)
@@ -442,6 +451,12 @@ shinyServer(function(input, output, session) {
         incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
         d<-recencyComparison(d)
         Sys.sleep(1)
+        incProgress(0.1, detail = ("Fetching existing COP Memo table"))
+        d<-memo_getPrioritizationTable(d,d2_session = user_input$d2_session)
+        Sys.sleep(1)
+        incProgress(0.1, detail = ("Comparing COP Memo tables"))
+        d<-comparePrioTables(d)
+        Sys.sleep(1)
         shinyjs::enable("downloadType")
         shinyjs::enable("downloadOutputs")
         shinyjs::disable("send_paw")
@@ -533,6 +548,28 @@ shinyServer(function(input, output, session) {
             formatCurrency(3:dim(prio_table)[2], '',digits =0)
 
 
+    } else {
+      NULL
+    }
+  })
+  
+  output$memo_compare <- renderRpivotTable({
+    vr<-validation_results()
+    
+    if (!inherits(vr,"error") & !is.null(vr)){
+      
+      if ( is.null(vr$data$memo$compare$prio) ) {return(NULL)}
+      
+      pivot<- vr  %>%
+        purrr::pluck("data") %>%
+        purrr::pluck("memo") %>%
+        purrr::pluck("compare") %>% 
+        purrr::pluck("prio")
+      
+      rpivotTable(data =   pivot   ,  rows = c( "Indicator","Age"), cols = c("Prioritization"),
+                  vals = "diff", aggregatorName = "Integer Sum", rendererName = "Table"
+                  , width="70%", height="700px")
+      
     } else {
       NULL
     }
