@@ -215,7 +215,12 @@ shinyServer(function(input, output, session) {
                      h5("Note: This is a draft memo table. Final figures may differ."),
                      tags$h4("Data source: PSNUxIM tab")),
             tabPanel("Memo Comparison",
-                     fluidRow(column(width=12,div(rpivotTable::rpivotTableOutput({"memo_compare"})))),
+                     #Totals do not really make sense here
+                     #https://stackoverflow.com/questions/53021250/problem-with-removing-totals-in-rpivottable
+                     fluidRow(column(width=12, tags$style(
+                       ".pvtTotalLabel, .colTotal, .rowTotal, .pvtGrandTotal { display: none; }"
+                     ),
+                     div(rpivotTable::rpivotTableOutput({"memo_compare"})))),
                      fluidRow(tags$h4("Data source: PSNUxIM tab & DATIM")))
 
           ))
