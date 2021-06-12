@@ -566,8 +566,22 @@ shinyServer(function(input, output, session) {
         purrr::pluck("compare") %>% 
         purrr::pluck("prio")
       
-      rpivotTable(data =   pivot   ,  rows = c( "Indicator","Age"), cols = c("Prioritization"),
-                  vals = "diff", aggregatorName = "Integer Sum", rendererName = "Table"
+      #https://github.com/smartinsightsfromdata/rpivotTable/issues/104
+      make_sorters <- function(data) {
+        if( !length(data) ) return(NULL)
+        f <- sapply(data, is.factor)
+        if( !sum(f) ) return(NULL)
+        fcols <- names(data)[f]
+        flvls <- sapply(fcols, function(fcol, data) levels(data[[fcol]]), data=data, simplify=FALSE)
+        jslvls <- sapply(flvls, function(lvls) paste(paste0("\"",lvls,"\""), collapse=", "))
+        sorter <- sprintf("if (attr == \"%s\") { return sortAs([%s]); }", fcols, jslvls)
+        sprintf("function(attr) {\nvar sortAs = $.pivotUtilities.sortAs;\n%s\n}", paste(sorter, collapse="\n"))
+      }
+      s <- make_sorters(pivot)
+      
+      rpivotTable(data =   pivot   ,  rows = c( "Indicator","Age"), cols = c("Prioritization", "Data Type"),
+                  inclusions=list("Identical"=list("FALSE"), "Data Type"=list("Current","Proposed","Diff")),
+                  vals = "value", aggregatorName = "Integer Sum", rendererName = "Table", sorters = s
                   , width="70%", height="700px")
       
     } else {

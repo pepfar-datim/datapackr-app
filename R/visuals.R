@@ -1018,23 +1018,24 @@ getExistingPrioritization<-function(psnus,cop_year,d2_session) {
 comparePrioTables<-function(d) {
   
   prio_dp<-d$data$prio_table %>%
-    tidyr::pivot_longer(.,cols=3:dim(.)[2],values_to="values_datapack",names_to="Prioritization")
-  
+    tidyr::pivot_longer(.,cols=3:dim(.)[2],values_to="Proposed",names_to="Prioritization")
+
+
   prio_datim<-d$data$memo$datim$prio %>% 
-    tidyr::pivot_longer(.,cols=3:dim(.)[2],values_to="values_datim",names_to="Prioritization") 
+    tidyr::pivot_longer(.,cols=3:dim(.)[2],values_to="Current",names_to="Prioritization")
   
   df<-dplyr::full_join(prio_dp,prio_datim) %>% 
-    dplyr::mutate(values_datim = dplyr::case_when(is.na(values_datim) ~ 0,
-                                           TRUE ~ values_datim),
-                  values_datapack =dplyr::case_when(is.na(values_datapack) ~ 0,
-                                                    TRUE ~ values_datapack) ) %>% 
-    dplyr::mutate(diff = values_datapack- values_datim,
-                  diff_percent = values_datapack/(values_datapack-values_datim),
-                  is_same = dplyr::near(values_datapack,values_datim,tol = 1e-5)) %>% 
-    dplyr::mutate(
-                  diff_percent = case_when(is_same ~ 0,
-                                           TRUE ~ diff_percent))
-  
+    dplyr::mutate(Current = dplyr::case_when(is.na(Current) ~ 0,
+                                           TRUE ~ Current),
+                  Proposed =dplyr::case_when(is.na(Proposed) ~ 0,
+                                                    TRUE ~ Proposed) ) %>% 
+    dplyr::mutate("Diff" = Proposed- Current,
+                  "Identical" = as.character(dplyr::near(Proposed,Current,tol = 1e-5))) %>%
+    tidyr::pivot_longer(.,cols=-c(Indicator,Age,Prioritization,Identical),names_to="Data Type") %>% 
+    dplyr::mutate(`Data Type` = factor(`Data Type`,levels=c("Proposed","Current","Diff"))) %>% 
+    dplyr::arrange(Indicator,Age,Prioritization,`Data Type`)
+
   d$data$memo$compare$prio<-df
+  
   return(d)
 }

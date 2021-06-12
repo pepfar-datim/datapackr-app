@@ -826,7 +826,7 @@
     },
     "datapackr": {
       "Source": "PEPFAR",
-      "Repository": "https://rstudio-package.ap.datim.org/prod/latest",
+      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4543,7 +4543,7 @@
       "checksum": "cac72063b696bc96b1257e972cb41aae"
     },
     ".Rprofile": {
-      "checksum": "217398bd4c1383d01c774921dee352fd"
+      "checksum": "e4f00dbb5a841c127ef577b1c6124e5a"
     },
     "cdi_prio.update.csv": {
       "checksum": "dddf7afffb3badb95a6c0248ede44a51"
@@ -4570,7 +4570,10 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "DESCRIPTION": {
-      "checksum": "b826245bd72f2e3a4b7c1796ad680b18"
+      "checksum": "ddaa8c8bd740a21fcff18ff3570dfc45"
+    },
+    "foo.docx": {
+      "checksum": "6735cdd40e5a40a82bd14aa47562eebd"
     },
     "import_subnatt.csv": {
       "checksum": "1dfa4859b3c999158a95ed447f73f5c7"
@@ -4581,20 +4584,26 @@
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
+    "malawi.rds": {
+      "checksum": "8f34807b00e9e0b87f3bbc5aeca5dcf9"
+    },
     "mechs.rds": {
-      "checksum": "d944cba7bd964fca73c7c958f4a5d8f7"
+      "checksum": "3b7f914f5efcc6619e2846dcf800c1ca"
     },
     "R/utils.R": {
-      "checksum": "3cb04e6f2be6623334de3790df07ee71"
+      "checksum": "a3fbba274578ecedf7fb744c6e390fb7"
     },
     "R/visuals.R": {
-      "checksum": "7f0f756472664f97a9104655937c42a8"
+      "checksum": "c7dff2f3cfbfe5fc2cc5a60ad28211f8"
     },
     "README.md": {
       "checksum": "eef665cd63e15044507de68a54e50b45"
     },
+    "sa_opu.log": {
+      "checksum": "d41d8cd98f00b204e9800998ecf8427e"
+    },
     "server.R": {
-      "checksum": "1d0e6840f985c85861dad2a0ed766e08"
+      "checksum": "ff1be51c09094926338d050bb89855db"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
@@ -4616,6 +4625,12 @@
     },
     "support_files/datapack_model_data.rds": {
       "checksum": "b2ecdc282382ca0515146129d9319a24"
+    },
+    "support_files/draft_memo_template.docs.odt": {
+      "checksum": "3631f2012f8986452becc44d3e1ed077"
+    },
+    "support_files/draft_memo_template.docx": {
+      "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"
     },
     "support_files/mechs.rds": {
       "checksum": "3b7f914f5efcc6619e2846dcf800c1ca"
