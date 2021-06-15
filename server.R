@@ -571,22 +571,15 @@ shinyServer(function(input, output, session) {
         purrr::pluck("compare") %>% 
         purrr::pluck("prio")
       
-      #https://github.com/smartinsightsfromdata/rpivotTable/issues/104
-      make_sorters <- function(data) {
-        if( !length(data) ) return(NULL)
-        f <- sapply(data, is.factor)
-        if( !sum(f) ) return(NULL)
-        fcols <- names(data)[f]
-        flvls <- sapply(fcols, function(fcol, data) levels(data[[fcol]]), data=data, simplify=FALSE)
-        jslvls <- sapply(flvls, function(lvls) paste(paste0("\"",lvls,"\""), collapse=", "))
-        sorter <- sprintf("if (attr == \"%s\") { return sortAs([%s]); }", fcols, jslvls)
-        sprintf("function(attr) {\nvar sortAs = $.pivotUtilities.sortAs;\n%s\n}", paste(sorter, collapse="\n"))
-      }
-      s <- make_sorters(pivot)
+      #We need to sort the pivot table in a specific order based on the levels
+      # of the data. This seemed not to be working at some point, but is now. 
+      # See this issue for more details if needed.  
+      # #https://github.com/smartinsightsfromdata/rpivotTable/issues/104
+
       
       rpivotTable(data =   pivot   ,  rows = c( "Indicator","Age"), cols = c("Prioritization", "Data Type"),
                   inclusions=list("Identical"=list("FALSE"), "Data Type"=list("Current","Proposed","Diff")),
-                  vals = "value", aggregatorName = "Integer Sum", rendererName = "Table", sorters = s
+                  vals = "value", aggregatorName = "Integer Sum", rendererName = "Table"
                   , width="70%", height="700px")
       
     } else {

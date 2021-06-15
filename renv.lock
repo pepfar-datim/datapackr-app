@@ -900,14 +900,9 @@
     "rpivotTable": {
       "Package": "rpivotTable",
       "Version": "0.3.0",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "jangorecki",
-      "RemoteRepo": "rpivotTable",
-      "RemoteRef": "factor-sorters",
-      "RemoteSha": "1300903f01174b85ec2ba451755b81f7656a9664",
-      "Hash": "d08bfa4b8ee111655cfb5b2ae47b3d55"
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "a7ce09cc0ac98041b252d7af4a3cc131"
     },
     "rprojroot": {
       "Package": "rprojroot",

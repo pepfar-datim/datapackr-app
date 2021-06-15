@@ -415,7 +415,7 @@
         "Maintainer": "Winston Chang <winston@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-02-13 07:30:05 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:49:38 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-02-18 08:07:51 UTC; unix"
       }
     },
     "callr": {
@@ -445,7 +445,7 @@
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-28 06:51:10 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:58:16 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-06-14 15:35:57 UTC; unix"
       }
     },
     "cellranger": {
@@ -507,7 +507,7 @@
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-04-05 14:20:11 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:49:40 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-04-20 10:16:04 UTC; unix"
       }
     },
     "clipr": {
@@ -658,7 +658,7 @@
         "Maintainer": "Jim Hester <jim.hester@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-29 14:20:04 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:49:45 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-04-20 10:17:01 UTC; unix"
       }
     },
     "crayon": {
@@ -689,7 +689,7 @@
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-02-08 19:50:02 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:49:47 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-02-10 06:34:57 UTC; unix"
       }
     },
     "crosstalk": {
@@ -784,7 +784,7 @@
         "Maintainer": "Matt Dowle <mattjdowle@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-02-21 06:00:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:49:50 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-20 10:17:11 UTC; unix"
       }
     },
     "datapackcommons": {
@@ -969,7 +969,7 @@
         "Author": "Gábor Csárdi [aut, cre],\n  Kirill Müller [aut],\n  Jim Hester [aut],\n  Maëlle Salmon [ctb] (<https://orcid.org/0000-0002-2815-0399>)",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-05 19:30:02 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:53:29 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-06-14 15:36:05 UTC; unix"
       }
     },
     "diffobj": {
@@ -1003,7 +1003,7 @@
         "Maintainer": "Brodie Gaslam <brodie.gaslam@yahoo.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-22 22:30:24 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:53:32 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-06-14 15:36:08 UTC; unix"
       }
     },
     "digest": {
@@ -1094,7 +1094,7 @@
         "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-05 11:00:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:58:32 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-20 10:16:32 UTC; unix"
       }
     },
     "ellipsis": {
@@ -1218,7 +1218,7 @@
         "Author": "Thomas Lin Pedersen [cre, aut]\n    (<https://orcid.org/0000-0002-5147-4711>),\n  Berendea Nicolae [aut] (Author of the ColorSpace C++ library),\n  Romain François [aut] (<https://orcid.org/0000-0002-2444-4226>)",
         "Repository": "CRAN",
         "Date/Publication": "2021-02-28 19:30:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:50:14 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-03-29 08:38:57 UTC; unix"
       }
     },
     "fastmap": {
@@ -2084,7 +2084,7 @@
         "Maintainer": "Lionel Henry <lionel@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-02-15 15:20:06 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:51:07 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-04-20 10:16:03 UTC; unix"
       }
     },
     "lubridate": {
@@ -2121,7 +2121,7 @@
         "Author": "Vitalie Spinu [aut, cre],\n  Garrett Grolemund [aut],\n  Hadley Wickham [aut],\n  Ian Lyttle [ctb],\n  Imanuel Costigan [ctb],\n  Jason Law [ctb],\n  Doug Mitarotonda [ctb],\n  Joseph Larmarange [ctb],\n  Jonathan Boiser [ctb],\n  Chel Hee Lee [ctb],\n  Google Inc. [ctb, cph]",
         "Repository": "CRAN",
         "Date/Publication": "2021-02-26 15:00:09 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:51:10 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-05-01 06:56:59 UTC; unix"
       }
     },
     "magrittr": {
@@ -2214,7 +2214,7 @@
         "Maintainer": "Yihui Xie <xie@yihui.name>",
         "Repository": "CRAN",
         "Date/Publication": "2021-02-13 07:30:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:52:21 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-20 10:16:41 UTC; unix"
       }
     },
     "munsell": {
@@ -2400,7 +2400,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-13 23:10:03 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:58:21 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-05-18 14:41:30 UTC; unix"
       }
     },
     "paws.analytics": {
@@ -2431,7 +2431,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-07 22:50:05 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:53:44 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-05-18 14:39:58 UTC; unix"
       }
     },
     "paws.application.integration": {
@@ -2462,7 +2462,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-09 14:20:02 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:54:09 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-05-18 14:41:00 UTC; unix"
       }
     },
     "paws.common": {
@@ -2493,7 +2493,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-02-26 06:00:16 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:52:28 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-06-14 15:37:01 UTC; unix"
       }
     },
     "paws.compute": {
@@ -2524,7 +2524,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-07 14:50:02 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:54:18 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-05-18 14:37:12 UTC; unix"
       }
     },
     "paws.cost.management": {
@@ -2555,7 +2555,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-09 07:50:25 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:54:57 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-05-18 14:41:09 UTC; unix"
       }
     },
     "paws.customer.engagement": {
@@ -2586,7 +2586,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-11 06:20:05 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:55:03 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-05-18 14:41:14 UTC; unix"
       }
     },
     "paws.database": {
@@ -2617,7 +2617,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-09 16:40:02 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:55:21 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-05-18 14:38:05 UTC; unix"
       }
     },
     "paws.machine.learning": {
@@ -2648,7 +2648,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-07 20:40:02 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:55:50 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-05-18 14:39:34 UTC; unix"
       }
     },
     "paws.management": {
@@ -2679,7 +2679,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-07 17:30:05 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:56:14 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-05-18 14:39:02 UTC; unix"
       }
     },
     "paws.networking": {
@@ -2710,7 +2710,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-07 16:20:02 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:56:46 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-05-18 14:38:33 UTC; unix"
       }
     },
     "paws.security.identity": {
@@ -2741,7 +2741,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-09 14:00:02 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:57:14 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-05-18 14:40:24 UTC; unix"
       }
     },
     "paws.storage": {
@@ -2772,7 +2772,7 @@
         "Maintainer": "David Kretch <david.kretch@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-07 15:20:02 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:57:48 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-05-18 14:37:51 UTC; unix"
       }
     },
     "pillar": {
@@ -2896,7 +2896,7 @@
         "Maintainer": "Jim Hester <jim.hester@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-04-06 15:10:02 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:58:25 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-06-14 15:37:04 UTC; unix"
       }
     },
     "plyr": {
@@ -3012,7 +3012,7 @@
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-04-04 16:00:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:58:07 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-06-14 15:35:52 UTC; unix"
       }
     },
     "progress": {
@@ -3075,7 +3075,7 @@
         "Maintainer": "Joe Cheng <joe@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-02-11 19:00:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:52:32 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-20 10:17:30 UTC; unix"
       }
     },
     "ps": {
@@ -3106,7 +3106,7 @@
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-02-28 20:50:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:52:43 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-06-14 15:35:49 UTC; unix"
       }
     },
     "purrr": {
@@ -3331,7 +3331,7 @@
         "Maintainer": "Jim Hester <jim.hester@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-04-01 16:50:06 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:52:47 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-06-14 15:37:06 UTC; unix"
       }
     },
     "reshape2": {
@@ -3466,15 +3466,15 @@
       }
     },
     "rpivotTable": {
-      "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
+      "Source": "github",
+      "Repository": null,
+      "GithubRepo": "rpivotTable",
+      "GithubUsername": "jangorecki",
+      "GithubRef": "factor-sorters",
+      "GithubSha1": "1300903f01174b85ec2ba451755b81f7656a9664",
       "description": {
         "Package": "rpivotTable",
-        "Title": "Build Powerful Pivot Tables and Dynamically Slice & Dice your\nData",
+        "Title": "Build Powerful Pivot Tables and Dynamically Slice & Dice your Data",
         "Date": "2018-01-29",
         "Version": "0.3.0",
         "Authors@R": "c(\n    person(\"Enzo\", \"Martoglio\", role = c(\"aut\", \"cre\"),  email = \"enzo@smartinsightsfromdata.com\"),\n    person(\"Nicolas\", \"Kruchten\", role = c(\"ctb\", \"cph\"),  email = \"nicolas@kruchten.com\"),\n    person(\"Nagarajan\", \"Chinnasamy\", role = c(\"ctb\", \"cph\")),\n    person(\"Kenton\", \"Russell\", role = c(\"ctb\"), email = \"kent.russell@timelyportfolio.com\")\n    )",
@@ -3482,18 +3482,25 @@
         "Description": "Build powerful pivot tables (aka Pivot Grid, Pivot Chart, Cross-Tab)\n    and dynamically slice & dice / drag 'n' drop your data. 'rpivotTable' is a\n    wrapper of 'pivottable', a powerful open-source Pivot Table library implemented\n    in 'JavaScript' by Nicolas Kruchten. Aligned to 'pivottable' v2.19.0.",
         "Depends": "R (>= 3.2.0)",
         "Imports": "htmlwidgets (>= 0.5)",
-        "Suggests": "testthat, htmltools, knitr, rmarkdown, devtools, dplyr,\ndata.table",
+        "Suggests": "testthat,\nhtmltools,\nknitr,\nrmarkdown,\ndevtools,\ndplyr,\ndata.table",
         "Enhances": "shiny (>= 0.12)",
         "License": "MIT + file LICENSE",
-        "URL": "https://github.com/smartinsightsfromdata,\nhttp://smartinsightsfromdata.github.io",
+        "URL": "https://github.com/smartinsightsfromdata, http://smartinsightsfromdata.github.io",
         "VignetteBuilder": "knitr",
         "RoxygenNote": "6.0.1",
-        "NeedsCompilation": "no",
-        "Packaged": "2018-01-30 19:37:55 UTC; e",
         "Author": "Enzo Martoglio [aut, cre],\n  Nicolas Kruchten [ctb, cph],\n  Nagarajan Chinnasamy [ctb, cph],\n  Kenton Russell [ctb]",
-        "Repository": "CRAN",
-        "Date/Publication": "2018-01-30 19:45:09 UTC",
-        "Built": "R 3.6.3; ; 2020-03-25 15:04:48 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-06-12 07:30:07 UTC; unix",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteUsername": "jangorecki",
+        "RemoteRepo": "rpivotTable",
+        "RemoteRef": "factor-sorters",
+        "RemoteSha": "1300903f01174b85ec2ba451755b81f7656a9664",
+        "GithubHost": "api.github.com",
+        "GithubRepo": "rpivotTable",
+        "GithubUsername": "jangorecki",
+        "GithubRef": "factor-sorters",
+        "GithubSHA1": "1300903f01174b85ec2ba451755b81f7656a9664"
       }
     },
     "rprojroot": {
@@ -3965,7 +3972,7 @@
         "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-02-14 16:50:03 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:58:44 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-03-01 10:52:53 UTC; unix"
       }
     },
     "tibble": {
@@ -4000,7 +4007,7 @@
         "Maintainer": "Kirill Müller <krlmlr+r@mailbox.org>",
         "Repository": "CRAN",
         "Date/Publication": "2021-02-25 15:50:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:58:28 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-06-14 15:36:02 UTC; unix"
       }
     },
     "tidyr": {
@@ -4035,7 +4042,7 @@
         "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-03 09:20:06 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:59:07 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-20 10:17:03 UTC; unix"
       }
     },
     "tidyselect": {
@@ -4162,7 +4169,7 @@
         "Maintainer": "Kirill Müller <krlmlr+r@mailbox.org>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-12 21:30:02 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:53:05 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-20 10:16:08 UTC; unix"
       }
     },
     "uuid": {
@@ -4218,7 +4225,7 @@
         "Maintainer": "Lionel Henry <lionel@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-29 10:20:05 UTC",
-        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-15 08:53:10 UTC; unix"
+        "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-04-20 10:16:12 UTC; unix"
       }
     },
     "viridisLite": {
@@ -4280,7 +4287,7 @@
         "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2021-03-08 16:42:05 UTC",
-        "Built": "R 3.6.3; ; 2021-04-15 08:58:41 UTC; unix"
+        "Built": "R 3.6.3; ; 2021-06-14 15:37:09 UTC; unix"
       }
     },
     "withr": {
@@ -4467,83 +4474,11 @@
     }
   },
   "files": {
-    ".R_Cache/03a3dae384653879582f4ffe31165734": {
-      "checksum": "5ae2ed40ca0e097c67e1dd8827941c8e"
-    },
-    ".R_Cache/1d40ea05564e4d1e9b877cd1075f4cce": {
-      "checksum": "4706d7a847be86a73af4e3629eec2558"
-    },
-    ".R_Cache/1f80b3f61a5d3047351be4048e58661f": {
-      "checksum": "af857095d2ab3e411853387eb5533817"
-    },
-    ".R_Cache/3d270a2c8c31251890fac0d5e4103bfb": {
-      "checksum": "f53f3e6f23e317ce6aef28ba00d20116"
-    },
-    ".R_Cache/3f88c044cd2236fc55232f2818f9b057": {
-      "checksum": "3b407971ec8235fd202f1b908e7fccd1"
-    },
-    ".R_Cache/423b739b008d1dc6069ba2742cf91b87": {
-      "checksum": "a4f0aef6002249fb9df22db3d2c44c46"
-    },
-    ".R_Cache/471f8e20c7309f0642160518440f4b03": {
-      "checksum": "f53f3e6f23e317ce6aef28ba00d20116"
-    },
-    ".R_Cache/4aa56b25ff82892ab4590ea47b8117b3": {
-      "checksum": "c4ac6bd343efcf291487f75f7c49e93b"
-    },
-    ".R_Cache/5ed3c95d74d61a365cb9148090ec59c3": {
-      "checksum": "df1ede3f6cb2474c17efc7f7a6b02c49"
-    },
-    ".R_Cache/620606191d923fe1ebef2991f9b99edd": {
-      "checksum": "af857095d2ab3e411853387eb5533817"
-    },
-    ".R_Cache/63bbcc65947f025eb311e2046d260df3": {
-      "checksum": "7751f6e43d9f79c54cc134011de158c5"
-    },
-    ".R_Cache/63dcbbd80c715b047c750062a728fc41": {
-      "checksum": "948d77c7a1450f78a28d70cfae37f545"
-    },
-    ".R_Cache/7ff38b767688a572d2194adc1d3de560": {
-      "checksum": "c8fcba7989fa1fc9d1ba30d15d09e48d"
-    },
-    ".R_Cache/81938345d72cfc19f2334391c7887ef4": {
-      "checksum": "4706d7a847be86a73af4e3629eec2558"
-    },
-    ".R_Cache/92ae756db70953bd12124ccb8866aaf3": {
-      "checksum": "c8fcba7989fa1fc9d1ba30d15d09e48d"
-    },
-    ".R_Cache/abe3921e82e936c774faa7080cd70ac6": {
-      "checksum": "af857095d2ab3e411853387eb5533817"
-    },
-    ".R_Cache/bb8a4f5076ae1375d162dc0f575439bb": {
-      "checksum": "28dfc62cfb9c8823f9bf904acd0c0220"
-    },
-    ".R_Cache/c11800b7a60ec254a4ded0d6b02d6957": {
-      "checksum": "3b407971ec8235fd202f1b908e7fccd1"
-    },
-    ".R_Cache/c5063ce7a7ef99b949509ab2b1ab79a0": {
-      "checksum": "f53f3e6f23e317ce6aef28ba00d20116"
-    },
-    ".R_Cache/c52c919e354af34cc81beb125d8267db": {
-      "checksum": "e44dea7846912ab8e31b9771b1647b89"
-    },
-    ".R_Cache/cb617c41186575e015da157a71063c1b": {
-      "checksum": "c31730630a97043c2cf04001d91690c7"
-    },
-    ".R_Cache/cc6ef08603f092533c77e20494ba6899": {
-      "checksum": "5bcb37eeea8374ed0e79d4ff981be465"
-    },
-    ".R_Cache/f938bd328e2753653cc317e00e63c898": {
-      "checksum": "4706d7a847be86a73af4e3629eec2558"
-    },
-    ".R_Cache/fff308b274d322975ff674137002fa33": {
-      "checksum": "3b407971ec8235fd202f1b908e7fccd1"
-    },
     ".RData": {
       "checksum": "cac72063b696bc96b1257e972cb41aae"
     },
     ".Rprofile": {
-      "checksum": "e4f00dbb5a841c127ef577b1c6124e5a"
+      "checksum": "e4c37ce8b5457d55bba45ff3056a2c0a"
     },
     "cdi_prio.update.csv": {
       "checksum": "dddf7afffb3badb95a6c0248ede44a51"
@@ -4570,7 +4505,7 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "DESCRIPTION": {
-      "checksum": "ddaa8c8bd740a21fcff18ff3570dfc45"
+      "checksum": "7439cfad2320932dd54758d4ab8fd47c"
     },
     "foo.docx": {
       "checksum": "6735cdd40e5a40a82bd14aa47562eebd"
@@ -4594,7 +4529,7 @@
       "checksum": "a3fbba274578ecedf7fb744c6e390fb7"
     },
     "R/visuals.R": {
-      "checksum": "c7dff2f3cfbfe5fc2cc5a60ad28211f8"
+      "checksum": "1d1390cb97037a534fa28a61a66b2e0f"
     },
     "README.md": {
       "checksum": "eef665cd63e15044507de68a54e50b45"
@@ -4603,7 +4538,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "server.R": {
-      "checksum": "ff1be51c09094926338d050bb89855db"
+      "checksum": "1e8cf34568038c1801bab756cc0e864d"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
