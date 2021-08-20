@@ -748,10 +748,15 @@ shinyServer(function(input, output, session) {
       messages <- validation_results() %>%
         purrr::pluck(., "info") %>%
         purrr::pluck(., "warning_msg")
+      
+      errors <-  do.call(paste,lapply(stringr::str_subset(messages,"^ERROR"),function(x) paste('<li><p style="color:red"><b>',x,'</b></p></li>')))
+      warnings<-   
+        do.call(paste,lapply(stringr::str_subset(messages,"^WARNING"),function(x) paste("<li><p>",x,"</p></li>")))
+      
+      messages_sorted <- paste("<ul>",errors,warnings,"</ul>")
 
       if (!is.null(messages))  {
-        lapply(messages, function(x)
-          tags$li(x))
+        shiny::HTML(messages_sorted)
       } else
       {
         tags$li("No Issues with Integrity Checks: Congratulations!")
