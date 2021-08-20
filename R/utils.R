@@ -114,9 +114,9 @@ validatePSNUData <- function(d,d2_session) {
 
   if (is.null(vr_data) | NROW(vr_data) == 0 ) {return(d)}
   
-  #Deal with negative values in dedupe
-  vr_data %<>% dplyr::mutate(value = case_when(attributeOptionCombo %in% c("00000","00001") ~ abs(value),
-                                               TRUE ~ value))
+  # #Deal with negative values in dedupe
+  # vr_data %<>% dplyr::mutate(value = case_when(attributeOptionCombo %in% c("00000","00001") ~ abs(value),
+  #                                              TRUE ~ value))
   
   # We need ALL mechanisms to be in DATIM before remapping....TODO
   vr_data$attributeOptionCombo <-
@@ -672,6 +672,11 @@ updateExistingPrioritization<-function(d,d2_session) {
 
 psnus<-   d$data$analytics$psnu_uid %>% unique() %>% unlist()
 
+if (is.null(psnus)) {
+  interactive_print("No PSUSs found. Skipping update.")
+  return(d)
+}
+
 #Break up into 2048 character URLS (approximately)
 n_requests<-ceiling(nchar(paste(psnus,sep="",collapse=";"))/2048)
 n_groups<-split(sample(psnus),1:n_requests)
@@ -685,7 +690,7 @@ getPrioTable<-function(x) {
 
 prios<-n_groups %>% purrr::map_dfr(getPrioTable)
 
-if (is.null(prios)) {
+if (is.null(prios) || NROW(prios) == 0) {
   interactive_print("No prioritization information found. Skipping update.")
   return(d)
   }
