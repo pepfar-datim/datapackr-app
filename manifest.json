@@ -3459,26 +3459,25 @@
         "Package": "rlist",
         "Type": "Package",
         "Title": "A Toolbox for Non-Tabular Data Manipulation",
-        "Version": "0.4.6.2",
+        "Version": "0.4.6.1",
         "Author": "Kun Ren <ken@renkun.me>",
         "Maintainer": "Kun Ren <ken@renkun.me>",
         "Description": "Provides a set of functions for data manipulation with\n    list objects, including mapping, filtering, grouping, sorting,\n    updating, searching, and other useful functions. Most functions\n    are designed to be pipeline friendly so that data processing with\n    lists can be chained.",
         "Depends": "R (>= 2.15)",
-        "Date": "2021-09-02",
-        "Suggests": "testthat, stringdist",
+        "Date": "2016-04-04",
+        "Suggests": "testthat, stringdist, pipeR",
         "Imports": "yaml, jsonlite, XML, data.table",
         "License": "MIT + file LICENSE",
-        "URL": "https://renkun-ken.github.io/rlist/,\nhttps://github.com/renkun-ken/rlist,\nhttps://renkun-ken.github.io/rlist-tutorial/",
+        "URL": "https://renkun.me/rlist, https://github.com/renkun-ken/rlist,\nhttps://renkun.me/rlist-tutorial",
         "BugReports": "https://github.com/renkun-ken/rlist/issues",
         "ByteCompile": "TRUE",
         "LazyData": "true",
-        "RoxygenNote": "7.1.1",
-        "Encoding": "UTF-8",
+        "RoxygenNote": "5.0.1",
         "NeedsCompilation": "no",
-        "Packaged": "2021-09-02 23:36:14 UTC; ken",
+        "Packaged": "2016-04-04 08:55:10 UTC; Kun",
         "Repository": "CRAN",
-        "Date/Publication": "2021-09-03 12:20:02 UTC",
-        "Built": "R 3.6.3; ; 2021-09-08 06:06:19 UTC; unix"
+        "Date/Publication": "2016-04-04 11:49:36",
+        "Built": "R 3.6.0; ; 2019-02-15 12:10:43 UTC; unix"
       }
     },
     "rmarkdown": {
@@ -4584,7 +4583,7 @@
       "checksum": "cac72063b696bc96b1257e972cb41aae"
     },
     ".Rprofile": {
-      "checksum": "dbeb03767bc0395ea0b6008a52d20767"
+      "checksum": "e7459bae5b1fc7d81e250c29c8a5e757"
     },
     "cdi_prio.update.csv": {
       "checksum": "dddf7afffb3badb95a6c0248ede44a51"
@@ -4611,7 +4610,7 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "DESCRIPTION": {
-      "checksum": "034e04de9cb4d5680aa119ea465ec895"
+      "checksum": "3922a389140547cfca379bdd93457936"
     },
     "foo.docx": {
       "checksum": "6735cdd40e5a40a82bd14aa47562eebd"
