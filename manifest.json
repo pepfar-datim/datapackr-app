@@ -1322,7 +1322,7 @@
         "Package": "flextable",
         "Type": "Package",
         "Title": "Functions for Tabular Reporting",
-        "Version": "0.6.8",
+        "Version": "0.6.7",
         "Authors@R": "c(\n    person(\"David\", \"Gohel\", role = c(\"aut\", \"cre\"),\n    email = \"david.gohel@ardata.fr\"),\n    person(\"Clementine\", \"Jager\", role = c(\"ctb\")),\n    person(\"Quentin\", \"Fazilleau\", role = c(\"ctb\")),\n    person(\"Maxim\", \"Nazarov\", role = c(\"ctb\"),\n      comment = \"rmarkdown for docx output\"),\n    person(given = \"Titouan\", family = \"Robert\", role = c(\"ctb\")),\n    person(given = \"Michael\", family = \"Barrowman\", role = c(\"ctb\"), comment = \"inline footnotes\"),\n    person(given = \"Atsushi\", family = \"Yasumoto\", role = c(\"ctb\"), comment = \"support for bookdown cross reference\"),\n    person(given = \"Paul\", family = \"Julian\", role = c(\"ctb\"), comment = \"support for gam objects\")\n    )",
         "Description": "Create pretty tables for 'HTML', 'PDF', 'Microsoft Word' and 'Microsoft PowerPoint' \n  documents from 'R Markdown'. Functions are provided to let users create tables, modify and format \n  their content. It also extends package 'officer' that does not contain any feature for customized \n  tabular reporting.",
         "License": "GPL-3",
@@ -1334,12 +1334,12 @@
         "BugReports": "https://github.com/davidgohel/flextable/issues",
         "VignetteBuilder": "knitr",
         "NeedsCompilation": "no",
-        "Packaged": "2021-09-06 10:14:10 UTC; davidgohel",
+        "Packaged": "2021-07-22 08:56:22 UTC; davidgohel",
         "Author": "David Gohel [aut, cre],\n  Clementine Jager [ctb],\n  Quentin Fazilleau [ctb],\n  Maxim Nazarov [ctb] (rmarkdown for docx output),\n  Titouan Robert [ctb],\n  Michael Barrowman [ctb] (inline footnotes),\n  Atsushi Yasumoto [ctb] (support for bookdown cross reference),\n  Paul Julian [ctb] (support for gam objects)",
         "Maintainer": "David Gohel <david.gohel@ardata.fr>",
-        "Repository": "CRAN",
-        "Date/Publication": "2021-09-06 10:50:02 UTC",
-        "Built": "R 3.6.3; ; 2021-09-08 06:26:33 UTC; unix"
+        "Repository": "RSPM",
+        "Date/Publication": "2021-07-22 09:30:02 UTC",
+        "Built": "R 3.6.3; ; 2021-07-23 10:50:32 UTC; unix"
       }
     },
     "foreach": {
@@ -4583,7 +4583,7 @@
       "checksum": "cac72063b696bc96b1257e972cb41aae"
     },
     ".Rprofile": {
-      "checksum": "a1005d1cdda90d64fcdf19cf94c4372f"
+      "checksum": "4ef56d64e92f23fec99d0cb803e694d4"
     },
     "cdi_prio.update.csv": {
       "checksum": "dddf7afffb3badb95a6c0248ede44a51"
@@ -4610,7 +4610,7 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "DESCRIPTION": {
-      "checksum": "27fcfeb3b5934ce7831d08d22ecde30b"
+      "checksum": "0aa33da516d177a67355548b82a8df61"
     },
     "foo.docx": {
       "checksum": "6735cdd40e5a40a82bd14aa47562eebd"

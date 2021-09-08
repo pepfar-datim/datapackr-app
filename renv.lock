@@ -347,10 +347,10 @@
     },
     "flextable": {
       "Package": "flextable",
-      "Version": "0.6.8",
+      "Version": "0.6.7",
       "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "02b2a538d92093818b31179f75698f61"
+      "Repository": "RSPM",
+      "Hash": "138a70b1f222b7f47f9118eb0c2893f0"
     },
     "foreach": {
       "Package": "foreach",
