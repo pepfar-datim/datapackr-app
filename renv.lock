@@ -648,10 +648,10 @@
     },
     "paws": {
       "Package": "paws",
-      "Version": "0.1.12",
+      "Version": "0.1.11",
       "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "ebefb0931dd88cb25ea4ddb3b4f116ac"
+      "Repository": "RSPM",
+      "Hash": "cec12e707388b40a0109c6e89b866176"
     },
     "paws.analytics": {
       "Package": "paws.analytics",
@@ -701,20 +701,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "2f861a7af3ba272f4ed892c9c2734ac2"
-    },
-    "paws.developer.tools": {
-      "Package": "paws.developer.tools",
-      "Version": "0.1.12",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "1378a14ce5711dcdc385aa5be56968a4"
-    },
-    "paws.end.user.computing": {
-      "Package": "paws.end.user.computing",
-      "Version": "0.1.12",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "e051ba94a19e5a530aed100bbcb19537"
     },
     "paws.machine.learning": {
       "Package": "paws.machine.learning",
