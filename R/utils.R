@@ -178,7 +178,7 @@ validatePSNUData <- function(d,d2_session) {
                       "Diff (Absolute)" = abs_diff)
       
       warning_message<-     
-        paste0(
+        paste0( "WARNING: ",
           NROW(vr_violations),
           " validation rule issues found in ",
           d$info$datapack_name,

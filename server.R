@@ -85,12 +85,21 @@ shinyServer(function(input, output, session) {
 
                  if ( exists("d2_default_session"))  {
 
-                   user_input$authenticated<-TRUE
-                   user_input$d2_session<-d2_default_session$clone()
-                   #Need to check the user is a member of the PRIME Data Systems Group, COP Memo group, or a super user
-                   user_input$memo_authorized<-grepl("VDEqY8YeCEk|ezh8nmc4JbX", d2_default_session$me$userGroups) | grepl("jtzbVV4ZmdP",d2_default_session$me$userCredentials$userRoles)
-                   flog.info(paste0("User ", user_input$d2_session$me$userCredentials$username, " logged in."), name = "datapack")
-
+                   user_input$authenticated <- TRUE
+                   user_input$d2_session <- d2_default_session$clone()
+                   user_input$memo_authorized <-
+                     grepl("VDEqY8YeCEk|ezh8nmc4JbX", d2_default_session$me$userGroups) |
+                     grepl("jtzbVV4ZmdP",
+                           d2_default_session$me$userCredentials$userRoles)
+                   flog.info(
+                     paste0(
+                       "User ",
+                       user_input$d2_session$me$userCredentials$username,
+                       " logged in."
+                     ),
+                     name = "datapack"
+                   )
+                   
                  }
 
                })
@@ -213,15 +222,7 @@ shinyServer(function(input, output, session) {
             tabPanel("Prioritization (DRAFT)",
                      DT::dataTableOutput("prio_table"),
                      h5("Note: This is a draft memo table. Final figures may differ."),
-                     tags$h4("Data source: PSNUxIM tab")),
-            tabPanel("Memo Comparison",
-                     #Totals do not really make sense here
-                     #https://stackoverflow.com/questions/53021250/problem-with-removing-totals-in-rpivottable
-                     fluidRow(column(width=12, tags$style(
-                       ".pvtTotalLabel, .colTotal, .rowTotal, .pvtGrandTotal { display: none; }"
-                     ),
-                     div(rpivotTable::rpivotTableOutput({"memo_compare"})))),
-                     fluidRow(tags$h4("Data source: PSNUxIM tab & DATIM")))
+                     tags$h4("Data source: PSNUxIM tab"))
 
           ))
         ))
@@ -230,10 +231,9 @@ shinyServer(function(input, output, session) {
 
   user_input <- reactiveValues(authenticated = FALSE,
                                status = "",
-                               d2_session = NULL,
-                               memo_authorized = FALSE)
+                               d2_session = NULL)
 
-  # password entry UI components:
+  # password entry UI componenets:
   #   username and password text fields, login button
   output$uiLogin <- renderUI({
 
@@ -302,16 +302,16 @@ shinyServer(function(input, output, session) {
         d$info$uuid<-uuid::UUIDgenerate()
         d$info$operating_unit<-getOperatingUnitFromCountryUIDs(d$info$country_uids)
 
-
-
+        
+        updateSelectInput(session = session, inputId="downloadType",
+                          choices=downloadTypes(tool_type= d$info$tool,
+                                                needs_psnuxim = d$info$missing_psnuxim_combos))
+        shinyjs::enable("downloadType")
+        shinyjs::enable("downloadOutputs")
+        
         flog.info(paste0("Initiating validation of ",d$info$datapack_name, " DataPack."), name="datapack")
         if (d$info$tool == "Data Pack") {
-          
-          d$info$needs_psnuxim <- d$info$missing_psnuxim_combos | (NROW(d$data$SNUxIM) == 1 & is.na(d$data$SNUxIM[[1,1]]))
-          updateSelectInput(session = session, inputId="downloadType",
-                            choices=downloadTypes(tool_type= d$info$tool,
-                                                  needs_psnuxim = d$info$needs_psnuxim,
-                                                  memo_authorized = user_input$memo_authorized))
+        
           if ( d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0 ) {
             
             flog.info(paste(d$info$tool," with PSNUxIM tab found."))
@@ -333,9 +333,6 @@ shinyServer(function(input, output, session) {
             incProgress(0.1, detail = ("Preparing a prioritization table"))
             d<-preparePrioTable(d,d2_session = user_input$d2_session)
             Sys.sleep(1)
-            incProgress(0.1, detail = ("Preparing a partners table"))
-            d<-preparePartnerMemoTable(d,user_input$d2_session)
-            Sys.sleep(1)
             incProgress(0.1, detail = ("Preparing a modality summary"))
             d<-modalitySummaryTable(d)
             Sys.sleep(1)
@@ -346,12 +343,6 @@ shinyServer(function(input, output, session) {
             model_data_path<-"support_files/datapack_model_data.rds"
             full_model_path<-fetchModelFile(model_data_path)
             d<-checkAnalytics(d,model_data_path =full_model_path, d2_session = user_input$d2_session )
-            Sys.sleep(1)
-            incProgress(0.1, detail = ("Fetching existing COP Memo table"))
-            d<-memo_getPrioritizationTable(d,d2_session = user_input$d2_session)
-            Sys.sleep(1)
-            incProgress(0.1, detail = ("Comparing COP Memo tables"))
-            d<-comparePrioTables(d)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Finishing up."))
             r<-sendValidationSummary(d,"app_analytics",include_timestamp = TRUE)
@@ -428,11 +419,6 @@ shinyServer(function(input, output, session) {
       }
 
       if (d$info$tool == "OPU Data Pack"){
-        d$info$needs_psnuxim <- FALSE
-        updateSelectInput(session = session, inputId="downloadType",
-                          choices=downloadTypes(tool_type= d$info$tool,
-                                                needs_psnuxim = d$info$needs_psnuxim,
-                                                memo_authorized = user_input$memo_authorized))
         flog.info("Datapack with PSNUxIM tab found.")
         incProgress(0.1, detail = ("Checking validation rules"))
         Sys.sleep(0.5)
@@ -446,21 +432,11 @@ shinyServer(function(input, output, session) {
         d<-updateExistingPrioritization(d,d2_session = user_input$d2_session)
         incProgress(0.1, detail = ("Preparing a prioritization table"))
         d<-preparePrioTable(d,d2_session = user_input$d2_session)
-        Sys.sleep(1)
-        incProgress(0.1, detail = ("Preparing a partners table"))
-        d<-preparePartnerMemoTable(d,user_input$d2_session)
-        Sys.sleep(1)
         incProgress(0.1, detail = ("Preparing a modality summary"))
         d<-modalitySummaryTable(d)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
         d<-recencyComparison(d)
-        Sys.sleep(1)
-        incProgress(0.1, detail = ("Fetching existing COP Memo table"))
-        d<-memo_getPrioritizationTable(d,d2_session = user_input$d2_session)
-        Sys.sleep(1)
-        incProgress(0.1, detail = ("Comparing COP Memo tables"))
-        d<-comparePrioTables(d)
         Sys.sleep(1)
         shinyjs::enable("downloadType")
         shinyjs::enable("downloadOutputs")
@@ -553,35 +529,6 @@ shinyServer(function(input, output, session) {
             formatCurrency(3:dim(prio_table)[2], '',digits =0)
 
 
-    } else {
-      NULL
-    }
-  })
-  
-  output$memo_compare <- renderRpivotTable({
-    vr<-validation_results()
-    
-    if (!inherits(vr,"error") & !is.null(vr)){
-      
-      if ( is.null(vr$data$memo$compare$prio) ) {return(NULL)}
-      
-      pivot<- vr  %>%
-        purrr::pluck("data") %>%
-        purrr::pluck("memo") %>%
-        purrr::pluck("compare") %>% 
-        purrr::pluck("prio")
-      
-      #We need to sort the pivot table in a specific order based on the levels
-      # of the data. This seemed not to be working at some point, but is now. 
-      # See this issue for more details if needed.  
-      # #https://github.com/smartinsightsfromdata/rpivotTable/issues/104
-
-      
-      rpivotTable(data =   pivot   ,  rows = c( "Indicator","Age"), cols = c("Prioritization", "Data Type"),
-                  inclusions=list("Identical"=list("FALSE"), "Data Type"=list("Current","Proposed","Diff")),
-                  vals = "value", aggregatorName = "Integer Sum", rendererName = "Table"
-                  , width="70%", height="700px")
-      
     } else {
       NULL
     }
@@ -748,15 +695,10 @@ shinyServer(function(input, output, session) {
       messages <- validation_results() %>%
         purrr::pluck(., "info") %>%
         purrr::pluck(., "warning_msg")
-      
-      errors <-  do.call(paste,lapply(stringr::str_subset(messages,"^ERROR"),function(x) paste('<li><p style="color:red"><b>',x,'</b></p></li>')))
-      warnings<-   
-        do.call(paste,lapply(stringr::str_subset(messages,"^WARNING"),function(x) paste("<li><p>",x,"</p></li>")))
-      
-      messages_sorted <- paste("<ul>",errors,warnings,"</ul>")
 
       if (!is.null(messages))  {
-        shiny::HTML(messages_sorted)
+        lapply(messages, function(x)
+          tags$li(x))
       } else
       {
         tags$li("No Issues with Integrity Checks: Congratulations!")
@@ -814,11 +756,8 @@ shinyServer(function(input, output, session) {
     filename = function(){
       prefix <- input$downloadType
       date <- date<-format(Sys.time(),"%Y%m%d_%H%M%S")
-      
       suffix <- if (input$downloadType %in% c("messages")) {
         ".txt"
-      } else if (input$downloadType %in% c("memo")) {
-        ".docx"
       } else {
         ".xlsx"
       }
@@ -1001,126 +940,6 @@ shinyServer(function(input, output, session) {
         
         openxlsx::saveWorkbook(wb,file=file,overwrite = TRUE)
         waiter_hide()
-      }
-      
-      if (input$downloadType == "memo") {
-        
-        prio_table<-d %>%
-          purrr::pluck("data") %>%
-          purrr::pluck("prio_table")
-          
-        #Remove any columns which are all zeros to save space. 
-        column_filter <-
-          d$data$prio_table %>% summarise(across(where(is.numeric), ~ sum(.x, na.rm = FALSE) != 0)) %>%  
-          t() %>%  as.data.frame() %>% 
-          dplyr::filter(!V1) %>% row.names()
-        
-        prio_table %<>% dplyr::select(-column_filter)
-        
-        prio_table %<>% dplyr::mutate_if(is.numeric, 
-                         function(x) ifelse(x == 0 ,"-",formatC(x, format="f", big.mark=",",digits = 0))) 
-
-        style_para_prio<-fp_par(text.align = "right",
-                                padding.right = 0.04,
-                                padding.bottom = 0,
-                                padding.top = 0,
-                                line_spacing = 1)
-        
-        style_header_prio<-fp_par(text.align = "center",
-                                  padding.right = 0,
-                                  padding.bottom = 0,
-                                  padding.top = 0,
-                                  line_spacing = 1)
-        
-        
-        header_old<-names(prio_table)
-        ou_name<-d$info$datapack_name
-        header_new<-c(ou_name,ou_name,header_old[3:dim(prio_table)[2]])
-        
-        prio_table<-flextable(prio_table) %>% 
-          merge_v(.,j="Indicator") %>% 
-          delete_part(.,part = "header") %>% 
-          add_header_row(.,values = header_new) %>% 
-          add_header_row(., values = c(ou_name, ou_name,rep("SNU Prioritizations", ( dim(prio_table)[2] - 2 )))) %>% 
-          merge_h(., part = "header") %>% 
-          merge_v(.,part="header") %>% 
-          bg(.,bg = "#CCC0D9", part = "header") %>% 
-          bg(., i = ~ Age == "Total", bg = "#E4DFEC", part = "body") %>% #Highlight total rows
-          bold(., i = ~ Age == "Total", bold = TRUE, part = "body")  %>% 
-          bg(.,j= "Indicator", bg = "#FFFFFF" , part="body") %>% 
-          bold(., j = "Indicator", bold = FALSE) %>% 
-          bold(.,bold = TRUE,part = "header") %>% 
-          fontsize(., size = 7, part = "all") %>%
-          style(.,pr_p = style_header_prio,part="header") %>% 
-          style(.,pr_p = style_para_prio,part = "body") %>%
-          align(.,j=1:2,align = "center") %>%  #Align first two columns center
-          flextable::add_footer_lines(.,values="* Totals may be greater than the sum of categories due to activities outside of the SNU prioritization areas outlined above")
-        
-        fontname<-"Arial"
-        if ( gdtools::font_family_exists(fontname) ) {
-          prio_table <- font(prio_table,fontname = fontname,part = "all") 
-        } 
-
-        
-        doc <- read_docx(path = "support_files/draft_memo_template.docx")
-        doc<-body_add_flextable(doc,value=prio_table)
-        doc<-body_add_break(doc,pos="after")
-        
-        #Partners tables
-
-        partners_table <-d$data$partners_table %>% 
-          dplyr::mutate_if(is.numeric,
-                           function(x) ifelse(x == 0 ,"-",formatC(x, format="f", big.mark=",",digits = 0)))
-
-        sub_heading<-names(partners_table)[3:length(partners_table)] %>%
-          stringr::str_split(.," ") %>%
-          purrr::map(purrr::pluck(2)) %>%
-          unlist() %>%
-          c("Funding Agency","Partner",.)
-
-        group_heading<-names(partners_table)[3:length(partners_table)] %>%
-          stringr::str_split(.," ") %>%
-          purrr::map(purrr::pluck(1)) %>%
-          unlist() %>%
-          c("Funding Agency","Partner",.)
-
-        chunks<-list(c(1:14),c(1:2,15:25),c(1:2,26:34),c(1:2,35:43))
-
-        renderPartnerTable<-function(chunk) {
-
-          partner_table<- flextable(partners_table[,chunk]) %>%
-            bg(., i = ~ Partner == "", bg = "#E4DFEC", part = "body") %>%
-            bold(.,i = ~ Partner == "", bold=TRUE) %>%
-            delete_part(.,part = "header") %>%
-            add_header_row(.,values=sub_heading[chunk]) %>%
-            add_header_row(.,top = TRUE,values = group_heading[chunk] ) %>%
-            merge_h(.,part="header") %>%
-            merge_v(.,part = "header")  %>%
-            bg(.,bg = "#CCC0D9", part = "header") %>% 
-            bold(.,bold = TRUE,part = "header") %>% 
-            fontsize(., size = 7, part = "all") %>%
-            style(.,pr_p = style_para_prio,part = "body") %>%
-            width(.,j=1:2,0.75) %>%
-            width(.,j=3:(length(chunk)),0.4)
-
-          fontname<-"Arial"
-          if ( gdtools::font_family_exists(fontname) ) {
-            partner_table <- font(partner_table,fontname = fontname, part = "all")
-          }
-
-          partner_table
-        }
-
-        for (i in 1:length(chunks)) {
-          chunk<-chunks[[i]]
-          partner_table_ft<-renderPartnerTable(chunk = chunk)
-          doc<-body_add_flextable(doc,partner_table_ft)
-          doc<-body_add_break(doc,pos="after")
-        }
-        
-        
-        print(doc,target=file)
-        
       }
     }
   )
