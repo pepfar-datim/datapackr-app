@@ -2258,7 +2258,7 @@
         "Package": "officer",
         "Type": "Package",
         "Title": "Manipulation of Microsoft Word and PowerPoint Documents",
-        "Version": "0.4.0",
+        "Version": "0.3.19",
         "Authors@R": "c(\n    person(\"David\", \"Gohel\", role = c(\"aut\", \"cre\"),\n    email = \"david.gohel@ardata.fr\"),\n    person(\"Frank\", \"Hangler\", role = \"ctb\", email = \"frank@plotandscatter.com\", comment = \"function body_replace_all_text\"),\n    person(\"Liz\", \"Sander\", role = \"ctb\", email = 'lsander@civisanalytics.com', comment = \"several documentation fixes\"),\n    person(\"Anton\", \"Victorson\", role = \"ctb\", email = 'anton@victorson.se',comment = \"fixes xml structures\"),\n    person(\"Jon\", \"Calder\", role = \"ctb\", email = 'jonmcalder@gmail.com', comment = \"update vignettes\"),\n    person(\"John\", \"Harrold\", role = \"ctb\", email = 'john.m.harrold@gmail.com', comment = \"function annotate_base\"),\n    person(\"John\", \"Muschelli\", role = \"ctb\", email = 'muschellij2@gmail.com', comment = \"google doc compatibility\")\n    )",
         "Description": "Access and manipulate 'Microsoft Word' and 'Microsoft PowerPoint' documents from R. \n  The package focuses on tabular and graphical reporting from R; it also provides two functions\n  that let users get document content into data objects. A set of functions \n  lets add and remove images, tables and paragraphs of text in new or existing documents. \n  The package does not require any installation of Microsoft products to be able to write Microsoft \n  files.",
         "License": "GPL-3",
@@ -2270,12 +2270,12 @@
         "Suggests": "testthat, devEMF, ggplot2, rmarkdown, base64enc, knitr, rsvg",
         "VignetteBuilder": "knitr",
         "NeedsCompilation": "no",
-        "Packaged": "2021-09-02 10:37:37 UTC; davidgohel",
+        "Packaged": "2021-07-21 15:36:57 UTC; davidgohel",
         "Author": "David Gohel [aut, cre],\n  Frank Hangler [ctb] (function body_replace_all_text),\n  Liz Sander [ctb] (several documentation fixes),\n  Anton Victorson [ctb] (fixes xml structures),\n  Jon Calder [ctb] (update vignettes),\n  John Harrold [ctb] (function annotate_base),\n  John Muschelli [ctb] (google doc compatibility)",
         "Maintainer": "David Gohel <david.gohel@ardata.fr>",
-        "Repository": "CRAN",
-        "Date/Publication": "2021-09-06 09:00:02 UTC",
-        "Built": "R 3.6.3; ; 2021-09-08 06:24:36 UTC; unix"
+        "Repository": "RSPM",
+        "Date/Publication": "2021-07-21 16:30:02 UTC",
+        "Built": "R 3.6.3; ; 2021-07-22 10:48:50 UTC; unix"
       }
     },
     "openssl": {
@@ -4583,7 +4583,7 @@
       "checksum": "cac72063b696bc96b1257e972cb41aae"
     },
     ".Rprofile": {
-      "checksum": "e7459bae5b1fc7d81e250c29c8a5e757"
+      "checksum": "b8929d22ffc3f643b5af3d8bd89fb505"
     },
     "cdi_prio.update.csv": {
       "checksum": "dddf7afffb3badb95a6c0248ede44a51"
@@ -4610,7 +4610,7 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "DESCRIPTION": {
-      "checksum": "3922a389140547cfca379bdd93457936"
+      "checksum": "c8d130a132648c0ecbf96623a07a59c3"
     },
     "foo.docx": {
       "checksum": "6735cdd40e5a40a82bd14aa47562eebd"
