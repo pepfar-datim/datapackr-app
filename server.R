@@ -87,10 +87,10 @@ shinyServer(function(input, output, session) {
 
                    user_input$authenticated <- TRUE
                    user_input$d2_session <- d2_default_session$clone()
-                   user_input$memo_authorized <-
-                     grepl("VDEqY8YeCEk|ezh8nmc4JbX", d2_default_session$me$userGroups) |
-                     grepl("jtzbVV4ZmdP",
-                           d2_default_session$me$userCredentials$userRoles)
+                   user_input$memo_authorized <- 
+                      grepl("VDEqY8YeCEk|ezh8nmc4JbX", d2_default_session$me$userGroups) |
+                      grepl("jtzbVV4ZmdP",
+                            d2_default_session$me$userCredentials$userRoles)
                    flog.info(
                      paste0(
                        "User ",
@@ -305,7 +305,8 @@ shinyServer(function(input, output, session) {
         
         updateSelectInput(session = session, inputId="downloadType",
                           choices=downloadTypes(tool_type= d$info$tool,
-                                                needs_psnuxim = d$info$missing_psnuxim_combos))
+                                                needs_psnuxim = d$info$missing_psnuxim_combos,
+                                                memo_authorized = user_input$memo_authorized ))
         shinyjs::enable("downloadType")
         shinyjs::enable("downloadOutputs")
         
