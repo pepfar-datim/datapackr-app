@@ -85,12 +85,22 @@ shinyServer(function(input, output, session) {
 
                  if ( exists("d2_default_session"))  {
 
-                   user_input$authenticated<-TRUE
-                   user_input$d2_session<-d2_default_session$clone()
+                   user_input$authenticated <- TRUE
+                   user_input$d2_session <- d2_default_session$clone()
                    #Need to check the user is a member of the PRIME Data Systems Group, COP Memo group, or a super user
-                   user_input$memo_authorized<-grepl("VDEqY8YeCEk|ezh8nmc4JbX", d2_default_session$me$userGroups) | grepl("jtzbVV4ZmdP",d2_default_session$me$userCredentials$userRoles)
-                   flog.info(paste0("User ", user_input$d2_session$me$userCredentials$username, " logged in."), name = "datapack")
-
+                   user_input$memo_authorized <-
+                     grepl("VDEqY8YeCEk|ezh8nmc4JbX", d2_default_session$me$userGroups) |
+                     grepl("jtzbVV4ZmdP",
+                           d2_default_session$me$userCredentials$userRoles)
+                   flog.info(
+                     paste0(
+                       "User ",
+                       user_input$d2_session$me$userCredentials$username,
+                       " logged in."
+                     ),
+                     name = "datapack"
+                   )
+                   
                  }
 
                })
@@ -215,11 +225,7 @@ shinyServer(function(input, output, session) {
                      h5("Note: This is a draft memo table. Final figures may differ."),
                      tags$h4("Data source: PSNUxIM tab")),
             tabPanel("Memo Comparison",
-                     #Totals do not really make sense here
-                     #https://stackoverflow.com/questions/53021250/problem-with-removing-totals-in-rpivottable
-                     fluidRow(column(width=12, tags$style(
-                       ".pvtTotalLabel, .colTotal, .rowTotal, .pvtGrandTotal { display: none; }"
-                     ),
+                     fluidRow(column(width=12, 
                      div(rpivotTable::rpivotTableOutput({"memo_compare"})))),
                      fluidRow(tags$h4("Data source: PSNUxIM tab & DATIM")))
 
@@ -749,11 +755,14 @@ shinyServer(function(input, output, session) {
         purrr::pluck(., "info") %>%
         purrr::pluck(., "warning_msg")
       
-      errors <-  do.call(paste,lapply(stringr::str_subset(messages,"^ERROR"),function(x) paste('<li><p style="color:red"><b>',x,'</b></p></li>')))
-      warnings<-   
-        do.call(paste,lapply(stringr::str_subset(messages,"^WARNING"),function(x) paste("<li><p>",x,"</p></li>")))
+      errors <-
+        do.call(paste, lapply(stringr::str_subset(messages, "^ERROR"), function(x)
+          paste('<li><p style="color:red"><b>', x, '</b></p></li>')))
+      warnings <-
+        do.call(paste, lapply(stringr::str_subset(messages, "^WARNING"), function(x)
+          paste("<li><p>", x, "</p></li>")))
       
-      messages_sorted <- paste("<ul>",errors,warnings,"</ul>")
+      messages_sorted <- paste("<ul>", errors, warnings, "</ul>")
 
       if (!is.null(messages))  {
         shiny::HTML(messages_sorted)
