@@ -4547,11 +4547,17 @@
     }
   },
   "files": {
+    ".lintr": {
+      "checksum": "02511f4ebb42e1c4049f56dd71d4d7a1"
+    },
+    ".lintr.swp": {
+      "checksum": "cc2bd690b84ca8771d2e68a9c1113293"
+    },
     ".RData": {
       "checksum": "cac72063b696bc96b1257e972cb41aae"
     },
     ".Rprofile": {
-      "checksum": "6fb8fc52fdd46f561d557fb81f62925f"
+      "checksum": "05208d9ca5e45894967b6bd993c7e856"
     },
     "cdi_prio.update.csv": {
       "checksum": "dddf7afffb3badb95a6c0248ede44a51"
@@ -4578,7 +4584,7 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "DESCRIPTION": {
-      "checksum": "604e1ba2f79ca9216bcc4e72d059f44a"
+      "checksum": "81cd23f23565003f294c22dc73c82e7f"
     },
     "foo.docx": {
       "checksum": "6735cdd40e5a40a82bd14aa47562eebd"
@@ -4681,6 +4687,9 @@
     },
     "ui.R": {
       "checksum": "112ea97d13f284c982d07294b31e4cdd"
+    },
+    "workspace.code-workspace": {
+      "checksum": "1990fb8ddd80c72800dc59c4a53fbff7"
     },
     "www/pepfar.png": {
       "checksum": "cd04d9e778b00519de3e0e2afc97eb28"
