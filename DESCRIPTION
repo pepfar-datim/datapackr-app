@@ -1,7 +1,7 @@
 Package: datapackr-app
 Type: Shiny App
 Title: Self-service app for parsing and validation of DataPacks
-Version: 1.0.50
-Date: 2021-09-11
+Version: 1.0.51
+Date: 2021-09-13
 Author: Jason P. Pickering
 Maintainer: Jason P. Pickering <jason.p.pickering@gmail.com>
