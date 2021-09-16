@@ -1,6 +1,7 @@
 
-pacman::p_load(shiny,shinyjs,shinyWidgets,magrittr,dplyr,datimvalidation,ggplot2,
-               futile.logger, paws, datapackr, scales, DT, purrr, praise,rpivotTable,waiter,flextable,officer,gdtools)
+pacman::p_load(shiny, shinyjs, shinyWidgets, magrittr, dplyr, datimvalidation, ggplot2,
+               futile.logger, paws, datapackr, scales,
+                DT, purrr, praise, rpivotTable, waiter, flextable, officer, gdtools)
 
 
 #Set the maximum file size for the upload file
@@ -8,29 +9,29 @@ options(shiny.maxRequestSize = 100 * 1024 ^ 2)
 #Allow unsanitized error messages
 options(shiny.sanitize.errors = FALSE)
 #Initiate logging
-logger <- flog.logger()
+logger  <-  flog.logger()
 
 if (!file.exists(Sys.getenv("LOG_PATH"))) {
   file.create(Sys.getenv("LOG_PATH"))
 }
 
-flog.appender(appender.console(), name="datapack")
+flog.appender(appender.console(), name = "datapack")
 
 
 shinyServer(function(input, output, session) {
 
-  ready <- reactiveValues(ok = FALSE)
+  ready  <-  reactiveValues(ok = FALSE)
 
   observeEvent(input$file1, {
     shinyjs::show("validate")
     shinyjs::enable("validate")
-    ready$ok <- FALSE
+    ready$ok  <-  FALSE
   })
 
   observeEvent(input$validate, {
     shinyjs::disable("file1")
     shinyjs::disable("validate")
-    ready$ok <- TRUE
+    ready$ok  <-  TRUE
   })
 
   observeEvent(input$reset_input, {
@@ -38,98 +39,98 @@ shinyServer(function(input, output, session) {
     shinyjs::enable("file1")
     shinyjs::disable("validate")
     shinyjs::disable("downloadDataPack")
-    #shinyjs::disable("download_messages")
+    shinyjs::disable("download_messages")
     shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
     shinyjs::disable("compare")
-    ready$ok<-FALSE
+    ready$ok  <-  FALSE
   })
-  
-  
-  waiting_screen_paw<-tagList(
+
+
+  waiting_screen_paw  <-  tagList(
     spin_ring(),
     h4("Transferring files to PAW. Please wait...")
   )
-  
+
   observeEvent(input$send_paw, {
-    waiter_show(html = waiting_screen_paw, color = "rgba(128,128,128,.8)" )
-    d <- validation_results()
-    r<-saveTimeStampLogToS3(d)
+    waiter_show(html = waiting_screen_paw, color = "rgba(128, 128, 128, .8)")
+    d  <-  validation_results()
+    r  <-  saveTimeStampLogToS3(d)
     timestampUploadUI(r)
-    #r<-sendMERDataToPAW(d)
     archiveDataPackErrorUI(r)
-    r<-sendValidationSummary(d,"validation_error")
+    r  <-  sendValidationSummary(d, "validation_error")
     validationSummaryUI(r)
-    r<-saveDATIMExportToS3(d)
+    r  <-  saveDATIMExportToS3(d)
     waiter_hide()
     datimExportUI(r)
   })
 
-  observeEvent(input$login_button,
-               {
+  observeEvent(input$login_button, {
+    tryCatch({
+      datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
+          username = input$user_name,
+          password = input$password,
+          d2_session_envir = parent.env(environment())
+        )
+      },
+      # This function throws an error if the login is not successful
+      error = function(e) {
+        sendSweetAlert(
+          session,
+          title = "Login failed",
+          text = "Please check your username/password!",
+          type = "error"
+        )
+        flog.info(paste0("User ", input$user_name, " login failed."), name = "datapack")
+      }
+    )
 
-                 tryCatch(  {  datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
-                                                        username = input$user_name,
-                                                        password = input$password,
-                                                d2_session_envir = parent.env(environment()))
-                   },
-                            #This function throws an error if the login is not successful
-                            error=function(e) {
-                              sendSweetAlert(
-                                session,
-                                title = "Login failed",
-                                text = "Please check your username/password!",
-                                type = "error")
-                              flog.info(paste0("User ", input$user_name, " login failed."), name = "datapack")
-                            } )
-
-                 if ( exists("d2_default_session"))  {
-
-                   user_input$authenticated <- TRUE
-                   user_input$d2_session <- d2_default_session$clone()
-                   #Need to check the user is a member of the PRIME Data Systems Group, COP Memo group, or a super user
-                   user_input$memo_authorized <-
-                     grepl("VDEqY8YeCEk|ezh8nmc4JbX", d2_default_session$me$userGroups) |
-                     grepl("jtzbVV4ZmdP",
-                           d2_default_session$me$userCredentials$userRoles)
-                   flog.info(
-                     paste0(
-                       "User ",
-                       user_input$d2_session$me$userCredentials$username,
-                       " logged in."
-                     ),
-                     name = "datapack"
-                   )
-                   
-                 }
-
-               })
-
-  epi_graph_filter <- reactiveValues( snu_filter=NULL )
-
-  observeEvent(input$epiCascadeInput,{
-    epi_graph_filter$snu_filter<-input$epiCascadeInput
+    if (exists("d2_default_session")) {
+      user_input$authenticated  <-  TRUE
+      user_input$d2_session  <-  d2_default_session$clone()
+      # Need to check the user is a member of the PRIME Data Systems Group, COP Memo group, or a super user
+      user_input$memo_authorized  <-
+        grepl("VDEqY8YeCEk|ezh8nmc4JbX", d2_default_session$me$userGroups) |
+          grepl(
+            "jtzbVV4ZmdP",
+            d2_default_session$me$userCredentials$userRoles
+          )
+      flog.info(
+        paste0(
+          "User ",
+          user_input$d2_session$me$userCredentials$username,
+          " logged in."
+        ),
+        name = "datapack"
+      )
+    }
   })
 
-  kpCascadeInput_filter <- reactiveValues( snu_filter=NULL )
+  epi_graph_filter  <-  reactiveValues(snu_filter = NULL)
 
-  observeEvent(input$kpCascadeInput,{
-    kpCascadeInput_filter$snu_filter<-input$kpCascadeInput
+  observeEvent(input$epiCascadeInput, {
+    epi_graph_filter$snu_filter  <-  input$epiCascadeInput
   })
 
-  observeEvent(input$logout,{
+  kpCascadeInput_filter  <-  reactiveValues(snu_filter = NULL)
+
+  observeEvent(input$kpCascadeInput, {
+    kpCascadeInput_filter$snu_filter  <-  input$kpCascadeInput
+  })
+
+  observeEvent(input$logout, {
     flog.info(paste0("User ", user_input$d2_session$me$userCredentials$username, " logged out."))
-    ready$ok <- FALSE
-    user_input$authenticated<-FALSE
-    user_input$d2_session<-NULL
+    ready$ok  <-  FALSE
+    user_input$authenticated  <-  FALSE
+    user_input$d2_session  <-  NULL
     gc()
 
-  } )
+  })
 
 
-  output$ui <- renderUI({
+  output$ui  <-  renderUI({
 
-    if (user_input$authenticated == FALSE) {
+    if (user_input$authenticated  ==  FALSE) {
       ##### UI code for login page
       fluidPage(
         fluidRow(
@@ -142,8 +143,8 @@ shinyServer(function(input, output, session) {
       )
     } else {
 
-      wiki_url <- a("Datapack User Guide",
-                    href="https://apps.datim.org/datapack-userguide/",
+      wiki_url  <-  a("Datapack User Guide",
+                    href = "https://apps.datim.org/datapack-userguide/",
                     target = "_blank")
 
       fluidPage(
@@ -168,65 +169,67 @@ shinyServer(function(input, output, session) {
             ),
             actionButton("validate", "Validate"),
             tags$hr(),
-            selectInput("downloadType","Download type",NULL),
-            downloadButton("downloadOutputs","Download"),
+            selectInput("downloadType", "Download type", NULL),
+            downloadButton("downloadOutputs", "Download"),
             tags$hr(),
             actionButton("send_paw", "Send to PAW"),
             tags$hr(),
-            div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("reset_input", "Reset inputs")),
-            div(style = "display: inline-block; vertical-align:top; width: 80 px;", actionButton("logout", "Logout"))
+            div(style = "display: inline-block; vertical-align:top; width: 80 px;",
+            actionButton("reset_input", "Reset inputs")),
+            div(style = "display: inline-block; vertical-align:top; width: 80 px;",
+            actionButton("logout", "Logout"))
           ),
 
           mainPanel(tabsetPanel(
             id = "main-panel",
             type = "tabs",
-            tabPanel("Messages", tags$ul(uiOutput('messages'))),
-            tabPanel("Analytics checks", tags$div(uiOutput('analytics_checks'))),
+            tabPanel("Messages", tags$ul(uiOutput("messages"))),
+            tabPanel("Analytics checks", tags$div(uiOutput("analytics_checks"))),
             tabPanel("Indicator summary", dataTableOutput("indicator_summary"),
                      tags$h4("Data source: Main DataPack tabs")),
-            tabPanel("SNU-level summary", 
+            tabPanel("SNU-level summary",
                      dataTableOutput("snu_summary"),
                      tags$h4("Data source: Main DataPack tabs")),
-            tabPanel("Validation rules", 
+            tabPanel("Validation rules",
                      dataTableOutput("vr_rules"),
                      tags$h4("Data source: PSNUxIM tab")),
-            tabPanel("HTS Summary Chart", 
-                     fluidRow(column(width=12,div(style="height:700px",plotOutput("modality_summary")))),
-                     fluidRow(column(width=12,tags$h4("Data source: PSNUxIM tab")))),
+            tabPanel("HTS Summary Chart",
+                     fluidRow(column(width = 12, div(style = "height:700px", plotOutput("modality_summary")))),
+                     fluidRow(column(width = 12, tags$h4("Data source: PSNUxIM tab")))),
             tabPanel("HTS Summary Table",
                      dataTableOutput("modality_table"),
                      tags$h4("Data source: PSNUxIM tab")),
             tabPanel("HTS Yield",
-                     fluidRow(column(width=12,div(style="height:700px",plotOutput("modality_yield")))),
+                     fluidRow(column(width = 12, div(style = "height:700px", plotOutput("modality_yield")))),
                      fluidRow(tags$h4("Data source: PSNUxIM tab"))),
             tabPanel("HTS Recency",
                      dataTableOutput("hts_recency"),
                      tags$h4("Data source: PSNUxIM tab")),
             tabPanel("VLS Testing",
-                     fluidRow(column(width=12,div(style="height:700px",plotOutput("vls_summary")))),
-                     fluidRow(column(width=12,tags$h4("Data source: PSNUxIM tab")))),
+                     fluidRow(column(width = 12, div(style = "height:700px", plotOutput("vls_summary")))),
+                     fluidRow(column(width = 12, tags$h4("Data source: PSNUxIM tab")))),
             tabPanel("Epi Cascade Pyramid",
-                     pickerInput("epiCascadeInput","SNU1",
-                                 choices= "",
-                                 options = list(`actions-box` = TRUE),multiple = T),
-                     fluidRow(column(width=12,div(style="height:700px",plotOutput("epi_cascade")))),
+                     pickerInput("epiCascadeInput", "SNU1",
+                                 choices =  "",
+                                 options = list(`actions-box` = TRUE), multiple = T),
+                     fluidRow(column(width = 12, div(style = "height:700px", plotOutput("epi_cascade")))),
                      fluidRow(tags$h4("Data source: SUBNATT/IMPATT data & PSNUxIM tab"))),
             tabPanel("KP Cascade Pyramid",
-                     pickerInput("kpCascadeInput","SNU1",
-                                 choices= "",
-                                 options = list(`actions-box` = TRUE),multiple = T),
-                     fluidRow(column(width=12,div(style="height:700px",plotOutput("kp_cascade")))),
+                     pickerInput("kpCascadeInput", "SNU1",
+                                 choices =  "",
+                                 options = list(`actions-box` = TRUE), multiple = T),
+                     fluidRow(column(width = 12, div(style = "height:700px", plotOutput("kp_cascade")))),
                      fluidRow(tags$h4("Data source: Data source: SUBNATT/IMPATT data & PSNUxIM tab"))),
             tabPanel("PSNUxIM Pivot",
-                     fluidRow(column(width=12,div(rpivotTable::rpivotTableOutput({"pivot"})))),
+                     fluidRow(column(width = 12, div(rpivotTable::rpivotTableOutput({"pivot"})))), # nolint
                      fluidRow(tags$h4("Data source: PSNUxIM tab"))),
             tabPanel("Prioritization (DRAFT)",
                      DT::dataTableOutput("prio_table"),
                      h5("Note: This is a draft memo table. Final figures may differ."),
                      tags$h4("Data source: PSNUxIM tab")),
             tabPanel("Memo Comparison",
-                     fluidRow(column(width=12, 
-                     div(rpivotTable::rpivotTableOutput({"memo_compare"})))),
+                     fluidRow(column(width = 12,
+                     div(rpivotTable::rpivotTableOutput({"memo_compare"})))), # nolint
                      fluidRow(tags$h4("Data source: PSNUxIM tab & DATIM")))
 
           ))
@@ -234,35 +237,37 @@ shinyServer(function(input, output, session) {
   }
 })
 
-  user_input <- reactiveValues(authenticated = FALSE,
+  user_input  <-  reactiveValues(authenticated = FALSE,
                                status = "",
                                d2_session = NULL,
                                memo_authorized = FALSE)
 
   # password entry UI components:
   #   username and password text fields, login button
-  output$uiLogin <- renderUI({
+  output$uiLogin  <-  renderUI({
 
     wellPanel(fluidRow(
-      img(src='pepfar.png', align = "center"),
+      img(src = "pepfar.png", align = "center"),
       h4("Welcome to the DataPack Validation App. Please login with your DATIM credentials:")
     ),
     fluidRow(
-      textInput("user_name", "Username: ",width = "600px"),
-      passwordInput("password", "Password:",width = "600px"),
+      textInput("user_name", "Username: ", width = "600px"),
+      passwordInput("password", "Password:", width = "600px"),
       actionButton("login_button", "Log in!")
     ),
     fluidRow(
       tags$hr(),
-      tags$div(HTML('<ul><li><h4>Please be sure you fully populate the PSNUxIM tab when receiving a new DataPack. 
-           Consult <a href="https://apps.datim.org/datapack-userguide/" target = "_blank" > the user guide</a> for further information!</h4></li>
-                    <li><h4>See the latest updates to the app <a href="https://github.com/pepfar-datim/datapackr-app/blob/master/CHANGELOG.md" target ="_blank">here.</h4></a></li></ul>'))
+      tags$div(HTML("<ul><li><h4>Please be sure you fully populate the PSNUxIM tab when receiving a new DataPack.",
+           "Consult <a href = \"https://apps.datim.org/datapack-userguide/\" target = \"blank\" > the user guide</a>",
+           "for further information!</h4></li><li><h4>See the latest updates to the app <a href =",
+           "\"https://github.com/pepfar-datim/datapackr-app/blob/master/CHANGELOG.md\"",
+           "target  = \"blank\">here.</h4></a></li></ul>"))
     ),
     tags$hr(),
     fluidRow(HTML(getVersionInfo())))
   })
 
-  validate<-function() {
+  validate <- function() {
     shinyjs::disable("downloadType")
     shinyjs::disable("downloadOutputs")
     shinyjs::disable("send_paw")
@@ -272,112 +277,104 @@ shinyServer(function(input, output, session) {
       return(NULL)
     }
 
-    inFile <- input$file1
-    messages<-""
+    inFile  <-  input$file1
+    messages <- ""
 
-    if ( is.null( inFile ) ) return( NULL )
+    if (is.null(inFile)) {
+      return(NULL)
+      }
 
-    messages<-list()
+    messages <- list()
 
-    withProgress(message = 'Validating file', value = 0,{
+    withProgress(message = "Validating file", value = 0, {
 
       shinyjs::disable("file1")
       shinyjs::disable("validate")
       incProgress(0.1, detail = ("Unpacking your DataPack"))
 
 
-      d<-tryCatch({
+      d <- tryCatch({
         datapackr::unPackTool(inFile$datapath,
                               d2_session = user_input$d2_session)},
-        error = function(e){
+        error = function(e) {
           return(e)
         })
 
-      if( inherits(d,"error") ) {
+      if (inherits(d, "error")) {
         return("An error occurred. Please contact DATIM support.")
       }
-      
-      if (!inherits(d,"error") & !is.null(d)) {
+
+      if (!inherits(d, "error") & !is.null(d)) {
         #Create some additional metadadta for S3 tagging
-        d$info$sane_name<-paste0(stringr::str_extract_all(d$info$datapack_name,"[A-Za-z0-9_]",
-                                                          simplify = TRUE),sep="",collapse="")
-        d$info$source_user<-user_input$d2_session$me$userCredentials$username
+        d$info$sane_name <- paste0(stringr::str_extract_all(d$info$datapack_name, "[A-Za-z0-9_]",
+                                                          simplify = TRUE), sep = "", collapse = "")
+        d$info$source_user <- user_input$d2_session$me$userCredentials$username
         #All self-service datapacks should be marked as unapproved for PAW
-        d$info$approval_status<-"UNAPPROVED"
+        d$info$approval_status <- "UNAPPROVED"
         #Generate a unique identifier
-        d$info$uuid<-uuid::UUIDgenerate()
-        d$info$operating_unit<-getOperatingUnitFromCountryUIDs(d$info$country_uids)
+        d$info$uuid <- uuid::UUIDgenerate()
+        d$info$operating_unit <- getOperatingUnitFromCountryUIDs(d$info$country_uids)
 
 
 
-        flog.info(paste0("Initiating validation of ",d$info$datapack_name, " DataPack."), name="datapack")
-        if (d$info$tool == "Data Pack") {
-          
-          d$info$needs_psnuxim <- d$info$missing_psnuxim_combos | (NROW(d$data$SNUxIM) == 1 & is.na(d$data$SNUxIM[[1,1]]))
-          updateSelectInput(session = session, inputId="downloadType",
-                            choices=downloadTypes(tool_type= d$info$tool,
+        flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
+        if (d$info$tool  == "Data Pack") {
+
+          d$info$needs_psnuxim  <-  d$info$missing_psnuxim_combos |
+          (NROW(d$data$SNUxIM) == 1 & is.na(d$data$SNUxIM[[1, 1]]))
+
+          updateSelectInput(session = session, inputId = "downloadType",
+                            choices = downloadTypes(tool_type =  d$info$tool,
                                                   needs_psnuxim = d$info$needs_psnuxim,
                                                   memo_authorized = user_input$memo_authorized))
-          if ( d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0 ) {
-            
-            flog.info(paste(d$info$tool," with PSNUxIM tab found."))
+          if (d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) {
+
+            flog.info(paste(d$info$tool, " with PSNUxIM tab found."))
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
-            d <- validatePSNUData(d, d2_session = user_input$d2_session)
-            incProgress(0.1,detail="Validating mechanisms")
+            d  <-  validatePSNUData(d, d2_session = user_input$d2_session)
+            incProgress(0.1, detail = "Validating mechanisms")
             Sys.sleep(0.5)
-            d <- validateMechanisms(d, d2_session = user_input$d2_session)
+            d  <-  validateMechanisms(d, d2_session = user_input$d2_session)
 
-            if (Sys.getenv("SEND_DATAPACK_ARCHIVE") == "TRUE" ) {
+            if (Sys.getenv("SEND_DATAPACK_ARCHIVE")  == "TRUE") {
               incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
               Sys.sleep(0.5)
-              r<-archiveDataPacktoS3(d,inFile$datapath)
+              r <- archiveDataPacktoS3(d, inFile$datapath)
               archiveDataPackErrorUI(r)
               Sys.sleep(1)
             }
 
             incProgress(0.1, detail = ("Preparing a prioritization table"))
-            d<-preparePrioTable(d,d2_session = user_input$d2_session)
+            d <- preparePrioTable(d, d2_session = user_input$d2_session)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Preparing a partners table"))
-            d<-preparePartnerMemoTable(d,user_input$d2_session)
+            d <- preparePartnerMemoTable(d, user_input$d2_session)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Preparing a modality summary"))
-            d<-modalitySummaryTable(d)
+            d <- modalitySummaryTable(d)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
-            d<-recencyComparison(d)
+            d <- recencyComparison(d)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Performing analytics checks"))
-            model_data_path<-"support_files/datapack_model_data.rds"
-            full_model_path<-fetchModelFile(model_data_path)
-            d<-checkAnalytics(d,model_data_path =full_model_path, d2_session = user_input$d2_session )
+            model_data_path <- "support_files/datapack_model_data.rds"
+            full_model_path <- fetchModelFile(model_data_path)
+            d <- checkAnalytics(d, model_data_path  = full_model_path, d2_session = user_input$d2_session)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Fetching existing COP Memo table"))
-            d<-memo_getPrioritizationTable(d,d2_session = user_input$d2_session)
+            d <- memo_getPrioritizationTable(d, d2_session = user_input$d2_session)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Comparing COP Memo tables"))
-            d<-comparePrioTables(d)
+            d <- comparePrioTables(d)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Finishing up."))
-            r<-sendValidationSummary(d,"app_analytics",include_timestamp = TRUE)
+            r <- sendValidationSummary(d, "app_analytics", include_timestamp = TRUE)
             validationSummaryUI(r)
-            
+
             shinyjs::enable("downloadType")
             shinyjs::enable("downloadOutputs")
             shinyjs::enable("send_paw")
-
-            # #TODO: The list of available download types needs to change here...
-            # if (d$info$cop_year == 2020) {
-            #   shinyjs::enable("compare")
-            # } else {
-            #   shinyjs::disable("compare")
-            # }
-            # 
-            # if ( d$info$missing_psnuxim_combos ) {
-            #   shinyjs::enable("downloadDataPack")
-            # }
-
             updatePickerInput(session = session, inputId = "kpCascadeInput",
                               choices = snuSelector(d))
             updatePickerInput(session = session, inputId = "epiCascadeInput",
@@ -394,14 +391,15 @@ shinyServer(function(input, output, session) {
             showTab(inputId = "main-panel", target = "HTS Recency")
             showTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
 
-          } else if ( d$info$has_psnuxim & NROW(d$data$SNUxIM) == 0 ) {
-            msg<-"ERROR! Your DataPack contains a PSNUxIM tab, but the formulas appear to be empty. Please ensure that the formulas have been properly populated in the PSNUxIM tab."
-            d$info$warning_msg<-append(d$info$warning_msg,msg)
-            
-
+          } else if (d$info$has_psnuxim & NROW(d$data$SNUxIM)  == 0)  {
+            msg <-  paste("ERROR! Your DataPack contains a PSNUxIM tab, but the formulas appear to be empty.,
+            Please ensure that the formulas have been properly populated in the PSNUxIM tab.")
+            d$info$warning_msg <- append(d$info$warning_msg, msg)
+            #Enable the UI
             shinyjs::enable("downloadType")
             shinyjs::enable("downloadOutputs")
             shinyjs::enable("send_paw")
+            #Hide tabs that do not make sense
             hideTab(inputId = "main-panel", target = "Validation rules")
             hideTab(inputId = "main-panel", target = "HTS Summary Chart")
             hideTab(inputId = "main-panel", target = "HTS Summary Table")
@@ -412,7 +410,7 @@ shinyServer(function(input, output, session) {
             hideTab(inputId = "main-panel", target = "PSNUxIM Pivot")
             hideTab(inputId = "main-panel", target = "HTS Recency")
             hideTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
-            
+
           } else  {
             #This should occur when there is no PSNUxIM tab and they want
             #to generate one.
@@ -433,58 +431,48 @@ shinyServer(function(input, output, session) {
         }
       }
 
-      if (d$info$tool == "OPU Data Pack"){
-        d$info$needs_psnuxim <- FALSE
-        updateSelectInput(session = session, inputId="downloadType",
-                          choices=downloadTypes(tool_type= d$info$tool,
+      if (d$info$tool  == "OPU Data Pack") {
+        d$info$needs_psnuxim  <-  FALSE
+        updateSelectInput(session = session, inputId = "downloadType",
+                          choices = downloadTypes(tool_type =  d$info$tool,
                                                 needs_psnuxim = d$info$needs_psnuxim,
                                                 memo_authorized = user_input$memo_authorized))
         flog.info("Datapack with PSNUxIM tab found.")
         incProgress(0.1, detail = ("Checking validation rules"))
         Sys.sleep(0.5)
-        d <- validatePSNUData(d, d2_session = user_input$d2_session)
-        incProgress(0.1,detail="Validating mechanisms")
+        d  <-  validatePSNUData(d, d2_session = user_input$d2_session)
+        incProgress(0.1, detail = "Validating mechanisms")
         Sys.sleep(0.5)
-        d <- validateMechanisms(d, d2_session = user_input$d2_session)
-        incProgress(0.1,detail="Updating prioritization levels from DATIM")
+        d  <-  validateMechanisms(d, d2_session = user_input$d2_session)
+        incProgress(0.1, detail = "Updating prioritization levels from DATIM")
         Sys.sleep(0.5)
         #Move this to datapackr
-        d<-updateExistingPrioritization(d,d2_session = user_input$d2_session)
+        d <- updateExistingPrioritization(d, d2_session = user_input$d2_session)
         incProgress(0.1, detail = ("Preparing a prioritization table"))
-        d<-preparePrioTable(d,d2_session = user_input$d2_session)
+        d <- preparePrioTable(d, d2_session = user_input$d2_session)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Preparing a partners table"))
-        d<-preparePartnerMemoTable(d,user_input$d2_session)
+        d <- preparePartnerMemoTable(d, user_input$d2_session)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Preparing a modality summary"))
-        d<-modalitySummaryTable(d)
+        d <- modalitySummaryTable(d)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
-        d<-recencyComparison(d)
+        d <- recencyComparison(d)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Fetching existing COP Memo table"))
-        d<-memo_getPrioritizationTable(d,d2_session = user_input$d2_session)
+        d <- memo_getPrioritizationTable(d, d2_session = user_input$d2_session)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Comparing COP Memo tables"))
-        d<-comparePrioTables(d)
+        d <- generateComparisonTable(d,d2_session = user_input$d2_session)
         Sys.sleep(1)
         shinyjs::enable("downloadType")
         shinyjs::enable("downloadOutputs")
         shinyjs::disable("send_paw")
-
-        
-        # #TODO: Fix this once COP 2021 comparisons are functional
-        # if (d$info$cop_year == 2020) {
-        #   shinyjs::enable("compare")
-        # } else {
-        #   shinyjs::disable("compare")
-        # }
-        
         updatePickerInput(session = session, inputId = "kpCascadeInput",
                           choices = snuSelector(d))
         updatePickerInput(session = session, inputId = "epiCascadeInput",
                           choices = snuSelector(d))
-        
         showTab(inputId = "main-panel", target = "Validation rules")
         showTab(inputId = "main-panel", target = "HTS Summary Chart")
         showTab(inputId = "main-panel", target = "HTS Summary Table")
@@ -494,7 +482,7 @@ shinyServer(function(input, output, session) {
         showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
         showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
         showTab(inputId = "main-panel", target = "HTS Recency")
-        showTab(inputId = "main-panel", target = "Prioritization")
+        showTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
       }
 
     })
@@ -503,42 +491,44 @@ shinyServer(function(input, output, session) {
 
   }
 
-  validation_results <- reactive({ validate() })
+  validation_results  <-  reactive({ validate() }) # nolint
 
-  output$epi_cascade<-renderPlot({
+  output$epi_cascade <- renderPlot({
 
-    vr<-validation_results()
-    epi_graph_filter_results<-epi_graph_filter$snu_filter
+    vr <- validation_results()
+    epi_graph_filter_results <- epi_graph_filter$snu_filter
 
-    if (!inherits(vr,"error") & !is.null(vr)){
+    if (!inherits(vr, "error") & !is.null(vr)) {
 
-      subnatPyramidsChart(vr,epi_graph_filter_results)
-
-    } else {
-      NULL
-    }
-  },height = 600,width = 800)
-
-  output$kp_cascade<-renderPlot({
-
-    vr<-validation_results()
-    kpCascadeInput_filter_results<-kpCascadeInput_filter$snu_filter
-
-    if (!inherits(vr,"error") & !is.null(vr)){
-
-      kpCascadeChart(vr,kpCascadeInput_filter_results)
+      subnatPyramidsChart(vr, epi_graph_filter_results)
 
     } else {
       NULL
     }
-  },height = 600,width = 800)
+  }, height = 600, width = 800)
 
-  output$pivot <- renderRpivotTable({
-    vr<-validation_results()
+  output$kp_cascade <- renderPlot({
 
-    if (!inherits(vr,"error") & !is.null(vr)){
+    vr <- validation_results()
+    kpCascadeInput_filter_results <- kpCascadeInput_filter$snu_filter
 
-      if ( is.null(vr$data$analytics) ) {return(NULL)}
+    if (!inherits(vr, "error") & !is.null(vr)) {
+
+      kpCascadeChart(vr, kpCascadeInput_filter_results)
+
+    } else {
+      NULL
+    }
+  }, height = 600, width = 800)
+
+  output$pivot  <-  renderRpivotTable({
+    vr  <-  validation_results()
+
+    if (!inherits(vr, "error") & !is.null(vr)) {
+
+      if (is.null(vr$data$analytics)) {
+        return(NULL)
+        }
       PSNUxIM_pivot(vr)
 
     } else {
@@ -546,66 +536,60 @@ shinyServer(function(input, output, session) {
     }
   })
 
-  output$prio_table <- DT::renderDataTable({
-    prio_table<-validation_results() %>%
+  output$prio_table  <-  DT::renderDataTable({
+    prio_table <- validation_results() %>%
       purrr::pluck("data") %>%
       purrr::pluck("prio_table")
 
-    if (!inherits(prio_table,"error") & !is.null(prio_table)){
+    if (!inherits(prio_table, "error") & !is.null(prio_table)) {
 
-          DT::datatable(prio_table,options = list(pageLength = 50,
-                                         columnDefs = list(list(className = 'dt-right',
+          DT::datatable(prio_table, options = list(pageLength = 50,
+                                         columnDefs = list(list(className = "dt-right",
                                                                 targets = 3:dim(prio_table)[2])))) %>%
-            formatCurrency(3:dim(prio_table)[2], '',digits =0)
+            formatCurrency(3:dim(prio_table)[2], "", digits  = 0)
 
 
     } else {
       NULL
     }
   })
-  
-  output$memo_compare <- renderRpivotTable({
-    vr<-validation_results()
-    
-    if (!inherits(vr,"error") & !is.null(vr)){
-      
-      if ( is.null(vr$data$memo$compare$prio) ) {return(NULL)}
-      
-      pivot<- vr  %>%
+
+  output$memo_compare  <-  renderRpivotTable({
+    vr <- validation_results()
+
+    if (!inherits(vr, "error") & !is.null(vr)) {
+
+      if (is.null(vr$data$compare)) {
+        return(NULL)
+        }
+
+      pivot <-  vr  %>%
         purrr::pluck("data") %>%
-        purrr::pluck("memo") %>%
-        purrr::pluck("compare") %>% 
-        purrr::pluck("prio")
-      
-      #We need to sort the pivot table in a specific order based on the levels
-      # of the data. This seemed not to be working at some point, but is now. 
-      # See this issue for more details if needed.  
-      # #https://github.com/smartinsightsfromdata/rpivotTable/issues/104
+        purrr::pluck("compare")
 
-      
-      rpivotTable(data =   pivot   ,  rows = c( "Indicator","Age"), cols = c("Prioritization", "Data Type"),
-                  inclusions=list("Identical"=list("FALSE"), "Data Type"=list("Current","Proposed","Diff")),
-                  vals = "value", aggregatorName = "Integer Sum", rendererName = "Table"
-                  , width="70%", height="700px")
-      
+      rpivotTable(data = pivot, 
+                  rows = c("Indicator"), cols = c("Prioritization", "Change type"),
+                  vals = "Diff", aggregatorName = "Integer Sum", rendererName = "Table"
+                  , width = "70%", height = "700px")
+
     } else {
       NULL
     }
   })
 
-  output$hts_recency<-DT::renderDataTable({
+  output$hts_recency <- DT::renderDataTable({
 
-    vr<-validation_results()
+    vr <- validation_results()
 
-    if (!inherits(vr,"error") & !is.null(vr$data$recency)){
+    if (!inherits(vr, "error") & !is.null(vr$data$recency)) {
 
       DT::datatable(vr$data$recency,
-                    options = list(pageLength = 25,columnDefs = list(list(
-                      className = 'dt-right', targets = 2),
+                    options = list(pageLength = 25, columnDefs = list(list(
+                      className = "dt-right", targets = 2),
                       list(
-                        className = 'dt-right', targets = 3),
+                        className = "dt-right", targets = 3),
                       list(
-                        className = 'dt-right', targets = 4)
+                        className = "dt-right", targets = 4)
                     )))
 
     } else {
@@ -613,17 +597,19 @@ shinyServer(function(input, output, session) {
     }
   })
 
-  output$modality_summary <- renderPlot({
+  output$modality_summary  <-  renderPlot({
 
-    vr<-validation_results()
+    vr <- validation_results()
 
-    if (!inherits(vr,"error") & !is.null(vr)){
-      analytics<-
+    if (!inherits(vr, "error") & !is.null(vr)) {
+      analytics <-
         vr %>%
-        purrr::pluck(.,"data") %>%
-        purrr::pluck(.,"analytics")
+        purrr::pluck(., "data") %>%
+        purrr::pluck(., "analytics")
 
-      if (is.null(analytics)) {return(NULL)} else {
+      if (is.null(analytics)) {
+        return(NULL)
+        } else {
         modalitySummaryChart(vr)
       }
 
@@ -631,13 +617,13 @@ shinyServer(function(input, output, session) {
       NULL
     }
 
-  },height = 600,width = 800)
+  }, height = 600, width = 800)
 
-  output$modality_yield <- renderPlot({
+  output$modality_yield  <-  renderPlot({
 
-    vr<-validation_results()
+    vr <- validation_results()
 
-    if (!inherits(vr,"error") & !is.null(vr)){
+    if (!inherits(vr, "error") & !is.null(vr)) {
 
         modalityYieldChart(vr)
 
@@ -645,54 +631,54 @@ shinyServer(function(input, output, session) {
       NULL
     }
 
-  },height = 400,width = 600)
+  }, height = 400, width = 600)
 
-  output$vls_summary <- renderPlot({
+  output$vls_summary  <-  renderPlot({
 
-    vr<-validation_results()
+    vr <- validation_results()
 
-    if (!inherits(vr,"error") & !is.null(vr)){
+    if (!inherits(vr, "error") & !is.null(vr)) {
       vr  %>%
-        purrr::pluck(.,"data") %>%
-        purrr::pluck(.,"analytics") %>%
+        purrr::pluck(., "data") %>%
+        purrr::pluck(., "analytics") %>%
         vlsTestingChart()
 
     } else {
       NULL
     }
 
-  },height = 600,width = 800)
+  }, height = 600, width = 800)
 
-  output$modality_table<-DT::renderDataTable({
+  output$modality_table <- DT::renderDataTable({
 
-    d<-validation_results()
+    d <- validation_results()
 
-    if (!inherits(d,"error") & !is.null(d$data$modality_summary)){
+    if (!inherits(d, "error") & !is.null(d$data$modality_summary)) {
 
       DT::datatable(formatModalitySummaryTable(d),
-                    options = list(pageLength = 25,columnDefs = list(list(
-                      className = 'dt-right', targets = 2),
+                    options = list(pageLength = 25, columnDefs = list(list(
+                      className = "dt-right", targets = 2),
                       list(
-                        className = 'dt-right', targets = 3),
+                        className = "dt-right", targets = 3),
                       list(
-                        className = 'dt-right', targets = 4),
+                        className = "dt-right", targets = 4),
                       list(
-                        className = 'dt-right', targets = 5)
+                        className = "dt-right", targets = 5)
                     )))
     } else {
       NULL
     }
   })
 
-  output$indicator_summary<-DT::renderDataTable({
+  output$indicator_summary <- DT::renderDataTable({
 
-    vr<-validation_results()
+    vr <- validation_results()
 
-    if (!inherits(vr,"error") & !is.null(vr)){
+    if (!inherits(vr, "error") & !is.null(vr)) {
 
-         prepareSNUSummaryTable(vr) %>% 
+         prepareSNUSummaryTable(vr) %>%
           dplyr::group_by(indicator_code) %>%
-          dplyr::summarise(value = format( round(sum(value,na.rm=TRUE)) ,big.mark=',', scientific=FALSE)) %>%
+          dplyr::summarise(value = format(round(sum(value, na.rm = TRUE)), big.mark = ", ", scientific = FALSE)) %>%
           dplyr::arrange(indicator_code)
 
     } else {
@@ -700,253 +686,263 @@ shinyServer(function(input, output, session) {
     }
   })
 
-  output$snu_summary <- DT::renderDataTable({
+  output$snu_summary  <-  DT::renderDataTable({
 
-    vr <- validation_results()
+    vr  <-  validation_results()
 
     if (!inherits(vr, "error") & !is.null(vr)) {
 
-      prepareSNUSummaryTable(vr) %>% 
-        dplyr::mutate(value = format( round_trunc(value), big.mark=',',scientific=FALSE))
+      prepareSNUSummaryTable(vr) %>%
+        dplyr::mutate(value = format(round_trunc(value), big.mark = ", ", scientific = FALSE))
 
     } else {
       data.frame(message = "No data is available to display. An error may have occurred.")
     }
   })
 
-  output$vr_rules<-DT::renderDataTable({
+  output$vr_rules <- DT::renderDataTable({
 
-    vr<-validation_results() %>%
-      purrr::pluck(.,"tests") %>%
-      purrr::pluck(.,"vr_rules_check")
+    vr <- validation_results() %>%
+      purrr::pluck(., "tests") %>%
+      purrr::pluck(., "vr_rules_check")
 
-    if ( inherits(vr,"error")  | is.null(vr) ){
+    if (inherits(vr, "error")  | is.null(vr)) {
 
       return(NULL)
     }
 
-    if (NROW(vr) == 0 ) {
+    if (NROW(vr)  == 0) {
 
-      data.frame(message="Congratulations! No validation rule issues found!")
+      data.frame(message = "Congratulations! No validation rule issues found!")
 
     } else {
       vr
     }
   })
 
-  snu_selector <- reactive({ validation_results() %>% snuSelector() })
+  snu_selector  <-  reactive({
+    validation_results() %>% snuSelector()
+  })
 
-  output$messages <- renderUI({
+  output$messages  <-  renderUI({
 
-    vr<-validation_results()
+    vr <- validation_results()
 
-    messages<-NULL
+    messages <- NULL
 
-    if ( is.null(vr)) {
+    if (is.null(vr)) {
       return(NULL)
     }
 
-    if ( inherits(vr,"error") ) {
-      return( paste0("ERROR! ",vr$message) )
+    if (inherits(vr, "error")) {
+      return(paste0("ERROR! ", vr$message))
 
     } else {
 
-      messages <- validation_results() %>%
+      messages  <-  validation_results() %>%
         purrr::pluck(., "info") %>%
         purrr::pluck(., "warning_msg")
-      
-      errors <-
-        do.call(paste, lapply(stringr::str_subset(messages, "^ERROR"), function(x)
-          paste('<li><p style="color:red"><b>', x, '</b></p></li>')))
-      warnings <-
-        do.call(paste, lapply(stringr::str_subset(messages, "^WARNING"), function(x)
-          paste("<li><p>", x, "</p></li>")))
-      
-      messages_sorted <- paste("<ul>", errors, warnings, "</ul>")
+
+      errors  <-
+        do.call(paste, lapply(stringr::str_subset(messages, "^ERROR"),
+        function(x) paste('<li><p style = "color:red"><b>', x, "</b></p></li>")))
+      warnings  <-
+        do.call(paste, lapply(stringr::str_subset(messages, "^WARNING"),
+        function(x) paste("<li><p>", x, "</p></li>")))
+
+      messages_sorted  <-  paste("<ul>", errors, warnings, "</ul>")
 
       if (!is.null(messages))  {
         shiny::HTML(messages_sorted)
-      } else
-      {
+      } else {
         tags$li("No Issues with Integrity Checks: Congratulations!")
       }
     }
   })
-  
-  output$analytics_checks <- renderUI({
-    
-    vr<-validation_results()
-    
-    messages<-NULL
-    
-    if ( is.null(vr)) {
+
+  output$analytics_checks  <-  renderUI({
+
+    vr <- validation_results()
+
+    messages <- NULL
+
+    if (is.null(vr)) {
       return(NULL)
     }
-    
-    if ( inherits(vr,"error") ) {
-      return( paste0("ERROR! ",vr$message) )
-      
-    } else {
-      
-      messages <- vr %>%
+
+    if (inherits(vr, "error")) {
+      return(paste0("ERROR! ", vr$message))
+      } else {
+
+      messages  <-  vr %>%
         purrr::pluck(., "info") %>%
-        purrr::pluck(., "analytics_warning_msg") %>% 
-        purrr::map(.,function(x) HTML(x))
-      
+        purrr::pluck(., "analytics_warning_msg") %>%
+        purrr::map(., function(x) HTML(x))
+
       if (!is.null(messages))  {
         shiny::HTML(ansistrings::ansi_to_html(messages))
-      } else
-      {
+      } else {
         tags$li("No Issues with Analytics Checks: Congratulations!")
       }
     }
   })
-  
-  
-  waiting_screen_datapack <- tagList(
+
+
+  waiting_screen_datapack  <-  tagList(
     spin_hourglass(),
     h4("Generating your SNUxIM tab. Please wait...")
   )
-  
-  waiting_screen_comparison<-tagList(
+
+  waiting_screen_comparison <- tagList(
     spin_hourglass(),
     h4("Generating a comparison to DATIM. Please wait...")
   )
-  
-  waiting_screen_flatpack<-tagList(
+
+  waiting_screen_flatpack <- tagList(
     spin_hourglass(),
     h4("Generating your FlatPack™. Please wait...")
   )
-  
 
-  output$downloadOutputs <- downloadHandler(
-    filename = function(){
-      prefix <- input$downloadType
-      date <- date<-format(Sys.time(),"%Y%m%d_%H%M%S")
-      
-      suffix <- if (input$downloadType %in% c("messages")) {
+
+  output$downloadOutputs  <-  downloadHandler(
+    filename = function() {
+      prefix  <-  input$downloadType
+      date  <-  date <- format(Sys.time(), "%Y%m%d_%H%M%S")
+
+      suffix  <-  if (input$downloadType %in% c("messages")) {
         ".txt"
       } else if (input$downloadType %in% c("memo")) {
         ".docx"
       } else {
         ".xlsx"
       }
-      
-      paste0(prefix,"_",date,suffix)
+
+      paste0(prefix, "_", date, suffix)
     },
-    content = function(file){
-      
-      d<-validation_results()
-      
-      if (input$downloadType == "messages") {
+    content = function(file) {
+
+      d <- validation_results()
+
+      if (input$downloadType  == "messages") {
         writeLines(d$info$warning_msg, file)
       }
-      
-      if (input$downloadType =="cso_flatpack") {
 
-        cso_indicators<-d$info$schema %>% 
-          dplyr::filter(value_type == "integer") %>% 
-          dplyr::pull(indicator_code) %>% unique(.)
-        
-        cso_data<-d$data$analytics %>%
-          dplyr::filter(indicator_code %in% cso_indicators) %>% 
-          dplyr::filter(stringr::str_detect(psnu,"_Military",negate = TRUE)) %>% 
-          dplyr::group_by(ou,country_name,snu1,psnu,indicator_code,dataelement_name,support_type,hts_modality,age,sex,key_population,resultstatus_specific,resultstatus_inclusive,top_level) %>% 
+      if (input$downloadType  == "cso_flatpack") {
+
+        cso_indicators <- d$info$schema %>%
+          dplyr::filter(value_type  == "integer") %>%
+          dplyr::pull(indicator_code) %>%
+          unique(.)
+
+        cso_data <- d$data$analytics %>%
+          dplyr::filter(indicator_code %in% cso_indicators) %>%
+          dplyr::filter(stringr::str_detect(psnu, "_Military", negate = TRUE)) %>%
+          dplyr::group_by(ou, country_name, snu1, psnu, indicator_code, dataelement_name, support_type,
+          hts_modality, age, sex, key_population, resultstatus_specific, resultstatus_inclusive, top_level) %>%
           dplyr::summarize(value = sum(target_value))
-        
-        wb <- openxlsx::createWorkbook()
-        openxlsx::addWorksheet(wb,"CSO export")
+
+        wb  <-  openxlsx::createWorkbook()
+        openxlsx::addWorksheet(wb, "CSO export")
         openxlsx::writeData(wb = wb,
-                            sheet = "CSO export",x = cso_data)
-        openxlsx::saveWorkbook(wb,file=file,overwrite = TRUE)
+                            sheet = "CSO export", x = cso_data)
+        openxlsx::saveWorkbook(wb, file = file, overwrite = TRUE)
       }
-      
-      if (input$downloadType =="flatpack") {
-        
-        waiter_show(html = waiting_screen_flatpack, color = "rgba(128,128,128,.8)" )
+
+      if (input$downloadType  == "flatpack") {
+
+        waiter_show(html = waiting_screen_flatpack, color = "rgba(128, 128, 128, .8)")
         #Create a new workbook
-        wb <- openxlsx::createWorkbook()
+        wb  <-  openxlsx::createWorkbook()
         #Common to both OPUs and Datapacks
-        openxlsx::addWorksheet(wb,"Analytics")
+        openxlsx::addWorksheet(wb, "Analytics")
         openxlsx::writeDataTable(wb = wb,
-                                 sheet = "Analytics",x = d$data$analytics)
+                                 sheet = "Analytics", x = d$data$analytics)
         #TODO. How to handle indicators which should not be summed
-        snu_summary <- prepareSNUSummaryTable(d)
-        openxlsx::addWorksheet(wb,"SNU Summary")
-        openxlsx::writeDataTable(wb = wb,
-                                 sheet = "SNU Summary",x = snu_summary)
+        snu_summary  <-  prepareSNUSummaryTable(d)
+        openxlsx::addWorksheet(wb, "SNU Summary")
+        openxlsx::writeDataTable(
+          wb = wb,
+          sheet = "SNU Summary", x = snu_summary
+        )
         if (!is.null(d$data$recency)) {
-          openxlsx::addWorksheet(wb,"HTS Recency")
-          openxlsx::writeDataTable(wb = wb,
-                                   sheet = "HTS Recency", x = d$data$recency)
+          openxlsx::addWorksheet(wb, "HTS Recency")
+          openxlsx::writeDataTable(
+            wb = wb,
+            sheet = "HTS Recency", x = d$data$recency
+          )
         }
         if (!is.null(d$data$modality_summary)) {
-          openxlsx::addWorksheet(wb,"HTS Summary")
-          openxlsx::writeDataTable(wb = wb,
-                                   sheet = "HTS Summary", x = formatModalitySummaryTable(d))
+          openxlsx::addWorksheet(wb, "HTS Summary")
+          openxlsx::writeDataTable(
+            wb = wb,
+            sheet = "HTS Summary", x = formatModalitySummaryTable(d)
+          )
         }
         if (!is.null(d$data$prio_table)) {
-          openxlsx::addWorksheet(wb,"Prioritization (DRAFT)")
-          openxlsx::writeData(wb = wb,
-                              sheet = "Prioritization (DRAFT)",x = d$data$prio_table) }
+          openxlsx::addWorksheet(wb, "Prioritization (DRAFT)")
+          openxlsx::writeData(
+            wb = wb,
+            sheet = "Prioritization (DRAFT)", x = d$data$prio_table
+          )
+        }
         #Datapack specific
-        if (d$info$tool == "Data Pack") {
-          
-          mer_data <- d %>%
-            purrr::pluck(.,"data") %>%
-            purrr::pluck(.,"MER")
-          
-          subnat_impatt <- d %>%
-            purrr::pluck(.,"data") %>%
-            purrr::pluck(.,"SUBNAT_IMPATT")
-          
-          mer_data<-dplyr::bind_rows(mer_data,subnat_impatt)
-          openxlsx::addWorksheet(wb,"MER Data")
-          openxlsx::writeDataTable(wb = wb,
-                                   sheet = "MER Data",x = mer_data)
+        if (d$info$tool  == "Data Pack") {
 
-          has_psnu<-d %>%
-            purrr::pluck(.,"info") %>%
-            purrr::pluck(.,"has_psnuxim")
-          
+          mer_data  <-  d %>%
+            purrr::pluck(., "data") %>%
+            purrr::pluck(., "MER")
+
+          subnat_impatt  <-  d %>%
+            purrr::pluck(., "data") %>%
+            purrr::pluck(., "SUBNAT_IMPATT")
+
+          mer_data <- dplyr::bind_rows(mer_data, subnat_impatt)
+          openxlsx::addWorksheet(wb, "MER Data")
+          openxlsx::writeDataTable(wb = wb,
+                                   sheet = "MER Data", x = mer_data)
+
+          has_psnu <- d %>%
+            purrr::pluck(., "info") %>%
+            purrr::pluck(., "has_psnuxim")
+
           if (has_psnu) {
-            
-            d$datim$MER$value<-as.character(d$datim$MER$value)
-            d$datim$subnat_impatt$value<-as.character(d$datim$subnat_impatt$value)
-            datim_export<-dplyr::bind_rows(d$datim$MER,d$datim$subnat_impatt)
-            
-            openxlsx::addWorksheet(wb,"DATIM export")
+
+            d$datim$MER$value <- as.character(d$datim$MER$value)
+            d$datim$subnat_impatt$value <- as.character(d$datim$subnat_impatt$value)
+            datim_export <- dplyr::bind_rows(d$datim$MER, d$datim$subnat_impatt)
+
+            openxlsx::addWorksheet(wb, "DATIM export")
             openxlsx::writeData(wb = wb,
-                                sheet = "DATIM export",x = datim_export)
+                                sheet = "DATIM export", x = datim_export)
           }
         }
-        
-        #OPU specific 
-        if (d$info$tool == "OPU Data Pack") {
-          
-          openxlsx::addWorksheet(wb,"DATIM export")
+
+        #OPU specific
+        if (d$info$tool  == "OPU Data Pack") {
+
+          openxlsx::addWorksheet(wb, "DATIM export")
           openxlsx::writeData(wb = wb,
-                              sheet = "DATIM export",x = d$datim$OPU)
-          
+                              sheet = "DATIM export", x = d$datim$OPU)
+
         }
-        
-        datapack_name <-d$info$datapack_name
-        
+
+        datapack_name  <- d$info$datapack_name
+
         flog.info(
           paste0("Flatpack requested for ", datapack_name)
           ,
           name = "datapack"
         )
-        
-        openxlsx::saveWorkbook(wb,file=file,overwrite = TRUE)
+
+        openxlsx::saveWorkbook(wb, file = file, overwrite = TRUE)
         waiter_hide()
       }
-      
-      if (input$downloadType == "vr_rules") {
-        
-        sheets_with_data<-d$tests[lapply(d$tests,NROW) > 0]
-        
-        if (length(sheets_with_data)>0) {
+
+      if (input$downloadType  == "vr_rules") {
+
+        sheets_with_data <- d$tests[lapply(d$tests, NROW) > 0]
+
+        if (length(sheets_with_data) > 0) {
           openxlsx::write.xlsx(sheets_with_data, file = file)
         } else {
           showModal(modalDialog(
@@ -955,52 +951,36 @@ shinyServer(function(input, output, session) {
           ))
         }
       }
-      
-      if (input$downloadType == "datapack") {
-        
+
+      if (input$downloadType  == "datapack") {
+
         flog.info(
           paste0("Regeneration of Datapack requested for ", d$info$datapack_name)
           ,
           name = "datapack")
-        waiter_show(html = waiting_screen_datapack, color = "rgba(128,128,128,.8)" )
+        waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
         flog.info("Fetching support files")
-        
-        support_file<-fetchSupportFiles("/support_files/snuxim_model_data.rds")
+
+        support_file <- fetchSupportFiles("/support_files/snuxim_model_data.rds")
         if (!file.exists(support_file)) {
           flog.error("Could not find model support file.")
           stop("WOMP!")
         }
-        
-        d <- writePSNUxIM(d,snuxim_model_data_path = support_file )
+
+        d  <-  writePSNUxIM(d, snuxim_model_data_path = support_file)
         unlink(support_file)
         flog.info(
-          paste0("Datapack reloaded for for ", d$info$datapack_name) ,
+          paste0("Datapack reloaded for for ", d$info$datapack_name),
           name = "datapack")
         openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
         waiter_hide()
       }
-      
-      if (input$downloadType =="comparison") {
-        waiter_show(html = waiting_screen_comparison, color = "rgba(128,128,128,.8)" )
+
+      if (input$downloadType  == "comparison") {
+        waiter_show(html = waiting_screen_comparison, color = "rgba(128, 128, 128, .8)")
         #Create a new workbook
-        wb <- openxlsx::createWorkbook()
-        d<-validation_results()
-        if (d$info$tool == "OPU Data Pack") {
-          d_compare<-datapackr::compareData_OpuDatapackVsDatim(d, d2_session = user_input$d2_session) 
-          d_compare<-lapply(d_compare,function(x) adorn_import_file(x,
-                                                                    cop_year = d$info$cop_year,
-                                                                    d2_session = user_input$d2_session))
-        } else if (d$info$tool == "Data Pack") {
-          d_compare<-datapackr::compareData_DatapackVsDatim(d,d2_session = user_input$d2_session)
-        }
-    
-          for(name in names(d_compare)){
-            foo <- d_compare %>% purrr::pluck(name)
-            openxlsx::addWorksheet(wb,name)
-            openxlsx::writeDataTable(wb = wb,
-                                     sheet = name,x = foo) }
-            
-        datapack_name <-d$info$datapack_name
+        wb  <-  openxlsx::createWorkbook()
+        d <- validation_results()
         
         flog.info(
           paste0("Comparison requested for ", datapack_name)
@@ -1008,132 +988,140 @@ shinyServer(function(input, output, session) {
           name = "datapack"
         )
         
-        openxlsx::saveWorkbook(wb,file=file,overwrite = TRUE)
+      
+
+        datapack_name  <- d$info$datapack_name
+
+        openxlsx::saveWorkbook(wb, file = file, overwrite = TRUE)
         waiter_hide()
       }
-      
-      if (input$downloadType == "memo") {
-        
-        prio_table<-d %>%
+
+      if (input$downloadType  == "memo") {
+
+        prio_table <- d %>%
           purrr::pluck("data") %>%
           purrr::pluck("prio_table")
-          
-        #Remove any columns which are all zeros to save space. 
-        column_filter <-
-          d$data$prio_table %>% summarise(across(where(is.numeric), ~ sum(.x, na.rm = FALSE) != 0)) %>%  
-          t() %>%  as.data.frame() %>% 
-          dplyr::filter(!V1) %>% row.names()
-        
-        prio_table %<>% dplyr::select(-column_filter)
-        
-        prio_table %<>% dplyr::mutate_if(is.numeric, 
-                         function(x) ifelse(x == 0 ,"-",formatC(x, format="f", big.mark=",",digits = 0))) 
 
-        style_para_prio<-fp_par(text.align = "right",
+        #Remove any columns which are all zeros to save space.
+        column_filter  <-
+          d$data$prio_table %>%
+          summarise(across(where(is.numeric), ~ sum(.x, na.rm = FALSE) !=  0)) %>%
+          t() %>%
+          as.data.frame() %>%
+          dplyr::filter(!V1) %>%
+          row.names()
+
+        prio_table %<>% dplyr::select(-column_filter)
+
+        prio_table %<>% dplyr::mutate_if(is.numeric,
+                         function(x) ifelse(x  == 0, "-", formatC(x, format = "f", big.mark = ", ", digits = 0)))
+
+        style_para_prio <- fp_par(text.align = "right",
                                 padding.right = 0.04,
                                 padding.bottom = 0,
                                 padding.top = 0,
                                 line_spacing = 1)
-        
-        style_header_prio<-fp_par(text.align = "center",
+
+        style_header_prio <- fp_par(text.align = "center",
                                   padding.right = 0,
                                   padding.bottom = 0,
                                   padding.top = 0,
                                   line_spacing = 1)
-        
-        
-        header_old<-names(prio_table)
-        ou_name<-d$info$datapack_name
-        header_new<-c(ou_name,ou_name,header_old[3:dim(prio_table)[2]])
-        
-        prio_table<-flextable(prio_table) %>% 
-          merge_v(.,j="Indicator") %>% 
-          delete_part(.,part = "header") %>% 
-          add_header_row(.,values = header_new) %>% 
-          add_header_row(., values = c(ou_name, ou_name,rep("SNU Prioritizations", ( dim(prio_table)[2] - 2 )))) %>% 
-          merge_h(., part = "header") %>% 
-          merge_v(.,part="header") %>% 
-          bg(.,bg = "#CCC0D9", part = "header") %>% 
-          bg(., i = ~ Age == "Total", bg = "#E4DFEC", part = "body") %>% #Highlight total rows
-          bold(., i = ~ Age == "Total", bold = TRUE, part = "body")  %>% 
-          bg(.,j= "Indicator", bg = "#FFFFFF" , part="body") %>% 
-          bold(., j = "Indicator", bold = FALSE) %>% 
-          bold(.,bold = TRUE,part = "header") %>% 
-          fontsize(., size = 7, part = "all") %>%
-          style(.,pr_p = style_header_prio,part="header") %>% 
-          style(.,pr_p = style_para_prio,part = "body") %>%
-          align(.,j=1:2,align = "center") %>%  #Align first two columns center
-          flextable::add_footer_lines(.,values="* Totals may be greater than the sum of categories due to activities outside of the SNU prioritization areas outlined above")
-        
-        fontname<-"Arial"
-        if ( gdtools::font_family_exists(fontname) ) {
-          prio_table <- font(prio_table,fontname = fontname,part = "all") 
-        } 
 
-        
-        doc <- read_docx(path = "support_files/draft_memo_template.docx")
-        doc<-body_add_flextable(doc,value=prio_table)
-        doc<-body_add_break(doc,pos="after")
-        
+
+        header_old <- names(prio_table)
+        ou_name <- d$info$datapack_name
+        header_new <- c(ou_name, ou_name, header_old[3:dim(prio_table)[2]])
+
+        prio_table <- flextable(prio_table) %>%
+          merge_v(., j = "Indicator") %>%
+          delete_part(., part = "header") %>%
+          add_header_row(., values = header_new) %>%
+          add_header_row(., values = c(ou_name, ou_name, rep("SNU Prioritizations", (dim(prio_table)[2] - 2)))) %>%
+          merge_h(., part = "header") %>%
+          merge_v(., part = "header") %>%
+          bg(., bg = "#CCC0D9", part = "header") %>%
+          bg(., i = ~ Age  == "Total", bg = "#E4DFEC", part = "body") %>% #Highlight total rows
+          bold(., i = ~ Age  == "Total", bold = TRUE, part = "body")  %>%
+          bg(., j =  "Indicator", bg = "#FFFFFF", part = "body") %>%
+          bold(., j = "Indicator", bold = FALSE) %>%
+          bold(., bold = TRUE, part = "header") %>%
+          fontsize(., size = 7, part = "all") %>%
+          style(., pr_p = style_header_prio, part = "header") %>%
+          style(., pr_p = style_para_prio, part = "body") %>%
+          align(., j = 1:2, align = "center") %>%  #Align first two columns center
+          flextable::add_footer_lines(., values =  paste("* Totals may be greater than the sum of categories",
+          "due to activities outside of the SNU prioritization areas outlined above"))
+
+        fontname <- "Arial"
+        if (gdtools::font_family_exists(fontname)) {
+          prio_table  <-  font(prio_table, fontname = fontname, part = "all")
+        }
+
+
+        doc  <-  read_docx(path = "support_files/draft_memo_template.docx")
+        doc <- body_add_flextable(doc, value = prio_table)
+        doc <- body_add_break(doc, pos = "after")
+
         #Partners tables
 
-        partners_table <-d$data$partners_table %>% 
+        partners_table  <- d$data$partners_table %>%
           dplyr::mutate_if(is.numeric,
-                           function(x) ifelse(x == 0 ,"-",formatC(x, format="f", big.mark=",",digits = 0)))
+                           function(x) ifelse(x  == 0, "-", formatC(x, format = "f", big.mark = ", ", digits = 0)))
 
-        sub_heading<-names(partners_table)[3:length(partners_table)] %>%
-          stringr::str_split(.," ") %>%
+        sub_heading <- names(partners_table)[4:length(partners_table)] %>%
+          stringr::str_split(., " ") %>%
           purrr::map(purrr::pluck(2)) %>%
           unlist() %>%
-          c("Funding Agency","Partner",.)
+          c("Funding Agency", "Partner", "Mechanism",.)
 
-        group_heading<-names(partners_table)[3:length(partners_table)] %>%
-          stringr::str_split(.," ") %>%
+        group_heading <- names(partners_table)[4:length(partners_table)] %>%
+          stringr::str_split(., " ") %>%
           purrr::map(purrr::pluck(1)) %>%
           unlist() %>%
-          c("Funding Agency","Partner",.)
+          c("Funding Agency", "Partner", "Mechanism", .)
 
-        chunks<-list(c(1:14),c(1:2,15:25),c(1:2,26:34),c(1:2,35:43))
+        chunks <- list(c(1:15), c(1:3, 16:26), c(1:3, 27:35), c(1:3, 36:44))
 
-        renderPartnerTable<-function(chunk) {
+        renderPartnerTable <- function(chunk) {
 
-          partner_table<- flextable(partners_table[,chunk]) %>%
-            bg(., i = ~ Partner == "", bg = "#E4DFEC", part = "body") %>%
-            bold(.,i = ~ Partner == "", bold=TRUE) %>%
-            delete_part(.,part = "header") %>%
-            add_header_row(.,values=sub_heading[chunk]) %>%
-            add_header_row(.,top = TRUE,values = group_heading[chunk] ) %>%
-            merge_h(.,part="header") %>%
-            merge_v(.,part = "header")  %>%
-            bg(.,bg = "#CCC0D9", part = "header") %>% 
-            bold(.,bold = TRUE,part = "header") %>% 
+          partner_table <-  flextable(partners_table[, chunk]) %>%
+            bg(., i = ~ Partner  == "", bg = "#E4DFEC", part = "body") %>%
+            bold(., i = ~ Partner  == "", bold = TRUE) %>%
+            delete_part(., part = "header") %>%
+            add_header_row(., values = sub_heading[chunk]) %>%
+            add_header_row(., top = TRUE, values = group_heading[chunk]) %>%
+            merge_h(., part = "header") %>%
+            merge_v(., part = "header")  %>%
+            bg(., bg = "#CCC0D9", part = "header") %>%
+            bold(., bold = TRUE, part = "header") %>%
             fontsize(., size = 7, part = "all") %>%
-            style(.,pr_p = style_para_prio,part = "body") %>%
-            width(.,j=1:2,0.75) %>%
-            width(.,j=3:(length(chunk)),0.4)
+            style(., pr_p = style_para_prio, part = "body") %>%
+            width(., j = 1:3, 0.75) %>%
+            width(., j = 4:(length(chunk)), 0.4)
 
-          fontname<-"Arial"
-          if ( gdtools::font_family_exists(fontname) ) {
-            partner_table <- font(partner_table,fontname = fontname, part = "all")
+          fontname <- "Arial"
+          if (gdtools::font_family_exists(fontname)) {
+            partner_table  <-  font(partner_table, fontname = fontname, part = "all")
           }
 
           partner_table
         }
 
-        for (i in 1:length(chunks)) {
-          chunk<-chunks[[i]]
-          partner_table_ft<-renderPartnerTable(chunk = chunk)
-          doc<-body_add_flextable(doc,partner_table_ft)
-          doc<-body_add_break(doc,pos="after")
+        for (i in seq_along(chunks)) {
+          chunk <- chunks[[i]]
+          partner_table_ft <- renderPartnerTable(chunk = chunk)
+          doc <- body_add_flextable(doc, partner_table_ft)
+          doc <- body_add_break(doc, pos = "after")
         }
-        
-        
-        print(doc,target=file)
-        
+
+
+        print(doc, target = file)
+
       }
     }
   )
-  
-  
-  
+
+
+
   })
