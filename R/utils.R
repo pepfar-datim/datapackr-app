@@ -770,16 +770,19 @@ generateComparisonTable<-function(d,d2_session) {
   
   d_compare <- dplyr::full_join(d_datapack, d_datim) %>%
     dplyr::mutate(
-      identical = identical(datim_value,target_value),
       change_type = dplyr::case_when(
         target_value == datim_value ~ "No change",
-        is.na(target_value) &
-          !is.na(datim_value) ~ "Deletion",!is.na(target_value) &
-          is.na(datim_value) ~ "New value",
+        is.na(target_value) & !is.na(datim_value) ~ "Deletion",
+        !is.na(target_value) & is.na(datim_value) ~ "New value",
         target_value != datim_value ~ "Update"
       )
-    ) %>%
-    dplyr::filter(!identical) %>% 
+    ) %>%  dplyr::mutate(datim_value = ifelse(is.na(datim_value),0,datim_value),
+                  target_value = ifelse(is.na(target_value),0,target_value)) %>% 
+    dplyr::mutate(identical = target_value == datim_value,
+                  "Diff" = target_value - datim_value) %>% 
+  dplyr::filter(!identical)%>%
+  tidyr::pivot_longer(cols=c(datim_value,target_value,Diff),names_to = "value_type") %>%
+  dplyr::mutate(value_type = dplyr::recode(value_type, datim_value = "Current",target_value = "Proposed",Diff = "Difference")) %>% 
     dplyr::select(
       "OU" = ou,
       "Country" = country_name,
@@ -798,11 +801,9 @@ generateComparisonTable<-function(d,d2_session) {
       "NumDenom" = numerator_denominator,
       "Support Type" = support_type,
       "HTS Modality" = hts_modality,
-      "Proposed" = target_value,
-      "Current" = datim_value,
-      "Change type" = change_type
-    ) %>% 
-    dplyr::mutate("Diff" = diffWithNAs(`Proposed`,`Current`))
+      "Value type" = value_type,
+      "Value" = value
+    )
   
   d$data$compare<-d_compare
 

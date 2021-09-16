@@ -979,18 +979,19 @@ shinyServer(function(input, output, session) {
       if (input$downloadType  == "comparison") {
         waiter_show(html = waiting_screen_comparison, color = "rgba(128, 128, 128, .8)")
         #Create a new workbook
-        wb  <-  openxlsx::createWorkbook()
+       
         d <- validation_results()
         
         flog.info(
-          paste0("Comparison requested for ", datapack_name)
+          paste0("Comparison requested for ", d$info$datapack_name)
           ,
           name = "datapack"
         )
         
-      
-
-        datapack_name  <- d$info$datapack_name
+        wb  <-  openxlsx::createWorkbook() 
+        openxlsx::addWorksheet(wb, "Comparison")
+        openxlsx::writeData(wb = wb,
+                            sheet = "Comparison", x = d$data$compare)
 
         openxlsx::saveWorkbook(wb, file = file, overwrite = TRUE)
         waiter_hide()
