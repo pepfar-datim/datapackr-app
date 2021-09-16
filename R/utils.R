@@ -765,7 +765,8 @@ generateComparisonTable<-function(d,d2_session) {
       dplyr::rename("datim_value" = "target_value") %>% 
       dplyr::select(-upload_timestamp)
   } else {
-    d_datim <- d_datapack[0,]
+    d_datim <- d_datapack[0,] %>% 
+      dplyr::rename("datim_value" = "target_value")
   }
   
   d_compare <- dplyr::full_join(d_datapack, d_datim) %>%
