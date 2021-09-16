@@ -568,9 +568,9 @@ shinyServer(function(input, output, session) {
         purrr::pluck("compare")
 
       rpivotTable(data = pivot, 
-                  rows = c("Indicator"), cols = c("Prioritization", "Change type"),
-                  vals = "Diff", aggregatorName = "Integer Sum", rendererName = "Table"
-                  , width = "70%", height = "700px")
+                  rows = c("Indicator"), cols = c("Value type"),
+                  vals = "Value", aggregatorName = "Integer Sum", rendererName = "Table",
+                  width = "70%", height = "700px")
 
     } else {
       NULL
