@@ -783,7 +783,7 @@ generateComparisonTable<-function(d,d2_session) {
                   "Diff" = target_value - datim_value) %>% 
   dplyr::filter(!identical)%>%
   tidyr::pivot_longer(cols=c(datim_value,target_value,Diff),names_to = "value_type") %>%
-  dplyr::mutate(value_type = dplyr::recode(value_type, datim_value = "Current",target_value = "Proposed",Diff = "Difference")) %>% 
+  dplyr::mutate(value_type = dplyr::recode(value_type, datim_value = "Current",target_value = "Proposed", Diff = "Difference")) %>% 
     dplyr::select(
       "OU" = ou,
       "Country" = country_name,
@@ -804,7 +804,12 @@ generateComparisonTable<-function(d,d2_session) {
       "HTS Modality" = hts_modality,
       "Value type" = value_type,
       "Value" = value
-    )
+    ) %>% 
+    dplyr::mutate(`Agency` = case_when(`Mechanism` %in% c("00000","00001") ~ "Dedupe",
+                                       TRUE ~ `Agency`),
+                  `Partner` = case_when(`Mechanism` %in% c("00000","00001") ~ "Dedupe",
+                                       TRUE ~ `Partner`)
+                  )
   
   d$data$compare<-d_compare
 
