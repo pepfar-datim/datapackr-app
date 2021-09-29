@@ -180,7 +180,7 @@ validatePSNUData  <-  function(d, d2_session) {
           d$info$datapack_name,
           "DataPack."
         )
-      d$info$warning_msg <- append(d$info$warning_msg, warning_message)
+      d$info$messages <- datapackr::appendMessage(d$info$messages,warning_message,"WARNING")
       flog.info(
         warning_message,
         name = "datapack"
@@ -673,13 +673,11 @@ createS3BucketTags <- function(d) {
 
 updateExistingPrioritization <- function(d, d2_session) {
 
-
 psnus <-    d$data$analytics$psnu_uid %>% unique() %>% unlist()
 
 #Break up into 2048 character URLS (approximately)
 n_requests <- ceiling(nchar(paste(psnus, sep = "", collapse = ";")) / 2048)
-n_groups <- split(sample(psnus), 1:n_requests)
-
+n_groups <- split(psnus, rep_len(1:n_requests, length(psnus)))
 
 getPrioTable <- function(x) {
   datimutils::getAnalytics(dx = "r4zbW3owX9n",
@@ -690,14 +688,27 @@ getPrioTable <- function(x) {
 
 prios <- n_groups %>% purrr::map_dfr(getPrioTable)
 
-if (NROW(prios) == 0  & NROW(d$data$analytics) > 0) {
-  stop(paste("Prioritization information for COP", d$info$cop_year, "is missing. Please contact DATIM support"))
+if (NROW(prios) > 0 & any(is.na(prios$Value))) {
+  msg <- paste("ERROR! Missing prioriziation PSNU prioritization levels have been detected.",
+               "Affected PSNUs will be classified as No Prioritization but may lead to inconsistencies",
+               "in the draft memo generation and comparison")
+  
+  d$info$messages <- appendMessage(d$info$messages,"ERROR")
+  
+  prios <- prios %>%  dplyr::mutate("Value" = dplyr::case_when(is.na(Value) ~ 0,
+                                                               TRUE  ~ Value))
 }
 
-if (is.null(prios)) {
-  interactive_print("No prioritization information found. Skipping update.")
-  return(d)
-  }
+if (NROW(prios) == 0  & NROW(d$data$analytics) > 0) {
+  msg <- paste("ERROR! We could not obtain any prioritization information from DATIM",
+               "All PSNUs will be classified as No Prioritization but may lead to inconsistencies",
+               "in the draft memo generation and comparison")
+  
+  d$info$messages <- appendMessage(d$info$messages,"ERROR")
+  prios <- tibble::tibble("Organisation unit" = psnus,
+                      "Value" = 0,
+                      "Data" = NA_character_)
+}
 
 prios %<>%
   dplyr::select(-Data) %>%
@@ -724,7 +735,7 @@ generateComparisonTable<-function(d,d2_session) {
     ceiling(nchar(paste(
       psnus, sep = "", collapse = ";"
     )) / 2048)
-  n_groups <- split(sample(psnus), 1:n_requests)
+  n_groups <- split(psnus, rep_len(1:n_requests, length(psnus)))
   
   prios <-
     n_groups %>% purrr::map_dfr(function(x)
@@ -746,10 +757,18 @@ generateComparisonTable<-function(d,d2_session) {
     ifelse(is.na(x),0,x) - ifelse(is.na(y),0,y)
   }
   
-  d_datim <- datapackr::getCOPDataFromDATIM(country_uids = d$info$country_uids,
-                                            streams = c("mer_targets"),
-                                            cop_year = d$info$cop_year,
-                                            d2_session = d2_session)
+  
+  if (any(d2_session$me$authorities == "ALL")) {
+    d_datim <- datapackr::getCOPDataFromDATIM(country_uids = d$info$country_uids,
+                                              streams = c("mer_targets"),
+                                              cop_year = d$info$cop_year,
+                                              d2_session = d2_session)
+  } else {
+    d_datim <- getCOPDataFromS3(country_uids = d$info$country_uids,
+                                cop_year = d$info$cop_year)
+  }
+  
+
   
   if (NROW(d_datim) > 0) {
     
@@ -764,10 +783,16 @@ generateComparisonTable<-function(d,d2_session) {
       dplyr::left_join(prios,by=c("psnu_uid")) %>% 
       dplyr::rename("datim_value" = "target_value") %>% 
       dplyr::select(-upload_timestamp)
+    
+    d$datim$analytics <- d_datim 
+    
   } else {
     d_datim <- d_datapack[0,] %>% 
       dplyr::rename("datim_value" = "target_value")
   }
+  
+  #Save this analytics object for later use in the memo generation 
+  d$datim$analytics <- d_datim 
   
   d_compare <- dplyr::full_join(d_datapack, d_datim) %>%
     dplyr::mutate(
@@ -809,9 +834,45 @@ generateComparisonTable<-function(d,d2_session) {
                                        TRUE ~ `Agency`),
                   `Partner` = case_when(`Mechanism` %in% c("00000","00001") ~ "Dedupe",
                                        TRUE ~ `Partner`)
-                  )
+                  ) %>% 
+    dplyr::filter(!stringr::str_detect(Indicator,"AGYW_PREV"))
   
   d$data$compare<-d_compare
 
   return(d)
 }
+
+
+
+assignDedupeMetadata <- function(d) {
+  d$data$analytics <-
+    d$data$analytics %>% dplyr::mutate(
+      funding_agency = dplyr::case_when(
+        mechanism_code %in% c("00000", "00001") ~ "Dedupe",
+        TRUE ~ funding_agency
+      ),
+      partner_desc = dplyr::case_when(
+        mechanism_code %in% c("00000", "00001") ~ "Dedupe",
+        TRUE ~ partner_desc
+      ))
+      return(d)
+      
+}
+
+hasDimensionConstraints<-function(d2_session) {
+  
+  length(d2_session$me$userCredentials$catDimensionConstraints) > 0
+}
+
+
+getCOPDataFromS3 <- function(country_uids,cop_year) {
+  cop_data_path<-fetchSupportFiles("support_files/cop_data.rds")
+  
+   readRDS(cop_data_path) %>% 
+    dplyr::filter(country_uid %in% country_uids) %>% 
+    dplyr::filter(cop_year == cop_year) %>% 
+    dplyr::select(-cop_year,-country_uid)
+  
+  
+}
+
