@@ -195,7 +195,6 @@ validatePSNUData  <-  function(d, d2_session) {
         ),
         name = "datapack"
       )
-      return(d)
     }
   }
 

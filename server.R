@@ -727,9 +727,8 @@ shinyServer(function(input, output, session) {
   output$messages  <-  renderUI({
 
     vr <- validation_results()
-
+    
     messages <- NULL
-
     if (is.null(vr)) {
       return(NULL)
     }
@@ -739,20 +738,24 @@ shinyServer(function(input, output, session) {
 
     } else {
 
-      messages  <-  validation_results() %>%
+      messages <- validation_results() %>%
         purrr::pluck(., "info") %>%
-        purrr::pluck(., "warning_msg")
-
-      errors  <-
-        do.call(paste, lapply(stringr::str_subset(messages, "^ERROR"),
-        function(x) paste('<li><p style = "color:red"><b>', x, "</b></p></li>")))
-      warnings  <-
-        do.call(paste, lapply(stringr::str_subset(messages, "^WARNING"),
-        function(x) paste("<li><p>", x, "</p></li>")))
-
-      messages_sorted  <-  paste("<ul>", errors, warnings, "</ul>")
-
-      if (!is.null(messages))  {
+        purrr::pluck(., "messages")
+       
+      if (length(d$info$messages$message) > 0)  {
+        
+        class(messages) <- "data.frame"
+        
+        messages <- messages %>% dplyr::mutate(msg_html =
+                                                 dplyr::case_when(
+                                                   level == "ERROR" ~ paste('<li><p style = "color:red"><b>', message, "</b></p></li>"),
+                                                   TRUE ~ paste("<li><p>", message, "</p></li>")
+                                                 ))
+        
+        
+        messages_sorted  <-
+          paste0("<ul>", paste(messages$msg_html, sep = "", collapse = ""), "</ul>")
+        
         shiny::HTML(messages_sorted)
       } else {
         tags$li("No Issues with Integrity Checks: Congratulations!")
