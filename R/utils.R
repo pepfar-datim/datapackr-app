@@ -757,7 +757,8 @@ generateComparisonTable<-function(d,d2_session) {
     ifelse(is.na(x),0,x) - ifelse(is.na(y),0,y)
   }
   
-  
+  #This is the workaround for users not being able to 
+  #Access the api/dataValueSets endpoint
   if (any(d2_session$me$authorities == "ALL")) {
     d_datim <- datapackr::getCOPDataFromDATIM(country_uids = d$info$country_uids,
                                               streams = c("mer_targets"),
@@ -766,6 +767,9 @@ generateComparisonTable<-function(d,d2_session) {
   } else {
     d_datim <- getCOPDataFromS3(country_uids = d$info$country_uids,
                                 cop_year = d$info$cop_year)
+    msg <-paste("INFO: Your comparison table has been generated with cached data.",
+                "Please contact DATIM support for more information")
+    d$info$messages <- appendMessage(d$info$messages,msg,"INFO")
   }
   
 
