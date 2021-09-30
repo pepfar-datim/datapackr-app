@@ -85,15 +85,19 @@ shinyServer(function(input, output, session) {
       }
     )
 
-    if (exists("d2_default_session")) {
+
+    if (!is.null(d2_default_session)) {
       user_input$authenticated  <-  TRUE
+      input$password <- ""
       user_input$d2_session  <-  d2_default_session$clone()
+      d2_default_session <- NULL
+
       # Need to check the user is a member of the PRIME Data Systems Group, COP Memo group, or a super user
       user_input$memo_authorized  <-
-        grepl("VDEqY8YeCEk|ezh8nmc4JbX", d2_default_session$me$userGroups) |
+        grepl("VDEqY8YeCEk|ezh8nmc4JbX", user_input$d2_session$me$userGroups) |
           grepl(
             "jtzbVV4ZmdP",
-            d2_default_session$me$userCredentials$userRoles
+            user_input$d2_session$me$userCredentials$userRoles
           )
       flog.info(
         paste0(
@@ -122,8 +126,13 @@ shinyServer(function(input, output, session) {
     flog.info(paste0("User ", user_input$d2_session$me$userCredentials$username, " logged out."))
     ready$ok  <-  FALSE
     user_input$authenticated  <-  FALSE
+    user_input$user_name <- ""
+    user_input$password <- ""
+    user_input$authorized  <-  FALSE
     user_input$d2_session  <-  NULL
+    d2_default_session <- NULL
     gc()
+    session$reload()
 
   })
 
