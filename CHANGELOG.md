@@ -1,3 +1,10 @@
+## October 4, 2020
+* Update to datapackr 5.0.0
+* Fix bug when logging out
+* Add feature to fetch cached data values
+* Improved comparison functionality
+* Code linting
+
 ## May 12, 2021
 * Fix bug on VLS testing visual
 * Alter UI to provide a dropdown for output types
