@@ -75,39 +75,43 @@ shinyServer(function(input, output, session) {
       },
       # This function throws an error if the login is not successful
       error = function(e) {
-        sendSweetAlert(
-          session,
-          title = "Login failed",
-          text = "Please check your username/password!",
-          type = "error"
-        )
         flog.info(paste0("User ", input$user_name, " login failed."), name = "datapack")
       }
     )
 
 
-    if (!is.null(d2_default_session)) {
-      user_input$authenticated  <-  TRUE
-      input$password <- ""
-      user_input$d2_session  <-  d2_default_session$clone()
-      d2_default_session <- NULL
-
-      # Need to check the user is a member of the PRIME Data Systems Group, COP Memo group, or a super user
-      user_input$memo_authorized  <-
-        grepl("VDEqY8YeCEk|ezh8nmc4JbX", user_input$d2_session$me$userGroups) |
+    if (exists("d2_default_session")) {
+      if (any(class(d2_default_session) == "d2Session")) {
+        user_input$authenticated  <-  TRUE
+        user_input$d2_session  <-  d2_default_session$clone()
+        d2_default_session <- NULL
+        
+        # Need to check the user is a member of the PRIME Data Systems Group, COP Memo group, or a super user
+        user_input$memo_authorized  <-
+          grepl("VDEqY8YeCEk|ezh8nmc4JbX", user_input$d2_session$me$userGroups) |
           grepl(
             "jtzbVV4ZmdP",
             user_input$d2_session$me$userCredentials$userRoles
           )
-      flog.info(
-        paste0(
-          "User ",
-          user_input$d2_session$me$userCredentials$username,
-          " logged in."
-        ),
-        name = "datapack"
+        flog.info(
+          paste0(
+            "User ",
+            user_input$d2_session$me$userCredentials$username,
+            " logged in."
+          ),
+          name = "datapack"
+        )
+      }
+    } else {
+      sendSweetAlert(
+        session,
+        title = "Login failed",
+        text = "Please check your username/password!",
+        type = "error"
       )
     }
+
+
   })
 
   epi_graph_filter  <-  reactiveValues(snu_filter = NULL)
@@ -751,7 +755,7 @@ shinyServer(function(input, output, session) {
         purrr::pluck(., "info") %>%
         purrr::pluck(., "messages")
        
-      if (length(d$info$messages$message) > 0)  {
+      if (length(messages$message) > 0)  {
         
         class(messages) <- "data.frame"
         
