@@ -46,12 +46,6 @@ shinyServer(function(input, output, session) {
     ready$ok  <-  FALSE
   })
 
-
-  waiting_screen_paw  <-  tagList(
-    spin_ring(),
-    h4("Transferring files to PAW. Please wait...")
-  )
-
   observeEvent(input$send_paw, {
     waiter_show(html = waiting_screen_paw, color = "rgba(128, 128, 128, .8)")
     d  <-  validation_results()
@@ -131,7 +125,6 @@ shinyServer(function(input, output, session) {
     ready$ok  <-  FALSE
     user_input$authenticated  <-  FALSE
     user_input$user_name <- ""
-    user_input$password <- ""
     user_input$authorized  <-  FALSE
     user_input$d2_session  <-  NULL
     d2_default_session <- NULL
@@ -802,23 +795,6 @@ shinyServer(function(input, output, session) {
       }
     }
   })
-
-
-  waiting_screen_datapack  <-  tagList(
-    spin_hourglass(),
-    h4("Generating your SNUxIM tab. Please wait...")
-  )
-
-  waiting_screen_comparison <- tagList(
-    spin_hourglass(),
-    h4("Generating a comparison to DATIM. Please wait...")
-  )
-
-  waiting_screen_flatpack <- tagList(
-    spin_hourglass(),
-    h4("Generating your FlatPack™. Please wait...")
-  )
-
 
   output$downloadOutputs  <-  downloadHandler(
     filename = function() {
