@@ -4392,6 +4392,37 @@
         "Built": "R 3.6.3; x86_64-pc-linux-gnu; 2021-10-04 08:31:45 UTC; unix"
       }
     },
+    "waiter": {
+      "Source": "CRAN",
+      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
+      "description": {
+        "Package": "waiter",
+        "Title": "Loading Screen for 'Shiny'",
+        "Version": "0.2.4",
+        "Date": "2021-09-04",
+        "Authors@R": "c(\n    person(given = \"John\",\n           family = \"Coene\",\n           role = c(\"aut\", \"cre\"),\n           email = \"jcoenep@gmail.com\"),\n    person(given = \"Jinhwan\",\n           family = \"Kim\",\n           role = \"ctb\",\n           email = 'hwanistic@gmail.com'),\n    person(given = \"Victor\",\n           family = \"Granda\",\n           role = c(\"ctb\"),\n           email = \"victorgrandagarcia@gmail.com\",\n           comment = c(ORCID = \"0000-0002-0469-1991\")))",
+        "Description": "Full screen and partial loading screens for 'Shiny' with spinners, progress bars, and notifications.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://waiter.john-coene.com/,\nhttps://github.com/JohnCoene/waiter",
+        "BugReports": "https://github.com/JohnCoene/waiter/issues",
+        "Encoding": "UTF-8",
+        "Imports": "R6, shiny, htmltools",
+        "RoxygenNote": "7.1.2",
+        "Suggests": "httr, knitr, packer, rmarkdown",
+        "VignetteBuilder": "knitr",
+        "NeedsCompilation": "no",
+        "Packaged": "2021-10-04 17:48:12 UTC; jp",
+        "Author": "John Coene [aut, cre],\n  Jinhwan Kim [ctb],\n  Victor Granda [ctb] (<https://orcid.org/0000-0002-0469-1991>)",
+        "Maintainer": "John Coene <jcoenep@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2021-10-04 18:10:02 UTC",
+        "Built": "R 3.6.3; ; 2021-10-05 13:13:31 UTC; unix"
+      }
+    },
     "waldo": {
       "Source": "CRAN",
       "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
@@ -4631,10 +4662,10 @@
       "checksum": "f36da5c218e945c9fbe7d0edbac2fcd4"
     },
     ".Rprofile": {
-      "checksum": "e24f4c370ec7c9d626a8aaecc345de7e"
+      "checksum": "d9f65b34c7d2c51e2b4ec0adcb034643"
     },
     "CHANGELOG.md": {
-      "checksum": "7309aadb9e19a3c50c35c9ca21708970"
+      "checksum": "b1622200170b6a9fecde294e57d6a0e0"
     },
     "config.yml": {
       "checksum": "3298ef63ce822cf889ae67375f352616"
@@ -4652,19 +4683,25 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "DESCRIPTION": {
-      "checksum": "da8f14fe32fa9085f75283b7981ad343"
+      "checksum": "9a9e9ef076b04a5d457c5b94b32216b2"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "fc9e4abb4e12cee76320d847cb5a21c8"
+      "checksum": "522a670739b8dd9475bf499ba055ef1c"
+    },
+    "R/downloads.R": {
+      "checksum": "ea11dfe26f4e0f3ae20a63a0e56c10b3"
     },
     "R/utils.R": {
       "checksum": "137c184e1e6917a43c7677a14373fc53"
     },
     "R/visuals.R": {
       "checksum": "df15d4376528e47d14e3d159201671e8"
+    },
+    "R/waitingScreens.R": {
+      "checksum": "cdf86ff8be99d4bc4d15185a33c2f15a"
     },
     "README.md": {
       "checksum": "eef665cd63e15044507de68a54e50b45"
@@ -4673,7 +4710,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "server.R": {
-      "checksum": "c8df44e163f09e15d03134b6dbe9460a"
+      "checksum": "376d8cb348afe2dc7e628336b2a0c140"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
@@ -4706,7 +4743,7 @@
       "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"
     },
     "support_files/mechs.rds": {
-      "checksum": "fc9e4abb4e12cee76320d847cb5a21c8"
+      "checksum": "522a670739b8dd9475bf499ba055ef1c"
     },
     "support_files/model_data_pack_input_21_20210202_1_flat.rds": {
       "checksum": "75318ab8927e10b549a262f8eb810426"
