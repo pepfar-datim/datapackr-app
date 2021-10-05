@@ -4402,8 +4402,8 @@
       "description": {
         "Package": "waiter",
         "Title": "Loading Screen for 'Shiny'",
-        "Version": "0.2.4",
-        "Date": "2021-09-04",
+        "Version": "0.2.3",
+        "Date": "2021-07-21",
         "Authors@R": "c(\n    person(given = \"John\",\n           family = \"Coene\",\n           role = c(\"aut\", \"cre\"),\n           email = \"jcoenep@gmail.com\"),\n    person(given = \"Jinhwan\",\n           family = \"Kim\",\n           role = \"ctb\",\n           email = 'hwanistic@gmail.com'),\n    person(given = \"Victor\",\n           family = \"Granda\",\n           role = c(\"ctb\"),\n           email = \"victorgrandagarcia@gmail.com\",\n           comment = c(ORCID = \"0000-0002-0469-1991\")))",
         "Description": "Full screen and partial loading screens for 'Shiny' with spinners, progress bars, and notifications.",
         "License": "MIT + file LICENSE",
@@ -4411,16 +4411,16 @@
         "BugReports": "https://github.com/JohnCoene/waiter/issues",
         "Encoding": "UTF-8",
         "Imports": "R6, shiny, htmltools",
-        "RoxygenNote": "7.1.2",
-        "Suggests": "httr, knitr, packer, rmarkdown",
+        "RoxygenNote": "7.1.1",
+        "Suggests": "knitr, packer, rmarkdown",
         "VignetteBuilder": "knitr",
         "NeedsCompilation": "no",
-        "Packaged": "2021-10-04 17:48:12 UTC; jp",
+        "Packaged": "2021-07-21 14:00:47 UTC; jp",
         "Author": "John Coene [aut, cre],\n  Jinhwan Kim [ctb],\n  Victor Granda [ctb] (<https://orcid.org/0000-0002-0469-1991>)",
         "Maintainer": "John Coene <jcoenep@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-10-04 18:10:02 UTC",
-        "Built": "R 3.6.3; ; 2021-10-05 13:13:31 UTC; unix"
+        "Date/Publication": "2021-07-21 14:40:02 UTC",
+        "Built": "R 3.6.3; ; 2021-09-08 06:26:15 UTC; unix"
       }
     },
     "waldo": {
@@ -4662,7 +4662,7 @@
       "checksum": "f36da5c218e945c9fbe7d0edbac2fcd4"
     },
     ".Rprofile": {
-      "checksum": "d9f65b34c7d2c51e2b4ec0adcb034643"
+      "checksum": "fe5248b21b70c19211da117291b0c4fa"
     },
     "CHANGELOG.md": {
       "checksum": "b1622200170b6a9fecde294e57d6a0e0"
@@ -4683,7 +4683,7 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "DESCRIPTION": {
-      "checksum": "9a9e9ef076b04a5d457c5b94b32216b2"
+      "checksum": "332cd41dbf7e8a2c47af55ed40a123e1"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
