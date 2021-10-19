@@ -868,44 +868,37 @@
       }
     },
     "datapackr": {
-      "Source": "github",
-      "Repository": null,
-      "GithubRepo": "datapackr",
-      "GithubUsername": "pepfar-datim",
-      "GithubRef": "master",
-      "GithubSha1": "beb8ff3044c8a0a254875cfee035db74ffd21bf1",
+      "Source": "PEPFAR",
+      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "datapackr",
         "Type": "Package",
         "Title": "A Package that Packs and Unpacks all Data Packs",
-        "Version": "5.0.0",
-        "Date": "2021-09-23",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"William\", \"Shiflett\", email = \"wshiflett@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Chris\", \"Nemarich\", email = \"cnemarich@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Christian\", \"Domaas\", email = \"cdomaas@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Max\", \"Chandler\", email = \"mchandler@baosystems.com\",\n        role = c(\"ctb\"))\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
         "URL": "https://github.com/pepfar-datim/datapackr",
         "BugReports": "https://github.com/pepfar-datim/datapackr",
         "Depends": "R (>= 3.6.3)",
-        "Imports": "dplyr (>= 0.8.3),\ntidyr (>= 1.0.0),\ntidyxl (>= 1.0.4),\nreadxl (>= 1.3.1),\nreadr (>= 1.3.1),\njsonlite (>= 1.6),\npurrr (>= 0.3.3),\ntibble (>= 2.1.3),\nstringr (>= 1.4.0),\nstringi,\nhttr (>= 1.4.0),\nrlist (>= 0.4.6.1),\nmagrittr (>= 1.5),\ncrayon (>= 1.3.4),\ngetPass (>= 0.2-2),\nopenxlsx,\nlazyeval,\nstats,\nlubridate (>= 1.7.4),\ndata.table (>= 1.12.8),\nscales (>= 1.0.0),\ndatimvalidation,\ndatapackcommons (>= 0.2.0),\ntidyselect (>= 0.2.5),\nglue (>= 1.3.1),\nrlang (>= 0.4.2),\nassertthat,\nplyr,\nfuzzyjoin (>= 0.1.6),\nR6",
-        "Suggests": "devtools (>= 2.0.1),\nhttptest,\ntestthat,\ncellranger,\nrprojroot",
+        "Imports": "dplyr (>= 0.8.3), tidyr (>= 1.0.0), tidyxl (>= 1.0.4), readxl\n(>= 1.3.1), readr (>= 1.3.1), jsonlite (>= 1.6), purrr (>=\n0.3.3), tibble (>= 2.1.3), stringr (>= 1.4.0), stringi, httr\n(>= 1.4.0), rlist (>= 0.4.6.1), magrittr (>= 1.5), crayon (>=\n1.3.4), getPass (>= 0.2-2), openxlsx, lazyeval, stats,\nlubridate (>= 1.7.4), data.table (>= 1.12.8), scales (>=\n1.0.0), datimvalidation, datapackcommons (>= 0.2.0), tidyselect\n(>= 0.2.5), glue (>= 1.3.1), rlang (>= 0.4.2), assertthat,\nplyr, fuzzyjoin (>= 0.1.6), R6",
+        "Suggests": "devtools (>= 2.0.1), httptest, testthat, cellranger,\nrprojroot",
+        "Remotes": "pepfar-datim/datim-validation, pepfar-datim/data-pack-commons",
         "License": "file LICENSE",
         "Encoding": "UTF-8",
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
+        "Repository": "RSPM",
+        "RemoteSha": "a0cda0a17286de44635b456b20a4baaedf76692a",
+        "Version": "5.0.0.0.0.0.1633107419",
+        "Date": "2021-09-23",
+        "NeedsCompilation": "no",
+        "Packaged": "2021-10-01 16:59:15 UTC; root",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  William Shiflett [ctb],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Max Chandler [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 3.6.3; ; 2021-10-06 20:19:51 UTC; windows",
-        "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteUsername": "pepfar-datim",
-        "RemoteRepo": "datapackr",
-        "RemoteRef": "master",
-        "RemoteSha": "beb8ff3044c8a0a254875cfee035db74ffd21bf1",
-        "GithubHost": "api.github.com",
-        "GithubRepo": "datapackr",
-        "GithubUsername": "pepfar-datim",
-        "GithubRef": "master",
-        "GithubSHA1": "beb8ff3044c8a0a254875cfee035db74ffd21bf1",
-        "Remotes": "pepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
+        "Built": "R 3.6.3; ; 2021-10-04 08:43:01 UTC; unix"
       }
     },
     "datimutils": {
@@ -4644,32 +4637,14 @@
     }
   },
   "files": {
-    ".~lock.compare.xlsx#": {
-      "checksum": "fafd2c474d2c4be158ea2fabebd48eda"
-    },
     ".lintr": {
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
-    ".R_Cache/03a3dae384653879582f4ffe31165734": {
-      "checksum": "4285ec19cd9043d1520fc0d83a711850"
-    },
-    ".R_Cache/1435352e3f8e62dae78593b785329c50": {
-      "checksum": "6ad44000b81b82f6251922624db93fc5"
-    },
-    ".R_Cache/4aa56b25ff82892ab4590ea47b8117b3": {
-      "checksum": "a98d869aa24461baa17198dd5943427f"
-    },
-    ".R_Cache/93ee81f5d8dd5c3da036381e6a447c6a": {
-      "checksum": "ff97ef27ec616a2d4dc9e185460fc45c"
-    },
-    ".R_Cache/c52c919e354af34cc81beb125d8267db": {
-      "checksum": "da1066b9da76b76f512766b4680cf252"
-    },
     ".RData": {
-      "checksum": "f36da5c218e945c9fbe7d0edbac2fcd4"
+      "checksum": "a6a4c24798e83e5bdafa6ddc1a3bb88c"
     },
     ".Rprofile": {
-      "checksum": "fe3ff1c0eeed4b4cf03163ca2d634c72"
+      "checksum": "d2d0d63ef09cedf8581d1371ba518938"
     },
     "CHANGELOG.md": {
       "checksum": "b1622200170b6a9fecde294e57d6a0e0"
@@ -4690,13 +4665,13 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "DESCRIPTION": {
-      "checksum": "6b3100dc896b6c71b4fa58e1a3da2bd3"
+      "checksum": "dab706614c160753da5c84a5815811ca"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "522a670739b8dd9475bf499ba055ef1c"
+      "checksum": "3f76492125427009567c7254a2785f13"
     },
     "R/downloads.R": {
       "checksum": "ea11dfe26f4e0f3ae20a63a0e56c10b3"
@@ -4705,16 +4680,13 @@
       "checksum": "137c184e1e6917a43c7677a14373fc53"
     },
     "R/visuals.R": {
-      "checksum": "df15d4376528e47d14e3d159201671e8"
+      "checksum": "58f1021da2fa6d22fe17334bf00982ff"
     },
     "R/waitingScreens.R": {
       "checksum": "cdf86ff8be99d4bc4d15185a33c2f15a"
     },
     "README.md": {
       "checksum": "eef665cd63e15044507de68a54e50b45"
-    },
-    "sa_opu.log": {
-      "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "server.R": {
       "checksum": "376d8cb348afe2dc7e628336b2a0c140"
@@ -4750,7 +4722,7 @@
       "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"
     },
     "support_files/mechs.rds": {
-      "checksum": "522a670739b8dd9475bf499ba055ef1c"
+      "checksum": "3f76492125427009567c7254a2785f13"
     },
     "support_files/model_data_pack_input_21_20210202_1_flat.rds": {
       "checksum": "75318ab8927e10b549a262f8eb810426"
@@ -4769,9 +4741,6 @@
     },
     "support_files/README": {
       "checksum": "23d8254dae346ea59a603eb2a31ebe73"
-    },
-    "test.docx": {
-      "checksum": "2c44f681f794620af1fa79e86ae91fa1"
     },
     "tests/testthat.R": {
       "checksum": "ef70c660f50319ff7fe4fde5bfd85f2a"
