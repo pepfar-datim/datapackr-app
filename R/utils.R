@@ -756,23 +756,12 @@ generateComparisonTable<-function(d,d2_session) {
     ifelse(is.na(x),0,x) - ifelse(is.na(y),0,y)
   }
   
-  #This is the workaround for users not being able to 
-  #Access the api/dataValueSets endpoint
-  if (any(d2_session$me$authorities == "ALL")) {
+
     d_datim <- datapackr::getCOPDataFromDATIM(country_uids = d$info$country_uids,
                                               streams = c("mer_targets"),
                                               cop_year = d$info$cop_year,
                                               d2_session = d2_session)
-  } else {
-    d_datim <- getCOPDataFromS3(country_uids = d$info$country_uids,
-                                cop_year = d$info$cop_year)
-    msg <-paste("INFO: Your comparison table has been generated with cached data.",
-                "Please contact DATIM support for more information")
-    d$info$messages <- appendMessage(d$info$messages,msg,"INFO")
-  }
-  
-
-  
+ 
   if (NROW(d_datim) > 0) {
     
     d_datim <-  d_datim  %>% 
@@ -867,15 +856,4 @@ hasDimensionConstraints<-function(d2_session) {
   length(d2_session$me$userCredentials$catDimensionConstraints) > 0
 }
 
-
-getCOPDataFromS3 <- function(country_uids,cop_year) {
-  cop_data_path<-fetchSupportFiles("support_files/cop_data.rds")
-  
-   readRDS(cop_data_path) %>% 
-    dplyr::filter(country_uid %in% country_uids) %>% 
-    dplyr::filter(cop_year == cop_year) %>% 
-    dplyr::select(-cop_year,-country_uid)
-  
-  
-}
 
