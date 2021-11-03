@@ -4,6 +4,11 @@ pacman::p_load(shiny, shinyjs, shinyWidgets, magrittr, dplyr, datimvalidation, g
                 DT, purrr, praise, rpivotTable, waiter, flextable, officer, gdtools)
 
 
+#Parallel execution of validation rules on Windows is not supported
+if (Sys.info()[['sysname']] == 'Linux') {
+  pacman::p_load(doMC)
+}
+
 #Set the maximum file size for the upload file
 options(shiny.maxRequestSize = 100 * 1024 ^ 2)
 #Allow unsanitized error messages
