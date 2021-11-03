@@ -165,13 +165,6 @@
       "Repository": "CRAN",
       "Hash": "ebaa97ac99cc2daf04e77eecc7b781d7"
     },
-    "codetools": {
-      "Package": "codetools",
-      "Version": "0.2-18",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "019388fc48e48b3da0d3a76ff94608a8"
-    },
     "colorspace": {
       "Package": "colorspace",
       "Version": "2.0-2",
@@ -235,38 +228,33 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "5.0.0.0.0.0.1633107419",
-      "Source": "Repository",
-      "Repository": "RSPM",
+      "Version": "5.0.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "pepfar-datim",
+      "RemoteRepo": "datapackr",
+      "RemoteRef": "testing",
+      "RemoteSha": "fc35293f3d3fcd9cd5842c6dbba8e8f610f41edf",
       "Remotes": "pepfar-datim/datim-validation, pepfar-datim/data-pack-commons",
-      "RemoteSha": "a0cda0a17286de44635b456b20a4baaedf76692a",
-      "Hash": "7b99053d0114839c76ef2afb23621cc0"
+      "Hash": "6eefdb52caf6a266bb0d8bfce3fc1414"
     },
     "datimutils": {
       "Package": "datimutils",
-      "Version": "0.1.2",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteUsername": "pepfar-datim",
-      "RemoteRepo": "datimutils",
-      "RemoteRef": "master",
+      "Version": "0.1.2.0.0.0.1632829200",
+      "Source": "Repository",
+      "Repository": "RSPM",
       "RemoteSha": "bba00c371ba345865725def8b3b4830943963c5c",
-      "RemoteHost": "api.github.com",
-      "Hash": "e829deef0bb3a66af8225766d6991853"
+      "Hash": "a05c028766fea2eaa93b0485b5c4dbe9"
     },
     "datimvalidation": {
       "Package": "datimvalidation",
-      "Version": "1.1.2",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "pepfar-datim",
-      "RemoteRepo": "datim-validation",
-      "RemoteRef": "master",
-      "RemoteSha": "bc550850e5f767c23e9cc72938438ff7207dba54",
+      "Version": "1.1.2.0.0.0.1619515373",
+      "Source": "Repository",
+      "Repository": "RSPM",
       "Remotes": "pepfar-datim/datimutils",
-      "Remotes.1": "pepfar-datim/datimutils",
-      "Hash": "9f60df631fb6144716c7a4b2a86b7480"
+      "RemoteSha": "bc550850e5f767c23e9cc72938438ff7207dba54",
+      "Hash": "fa13527cdc265da63e5d1770f0650905"
     },
     "desc": {
       "Package": "desc",
@@ -288,14 +276,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "49b5c6e230bfec487b8917d5a0c77cca"
-    },
-    "doMC": {
-      "Package": "doMC",
-      "Version": "1.3.7",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "OS_type": "unix",
-      "Hash": "a51780731e2ec5eee714097df69ea204"
     },
     "dplyr": {
       "Package": "dplyr",
@@ -359,13 +339,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "55624ed409e46c5f358b2c060be87f67"
-    },
-    "foreach": {
-      "Package": "foreach",
-      "Version": "1.5.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "e32cfc0973caba11b65b1fa691b4d8c9"
     },
     "formatR": {
       "Package": "formatR",
@@ -499,13 +472,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "7ab57a6de7f48a8dc84910d1eca42883"
-    },
-    "iterators": {
-      "Package": "iterators",
-      "Version": "1.0.13",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "64778782a89480e9a644f69aad9a2877"
     },
     "jquerylib": {
       "Package": "jquerylib",
