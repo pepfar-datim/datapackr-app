@@ -325,7 +325,7 @@ preparePartnerMemoTable <- function(d, d2_session) {
                                     TRUE ~ Age)) %>%
     tidyr::complete(., tidyr::nesting(Mechanism, Agency, Partner), Indicator, Age, fill = list(Value = 0)) %>%
     tidyr::drop_na()
-
+ 
 
   df_rows <- memoStructure(cop_year = d$info$cop_year) %>%
     purrr::pluck("row_order") %>%
@@ -336,29 +336,39 @@ preparePartnerMemoTable <- function(d, d2_session) {
     dplyr::rename("Indicator" = ind,
                   Age = options)
 
-  #Agency level totals
-  d_totals <- dplyr::bind_rows(df, d_base) %>%
-    dplyr::group_by(`Agency`, `Indicator`, `Age`) %>%
+  #Calculate totals
+  
+  d_totals <- dplyr::bind_rows(d_base,df) %>%
+    dplyr::group_by(`Indicator`, `Age`) %>%
     dplyr::summarise(`Value` = sum(`Value`)) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(`Partner` = "")
+    dplyr::mutate(`Partner` = "Total", `Mechanism` = "Total", Agency = "Total")
 
+  #Remove dedupe
+  d_partners <- dplyr::filter(df, !(`Mechanism` %in% c("00001", "00000"))) #nolint
+  
   d_indicators <- memoStructure(d$info$cop_year) %>%
-    purrr::pluck("row_order") %>%
+    purrr::pluck("row_order") %>% 
     dplyr::filter(in_partner_table) %>%
     dplyr::select(ind, options) %>%
     dplyr::mutate(indicator_name = factor(paste(ind, options)))
-
+  
+  #Put totals at the bottom of the table
+  partner_levels <- c(sort(unique(df$Partner)), "Total")
+  agency_levels <- c(sort(unique(df$Agency)), "Total")
+  
   #Return the final data frame
-  d$data$partners_table <- dplyr::bind_rows(d_totals, df) %>%
+  d$data$partners_table <-dplyr::bind_rows(df, d_totals)  %>%
     dplyr::mutate(indicator_name = paste(`Indicator`, `Age`)) %>%
     dplyr::mutate(`Label` = indicator_name) %>%
-    dplyr::rename(`Funding Agency` = `Agency`) %>%
-    dplyr::arrange(`Funding Agency`, `Partner`, `Mechanism`, indicator_name) %>%
-    dplyr::select(`Funding Agency`, `Partner`, `Mechanism`, `Label`, `Value`) %>%
+    dplyr::arrange(`Agency`, `Partner`, `Mechanism`, indicator_name) %>%
+    dplyr::select(`Agency`, `Partner`, `Mechanism`, `Label`, `Value`) %>%
     tidyr::pivot_wider(names_from = `Label`, values_from = `Value`, values_fill = 0) %>%
-    dplyr::select(`Funding Agency`, `Partner`, `Mechanism`, d_indicators$indicator_name)
-
+    dplyr::select(`Agency`, `Partner`, `Mechanism`, d_indicators$indicator_name) %>% 
+    dplyr::mutate(`Partner` = factor(Partner, levels = partner_levels),
+                `Agency` = factor(Agency, levels = agency_levels)) %>%
+    dplyr::arrange(`Agency`, `Partner`, `Mechanism`)
+  
   return(d)
 
 
