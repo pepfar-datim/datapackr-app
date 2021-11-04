@@ -88,15 +88,13 @@ downloadMemo <- function(d) {
   renderPartnerTable <- function(chunk) {
     
     partner_table <-  flextable(partners_table[, chunk]) %>%
-      bg(., i = ~ Partner  == "", bg = "#E4DFEC", part = "body") %>%
+      bg(., i = ~ Partner  == "", bg = "#D3D3D3", part = "body") %>%
       bold(., i = ~ Partner  == "", bold = TRUE) %>%
       delete_part(., part = "header") %>%
       add_header_row(., values = sub_heading[chunk]) %>%
       add_header_row(., top = TRUE, values = group_heading[chunk]) %>%
       merge_h(., part = "header") %>%
       merge_v(., part = "header")  %>%
-      bg(., bg = "#CCC0D9", part = "header") %>%
-      bold(., bold = TRUE, part = "header") %>%
       fontsize(., size = 7, part = "all") %>%
       style(., pr_p = style_para_prio, part = "body") %>%
       width(., j = 1:3, 0.75) %>%
