@@ -1,7 +1,7 @@
 
 pacman::p_load(shiny, shinyjs, shinyWidgets, magrittr, dplyr, datimvalidation, ggplot2,
                futile.logger, paws, datapackr, scales,
-                DT, purrr, praise, rpivotTable, waiter, flextable, officer, gdtools)
+                DT, purrr, praise, rpivotTable, waiter, flextable, officer, gdtools,digest)
 
 
 #Parallel execution of validation rules on Windows is not supported
@@ -603,17 +603,18 @@ shinyServer(function(input, output, session) {
       d <- validation_results()
 
       if (input$downloadType  == "messages") {
+        sendEventToS3(d,"MESSAGE_DOWNLOAD")
         writeLines(d$info$messages$message, file)
       }
 
       if (input$downloadType  == "cso_flatpack") {
-
+        sendEventToS3(d,"CSO_FLATPACK_DOWNLOAD")
         wb <- downloadCSOFlatPack(d)
         openxlsx::saveWorkbook(wb, file = file, overwrite = TRUE)
       }
 
       if (input$downloadType  == "flatpack") {
-
+        sendEventToS3(d,"FLATPACK_DOWNLOAD")
         waiter_show(html = waiting_screen_flatpack, color = "rgba(128, 128, 128, .8)")
         datapack_name  <- d$info$datapack_name
         flog.info(
@@ -632,6 +633,7 @@ shinyServer(function(input, output, session) {
         sheets_with_data <- d$tests[lapply(d$tests, NROW) > 0]
 
         if (length(sheets_with_data) > 0) {
+          sendEventToS3(d,"VR_RULES_DOWNLOAD")
           openxlsx::write.xlsx(sheets_with_data, file = file)
         } else {
           showModal(modalDialog(
@@ -651,6 +653,7 @@ shinyServer(function(input, output, session) {
         flog.info("Fetching support files")
         d <- downloadDataPack(d)
         openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
+        sendEventToS3(d,"DATAPACK_DOWNLOAD")
         flog.info(
           paste0("Datapack reloaded for for ", d$info$datapack_name),
           name = "datapack")
@@ -672,11 +675,12 @@ shinyServer(function(input, output, session) {
                             sheet = "Comparison", x = d$data$compare)
 
         openxlsx::saveWorkbook(wb, file = file, overwrite = TRUE)
+        sendEventToS3(d,"COMPARISON_DOWNLOAD")
         waiter_hide()
       }
 
       if (input$downloadType  == "memo") {
-        
+        sendEventToS3(d,"MEMO_DOWNLOAD")
         doc <- downloadMemo(d)
         print(doc, target = file)
 
@@ -733,9 +737,12 @@ shinyServer(function(input, output, session) {
         d$info$operating_unit <- getOperatingUnitFromCountryUIDs(d$info$country_uids)
         
         
+        sendEventToS3(d,"VALIDATE")
         
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
         if (d$info$tool  == "Data Pack") {
+          
+
           
           d$info$needs_psnuxim  <-  d$info$missing_psnuxim_combos |
             (NROW(d$data$SNUxIM) == 1 & is.na(d$data$SNUxIM[[1, 1]]))
