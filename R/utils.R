@@ -173,7 +173,9 @@ validatePSNUData  <-  function(d, d2_session) {
                       "Formula" = formula,
                       "Diff (%)" = diff,
                       "Diff (Absolute)" = abs_diff)
-
+      
+      attr(d$tests$vr_rules_check, "test_name") <- "Validation rule violations"
+      
       warning_message  <-  paste("WARNING:",
           NROW(vr_violations),
           "validation rule issues found in",

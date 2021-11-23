@@ -791,6 +791,7 @@ shinyServer(function(input, output, session) {
             d <- comparePrioTables(d)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Finishing up."))
+            flog.info("Sending validation summary")
             r <- sendValidationSummary(d, "validation_error_summary", include_timestamp = TRUE)
             validationSummaryUI(r)
             
