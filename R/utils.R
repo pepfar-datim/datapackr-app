@@ -501,7 +501,9 @@ validationSummary2 <- function(d) {
     dplyr::mutate(ou = d$info$operating_unit$ou,
                   ou_id = d$info$operating_unit$ou_id,
                   country_name = d$info$datapack_name,
-                  country_uid = paste(d$info$country_uids, sep = "", collapse = ", ")) %>%
+                  country_uid = paste(d$info$country_uids, sep = "", collapse = ", "),
+                  ts = strftime(Sys.time() , "%Y-%m-%dT%H:%M:%S%z"),
+                  uuid = d$info$uuid) %>%
     dplyr::filter(count > 0)
 }
 
