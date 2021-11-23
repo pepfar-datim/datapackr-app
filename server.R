@@ -75,7 +75,7 @@ shinyServer(function(input, output, session) {
     r  <-  saveTimeStampLogToS3(d)
     timestampUploadUI(r)
     archiveDataPackErrorUI(r)
-    r  <-  sendValidationSummary(d, "validation_error")
+    r  <-  sendValidationSummary(d, "validation_error_summary")
     validationSummaryUI(r)
     r  <-  saveDATIMExportToS3(d)
     waiter_hide()
