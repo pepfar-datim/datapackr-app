@@ -75,8 +75,6 @@ shinyServer(function(input, output, session) {
     r  <-  saveTimeStampLogToS3(d)
     timestampUploadUI(r)
     archiveDataPackErrorUI(r)
-    r  <-  sendValidationSummary(d, "validation_error_summary")
-    validationSummaryUI(r)
     r  <-  saveDATIMExportToS3(d)
     waiter_hide()
     datimExportUI(r)
@@ -793,7 +791,7 @@ shinyServer(function(input, output, session) {
             d <- comparePrioTables(d)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Finishing up."))
-            r <- sendValidationSummary(d, "app_analytics", include_timestamp = TRUE)
+            r <- sendValidationSummary(d, "validation_error_summary", include_timestamp = TRUE)
             validationSummaryUI(r)
             
             shinyjs::enable("downloadType")
