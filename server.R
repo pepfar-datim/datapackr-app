@@ -137,7 +137,7 @@ shinyServer(function(input, output, session) {
   observeEvent(input$kpCascadeInput, {
     kpCascadeInput_filter$snu_filter  <-  input$kpCascadeInput
   })
-
+  
   observeEvent(input$logout, {
     flog.info(paste0("User ", user_input$d2_session$me$userCredentials$username, " logged out."))
     ready$ok  <-  FALSE
@@ -279,6 +279,7 @@ shinyServer(function(input, output, session) {
                    h5("Note: This is a draft memo table. Final figures may differ."),
                    tags$h4("Data source: PSNUxIM tab")),
           tabPanel("Memo Comparison",
+                   fluidRow(actionButton('reset_pivot',"Reset pivot")),
                    fluidRow(column(width = 12,
                                    div(rpivotTable::rpivotTableOutput({"memo_compare"})))), # nolint
                    fluidRow(tags$h4("Data source: PSNUxIM tab & DATIM")))
@@ -350,7 +351,10 @@ shinyServer(function(input, output, session) {
 
   output$memo_compare  <-  renderRpivotTable({
     vr <- validation_results()
-
+    #Take a dependency on the reset button
+    
+    reset_pivot <- input$reset_pivot
+    
     if (!inherits(vr, "error") & !is.null(vr)) {
 
       if (is.null(vr$data$compare)) {
@@ -687,6 +691,7 @@ shinyServer(function(input, output, session) {
   )
 
   validate <- function() {
+    
     shinyjs::disable("downloadType")
     shinyjs::disable("downloadOutputs")
     shinyjs::disable("send_paw")
@@ -732,15 +737,12 @@ shinyServer(function(input, output, session) {
         d$info$approval_status <- "UNAPPROVED"
         #Generate a unique identifier
         d$info$uuid <- uuid::UUIDgenerate()
+        #Get a single operating unit from the country IDs
         d$info$operating_unit <- getOperatingUnitFromCountryUIDs(d$info$country_uids)
-        
-        
+        #Log the validation to S3
         sendEventToS3(d,"VALIDATE")
-        
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
         if (d$info$tool  == "Data Pack") {
-          
-
           
           d$info$needs_psnuxim  <-  d$info$missing_psnuxim_combos |
             (NROW(d$data$SNUxIM) == 1 & is.na(d$data$SNUxIM[[1, 1]]))
@@ -749,6 +751,7 @@ shinyServer(function(input, output, session) {
                             choices = downloadTypes(tool_type =  d$info$tool,
                                                     needs_psnuxim = d$info$needs_psnuxim,
                                                     memo_authorized = user_input$memo_authorized))
+          
           if (d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) {
             
             flog.info(paste(d$info$tool, " with PSNUxIM tab found."))
