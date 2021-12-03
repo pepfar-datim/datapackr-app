@@ -1,4 +1,11 @@
-## October 4, 2020
+## December 1, 2021
+* Update to datapackr 5.0.2
+* Add a reset button to the comparison pivot
+* Enhanced logging for app analytics
+* Remove agency totals from the comparison
+* Various bug fixes
+
+## October 4, 2021
 * Update to datapackr 5.0.0
 * Fix bug when logging out
 * Add feature to fetch cached data values
