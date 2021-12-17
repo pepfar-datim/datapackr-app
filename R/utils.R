@@ -173,9 +173,9 @@ validatePSNUData  <-  function(d, d2_session) {
                       "Formula" = formula,
                       "Diff (%)" = diff,
                       "Diff (Absolute)" = abs_diff)
-      
+
       attr(d$tests$vr_rules_check, "test_name") <- "Validation rule violations"
-      
+
       warning_message  <-  paste("WARNING:",
           NROW(vr_violations),
           "validation rule issues found in",
@@ -322,14 +322,14 @@ archiveDataPackErrorUI  <-  function(r) {
 }
 
 sendEventToS3 <- function (d, event_type) {
-  
+
   s3 <- paws::s3()
   tm <- as.POSIXlt(Sys.time(), "UTC")
   ts_file <- strftime(tm , "%Y_%m_%d_%H_%M_%s")
-  
+
   object_name  <-
     paste0("datapackr_app_events/", ts_file,".csv")
-           
+
   event_info <- list(
     event_type = event_type,
     tool = d$info$tool,
@@ -339,7 +339,7 @@ sendEventToS3 <- function (d, event_type) {
     user = digest(d$info$source_user, "md5", serialize = FALSE),
     ts = strftime(tm , "%Y-%m-%dT%H:%M:%S%z")
   )
-  
+
   tmp <- tempfile()
   write.table(
     as.data.frame(event_info),
@@ -365,7 +365,7 @@ sendEventToS3 <- function (d, event_type) {
     flog.error("Event  could not be saved to S3", name = "datapack")
     FALSE
   })
-  
+
   unlink(tmp)
 }
 
@@ -586,10 +586,19 @@ saveDATIMExportToS3 <- function(d) {
   #Write the flatpacked output
   tmp  <-  tempfile()
 
-  datim_export <- dplyr::bind_rows(d$datim$subnat_impatt,
-  d$datim$fy22_prioritizations,
-  d$datim$MER) %>%
-  dplyr::mutate(value = as.character(value))
+  # Selects the correct dataset to send to PAW if the tool has a PSNUxIM tab
+  if (d$info$has_psnuxim) {
+    datim_export <- dplyr::bind_rows(d$datim$subnat_impatt,
+                                     d$datim$fy22_prioritizations,
+                                     d$datim$MER) %>%
+      dplyr::mutate(value = as.character(value))
+  } else {
+    datim_export <- dplyr::bind_rows(d$datim$subnat_impatt,
+                                     d$datim$fy22_prioritizations,
+                                     d$datim$UndistributedMER) %>%
+      dplyr::mutate(value = as.character(value))
+  }
+
 
   #Need better error checking here.
   write.table(
@@ -742,9 +751,9 @@ if (NROW(prios) > 0 & any(is.na(prios$Value))) {
   msg <- paste("ERROR! Missing prioriziation PSNU prioritization levels have been detected.",
                "Affected PSNUs will be classified as No Prioritization but may lead to inconsistencies",
                "in the draft memo generation and comparison")
-  
+
   d$info$messages <- appendMessage(d$info$messages,"ERROR")
-  
+
   prios <- prios %>%  dplyr::mutate("Value" = dplyr::case_when(is.na(Value) ~ 0,
                                                                TRUE  ~ Value))
 }
@@ -753,7 +762,7 @@ if (NROW(prios) == 0  & NROW(d$data$analytics) > 0) {
   msg <- paste("ERROR! We could not obtain any prioritization information from DATIM",
                "All PSNUs will be classified as No Prioritization but may lead to inconsistencies",
                "in the draft memo generation and comparison")
-  
+
   d$info$messages <- appendMessage(d$info$messages,"ERROR")
   prios <- tibble::tibble("Organisation unit" = psnus,
                       "Value" = 0,
@@ -777,66 +786,66 @@ d
 }
 
 generateComparisonTable<-function(d,d2_session) {
-  
+
   psnus <-    d$data$analytics$psnu_uid %>% unique() %>% unlist()
-  
+
   #Break up into 2048 character URLS (approximately)
   n_requests <-
     ceiling(nchar(paste(
       psnus, sep = "", collapse = ";"
     )) / 2048)
   n_groups <- split(psnus, rep_len(1:n_requests, length(psnus)))
-  
+
   prios <-
     n_groups %>% purrr::map_dfr(function(x)
       getExistingPrioritization(x, d$info$cop_year, d2_session))
-  
-  
+
+
   if (d$info$tool  == "OPU Data Pack") {
     d_datapack <- d$datim$OPU } else {
       d_datapack <- d$datim$MER
     }
-  
+
   #Not sure why the prioriziations are not the same
-  d_datapack <- d$data$analytics %>% 
-    dplyr::select(-prioritization) %>% 
-    dplyr::left_join(prios,by=c("psnu_uid")) %>% 
+  d_datapack <- d$data$analytics %>%
+    dplyr::select(-prioritization) %>%
+    dplyr::left_join(prios,by=c("psnu_uid")) %>%
     dplyr::select(-upload_timestamp)
-  
+
   diffWithNAs<-function(x,y) {
     ifelse(is.na(x),0,x) - ifelse(is.na(y),0,y)
   }
-  
+
 
     d_datim <- datapackr::getCOPDataFromDATIM(country_uids = d$info$country_uids,
                                               streams = c("mer_targets"),
                                               cop_year = d$info$cop_year,
                                               d2_session = d2_session)
- 
+
   if (NROW(d_datim) > 0) {
-    
-    d_datim <-  d_datim  %>% 
-      dplyr::select(dataElement,period,orgUnit,categoryOptionCombo,attributeOptionCombo,value,deleted) %>% 
-      dplyr::filter(is.na(deleted)) %>% 
-      dplyr::select(-deleted) %>% 
+
+    d_datim <-  d_datim  %>%
+      dplyr::select(dataElement,period,orgUnit,categoryOptionCombo,attributeOptionCombo,value,deleted) %>%
+      dplyr::filter(is.na(deleted)) %>%
+      dplyr::select(-deleted) %>%
       datapackr::adorn_import_file(.,
                                    cop_year = d$info$cop_year,
-                                   d2_session = d2_session) %>% 
-      dplyr::select(-prioritization) %>% 
-      dplyr::left_join(prios,by=c("psnu_uid")) %>% 
-      dplyr::rename("datim_value" = "target_value") %>% 
+                                   d2_session = d2_session) %>%
+      dplyr::select(-prioritization) %>%
+      dplyr::left_join(prios,by=c("psnu_uid")) %>%
+      dplyr::rename("datim_value" = "target_value") %>%
       dplyr::select(-upload_timestamp)
-    
-    d$datim$analytics <- d_datim 
-    
+
+    d$datim$analytics <- d_datim
+
   } else {
-    d_datim <- d_datapack[0,] %>% 
+    d_datim <- d_datapack[0,] %>%
       dplyr::rename("datim_value" = "target_value")
   }
-  
-  #Save this analytics object for later use in the memo generation 
-  d$datim$analytics <- d_datim 
-  
+
+  #Save this analytics object for later use in the memo generation
+  d$datim$analytics <- d_datim
+
   d_compare <- dplyr::full_join(d_datapack, d_datim) %>%
     dplyr::mutate(
       change_type = dplyr::case_when(
@@ -846,12 +855,12 @@ generateComparisonTable<-function(d,d2_session) {
         target_value != datim_value ~ "Update"
       )
     ) %>%  dplyr::mutate(datim_value = ifelse(is.na(datim_value),0,datim_value),
-                  target_value = ifelse(is.na(target_value),0,target_value)) %>% 
+                  target_value = ifelse(is.na(target_value),0,target_value)) %>%
     dplyr::mutate(identical = target_value == datim_value,
-                  "Diff" = target_value - datim_value) %>% 
+                  "Diff" = target_value - datim_value) %>%
   dplyr::filter(!identical)%>%
   tidyr::pivot_longer(cols=c(datim_value,target_value,Diff),names_to = "value_type") %>%
-  dplyr::mutate(value_type = dplyr::recode(value_type, datim_value = "Current",target_value = "Proposed", Diff = "Difference")) %>% 
+  dplyr::mutate(value_type = dplyr::recode(value_type, datim_value = "Current",target_value = "Proposed", Diff = "Difference")) %>%
     dplyr::select(
       "OU" = ou,
       "Country" = country_name,
@@ -872,14 +881,14 @@ generateComparisonTable<-function(d,d2_session) {
       "HTS Modality" = hts_modality,
       "Value type" = value_type,
       "Value" = value
-    ) %>% 
+    ) %>%
     dplyr::mutate(`Agency` = case_when(`Mechanism` %in% c("00000","00001") ~ "Dedupe",
                                        TRUE ~ `Agency`),
                   `Partner` = case_when(`Mechanism` %in% c("00000","00001") ~ "Dedupe",
                                        TRUE ~ `Partner`)
-                  ) %>% 
+                  ) %>%
     dplyr::filter(!stringr::str_detect(Indicator,"AGYW_PREV"))
-  
+
   d$data$compare<-d_compare
 
   return(d)
@@ -897,11 +906,11 @@ assignDedupeMetadata <- function(d) {
         TRUE ~ partner_desc
       ))
       return(d)
-      
+
 }
 
 hasDimensionConstraints<-function(d2_session) {
-  
+
   length(d2_session$me$userCredentials$catDimensionConstraints) > 0
 }
 
