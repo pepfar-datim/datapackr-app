@@ -172,7 +172,8 @@ shinyServer(function(input, output, session) {
   output$uiLogin  <-  renderUI({
 
     wellPanel(fluidRow(
-      img(src = "pepfar.png", align = "center"),
+      #img(src = "pepfar.png", align = "center"),
+      tags$div(HTML('<center><img src="pepfar.png"></center>')),
       h4("Welcome to the DataPack Validation App. Please login with your DATIM credentials:")
     ),
     fluidRow(
