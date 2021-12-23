@@ -81,8 +81,8 @@ shinyServer(function(input, output, session) {
   })
 
   observeEvent(input$login_button, {
-    tryCatch({
-      xxx=datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
+    loginAttempt <- tryCatch({
+        datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
           username = input$user_name,
           password = input$password,
           d2_session_envir = parent.env(environment())
@@ -90,11 +90,9 @@ shinyServer(function(input, output, session) {
       },
       # This function throws an error if the login is not successful
       error = function(e) {
-        flog.info(paste0("User ", input$user_name, " login failed. ",e$message), name = "datapack")
-        #print(e$message)
+        flog.info(paste0("User ", input$user_name, " login failed. ", e$message), name = "datapack")
       }
     )
-
 
     if (exists("d2_default_session")) {
       if (any(class(d2_default_session) == "d2Session")) {
@@ -122,7 +120,7 @@ shinyServer(function(input, output, session) {
       sendSweetAlert(
         session,
         title = "Login failed",
-        text = "Please check your username/password!",
+        text = substr(loginAttempt, 28, nchar(loginAttempt)),
         type = "error"
       )
     }
