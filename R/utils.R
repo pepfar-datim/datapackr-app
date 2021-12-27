@@ -811,7 +811,9 @@ generateComparisonTable<-function(d,d2_session) {
     d_datim <- datapackr::getCOPDataFromDATIM(country_uids = d$info$country_uids,
                                               streams = c("mer_targets"),
                                               cop_year = d$info$cop_year,
-                                              d2_session = d2_session)
+                                              d2_session = d2_session) 
+    #Deal with codes versus uids
+    d_datim$categoryOptionCombo[d_datim$categoryOptionCombo == "default"] <- datapackr::default_catOptCombo()
  
   if (NROW(d_datim) > 0) {
     
