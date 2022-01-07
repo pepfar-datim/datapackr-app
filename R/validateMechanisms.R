@@ -9,7 +9,7 @@ validateMechanisms <- function(d, d2_session) {
 
   mechs_datim <- datapackr::getMechanismView(d2_session = d2_session,
                                              update_stale_cache = TRUE,
-                                             cached_mechs_path = "support_files/mechs.rds") %>%
+                                             cached_mechs_path = "data/mechs.rds") %>%
     dplyr::filter(ou == operating_unit$ou) %>%
     dplyr::filter(!is.na(startdate)) %>%
     dplyr::filter(!is.na(enddate)) %>%

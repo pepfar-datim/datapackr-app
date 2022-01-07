@@ -60,8 +60,7 @@ downloadMemo <- function(d) {
     prio_table  <-  font(prio_table, fontname = fontname, part = "all")
   }
 
-
-  doc  <-  read_docx(path = "support_files/draft_memo_template.docx")
+  doc  <-  read_docx(path = "inst/extdata/draft_memo_template.docx")
   doc <- body_add_flextable(doc, value = prio_table)
   doc <- body_add_break(doc, pos = "after")
 

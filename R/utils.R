@@ -1,6 +1,5 @@
 getVersionInfo <- function() {
 
-
   currDCF  <-  read.dcf("DESCRIPTION")
   currVersion  <-  currDCF[1, "Version"]
 
@@ -10,8 +9,7 @@ getVersionInfo <- function() {
     paste(., "</p></div>")
 }
 
-fetchModelFile <- function(model_path="support_files/datapack_model_data.rds") {
-
+fetchModelFile <- function(model_path="data/datapack_model_data.rds") {
 
   can_read_file  <-  file.access(model_path, 4) == 0
   can_write_file  <- file.access(dirname(model_path), 2) == 0
@@ -34,8 +32,6 @@ fetchModelFile <- function(model_path="support_files/datapack_model_data.rds") {
   }
 
   return(dest_file)
-
-
 }
 
 fetchSupportFiles  <-  function(path) {
@@ -103,7 +99,6 @@ timestampUploadUI <- function(r) {
     showModal(modalDialog(title = "Error",
                           "Timestamp log could not be saved to S3."))
   }
-
 }
 
 validationSummaryUI <- function(r) {
@@ -147,7 +142,6 @@ assignDedupeMetadata <- function(d) {
 }
 
 hasDimensionConstraints<-function(d2_session) {
-  
   length(d2_session$me$userCredentials$catDimensionConstraints) > 0
 }
 

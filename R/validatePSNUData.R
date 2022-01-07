@@ -47,7 +47,7 @@ validatePSNUData  <-  function(d, d2_session) {
     is_parallel  <-  FALSE
   }
 
-  vr_rules <- readRDS("support_files/cop_validation_rules.rds") %>%
+  vr_rules <- readRDS("data/cop_validation_rules.rds") %>%
     purrr::pluck(., as.character(d$info$cop_year))
 
   vr_violations  <-  datimvalidation::validateData(vr_data,
