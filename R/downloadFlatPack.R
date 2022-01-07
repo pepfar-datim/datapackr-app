@@ -1,12 +1,12 @@
 downloadFlatPack <- function(d) {
   #Create a new workbook
-  wb  <-  openxlsx::createWorkbook()
+  wb <- openxlsx::createWorkbook()
   #Common to both OPUs and Datapacks
   openxlsx::addWorksheet(wb, "Analytics")
   openxlsx::writeDataTable(wb = wb,
                            sheet = "Analytics", x = d$data$analytics)
   #TODO. How to handle indicators which should not be summed
-  snu_summary  <-  prepareSNUSummaryTable(d)
+  snu_summary <- prepareSNUSummaryTable(d)
   openxlsx::addWorksheet(wb, "SNU Summary")
   openxlsx::writeDataTable(
     wb = wb,
@@ -34,13 +34,13 @@ downloadFlatPack <- function(d) {
     )
   }
   #Datapack specific
-  if (d$info$tool  == "Data Pack") {
+  if (d$info$tool == "Data Pack") {
 
-    mer_data  <-  d %>%
+    mer_data <- d %>%
       purrr::pluck(., "data") %>%
       purrr::pluck(., "MER")
 
-    subnat_impatt  <-  d %>%
+    subnat_impatt <- d %>%
       purrr::pluck(., "data") %>%
       purrr::pluck(., "SUBNAT_IMPATT")
 
@@ -66,15 +66,12 @@ downloadFlatPack <- function(d) {
   }
 
   #OPU specific
-  if (d$info$tool  == "OPU Data Pack") {
+  if (d$info$tool == "OPU Data Pack") {
 
     openxlsx::addWorksheet(wb, "DATIM export")
     openxlsx::writeData(wb = wb,
                         sheet = "DATIM export", x = d$datim$OPU)
-
   }
 
 return(wb)
-
-
 }

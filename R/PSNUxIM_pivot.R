@@ -1,6 +1,6 @@
 PSNUxIM_pivot <- function(d) {
 
-  pivot <- d  %>%
+  pivot <- d %>%
     purrr::pluck("data") %>%
     purrr::pluck("analytics") %>%
     dplyr::select(indicator,
@@ -16,7 +16,7 @@ PSNUxIM_pivot <- function(d) {
     dplyr::ungroup() %>%
     dplyr::mutate(mechanism_code = ifelse(mechanism_code == "HllvX50cXC0", "default", mechanism_code))
 
-  rpivotTable(data =   pivot, rows = c("dataelement_name"),
+  rpivotTable(data = pivot, rows = c("dataelement_name"),
               vals = "value", aggregatorName = "Integer Sum", rendererName = "Table"
               , width = "70%", height = "700px")
 }

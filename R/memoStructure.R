@@ -63,7 +63,7 @@ memoStructure <- function(cop_year="2020") {
   }
 
   #TOOD: Confirm the memo structure for 2022
-  if ( cop_year %in% c("2021", "2022")) {
+  if (cop_year %in% c("2021", "2022")) {
     row_order <- tibble::tribble(
       ~ind, ~options, ~in_partner_table,
       "HTS_INDEX", "<15", TRUE,

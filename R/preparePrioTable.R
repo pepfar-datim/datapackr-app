@@ -19,7 +19,7 @@ preparePrioTable <- function(d, d2_session) {
 
   inds <- getMemoIndicators(d, d2_session)
 
-  df <- d  %>%
+  df <- d %>%
     purrr::pluck("data") %>%
     purrr::pluck("analytics") %>%
     dplyr::filter(!is.na(target_value)) %>%
@@ -41,7 +41,7 @@ preparePrioTable <- function(d, d2_session) {
   df %<>%
     dplyr::select(-id, -numerator, -denominator) %>%
     tidyr::complete(., prioritization, name, fill = list(value = 0)) %>%
-    dplyr::mutate(name =  stringr::str_replace_all(name, "^COP2[01] Targets ", "")) %>%
+    dplyr::mutate(name = stringr::str_replace_all(name, "^COP2[01] Targets ", "")) %>%
     dplyr::mutate(name = stringr::str_trim(name)) %>%
     tidyr::separate("name", into = c("Indicator", "N_OR_D", "Age"), sep = " ") %>%
     dplyr::mutate(Indicator = case_when(Indicator == "GEND_GBV" & N_OR_D == "Physical" ~
@@ -55,8 +55,15 @@ preparePrioTable <- function(d, d2_session) {
                                   Age == "18-" ~"<18",
                                   Age == "18+" ~ "18+",
                                   TRUE ~ "Total")) %>%
-    dplyr::mutate(Age = case_when(Indicator %in% c("CXCA_SCRN", "OVC_HIVSTAT", "KP_PREV", "PMTCT_EID",
-                                                   "KP_MAT", "VMMC_CIRC", "PrEP_NEW", "PrEP_CURR", "GEND_GBV")  ~ "Total",
+    dplyr::mutate(Age = case_when(Indicator %in% c("CXCA_SCRN",
+                                                   "OVC_HIVSTAT",
+                                                   "KP_PREV",
+                                                   "PMTCT_EID",
+                                                   "KP_MAT",
+                                                   "VMMC_CIRC",
+                                                   "PrEP_NEW",
+                                                   "PrEP_CURR",
+                                                   "GEND_GBV") ~ "Total",
                                   TRUE ~ Age)) %>%
     dplyr::group_by(Age, Indicator, prioritization) %>%
     dplyr::summarise(value = sum(value)) %>%

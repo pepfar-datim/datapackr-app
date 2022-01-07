@@ -25,13 +25,11 @@ memo_getPrioritizationTable <- function(d, d2_session, cop_year = "2020", includ
     dplyr::rename("Indicator" = ind,
                   Age = options)
 
-
   psnus <- dplyr::bind_rows(datapackr::valid_PSNUs) %>%
     dplyr::filter(country_uid %in% d$info$country_uids) %>%
     dplyr::filter(!is.na(psnu_type)) %>%
     dplyr::pull(psnu_uid) %>%
     unique()
-
 
   #Break up into 2048 character URLS (approximately)
   n_requests <- ceiling(nchar(paste(psnus, sep = "", collapse = ";")) / 2048)
@@ -44,7 +42,7 @@ memo_getPrioritizationTable <- function(d, d2_session, cop_year = "2020", includ
                              d2_session = d2_session)
   }
 
-  df <- n_groups  %>% purrr::map_dfr(function(x) getPrioTable(x))
+  df <- n_groups %>% purrr::map_dfr(function(x) getPrioTable(x))
 
   if (is.null(df) | NROW(df) == 0) {
     return(d)
@@ -52,13 +50,12 @@ memo_getPrioritizationTable <- function(d, d2_session, cop_year = "2020", includ
 
   prios <- n_groups %>% purrr::map_dfr(function(x) getExistingPrioritization(x, d$info$cop_year, d2_session))
 
-
   df <- df %>%
     dplyr::rename("psnu_uid" = `Organisation unit`) %>%
-    dplyr::mutate(Value = as.numeric(Value))  %>%
+    dplyr::mutate(Value = as.numeric(Value)) %>%
     dplyr::inner_join(inds, by = c(`Data` = "id")) %>%
     dplyr::select(-Data) %>%
-    dplyr::mutate(name =  stringr::str_replace_all(name, "^COP2[01] Targets ", "")) %>%
+    dplyr::mutate(name = stringr::str_replace_all(name, "^COP2[01] Targets ", "")) %>%
     dplyr::mutate(name = stringr::str_trim(name)) %>%
     tidyr::separate("name", into = c("Indicator", "N_OR_D", "Age"), sep = " ") %>%
     dplyr::mutate(Indicator = case_when(Indicator == "GEND_GBV" & N_OR_D == "Physical" ~
@@ -72,8 +69,15 @@ memo_getPrioritizationTable <- function(d, d2_session, cop_year = "2020", includ
                                   Age == "18-" ~"<18",
                                   Age == "18+" ~ "18+",
                                   TRUE ~ "Total")) %>%
-    dplyr::mutate(Age = case_when(Indicator %in% c("CXCA_SCRN", "OVC_HIVSTAT", "KP_PREV",
-                                                   "PMTCT_EID", "KP_MAT", "VMMC_CIRC", "PrEP_NEW", "PrEP_CURR", "GEND_GBV")  ~ "Total",
+    dplyr::mutate(Age = case_when(Indicator %in% c("CXCA_SCRN",
+                                                   "OVC_HIVSTAT",
+                                                   "KP_PREV",
+                                                   "PMTCT_EID",
+                                                   "KP_MAT",
+                                                   "VMMC_CIRC",
+                                                   "PrEP_NEW",
+                                                   "PrEP_CURR",
+                                                   "GEND_GBV") ~ "Total",
                                   TRUE ~ Age)) %>%
     dplyr::left_join(., prios, by = "psnu_uid") %>%
     dplyr::mutate(prioritization = as.character(prioritization)) %>%
@@ -104,22 +108,19 @@ memo_getPrioritizationTable <- function(d, d2_session, cop_year = "2020", includ
     suppressWarnings()
 
   #Remove NOT pepfar supported if its only zeros, otherwise, show this, since its potentially problematic
-  if (df_final %>%  dplyr::select("Not PEPFAR Supported") %>% sum(., na.rm = TRUE) == 0) {
-    df_final <- df_final %>%  select(-`Not PEPFAR Supported`)
+  if (df_final %>% dplyr::select("Not PEPFAR Supported") %>% sum(., na.rm = TRUE) == 0) {
+    df_final <- df_final %>% select(-`Not PEPFAR Supported`)
   }
-
 
   df_final %<>%
     mutate("Total" = rowSums(across(where(is.numeric)))) %>%
     dplyr::select("Indicator", "Age", 3:dim(.)[2])
 
   if (!include_no_prio & any("No Prioritization" %in% names(df_final))) {
-    df_final  %<>% dplyr::select(-`No Prioritization`)
+    df_final %<>% dplyr::select(-`No Prioritization`)
   }
 
   d$data$memo$datim$prio <- df_final
 
   return(d)
-
-
 }

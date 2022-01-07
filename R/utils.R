@@ -1,7 +1,7 @@
 getVersionInfo <- function() {
 
-  currDCF  <-  read.dcf("DESCRIPTION")
-  currVersion  <-  currDCF[1, "Version"]
+  currDCF <- read.dcf("DESCRIPTION")
+  currVersion <- currDCF[1, "Version"]
 
   #paste0("Version: ", gert::git_branch(), "@", substr(gert::git_log(max=1)$commit, 0, 10)) %>%
   paste0("Version: ", currVersion) %>%
@@ -11,13 +11,14 @@ getVersionInfo <- function() {
 
 fetchModelFile <- function(model_path="data/datapack_model_data.rds") {
 
-  can_read_file  <-  file.access(model_path, 4) == 0
-  can_write_file  <- file.access(dirname(model_path), 2) == 0
-  max_cache_age  <-  "1 day"
+  can_read_file <- file.access(model_path, 4) == 0
+  can_write_file <- file.access(dirname(model_path), 2) == 0
+  max_cache_age <- "1 day"
 
   if (file.exists(model_path) & can_read_file) {
-    is_fresh  <-
-      lubridate::as.duration(lubridate::interval(file.info(model_path)$mtime, Sys.time())) < lubridate::duration(max_cache_age)
+    cache_age <- lubridate::interval(file.info(model_path)$mtime, Sys.time())
+    is_fresh <-
+      lubridate::as.duration(cache_age) < lubridate::duration(max_cache_age)
   } else{
     is_fresh <- FALSE
   }
@@ -34,30 +35,27 @@ fetchModelFile <- function(model_path="data/datapack_model_data.rds") {
   return(dest_file)
 }
 
-fetchSupportFiles  <-  function(path) {
+fetchSupportFiles <- function(path) {
 
+  s3 <- paws::s3()
+  s3_object <-
+    s3$get_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
+                  Key = path)
+  s3_object_body <- s3_object$Body
 
-    s3  <-  paws::s3()
-    s3_object  <-
-      s3$get_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
-                    Key = path)
-    s3_object_body  <-  s3_object$Body
+  #Hmm...use of getwd() is really not a good idea.
+  file_name2 <- paste0(getwd(), "/", path)
+  if (file.exists(file_name2)) {
+    unlink(file_name2)
+  }
 
-    #Hmm...use of getwd() is really not a good idea.
-    file_name2  <-  paste0(getwd(), "/", path)
-    if (file.exists(file_name2)) {
-      unlink(file_name2)
-    }
-
-    con <- file(file_name2, "wb")
-    writeBin(s3_object_body, con = con)
-    close(con)
-    flog.info(paste0("Retreived support file to ", file_name2))
-    if (!file.exists(file_name2)) {
-      stop("Could not retreive support file.")
-      }
+  con <- file(file_name2, "wb")
+  writeBin(s3_object_body, con = con)
+  close(con)
   flog.info(paste0("Retreived support file to ", file_name2))
   if (!file.exists(file_name2)) {
+    stop("Could not retreive support file.")
+  }
   return(file_name2)
 }
 
@@ -87,7 +85,7 @@ getCountryNameFromUID <- function(uid) {
     purrr::pluck(., "shortName")
 }
 
-archiveDataPackErrorUI  <-  function(r) {
+archiveDataPackErrorUI <- function(r) {
   if (!r) {
     showModal(modalDialog(title = "Error",
                           "The DataPack could not be archived."))
@@ -137,11 +135,9 @@ assignDedupeMetadata <- function(d) {
         mechanism_code %in% c("00000", "00001") ~ "Dedupe",
         TRUE ~ partner_desc
       ))
-      return(d)
-      
+  return(d)
 }
 
-hasDimensionConstraints<-function(d2_session) {
+hasDimensionConstraints <- function(d2_session) {
   length(d2_session$me$userCredentials$catDimensionConstraints) > 0
 }
-

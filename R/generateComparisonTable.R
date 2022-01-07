@@ -1,6 +1,6 @@
-generateComparisonTable<-function(d,d2_session) {
+generateComparisonTable <- function(d, d2_session) {
 
-  psnus <-    d$data$analytics$psnu_uid %>% unique() %>% unlist()
+  psnus <- d$data$analytics$psnu_uid %>% unique() %>% unlist()
 
   #Break up into 2048 character URLS (approximately)
   n_requests <-
@@ -14,19 +14,20 @@ generateComparisonTable<-function(d,d2_session) {
       getExistingPrioritization(x, d$info$cop_year, d2_session))
 
 
-  if (d$info$tool  == "OPU Data Pack") {
-    d_datapack <- d$datim$OPU } else {
+  if (d$info$tool == "OPU Data Pack") {
+    d_datapack <- d$datim$OPU
+    } else {
       d_datapack <- d$datim$MER
     }
 
   #Not sure why the prioriziations are not the same
   d_datapack <- d$data$analytics %>%
     dplyr::select(-prioritization) %>%
-    dplyr::left_join(prios,by=c("psnu_uid")) %>%
+    dplyr::left_join(prios, by = c("psnu_uid")) %>%
     dplyr::select(-upload_timestamp)
 
-  diffWithNAs<-function(x,y) {
-    ifelse(is.na(x),0,x) - ifelse(is.na(y),0,y)
+  diffWithNAs <- function(x, y) {
+    ifelse(is.na(x), 0, x) - ifelse(is.na(y), 0, y)
   }
 
 
@@ -39,22 +40,28 @@ generateComparisonTable<-function(d,d2_session) {
 
   if (NROW(d_datim) > 0) {
 
-    d_datim <-  d_datim  %>%
-      dplyr::select(dataElement,period,orgUnit,categoryOptionCombo,attributeOptionCombo,value,deleted) %>%
+    d_datim <- d_datim %>%
+      dplyr::select(dataElement,
+                    period,
+                    orgUnit,
+                    categoryOptionCombo,
+                    attributeOptionCombo,
+                    value,
+                    deleted) %>%
       dplyr::filter(is.na(deleted)) %>%
       dplyr::select(-deleted) %>%
       datapackr::adorn_import_file(.,
                                    cop_year = d$info$cop_year,
                                    d2_session = d2_session) %>%
       dplyr::select(-prioritization) %>%
-      dplyr::left_join(prios,by=c("psnu_uid")) %>%
+      dplyr::left_join(prios, by = c("psnu_uid")) %>%
       dplyr::rename("datim_value" = "target_value") %>%
       dplyr::select(-upload_timestamp)
 
     d$datim$analytics <- d_datim
 
   } else {
-    d_datim <- d_datapack[0,] %>%
+    d_datim <- d_datapack[0, ] %>%
       dplyr::rename("datim_value" = "target_value")
   }
 
@@ -69,13 +76,17 @@ generateComparisonTable<-function(d,d2_session) {
         !is.na(target_value) & is.na(datim_value) ~ "New value",
         target_value != datim_value ~ "Update"
       )
-    ) %>%  dplyr::mutate(datim_value = ifelse(is.na(datim_value),0,datim_value),
-                         target_value = ifelse(is.na(target_value),0,target_value)) %>%
+    ) %>%
+    dplyr::mutate(datim_value = ifelse(is.na(datim_value), 0, datim_value),
+                  target_value = ifelse(is.na(target_value), 0, target_value)) %>%
     dplyr::mutate(identical = target_value == datim_value,
                   "Diff" = target_value - datim_value) %>%
-    dplyr::filter(!identical)%>%
-    tidyr::pivot_longer(cols=c(datim_value,target_value,Diff),names_to = "value_type") %>%
-    dplyr::mutate(value_type = dplyr::recode(value_type, datim_value = "Current",target_value = "Proposed", Diff = "Difference")) %>%
+    dplyr::filter(!identical) %>%
+    tidyr::pivot_longer(cols = c(datim_value, target_value, Diff), names_to = "value_type") %>%
+    dplyr::mutate(value_type = dplyr::recode(value_type,
+                                             datim_value = "Current",
+                                             target_value = "Proposed",
+                                             Diff = "Difference")) %>%
     dplyr::select(
       "OU" = ou,
       "Country" = country_name,
@@ -97,14 +108,14 @@ generateComparisonTable<-function(d,d2_session) {
       "Value type" = value_type,
       "Value" = value
     ) %>%
-    dplyr::mutate(`Agency` = case_when(`Mechanism` %in% c("00000","00001") ~ "Dedupe",
+    dplyr::mutate(`Agency` = case_when(`Mechanism` %in% c("00000", "00001") ~ "Dedupe",
                                        TRUE ~ `Agency`),
-                  `Partner` = case_when(`Mechanism` %in% c("00000","00001") ~ "Dedupe",
+                  `Partner` = case_when(`Mechanism` %in% c("00000", "00001") ~ "Dedupe",
                                         TRUE ~ `Partner`)
     ) %>%
-    dplyr::filter(!stringr::str_detect(Indicator,"AGYW_PREV"))
+    dplyr::filter(!stringr::str_detect(Indicator, "AGYW_PREV"))
 
-  d$data$compare<-d_compare
+  d$data$compare <- d_compare
 
   return(d)
 }

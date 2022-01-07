@@ -6,9 +6,9 @@ evaluateIndicators <- function(combis, values, inds) {
                                  id = character(),
                                  numerator = numeric(),
                                  denominator = numeric(),
-                                 value  = numeric())
+                                 value = numeric())
 
-  this.des  <-
+  this.des <-
     vapply(combis, function(x) {
       unlist(strsplit(x, "\\."))[[1]]
     }, FUN.VALUE = character(1))
@@ -19,24 +19,21 @@ evaluateIndicators <- function(combis, values, inds) {
     dplyr::ungroup() %>%
     dplyr::mutate(exp = paste0(exp, "}"))
 
-  matches_indicator  <-  function(x) {
+  matches_indicator <- function(x) {
     agrepl(x, inds$numerator) |
       agrepl(x, inds$denominator)
   }
 
-
-  matches  <-  this.des %>%
+  matches <- this.des %>%
     unique(.) %>%
     purrr::map(., matches_indicator) %>%
     Reduce("|", .) %>%
     dplyr::filter(inds, .)
 
   #Return something empty here if we have no indicator matches
-
   if (nrow(matches) == 0) {
     return(indicators_empty)
   }
-
 
   replaceCombisWithValues <- function(x, combis.this=combis, values.this=values) {
     stringi::stri_replace_all_fixed(x,

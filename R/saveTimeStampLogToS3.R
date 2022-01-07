@@ -3,7 +3,7 @@ saveTimeStampLogToS3 <- function(d) {
   #Write an archived copy of the file
   s3 <- paws::s3()
   object_tags <- createS3BucketTags(d)
-  object_name  <-
+  object_name <-
     paste0("processed/",
            gsub("^20", "cop", d$info$cop_year),
            "/",
@@ -30,10 +30,10 @@ saveTimeStampLogToS3 <- function(d) {
     fileEncoding = "UTF-8"
   )
   # Load the file as a raw binary
-  read_file  <-  file(tmp, "rb")
-  raw_file  <-  readBin(read_file, "raw", n = file.size(tmp))
+  read_file <- file(tmp, "rb")
+  raw_file <- readBin(read_file, "raw", n = file.size(tmp))
   close(read_file)
-  object_name  <-
+  object_name <-
     paste0(
       "upload_timestamp/",
       gsub("^20", "cop", d$info$cop_year),

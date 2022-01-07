@@ -1,6 +1,6 @@
 saveDATIMExportToS3 <- function(d) {
   #Write the flatpacked output
-  tmp  <-  tempfile()
+  tmp <- tempfile()
 
   datim_export <- dplyr::bind_rows(d$datim$subnat_impatt,
                                    d$datim$fy22_prioritizations,
@@ -19,8 +19,8 @@ saveDATIMExportToS3 <- function(d) {
   )
 
   # Load the file as a raw binary
-  read_file  <-  file(tmp, "rb")
-  raw_file  <-  readBin(read_file, "raw", n = file.size(tmp))
+  read_file <- file(tmp, "rb")
+  raw_file <- readBin(read_file, "raw", n = file.size(tmp))
   close(read_file)
 
   object_tags <- createS3BucketTags(d)
@@ -38,7 +38,7 @@ saveDATIMExportToS3 <- function(d) {
     TRUE
   },
   error = function(err) {
-    flog.info("DATIM Export could not be sent to  S3", name = "datapack")
+    flog.info("DATIM Export could not be sent to S3", name = "datapack")
     flog.info(err, name = "datapack")
     FALSE
   })

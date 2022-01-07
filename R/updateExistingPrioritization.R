@@ -20,18 +20,18 @@ updateExistingPrioritization <- function(d, d2_session) {
                  "Affected PSNUs will be classified as No Prioritization but may lead to inconsistencies",
                  "in the draft memo generation and comparison")
 
-    d$info$messages <- appendMessage(d$info$messages,"ERROR")
+    d$info$messages <- appendMessage(d$info$messages, "ERROR")
 
-    prios <- prios %>%  dplyr::mutate("Value" = dplyr::case_when(is.na(Value) ~ 0,
-                                                                 TRUE  ~ Value))
+    prios <- prios %>% dplyr::mutate("Value" = dplyr::case_when(is.na(Value) ~ 0,
+                                                                 TRUE ~ Value))
   }
 
-  if (NROW(prios) == 0  & NROW(d$data$analytics) > 0) {
+  if (NROW(prios) == 0 & NROW(d$data$analytics) > 0) {
     msg <- paste("ERROR! We could not obtain any prioritization information from DATIM",
                  "All PSNUs will be classified as No Prioritization but may lead to inconsistencies",
                  "in the draft memo generation and comparison")
 
-    d$info$messages <- appendMessage(d$info$messages,"ERROR")
+    d$info$messages <- appendMessage(d$info$messages, "ERROR")
     prios <- tibble::tibble("Organisation unit" = psnus,
                             "Value" = 0,
                             "Data" = NA_character_)

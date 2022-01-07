@@ -2,7 +2,7 @@ sendValidationSummary <- function(d, s3_folder, include_timestamp=FALSE) {
 
   validation_summary <- validationSummary2(d)
 
-  tmp  <-  tempfile()
+  tmp <- tempfile()
   #Need better error checking here I think.
   write.table(
     validation_summary,
@@ -14,13 +14,13 @@ sendValidationSummary <- function(d, s3_folder, include_timestamp=FALSE) {
     fileEncoding = "UTF-8"
   )
   # Load the file as a raw binary
-  read_file  <-  file(tmp, "rb")
-  raw_file  <-  readBin(read_file, "raw", n = file.size(tmp))
+  read_file <- file(tmp, "rb")
+  raw_file <- readBin(read_file, "raw", n = file.size(tmp))
   close(read_file)
 
   object_tags <- createS3BucketTags(d)
   if (include_timestamp) {
-    object_name  <-
+    object_name <-
       paste0(
         s3_folder,
         "/",
@@ -32,7 +32,7 @@ sendValidationSummary <- function(d, s3_folder, include_timestamp=FALSE) {
         ".csv"
       )
   } else {
-    object_name  <-
+    object_name <-
       paste0(s3_folder,
              "/",
              gsub("^20", "cop", d$info$cop_year),

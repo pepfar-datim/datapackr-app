@@ -98,7 +98,6 @@ recencyComparison <- function(d) {
       class = "data.frame"
     )
 
-
   df <- d %>%
     purrr::pluck(., "data") %>%
     purrr::pluck(., "analytics") %>%

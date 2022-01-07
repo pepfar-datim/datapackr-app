@@ -1,6 +1,5 @@
 validatePSNUData  <-  function(d, d2_session) {
 
-
   vr_data <- d$data$analytics %>%
     dplyr::select(
       dataElement = dataelement_id,
@@ -35,7 +34,7 @@ validatePSNUData  <-  function(d, d2_session) {
     } else if  (d$info$cop_year == "2021") {
       c("YfZot37BbTm", "Pmc0yYAIi1t") #TODO...why do we have last years dataset here?
 
-    } else if (d$info$cop_year == "2022" ) {
+    } else if (d$info$cop_year == "2022") {
       c("iADcaCD5YXh")
     }
 
@@ -56,7 +55,6 @@ validatePSNUData  <-  function(d, d2_session) {
                                                    vr = vr_rules,
                                                    d2session = d2_session)
 
-
   if (NROW(vr_violations) > 0) {
 
     diff  <-  gsub(" [<>]= ", "/", vr_violations$formula)
@@ -67,7 +65,6 @@ validatePSNUData  <-  function(d, d2_session) {
 
     diff  <-  gsub(" [<>]= ", "-", vr_violations$formula)
     vr_violations$abs_diff  <-  sapply(diff, function(x)  abs(eval(parse(text = x))))
-
 
     if (NROW(vr_violations) > 0) {
 
@@ -88,7 +85,7 @@ validatePSNUData  <-  function(d, d2_session) {
                                  d$info$datapack_name,
                                  "DataPack."
       )
-      d$info$messages <- datapackr::appendMessage(d$info$messages,warning_message,"WARNING")
+      d$info$messages <- datapackr::appendMessage(d$info$messages, warning_message, "WARNING")
       flog.info(
         warning_message,
         name = "datapack"

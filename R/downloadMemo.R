@@ -5,9 +5,9 @@ downloadMemo <- function(d) {
     purrr::pluck("prio_table")
 
   #Remove any columns which are all zeros to save space.
-  column_filter  <-
+  column_filter <-
     d$data$prio_table %>%
-    summarise(across(where(is.numeric), ~ sum(.x, na.rm = FALSE) !=  0)) %>%
+    summarise(across(where(is.numeric), ~ sum(.x, na.rm = FALSE) != 0)) %>%
     t() %>%
     as.data.frame() %>%
     dplyr::filter(!V1) %>%
@@ -15,8 +15,9 @@ downloadMemo <- function(d) {
 
   prio_table %<>% dplyr::select(-column_filter)
 
-  prio_table %<>% dplyr::mutate_if(is.numeric,
-                                   function(x) ifelse(x  == 0, "-", formatC(x, format = "f", big.mark = ", ", digits = 0)))
+  prio_table %<>%
+    dplyr::mutate_if(is.numeric,
+                     function(x) ifelse(x == 0, "-", formatC(x, format = "f", big.mark = ", ", digits = 0)))
 
   style_para_prio <- fp_par(text.align = "right",
                             padding.right = 0.04,
@@ -43,38 +44,38 @@ downloadMemo <- function(d) {
     merge_h(., part = "header") %>%
     merge_v(., part = "header") %>%
     bg(., bg = "#CCC0D9", part = "header") %>%
-    bg(., i = ~ Age  == "Total", bg = "#E4DFEC", part = "body") %>% #Highlight total rows
-    bold(., i = ~ Age  == "Total", bold = TRUE, part = "body")  %>%
-    bg(., j =  "Indicator", bg = "#FFFFFF", part = "body") %>%
+    bg(., i = ~ Age == "Total", bg = "#E4DFEC", part = "body") %>% #Highlight total rows
+    bold(., i = ~ Age == "Total", bold = TRUE, part = "body") %>%
+    bg(., j = "Indicator", bg = "#FFFFFF", part = "body") %>%
     bold(., j = "Indicator", bold = FALSE) %>%
     bold(., bold = TRUE, part = "header") %>%
     fontsize(., size = 7, part = "all") %>%
     style(., pr_p = style_header_prio, part = "header") %>%
     style(., pr_p = style_para_prio, part = "body") %>%
-    align(., j = 1:2, align = "center") %>%  #Align first two columns center
-    flextable::add_footer_lines(., values =  paste("* Totals may be greater than the sum of categories",
-                                                   "due to activities outside of the SNU prioritization areas outlined above"))
+    align(., j = 1:2, align = "center") %>% #Align first two columns center
+    flextable::add_footer_lines(values = paste("* Totals may be greater than the sum of categories",
+                                               "due to activities outside of the SNU",
+                                               "prioritization areas outlined above"))
 
   fontname <- "Arial"
   if (gdtools::font_family_exists(fontname)) {
-    prio_table  <-  font(prio_table, fontname = fontname, part = "all")
+    prio_table <- font(prio_table, fontname = fontname, part = "all")
   }
 
-  doc  <-  read_docx(path = "inst/extdata/draft_memo_template.docx")
+  doc <- read_docx(path = "inst/extdata/draft_memo_template.docx")
   doc <- body_add_flextable(doc, value = prio_table)
   doc <- body_add_break(doc, pos = "after")
 
   #Partners tables
-
-  partners_table  <- d$data$partners_table %>%
+  partners_table <- d$data$partners_table %>%
     dplyr::mutate_if(is.numeric,
-                     function(x) ifelse(x  == 0, "-", formatC(x, format = "f", big.mark = ", ", digits = 0)))
+                     function(x) ifelse(x == 0, "-", formatC(x, format = "f", big.mark = ", ", digits = 0)))
 
   sub_heading <- names(partners_table)[4:length(partners_table)] %>%
     stringr::str_split(., " ") %>%
     purrr::map(purrr::pluck(2)) %>%
     unlist() %>%
-    c("Funding Agency", "Partner", "Mechanism",.)
+    c("Funding Agency", "Partner", "Mechanism", .)
 
   group_heading <- names(partners_table)[4:length(partners_table)] %>%
     stringr::str_split(., " ") %>%
@@ -86,14 +87,14 @@ downloadMemo <- function(d) {
 
   renderPartnerTable <- function(chunk) {
 
-    partner_table <-  flextable(partners_table[, chunk]) %>%
-      bg(., i = ~ Partner  == "", bg = "#D3D3D3", part = "body") %>%
-      bold(., i = ~ Partner  == "", bold = TRUE) %>%
+    partner_table <- flextable(partners_table[, chunk]) %>%
+      bg(., i = ~ Partner == "", bg = "#D3D3D3", part = "body") %>%
+      bold(., i = ~ Partner == "", bold = TRUE) %>%
       delete_part(., part = "header") %>%
       add_header_row(., values = sub_heading[chunk]) %>%
       add_header_row(., top = TRUE, values = group_heading[chunk]) %>%
       merge_h(., part = "header") %>%
-      merge_v(., part = "header")  %>%
+      merge_v(., part = "header") %>%
       fontsize(., size = 7, part = "all") %>%
       style(., pr_p = style_para_prio, part = "body") %>%
       width(., j = 1:3, 0.75) %>%
@@ -101,7 +102,7 @@ downloadMemo <- function(d) {
 
     fontname <- "Arial"
     if (gdtools::font_family_exists(fontname)) {
-      partner_table  <-  font(partner_table, fontname = fontname, part = "all")
+      partner_table <- font(partner_table, fontname = fontname, part = "all")
     }
 
     return(partner_table)

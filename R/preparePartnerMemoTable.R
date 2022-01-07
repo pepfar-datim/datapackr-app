@@ -2,7 +2,7 @@ preparePartnerMemoTable <- function(d, d2_session) {
 
   inds <- getMemoIndicators(d, d2_session)
 
-  df <- d  %>%
+  df <- d %>%
     purrr::pluck("data") %>%
     purrr::pluck("analytics") %>%
     dplyr::filter(!is.na(target_value)) %>%
@@ -20,7 +20,7 @@ preparePartnerMemoTable <- function(d, d2_session) {
                   evaluateIndicators(x$combi, x$value, inds)) %>%
     dplyr::rename("Mechanism" = mechanism_code, "Agency" = funding_agency, "Partner" = partner_desc, Value = value) %>%
     dplyr::select(-id, -numerator, -denominator) %>%
-    dplyr::mutate(name =  stringr::str_replace_all(name, "^COP2[01] Targets ", "")) %>%
+    dplyr::mutate(name = stringr::str_replace_all(name, "^COP2[01] Targets ", "")) %>%
     dplyr::mutate(name = stringr::str_trim(name)) %>%
     tidyr::separate("name", into = c("Indicator", "N_OR_D", "Age"), sep = " ") %>%
     dplyr::mutate(Indicator = case_when(Indicator == "GEND_GBV" & N_OR_D == "Physical" ~
@@ -34,8 +34,15 @@ preparePartnerMemoTable <- function(d, d2_session) {
                                   Age == "18-" ~"<18",
                                   Age == "18+" ~ "18+",
                                   TRUE ~ "Total")) %>%
-    dplyr::mutate(Age = case_when(Indicator %in% c("CXCA_SCRN", "OVC_HIVSTAT", "KP_PREV", "PMTCT_EID",
-                                                   "KP_MAT", "VMMC_CIRC", "PrEP_NEW", "PrEP_CURR", "GEND_GBV")  ~ "Total",
+    dplyr::mutate(Age = case_when(Indicator %in% c("CXCA_SCRN",
+                                                   "OVC_HIVSTAT",
+                                                   "KP_PREV",
+                                                   "PMTCT_EID",
+                                                   "KP_MAT",
+                                                   "VMMC_CIRC",
+                                                   "PrEP_NEW",
+                                                   "PrEP_CURR",
+                                                   "GEND_GBV") ~ "Total",
                                   TRUE ~ Age)) %>%
     tidyr::complete(., tidyr::nesting(Mechanism, Agency, Partner), Indicator, Age, fill = list(Value = 0)) %>%
     tidyr::drop_na()
@@ -51,7 +58,7 @@ preparePartnerMemoTable <- function(d, d2_session) {
 
   #Calculate totals
 
-  d_totals <- dplyr::bind_rows(d_base,df) %>%
+  d_totals <- dplyr::bind_rows(d_base, df) %>%
     dplyr::group_by(`Indicator`, `Age`) %>%
     dplyr::summarise(`Value` = sum(`Value`)) %>%
     dplyr::ungroup() %>%
@@ -72,7 +79,7 @@ preparePartnerMemoTable <- function(d, d2_session) {
   agency_levels <- c(sort(unique(df$Agency)), "Total")
 
   #Return the final data frame
-  d$data$partners_table <-dplyr::bind_rows(df, d_totals)  %>%
+  d$data$partners_table <- dplyr::bind_rows(df, d_totals) %>%
     dplyr::mutate(indicator_name = paste(`Indicator`, `Age`)) %>%
     dplyr::mutate(`Label` = indicator_name) %>%
     dplyr::arrange(`Agency`, `Partner`, `Mechanism`, indicator_name) %>%

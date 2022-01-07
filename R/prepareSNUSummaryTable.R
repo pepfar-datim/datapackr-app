@@ -15,7 +15,6 @@ prepareSNUSummaryTable <- function(d) {
     }
   }
 
-
   if (NROW(df) == 0) {
     return(d)
   }

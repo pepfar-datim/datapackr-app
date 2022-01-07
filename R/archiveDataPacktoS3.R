@@ -9,8 +9,8 @@ archiveDataPacktoS3 <- function(d, datapath) {
                         ".xlsx")
 
   # Load the file as a raw binary
-  read_file  <-  file(datapath, "rb")
-  raw_file  <-  readBin(read_file, "raw", n = file.size(datapath))
+  read_file <- file(datapath, "rb")
+  raw_file <- readBin(read_file, "raw", n = file.size(datapath))
   close(read_file)
 
   r <- tryCatch({

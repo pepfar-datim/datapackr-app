@@ -62,7 +62,7 @@ modalitySummaryTable <- function(d) {
     dplyr::mutate(greater_than_zero = value > 0)
 
   is_ok <- Reduce("&", structure_check$greater_than_zero) &
-    Reduce("&", c("Negative", "Positive") %in%  structure_check$resultstatus_inclusive)
+    Reduce("&", c("Negative", "Positive") %in% structure_check$resultstatus_inclusive)
 
   if (is_ok) {
     hts %<>%
@@ -114,7 +114,7 @@ modalityYieldChart <- function(d) {
   cop_year <- as.numeric(stringr::str_replace(d$info$cop_year, "^20", ""))
   chart_label <- paste0("COP", cop_year, "/FY", cop_year + 1, " Testing Yields")
 
-  if (NROW(df)  == 0) {
+  if (NROW(df) == 0) {
     return(NULL)
   }
 

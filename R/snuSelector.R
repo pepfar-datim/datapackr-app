@@ -4,7 +4,7 @@ snuSelector <- function(df) {
     return(NULL)
   }
 
-  snu_list <- df  %>%
+  snu_list <- df %>%
     purrr::pluck(., "data") %>%
     purrr::pluck(., "analytics") %>%
     dplyr::pull(., "snu1") %>%

@@ -13,9 +13,8 @@ downloadDataPack <- function(d) {
     stop("WOMP!")
   }
 
-  d  <-  writePSNUxIM(d, snuxim_model_data_path = support_file)
+  d <- writePSNUxIM(d, snuxim_model_data_path = support_file)
   unlink(support_file)
 
   return(d)
-
 }

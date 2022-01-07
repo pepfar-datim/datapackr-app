@@ -6,13 +6,12 @@ getExistingPrioritization <- function(psnus, cop_year, d2_session) {
 
   prios <- datimutils::getAnalytics(dx = "r4zbW3owX9n", pe_f = period, ou = ous, d2_session = d2_session)
 
-
   if (is.null(prios)) {
     return(data.frame("psnu_uid" = psnus, "prioritization" = "No Prioritization"))
   }
 
   #Check for invalid prioritization levels, and throw an error if this occurs
-  if (!all(prios$Value %in% c(datapackr::prioritization_dict() %>% dplyr::pull(value), NA)))  {
+  if (!all(prios$Value %in% c(datapackr::prioritization_dict() %>% dplyr::pull(value), NA))) {
     stop("Invalid prioritization levels detected. Please contact DATIM support.")
   }
 

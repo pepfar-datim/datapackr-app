@@ -1,9 +1,7 @@
 sendMERDataToPAW <- function(d) {
 
-
-
   #Write the combined DATIM export for MER and SUBNATT data
-  tmp  <-  tempfile()
+  tmp <- tempfile()
   mer_data <- dplyr::bind_rows(d$datim) %>%
     dplyr::mutate(categoryOptionCombo = case_when(is.na(categoryOptionCombo) ~ "HllvX50cXC0",
                                                   TRUE ~categoryOptionCombo)) %>%
@@ -21,8 +19,8 @@ sendMERDataToPAW <- function(d) {
   )
 
   # Load the file as a raw binary
-  read_file  <-  file(tmp, "rb")
-  raw_file  <-  readBin(read_file, "raw", n = file.size(tmp))
+  read_file <- file(tmp, "rb")
+  raw_file <- readBin(read_file, "raw", n = file.size(tmp))
   close(read_file)
 
   object_tags <- createS3BucketTags(d)

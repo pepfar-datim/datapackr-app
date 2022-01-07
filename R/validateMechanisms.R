@@ -1,7 +1,7 @@
 #TODO: Move this back to the DataPackr....
 validateMechanisms <- function(d, d2_session) {
 
-  mechs_data  <-  unique(d$datim$MER$attributeOptionCombo)
+  mechs_data <- unique(d$datim$MER$attributeOptionCombo)
 
   period_info <- datimvalidation::getPeriodFromISO(paste0(d$info$cop_year, "Oct"))
 
@@ -22,18 +22,18 @@ validateMechanisms <- function(d, d2_session) {
 
   #Allow for the dedupe mechanisms in COP20 OPU Data Packs
   if (d$info$tool == "OPU Data Pack" & d$info$cop_year == 2020) {
-    mechs_datim  <-  append(c("00000", "00001"), mechs_datim)
+    mechs_datim <- append(c("00000", "00001"), mechs_datim)
   }
 
   #Allow for the dedupe mechanisms in COP21 Data packs
   if (d$info$tool == "Data Pack" & d$info$cop_year == 2021) {
-    mechs_datim  <-  append(c("00000", "00001"), mechs_datim)
+    mechs_datim <- append(c("00000", "00001"), mechs_datim)
   }
 
   bad_mechs <- mechs_data[!(mechs_data %in% mechs_datim)]
 
   if (length(bad_mechs) > 0) {
-    msg  <-  paste0("ERROR!: Invalid mechanisms found in the PSNUxIM tab.
+    msg <- paste0("ERROR!: Invalid mechanisms found in the PSNUxIM tab.
                   These MUST be reallocated to a valid mechanism
                   ", paste(bad_mechs, sep = "", collapse = ", "))
     d$tests$bad_mechs <- bad_mechs
