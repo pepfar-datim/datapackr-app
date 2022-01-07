@@ -1,11 +1,11 @@
 #Should probably move this to datapackr
 preparePrioTable <- function(d, d2_session) {
 
-  df_cols <- memoStructure(cop_year = d$info$cop_year) %>%
-    purrr::pluck("col_order")
+  d <- memoStructure(d)
 
-  df_rows <- memoStructure(cop_year = d$info$cop_year) %>%
-    purrr::pluck("row_order") %>%
+  df_cols <- purrr::pluck(d$memo$structure, "col_order")
+
+  df_rows <- purrr::pluck(d$memo$structure, "row_order") %>%
     dplyr::select(ind, options) %>%
     dplyr::mutate(row_order = dplyr::row_number())
 

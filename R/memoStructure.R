@@ -1,6 +1,6 @@
-memoStructure <- function(cop_year="2020") {
+memoStructure <- function(d) {
 
-  if (cop_year == "2020") {
+  if (d$info$cop_year == "2020") {
     row_order <- tibble::tribble(
       ~ind, ~options, ~in_partner_table,
       "HTS_INDEX", "<15", TRUE,
@@ -63,7 +63,7 @@ memoStructure <- function(cop_year="2020") {
   }
 
   #TOOD: Confirm the memo structure for 2022
-  if (cop_year %in% c("2021", "2022")) {
+  if (d$info$cop_year %in% c("2021", "2022")) {
     row_order <- tibble::tribble(
       ~ind, ~options, ~in_partner_table,
       "HTS_INDEX", "<15", TRUE,
@@ -140,5 +140,7 @@ memoStructure <- function(cop_year="2020") {
 
   memo_structure <- list(row_order = row_order, col_order = col_order)
 
-  return(memo_structure)
+  d$memo$structure <- memo_structure
+
+  return(d)
 }
