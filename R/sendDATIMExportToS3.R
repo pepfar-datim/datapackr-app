@@ -1,4 +1,4 @@
-saveDATIMExportToS3 <- function(d) {
+sendDATIMExportToS3 <- function(d) {
   #Write the flatpacked output
   tmp <- tempfile()
 

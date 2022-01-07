@@ -1,4 +1,4 @@
-sendValidationSummary <- function(d, s3_folder, include_timestamp=FALSE) {
+sendValidationSummaryToS3 <- function(d, s3_folder, include_timestamp=FALSE) {
 
   validation_summary <- validationSummary2(d)
 

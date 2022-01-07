@@ -1,4 +1,4 @@
-saveTimeStampLogToS3 <- function(d) {
+sendTimeStampLogToS3 <- function(d) {
 
   #Write an archived copy of the file
   s3 <- paws::s3()

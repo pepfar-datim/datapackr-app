@@ -1,4 +1,4 @@
-archiveDataPacktoS3 <- function(d, datapath) {
+sendDataPackToS3 <- function(d, datapath) {
 
   #Write an archived copy of the file
   s3 <- paws::s3()

@@ -73,10 +73,10 @@ getOperatingUnitFromCountryUIDs <- function(country_uids) {
   return(ou)
 }
 
-archiveDataPackErrorUI <- function(r) {
+sendDataPackErrorUI <- function(r) {
   if (!r) {
     showModal(modalDialog(title = "Error",
-                          "The DataPack could not be archived."))
+                          "The Data Pack could not be archived."))
   }
 }
 

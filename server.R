@@ -72,10 +72,10 @@ shinyServer(function(input, output, session) {
   observeEvent(input$send_paw, {
     waiter_show(html = waiting_screen_paw, color = "rgba(128, 128, 128, .8)")
     d  <-  validation_results()
-    r  <-  saveTimeStampLogToS3(d)
+    r  <-  sendTimeStampLogToS3(d)
     timestampUploadUI(r)
-    archiveDataPackErrorUI(r)
-    r  <-  saveDATIMExportToS3(d)
+    sendDataPackErrorUI(r)
+    r  <-  sendDATIMExportToS3(d)
     waiter_hide()
     datimExportUI(r)
   })
@@ -774,8 +774,8 @@ shinyServer(function(input, output, session) {
             if (Sys.getenv("SEND_DATAPACK_ARCHIVE")  == "TRUE") {
               incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
               Sys.sleep(0.5)
-              r <- archiveDataPacktoS3(d, inFile$datapath)
-              archiveDataPackErrorUI(r)
+              r <- sendDataPackToS3(d, inFile$datapath)
+              sendDataPackErrorUI(r)
               Sys.sleep(1)
             }
 
@@ -804,7 +804,7 @@ shinyServer(function(input, output, session) {
             Sys.sleep(1)
             incProgress(0.1, detail = ("Finishing up."))
             flog.info("Sending validation summary")
-            r <- sendValidationSummary(d, "validation_error_summary", include_timestamp = TRUE)
+            r <- sendValidationSummaryToS3(d, "validation_error_summary", include_timestamp = TRUE)
             validationSummaryUI(r)
 
             shinyjs::enable("downloadType")
