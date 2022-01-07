@@ -10,7 +10,7 @@ downloadTypes  <-  function(tool_type="Data Pack", needs_psnuxim=FALSE, memo_aut
       "CSO Flatpack",
       "Messages",
       "Validation report",
-      "New PSNUxIM",
+      #"New PSNUxIM",
       "Comparison",
       "COP Memo"
     )
@@ -19,7 +19,7 @@ downloadTypes  <-  function(tool_type="Data Pack", needs_psnuxim=FALSE, memo_aut
       "cso_flatpack",
       "messages",
       "vr_rules",
-      "datapack",
+      # "datapack",
       "comparison",
       "memo")
 
