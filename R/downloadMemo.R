@@ -105,7 +105,7 @@ downloadMemo <- function(d) {
       partner_table  <-  font(partner_table, fontname = fontname, part = "all")
     }
 
-    partner_table
+    return(partner_table)
   }
 
   for (i in seq_along(chunks)) {

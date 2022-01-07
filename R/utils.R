@@ -60,6 +60,8 @@ fetchSupportFiles  <-  function(path) {
     if (!file.exists(file_name2)) {
       stop("Could not retreive support file.")
       }
+  flog.info(paste0("Retreived support file to ", file_name2))
+  if (!file.exists(file_name2)) {
   return(file_name2)
 }
 
@@ -73,7 +75,7 @@ getOperatingUnitFromCountryUIDs <- function(country_uids) {
 
   if (NROW(ou) != 1) {
     stop("Datapacks cannot belong to multiple operating units")
-     }
+  }
 
   ou
 }

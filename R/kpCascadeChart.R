@@ -40,7 +40,7 @@ kpCascadeChart <- function(d, kpCascadeInput_filter) {
   cop_year <- as.numeric(stringr::str_replace(d$info$cop_year, "^20", ""))
   chart_label <- paste0("COP", cop_year, "/FY", cop_year + 1, " Epidemic Cascade Age & Sex Pyramid")
 
-  df %>%
+  gg <- df %>%
     ggplot(aes(x = indicator, y = value, fill = lbl)) +
     geom_bar(data = df,
              stat = "identity",
@@ -61,4 +61,5 @@ kpCascadeChart <- function(d, kpCascadeInput_filter) {
           panel.grid.minor.x = element_blank(),
           panel.grid.major.y = element_line(color = "#595959"))
 
+  return(gg)
 }

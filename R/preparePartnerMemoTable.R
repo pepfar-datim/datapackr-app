@@ -40,8 +40,6 @@ preparePartnerMemoTable <- function(d, d2_session) {
     tidyr::complete(., tidyr::nesting(Mechanism, Agency, Partner), Indicator, Age, fill = list(Value = 0)) %>%
     tidyr::drop_na()
 
-
-
   df_rows <- memoStructure(cop_year = d$info$cop_year) %>%
     purrr::pluck("row_order") %>%
     dplyr::select(ind, options)
@@ -86,6 +84,4 @@ preparePartnerMemoTable <- function(d, d2_session) {
     dplyr::arrange(`Agency`, `Partner`, `Mechanism`)
 
   return(d)
-
-
 }

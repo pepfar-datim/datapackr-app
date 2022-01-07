@@ -130,7 +130,6 @@ recencyComparison <- function(d) {
     dplyr::setequal(names(df), c("hts_recency_compare", "HTS_TST", "HTS_RECENT"))
 
   if (can_proceed) {
-
     d$data$recency <- df %>%
       dplyr::select("Modality" = hts_recency_compare,
                     HTS_RECENT,
@@ -140,10 +139,8 @@ recencyComparison <- function(d) {
       dplyr::mutate(
         HTS_RECENT = format(HTS_RECENT, big.mark = ", ", scientific = FALSE),
         HTS_TST_POS = format(HTS_TST_POS, big.mark = ", ", scientific = FALSE),
-        `HTS_RECENT (%)` = format(round(`HTS_RECENT (%)`, 2), nsmall = 2)
-      )
+        `HTS_RECENT (%)` = format(round(`HTS_RECENT (%)`, 2), nsmall = 2))
   }
 
-  d
-
+  return(d)
 }

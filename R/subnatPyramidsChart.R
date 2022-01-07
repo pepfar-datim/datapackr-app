@@ -1,6 +1,5 @@
 subnatPyramidsChart <- function(d, epi_graph_filter_results) {
 
-
   df <- d %>%
     purrr::pluck(., "data") %>%
     purrr::pluck(., "analytics")
@@ -41,7 +40,7 @@ subnatPyramidsChart <- function(d, epi_graph_filter_results) {
   cop_year <- as.numeric(stringr::str_replace(d$info$cop_year, "^20", ""))
   chart_label <- paste0("COP", cop_year, "/FY", cop_year + 1, " Epidemic Cascade Age & Sex Pyramid")
 
-  df %>%
+  gg <- df %>%
     ggplot(aes(x = Age, y = value, fill = indicator_code)) +
     geom_bar(data = df %>% dplyr::filter(Sex == "Female") %>% dplyr::arrange(indicator_code),
              stat = "identity",
@@ -66,4 +65,5 @@ subnatPyramidsChart <- function(d, epi_graph_filter_results) {
           panel.grid.major.x = element_line(color = "#595959"),
           panel.grid.minor.y = element_blank())
 
+  return(gg)
 }

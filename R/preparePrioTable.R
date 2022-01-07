@@ -88,8 +88,5 @@ preparePrioTable <- function(d, d2_session) {
     mutate("Total" = rowSums(across(where(is.numeric)))) %>%
     dplyr::select("Indicator", "Age", 3:dim(.)[2])
 
-
   return(d)
-
-
 }

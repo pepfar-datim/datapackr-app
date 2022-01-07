@@ -1,6 +1,5 @@
 sendValidationSummary <- function(d, s3_folder, include_timestamp=FALSE) {
 
-
   validation_summary <- validationSummary2(d)
 
   tmp  <-  tempfile()
@@ -62,5 +61,4 @@ sendValidationSummary <- function(d, s3_folder, include_timestamp=FALSE) {
   unlink(tmp)
 
   return(r)
-
 }

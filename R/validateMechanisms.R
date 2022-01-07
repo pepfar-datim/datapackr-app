@@ -1,7 +1,6 @@
 #TODO: Move this back to the DataPackr....
 validateMechanisms <- function(d, d2_session) {
 
-
   mechs_data  <-  unique(d$datim$MER$attributeOptionCombo)
 
   period_info <- datimvalidation::getPeriodFromISO(paste0(d$info$cop_year, "Oct"))
@@ -31,11 +30,9 @@ validateMechanisms <- function(d, d2_session) {
     mechs_datim  <-  append(c("00000", "00001"), mechs_datim)
   }
 
-
   bad_mechs <- mechs_data[!(mechs_data %in% mechs_datim)]
 
   if (length(bad_mechs) > 0) {
-
     msg  <-  paste0("ERROR!: Invalid mechanisms found in the PSNUxIM tab.
                   These MUST be reallocated to a valid mechanism
                   ", paste(bad_mechs, sep = "", collapse = ", "))
@@ -44,6 +41,5 @@ validateMechanisms <- function(d, d2_session) {
     d$info$had_error <- TRUE
   }
 
-  d
-
+  return(d)
 }

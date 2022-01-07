@@ -1,6 +1,6 @@
 updateExistingPrioritization <- function(d, d2_session) {
 
-  psnus <-    d$data$analytics$psnu_uid %>% unique() %>% unlist()
+  psnus <- d$data$analytics$psnu_uid %>% unique() %>% unlist()
 
   #Break up into 2048 character URLS (approximately)
   n_requests <- ceiling(nchar(paste(psnus, sep = "", collapse = ";")) / 2048)
@@ -49,6 +49,5 @@ updateExistingPrioritization <- function(d, d2_session) {
     dplyr::select(-prioritization) %>%
     dplyr::left_join(prios, by = "psnu_uid")
 
-  d
-
+  return(d)
 }

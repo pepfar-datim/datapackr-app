@@ -44,4 +44,6 @@ sendEventToS3 <- function (d, event_type) {
   })
 
   unlink(tmp)
+
+  return(r)
 }

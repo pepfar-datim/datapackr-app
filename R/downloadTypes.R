@@ -23,7 +23,6 @@ downloadTypes  <-  function(tool_type="Data Pack", needs_psnuxim=FALSE, memo_aut
       "comparison",
       "memo")
 
-
   names(download_types)  <-  download_names
 
   if (tool_type == "OPU Data Pack" | !needs_psnuxim) {
@@ -34,6 +33,5 @@ downloadTypes  <-  function(tool_type="Data Pack", needs_psnuxim=FALSE, memo_aut
     download_types <-  download_types[!(download_types %in% c("memo"))]
   }
 
-
-  download_types
+  return(download_types)
 }

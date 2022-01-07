@@ -27,7 +27,7 @@ vlsTestingChart <- function(df) {
   cop_year <- as.numeric(stringr::str_replace(df$info$cop_year, "^20", ""))
   chart_label <- paste0("COP", cop_year, "/FY", cop_year + 1, " Viral Load Testing Coverage")
 
-  df %>%
+  gg <- df %>%
     ggplot(aes(x = reorder(SNU1, sort_col), y = freq, fill = indicator)) +
     geom_bar(data = df,
              stat = "identity",
@@ -48,4 +48,5 @@ vlsTestingChart <- function(df) {
           panel.grid.major.x = element_line(color = "#595959"),
           panel.grid.minor.y = element_blank())
 
+  return(gg)
 }

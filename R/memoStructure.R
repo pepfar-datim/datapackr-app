@@ -138,5 +138,7 @@ memoStructure <- function(cop_year="2020") {
     8, "Not PEPFAR Supported", 8) %>%
     dplyr::mutate(Prioritization = paste0(value, " - ", name))
 
-  list(row_order = row_order, col_order = col_order)
+  memo_structure <- list(row_order = row_order, col_order = col_order)
+
+  return(memo_structure)
 }

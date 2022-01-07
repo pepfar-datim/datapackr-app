@@ -3,7 +3,7 @@ modalitySummaryChart <- function(d) {
   cop_year <- as.numeric(stringr::str_replace(d$info$cop_year, "^20", ""))
   chart_label <- paste0("COP", cop_year, "/FY", cop_year + 1, " Testing Targets")
 
-  d %>%
+  chart_data <- d %>%
     purrr::pluck("data") %>%
     purrr::pluck("analytics") %>%
     dplyr::filter(!is.na(hts_modality)) %>%
@@ -12,7 +12,9 @@ modalitySummaryChart <- function(d) {
     dplyr::summarise(value = sum(target_value)) %>%
     dplyr::ungroup() %>%
     dplyr::arrange(resultstatus_inclusive, desc(resultstatus_inclusive)) %>%
-    dplyr::mutate(resultstatus_inclusive = factor(resultstatus_inclusive, c("Unknown", "Negative", "Positive"))) %>%
+    dplyr::mutate(resultstatus_inclusive = factor(resultstatus_inclusive, c("Unknown", "Negative", "Positive")))
+
+  gg <- chart_data %>%
     ggplot(aes(
       y = value,
       x = reorder(hts_modality, value, sum),
@@ -34,6 +36,7 @@ modalitySummaryChart <- function(d) {
           panel.grid.major.x = element_line(color = "#595959"),
           panel.grid.minor.y = element_blank())
 
+  return(gg)
 }
 
 modalitySummaryTable <- function(d) {
@@ -78,14 +81,9 @@ modalitySummaryTable <- function(d) {
                     modality_share = 100)
 
     d$data$modality_summary <- dplyr::bind_rows(hts, hts_total)
-
-    d
-
-  } else {
-    return(d)
   }
 
-
+  return(d)
 }
 
 formatModalitySummaryTable <- function(d) {
@@ -95,7 +93,7 @@ formatModalitySummaryTable <- function(d) {
     return(NULL)
   }
 
-  df %>% dplyr::mutate(
+  df %<>% dplyr::mutate(
     Positive = format(Positive, big.mark = ", ", scientific = FALSE),
     Total = format(Total, big.mark = ", ", scientific = FALSE),
     yield = format(round(yield, 2), nsmall = 2),
@@ -106,6 +104,8 @@ formatModalitySummaryTable <- function(d) {
       Total,
       "Yield (%)" = yield,
       "Percent of HTS_POS" = modality_share)
+
+  return(df)
 }
 
 modalityYieldChart <- function(d) {
@@ -120,7 +120,7 @@ modalityYieldChart <- function(d) {
 
   x_lim <- max(df$yield)
 
-  df %>%
+  gg <- df %>%
     dplyr::filter(hts_modality != "Total") %>% #Omit totals
     ggplot(aes(
       y = yield,
@@ -143,4 +143,5 @@ modalityYieldChart <- function(d) {
           panel.grid.major.x = element_line(color = "#595959"),
           panel.grid.minor.y = element_blank())
 
+  return(gg)
 }
