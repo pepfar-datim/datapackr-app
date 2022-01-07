@@ -52,14 +52,12 @@ evaluateIndicators <- function(combis, values, inds) {
     vapply(exp, function(x) eval(parse(text = x)), FUN.VALUE = double(1))
   }
 
-
-  matches %>%
+  matches %<>%
     purrr::modify_at(., c("numerator", "denominator"), replaceCombisWithValues) %>%
     purrr::modify_at(., c("numerator", "denominator"), replaceTotalsWithValues) %>%
     purrr::modify_at(., c("numerator", "denominator"), replaceExpressionsWithZeros) %>%
     purrr::modify_at(., c("numerator", "denominator"), evaluateExpression) %>%
     dplyr::mutate(value = numerator / denominator)
 
-
-
+  return(matches)
 }

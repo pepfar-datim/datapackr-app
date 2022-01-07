@@ -71,7 +71,7 @@ getOperatingUnitFromCountryUIDs <- function(country_uids) {
     stop("Datapacks cannot belong to multiple operating units")
   }
 
-  ou
+  return(ou)
 }
 
 getCountryNameFromUID <- function(uid) {

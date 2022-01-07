@@ -15,12 +15,12 @@ getExistingPrioritization <- function(psnus, cop_year, d2_session) {
     stop("Invalid prioritization levels detected. Please contact DATIM support.")
   }
 
-
-  prios %>%
+  prios %<>%
     dplyr::select(-Data) %>%
     dplyr::rename("psnu_uid" = "Organisation unit",
                   "value" = "Value") %>%
     dplyr::left_join(datapackr::prioritization_dict()) %>%
     dplyr::select(psnu_uid, "prioritization" = "name")
 
+  return(prios)
 }

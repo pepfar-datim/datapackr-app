@@ -16,5 +16,5 @@ getMemoIndicators <- function(d, d2_session) {
     stop("No indicator metadata  was returned from DATIM")
   }
 
-  inds
+  return(inds)
 }

@@ -103,6 +103,5 @@ validatePSNUData  <-  function(d, d2_session) {
     }
   }
 
-  d
-
+  return(d)
 }
