@@ -83,9 +83,10 @@ memoStructure <- function(cop_year="2020") {
     "TX_TB", "15+", TRUE,
     "TX_TB", "Total", FALSE,
     "GEND_GBV", "Total", TRUE)
-    }
-
-  if (cop_year == "2021") {
+  }
+  
+ #TOOD: Confirm the memo structure for 2022
+  if ( cop_year %in% c("2021", "2022")) { 
     row_order <- tibble::tribble(
       ~ind, ~options, ~in_partner_table,
       "HTS_INDEX", "<15", TRUE,
@@ -167,15 +168,13 @@ getMemoIndicators <- function(d, d2_session) {
   #Fetch indicators from the COP21 memo group
   #TODO: Make this work for both COP years.!
 
-  if (d$info$cop_year == 2020) {
-    ind_group <- "wWi08ToZ2gR"
-  } else if (d$info$cop_year == 2021) {
-    #TODO: Fix this with the real indicator group once it has been deployed to prod
-    ind_group <- "TslxbFe3VUZ"
-  } else {
-    flog.info("Indicator group was not found")
-    return(NULL)
-  }
+  
+  ind_group <- switch(as.character(d$info$cop_year),
+         "2020" = "wWi08ToZ2gR",
+         "2021" = "TslxbFe3VUZ",
+         "2022" = "TslxbFe3VUZ",
+         NULL) #TODO: Fix this once we get the COP22 indicator group
+  
   inds <-
     datimutils::getIndicatorGroups(ind_group,
                                    d2_session = d2_session,
@@ -325,6 +324,7 @@ preparePartnerMemoTable <- function(d, d2_session) {
                                     TRUE ~ Age)) %>%
     tidyr::complete(., tidyr::nesting(Mechanism, Agency, Partner), Indicator, Age, fill = list(Value = 0)) %>%
     tidyr::drop_na()
+
  
 
   df_rows <- memoStructure(cop_year = d$info$cop_year) %>%
@@ -345,6 +345,7 @@ preparePartnerMemoTable <- function(d, d2_session) {
     dplyr::mutate(`Partner` = "Total", `Mechanism` = "Total", Agency = "Total")
 
   #Remove dedupe
+  #TODO: Are we dealing with codes of mechanisms here??
   d_partners <- dplyr::filter(df, !(`Mechanism` %in% c("00001", "00000"))) #nolint
   
   d_indicators <- memoStructure(d$info$cop_year) %>%

@@ -743,6 +743,15 @@ shinyServer(function(input, output, session) {
         sendEventToS3(d,"VALIDATE")
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
         if (d$info$tool  == "Data Pack") {
+
+          #TODO: 
+          #Deal with unallocated data. This probably needs to be dealt with in datapackr
+          d$data$analytics <-  d$data$analytics %>% 
+          dplyr::mutate(mechanism_code = ifelse(is.na(mechanism_code),"Unknown",mechanism_code),
+                        mechanism_desc = ifelse(is.na(mechanism_desc),"Unknown",mechanism_desc),
+                        partner_id = ifelse(is.na(partner_id),"Unknown",partner_id),
+                        partner_desc = ifelse(is.na(partner_desc),"Unknown",partner_desc),
+                        funding_agency = ifelse(is.na(funding_agency),"Unknown",funding_agency))
           
           d$info$needs_psnuxim  <-  d$info$missing_psnuxim_combos |
             (NROW(d$data$SNUxIM) == 1 & is.na(d$data$SNUxIM[[1, 1]]))
@@ -752,7 +761,7 @@ shinyServer(function(input, output, session) {
                                                     needs_psnuxim = d$info$needs_psnuxim,
                                                     memo_authorized = user_input$memo_authorized))
           
-          if (d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) {
+          if ( ( d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year == "2022") {
             
             flog.info(paste(d$info$tool, " with PSNUxIM tab found."))
             incProgress(0.1, detail = ("Checking validation rules"))

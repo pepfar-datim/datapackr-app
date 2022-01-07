@@ -105,14 +105,23 @@ fetchSupportFiles  <-  function(path) {
 
 validatePSNUData  <-  function(d, d2_session) {
 
-  if (d$info$tool == "Data Pack") {
-    vr_data <- d$datim$MER
-  }
 
-  if (d$info$tool == "OPU Data Pack") {
-    vr_data <- d$datim$OPU
-  }
-
+    vr_data <- d$data$analytics %>%
+      dplyr::select(
+        dataElement = dataelement_id,
+        period = fiscal_year,
+        orgUnit = psnu_uid,
+        categoryOptionCombo = categoryoptioncombo_id,
+        attributeOptionCombo = mechanism_code,
+        value = target_value
+      ) %>%
+      dplyr::mutate(period = paste0((as.numeric(period) - 1), "Oct")) %>%
+      dplyr::mutate(attributeOptionCombo = dplyr::case_when(
+        is.na(attributeOptionCombo) ~ datapackr::default_catOptCombo(),
+        attributeOptionCombo == "default" ~ datapackr::default_catOptCombo(),
+        TRUE ~ attributeOptionCombo
+      ))
+  
   if (is.null(vr_data) | NROW(vr_data) == 0) {
     return(d)
     }
@@ -129,8 +138,10 @@ validatePSNUData  <-  function(d, d2_session) {
     if (d$info$cop_year == "2020") {
       c("Pmc0yYAIi1t", "s1sxJuqXsvV")
     } else if  (d$info$cop_year == "2021") {
-      c("YfZot37BbTm", "Pmc0yYAIi1t")
+      c("YfZot37BbTm", "Pmc0yYAIi1t") #TODO...why do we have last years dataset here?
 
+    } else if (d$info$cop_year == "2022" ) {
+      c("iADcaCD5YXh")
     }
 
   if (Sys.info()["sysname"] == "Linux") {
@@ -146,7 +157,7 @@ validatePSNUData  <-  function(d, d2_session) {
 
   vr_violations  <-  datimvalidation::validateData(vr_data,
                                                  parallel = is_parallel,
-                                                 return_violations_only = TRUE,
+                                                 return_violations_only = FALSE,
                                                  vr = vr_rules,
                                                  d2session = d2_session)
 

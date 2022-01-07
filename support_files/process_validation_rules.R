@@ -3,11 +3,9 @@ require(purrr)
 require(dplyr)
 require(magrittr)
 
-new<-"support_files/newValidationRules.json"
-old<-"support_files/oldValidationRules.json"
-modified<-"support_files/modifiedValidationRules.json"
+#https://www.datim.org/api/validationRules.json?filter=name:like:TARGET&fields=id,name,periodType,description,operator,leftSide[expression,missingValueStrategy],rightSide[expression,missingValueStrategy]&paging=false
 
-rules<-list(new,old,modified)
+
 
 processValidationRules<-function(r) {
   expression.pattern<-"[a-zA-Z][a-zA-Z0-9]{10}(\\.[a-zA-Z][a-zA-Z0-9]{10})?"
@@ -25,26 +23,14 @@ processValidationRules<-function(r) {
   #Remove any line breaks
   vr$leftSide.expression<-stringr::str_replace(vr$leftSide.expression,pattern = "\n","")
   vr$rightSide.expression<-stringr::str_replace(vr$rightSide.expression,pattern = "\n","")
-  
   vr
   
 }
 
 
+ cop20 <- processValidationRules("./support_files/cop20_validation_rules.json")
+ cop21 <- processValidationRules("./support_files/cop21_validation_rules.json")
+ cop22 <- processValidationRules("./support_files/cop22_validation_rules.json")
 
-vr_cop20<-purrr::map_dfr(rules,processValidationRules) %>% 
-  dplyr::filter(stringr::str_detect(description,"TARGET")) 
-
-
-
-require(datimvalidation)
-require(datimutils)
-loginToDATIM("~/.secrets/datim-prod.json")
-
-vr_cop21<-getValidationRules() %>% 
-  dplyr::filter(stringr::str_detect(description,"TARGET"))
-
-
-vr<-list("2020"=vr_cop20,"2021"=vr_cop21)
-
+vr <- list("2020"=cop20,"2021"=cop21,"2022"=cop22)
 saveRDS(vr,"support_files/cop_validation_rules.rds")
