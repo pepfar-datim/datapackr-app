@@ -3,7 +3,6 @@ getVersionInfo <- function() {
   currDCF <- read.dcf("DESCRIPTION")
   currVersion <- currDCF[1, "Version"]
 
-  #paste0("Version: ", gert::git_branch(), "@", substr(gert::git_log(max=1)$commit, 0, 10)) %>%
   paste0("Version: ", currVersion) %>%
     paste('<div style="font-size:small;text-align: center;"><p>', .) %>%
     paste(., "</p></div>")
@@ -72,17 +71,6 @@ getOperatingUnitFromCountryUIDs <- function(country_uids) {
   }
 
   return(ou)
-}
-
-getCountryNameFromUID <- function(uid) {
-
-
-  paste0(getOption("baseurl"), "api/organisationUnits/", uid, "?fields=shortName") %>%
-    URLencode(.) %>%
-    httr::GET(., handle = user_input$d2_session$handle) %>%
-    httr::content(., "text") %>%
-    jsonlite::fromJSON(.) %>%
-    purrr::pluck(., "shortName")
 }
 
 archiveDataPackErrorUI <- function(r) {
