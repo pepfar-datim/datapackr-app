@@ -4636,7 +4636,7 @@
       "checksum": "170c251d2cc9b7d7618bacb6a6c06821"
     },
     ".Rprofile": {
-      "checksum": "04c5184207a6d0280f6e517d59096082"
+      "checksum": "c168852fc35157dec26f96f2c2af3499"
     },
     "CHANGELOG.md": {
       "checksum": "829b83e4e735857a274580a30a41240d"
@@ -4657,7 +4657,7 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "DESCRIPTION": {
-      "checksum": "497fc430f1a94bbd93ed1b0a7be176ef"
+      "checksum": "5b28177086b33daeec9062ace2c60a23"
     },
     "inst/upgradeAnalyticsLogs.R": {
       "checksum": "a45163aed121abf21c7845f176bdf9fa"
