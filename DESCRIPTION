@@ -1,7 +1,7 @@
 Package: datapackr-app
 Type: Shiny App
 Title: Self-service app for parsing and validation of DataPacks
-Version: 1.1.31
+Version: 1.1.32
 Date: 2022-01-07
 Authors@R: c(
     person("Jason", "Pickering", email = "jason.p.pickering@gmail.com",
