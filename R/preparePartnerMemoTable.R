@@ -68,7 +68,7 @@ preparePartnerMemoTable <- function(d, d2_session) {
   #TODO: Are we dealing with codes of mechanisms here??
   d_partners <- dplyr::filter(df, !(`Mechanism` %in% c("00001", "00000"))) #nolint
 
-  d_indicators <- memoStructure(d$info$cop_year) %>%
+  d_indicators <- memoStructure(d) %>%
     purrr::pluck("row_order") %>%
     dplyr::filter(in_partner_table) %>%
     dplyr::select(ind, options) %>%
