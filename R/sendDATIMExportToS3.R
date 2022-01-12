@@ -2,10 +2,18 @@ sendDATIMExportToS3 <- function(d) {
   #Write the flatpacked output
   tmp <- tempfile()
 
-  datim_export <- dplyr::bind_rows(d$datim$subnat_impatt,
-                                   d$datim$fy22_prioritizations,
-                                   d$datim$MER) %>%
-    dplyr::mutate(value = as.character(value))
+  # Selects the correct dataset to send to PAW if the tool has a PSNUxIM tab
+  if (d$info$has_psnuxim) {
+    datim_export <- dplyr::bind_rows(d$datim$subnat_impatt,
+                                     d$datim$fy22_prioritizations,
+                                     d$datim$MER) %>%
+      dplyr::mutate(value = as.character(value))
+  } else {
+    datim_export <- dplyr::bind_rows(d$datim$subnat_impatt,
+                                     d$datim$fy22_prioritizations,
+                                     d$datim$UndistributedMER) %>%
+      dplyr::mutate(value = as.character(value))
+  }
 
   #Need better error checking here.
   write.table(
