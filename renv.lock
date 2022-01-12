@@ -228,16 +228,16 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "5.0.3",
+      "Version": "5.1.0",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
       "RemoteRef": "pack-snuxim-tab",
-      "RemoteSha": "07fd70ee55fa2e9fa9f55742bd4a872403b189c0",
+      "RemoteSha": "de2cb7e23816595d9d9466370309cd95fcb718c3",
       "Remotes": "pepfar-datim/datim-validation, pepfar-datim/data-pack-commons",
-      "Hash": "84db0c2c3ee5aea8530870a07c7bf3fc"
+      "Hash": "c0d76b515c597f3a0090b94027480893"
     },
     "datimutils": {
       "Package": "datimutils",
@@ -252,9 +252,9 @@
       "Version": "1.1.2.0.0.0.1619515373",
       "Source": "Repository",
       "Repository": "RSPM",
+      "RemoteType": "repository",
       "Remotes": "pepfar-datim/datimutils",
       "RemoteSha": "bc550850e5f767c23e9cc72938438ff7207dba54",
-      "Hash": "fa13527cdc265da63e5d1770f0650905"
     },
     "desc": {
       "Package": "desc",
@@ -269,6 +269,7 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "feb5b7455eba422a2c110bb89852e6a3"
+      "Hash": "824087636f7e96d93379fd85f8854b99"
     },
     "digest": {
       "Package": "digest",

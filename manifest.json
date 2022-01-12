@@ -867,13 +867,13 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "pack-snuxim-tab",
-      "GithubSha1": "07fd70ee55fa2e9fa9f55742bd4a872403b189c0",
+      "GithubSha1": "de2cb7e23816595d9d9466370309cd95fcb718c3",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
         "Title": "A Package that Packs and Unpacks all Data Packs",
-        "Version": "5.0.3",
-        "Date": "2022-01-03",
+        "Version": "5.1.0",
+        "Date": "2022-01-12",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Chris\", \"Nemarich\", email = \"cnemarich@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Christian\", \"Domaas\", email = \"cdomaas@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Fausto\", \"Lopez\", email = \"flopez@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Jordan\", \"Bales\", email = \"jbales@baosystems.com\",\n        role = c(\"ctb\"))\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
         "URL": "https://github.com/pepfar-datim/datapackr",
@@ -887,18 +887,18 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-01-07 07:57:29 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-01-12 22:05:00 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "pack-snuxim-tab",
-        "RemoteSha": "07fd70ee55fa2e9fa9f55742bd4a872403b189c0",
+        "RemoteSha": "de2cb7e23816595d9d9466370309cd95fcb718c3",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "pack-snuxim-tab",
-        "GithubSHA1": "07fd70ee55fa2e9fa9f55742bd4a872403b189c0",
+        "GithubSHA1": "de2cb7e23816595d9d9466370309cd95fcb718c3",
         "Remotes": "pepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -938,7 +938,7 @@
     },
     "datimvalidation": {
       "Source": "PEPFAR",
-      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
+      "Repository": "https://rstudio-package.ap.datim.org/prod/latest",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -951,7 +951,6 @@
         "Maintainer": "Jason P. Pickering <jason.p.pickering@gmail.com>",
         "Description": "A comprehensive set of tools to validate data payloads\n        intended for import into 'DATIM' <https://www.datim.org/>.\n        DATIM is the 'PEPFAR' <https://www.state.gov/pepfar/> specific\n        instance of 'DHIS2' <https://www.dhis2.org/>. These scripts are\n        provided for the 'PEPFAR' data exchange community in order to\n        validate their prospective data payloads prior to submission\n        for import.",
         "License": "BSD_3_clause + file LICENSE",
-        "Remotes": "pepfar-datim/datimutils",
         "SystemRequirements": "Active user account on 'DATIM'\n<https://www.datim.org/>",
         "URL": "https://github.com/jason-p-pickering/datim-validation",
         "BugReports": "https://github.com/jason-p-pickering/datim-validation/issues",
@@ -962,12 +961,10 @@
         "VignetteBuilder": "knitr",
         "RoxygenNote": "7.1.1",
         "Repository": "RSPM",
-        "RemoteSha": "bc550850e5f767c23e9cc72938438ff7207dba54",
         "Version": "1.1.2.0.0.0.1619515373",
         "Date": "2021-04-27",
         "NeedsCompilation": "no",
         "Packaged": "2021-04-27 09:31:37 UTC; root",
-        "Built": "R 4.1.1; ; 2021-09-06 13:14:18 UTC; unix"
       }
     },
     "desc": {
@@ -1035,6 +1032,10 @@
         "Repository": "CRAN",
         "Date/Publication": "2021-03-22 22:30:24 UTC",
         "Built": "R 4.1.1; x86_64-pc-linux-gnu; 2021-08-31 10:02:31 UTC; unix"
+        "Built": "R 4.1.2; ; 2022-01-12 22:00:25 UTC; unix",
+        "RemoteType": "repository",
+        "Remotes": "pepfar-datim/datimutils",
+        "RemoteSha": "bc550850e5f767c23e9cc72938438ff7207dba54"
       }
     },
     "digest": {
