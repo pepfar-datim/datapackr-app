@@ -15,7 +15,7 @@ memo_getPrioritizationTable <- function(d, d2_session, cop_year = "2020", includ
     "p0JrTY2hLii", "PPG Not PEPFAR Supported", "Not PEPFAR Supported"
   )
 
-  df_rows <- memoStructure(d$info$cop_year) %>%
+  df_rows <- memoStructure(d) %>%
     purrr::pluck("row_order") %>%
     dplyr::select(ind, options)
 

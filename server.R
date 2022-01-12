@@ -39,11 +39,9 @@ shinyServer(function(input, output, session) {
 
   kpCascadeInput_filter  <-  reactiveValues(snu_filter = NULL)
 
-
   snu_selector  <-  reactive({
     validation_results() %>% snuSelector()
   })
-
 
   observeEvent(input$file1, {
     shinyjs::show("validate")
@@ -125,8 +123,6 @@ shinyServer(function(input, output, session) {
         type = "error"
       )
     }
-
-
   })
 
 
