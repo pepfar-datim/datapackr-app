@@ -332,8 +332,16 @@ archiveDataPackErrorUI  <-  function(r) {
   }
 }
 
-sendEventToS3 <- function (d, event_type) {
+sendEventToS3 <- function (d=NULL, event_type,user_input = NULL) {
   
+  if (is.null(d)) {
+    d<-list(info=list(
+      tool = NA,
+      datapack_name = NA,
+      cop_year = NA,
+      uuid  = user_input$uuid,
+      source_user = "unknown"))
+  }
   s3 <- paws::s3()
   tm <- as.POSIXlt(Sys.time(), "UTC")
   ts_file <- strftime(tm , "%Y_%m_%d_%H_%M_%s")

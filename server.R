@@ -33,7 +33,8 @@ shinyServer(function(input, output, session) {
   user_input  <-  reactiveValues(authenticated = FALSE,
                                  status = "",
                                  d2_session = NULL,
-                                 memo_authorized = FALSE)
+                                 memo_authorized = FALSE,
+                                 uuid = NULL)
   
   epi_graph_filter  <-  reactiveValues(snu_filter = NULL)
   
@@ -76,11 +77,13 @@ shinyServer(function(input, output, session) {
     timestampUploadUI(r)
     archiveDataPackErrorUI(r)
     r  <-  saveDATIMExportToS3(d)
+    sendEventToS3(d,"PAW_EXPORT")
     waiter_hide()
     datimExportUI(r)
   })
 
   observeEvent(input$login_button, {
+    user_input$uuid <- uuid::UUIDgenerate()
     tryCatch({
       datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
           username = input$user_name,
@@ -116,8 +119,10 @@ shinyServer(function(input, output, session) {
           ),
           name = "datapack"
         )
+        sendEventToS3(NULL,"LOGIN",user_input = user_input)
       }
     } else {
+      sendEventToS3(NULL,"LOGIN_FAILED",user_input = user_input)
       sendSweetAlert(
         session,
         title = "Login failed",
@@ -736,7 +741,7 @@ shinyServer(function(input, output, session) {
         #All self-service datapacks should be marked as unapproved for PAW
         d$info$approval_status <- "UNAPPROVED"
         #Generate a unique identifier
-        d$info$uuid <- uuid::UUIDgenerate()
+        d$info$uuid <- user_input$uuid
         #Get a single operating unit from the country IDs
         d$info$operating_unit <- getOperatingUnitFromCountryUIDs(d$info$country_uids)
         #Log the validation to S3

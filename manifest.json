@@ -867,13 +867,13 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "pack-snuxim-tab",
-      "GithubSha1": "07fd70ee55fa2e9fa9f55742bd4a872403b189c0",
+      "GithubSha1": "de2cb7e23816595d9d9466370309cd95fcb718c3",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
         "Title": "A Package that Packs and Unpacks all Data Packs",
-        "Version": "5.0.3",
-        "Date": "2022-01-03",
+        "Version": "5.1.0",
+        "Date": "2022-01-12",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Chris\", \"Nemarich\", email = \"cnemarich@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Christian\", \"Domaas\", email = \"cdomaas@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Fausto\", \"Lopez\", email = \"flopez@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Jordan\", \"Bales\", email = \"jbales@baosystems.com\",\n        role = c(\"ctb\"))\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
         "URL": "https://github.com/pepfar-datim/datapackr",
@@ -887,53 +887,60 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-01-07 07:57:29 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-01-13 15:18:56 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "pack-snuxim-tab",
-        "RemoteSha": "07fd70ee55fa2e9fa9f55742bd4a872403b189c0",
+        "RemoteSha": "de2cb7e23816595d9d9466370309cd95fcb718c3",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "pack-snuxim-tab",
-        "GithubSHA1": "07fd70ee55fa2e9fa9f55742bd4a872403b189c0",
+        "GithubSHA1": "de2cb7e23816595d9d9466370309cd95fcb718c3",
         "Remotes": "pepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
     "datimutils": {
-      "Source": "PEPFAR",
-      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
+      "Source": "github",
+      "Repository": null,
+      "GithubRepo": "datimutils",
+      "GithubUsername": "pepfar-datim",
+      "GithubRef": "DP-483",
+      "GithubSha1": "3b6f316804b412abe891c81a2a7b43c1e4e91a57",
       "description": {
         "Package": "datimutils",
         "Type": "Package",
         "Title": "Utilities for interacting with the DATIM api from R",
+        "Version": "0.1.2",
+        "Date": "2019-09-11",
         "Authors@R": "\n    c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Maxwell\", \"Chandler\", email = \"mchandler@baosystems.com\",\n        role = c(\"aut\"))\n  )",
         "Description": "General utilities for interacting with the DATIM api from R.",
         "URL": "https://github.com/pepfar-datim/datimutils",
         "BugReports": "https://github.com/pepfar-datim/datimutils",
         "Depends": "R (>= 3.6.0)",
-        "Imports": "dplyr (>= 0.8.3), tidyr (>= 0.8.3), readr (>= 1.3.1), jsonlite\n(>= 1.6), purrr (>= 0.3.2), tibble (>= 2.1.1), stringr (>=\n1.4.0), stringi (>= 1.4.3), httr (>= 1.4.0), rlist (>=\n0.4.6.1), magrittr (>= 1.5), keyring, lazyeval, stats,\nlubridate, data.table, getPass, rlang",
-        "Suggests": "devtools (>= 2.0.1), httptest, knitr, rmarkdown, testthat (>=\n2.1.0)",
+        "Imports": "dplyr (>= 0.8.3),\ntidyr (>= 0.8.3),\nreadr (>= 1.3.1),\njsonlite (>= 1.6),\npurrr (>= 0.3.2),\ntibble (>= 2.1.1),\nstringr (>= 1.4.0),\nstringi (>= 1.4.3),\nhttr (>= 1.4.0),\nrlist (>= 0.4.6.1),\nmagrittr (>= 1.5),\nkeyring,\nlazyeval,\nstats,\nlubridate,\ndata.table,\ngetPass,\nrlang",
+        "Suggests": "devtools (>= 2.0.1),\nhttptest,\nknitr,\nrmarkdown,\ntestthat (>= 2.1.0)",
         "License": "GPL-3 + file LICENSE",
         "Encoding": "UTF-8",
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
         "VignetteBuilder": "knitr",
-        "Repository": "RSPM",
-        "RemoteSha": "bba00c371ba345865725def8b3b4830943963c5c",
-        "Version": "0.1.2.0.0.0.1632829200",
-        "Date": "2019-09-11",
-        "NeedsCompilation": "no",
-        "Packaged": "2021-09-28 11:42:59 UTC; root",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut],\n  Sam Garman [aut],\n  Maxwell Chandler [aut]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.1; ; 2021-11-03 09:54:51 UTC; unix"
+        "Built": "R 4.1.2; ; 2022-01-12 18:11:33 UTC; unix",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteUsername": "pepfar-datim",
+        "RemoteRepo": "datimutils",
+        "RemoteRef": "DP-483",
+        "RemoteSha": "3b6f316804b412abe891c81a2a7b43c1e4e91a57",
+        "GithubHost": "api.github.com",
+        "GithubRepo": "datimutils",
+        "GithubUsername": "pepfar-datim",
+        "GithubRef": "DP-483",
+        "GithubSHA1": "3b6f316804b412abe891c81a2a7b43c1e4e91a57"
       }
     },
     "datimvalidation": {
@@ -4636,7 +4643,7 @@
       "checksum": "170c251d2cc9b7d7618bacb6a6c06821"
     },
     ".Rprofile": {
-      "checksum": "c168852fc35157dec26f96f2c2af3499"
+      "checksum": "6cfc2153d66537f0f7170aa800460653"
     },
     "CHANGELOG.md": {
       "checksum": "829b83e4e735857a274580a30a41240d"
@@ -4657,7 +4664,7 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "DESCRIPTION": {
-      "checksum": "5b28177086b33daeec9062ace2c60a23"
+      "checksum": "c0d12d9153fd272103f0fd42a37b386e"
     },
     "inst/upgradeAnalyticsLogs.R": {
       "checksum": "a45163aed121abf21c7845f176bdf9fa"
@@ -4672,7 +4679,7 @@
       "checksum": "775b6c3b129ad81671b7de82ed4581cc"
     },
     "R/utils.R": {
-      "checksum": "7bc4f8a7e65c01498fbbe427c7469135"
+      "checksum": "dd445f77782a18666e55f35aa5f92a56"
     },
     "R/visuals.R": {
       "checksum": "f6d8563d6c5bd7182fca2c531d4aa9bc"
@@ -4687,7 +4694,7 @@
       "checksum": "63568a0d8830618fc5ac31536c675198"
     },
     "server.R": {
-      "checksum": "e1f9ecb4cd5b1e8d0f0ce859983174f9"
+      "checksum": "7cdf6043120f1399580683d4c2a6fada"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
@@ -4733,6 +4740,9 @@
     },
     "support_files/process_validation_rules.R": {
       "checksum": "35e354216801403c1fc92afac7a36aea"
+    },
+    "support_files/psnuxim_model_data_22.rds": {
+      "checksum": "add78a9f57b19b6ad11b6bdf8fb1b16d"
     },
     "support_files/README": {
       "checksum": "23d8254dae346ea59a603eb2a31ebe73"
