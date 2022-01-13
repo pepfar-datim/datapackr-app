@@ -10,7 +10,7 @@ if (Sys.info()[['sysname']] == 'Linux') {
 }
 
 #Set the maximum file size for the upload file
-options(shiny.maxRequestSize = 100 * 1024 ^ 2)
+options(shiny.maxRequestSize = 150 * 1024 ^ 2)
 #Allow unsanitized error messages
 options(shiny.sanitize.errors = FALSE)
 #Initiate logging
