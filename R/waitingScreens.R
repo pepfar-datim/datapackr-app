@@ -10,7 +10,7 @@ waiting_screen_comparison <- tagList(
 
 waiting_screen_flatpack <- tagList(
   waiter::spin_hourglass(),
-  h4("Generating your FlatPack™. Please wait...")
+  h4("Generating your FlatPack. Please wait...")
 )
 
 waiting_screen_paw <- tagList(
