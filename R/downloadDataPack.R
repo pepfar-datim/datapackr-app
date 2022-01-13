@@ -1,11 +1,11 @@
 downloadDataPack <- function(d) {
 
   if (d$info$cop_year == "2021") {
-    support_file <- fetchSupportFiles("data/psnuxim_model_data_21.rds")
+    support_file <- fetchSupportFiles("support_files/psnuxim_model_data_21.rds")
   }
 
   if (d$info$cop_year == "2022") {
-    support_file <- fetchSupportFiles("data/psnuxim_model_data_22.rds")
+    support_file <- fetchSupportFiles("support_files/psnuxim_model_data_22.rds")
   }
 
   if (!file.exists(support_file)) {

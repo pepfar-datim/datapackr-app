@@ -12,7 +12,7 @@
   "packages": {
     "DT": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -43,7 +43,7 @@
     },
     "ISOweek": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -70,7 +70,7 @@
     },
     "R6": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -98,7 +98,7 @@
     },
     "RColorBrewer": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -123,7 +123,7 @@
     },
     "Rcpp": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -152,7 +152,7 @@
     },
     "XML": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -219,7 +219,7 @@
     },
     "askpass": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -251,7 +251,7 @@
     },
     "assertthat": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -278,7 +278,7 @@
     },
     "base64enc": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -303,7 +303,7 @@
     },
     "bit": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -335,7 +335,7 @@
     },
     "bit64": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -367,7 +367,7 @@
     },
     "brio": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -395,7 +395,7 @@
     },
     "bslib": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -428,7 +428,7 @@
     },
     "cachem": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -457,7 +457,7 @@
     },
     "callr": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -487,7 +487,7 @@
     },
     "cellranger": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -518,7 +518,7 @@
     },
     "cli": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -549,7 +549,7 @@
     },
     "clipr": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -583,7 +583,7 @@
     },
     "codetools": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -609,7 +609,7 @@
     },
     "colorspace": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -641,7 +641,7 @@
     },
     "commonmark": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -669,7 +669,7 @@
     },
     "cpp11": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -701,7 +701,7 @@
     },
     "crayon": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -731,7 +731,7 @@
     },
     "crosstalk": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -761,7 +761,7 @@
     },
     "curl": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -794,7 +794,7 @@
     },
     "data.table": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -887,7 +887,7 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-01-12 22:05:00 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-01-13 15:18:56 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
@@ -903,50 +903,59 @@
       }
     },
     "datimutils": {
-      "Source": "PEPFAR",
-      "Repository": "https://rstudio-package.ap.datim.org/prod/__linux__/bionic/latest",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
+      "Source": "github",
+      "Repository": null,
+      "GithubRepo": "datimutils",
+      "GithubUsername": "pepfar-datim",
+      "GithubRef": "DP-483",
+      "GithubSha1": "3b6f316804b412abe891c81a2a7b43c1e4e91a57",
       "description": {
         "Package": "datimutils",
         "Type": "Package",
         "Title": "Utilities for interacting with the DATIM api from R",
+        "Version": "0.1.2",
+        "Date": "2019-09-11",
         "Authors@R": "\n    c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Maxwell\", \"Chandler\", email = \"mchandler@baosystems.com\",\n        role = c(\"aut\"))\n  )",
         "Description": "General utilities for interacting with the DATIM api from R.",
         "URL": "https://github.com/pepfar-datim/datimutils",
         "BugReports": "https://github.com/pepfar-datim/datimutils",
         "Depends": "R (>= 3.6.0)",
-        "Imports": "dplyr (>= 0.8.3), tidyr (>= 0.8.3), readr (>= 1.3.1), jsonlite\n(>= 1.6), purrr (>= 0.3.2), tibble (>= 2.1.1), stringr (>=\n1.4.0), stringi (>= 1.4.3), httr (>= 1.4.0), rlist (>=\n0.4.6.1), magrittr (>= 1.5), keyring, lazyeval, stats,\nlubridate, data.table, getPass, rlang",
-        "Suggests": "devtools (>= 2.0.1), httptest, knitr, rmarkdown, testthat (>=\n2.1.0)",
+        "Imports": "dplyr (>= 0.8.3),\ntidyr (>= 0.8.3),\nreadr (>= 1.3.1),\njsonlite (>= 1.6),\npurrr (>= 0.3.2),\ntibble (>= 2.1.1),\nstringr (>= 1.4.0),\nstringi (>= 1.4.3),\nhttr (>= 1.4.0),\nrlist (>= 0.4.6.1),\nmagrittr (>= 1.5),\nkeyring,\nlazyeval,\nstats,\nlubridate,\ndata.table,\ngetPass,\nrlang",
+        "Suggests": "devtools (>= 2.0.1),\nhttptest,\nknitr,\nrmarkdown,\ntestthat (>= 2.1.0)",
         "License": "GPL-3 + file LICENSE",
         "Encoding": "UTF-8",
         "LazyData": "true",
         "RoxygenNote": "7.1.1",
         "VignetteBuilder": "knitr",
-        "Repository": "RSPM",
-        "RemoteSha": "bba00c371ba345865725def8b3b4830943963c5c",
-        "Version": "0.1.2.0.0.0.1632829200",
-        "Date": "2019-09-11",
-        "NeedsCompilation": "no",
-        "Packaged": "2021-09-28 11:42:59 UTC; root",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut],\n  Sam Garman [aut],\n  Maxwell Chandler [aut]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.1; ; 2021-11-03 09:54:51 UTC; unix"
+        "Built": "R 4.1.2; ; 2022-01-12 18:11:33 UTC; unix",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteUsername": "pepfar-datim",
+        "RemoteRepo": "datimutils",
+        "RemoteRef": "DP-483",
+        "RemoteSha": "3b6f316804b412abe891c81a2a7b43c1e4e91a57",
+        "GithubHost": "api.github.com",
+        "GithubRepo": "datimutils",
+        "GithubUsername": "pepfar-datim",
+        "GithubRef": "DP-483",
+        "GithubSHA1": "3b6f316804b412abe891c81a2a7b43c1e4e91a57"
       }
     },
     "datimvalidation": {
-      "Source": "PEPFAR",
-      "Repository": "https://rstudio-package.ap.datim.org/prod/latest",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
+      "Source": "github",
+      "Repository": null,
+      "GithubRepo": "datim-validation",
+      "GithubUsername": "pepfar-datim",
+      "GithubRef": "master",
+      "GithubSha1": "bc550850e5f767c23e9cc72938438ff7207dba54",
       "description": {
         "Package": "datimvalidation",
         "Type": "Package",
         "Title": "External Validation Routines for Data Payloads in DATIM",
+        "Version": "1.1.2",
+        "Date": "2021-04-27",
         "Author": "Jason P. Pickering",
         "Maintainer": "Jason P. Pickering <jason.p.pickering@gmail.com>",
         "Description": "A comprehensive set of tools to validate data payloads\n        intended for import into 'DATIM' <https://www.datim.org/>.\n        DATIM is the 'PEPFAR' <https://www.state.gov/pepfar/> specific\n        instance of 'DHIS2' <https://www.dhis2.org/>. These scripts are\n        provided for the 'PEPFAR' data exchange community in order to\n        validate their prospective data payloads prior to submission\n        for import.",
@@ -960,16 +969,24 @@
         "Suggests": "doMC (>= 1.3.5), foreach (>= 1.4.4), httptest (>= 3.2.2),\nknitr (>= 1.21), methods, rmarkdown (>= 1.11), roxygen2 (>=\n6.1.1), tcltk, testthat (>= 2.0.1), covr (>= 3.2.1), stringi\n(>= 1.3.1), rprojroot (>= 1.3-2)",
         "VignetteBuilder": "knitr",
         "RoxygenNote": "7.1.1",
-        "Repository": "RSPM",
-        "Version": "1.1.2.0.0.0.1619515373",
-        "Date": "2021-04-27",
-        "NeedsCompilation": "no",
-        "Packaged": "2021-04-27 09:31:37 UTC; root",
+        "Built": "R 4.1.1; ; 2021-11-03 09:54:53 UTC; unix",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteUsername": "pepfar-datim",
+        "RemoteRepo": "datim-validation",
+        "RemoteRef": "master",
+        "RemoteSha": "bc550850e5f767c23e9cc72938438ff7207dba54",
+        "GithubHost": "api.github.com",
+        "GithubRepo": "datim-validation",
+        "GithubUsername": "pepfar-datim",
+        "GithubRef": "master",
+        "GithubSHA1": "bc550850e5f767c23e9cc72938438ff7207dba54",
+        "Remotes": "pepfar-datim/datimutils"
       }
     },
     "desc": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1002,7 +1019,7 @@
     },
     "diffobj": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1032,15 +1049,11 @@
         "Repository": "CRAN",
         "Date/Publication": "2021-03-22 22:30:24 UTC",
         "Built": "R 4.1.1; x86_64-pc-linux-gnu; 2021-08-31 10:02:31 UTC; unix"
-        "Built": "R 4.1.2; ; 2022-01-12 22:00:25 UTC; unix",
-        "RemoteType": "repository",
-        "Remotes": "pepfar-datim/datimutils",
-        "RemoteSha": "bc550850e5f767c23e9cc72938438ff7207dba54"
       }
     },
     "digest": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1069,7 +1082,7 @@
     },
     "doMC": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1098,7 +1111,7 @@
     },
     "dplyr": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1132,7 +1145,7 @@
     },
     "ellipsis": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1162,7 +1175,7 @@
     },
     "evaluate": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1193,7 +1206,7 @@
     },
     "fansi": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1225,7 +1238,7 @@
     },
     "farver": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1255,7 +1268,7 @@
     },
     "fastmap": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1284,7 +1297,7 @@
     },
     "filelock": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1312,7 +1325,7 @@
     },
     "flextable": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1343,7 +1356,7 @@
     },
     "fontawesome": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1375,7 +1388,7 @@
     },
     "foreach": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1408,7 +1421,7 @@
     },
     "fs": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1444,7 +1457,7 @@
     },
     "fuzzyjoin": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1477,7 +1490,7 @@
     },
     "gdtools": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1508,7 +1521,7 @@
     },
     "generics": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1539,7 +1552,7 @@
     },
     "geosphere": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1570,7 +1583,7 @@
     },
     "getPass": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1601,7 +1614,7 @@
     },
     "glue": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1634,7 +1647,7 @@
     },
     "highr": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1665,7 +1678,7 @@
     },
     "hms": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1696,7 +1709,7 @@
     },
     "htmltools": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1729,7 +1742,7 @@
     },
     "htmlwidgets": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1760,7 +1773,7 @@
     },
     "httpuv": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1794,7 +1807,7 @@
     },
     "httr": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1825,7 +1838,7 @@
     },
     "iterators": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1853,7 +1866,7 @@
     },
     "jquerylib": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1881,7 +1894,7 @@
     },
     "jsonlite": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1911,7 +1924,7 @@
     },
     "keyring": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1942,7 +1955,7 @@
     },
     "knitr": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -1976,7 +1989,7 @@
     },
     "labeling": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2002,7 +2015,7 @@
     },
     "later": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2035,7 +2048,7 @@
     },
     "lattice": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2068,7 +2081,7 @@
     },
     "lazyeval": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2096,7 +2109,7 @@
     },
     "lifecycle": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2128,7 +2141,7 @@
     },
     "lubridate": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2165,7 +2178,7 @@
     },
     "magrittr": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2196,7 +2209,7 @@
     },
     "mime": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2225,7 +2238,7 @@
     },
     "munsell": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2252,7 +2265,7 @@
     },
     "officer": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2283,7 +2296,7 @@
     },
     "openssl": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2315,7 +2328,7 @@
     },
     "openxlsx": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2351,7 +2364,7 @@
     },
     "pacman": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2381,7 +2394,7 @@
     },
     "paws": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2410,7 +2423,7 @@
     },
     "paws.analytics": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2440,7 +2453,7 @@
     },
     "paws.application.integration": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2470,7 +2483,7 @@
     },
     "paws.common": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2500,7 +2513,7 @@
     },
     "paws.compute": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2530,7 +2543,7 @@
     },
     "paws.cost.management": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2560,7 +2573,7 @@
     },
     "paws.customer.engagement": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2590,7 +2603,7 @@
     },
     "paws.database": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2620,7 +2633,7 @@
     },
     "paws.developer.tools": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2650,7 +2663,7 @@
     },
     "paws.end.user.computing": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2680,7 +2693,7 @@
     },
     "paws.machine.learning": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2710,7 +2723,7 @@
     },
     "paws.management": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2740,7 +2753,7 @@
     },
     "paws.networking": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2770,7 +2783,7 @@
     },
     "paws.security.identity": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2800,7 +2813,7 @@
     },
     "paws.storage": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2830,7 +2843,7 @@
     },
     "pillar": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2863,7 +2876,7 @@
     },
     "piton": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2896,7 +2909,7 @@
     },
     "pkgconfig": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2924,7 +2937,7 @@
     },
     "pkgload": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2953,7 +2966,7 @@
     },
     "plyr": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -2985,7 +2998,7 @@
     },
     "praise": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3012,7 +3025,7 @@
     },
     "prettyunits": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3040,7 +3053,7 @@
     },
     "processx": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3069,7 +3082,7 @@
     },
     "progress": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3098,7 +3111,7 @@
     },
     "promises": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3132,7 +3145,7 @@
     },
     "ps": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3163,7 +3176,7 @@
     },
     "purrr": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3195,7 +3208,7 @@
     },
     "rappdirs": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3227,7 +3240,7 @@
     },
     "readr": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3265,7 +3278,7 @@
     },
     "readxl": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3298,7 +3311,7 @@
     },
     "rematch": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3326,7 +3339,7 @@
     },
     "rematch2": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3356,7 +3369,7 @@
     },
     "remotes": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3388,7 +3401,7 @@
     },
     "reshape2": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3419,7 +3432,7 @@
     },
     "rlang": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3453,7 +3466,7 @@
     },
     "rlist": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3486,7 +3499,7 @@
     },
     "rmarkdown": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3519,7 +3532,7 @@
     },
     "rpivotTable": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3550,7 +3563,7 @@
     },
     "rprojroot": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3582,7 +3595,7 @@
     },
     "rstudioapi": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3611,7 +3624,7 @@
     },
     "sass": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3644,7 +3657,7 @@
     },
     "scales": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3675,7 +3688,7 @@
     },
     "shiny": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3709,7 +3722,7 @@
     },
     "shinyjs": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3741,7 +3754,7 @@
     },
     "sodium": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3771,7 +3784,7 @@
     },
     "sourcetools": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3800,7 +3813,7 @@
     },
     "sp": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3829,7 +3842,7 @@
     },
     "stringdist": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3861,7 +3874,7 @@
     },
     "stringi": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3894,7 +3907,7 @@
     },
     "stringr": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3926,7 +3939,7 @@
     },
     "sys": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3957,7 +3970,7 @@
     },
     "systemfonts": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -3990,7 +4003,7 @@
     },
     "testthat": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4024,7 +4037,7 @@
     },
     "tibble": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4058,7 +4071,7 @@
     },
     "tidyr": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4094,7 +4107,7 @@
     },
     "tidyselect": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4126,7 +4139,7 @@
     },
     "tidyxl": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4159,7 +4172,7 @@
     },
     "tinytex": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4189,7 +4202,7 @@
     },
     "tzdb": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4222,7 +4235,7 @@
     },
     "utf8": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4252,7 +4265,7 @@
     },
     "uuid": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4277,7 +4290,7 @@
     },
     "vctrs": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4309,7 +4322,7 @@
     },
     "viridisLite": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4339,7 +4352,7 @@
     },
     "vroom": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4377,7 +4390,7 @@
     },
     "waiter": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4408,7 +4421,7 @@
     },
     "waldo": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4438,7 +4451,7 @@
     },
     "withr": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4470,7 +4483,7 @@
     },
     "xfun": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4501,7 +4514,7 @@
     },
     "xml2": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4534,7 +4547,7 @@
     },
     "xtable": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4563,7 +4576,7 @@
     },
     "yaml": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4590,7 +4603,7 @@
     },
     "zip": {
       "Source": "CRAN",
-      "Repository": "https://ftpmirror1.infania.net/mirror/CRAN",
+      "Repository": "https://cloud.r-project.org",
       "GithubRepo": null,
       "GithubUsername": null,
       "GithubRef": null,
@@ -4637,7 +4650,7 @@
       "checksum": "170c251d2cc9b7d7618bacb6a6c06821"
     },
     ".Rprofile": {
-      "checksum": "c168852fc35157dec26f96f2c2af3499"
+      "checksum": "72f15270b541d9c3d78cf9f71001ed83"
     },
     "CHANGELOG.md": {
       "checksum": "829b83e4e735857a274580a30a41240d"
@@ -4648,17 +4661,38 @@
     "config.yml.sample": {
       "checksum": "31c37d9dc0af96e3c9c149f808b3ea48"
     },
-    "cop_validation_rules.rds": {
+    "data-raw/process_validation_rules.R": {
+      "checksum": "d77bd6aa84c8c66fd9ca11fc1b5b28ee"
+    },
+    "data/cop_validation_rules.rds": {
       "checksum": "b4d96a5b9fe926e1c92335bf4ab40f9c"
+    },
+    "data/cop20_validation_rules.json": {
+      "checksum": "790720097eb1aee73824acf17f1de9bd"
+    },
+    "data/cop21_validation_rules.json": {
+      "checksum": "954c3b7e8c75b788f50f031726a37491"
+    },
+    "data/cop22_validation_rules.json": {
+      "checksum": "0ec1f222d67dd53eabc9c08058497ffc"
+    },
+    "data/degs_map.rds": {
+      "checksum": "651ae07b9d2a8ab71e13c3022e992847"
+    },
+    "data/mechs.rds": {
+      "checksum": "0e2e009ae1e02b1f3d43c0b87620cebc"
+    },
+    "data/README": {
+      "checksum": "23d8254dae346ea59a603eb2a31ebe73"
     },
     "datapack.log": {
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
-    "degs_map.rds": {
-      "checksum": "651ae07b9d2a8ab71e13c3022e992847"
-    },
     "DESCRIPTION": {
-      "checksum": "5b28177086b33daeec9062ace2c60a23"
+      "checksum": "bc358958d64c149e662afdb157a50eb5"
+    },
+    "inst/extdata/draft_memo_template.docx": {
+      "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"
     },
     "inst/upgradeAnalyticsLogs.R": {
       "checksum": "a45163aed121abf21c7845f176bdf9fa"
@@ -4669,17 +4703,104 @@
     "mechs.rds": {
       "checksum": "0e2e009ae1e02b1f3d43c0b87620cebc"
     },
-    "R/downloads.R": {
-      "checksum": "775b6c3b129ad81671b7de82ed4581cc"
+    "R/comparePrioTables.R": {
+      "checksum": "cb87095ad514689338a5a67f72838969"
+    },
+    "R/downloadCSOFlatPack.R": {
+      "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
+    },
+    "R/downloadDataPack.R": {
+      "checksum": "7bd09da14944f4416617f5f635fc08c8"
+    },
+    "R/downloadFlatPack.R": {
+      "checksum": "8ac568e87fc62c49940949dde18c72e7"
+    },
+    "R/downloadMemo.R": {
+      "checksum": "d986ead5377a0ec94ead9d7041e0c8a2"
+    },
+    "R/downloadTypes.R": {
+      "checksum": "00cd3d0efda768a3df673e700b5f0f92"
+    },
+    "R/evaluateIndicators.R": {
+      "checksum": "6fa4eb01d63fc9890aa3ffec2e7b6b15"
+    },
+    "R/generateComparisonTable.R": {
+      "checksum": "d69f2d6aa1da46e8eec6e2a0eda7f73f"
+    },
+    "R/getExistingPrioritization.R": {
+      "checksum": "36d44d8b7503b78dfc8698837e50ae05"
+    },
+    "R/getMemoIndicators.R": {
+      "checksum": "fa0596f00403775e90324fd07a4d4df9"
+    },
+    "R/kpCascadeChart.R": {
+      "checksum": "557691f5155d42393dbf4c22dd915c14"
+    },
+    "R/memo_getPrioritizationTable.R": {
+      "checksum": "7cbed2b4603c87b9c52511b56274d777"
+    },
+    "R/memoStructure.R": {
+      "checksum": "8e7f108d281476b38f16ff8e99836e3d"
+    },
+    "R/modalitySummary.R": {
+      "checksum": "5f0a402f5b7a9c15ae886fba7309e8e1"
+    },
+    "R/preparePartnerMemoTable.R": {
+      "checksum": "2aac7e9969babcbd3329b9121621a162"
+    },
+    "R/preparePrioTable.R": {
+      "checksum": "3eb3348f5e751f9f2aad44185929dcb0"
+    },
+    "R/prepareSNUSummaryTable.R": {
+      "checksum": "6229926905afc40a2f54ac39e4c5440e"
+    },
+    "R/PSNUxIM_pivot.R": {
+      "checksum": "e391fe49aaf557600e427864f82e6926"
+    },
+    "R/recencyComparison.R": {
+      "checksum": "4bdb88394a86f728fab9d55d9e462814"
+    },
+    "R/sendDataPacktoS3.R": {
+      "checksum": "f4e569e6237bf06ad941918af52a600b"
+    },
+    "R/sendDATIMExportToS3.R": {
+      "checksum": "0386af1245664f573bc83606b79336ca"
+    },
+    "R/sendEventToS3.R": {
+      "checksum": "f690e0ebf0f86e47292d437bdceb7fb8"
+    },
+    "R/sendTimeStampLogToS3.R": {
+      "checksum": "1d11902e797f5d4e3b79953817c1e09b"
+    },
+    "R/sendValidationSummary.R": {
+      "checksum": "02de83d6fd96fb07e3d97a7ba1e34bee"
+    },
+    "R/snuSelector.R": {
+      "checksum": "68f15e0fa1b571a2401dabdfd68f39f6"
+    },
+    "R/subnatPyramidsChart.R": {
+      "checksum": "7a59988038d3223fc9c5e4324dc867b6"
+    },
+    "R/updateExistingPrioritization.R": {
+      "checksum": "abba3eb86552bfc04aca398e594c0605"
     },
     "R/utils.R": {
-      "checksum": "7bc4f8a7e65c01498fbbe427c7469135"
+      "checksum": "0768567c6f750a72484c67bc07e632f2"
     },
-    "R/visuals.R": {
-      "checksum": "f6d8563d6c5bd7182fca2c531d4aa9bc"
+    "R/validateMechanisms.R": {
+      "checksum": "d12908bd70e5deee2e0da4ac89a32777"
+    },
+    "R/validatePSNUData.R": {
+      "checksum": "30113ea211a20b92c815efa6e978d148"
+    },
+    "R/validationSummary2.R": {
+      "checksum": "b39d48e2f8f287cc2faec657c1bc0899"
+    },
+    "R/vlsTestingChart.R": {
+      "checksum": "6c82b6e58bc05c5feba6bb563d7a548a"
     },
     "R/waitingScreens.R": {
-      "checksum": "cdf86ff8be99d4bc4d15185a33c2f15a"
+      "checksum": "b72178281b5235d04faff80459bb0499"
     },
     "README.md": {
       "checksum": "eef665cd63e15044507de68a54e50b45"
@@ -4688,7 +4809,7 @@
       "checksum": "63568a0d8830618fc5ac31536c675198"
     },
     "server.R": {
-      "checksum": "e1f9ecb4cd5b1e8d0f0ce859983174f9"
+      "checksum": "82ebbeb677c382c9329ec1b8bfdf3d06"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
@@ -4699,29 +4820,14 @@
     "support_files/cop_data.rds": {
       "checksum": "37d14efb4e51c31bb75a300c786f1892"
     },
-    "support_files/cop_validation_rules.rds": {
-      "checksum": "5fdad2ec9c3e782d169bc8fbb1a3eea3"
-    },
-    "support_files/cop20_validation_rules.json": {
-      "checksum": "790720097eb1aee73824acf17f1de9bd"
-    },
     "support_files/cop20_validation_rules.rds": {
       "checksum": "7e5ec5cd9c33bcdfce134faffd51bfe6"
-    },
-    "support_files/cop21_validation_rules.json": {
-      "checksum": "954c3b7e8c75b788f50f031726a37491"
-    },
-    "support_files/cop22_validation_rules.json": {
-      "checksum": "0ec1f222d67dd53eabc9c08058497ffc"
     },
     "support_files/datapack_model_data.rds": {
       "checksum": "b2ecdc282382ca0515146129d9319a24"
     },
     "support_files/draft_memo_template.docs.odt": {
       "checksum": "3631f2012f8986452becc44d3e1ed077"
-    },
-    "support_files/draft_memo_template.docx": {
-      "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"
     },
     "support_files/mechs.rds": {
       "checksum": "0e2e009ae1e02b1f3d43c0b87620cebc"
@@ -4732,11 +4838,8 @@
     "support_files/modifiedValidationRules.json": {
       "checksum": "e8c9c27cc18d80f06ddbfb56155a9ca3"
     },
-    "support_files/process_validation_rules.R": {
-      "checksum": "35e354216801403c1fc92afac7a36aea"
-    },
-    "support_files/README": {
-      "checksum": "23d8254dae346ea59a603eb2a31ebe73"
+    "support_files/psnuxim_model_data_22.rds": {
+      "checksum": "add78a9f57b19b6ad11b6bdf8fb1b16d"
     },
     "support_files/snuxim_model_data.rds": {
       "checksum": "add78a9f57b19b6ad11b6bdf8fb1b16d"

@@ -47,7 +47,7 @@ preparePartnerMemoTable <- function(d, d2_session) {
     tidyr::complete(., tidyr::nesting(Mechanism, Agency, Partner), Indicator, Age, fill = list(Value = 0)) %>%
     tidyr::drop_na()
 
-  df_rows <- memoStructure(d) %>%
+  df_rows <- d$memo$structure %>%
     purrr::pluck("row_order") %>%
     dplyr::select(ind, options)
 
@@ -68,7 +68,7 @@ preparePartnerMemoTable <- function(d, d2_session) {
   #TODO: Are we dealing with codes of mechanisms here??
   d_partners <- dplyr::filter(df, !(`Mechanism` %in% c("00001", "00000"))) #nolint
 
-  d_indicators <- memoStructure(d) %>%
+  d_indicators <- d$memo$structure %>%
     purrr::pluck("row_order") %>%
     dplyr::filter(in_partner_table) %>%
     dplyr::select(ind, options) %>%

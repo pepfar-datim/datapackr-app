@@ -33,7 +33,8 @@ shinyServer(function(input, output, session) {
   user_input  <-  reactiveValues(authenticated = FALSE,
                                  status = "",
                                  d2_session = NULL,
-                                 memo_authorized = FALSE)
+                                 memo_authorized = FALSE,
+                                 uuid = NULL)
 
   epi_graph_filter  <-  reactiveValues(snu_filter = NULL)
 
@@ -74,12 +75,14 @@ shinyServer(function(input, output, session) {
     timestampUploadUI(r)
     sendDataPackErrorUI(r)
     r  <-  sendDATIMExportToS3(d)
+    sendEventToS3(d,"PAW_EXPORT")
     waiter_hide()
     datimExportUI(r)
   })
 
   observeEvent(input$login_button, {
     tryCatch({
+      user_input$uuid <- uuid::UUIDgenerate()
       datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
                                username = input$user_name,
                                password = input$password,
@@ -114,6 +117,7 @@ shinyServer(function(input, output, session) {
           ),
           name = "datapack"
         )
+        sendEventToS3(NULL,"LOGIN",user_input = user_input)
       }
     } else {
       sendSweetAlert(
@@ -122,6 +126,7 @@ shinyServer(function(input, output, session) {
         text = "Please check your username/password!",
         type = "error"
       )
+      sendEventToS3(NULL,"LOGIN_FAILED",user_input = user_input)
     }
   })
 
@@ -732,7 +737,7 @@ shinyServer(function(input, output, session) {
         #All self-service datapacks should be marked as unapproved for PAW
         d$info$approval_status <- "UNAPPROVED"
         #Generate a unique identifier
-        d$info$uuid <- uuid::UUIDgenerate()
+        d$info$uuid <- user_input$uuid
         #Get a single operating unit from the country IDs
         d$info$operating_unit <- getOperatingUnitFromCountryUIDs(d$info$country_uids)
         #Log the validation to S3
@@ -788,7 +793,7 @@ shinyServer(function(input, output, session) {
             d <- recencyComparison(d)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Performing analytics checks"))
-            model_data_path <- "data/datapack_model_data.rds"
+            model_data_path <- "support_files/datapack_model_data.rds"
             full_model_path <- fetchModelFile(model_data_path)
             d <- checkAnalytics(d, model_data_path  = full_model_path, d2_session = user_input$d2_session)
             Sys.sleep(1)
