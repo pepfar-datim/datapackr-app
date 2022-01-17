@@ -745,23 +745,24 @@ shinyServer(function(input, output, session) {
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
         if (d$info$tool  == "Data Pack") {
 
-          #TODO:Clean this up...
-          #Deal with unallocated data. This should be properly handled in datapackr createAnalytics
-          fixNAsInAnalyticsColumn <- function(data,column_name) {
-            column_var <- enquo(column_name)
+          #TODO:Clean this up. Pretty sure this should be in datapackr
+          #Un-allocated does not have a partner/mech/agency but
+          #Needs one for consistent display in the visuals/tables in the app
 
-            data %>%
-              dplyr::mutate(!!column_var := dplyr::case_when(is.na(!!column_var) & stringr::str_detect(support_type,"DSD|TA") ~ "Unallocated",
-                                                             is.na(!!column_var) & stringr:::str_detect(support_type,"Sub-National") ~ "default",
-                                                             is.na(!!column_var) & stringr:::str_detect(support_type,"No Support Type") ~ "default",
-                                                             TRUE ~ !!column_var))
-          }
+          d$data$analytics <-  d$data$analytics %>%
+            dplyr::mutate(across(
+              c(mechanism_code, mechanism_desc, partner_desc, funding_agency),
+              ~ dplyr::case_when(
+                is.na(.x) &
+                  stringr::str_detect(support_type, "DSD|TA") ~ "Unallocated",
+                is.na(.x) &
+                  stringr:::str_detect(support_type, "Sub-National") ~ "default",
+                is.na(.x) &
+                  stringr:::str_detect(support_type, "No Support Type") ~ "default",
+                TRUE ~ .x
+              )
+            ))
 
-          d$data$analytics <- d$data$analytics %>%
-            fixNAsInAnalyticsColumn(.,mechanism_code) %>%
-            fixNAsInAnalyticsColumn(.,mechanism_desc) %>%
-            fixNAsInAnalyticsColumn(.,partner_desc)  %>%
-            fixNAsInAnalyticsColumn(.,funding_agency)
 
 
           d$info$needs_psnuxim  <-  d$info$missing_psnuxim_combos |
