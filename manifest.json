@@ -867,7 +867,7 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "pack-snuxim-tab",
-      "GithubSha1": "de2cb7e23816595d9d9466370309cd95fcb718c3",
+      "GithubSha1": "038e3d560d8c92e9a43e69ebfafddc33fa692ae7",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -887,19 +887,19 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-01-13 15:18:56 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-01-14 11:36:46 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "pack-snuxim-tab",
-        "RemoteSha": "de2cb7e23816595d9d9466370309cd95fcb718c3",
+        "RemoteSha": "038e3d560d8c92e9a43e69ebfafddc33fa692ae7",
+        "Remotes": "pepfar-datim/datim-validation,\npepfar-datim/data-pack-commons",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "pack-snuxim-tab",
-        "GithubSHA1": "de2cb7e23816595d9d9466370309cd95fcb718c3",
-        "Remotes": "pepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
+        "GithubSHA1": "038e3d560d8c92e9a43e69ebfafddc33fa692ae7"
       }
     },
     "datimutils": {
@@ -907,8 +907,8 @@
       "Repository": null,
       "GithubRepo": "datimutils",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "DP-483",
-      "GithubSha1": "3b6f316804b412abe891c81a2a7b43c1e4e91a57",
+      "GithubRef": "master",
+      "GithubSha1": "bba00c371ba345865725def8b3b4830943963c5c",
       "description": {
         "Package": "datimutils",
         "Type": "Package",
@@ -929,18 +929,18 @@
         "VignetteBuilder": "knitr",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut],\n  Sam Garman [aut],\n  Maxwell Chandler [aut]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-01-12 18:11:33 UTC; unix",
+        "Built": "R 4.1.1; ; 2021-11-15 14:50:04 UTC; unix",
         "RemoteType": "github",
-        "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datimutils",
-        "RemoteRef": "DP-483",
-        "RemoteSha": "3b6f316804b412abe891c81a2a7b43c1e4e91a57",
+        "RemoteRef": "master",
+        "RemoteSha": "bba00c371ba345865725def8b3b4830943963c5c",
+        "RemoteHost": "api.github.com",
         "GithubHost": "api.github.com",
         "GithubRepo": "datimutils",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "DP-483",
-        "GithubSHA1": "3b6f316804b412abe891c81a2a7b43c1e4e91a57"
+        "GithubRef": "master",
+        "GithubSHA1": "bba00c371ba345865725def8b3b4830943963c5c"
       }
     },
     "datimvalidation": {
@@ -4647,10 +4647,10 @@
       "checksum": "229aa0fa2b289579318dbdfc0f1ee654"
     },
     ".RData": {
-      "checksum": "170c251d2cc9b7d7618bacb6a6c06821"
+      "checksum": "7869674f2aac43aaa13a6af1ee3ef444"
     },
     ".Rprofile": {
-      "checksum": "72f15270b541d9c3d78cf9f71001ed83"
+      "checksum": "424cb6b8a01555e500078a1d864e5d93"
     },
     "CHANGELOG.md": {
       "checksum": "829b83e4e735857a274580a30a41240d"
@@ -4680,7 +4680,7 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "data/mechs.rds": {
-      "checksum": "0e2e009ae1e02b1f3d43c0b87620cebc"
+      "checksum": "5cf01bf7b7bb2e609ccc6728c59dd159"
     },
     "data/README": {
       "checksum": "23d8254dae346ea59a603eb2a31ebe73"
@@ -4689,7 +4689,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "bc358958d64c149e662afdb157a50eb5"
+      "checksum": "bbb914d8a0f9981af0d4f46c04bffece"
     },
     "inst/extdata/draft_memo_template.docx": {
       "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"
@@ -4701,7 +4701,7 @@
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "0e2e009ae1e02b1f3d43c0b87620cebc"
+      "checksum": "5cf01bf7b7bb2e609ccc6728c59dd159"
     },
     "R/comparePrioTables.R": {
       "checksum": "cb87095ad514689338a5a67f72838969"
@@ -4755,7 +4755,7 @@
       "checksum": "6229926905afc40a2f54ac39e4c5440e"
     },
     "R/PSNUxIM_pivot.R": {
-      "checksum": "e391fe49aaf557600e427864f82e6926"
+      "checksum": "a849fbc231f9d3c4d5fa8f57138cf6a5"
     },
     "R/recencyComparison.R": {
       "checksum": "4bdb88394a86f728fab9d55d9e462814"
@@ -4764,7 +4764,7 @@
       "checksum": "f4e569e6237bf06ad941918af52a600b"
     },
     "R/sendDATIMExportToS3.R": {
-      "checksum": "0386af1245664f573bc83606b79336ca"
+      "checksum": "26772412a0c5b1892b4c9e050dc3d974"
     },
     "R/sendEventToS3.R": {
       "checksum": "f690e0ebf0f86e47292d437bdceb7fb8"
@@ -4800,7 +4800,7 @@
       "checksum": "6c82b6e58bc05c5feba6bb563d7a548a"
     },
     "R/waitingScreens.R": {
-      "checksum": "b72178281b5235d04faff80459bb0499"
+      "checksum": "0015e4b08f42b1bd011c9f3c8a970bd4"
     },
     "README.md": {
       "checksum": "eef665cd63e15044507de68a54e50b45"
@@ -4809,7 +4809,7 @@
       "checksum": "63568a0d8830618fc5ac31536c675198"
     },
     "server.R": {
-      "checksum": "82ebbeb677c382c9329ec1b8bfdf3d06"
+      "checksum": "29fd6ed6bf5f1f11e7e4e53da1f77efe"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
@@ -4823,14 +4823,14 @@
     "support_files/cop20_validation_rules.rds": {
       "checksum": "7e5ec5cd9c33bcdfce134faffd51bfe6"
     },
+    "support_files/data/mechs.rds": {
+      "checksum": "0e2e009ae1e02b1f3d43c0b87620cebc"
+    },
     "support_files/datapack_model_data.rds": {
       "checksum": "b2ecdc282382ca0515146129d9319a24"
     },
     "support_files/draft_memo_template.docs.odt": {
       "checksum": "3631f2012f8986452becc44d3e1ed077"
-    },
-    "support_files/mechs.rds": {
-      "checksum": "0e2e009ae1e02b1f3d43c0b87620cebc"
     },
     "support_files/model_data_pack_input_21_20210202_1_flat.rds": {
       "checksum": "75318ab8927e10b549a262f8eb810426"

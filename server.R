@@ -745,14 +745,24 @@ shinyServer(function(input, output, session) {
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
         if (d$info$tool  == "Data Pack") {
 
-          #TODO:
-          #Deal with unallocated data. This probably needs to be dealt with in datapackr
-          d$data$analytics <-  d$data$analytics %>%
-            dplyr::mutate(mechanism_code = ifelse(is.na(mechanism_code), "Unknown", mechanism_code),
-                          mechanism_desc = ifelse(is.na(mechanism_desc), "Unknown", mechanism_desc),
-                          partner_id = ifelse(is.na(partner_id), "Unknown", partner_id),
-                          partner_desc = ifelse(is.na(partner_desc), "Unknown", partner_desc),
-                          funding_agency = ifelse(is.na(funding_agency), "Unknown", funding_agency))
+          #TODO:Clean this up...
+          #Deal with unallocated data. This should be properly handled in datapackr createAnalytics
+          fixNAsInAnalyticsColumn <- function(data,column_name) {
+            column_var <- enquo(column_name)
+
+            data %>%
+              dplyr::mutate(!!column_var := dplyr::case_when(is.na(!!column_var) & stringr::str_detect(support_type,"DSD|TA") ~ "Unallocated",
+                                                             is.na(!!column_var) & stringr:::str_detect(support_type,"Sub-National") ~ "default",
+                                                             is.na(!!column_var) & stringr:::str_detect(support_type,"No Support Type") ~ "default",
+                                                             TRUE ~ !!column_var))
+          }
+
+          d$data$analytics <- d$data$analytics %>%
+            fixNAsInAnalyticsColumn(.,mechanism_code) %>%
+            fixNAsInAnalyticsColumn(.,mechanism_desc) %>%
+            fixNAsInAnalyticsColumn(.,partner_desc)  %>%
+            fixNAsInAnalyticsColumn(.,funding_agency)
+
 
           d$info$needs_psnuxim  <-  d$info$missing_psnuxim_combos |
             (NROW(d$data$SNUxIM) == 1 & is.na(d$data$SNUxIM[[1, 1]]))
