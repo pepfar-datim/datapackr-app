@@ -1,9 +1,17 @@
 comparePrioTables <- function(d) {
   #Comparison is not possible unless both tables exist
-  #Normally, this would result because of data not existing already in DATIM
-  if (is.null(d$data$prio_table) | is.null(d$data$memo$datim$prio)) {
-    return(d)
+  #However, if we have data in the DP and no data in DATIM,
+  #We can perform the comparison by assuming everything in DATIM is zero.
+
+  if (  is.null(d$data$memo$datim$prio) & !is.null(d$data$prio_table)) {
+    d$data$memo$datim$prio <- d$data$prio_table %>% dplyr::mutate(across(where(is.double),function(x) NA_real_))
   }
+  #If both tables are NULL, then we have no data to compare at all.
+  if (  is.null(d$data$memo$datim$prio) & is.null(d$data$prio_table)) {
+   return(d)
+  }
+  #The other case of data in DATIM, but no data in the DataPack does not really
+  #seem feasible.
 
   prio_dp <- d$data$prio_table %>%
     tidyr::pivot_longer(., cols = 3:dim(.)[2], values_to = "Proposed", names_to = "Prioritization")
@@ -22,9 +30,10 @@ comparePrioTables <- function(d) {
                   "Percent diff" = round(Diff / Current * 100, digits = 1)) %>%
     tidyr::pivot_longer(., cols = -c(Indicator, Age, Prioritization, Identical), names_to = "Data Type") %>%
     dplyr::mutate(`Data Type` = factor(`Data Type`, levels = c("Proposed", "Current", "Diff", "Percent diff"))) %>%
-    dplyr::arrange(Indicator, Age, Prioritization, `Data Type`)
+    dplyr::arrange(Indicator, Age, Prioritization, `Data Type`) %>%
+    dplyr::rename("Value" = value)
 
-  d$data$memo$compare$prio <- df
+  d$data$compare <- df
 
   return(d)
 }
