@@ -866,8 +866,8 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "pack-snuxim-tab",
-      "GithubSha1": "038e3d560d8c92e9a43e69ebfafddc33fa692ae7",
+      "GithubRef": "RC-5.1.0",
+      "GithubSha1": "bdbbf9d255490c26506fa04740f85454b4c97681",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -887,19 +887,19 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-01-14 11:36:46 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-01-17 13:28:56 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "pack-snuxim-tab",
-        "RemoteSha": "038e3d560d8c92e9a43e69ebfafddc33fa692ae7",
-        "Remotes": "pepfar-datim/datim-validation,\npepfar-datim/data-pack-commons",
+        "RemoteRef": "RC-5.1.0",
+        "RemoteSha": "bdbbf9d255490c26506fa04740f85454b4c97681",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "pack-snuxim-tab",
-        "GithubSHA1": "038e3d560d8c92e9a43e69ebfafddc33fa692ae7"
+        "GithubRef": "RC-5.1.0",
+        "GithubSHA1": "bdbbf9d255490c26506fa04740f85454b4c97681",
+        "Remotes": "pepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
     "datimutils": {
@@ -4634,26 +4634,14 @@
     ".lintr": {
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
-    ".R_Cache/03a3dae384653879582f4ffe31165734": {
-      "checksum": "67c0579ef8d6c5b44c203b5de17a161d"
-    },
-    ".R_Cache/2d07494fe2c164d34287d2b83b6ec118": {
-      "checksum": "4a8907663b78d9a321ae5b00f8d0db74"
-    },
-    ".R_Cache/68374d678407ef5a1b4401298b5e2c4c": {
-      "checksum": "93f639c3745168bd0282454522960a69"
-    },
-    ".R_Cache/c52c919e354af34cc81beb125d8267db": {
-      "checksum": "229aa0fa2b289579318dbdfc0f1ee654"
-    },
     ".RData": {
       "checksum": "7869674f2aac43aaa13a6af1ee3ef444"
     },
     ".Rprofile": {
-      "checksum": "424cb6b8a01555e500078a1d864e5d93"
+      "checksum": "6e0ba99f29d6ac2f609a05b43eb7a5d6"
     },
     "CHANGELOG.md": {
-      "checksum": "829b83e4e735857a274580a30a41240d"
+      "checksum": "0ab48278425a7f57a2e7e1f3c667bf16"
     },
     "config.yml": {
       "checksum": "3298ef63ce822cf889ae67375f352616"
@@ -4689,7 +4677,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "bbb914d8a0f9981af0d4f46c04bffece"
+      "checksum": "70be0d4f6a9c714176f7f1efadfa82f5"
     },
     "inst/extdata/draft_memo_template.docx": {
       "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"

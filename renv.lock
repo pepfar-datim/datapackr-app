@@ -230,10 +230,10 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
-      "RemoteRef": "dev",
+      "RemoteRef": "RC-5.1.0",
       "RemoteSha": "bdbbf9d255490c26506fa04740f85454b4c97681",
       "Remotes": "pepfar-datim/datim-validation, pepfar-datim/data-pack-commons",
-      "Hash": "15276a773ffca90e4954107d4878c639"
+      "Hash": "d051eac7c54903c1d62ae84242b3bfd6"
     },
     "datimutils": {
       "Package": "datimutils",
