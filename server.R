@@ -78,6 +78,10 @@ shinyServer(function(input, output, session) {
     # sendEventToS3(d,"PAW_EXPORT")
     # waiter_hide()
     # datimExportUI(r)
+    showModal(modalDialog(
+      title = "Under construction!",
+      "PAW uploads are currently not available. Check back soon!"
+    ))
   })
 
   observeEvent(input$login_button, {
