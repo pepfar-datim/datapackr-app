@@ -4638,7 +4638,7 @@
       "checksum": "7869674f2aac43aaa13a6af1ee3ef444"
     },
     ".Rprofile": {
-      "checksum": "6e0ba99f29d6ac2f609a05b43eb7a5d6"
+      "checksum": "2eb7b61a390d00ddbffcb783d4591b42"
     },
     "CHANGELOG.md": {
       "checksum": "0ab48278425a7f57a2e7e1f3c667bf16"
@@ -4677,7 +4677,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "70be0d4f6a9c714176f7f1efadfa82f5"
+      "checksum": "e0bff73ab1d248cbb267d728fad6ad6e"
     },
     "inst/extdata/draft_memo_template.docx": {
       "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"
@@ -4692,7 +4692,7 @@
       "checksum": "5cf01bf7b7bb2e609ccc6728c59dd159"
     },
     "R/comparePrioTables.R": {
-      "checksum": "cb87095ad514689338a5a67f72838969"
+      "checksum": "cbb978289b0e90820dea72f83a9e9b5d"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
@@ -4797,7 +4797,7 @@
       "checksum": "63568a0d8830618fc5ac31536c675198"
     },
     "server.R": {
-      "checksum": "29fd6ed6bf5f1f11e7e4e53da1f77efe"
+      "checksum": "e1f3ac717bba7cc61c0020ba5b78e39f"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
