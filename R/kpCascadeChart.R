@@ -41,7 +41,7 @@ kpCascadeChart <- function(d, kpCascadeInput_filter) {
   chart_label <- paste0("COP", cop_year, "/FY", cop_year + 1, " Epidemic Cascade Age & Sex Pyramid")
 
   gg <- df %>%
-    ggplot(aes(x = indicator, y = value, fill = lbl)) +
+    ggplot2::ggplot(aes(x = indicator, y = value, fill = lbl)) +
     geom_bar(data = df,
              stat = "identity",
              position = "identity") +
