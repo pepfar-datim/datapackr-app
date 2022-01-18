@@ -4,11 +4,7 @@
     "Repositories": [
       {
         "Name": "CRAN",
-        "URL": "https://ftpmirror1.infania.net/mirror/CRAN"
-      },
-      {
-        "Name": "PEPFAR",
-        "URL": "https://rstudio-package.ap.datim.org/prod/latest"
+        "URL": "https://cloud.r-project.org"
       }
     ]
   },
@@ -59,7 +55,7 @@
       "Package": "Rcpp",
       "Version": "1.0.7",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "dab19adae4440ae55aa8a9d238b246bb"
     },
     "XML": {
@@ -106,14 +102,14 @@
       "Package": "bit",
       "Version": "4.0.4",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "f36715f14d94678eea9933af927bc15d"
     },
     "bit64": {
       "Package": "bit64",
       "Version": "4.0.5",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "9fe98599ca456d6552421db0d6772d8f"
     },
     "brio": {
@@ -134,14 +130,14 @@
       "Package": "cachem",
       "Version": "1.0.6",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "648c5b3d71e6a37e3043617489a0a0e9"
     },
     "callr": {
       "Package": "callr",
       "Version": "3.7.0",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "461aa75a11ce2400245190ef5d3995df"
     },
     "cellranger": {
@@ -169,7 +165,7 @@
       "Package": "colorspace",
       "Version": "2.0-2",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "6baccb763ee83c0bd313460fdb8b8a84"
     },
     "commonmark": {
@@ -204,14 +200,14 @@
       "Package": "curl",
       "Version": "4.3.2",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "022c42d49c28e95d69ca60446dbabf88"
     },
     "data.table": {
       "Package": "data.table",
       "Version": "1.14.2",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "36b67b5adf57b292923f5659f5f0c853"
     },
     "datapackcommons": {
@@ -228,36 +224,48 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "5.0.2.0.0.0.1638984624",
-      "Source": "Repository",
-      "Repository": "RSPM",
+      "Version": "5.1.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "pepfar-datim",
+      "RemoteRepo": "datapackr",
+      "RemoteRef": "master",
+      "RemoteSha": "987a24275c9398389801afee7871ee00a9be0739",
       "Remotes": "pepfar-datim/datim-validation, pepfar-datim/data-pack-commons",
-      "RemoteSha": "6c66b35456428542a0db856afb560048aae655aa",
-      "Hash": "ecca0311492198faf01fc3a2d8c3bf6e"
+      "Hash": "63f603878abf9bc0a6505649b626907a"
     },
     "datimutils": {
       "Package": "datimutils",
-      "Version": "0.1.2.0.0.0.1632829200",
-      "Source": "Repository",
-      "Repository": "RSPM",
+      "Version": "0.1.2",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteUsername": "pepfar-datim",
+      "RemoteRepo": "datimutils",
+      "RemoteRef": "master",
       "RemoteSha": "bba00c371ba345865725def8b3b4830943963c5c",
-      "Hash": "a05c028766fea2eaa93b0485b5c4dbe9"
+      "RemoteHost": "api.github.com",
+      "Hash": "e829deef0bb3a66af8225766d6991853"
     },
     "datimvalidation": {
       "Package": "datimvalidation",
-      "Version": "1.1.2.0.0.0.1619515373",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Remotes": "pepfar-datim/datimutils",
+      "Version": "1.1.2",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "pepfar-datim",
+      "RemoteRepo": "datim-validation",
+      "RemoteRef": "master",
       "RemoteSha": "bc550850e5f767c23e9cc72938438ff7207dba54",
-      "Hash": "fa13527cdc265da63e5d1770f0650905"
+      "Remotes": "pepfar-datim/datimutils",
+      "Hash": "81c6ab41721a434aacd3f7492797ae80"
     },
     "desc": {
       "Package": "desc",
-      "Version": "1.3.0",
+      "Version": "1.4.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "b6963166f7f10b970af1006c462ce6cd"
+      "Hash": "28763d08fadd0b733e3cee9dab4e12fe"
     },
     "diffobj": {
       "Package": "diffobj",
@@ -277,14 +285,14 @@
       "Package": "dplyr",
       "Version": "1.0.7",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "36f1ae62f026c8ba9f9b5c9a08c03297"
     },
     "ellipsis": {
       "Package": "ellipsis",
       "Version": "0.3.2",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "bb0eec2fe32e88d9e2836c2f73ea2077"
     },
     "evaluate": {
@@ -298,7 +306,7 @@
       "Package": "fansi",
       "Version": "0.5.0",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "d447b40982c576a72b779f0a3b3da227"
     },
     "farver": {
@@ -438,7 +446,7 @@
       "Package": "htmltools",
       "Version": "0.5.2",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "526c484233f42522278ab06fb185cb26"
     },
     "htmlwidgets": {
@@ -473,7 +481,7 @@
       "Package": "jquerylib",
       "Version": "0.1.4",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "5aab57a3bd297eee1c1d862735972182"
     },
     "jsonlite": {
@@ -487,7 +495,7 @@
       "Package": "keyring",
       "Version": "1.2.0",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "dec373d855af8247fd5e24c0ebe14472"
     },
     "knitr": {
@@ -515,7 +523,7 @@
       "Package": "later",
       "Version": "1.3.0",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "7e7b457d7766bc47f2a5f21cc2984f8e"
     },
     "lattice": {
@@ -585,7 +593,7 @@
       "Package": "officer",
       "Version": "0.4.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "a49b891db0ebf34b40e6b1fb1ec9d3ad"
     },
     "openssl": {
@@ -599,7 +607,7 @@
       "Package": "openxlsx",
       "Version": "4.2.4",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "f1b1ca1254ccb485dccc9c0dc65a2c36"
     },
     "pacman": {
@@ -767,7 +775,7 @@
       "Package": "processx",
       "Version": "3.5.2",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "0cbca2bc4d16525d009c4dbba156b37c"
     },
     "progress": {
@@ -900,7 +908,7 @@
       "Package": "sass",
       "Version": "0.4.0",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "50cf822feb64bb3977bda0b7091be623"
     },
     "scales": {
@@ -956,7 +964,7 @@
       "Package": "stringdist",
       "Version": "0.9.8",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "c8b6c79c3b2d7d8475f3ab35cd99737b"
     },
     "stringi": {
@@ -1012,7 +1020,7 @@
       "Package": "tidyselect",
       "Version": "1.1.1",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "7243004a708d06d4716717fa1ff5b2fe"
     },
     "tidyxl": {
@@ -1040,7 +1048,7 @@
       "Package": "utf8",
       "Version": "1.2.2",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "c9c462b759a5cc844ae25b5942654d13"
     },
     "uuid": {
@@ -1054,14 +1062,14 @@
       "Package": "vctrs",
       "Version": "0.3.8",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "ecf749a1b39ea72bd9b51b76292261f1"
     },
     "viridisLite": {
       "Package": "viridisLite",
       "Version": "0.4.0",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "55e157e2aa88161bdb0754218470d204"
     },
     "vroom": {
@@ -1089,7 +1097,7 @@
       "Package": "withr",
       "Version": "2.4.2",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "ad03909b44677f930fa156d47d7a3aeb"
     },
     "xfun": {
@@ -1124,7 +1132,7 @@
       "Package": "zip",
       "Version": "2.2.0",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "c7eef2996ac270a18c2715c997a727c5"
     }
   }

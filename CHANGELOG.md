@@ -1,3 +1,9 @@
+## January 17, 2022
+* Update to datapackr 5.1.0
+* Initial updates to process COP22 datapacks
+* Enhanced app analytics
+* Major reorganization of code
+
 ## December 1, 2021
 * Update to datapackr 5.0.2
 * Add a reset button to the comparison pivot
