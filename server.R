@@ -69,15 +69,15 @@ shinyServer(function(input, output, session) {
   })
 
   observeEvent(input$send_paw, {
-    waiter_show(html = waiting_screen_paw, color = "rgba(128, 128, 128, .8)")
-    d  <-  validation_results()
-    r  <-  sendTimeStampLogToS3(d)
-    timestampUploadUI(r)
-    sendDataPackErrorUI(r)
-    r  <-  sendDATIMExportToS3(d)
-    sendEventToS3(d,"PAW_EXPORT")
-    waiter_hide()
-    datimExportUI(r)
+    # waiter_show(html = waiting_screen_paw, color = "rgba(128, 128, 128, .8)")
+    # d  <-  validation_results()
+    # r  <-  sendTimeStampLogToS3(d)
+    # timestampUploadUI(r)
+    # sendDataPackErrorUI(r)
+    # r  <-  sendDATIMExportToS3(d)
+    # sendEventToS3(d,"PAW_EXPORT")
+    # waiter_hide()
+    # datimExportUI(r)
   })
 
   observeEvent(input$login_button, {
