@@ -11,8 +11,8 @@ sendTimeStampLogToS3 <- function(d) {
            ".csv")
 
   timestamp_info <- list(
-    ou = d$info$operating_unit$ou,
-    ou_id = d$info$operating_unit$ou_id,
+    ou = d$info$datapack_name,
+    ou_id = d$info$country_uids,
     country_name = d$info$datapack_name,
     country_uids = paste(d$info$country_uids, sep = "", collapse = ", "),
     upload_timestamp = strftime(as.POSIXlt(Sys.time(), "UTC"), "%Y-%m-%d %H:%M:%S"),

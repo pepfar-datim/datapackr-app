@@ -5,12 +5,12 @@ validateMechanisms <- function(d, d2_session) {
 
   period_info <- datimvalidation::getPeriodFromISO(paste0(d$info$cop_year, "Oct"))
 
-  operating_unit <- getOperatingUnitFromCountryUIDs(d$info$country_uids)
+  operating_units <- strsplit(d$info$country_uids, split = ",")[[1]]
 
   mechs_datim <- datapackr::getMechanismView(d2_session = d2_session,
                                              update_stale_cache = TRUE,
                                              cached_mechs_path = "data/mechs.rds") %>%
-    dplyr::filter(ou == operating_unit$ou) %>%
+    dplyr::filter(ou %in% operating_units) %>%
     dplyr::filter(!is.na(startdate)) %>%
     dplyr::filter(!is.na(enddate)) %>%
     dplyr::filter(startdate <= period_info$startDate) %>%

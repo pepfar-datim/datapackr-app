@@ -739,8 +739,6 @@ shinyServer(function(input, output, session) {
         d$info$approval_status <- "UNAPPROVED"
         #Generate a unique identifier
         d$info$uuid <- user_input$uuid
-        #Get a single operating unit from the country IDs
-        d$info$operating_unit <- getOperatingUnitFromCountryUIDs(d$info$country_uids)
         #Log the validation to S3
         sendEventToS3(d, "VALIDATE")
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")

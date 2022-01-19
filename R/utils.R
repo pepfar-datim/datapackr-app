@@ -58,21 +58,6 @@ fetchSupportFiles <- function(path) {
   return(file_name2)
 }
 
-getOperatingUnitFromCountryUIDs <- function(country_uids) {
-  ou <- datapackr::valid_PSNUs %>%
-    dplyr::select(ou, ou_id, country_name, country_uid) %>%
-    dplyr::distinct() %>%
-    dplyr::filter(country_uid %in% country_uids) %>%
-    dplyr::select(ou, ou_id) %>%
-    dplyr::distinct()
-
-  if (NROW(ou) != 1) {
-    stop("Datapacks cannot belong to multiple operating units")
-  }
-
-  return(ou)
-}
-
 sendDataPackErrorUI <- function(r) {
   if (!r) {
     showModal(modalDialog(title = "Error",
