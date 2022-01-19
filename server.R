@@ -519,7 +519,10 @@ shinyServer(function(input, output, session) {
       data.frame(message = "Congratulations! No validation rule issues found!")
 
     } else {
-      vr
+      vr %>%
+        dplyr::filter(`Valid` == 'FALSE') %>%
+        dplyr::select(1:6)
+
     }
   })
 
