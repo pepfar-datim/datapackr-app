@@ -123,7 +123,9 @@ shinyServer(function(input, output, session) {
       sendSweetAlert(
         session,
         title = "Login failed",
-        text = substr(loginAttempt, 28, nchar(loginAttempt)),
+        text = substr(loginAttempt,# full error message printed to console
+                      regexpr("User",loginAttempt)[1],# Where to start extract
+                      nchar(loginAttempt)),# Where to end extract
         type = "error"
       )
       sendEventToS3(NULL,"LOGIN_FAILED",user_input = user_input)
