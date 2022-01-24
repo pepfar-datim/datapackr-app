@@ -731,14 +731,8 @@ shinyServer(function(input, output, session) {
       }
 
       if (!inherits(d, "error") & !is.null(d)) {
-        #Create some additional metadadta for S3 tagging
-        d$info$sane_name <- paste0(stringr::str_extract_all(d$info$datapack_name, "[A-Za-z0-9_]",
-                                                            simplify = TRUE), sep = "", collapse = "")
-        d$info$source_user <- user_input$d2_session$me$userCredentials$username
         #All self-service datapacks should be marked as unapproved for PAW
         d$info$approval_status <- "UNAPPROVED"
-        #Generate a unique identifier
-        d$info$uuid <- user_input$uuid
         #Get a single operating unit from the country IDs
         d$info$operating_unit <- getOperatingUnitFromCountryUIDs(d$info$country_uids)
         #Log the validation to S3
