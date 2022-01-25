@@ -1,3 +1,6 @@
+## January 23, 2022
+* Remove HTS_TST/KP_PREV validation rule
+
 ## January 17, 2022
 * Update to datapackr 5.1.0
 * Initial updates to process COP22 datapacks
