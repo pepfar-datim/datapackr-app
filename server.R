@@ -661,7 +661,7 @@ shinyServer(function(input, output, session) {
           name = "datapack")
         waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
         flog.info("Fetching support files")
-        d <- downloadDataPack(d)
+        d <- downloadDataPack(d, d2_session = user_input$d2_session)
         openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
         sendEventToS3(d, "DATAPACK_DOWNLOAD")
         flog.info(
