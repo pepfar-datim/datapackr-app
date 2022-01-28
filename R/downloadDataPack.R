@@ -1,4 +1,4 @@
-downloadDataPack <- function(d) {
+downloadDataPack <- function(d, d2_session) {
 
   if (d$info$cop_year == "2021") {
     support_file <- fetchSupportFiles("support_files/psnuxim_model_data_21.rds")
@@ -13,7 +13,7 @@ downloadDataPack <- function(d) {
     stop("WOMP!")
   }
 
-  d <- writePSNUxIM(d, snuxim_model_data_path = support_file)
+  d <- writePSNUxIM(d, snuxim_model_data_path = support_file, d2_session = d2_session )
   unlink(support_file)
 
   return(d)

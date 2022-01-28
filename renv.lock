@@ -62,7 +62,7 @@
       "Package": "XML",
       "Version": "3.99-0.8",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "d493b952a9073c62f72392a673d7c548"
     },
     "ansistrings": {
@@ -207,7 +207,7 @@
       "Package": "data.table",
       "Version": "1.14.2",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "36b67b5adf57b292923f5659f5f0c853"
     },
     "datapackcommons": {
@@ -224,16 +224,16 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "5.1.1",
+      "Version": "5.1.2",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
       "RemoteRef": "master",
-      "RemoteSha": "7c9b28cbd5185f68d4cf656f694a5f3280164c67",
+      "RemoteSha": "309e95d9f63d05b349d70dacd24e28840bf766ce",
       "Remotes": "pepfar-datim/datim-validation, pepfar-datim/data-pack-commons",
-      "Hash": "8baaa14dac88ea9d4255f938e269c6a6"
+      "Hash": "13dc9c22448a2c5590d6abef753c043f"
     },
     "datimutils": {
       "Package": "datimutils",
@@ -642,7 +642,7 @@
       "Package": "paws.common",
       "Version": "0.3.14",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "efc781eeeeffc4f46e78a8d18f08ca92"
     },
     "paws.compute": {
