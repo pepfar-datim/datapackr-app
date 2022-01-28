@@ -933,8 +933,8 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "RC-5.1.2",
-      "GithubSha1": "a8ffb5df4f9feee71b11bca84a65f65b61cfa172",
+      "GithubRef": "master",
+      "GithubSha1": "309e95d9f63d05b349d70dacd24e28840bf766ce",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -954,18 +954,18 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-01-27 15:03:27 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-01-28 09:03:37 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "RC-5.1.2",
-        "RemoteSha": "a8ffb5df4f9feee71b11bca84a65f65b61cfa172",
+        "RemoteRef": "master",
+        "RemoteSha": "309e95d9f63d05b349d70dacd24e28840bf766ce",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "RC-5.1.2",
-        "GithubSHA1": "a8ffb5df4f9feee71b11bca84a65f65b61cfa172",
+        "GithubRef": "master",
+        "GithubSHA1": "309e95d9f63d05b349d70dacd24e28840bf766ce",
         "Remotes": "pepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -4865,7 +4865,7 @@
       "checksum": "7869674f2aac43aaa13a6af1ee3ef444"
     },
     ".Rprofile": {
-      "checksum": "0de01fecbc9c7d28e8b75323fb197bcf"
+      "checksum": "1965cfc17be577c0e99a0fefb3942b9b"
     },
     "CHANGELOG.md": {
       "checksum": "0ab48278425a7f57a2e7e1f3c667bf16"
@@ -4904,7 +4904,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "53e4934208a11bce699e7df5c612ae3f"
+      "checksum": "71c65bcda37abf91fb27055f92a0a8ca"
     },
     "inst/extdata/draft_memo_template.docx": {
       "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"
