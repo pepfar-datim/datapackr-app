@@ -542,11 +542,14 @@ shinyServer(function(input, output, session) {
         purrr::pluck(., "info") %>%
         purrr::pluck(., "messages")
 
+
       if (length(messages$message) > 0)  {
 
         class(messages) <- "data.frame"
 
         messages %<>%
+          dplyr::mutate(level = factor(level,levels = c("ERROR","WARNING","INFO"))) %>%
+          dplyr::arrange(level) %>%
           dplyr::mutate(msg_html =
                           dplyr::case_when(
                             level == "ERROR" ~ paste('<li><p style = "color:red"><b>', message, "</b></p></li>"),
