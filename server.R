@@ -1,7 +1,7 @@
 
 pacman::p_load(shiny, shinyjs, shinyWidgets, magrittr, dplyr, datimvalidation, ggplot2,
                futile.logger, paws, datapackr, scales,
-               DT, purrr, praise, rpivotTable, waiter, flextable, officer, gdtools, digest,fansi)
+               DT, purrr, praise, rpivotTable, waiter, flextable, officer, gdtools, digest, fansi)
 
 
 #Parallel execution of validation rules on Windows is not supported
