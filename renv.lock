@@ -65,18 +65,6 @@
       "Repository": "CRAN",
       "Hash": "d493b952a9073c62f72392a673d7c548"
     },
-    "ansistrings": {
-      "Package": "ansistrings",
-      "Version": "1.0.0.9000",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "r-lib",
-      "RemoteRepo": "ansistrings",
-      "RemoteRef": "master",
-      "RemoteSha": "3ad2a2e9598266b691edfb2087d932c8121d1c1b",
-      "Hash": "5128cc7db678b718ac0edf06694484ec"
-    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.1",
@@ -231,9 +219,9 @@
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
       "RemoteRef": "master",
-      "RemoteSha": "309e95d9f63d05b349d70dacd24e28840bf766ce",
+      "RemoteSha": "b4f8a0cfa080d3497b9e5e952d2e4f3e7257eda6",
       "Remotes": "pepfar-datim/datim-validation, pepfar-datim/data-pack-commons",
-      "Hash": "13dc9c22448a2c5590d6abef753c043f"
+      "Hash": "66f791cc51d93946b951a8f80a906b09"
     },
     "datimutils": {
       "Package": "datimutils",
@@ -304,10 +292,10 @@
     },
     "fansi": {
       "Package": "fansi",
-      "Version": "0.5.0",
+      "Version": "1.0.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "d447b40982c576a72b779f0a3b3da227"
+      "Hash": "f28149c2d7a1342a834b314e95e67260"
     },
     "farver": {
       "Package": "farver",

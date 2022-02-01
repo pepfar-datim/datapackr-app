@@ -248,44 +248,6 @@
         "Built": "R 4.1.2; x86_64-pc-linux-gnu; 2022-01-21 12:15:24 UTC; unix"
       }
     },
-    "ansistrings": {
-      "Source": "github",
-      "Repository": null,
-      "GithubRepo": "ansistrings",
-      "GithubUsername": "r-lib",
-      "GithubRef": "master",
-      "GithubSha1": "3ad2a2e9598266b691edfb2087d932c8121d1c1b",
-      "description": {
-        "Package": "ansistrings",
-        "Title": "Manipulation of 'ANSI' colored strings",
-        "Version": "1.0.0.9000",
-        "Author": "Gábor Csárdi",
-        "Authors@R": "c(\n    person(\n    \"Gábor\", \"Csárdi\", email=\"csardi.gabor@gmail.com\",\n    role=c(\"aut\", \"cre\")),\n    person(\n    \"Brodie\", \"Gaslam\", email=\"brodie.gaslam@yahoo.com\",\n    role=c(\"aut\"))\n    )",
-        "Description": "String manipulation functions for 'ANSI' colored strings.\n    Substrings, split strings, wraps strings, and keeps the coloring proper.",
-        "License": "MIT + file LICENSE",
-        "LazyData": "true",
-        "URL": "https://github.com/r-lib/ansistrings",
-        "BugReports": "https://github.com/r-lib/ansistrings/issues",
-        "Roxygen": "list(markdown = TRUE)",
-        "RoxygenNote": "6.0.1.9000",
-        "Imports": "crayon,\nutils",
-        "Suggests": "testthat,\nwebshot",
-        "Encoding": "UTF-8",
-        "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
-        "Built": "R 4.1.1; x86_64-pc-linux-gnu; 2021-09-06 13:26:02 UTC; unix",
-        "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteUsername": "r-lib",
-        "RemoteRepo": "ansistrings",
-        "RemoteRef": "master",
-        "RemoteSha": "3ad2a2e9598266b691edfb2087d932c8121d1c1b",
-        "GithubHost": "api.github.com",
-        "GithubRepo": "ansistrings",
-        "GithubUsername": "r-lib",
-        "GithubRef": "master",
-        "GithubSHA1": "3ad2a2e9598266b691edfb2087d932c8121d1c1b"
-      }
-    },
     "askpass": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -934,7 +896,7 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "master",
-      "GithubSha1": "309e95d9f63d05b349d70dacd24e28840bf766ce",
+      "GithubSha1": "b4f8a0cfa080d3497b9e5e952d2e4f3e7257eda6",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -954,18 +916,18 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-01-28 09:03:37 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-01-28 15:49:12 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "master",
-        "RemoteSha": "309e95d9f63d05b349d70dacd24e28840bf766ce",
+        "RemoteSha": "b4f8a0cfa080d3497b9e5e952d2e4f3e7257eda6",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "master",
-        "GithubSHA1": "309e95d9f63d05b349d70dacd24e28840bf766ce",
+        "GithubSHA1": "b4f8a0cfa080d3497b9e5e952d2e4f3e7257eda6",
         "Remotes": "pepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -1282,10 +1244,10 @@
         "Package": "fansi",
         "Title": "ANSI Control Sequence Aware String Functions",
         "Description": "Counterparts to R string manipulation functions that account for\n   the effects of ANSI text formatting control sequences.",
-        "Version": "0.5.0",
+        "Version": "1.0.2",
         "Authors@R": "c(\n    person(\"Brodie\", \"Gaslam\", email=\"brodie.gaslam@yahoo.com\",\n    role=c(\"aut\", \"cre\")),\n    person(\"Elliott\", \"Sales De Andrade\", role=\"ctb\"),\n    person(family=\"R Core Team\",\n    email=\"R-core@r-project.org\", role=\"cph\",\n    comment=\"UTF8 byte length calcs from src/util.c\"\n    ))",
         "Depends": "R (>= 3.1.0)",
-        "License": "GPL (>= 2)",
+        "License": "GPL-2 | GPL-3",
         "URL": "https://github.com/brodieG/fansi",
         "BugReports": "https://github.com/brodieG/fansi/issues",
         "VignetteBuilder": "knitr",
@@ -1293,14 +1255,14 @@
         "Imports": "grDevices, utils",
         "RoxygenNote": "7.1.1",
         "Encoding": "UTF-8",
-        "Collate": "'constants.R' 'fansi-package.R' 'has.R' 'internal.R' 'load.R'\n'misc.R' 'nchar.R' 'strip.R' 'strwrap.R' 'strtrim.R'\n'strsplit.R' 'substr2.R' 'tohtml.R' 'unhandled.R'",
+        "Collate": "'constants.R' 'fansi-package.R' 'internal.R' 'load.R' 'misc.R'\n'nchar.R' 'strwrap.R' 'strtrim.R' 'strsplit.R' 'substr2.R'\n'trimws.R' 'tohtml.R' 'unhandled.R' 'normalize.R' 'sgr.R'",
         "NeedsCompilation": "yes",
-        "Packaged": "2021-05-25 00:22:35 UTC; bg",
+        "Packaged": "2022-01-13 10:53:54 UTC; bg",
         "Author": "Brodie Gaslam [aut, cre],\n  Elliott Sales De Andrade [ctb],\n  R Core Team [cph] (UTF8 byte length calcs from src/util.c)",
         "Maintainer": "Brodie Gaslam <brodie.gaslam@yahoo.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-05-25 04:40:10 UTC",
-        "Built": "R 4.1.2; x86_64-pc-linux-gnu; 2022-01-21 11:49:21 UTC; unix"
+        "Date/Publication": "2022-01-14 23:32:41 UTC",
+        "Built": "R 4.1.2; x86_64-pc-linux-gnu; 2022-02-01 05:58:53 UTC; unix"
       }
     },
     "farver": {
@@ -4865,7 +4827,7 @@
       "checksum": "7869674f2aac43aaa13a6af1ee3ef444"
     },
     ".Rprofile": {
-      "checksum": "4f0bacb05d59cf9789f9d60a3f8474e0"
+      "checksum": "fcd0a6f02032a3ea7b8fb52947fa9608"
     },
     "CHANGELOG.md": {
       "checksum": "41bcfb71bd85b7314fe077bc33a8a1c9"
@@ -4904,7 +4866,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "4b05132af60be54fba963879e3b02aa0"
+      "checksum": "61b1daafc8b6781b74177f8aa7c5d639"
     },
     "inst/extdata/draft_memo_template.docx": {
       "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"
@@ -4916,7 +4878,7 @@
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "ffb51d706abcf8acb43734e5f4814e2b"
+      "checksum": "546b5bbf7b695cca4948290a99713c99"
     },
     "R/comparePrioTables.R": {
       "checksum": "cbb978289b0e90820dea72f83a9e9b5d"
@@ -5024,7 +4986,7 @@
       "checksum": "63568a0d8830618fc5ac31536c675198"
     },
     "server.R": {
-      "checksum": "26acfd6e9553ae32e09b1a2703c619bc"
+      "checksum": "07dc661ad6a417e9fa46559d5d1a7dff"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
@@ -5042,13 +5004,13 @@
       "checksum": "0e2e009ae1e02b1f3d43c0b87620cebc"
     },
     "support_files/datapack_model_data.rds": {
-      "checksum": "b2ecdc282382ca0515146129d9319a24"
+      "checksum": "37625a9c620292d0c3925380e4a412a2"
     },
     "support_files/draft_memo_template.docs.odt": {
       "checksum": "3631f2012f8986452becc44d3e1ed077"
     },
     "support_files/mechs.rds": {
-      "checksum": "ffb51d706abcf8acb43734e5f4814e2b"
+      "checksum": "546b5bbf7b695cca4948290a99713c99"
     },
     "support_files/model_data_pack_input_21_20210202_1_flat.rds": {
       "checksum": "75318ab8927e10b549a262f8eb810426"
