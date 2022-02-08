@@ -1,6 +1,6 @@
 memo_getPrioritizationTable <- function(d, d2_session, cop_year = "2020", include_no_prio = TRUE) {
 
-  inds <- getMemoIndicators(d, d2_session = d2_session) %>%
+  inds <- getMemoIndicators(d$info$cop_year, d2_session = d2_session) %>%
     select(name, id)
 
   #TODO: Replace this with memoStructure
@@ -55,30 +55,7 @@ memo_getPrioritizationTable <- function(d, d2_session, cop_year = "2020", includ
     dplyr::mutate(Value = as.numeric(Value)) %>%
     dplyr::inner_join(inds, by = c(`Data` = "id")) %>%
     dplyr::select(-Data) %>%
-    dplyr::mutate(name = stringr::str_replace_all(name, "^COP2[01] Targets ", "")) %>%
-    dplyr::mutate(name = stringr::str_trim(name)) %>%
-    tidyr::separate("name", into = c("Indicator", "N_OR_D", "Age"), sep = " ") %>%
-    dplyr::mutate(Indicator = case_when(Indicator == "GEND_GBV" & N_OR_D == "Physical" ~
-                                          "GEND_GBV Physical and Emotional Violence",
-                                        Indicator == "GEND_GBV" & N_OR_D == "Sexual" ~
-                                          "GEND_GBV Sexual Violence",
-                                        TRUE ~ Indicator)) %>%
-    dplyr::select(-"N_OR_D") %>%
-    dplyr::mutate(Age = case_when(Age == "15-" ~ "<15",
-                                  Age == "15+" ~ "15+",
-                                  Age == "18-" ~"<18",
-                                  Age == "18+" ~ "18+",
-                                  TRUE ~ "Total")) %>%
-    dplyr::mutate(Age = case_when(Indicator %in% c("CXCA_SCRN",
-                                                   "OVC_HIVSTAT",
-                                                   "KP_PREV",
-                                                   "PMTCT_EID",
-                                                   "KP_MAT",
-                                                   "VMMC_CIRC",
-                                                   "PrEP_NEW",
-                                                   "PrEP_CURR",
-                                                   "GEND_GBV") ~ "Total",
-                                  TRUE ~ Age)) %>%
+    datapackr::seperateIndicatorMetadata(.) %>%
     dplyr::left_join(., prios, by = "psnu_uid") %>%
     dplyr::mutate(prioritization = as.character(prioritization)) %>%
     dplyr::mutate(prioritization = dplyr::case_when(is.na(prioritization) ~ "No Prioritization",

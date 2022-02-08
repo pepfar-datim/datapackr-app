@@ -789,10 +789,10 @@ shinyServer(function(input, output, session) {
             }
 
             incProgress(0.1, detail = ("Preparing a prioritization table"))
-            d <- preparePrioTable(d, d2_session = user_input$d2_session)
+            d <- datapackr::preparePrioTable(d, d2_session = user_input$d2_session)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Preparing a partners table"))
-            d <- preparePartnerMemoTable(d, user_input$d2_session)
+            d <- datapackr::preparePartnerMemoTable(d, user_input$d2_session)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Preparing a modality summary"))
             d <- modalitySummaryTable(d)
@@ -893,10 +893,10 @@ shinyServer(function(input, output, session) {
         #Move this to datapackr
         d <- updateExistingPrioritization(d, d2_session = user_input$d2_session)
         incProgress(0.1, detail = ("Preparing a prioritization table"))
-        d <- preparePrioTable(d, d2_session = user_input$d2_session)
+        d <- datapackr::preparePrioTable(d, d2_session = user_input$d2_session)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Preparing a partners table"))
-        d <- preparePartnerMemoTable(d, user_input$d2_session)
+        d <- datapackr::preparePartnerMemoTable(d, user_input$d2_session)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Preparing a modality summary"))
         d <- modalitySummaryTable(d)
