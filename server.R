@@ -742,6 +742,7 @@ shinyServer(function(input, output, session) {
         d$info$approval_status <- "UNAPPROVED"
         #Generate a unique identifier
         d$info$uuid <- user_input$uuid
+
         #Log the validation to S3
         sendEventToS3(d, "VALIDATE")
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
@@ -775,10 +776,14 @@ shinyServer(function(input, output, session) {
             flog.info(paste(d$info$tool, " with PSNUxIM tab found."))
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
-            d  <-  validatePSNUData(d, d2_session = user_input$d2_session)
+            d <- checkPSNUData(d,
+                               validation_rules_path = "data/cop_validation_rules.rds",
+                               d2_session = user_input$d2_session)
             incProgress(0.1, detail = "Validating mechanisms")
             Sys.sleep(0.5)
-            d  <-  validateMechanisms(d, d2_session = user_input$d2_session)
+            d <- checkMechanisms(d,
+                                 cached_mechs_path = "data/mechs.rds",
+                                 d2_session = user_input$d2_session)
 
             if (Sys.getenv("SEND_DATAPACK_ARCHIVE")  == "TRUE") {
               incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))

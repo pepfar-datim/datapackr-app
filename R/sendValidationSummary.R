@@ -1,6 +1,9 @@
 sendValidationSummaryToS3 <- function(d, s3_folder, include_timestamp=FALSE) {
 
-  validation_summary <- validationSummary2(d)
+  validation_summary <- validationSummary(d) %>%
+    # Adds columns that were a part of `validationSummary2`
+    dplyr::mutate(ts = strftime(Sys.time(), "%Y-%m-%d %H:%M:%S"),
+                  uuid = d$info$uuid))
 
   tmp <- tempfile()
   #Need better error checking here I think.

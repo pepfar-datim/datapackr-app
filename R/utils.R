@@ -98,21 +98,3 @@ createS3BucketTags <- function(d) {
 
   return(object_tags)
 }
-
-assignDedupeMetadata <- function(d) {
-  d$data$analytics <-
-    d$data$analytics %>% dplyr::mutate(
-      funding_agency = dplyr::case_when(
-        mechanism_code %in% c("00000", "00001") ~ "Dedupe",
-        TRUE ~ funding_agency
-      ),
-      partner_desc = dplyr::case_when(
-        mechanism_code %in% c("00000", "00001") ~ "Dedupe",
-        TRUE ~ partner_desc
-      ))
-  return(d)
-}
-
-hasDimensionConstraints <- function(d2_session) {
-  length(d2_session$me$userCredentials$catDimensionConstraints) > 0
-}
