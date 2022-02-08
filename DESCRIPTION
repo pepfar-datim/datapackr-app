@@ -1,6 +1,6 @@
 Package: datapackr-app
 Type: Shiny App
 Title: Self-service app for parsing and validation of DataPacks
-Version: 1.2.14
+Version: 1.2.15
 Date: 2022-02-08
 Depends: R (>= 4.1.1)
