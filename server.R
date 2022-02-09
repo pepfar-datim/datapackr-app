@@ -475,7 +475,7 @@ shinyServer(function(input, output, session) {
 
       prepareSNUSummaryTable(vr) %>%
         dplyr::group_by(indicator_code) %>%
-        dplyr::summarise(value = format(round(sum(value, na.rm = TRUE)), big.mark = ", ", scientific = FALSE)) %>%
+        dplyr::summarise(value = format(round(sum(value, na.rm = TRUE)), big.mark = ",", scientific = FALSE)) %>%
         dplyr::arrange(indicator_code)
 
     } else {
@@ -490,7 +490,7 @@ shinyServer(function(input, output, session) {
     if (!inherits(vr, "error") & !is.null(vr)) {
 
       prepareSNUSummaryTable(vr) %>%
-        dplyr::mutate(value = format(round_trunc(value), big.mark = ", ", scientific = FALSE))
+        dplyr::mutate(value = format(round_trunc(value), big.mark = ",", scientific = FALSE))
 
     } else {
       data.frame(message = "No data is available to display. An error may have occurred.")
@@ -776,12 +776,12 @@ shinyServer(function(input, output, session) {
             flog.info(paste(d$info$tool, " with PSNUxIM tab found."))
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
-            d <- checkPSNUData(d,
+            d <- datapackr::checkPSNUData(d,
                                validation_rules_path = "data/cop_validation_rules.rds",
                                d2_session = user_input$d2_session)
             incProgress(0.1, detail = "Validating mechanisms")
             Sys.sleep(0.5)
-            d <- checkMechanisms(d,
+            d <- datapackr::checkMechanisms(d,
                                  cached_mechs_path = "data/mechs.rds",
                                  d2_session = user_input$d2_session)
 
@@ -811,7 +811,7 @@ shinyServer(function(input, output, session) {
             d <- checkAnalytics(d, model_data_path  = full_model_path, d2_session = user_input$d2_session)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Fetching existing COP Memo table"))
-            d <- memo_getPrioritizationTable(d, d2_session = user_input$d2_session)
+            d <- datapackr::fetchPrioritizationTable(d, d2_session = user_input$d2_session)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Comparing COP Memo tables"))
             d <- comparePrioTables(d)
@@ -889,10 +889,14 @@ shinyServer(function(input, output, session) {
         flog.info("Datapack with PSNUxIM tab found.")
         incProgress(0.1, detail = ("Checking validation rules"))
         Sys.sleep(0.5)
-        d  <-  validatePSNUData(d, d2_session = user_input$d2_session)
+        d <- datapackr::checkPSNUData(d,
+                                      validation_rules_path = "data/cop_validation_rules.rds",
+                                      d2_session = user_input$d2_session)
         incProgress(0.1, detail = "Validating mechanisms")
         Sys.sleep(0.5)
-        d  <-  validateMechanisms(d, d2_session = user_input$d2_session)
+        d <- datapackr::checkMechanisms(d,
+                                        cached_mechs_path = "data/mechs.rds",
+                                        d2_session = user_input$d2_session)
         incProgress(0.1, detail = "Updating prioritization levels from DATIM")
         Sys.sleep(0.5)
         #Move this to datapackr
@@ -910,7 +914,7 @@ shinyServer(function(input, output, session) {
         d <- recencyComparison(d)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Fetching existing COP Memo table"))
-        d <- memo_getPrioritizationTable(d, d2_session = user_input$d2_session)
+        d <- datapackr::fetchPrioritizationTable(d, d2_session = user_input$d2_session)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Comparing COP Memo tables"))
         d <- generateComparisonTable(d, d2_session = user_input$d2_session)
