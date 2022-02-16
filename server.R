@@ -777,7 +777,6 @@ shinyServer(function(input, output, session) {
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
             d <- datapackr::checkPSNUData(d,
-                               validation_rules_path = "data/cop_validation_rules.rds",
                                d2_session = user_input$d2_session)
             incProgress(0.1, detail = "Validating mechanisms")
             Sys.sleep(0.5)
