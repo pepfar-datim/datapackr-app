@@ -94,8 +94,8 @@ formatModalitySummaryTable <- function(d) {
   }
 
   df %<>% dplyr::mutate(
-    Positive = format(Positive, big.mark = ", ", scientific = FALSE),
-    Total = format(Total, big.mark = ", ", scientific = FALSE),
+    Positive = format(Positive, big.mark = ",", scientific = FALSE),
+    Total = format(Total, big.mark = ",", scientific = FALSE),
     yield = format(round(yield, 2), nsmall = 2),
     modality_share = format(round(modality_share, 2), nsmall = 2)) %>%
     dplyr::select(
