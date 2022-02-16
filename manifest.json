@@ -896,7 +896,7 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "DP-504",
-      "GithubSha1": "ea5205f964310d46e64fae7d69fc68c126850577",
+      "GithubSha1": "bd3a5c7a904725b377ecb57847909eda01b0a122",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -916,18 +916,18 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-02-10 11:01:31 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-02-16 11:36:57 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "DP-504",
-        "RemoteSha": "ea5205f964310d46e64fae7d69fc68c126850577",
+        "RemoteSha": "bd3a5c7a904725b377ecb57847909eda01b0a122",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "DP-504",
-        "GithubSHA1": "ea5205f964310d46e64fae7d69fc68c126850577",
+        "GithubSHA1": "bd3a5c7a904725b377ecb57847909eda01b0a122",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -4542,7 +4542,7 @@
       "checksum": "7869674f2aac43aaa13a6af1ee3ef444"
     },
     ".Rprofile": {
-      "checksum": "89d43154641bd3cf307caf33dcb6cfdb"
+      "checksum": "6b2ff85847353cdec1e991066997ed85"
     },
     "CHANGELOG.md": {
       "checksum": "41bcfb71bd85b7314fe077bc33a8a1c9"
@@ -4581,7 +4581,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "68ed79efa1080f48e9ae99d87d8e0ce9"
+      "checksum": "920c3b163c9e2cf0b374d2d600e2c39e"
     },
     "inst/extdata/draft_memo_template.docx": {
       "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"
@@ -4620,7 +4620,7 @@
       "checksum": "4863df804c5dc5b7eeec7942bb94cb43"
     },
     "R/modalitySummary.R": {
-      "checksum": "5f0a402f5b7a9c15ae886fba7309e8e1"
+      "checksum": "109cb49fef45b597fb5de56130237ab9"
     },
     "R/prepareSNUSummaryTable.R": {
       "checksum": "6229926905afc40a2f54ac39e4c5440e"
@@ -4629,7 +4629,7 @@
       "checksum": "a849fbc231f9d3c4d5fa8f57138cf6a5"
     },
     "R/recencyComparison.R": {
-      "checksum": "4bdb88394a86f728fab9d55d9e462814"
+      "checksum": "149a276c3b27c898b1be47507fe06cf8"
     },
     "R/sendDataPacktoS3.R": {
       "checksum": "f4e569e6237bf06ad941918af52a600b"
@@ -4674,7 +4674,7 @@
       "checksum": "63568a0d8830618fc5ac31536c675198"
     },
     "server.R": {
-      "checksum": "c13da84eec3cebf2146442f9c360e130"
+      "checksum": "1fba649c03be7bd20a0d11be89ad300f"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
