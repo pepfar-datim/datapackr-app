@@ -1,3 +1,8 @@
+## Feb 24, 2022
+ * Update to datapackr 5.1.3
+ * Suppress HTS_RECENT in modality visuals
+ * Replace ansistrings with fansi
+
 ## January 23, 2022
 * Remove HTS_TST/KP_PREV validation rule
 
