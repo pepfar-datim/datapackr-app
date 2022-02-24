@@ -2526,10 +2526,10 @@
         "Type": "Package",
         "Package": "openxlsx",
         "Title": "Read, Write and Edit xlsx Files",
-        "Version": "4.2.4",
-        "Date": "2021-06-08",
+        "Version": "4.2.3",
+        "Date": "2020-10-26",
         "Language": "en-US",
-        "Authors@R": "\n    c(person(given = \"Philipp\",\n             family = \"Schauberger\",\n             role = c(\"aut\", \"cre\"),\n             email = \"philipp@schauberger.co.at\"),\n      person(given = \"Alexander\",\n             family = \"Walker\",\n             role = \"aut\",\n             email = \"Alexander.Walker1989@gmail.com\"),\n      person(given = \"Luca\",\n             family = \"Braglia\",\n             role = \"ctb\"),\n      person(given = \"Joshua\",\n             family = \"Sturm\",\n             role = \"ctb\"),\n      person(given = \"Jan Marvin\",\n             family = \"Garbuszus\",\n             email = \"jan.garbuszus@ruhr-uni-bochum.de\",\n             role = \"ctb\"),\n      person(given = \"Jordan Mark\",\n             family = \"Barbone\",\n             role = \"ctb\",\n             email = \"jmbarbone@gmail.com\",\n             comment = c(ORCID = \"0000-0001-9788-3628\")))",
+        "Authors@R": "\n    c(person(given = \"Philipp\",\n             family = \"Schauberger\",\n             role = c(\"aut\", \"cre\"),\n             email = \"philipp@schauberger.co.at\"),\n      person(given = \"Alexander\",\n             family = \"Walker\",\n             role = \"aut\",\n             email = \"Alexander.Walker1989@gmail.com\"),\n      person(given = \"Luca\",\n             family = \"Braglia\",\n             role = \"ctb\"),\n      person(given = \"Joshua\",\n             family = \"Sturm\",\n             role = \"ctb\"))",
         "Description": "Simplifies the creation of Excel .xlsx files by\n    providing a high level interface to writing, styling and editing\n    worksheets. Through the use of 'Rcpp', read/write times are comparable\n    to the 'xlsx' and 'XLConnect' packages with the added benefit of\n    removing the dependency on Java.",
         "License": "MIT + file LICENSE",
         "URL": "https://ycphs.github.io/openxlsx/index.html,\nhttps://github.com/ycphs/openxlsx",
@@ -2541,14 +2541,14 @@
         "VignetteBuilder": "knitr",
         "Encoding": "UTF-8",
         "RoxygenNote": "7.1.1",
-        "Collate": "'CommentClass.R' 'HyperlinkClass.R' 'RcppExports.R'\n'class_definitions.R' 'StyleClass.R' 'WorkbookClass.R'\n'asserts.R' 'baseXML.R' 'borderFunctions.R' 'build_workbook.R'\n'chartsheet_class.R' 'conditional_formatting.R'\n'data-fontSizeLookupTables.R' 'helperFunctions.R'\n'loadWorkbook.R' 'onUnload.R' 'openXL.R' 'openxlsx-package.R'\n'openxlsx.R' 'openxlsxCoerce.R' 'readWorkbook.R'\n'sheet_data_class.R' 'utils.R' 'workbook_column_widths.R'\n'workbook_read_workbook.R' 'workbook_write_data.R'\n'worksheet_class.R' 'wrappers.R' 'writeData.R'\n'writeDataTable.R' 'writexlsx.R' 'zzz.R'",
+        "Collate": "'CommentClass.R' 'HyperlinkClass.R' 'RcppExports.R'\n'class_definitions.R' 'StyleClass.R' 'WorkbookClass.R'\n'baseXML.R' 'borderFunctions.R' 'chartsheet_class.R'\n'conditional_formatting.R' 'helperFunctions.R' 'loadWorkbook.R'\n'onUnload.R' 'openXL.R' 'openxlsx-package.R' 'openxlsx.R'\n'openxlsxCoerce.R' 'readWorkbook.R' 'sheet_data_class.R'\n'workbook_column_widths.R' 'workbook_read_workbook.R'\n'workbook_write_data.R' 'worksheet_class.R' 'wrappers.R'\n'writeData.R' 'writeDataTable.R' 'writexlsx.R'",
         "NeedsCompilation": "yes",
-        "Packaged": "2021-06-15 11:54:54 UTC; philipp",
-        "Author": "Philipp Schauberger [aut, cre],\n  Alexander Walker [aut],\n  Luca Braglia [ctb],\n  Joshua Sturm [ctb],\n  Jan Marvin Garbuszus [ctb],\n  Jordan Mark Barbone [ctb] (<https://orcid.org/0000-0001-9788-3628>)",
+        "Packaged": "2020-10-27 09:11:13 UTC; philipp",
+        "Author": "Philipp Schauberger [aut, cre],\n  Alexander Walker [aut],\n  Luca Braglia [ctb],\n  Joshua Sturm [ctb]",
         "Maintainer": "Philipp Schauberger <philipp@schauberger.co.at>",
         "Repository": "CRAN",
-        "Date/Publication": "2021-06-16 04:20:03 UTC",
-        "Built": "R 4.1.1; x86_64-pc-linux-gnu; 2021-08-31 10:15:55 UTC; unix"
+        "Date/Publication": "2020-10-27 14:20:02 UTC",
+        "Built": "R 4.1.2; x86_64-pc-linux-gnu; 2022-02-24 09:09:58 UTC; unix"
       }
     },
     "pacman": {
@@ -4827,10 +4827,10 @@
       "checksum": "7869674f2aac43aaa13a6af1ee3ef444"
     },
     ".Rprofile": {
-      "checksum": "44308d12e04619075aca24e1d382ca14"
+      "checksum": "a035f02f14e5e8a699949f3544368f92"
     },
     "CHANGELOG.md": {
-      "checksum": "41bcfb71bd85b7314fe077bc33a8a1c9"
+      "checksum": "9fcc2f694add4d04b26da3fced30ea86"
     },
     "config.yml": {
       "checksum": "3298ef63ce822cf889ae67375f352616"
@@ -4866,7 +4866,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "f901f644157ac71a39f554d2ccc0cb1d"
+      "checksum": "d26abde198f7f3fc999d5a395c82541d"
     },
     "inst/extdata/draft_memo_template.docx": {
       "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"

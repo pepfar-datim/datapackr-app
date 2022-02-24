@@ -593,10 +593,10 @@
     },
     "openxlsx": {
       "Package": "openxlsx",
-      "Version": "4.2.4",
+      "Version": "4.2.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "f1b1ca1254ccb485dccc9c0dc65a2c36"
+      "Hash": "2253a430965e222d11a2f9277cd34c2e"
     },
     "pacman": {
       "Package": "pacman",
