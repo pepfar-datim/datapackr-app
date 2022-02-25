@@ -219,9 +219,9 @@
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
       "RemoteRef": "master",
-      "RemoteSha": "f26aa8fbf5bd1c9898ca25461b829df0daf3af43",
+      "RemoteSha": "a2177470894471cd5e21f77df2b40ca4a80e1a5a",
       "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation,\npepfar-datim/data-pack-commons",
-      "Hash": "2e9e161509b748d6f2d6bb953167b18a"
+      "Hash": "702044bb9b80bb4302aa02d6fc2c0a8d"
     },
     "datimutils": {
       "Package": "datimutils",
@@ -593,10 +593,10 @@
     },
     "openxlsx": {
       "Package": "openxlsx",
-      "Version": "4.2.3",
+      "Version": "4.2.5",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "2253a430965e222d11a2f9277cd34c2e"
+      "Hash": "fc5e0e85d3a1e4282f04f303627b7e72"
     },
     "pacman": {
       "Package": "pacman",
