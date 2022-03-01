@@ -1,3 +1,12 @@
+## Feb 24, 2022
+ * Update to datapackr 5.1.3
+ * Suppress HTS_RECENT in modality visuals
+ * Replace ansistrings with fansi
+ * Downgrade openxlsx to 4.2.3
+
+## January 23, 2022
+* Remove HTS_TST/KP_PREV validation rule
+
 ## January 17, 2022
 * Update to datapackr 5.1.0
 * Initial updates to process COP22 datapacks
