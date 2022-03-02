@@ -26,11 +26,11 @@ downloadFlatPack <- function(d) {
       sheet = "HTS Summary", x = formatModalitySummaryTable(d)
     )
   }
-  if (!is.null(d$data$prio_table)) {
+  if (!is.null(d$memo$datapack$by_prio)) {
     openxlsx::addWorksheet(wb, "Prioritization (DRAFT)")
     openxlsx::writeData(
       wb = wb,
-      sheet = "Prioritization (DRAFT)", x = d$data$prio_table
+      sheet = "Prioritization (DRAFT)", x = d$memo$datapack$by_prio
     )
   }
   #Datapack specific
