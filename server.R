@@ -1,13 +1,10 @@
 
-pacman::p_load(shiny, shinyjs, shinyWidgets, magrittr, dplyr, datimvalidation, ggplot2,
+pacman::p_load(shiny, shinyjs, shinyWidgets, magrittr, dplyr,
+               datimvalidation, ggplot2, datimutils,
                futile.logger, paws, datapackr, scales,
-               DT, purrr, praise, rpivotTable, waiter, flextable, officer, gdtools, digest, fansi)
+               DT, purrr, praise, rpivotTable, waiter,
+               flextable, officer, gdtools, digest,fansi)
 
-
-#Parallel execution of validation rules on Windows is not supported
-if (Sys.info()[["sysname"]] == "Linux") {
-  pacman::p_load(doMC)
-}
 
 #Set the maximum file size for the upload file
 options(shiny.maxRequestSize = 150 * 1024 ^ 2)
@@ -743,16 +740,10 @@ shinyServer(function(input, output, session) {
       }
 
       if (!inherits(d, "error") & !is.null(d)) {
-        #Create some additional metadadta for S3 tagging
-        d$info$sane_name <- paste0(stringr::str_extract_all(d$info$datapack_name, "[A-Za-z0-9_]",
-                                                            simplify = TRUE), sep = "", collapse = "")
-        d$info$source_user <- user_input$d2_session$me$userCredentials$username
         #All self-service datapacks should be marked as unapproved for PAW
         d$info$approval_status <- "UNAPPROVED"
         #Generate a unique identifier
         d$info$uuid <- user_input$uuid
-        #Get a single operating unit from the country IDs
-        d$info$operating_unit <- getOperatingUnitFromCountryUIDs(d$info$country_uids)
         #Log the validation to S3
         sendEventToS3(d, "VALIDATE")
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
@@ -775,11 +766,6 @@ shinyServer(function(input, output, session) {
                 TRUE ~ .x
               )
             ))
-
-
-
-          d$info$needs_psnuxim  <-  d$info$missing_psnuxim_combos |
-            (NROW(d$data$SNUxIM) == 1 & is.na(d$data$SNUxIM[[1, 1]]))
 
           updateSelectInput(session = session, inputId = "downloadType",
                             choices = downloadTypes(tool_type =  d$info$tool,
@@ -892,10 +878,10 @@ shinyServer(function(input, output, session) {
       }
 
       if (d$info$tool  == "OPU Data Pack") {
-        d$info$needs_psnuxim  <-  FALSE
+
         updateSelectInput(session = session, inputId = "downloadType",
                           choices = downloadTypes(tool_type =  d$info$tool,
-                                                  needs_psnuxim = d$info$needs_psnuxim,
+                                                  needs_psnuxim = FALSE,
                                                   memo_authorized = user_input$memo_authorized))
         flog.info("Datapack with PSNUxIM tab found.")
         incProgress(0.1, detail = ("Checking validation rules"))
