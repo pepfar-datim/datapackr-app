@@ -36,8 +36,9 @@ processValidationRules <- function(r) {
  cop20 <- processValidationRules("./data/cop20_validation_rules.json")
  cop21 <- processValidationRules("./data/cop21_validation_rules.json")
  cop22 <- processValidationRules("./data/cop22_validation_rules.json") %>%
-   dplyr::filter(!(id %in% c("XngFzdMEoks","XDsVx5eB0gB"))) #DAT-1542
-
+   dplyr::filter(!(id %in% c("XngFzdMEoks","XDsVx5eB0gB"))) %>% #DAT-1542
+   dplyr::filter(!(id %in% c("SMJIYJCVmnK","ghbPmuWPBqo"))) #DAT-1645
 
 vr <- list("2020" = cop20, "2021" = cop21, "2022" = cop22)
+
 saveRDS(vr, "data/cop_validation_rules.rds")

@@ -38,7 +38,7 @@ kpCascadeChart <- function(d, kpCascadeInput_filter) {
 
   y_lim <- max(df$value)
   cop_year <- as.numeric(stringr::str_replace(d$info$cop_year, "^20", ""))
-  chart_label <- paste0("COP", cop_year, "/FY", cop_year + 1, " Epidemic Cascade Age & Sex Pyramid")
+  chart_label <- paste0("COP", cop_year, "/FY", cop_year + 1, " General Population vs. Key Population Epidemic Cascade")
 
   gg <- df %>%
     ggplot2::ggplot(aes(x = indicator, y = value, fill = lbl)) +

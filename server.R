@@ -79,20 +79,19 @@ shinyServer(function(input, output, session) {
   })
 
   observeEvent(input$login_button, {
-    tryCatch({
-      user_input$uuid <- uuid::UUIDgenerate()
-      datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
-                               username = input$user_name,
-                               password = input$password,
-                               d2_session_envir = parent.env(environment())
-      )
-    },
-    # This function throws an error if the login is not successful
-    error = function(e) {
-      flog.info(paste0("User ", input$user_name, " login failed."), name = "datapack")
-    }
+    loginAttempt <- tryCatch({
+        user_input$uuid <- uuid::UUIDgenerate()
+        datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
+          username = input$user_name,
+          password = input$password,
+          d2_session_envir = parent.env(environment())
+        )
+      },
+      # This function throws an error if the login is not successful
+      error = function(e) {
+        flog.info(paste0("User ", input$user_name, " login failed. ", e$message), name = "datapack")
+      }
     )
-
 
     if (exists("d2_default_session")) {
       if (any(class(d2_default_session) == "d2Session")) {
@@ -121,7 +120,9 @@ shinyServer(function(input, output, session) {
       sendSweetAlert(
         session,
         title = "Login failed",
-        text = "Please check your username/password!",
+        text = substr(loginAttempt,# full error message printed to console
+                      regexpr("User",loginAttempt)[1],# Where to start extract
+                      nchar(loginAttempt)),# Where to end extract
         type = "error"
       )
       sendEventToS3(NULL,"LOGIN_FAILED",user_input = user_input)
@@ -172,7 +173,8 @@ shinyServer(function(input, output, session) {
   output$uiLogin  <-  renderUI({
 
     wellPanel(fluidRow(
-      img(src = "pepfar.png", align = "center"),
+      #img(src = "pepfar.png", align = "center"),
+      tags$div(HTML('<center><img src="pepfar.png"></center>')),
       h4("Welcome to the DataPack Validation App. Please login with your DATIM credentials:")
     ),
     fluidRow(
