@@ -3,11 +3,12 @@ comparePrioTables <- function(d) {
   #However, if we have data in the DP and no data in DATIM,
   #We can perform the comparison by assuming everything in DATIM is zero.
 
-  if (  is.null(d$data$memo$datim$prio) & !is.null(d$data$prio_table)) {
-    d$data$memo$datim$prio <- d$data$prio_table %>% dplyr::mutate(across(where(is.double),function(x) NA_real_))
+  if (is.null(d$data$memo$datim$prio) & !is.null(d$data$prio_table)) {
+    d$data$memo$datim$prio <- d$data$prio_table %>%
+      dplyr::mutate(dplyr::across(tidyselect::where(is.double), function(x) NA_real_))
   }
   #If both tables are NULL, then we have no data to compare at all.
-  if (  is.null(d$data$memo$datim$prio) & is.null(d$data$prio_table)) {
+  if (is.null(d$data$memo$datim$prio) & is.null(d$data$prio_table)) {
    return(d)
   }
   #The other case of data in DATIM, but no data in the DataPack does not really

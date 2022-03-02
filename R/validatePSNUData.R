@@ -64,10 +64,10 @@ validatePSNUData  <-  function(d, d2_session) {
                                   vr_violations$diff)
 
     diff_value  <-  gsub(" [<>]= ", "-", vr_violations$formula)
-    vr_violations$diff_value  <-  sapply(diff_value, function(x)  eval(parse(text = x)) * -1 )
+    vr_violations$diff_value  <-  sapply(diff_value, function(x)  eval(parse(text = x)) * -1)
     #Flip the sign again of the value to for rules with >= to indicate how much we need
     #To satisfy the rule
-    vr_violations$diff_value <- vr_violations$diff_value * ifelse(vr_violations$operator == ">=",-1,1)
+    vr_violations$diff_value <- vr_violations$diff_value * ifelse(vr_violations$operator == ">=", -1, 1)
 
 
     if (NROW(vr_violations) > 0) {
@@ -85,7 +85,7 @@ validatePSNUData  <-  function(d, d2_session) {
       attr(d$tests$vr_rules_check, "test_name") <- "Validation rule violations"
 
       warning_message  <-  paste("WARNING:",
-                                 sum(vr_violations$result == 'FALSE'),
+                                 sum(vr_violations$result == "FALSE"),
                                  "validation rule issues found in",
                                  d$info$datapack_name,
                                  "DataPack."

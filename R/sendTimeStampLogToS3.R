@@ -48,11 +48,11 @@ sendTimeStampLogToS3 <- function(d) {
                          Key = object_name,
                          Tagging = object_tags,
                          ContentType = "text/csv")
-    flog.info("Timestamp log sent to S3", name = "datapack")
+    futile.logger::flog.info("Timestamp log sent to S3", name = "datapack")
     TRUE
   },
   error = function(err) {
-    flog.error("Timestamp log could not be saved to S3", name = "datapack")
+    futile.logger::flog.error("Timestamp log could not be saved to S3", name = "datapack")
     FALSE
   })
   unlink(tmp)

@@ -20,7 +20,7 @@ updateExistingPrioritization <- function(d, d2_session) {
                  "Affected PSNUs will be classified as No Prioritization but may lead to inconsistencies",
                  "in the draft memo generation and comparison")
 
-    d$info$messages <- appendMessage(d$info$messages, "ERROR")
+    d$info$messages <- datapackr::appendMessage(d$info$messages, "ERROR")
 
     prios <- prios %>% dplyr::mutate("Value" = dplyr::case_when(is.na(Value) ~ 0,
                                                                  TRUE ~ Value))
@@ -31,7 +31,7 @@ updateExistingPrioritization <- function(d, d2_session) {
                  "All PSNUs will be classified as No Prioritization but may lead to inconsistencies",
                  "in the draft memo generation and comparison")
 
-    d$info$messages <- appendMessage(d$info$messages, "ERROR")
+    d$info$messages <- datapackr::appendMessage(d$info$messages, "ERROR")
     prios <- tibble::tibble("Organisation unit" = psnus,
                             "Value" = 0,
                             "Data" = NA_character_)

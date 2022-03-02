@@ -19,12 +19,12 @@ sendDataPackToS3 <- function(d, datapath) {
                          Key = object_name,
                          Tagging = object_tags,
                          ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-    flog.info("Datapack Archive sent to S3", name = "datapack")
+    futile.logger::flog.info("Datapack Archive sent to S3", name = "datapack")
     TRUE
   },
   error = function(err) {
-    flog.info("Datapack could not be archived", name = "datapack")
-    flog.info(err, name = "datapack")
+    futile.logger::flog.info("Datapack could not be archived", name = "datapack")
+    futile.logger::flog.info(err, name = "datapack")
     FALSE
   })
 

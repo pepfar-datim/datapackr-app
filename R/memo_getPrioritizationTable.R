@@ -109,7 +109,7 @@ memo_getPrioritizationTable <- function(d, d2_session, cop_year = "2020", includ
 
   #Remove NOT pepfar supported if its only zeros, otherwise, show this, since its potentially problematic
   if (df_final %>% dplyr::select("Not PEPFAR Supported") %>% sum(., na.rm = TRUE) == 0) {
-    df_final <- df_final %>% select(-`Not PEPFAR Supported`)
+    df_final <- df_final %>% dplyr::select(-`Not PEPFAR Supported`)
   }
 
   df_final %<>%

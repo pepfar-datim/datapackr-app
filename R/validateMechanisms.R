@@ -5,7 +5,7 @@ validateMechanisms <- function(d, d2_session) {
 
   period_info <- datimvalidation::getPeriodFromISO(paste0(d$info$cop_year, "Oct"))
 
-  operating_unit <- getOperatingUnitFromCountryUIDs(d$info$country_uids)
+  operating_unit <- getOUFromCountryUIDs(d$info$country_uids)
 
   mechs_datim <- datapackr::getMechanismView(d2_session = d2_session,
                                              update_stale_cache = TRUE,
