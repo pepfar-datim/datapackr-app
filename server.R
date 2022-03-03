@@ -783,7 +783,7 @@ shinyServer(function(input, output, session) {
             d <-
               datapackr::prepareMemoData(
                 d,
-                memo_type = "datapack",
+                memo_type = "comparison",
                 include_no_prio = TRUE,
                 d2_session = user_input$d2_session
               )
@@ -888,13 +888,16 @@ shinyServer(function(input, output, session) {
                                         d2_session = user_input$d2_session)
         incProgress(0.1, detail = "Updating prioritization levels from DATIM")
         Sys.sleep(0.5)
-        #Move this to datapackr
-        d <- updateExistingPrioritization(d, d2_session = user_input$d2_session)
-        incProgress(0.1, detail = ("Preparing a prioritization table"))
-        d <- datapackr::preparePrioTable(d, d2_session = user_input$d2_session)
-        Sys.sleep(1)
-        incProgress(0.1, detail = ("Preparing a partners table"))
-        d <- datapackr::preparePartnerMemoTable(d, user_input$d2_session)
+        #Update existing prioriziations in the case of an OPU Datapack
+        d <- datapackr:updateExistingPrioritization(d, d2_session = user_input$d2_session)
+        incProgress(0.1, detail = ("Preparing COP memo data"))
+        d <-
+          datapackr::prepareMemoData(
+            d,
+            memo_type = "comparison",
+            include_no_prio = TRUE,
+            d2_session = user_input$d2_session
+          )
         Sys.sleep(1)
         incProgress(0.1, detail = ("Preparing a modality summary"))
         d <- modalitySummaryTable(d)
@@ -902,12 +905,12 @@ shinyServer(function(input, output, session) {
         incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
         d <- recencyComparison(d)
         Sys.sleep(1)
-        incProgress(0.1, detail = ("Fetching existing COP Memo table"))
-        d <- datapackr::fetchPrioritizationTable(d, d2_session = user_input$d2_session)
-        Sys.sleep(1)
-        incProgress(0.1, detail = ("Comparing COP Memo tables"))
-        d <- generateComparisonTable(d, d2_session = user_input$d2_session)
-        Sys.sleep(1)
+        # incProgress(0.1, detail = ("Fetching existing COP Memo table"))
+        # d <- datapackr::fetchPrioritizationTable(d, d2_session = user_input$d2_session)
+        # Sys.sleep(1)
+        # incProgress(0.1, detail = ("Comparing COP Memo tables"))
+        # d <- generateComparisonTable(d, d2_session = user_input$d2_session)
+        # Sys.sleep(1)
         shinyjs::enable("downloadType")
         shinyjs::enable("downloadOutputs")
         shinyjs::disable("send_paw")
