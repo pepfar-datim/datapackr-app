@@ -896,7 +896,7 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "DP-504",
-      "GithubSha1": "ab35a3c4b70b59176adc406e646348c59b3d21cb",
+      "GithubSha1": "9f42a9556b4f8f62a3b156504a39d8bd772e5895",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -916,18 +916,18 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-03-03 08:06:23 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-03-03 09:57:12 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "DP-504",
-        "RemoteSha": "ab35a3c4b70b59176adc406e646348c59b3d21cb",
+        "RemoteSha": "9f42a9556b4f8f62a3b156504a39d8bd772e5895",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "DP-504",
-        "GithubSHA1": "ab35a3c4b70b59176adc406e646348c59b3d21cb",
+        "GithubSHA1": "9f42a9556b4f8f62a3b156504a39d8bd772e5895",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -4545,7 +4545,7 @@
       "checksum": "7b3ced5691db58c459f849bebd2422a3"
     },
     ".Rprofile": {
-      "checksum": "bbe4326afa018f8e1587cac428acb3fb"
+      "checksum": "97a64cd8438dd75dfd8c6cc52772be31"
     },
     "CHANGELOG.md": {
       "checksum": "9fcc2f694add4d04b26da3fced30ea86"
@@ -4587,7 +4587,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "0d6f798905aef3c9e3c1520be2664989"
+      "checksum": "cf323f776a25a5fe5829f9c1e039d2f8"
     },
     "inst/extdata/draft_memo_template.docx": {
       "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"
