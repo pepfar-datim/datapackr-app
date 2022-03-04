@@ -275,9 +275,17 @@ shinyServer(function(input, output, session) {
           tabPanel("PSNUxIM Pivot",
                    fluidRow(column(width = 12, div(rpivotTable::rpivotTableOutput({"pivot"})))), # nolint
                    fluidRow(tags$h4("Data source: PSNUxIM tab"))),
-          tabPanel("Memo Tables",
-                   fluidRow(actionButton("reset_pivot", "Reset pivot")),
-                   fluidRow(column(width = 12,
+          tabPanel(
+            "Memo Tables",
+            fluidRow(
+              pickerInput(
+                "memo_pivot_style",
+                label = "Pivot Style",
+                choices = c("Prioritization", "By Agency", "By Partner", "Comparison"),
+                selected = "Prioritization"
+              )
+            ),
+            fluidRow(column(width = 12,
                                    div(rpivotTable::rpivotTableOutput({"memo_compare"})))), # nolint
                    fluidRow(tags$h4("Data source: PSNUxIM tab & DATIM")))
 
@@ -331,9 +339,6 @@ shinyServer(function(input, output, session) {
 
   output$memo_compare  <-  rpivotTable::renderRpivotTable({
     vr <- validation_results()
-    #Take a dependency on the reset button
-
-    reset_pivot <- input$reset_pivot
 
     if (!inherits(vr, "error") & !is.null(vr)) {
 
@@ -345,10 +350,35 @@ shinyServer(function(input, output, session) {
         purrr::pluck("memo") %>%
         purrr::pluck("comparison")
 
-      rpivotTable(data = pivot,
-                  rows = c("Indicator","Age"), cols = c("prioritization"), inclusions = list("Data Type" = list("Proposed")),
-                  vals = "value", aggregatorName = "Integer Sum", rendererName = "Table", subtotals = TRUE,
-                  width = "70%", height = "700px")
+
+    pivot_options <- switch(
+      input$memo_pivot_style,
+      "Prioritization" =   list(
+        rows = c("Indicator", "Age"),
+        cols = c("prioritization"),
+        inclusions = list("Data Type" = list("Proposed"))
+      ),
+      "By Agency" = list(
+        rows = c("Indicator", "Age"),
+        cols = c("Agency"),
+        inclusions = list("Data Type" = list("Proposed"))
+      ),
+      "By Partner" = list(
+        rows = c("Agency","Partner"),
+        cols = c("Indicator", "Age"),
+        inclusions = list("Data Type" = list("Proposed"))
+      ),
+      "Comparison" = list(
+        rows = c("Indicator","Age"),
+        cols = c("Data Type"),
+        inclusions = list("Data Type" = list("Proposed", "Current", "Diff"))
+      )
+    )
+
+    rpivotTable(data = pivot,
+                               rows = pivot_options$rows, cols = pivot_options$cols, inclusions = pivot_options$inclusions,
+                               vals = "value", aggregatorName = "Integer Sum", rendererName = "Table", subtotals = TRUE,
+                               width = "70%", height = "700px")
 
     } else {
       NULL
