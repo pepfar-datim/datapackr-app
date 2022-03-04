@@ -275,11 +275,7 @@ shinyServer(function(input, output, session) {
           tabPanel("PSNUxIM Pivot",
                    fluidRow(column(width = 12, div(rpivotTable::rpivotTableOutput({"pivot"})))), # nolint
                    fluidRow(tags$h4("Data source: PSNUxIM tab"))),
-          tabPanel("COP Memo Pivot",
-                   fluidRow(column(width = 12, div(rpivotTable::rpivotTableOutput({"memo_table"})))), # nolint
-                   h5("Note: This is a draft memo table. Final figures may differ."),
-                   tags$h4("Data source: PSNUxIM tab")),
-          tabPanel("Memo Comparison",
+          tabPanel("Memo Tables",
                    fluidRow(actionButton("reset_pivot", "Reset pivot")),
                    fluidRow(column(width = 12,
                                    div(rpivotTable::rpivotTableOutput({"memo_compare"})))), # nolint
@@ -332,24 +328,6 @@ shinyServer(function(input, output, session) {
     }
   })
 
-  output$memo_table  <-  rpivotTable::renderRpivotTable({
-    memo_table <- validation_results() %>%
-      purrr::pluck("memo") %>%
-      purrr::pluck("datapack") %>%
-      purrr::pluck("by_psnu")
-
-    if (!inherits(memo_table, "error") & !is.null(memo_table)) {
-
-      rpivotTable(data = memo_table,
-                  rows = c("Indicator","Age"), cols = c("prioritization"),
-                  vals = "value", aggregatorName = "Integer Sum", rendererName = "Table",
-                  width = "70%", height = "700px")
-
-
-    } else {
-      NULL
-    }
-  })
 
   output$memo_compare  <-  rpivotTable::renderRpivotTable({
     vr <- validation_results()
@@ -359,17 +337,17 @@ shinyServer(function(input, output, session) {
 
     if (!inherits(vr, "error") & !is.null(vr)) {
 
-      if (is.null(vr$data$compare)) {
+      if (is.null(vr$memo$comparison)) {
         return(NULL)
       }
 
       pivot <-  vr  %>%
-        purrr::pluck("data") %>%
-        purrr::pluck("compare")
+        purrr::pluck("memo") %>%
+        purrr::pluck("comparison")
 
       rpivotTable(data = pivot,
-                  rows = c("Indicator"), cols = c("Value type"), inclusions = list("Value type" = list("Difference")),
-                  vals = "Value", aggregatorName = "Integer Sum", rendererName = "Table", subtotals = TRUE,
+                  rows = c("Indicator","Age"), cols = c("prioritization"), inclusions = list("Data Type" = list("Proposed")),
+                  vals = "value", aggregatorName = "Integer Sum", rendererName = "Table", subtotals = TRUE,
                   width = "70%", height = "700px")
 
     } else {
@@ -686,7 +664,7 @@ shinyServer(function(input, output, session) {
         wb  <-  openxlsx::createWorkbook()
         openxlsx::addWorksheet(wb, "Comparison")
         openxlsx::writeData(wb = wb,
-                            sheet = "Comparison", x = d$data$compare)
+                            sheet = "Comparison", x = d$memo$comparison)
 
         openxlsx::saveWorkbook(wb, file = file, overwrite = TRUE)
         sendEventToS3(d, "COMPARISON_DOWNLOAD")
@@ -787,6 +765,7 @@ shinyServer(function(input, output, session) {
                 include_no_prio = TRUE,
                 d2_session = user_input$d2_session
               )
+            d <- datapackr::generateComparisonTable(d)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Preparing a modality summary"))
             d <- modalitySummaryTable(d)
@@ -799,12 +778,6 @@ shinyServer(function(input, output, session) {
             full_model_path <- fetchModelFile(model_data_path)
             d <- datapackr::checkAnalytics(d, model_data_path  = full_model_path, d2_session = user_input$d2_session)
             Sys.sleep(1)
-            # incProgress(0.1, detail = ("Fetching existing COP Memo table"))
-            # d <- datapackr::fetchPrioritizationTable(d, d2_session = user_input$d2_session)
-            # Sys.sleep(1)
-            # incProgress(0.1, detail = ("Comparing COP Memo tables"))
-            # d <- comparePrioTables(d)
-            # Sys.sleep(1)
             incProgress(0.1, detail = ("Finishing up."))
             flog.info("Sending validation summary")
             r <- sendValidationSummaryToS3(d, "validation_error_summary", include_timestamp = TRUE)
@@ -898,6 +871,7 @@ shinyServer(function(input, output, session) {
             include_no_prio = TRUE,
             d2_session = user_input$d2_session
           )
+        d <- datapackr::generateComparisonTable(d)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Preparing a modality summary"))
         d <- modalitySummaryTable(d)
@@ -905,12 +879,6 @@ shinyServer(function(input, output, session) {
         incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
         d <- recencyComparison(d)
         Sys.sleep(1)
-        # incProgress(0.1, detail = ("Fetching existing COP Memo table"))
-        # d <- datapackr::fetchPrioritizationTable(d, d2_session = user_input$d2_session)
-        # Sys.sleep(1)
-        # incProgress(0.1, detail = ("Comparing COP Memo tables"))
-        # d <- generateComparisonTable(d, d2_session = user_input$d2_session)
-        # Sys.sleep(1)
         shinyjs::enable("downloadType")
         shinyjs::enable("downloadOutputs")
         shinyjs::disable("send_paw")
