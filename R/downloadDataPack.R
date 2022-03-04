@@ -9,11 +9,11 @@ downloadDataPack <- function(d, d2_session) {
   }
 
   if (!file.exists(support_file)) {
-    flog.error("Could not find model support file.")
+    futile.logger::flog.error("Could not find model support file.")
     stop("WOMP!")
   }
 
-  d <- writePSNUxIM(d, snuxim_model_data_path = support_file, d2_session = d2_session )
+  d <- datapackr::writePSNUxIM(d, snuxim_model_data_path = support_file, d2_session = d2_session)
   unlink(support_file)
 
   return(d)

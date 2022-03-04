@@ -56,8 +56,8 @@ sendValidationSummaryToS3 <- function(d, s3_folder, include_timestamp=FALSE) {
     TRUE
   },
   error = function(err) {
-    flog.info("Validation summary could not be sent to AP", name = "datapack")
-    flog.info(err, name = "datapack")
+    futile.logger::flog.info("Validation summary could not be sent to AP", name = "datapack")
+    futile.logger::flog.info(err, name = "datapack")
     FALSE
   })
 

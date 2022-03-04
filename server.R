@@ -2,8 +2,8 @@
 pacman::p_load(shiny, shinyjs, shinyWidgets, magrittr, dplyr,
                datimvalidation, ggplot2, datimutils,
                futile.logger, paws, datapackr, scales,
-               DT, purrr, praise, rpivotTable, waiter,
-               flextable, officer, gdtools, digest,fansi)
+               DT, purrr, rpivotTable, waiter,
+               flextable, officer, gdtools, digest, fansi)
 
 
 #Set the maximum file size for the upload file
@@ -11,7 +11,7 @@ options(shiny.maxRequestSize = 150 * 1024 ^ 2)
 #Allow unsanitized error messages
 options(shiny.sanitize.errors = FALSE)
 #Initiate logging
-logger  <-  flog.logger()
+logger <- flog.logger()
 
 if (!file.exists(Sys.getenv("LOG_PATH"))) {
   file.create(Sys.getenv("LOG_PATH"))
@@ -22,35 +22,35 @@ flog.appender(appender.console(), name = "datapack")
 
 shinyServer(function(input, output, session) {
 
-  validation_results  <-  reactive({ validate() }) # nolint
+  validation_results <- reactive({ validate() }) # nolint
 
-  ready  <-  reactiveValues(ok = FALSE)
+  ready <- reactiveValues(ok = FALSE)
 
 
-  user_input  <-  reactiveValues(authenticated = FALSE,
+  user_input <- reactiveValues(authenticated = FALSE,
                                  status = "",
                                  d2_session = NULL,
                                  memo_authorized = FALSE,
                                  uuid = NULL)
 
-  epi_graph_filter  <-  reactiveValues(snu_filter = NULL)
+  epi_graph_filter <- reactiveValues(snu_filter = NULL)
 
-  kpCascadeInput_filter  <-  reactiveValues(snu_filter = NULL)
+  kpCascadeInput_filter <- reactiveValues(snu_filter = NULL)
 
-  snu_selector  <-  reactive({
+  snu_selector <- reactive({
     validation_results() %>% snuSelector()
   })
 
   observeEvent(input$file1, {
     shinyjs::show("validate")
     shinyjs::enable("validate")
-    ready$ok  <-  FALSE
+    ready$ok <- FALSE
   })
 
   observeEvent(input$validate, {
     shinyjs::disable("file1")
     shinyjs::disable("validate")
-    ready$ok  <-  TRUE
+    ready$ok <- TRUE
   })
 
   observeEvent(input$reset_input, {
@@ -62,17 +62,17 @@ shinyServer(function(input, output, session) {
     shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
     shinyjs::disable("compare")
-    ready$ok  <-  FALSE
+    ready$ok <- FALSE
   })
 
   observeEvent(input$send_paw, {
      waiter_show(html = waiting_screen_paw, color = "rgba(128, 128, 128, .8)")
-     d  <-  validation_results()
-     r  <-  sendTimeStampLogToS3(d)
+     d <- validation_results()
+     r <- sendTimeStampLogToS3(d)
      timestampUploadUI(r)
      sendDataPackErrorUI(r)
-     r  <-  sendDATIMExportToS3(d)
-     sendEventToS3(d,"PAW_EXPORT")
+     r <- sendDATIMExportToS3(d)
+     sendEventToS3(d, "PAW_EXPORT")
      waiter_hide()
      datimExportUI(r)
 
@@ -95,12 +95,12 @@ shinyServer(function(input, output, session) {
 
     if (exists("d2_default_session")) {
       if (any(class(d2_default_session) == "d2Session")) {
-        user_input$authenticated  <-  TRUE
-        user_input$d2_session  <-  d2_default_session$clone()
+        user_input$authenticated <- TRUE
+        user_input$d2_session <- d2_default_session$clone()
         d2_default_session <- NULL
 
         # Need to check the user is a member of the PRIME Data Systems Group, COP Memo group, or a super user
-        user_input$memo_authorized  <-
+        user_input$memo_authorized <-
           grepl("VDEqY8YeCEk|ezh8nmc4JbX", user_input$d2_session$me$userGroups) |
           grepl(
             "jtzbVV4ZmdP",
@@ -114,46 +114,46 @@ shinyServer(function(input, output, session) {
           ),
           name = "datapack"
         )
-        sendEventToS3(NULL,"LOGIN",user_input = user_input)
+        sendEventToS3(NULL, "LOGIN", user_input = user_input)
       }
     } else {
       sendSweetAlert(
         session,
         title = "Login failed",
-        text = substr(loginAttempt,# full error message printed to console
-                      regexpr("User",loginAttempt)[1],# Where to start extract
-                      nchar(loginAttempt)),# Where to end extract
+        text = substr(loginAttempt, # full error message printed to console
+                      regexpr("User", loginAttempt)[1], # Where to start extract
+                      nchar(loginAttempt)), # Where to end extract
         type = "error"
       )
-      sendEventToS3(NULL,"LOGIN_FAILED",user_input = user_input)
+      sendEventToS3(NULL, "LOGIN_FAILED", user_input = user_input)
     }
   })
 
 
   observeEvent(input$epiCascadeInput, {
-    epi_graph_filter$snu_filter  <-  input$epiCascadeInput
+    epi_graph_filter$snu_filter <- input$epiCascadeInput
   })
 
   observeEvent(input$kpCascadeInput, {
-    kpCascadeInput_filter$snu_filter  <-  input$kpCascadeInput
+    kpCascadeInput_filter$snu_filter <- input$kpCascadeInput
   })
 
   observeEvent(input$logout, {
     flog.info(paste0("User ", user_input$d2_session$me$userCredentials$username, " logged out."))
-    ready$ok  <-  FALSE
-    user_input$authenticated  <-  FALSE
+    ready$ok <- FALSE
+    user_input$authenticated <- FALSE
     user_input$user_name <- ""
-    user_input$authorized  <-  FALSE
-    user_input$d2_session  <-  NULL
+    user_input$authorized <- FALSE
+    user_input$d2_session <- NULL
     d2_default_session <- NULL
     gc()
     session$reload()
 
   })
 
-  output$ui  <-  renderUI({
+  output$ui <- renderUI({
 
-    if (user_input$authenticated  ==  FALSE) {
+    if (user_input$authenticated == FALSE) {
       ##### UI code for login page
       fluidPage(
         fluidRow(
@@ -169,8 +169,8 @@ shinyServer(function(input, output, session) {
   })
 
 
-  #   username and password text fields, login button
-  output$uiLogin  <-  renderUI({
+  # Username and password text fields, login button
+  output$uiLogin <- renderUI({
 
     wellPanel(fluidRow(
       #img(src = "pepfar.png", align = "center"),
@@ -184,20 +184,22 @@ shinyServer(function(input, output, session) {
     ),
     fluidRow(
       tags$hr(),
-      tags$div(HTML("<ul><li><h4>Please be sure you fully populate the PSNUxIM tab when receiving a new DataPack.",
-                    "Consult <a href = \"https://apps.datim.org/datapack-userguide/\" target = \"blank\" > the user guide</a>",
-                    "for further information!</h4></li><li><h4>See the latest updates to the app <a href =",
+      tags$div(HTML("<ul><li><h4>Please be sure you fully populate the PSNUxIM",
+                    " tab when receiving a new DataPack. Consult <a href = ",
+                    "\"https://apps.datim.org/datapack-userguide/\" target = ",
+                    "\"blank\" > the user guide</a> for further information!",
+                    "</h4></li><li><h4>See the latest updates to the app <a href =",
                     "\"https://github.com/pepfar-datim/datapackr-app/blob/master/CHANGELOG.md\"",
-                    "target  = \"blank\">here.</h4></a></li></ul>"))
+                    "target = \"blank\">here.</h4></a></li></ul>"))
     ),
     tags$hr(),
     fluidRow(HTML(getVersionInfo())))
   })
 
   output$authenticated <- renderUI({
-    wiki_url  <-  a("Datapack User Guide",
-                    href = "https://apps.datim.org/datapack-userguide/",
-                    target = "_blank")
+    wiki_url <- a("Datapack User Guide",
+                  href = "https://apps.datim.org/datapack-userguide/",
+                  target = "_blank")
 
     fluidPage(
       tags$head(tags$style(".shiny-notification {
@@ -262,13 +264,13 @@ shinyServer(function(input, output, session) {
                    fluidRow(column(width = 12, tags$h4("Data source: PSNUxIM tab")))),
           tabPanel("Epi Cascade Pyramid",
                    pickerInput("epiCascadeInput", "SNU1",
-                               choices =  "",
+                               choices = "",
                                options = list(`actions-box` = TRUE), multiple = T),
                    fluidRow(column(width = 12, div(style = "height:700px", plotOutput("epi_cascade")))),
                    fluidRow(tags$h4("Data source: SUBNATT/IMPATT data & PSNUxIM tab"))),
           tabPanel("KP Cascade Pyramid",
                    pickerInput("kpCascadeInput", "SNU1",
-                               choices =  "",
+                               choices = "",
                                options = list(`actions-box` = TRUE), multiple = T),
                    fluidRow(column(width = 12, div(style = "height:700px", plotOutput("kp_cascade")))),
                    fluidRow(tags$h4("Data source: Data source: SUBNATT/IMPATT data & PSNUxIM tab"))),
@@ -405,7 +407,7 @@ shinyServer(function(input, output, session) {
     }
   })
 
-  output$modality_summary  <-  renderPlot({
+  output$modality_summary <- renderPlot({
 
     vr <- validation_results()
 
@@ -427,7 +429,7 @@ shinyServer(function(input, output, session) {
 
   }, height = 600, width = 800)
 
-  output$modality_yield  <-  renderPlot({
+  output$modality_yield <- renderPlot({
 
     vr <- validation_results()
 
@@ -441,12 +443,12 @@ shinyServer(function(input, output, session) {
 
   }, height = 400, width = 600)
 
-  output$vls_summary  <-  renderPlot({
+  output$vls_summary <- renderPlot({
 
     vr <- validation_results()
 
     if (!inherits(vr, "error") & !is.null(vr)) {
-      vr  %>%
+      vr %>%
         purrr::pluck(., "data") %>%
         purrr::pluck(., "analytics") %>%
         vlsTestingChart()
@@ -494,9 +496,9 @@ shinyServer(function(input, output, session) {
     }
   })
 
-  output$snu_summary  <-  DT::renderDataTable({
+  output$snu_summary <- DT::renderDataTable({
 
-    vr  <-  validation_results()
+    vr <- validation_results()
 
     if (!inherits(vr, "error") & !is.null(vr)) {
 
@@ -514,24 +516,24 @@ shinyServer(function(input, output, session) {
       purrr::pluck(., "tests") %>%
       purrr::pluck(., "vr_rules_check")
 
-    if (inherits(vr, "error")  | is.null(vr)) {
+    if (inherits(vr, "error") | is.null(vr)) {
 
       return(NULL)
     }
 
-    if (NROW(vr)  == 0) {
+    if (NROW(vr) == 0) {
 
       data.frame(message = "Congratulations! No validation rule issues found!")
 
     } else {
       vr %>%
-        dplyr::filter(`Valid` == 'FALSE') %>%
+        dplyr::filter(`Valid` == "FALSE") %>%
         dplyr::select(1:6)
 
     }
   })
 
-  output$messages  <-  renderUI({
+  output$messages <- renderUI({
 
     vr <- validation_results()
 
@@ -551,12 +553,12 @@ shinyServer(function(input, output, session) {
         purrr::pluck(., "messages")
 
 
-      if (length(messages$message) > 0)  {
+      if (length(messages$message) > 0) {
 
         class(messages) <- "data.frame"
 
         messages %<>%
-          dplyr::mutate(level = factor(level,levels = c("ERROR","WARNING","INFO"))) %>%
+          dplyr::mutate(level = factor(level, levels = c("ERROR", "WARNING", "INFO"))) %>%
           dplyr::arrange(level) %>%
           dplyr::mutate(msg_html =
                           dplyr::case_when(
@@ -564,7 +566,7 @@ shinyServer(function(input, output, session) {
                             TRUE ~ paste("<li><p>", message, "</p></li>")
                           ))
 
-        messages_sorted  <-
+        messages_sorted <-
           paste0("<ul>", paste(messages$msg_html, sep = "", collapse = ""), "</ul>")
 
         shiny::HTML(messages_sorted)
@@ -574,7 +576,7 @@ shinyServer(function(input, output, session) {
     }
   })
 
-  output$analytics_checks  <-  renderUI({
+  output$analytics_checks <- renderUI({
 
     vr <- validation_results()
 
@@ -588,29 +590,29 @@ shinyServer(function(input, output, session) {
       return(paste0("ERROR! ", vr$message))
     } else {
 
-      messages  <-  vr %>%
+      messages <- vr %>%
         purrr::pluck(., "info") %>%
         purrr::pluck(., "analytics_warning_msg") %>%
         purrr::map(., function(x) fansi::to_html(fansi::html_esc(x))) %>%
-        purrr::map(.,function(x) paste('<li><p>',x,"</p></li>")) %>%
-        paste(.,collapse="") %>%
-        stringr::str_replace_all("\n","<p/>") %>%
-        stringr::str_replace_all("\t","&emsp;")
+        purrr::map(., function(x) paste("<li><p>", x, "</p></li>")) %>%
+        paste(., collapse = "") %>%
+        stringr::str_replace_all("\n", "<p/>") %>%
+        stringr::str_replace_all("\t", "&emsp;")
 
-      if (!is.null(messages))  {
-        shiny::HTML(paste("<ul>",messages,"</ul>"))
+      if (!is.null(messages)) {
+        shiny::HTML(paste("<ul>", messages, "</ul>"))
       } else {
         tags$li("No Issues with Analytics Checks: Congratulations!")
       }
     }
   })
 
-  output$downloadOutputs  <-  downloadHandler(
+  output$downloadOutputs <- downloadHandler(
     filename = function() {
-      prefix  <-  input$downloadType
-      date  <-  date <- format(Sys.time(), "%Y%m%d_%H%M%S")
+      prefix <- input$downloadType
+      date <- date <- format(Sys.time(), "%Y%m%d_%H%M%S")
 
-      suffix  <-  if (input$downloadType %in% c("messages")) {
+      suffix <- if (input$downloadType %in% c("messages")) {
         ".txt"
       } else if (input$downloadType %in% c("memo")) {
         ".docx"
@@ -624,24 +626,23 @@ shinyServer(function(input, output, session) {
 
       d <- validation_results()
 
-      if (input$downloadType  == "messages") {
+      if (input$downloadType == "messages") {
         sendEventToS3(d, "MESSAGE_DOWNLOAD")
         writeLines(d$info$messages$message, file)
       }
 
-      if (input$downloadType  == "cso_flatpack") {
+      if (input$downloadType == "cso_flatpack") {
         sendEventToS3(d, "CSO_FLATPACK_DOWNLOAD")
         wb <- downloadCSOFlatPack(d)
         openxlsx::saveWorkbook(wb, file = file, overwrite = TRUE)
       }
 
-      if (input$downloadType  == "flatpack") {
+      if (input$downloadType == "flatpack") {
         sendEventToS3(d, "FLATPACK_DOWNLOAD")
         waiter_show(html = waiting_screen_flatpack, color = "rgba(128, 128, 128, .8)")
-        datapack_name  <- d$info$datapack_name
+        datapack_name <- d$info$datapack_name
         flog.info(
-          paste0("Flatpack requested for ", datapack_name)
-          ,
+          paste0("Flatpack requested for ", datapack_name),
           name = "datapack"
         )
 
@@ -650,7 +651,7 @@ shinyServer(function(input, output, session) {
         waiter_hide()
       }
 
-      if (input$downloadType  == "vr_rules") {
+      if (input$downloadType == "vr_rules") {
 
         sheets_with_data <- d$tests[lapply(d$tests, NROW) > 0]
 
@@ -665,7 +666,7 @@ shinyServer(function(input, output, session) {
         }
       }
 
-      if (input$downloadType  == "datapack") {
+      if (input$downloadType == "datapack") {
 
         flog.info(
           paste0("Regeneration of Datapack requested for ", d$info$datapack_name)
@@ -682,7 +683,7 @@ shinyServer(function(input, output, session) {
         waiter_hide()
       }
 
-      if (input$downloadType  == "comparison") {
+      if (input$downloadType == "comparison") {
         waiter_show(html = waiting_screen_comparison, color = "rgba(128, 128, 128, .8)")
         #Create a new workbook
         flog.info(
@@ -691,7 +692,7 @@ shinyServer(function(input, output, session) {
           name = "datapack"
         )
 
-        wb  <-  openxlsx::createWorkbook()
+        wb <- openxlsx::createWorkbook()
         openxlsx::addWorksheet(wb, "Comparison")
         openxlsx::writeData(wb = wb,
                             sheet = "Comparison", x = d$memo$comparison)
@@ -701,7 +702,7 @@ shinyServer(function(input, output, session) {
         waiter_hide()
       }
 
-      if (input$downloadType  == "memo") {
+      if (input$downloadType == "memo") {
         sendEventToS3(d, "MEMO_DOWNLOAD")
         doc <- datapackr::generateApprovalMemo(d,
                                                memo_type = "datapack",
@@ -723,7 +724,7 @@ shinyServer(function(input, output, session) {
       return(NULL)
     }
 
-    inFile  <-  input$file1
+    inFile <- input$file1
     messages <- ""
 
     if (is.null(inFile)) {
@@ -759,10 +760,10 @@ shinyServer(function(input, output, session) {
         #Log the validation to S3
         sendEventToS3(d, "VALIDATE")
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
-        if (d$info$tool  == "Data Pack") {
+        if (d$info$tool == "Data Pack") {
 
           updateSelectInput(session = session, inputId = "downloadType",
-                            choices = downloadTypes(tool_type =  d$info$tool,
+                            choices = downloadTypes(tool_type = d$info$tool,
                                                     needs_psnuxim = d$info$needs_psnuxim,
                                                     memo_authorized = user_input$memo_authorized))
 
@@ -779,7 +780,7 @@ shinyServer(function(input, output, session) {
                                  cached_mechs_path = "support_files/mechs.rds",
                                  d2_session = user_input$d2_session)
 
-            if (Sys.getenv("SEND_DATAPACK_ARCHIVE")  == "TRUE") {
+            if (Sys.getenv("SEND_DATAPACK_ARCHIVE") == "TRUE") {
               incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
               Sys.sleep(0.5)
               r <- sendDataPackToS3(d, inFile$datapath)
@@ -832,8 +833,8 @@ shinyServer(function(input, output, session) {
             showTab(inputId = "main-panel", target = "HTS Recency")
             showTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
 
-          } else if (d$info$has_psnuxim & NROW(d$data$SNUxIM)  == 0)  {
-            msg <-  paste("ERROR! Your DataPack contains a PSNUxIM tab, but the formulas appear to be empty.,
+          } else if (d$info$has_psnuxim & NROW(d$data$SNUxIM) == 0) {
+            msg <- paste("ERROR! Your DataPack contains a PSNUxIM tab, but the formulas appear to be empty.,
             Please ensure that the formulas have been properly populated in the PSNUxIM tab.")
             d$info$warning_msg <- append(d$info$warning_msg, msg)
             #Enable the UI
@@ -852,7 +853,7 @@ shinyServer(function(input, output, session) {
             hideTab(inputId = "main-panel", target = "HTS Recency")
             hideTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
 
-          } else  {
+          } else {
             #This should occur when there is no PSNUxIM tab and they want
             #to generate one.
             shinyjs::enable("downloadType")
@@ -872,10 +873,10 @@ shinyServer(function(input, output, session) {
         }
       }
 
-      if (d$info$tool  == "OPU Data Pack") {
+      if (d$info$tool == "OPU Data Pack") {
 
         updateSelectInput(session = session, inputId = "downloadType",
-                          choices = downloadTypes(tool_type =  d$info$tool,
+                          choices = downloadTypes(tool_type = d$info$tool,
                                                   needs_psnuxim = FALSE,
                                                   memo_authorized = user_input$memo_authorized))
         flog.info("Datapack with PSNUxIM tab found.")
