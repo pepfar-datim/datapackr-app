@@ -7,7 +7,7 @@ modalitySummaryChart <- function(d) {
     purrr::pluck("data") %>%
     purrr::pluck("analytics") %>%
     dplyr::filter(!is.na(hts_modality)) %>%
-    dplyr::filter(!stringr::str_detect(dataelement_name,"HTS_RECENT")) %>% #Temporary fix for DP-542
+    dplyr::filter(!stringr::str_detect(dataelement_name, "HTS_RECENT")) %>% #Temporary fix for DP-542
     dplyr::filter(!(resultstatus_specific %in% c("Known at Entry Positive", "Known Positives"))) %>%
     dplyr::group_by(resultstatus_inclusive, hts_modality) %>%
     dplyr::summarise(value = sum(target_value)) %>%
@@ -46,6 +46,7 @@ modalitySummaryTable <- function(d) {
     purrr::pluck("data") %>%
     purrr::pluck("analytics") %>%
     dplyr::filter(!is.na(hts_modality)) %>%
+    dplyr::filter(!stringr::str_detect(dataelement_name, "HTS_RECENT")) %>% #Temporary fix for DP-542
     dplyr::filter(!(resultstatus_specific %in% c("Known at Entry Positive", "Known Positives"))) %>%
     dplyr::group_by(resultstatus_inclusive, hts_modality) %>%
     dplyr::summarise(value = sum(target_value)) %>%
@@ -95,8 +96,8 @@ formatModalitySummaryTable <- function(d) {
   }
 
   df %<>% dplyr::mutate(
-    Positive = format(Positive, big.mark = ", ", scientific = FALSE),
-    Total = format(Total, big.mark = ", ", scientific = FALSE),
+    Positive = format(Positive, big.mark = ",", scientific = FALSE),
+    Total = format(Total, big.mark = ",", scientific = FALSE),
     yield = format(round(yield, 2), nsmall = 2),
     modality_share = format(round(modality_share, 2), nsmall = 2)) %>%
     dplyr::select(

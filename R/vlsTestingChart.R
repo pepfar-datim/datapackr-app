@@ -10,7 +10,7 @@ vlsTestingChart <- function(df) {
     dplyr::mutate(indicator = dplyr::case_when(
       indicator == "TX_CURR" ~ "TX_CURR",
       indicator == "TX_PVLS" & numerator_denominator == "Numerator" ~ "TX_PVLS (N)",
-      indicator == "TX_PVLS" && numerator_denominator == "Denominator" ~ "TX_PVLS (D)",
+      indicator == "TX_PVLS" & numerator_denominator == "Denominator" ~ "TX_PVLS (D)",
       TRUE ~ NA_character_),
       SNU1 = ifelse(substr(SNU1, 0, 9) == "_Military", "Military", SNU1)) %>%
     dplyr::group_by(SNU1, indicator) %>%

@@ -136,8 +136,8 @@ recencyComparison <- function(d) {
       dplyr::arrange(Modality) %>%
       dplyr::mutate("HTS_RECENT (%)" = HTS_RECENT / HTS_TST_POS * 100) %>%
       dplyr::mutate(
-        HTS_RECENT = format(HTS_RECENT, big.mark = ", ", scientific = FALSE),
-        HTS_TST_POS = format(HTS_TST_POS, big.mark = ", ", scientific = FALSE),
+        HTS_RECENT = format(HTS_RECENT, big.mark = ",", scientific = FALSE),
+        HTS_TST_POS = format(HTS_TST_POS, big.mark = ",", scientific = FALSE),
         `HTS_RECENT (%)` = format(round(`HTS_RECENT (%)`, 2), nsmall = 2))
   }
 

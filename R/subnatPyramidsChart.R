@@ -16,6 +16,10 @@ subnatPyramidsChart <- function(d, epi_graph_filter_results) {
     return(NULL)
   }
 
+  # Aggregates age column for TX_CURR by regrouping
+  df$age[df$indicator_code == "TX_CURR.T" &
+           df$age %in% c("50-54", "55-59", "60-64", "65+")] <- "50+"
+
   df %<>%
     dplyr::filter(., indicator_code == "TX_CURR.T" |
                     indicator_code == "TX_PVLS.N.Routine.T" |

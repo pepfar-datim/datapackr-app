@@ -23,11 +23,11 @@ fetchModelFile <- function(model_path="support_files/datapack_model_data.rds") {
   }
 
   if (!is_fresh & can_write_file) {
-    interactive_print("Fetching new model file from S3")
+    datapackr::interactive_print("Fetching new model file from S3")
     dest_file <- fetchSupportFiles(model_path)
 
   } else {
-    interactive_print("Found cached model file.")
+    datapackr::interactive_print("Found cached model file.")
     dest_file <- paste0(getwd(), "/", model_path)
   }
 
@@ -51,26 +51,11 @@ fetchSupportFiles <- function(path) {
   con <- file(file_name2, "wb")
   writeBin(s3_object_body, con = con)
   close(con)
-  flog.info(paste0("Retreived support file to ", file_name2))
+  futile.logger::flog.info(paste0("Retreived support file to ", file_name2))
   if (!file.exists(file_name2)) {
     stop("Could not retreive support file.")
   }
   return(file_name2)
-}
-
-getOperatingUnitFromCountryUIDs <- function(country_uids) {
-  ou <- datapackr::valid_PSNUs %>%
-    dplyr::select(ou, ou_id, country_name, country_uid) %>%
-    dplyr::distinct() %>%
-    dplyr::filter(country_uid %in% country_uids) %>%
-    dplyr::select(ou, ou_id) %>%
-    dplyr::distinct()
-
-  if (NROW(ou) != 1) {
-    stop("Datapacks cannot belong to multiple operating units")
-  }
-
-  return(ou)
 }
 
 sendDataPackErrorUI <- function(r) {
@@ -89,17 +74,17 @@ timestampUploadUI <- function(r) {
 
 validationSummaryUI <- function(r) {
   if (!r) {
-    showModal(modalDialog(title = "Error", "Validation summary could not be sent to AP."))
+    shiny::showModal(shiny::modalDialog(title = "Error", "Validation summary could not be sent to AP."))
   }
 }
 
 datimExportUI <- function(r) {
   if (!r) {
-    showModal(modalDialog(title = "Error",
-                          "DATIM Export could not be sent to S3"))
+    shiny::showModal(shiny::modalDialog(title = "Error",
+                                        "DATIM Export could not be sent to S3"))
   } else {
-    showModal(modalDialog(title = "Congrats!",
-                          "Export to PAW was successful."))
+    shiny::showModal(shiny::modalDialog(title = "Congrats!",
+                                        "Export to PAW was successful."))
   }
 }
 
@@ -110,22 +95,4 @@ createS3BucketTags <- function(d) {
   object_tags <- URLencode(paste(names(object_tags), object_tags, sep = "=", collapse = "&"))
 
   return(object_tags)
-}
-
-assignDedupeMetadata <- function(d) {
-  d$data$analytics <-
-    d$data$analytics %>% dplyr::mutate(
-      funding_agency = dplyr::case_when(
-        mechanism_code %in% c("00000", "00001") ~ "Dedupe",
-        TRUE ~ funding_agency
-      ),
-      partner_desc = dplyr::case_when(
-        mechanism_code %in% c("00000", "00001") ~ "Dedupe",
-        TRUE ~ partner_desc
-      ))
-  return(d)
-}
-
-hasDimensionConstraints <- function(d2_session) {
-  length(d2_session$me$userCredentials$catDimensionConstraints) > 0
 }

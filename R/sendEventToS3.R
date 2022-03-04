@@ -1,7 +1,7 @@
 sendEventToS3 <- function(d=NULL, event_type, user_input=NULL) {
 
   if (is.null(d)) {
-    d<-list(info=list(
+    d <- list(info = list(
       tool = NA,
       datapack_name = NA,
       cop_year = NA,
@@ -48,7 +48,7 @@ sendEventToS3 <- function(d=NULL, event_type, user_input=NULL) {
                          ContentType = "text/csv")
   },
   error = function(err) {
-    flog.error("Event could not be saved to S3", name = "datapack")
+    futile.logger::flog.error("Event could not be saved to S3", name = "datapack")
     FALSE
   })
 

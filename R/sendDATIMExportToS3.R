@@ -44,12 +44,12 @@ sendDATIMExportToS3 <- function(d) {
                          Key = object_name,
                          Tagging = object_tags,
                          ContentType = "text/csv")
-    flog.info("DATIM Export sent to S3", name = "datapack")
+    futile.logger::flog.info("DATIM Export sent to S3", name = "datapack")
     TRUE
   },
   error = function(err) {
-    flog.info("DATIM Export could not be sent to S3", name = "datapack")
-    flog.info(err, name = "datapack")
+    futile.logger::flog.info("DATIM Export could not be sent to S3", name = "datapack")
+    futile.logger::flog.info(err, name = "datapack")
     FALSE
   })
 

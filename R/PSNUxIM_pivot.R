@@ -12,7 +12,14 @@ PSNUxIM_pivot <- function(d) {
                   partner = partner_desc,
                   agency = funding_agency,
                   value = target_value) %>%
-    dplyr::group_by(indicator, dataelement_name,support_type, psnu, prioritization, mechanism_code, partner, agency) %>%
+    dplyr::group_by(indicator,
+                    dataelement_name,
+                    support_type,
+                    psnu,
+                    prioritization,
+                    mechanism_code,
+                    partner,
+                    agency) %>%
     dplyr::summarise(value = sum(value)) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(mechanism_code = ifelse(mechanism_code == "HllvX50cXC0", "default", mechanism_code))
