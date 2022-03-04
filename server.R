@@ -891,7 +891,7 @@ shinyServer(function(input, output, session) {
         incProgress(0.1, detail = "Updating prioritization levels from DATIM")
         Sys.sleep(0.5)
         #Update existing prioriziations in the case of an OPU Datapack
-        d <- datapackr:updateExistingPrioritization(d, d2_session = user_input$d2_session)
+        d <- datapackr::updateExistingPrioritization(d, d2_session = user_input$d2_session)
         incProgress(0.1, detail = ("Preparing COP memo data"))
         d <-
           datapackr::prepareMemoData(
