@@ -1,3 +1,6 @@
+## Mar 04, 2022
+ * Update to datapackr 5.1.4
+
 ## Feb 24, 2022
  * Update to datapackr 5.1.3
  * Suppress HTS_RECENT in modality visuals
