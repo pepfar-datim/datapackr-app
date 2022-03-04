@@ -277,13 +277,17 @@ shinyServer(function(input, output, session) {
           tabPanel("PSNUxIM Pivot",
                    fluidRow(column(width = 12, div(rpivotTable::rpivotTableOutput({"pivot"})))), # nolint
                    fluidRow(tags$h4("Data source: PSNUxIM tab"))),
-          tabPanel("Prioritization (DRAFT)",
-                   DT::dataTableOutput("prio_table"),
-                   h5("Note: This is a draft memo table. Final figures may differ."),
-                   tags$h4("Data source: PSNUxIM tab")),
-          tabPanel("Memo Comparison",
-                   fluidRow(actionButton("reset_pivot", "Reset pivot")),
-                   fluidRow(column(width = 12,
+          tabPanel(
+            "Memo Tables",
+            fluidRow(
+              pickerInput(
+                "memo_pivot_style",
+                label = "Pivot Style",
+                choices = c("Prioritization", "By Agency", "By Partner", "Comparison"),
+                selected = "Prioritization"
+              )
+            ),
+            fluidRow(column(width = 12,
                                    div(rpivotTable::rpivotTableOutput({"memo_compare"})))), # nolint
                    fluidRow(tags$h4("Data source: PSNUxIM tab & DATIM")))
 
@@ -319,8 +323,8 @@ shinyServer(function(input, output, session) {
     }
   }, height = 600, width = 800)
 
-  output$pivot <- renderRpivotTable({
-    vr <- validation_results()
+  output$pivot  <-  rpivotTable::renderRpivotTable({
+    vr  <-  validation_results()
 
     if (!inherits(vr, "error") & !is.null(vr)) {
 
@@ -334,44 +338,49 @@ shinyServer(function(input, output, session) {
     }
   })
 
-  output$prio_table <- DT::renderDataTable({
-    prio_table <- validation_results() %>%
-      purrr::pluck("data") %>%
-      purrr::pluck("prio_table")
 
-    if (!inherits(prio_table, "error") & !is.null(prio_table)) {
-
-      DT::datatable(prio_table, options = list(pageLength = 50,
-                                               columnDefs = list(list(className = "dt-right",
-                                                                      targets = 3:dim(prio_table)[2])))) %>%
-        formatCurrency(3:dim(prio_table)[2], "", digits = 0)
-
-
-    } else {
-      NULL
-    }
-  })
-
-  output$memo_compare <- renderRpivotTable({
+  output$memo_compare  <-  rpivotTable::renderRpivotTable({
     vr <- validation_results()
-    #Take a dependency on the reset button
-
-    reset_pivot <- input$reset_pivot
 
     if (!inherits(vr, "error") & !is.null(vr)) {
 
-      if (is.null(vr$data$compare)) {
+      if (is.null(vr$memo$comparison)) {
         return(NULL)
       }
 
-      pivot <- vr %>%
-        purrr::pluck("data") %>%
-        purrr::pluck("compare")
+      pivot <-  vr  %>%
+        purrr::pluck("memo") %>%
+        purrr::pluck("comparison")
 
-      rpivotTable(data = pivot,
-                  rows = c("Indicator"), cols = c("Value type"), inclusions = list("Value type" = list("Difference")),
-                  vals = "Value", aggregatorName = "Integer Sum", rendererName = "Table", subtotals = TRUE,
-                  width = "70%", height = "700px")
+
+    pivot_options <- switch(
+      input$memo_pivot_style,
+      "Prioritization" =   list(
+        rows = c("Indicator", "Age"),
+        cols = c("prioritization"),
+        inclusions = list("Data Type" = list("Proposed"))
+      ),
+      "By Agency" = list(
+        rows = c("Indicator", "Age"),
+        cols = c("Agency"),
+        inclusions = list("Data Type" = list("Proposed"))
+      ),
+      "By Partner" = list(
+        rows = c("Agency","Partner"),
+        cols = c("Indicator", "Age"),
+        inclusions = list("Data Type" = list("Proposed"))
+      ),
+      "Comparison" = list(
+        rows = c("Indicator","Age"),
+        cols = c("Data Type"),
+        inclusions = list("Data Type" = list("Proposed", "Current", "Diff"))
+      )
+    )
+
+    rpivotTable(data = pivot,
+                               rows = pivot_options$rows, cols = pivot_options$cols, inclusions = pivot_options$inclusions,
+                               vals = "value", aggregatorName = "Integer Sum", rendererName = "Table", subtotals = TRUE,
+                               width = "70%", height = "700px")
 
     } else {
       NULL
@@ -479,7 +488,7 @@ shinyServer(function(input, output, session) {
 
       prepareSNUSummaryTable(vr) %>%
         dplyr::group_by(indicator_code) %>%
-        dplyr::summarise(value = format(round(sum(value, na.rm = TRUE)), big.mark = ", ", scientific = FALSE)) %>%
+        dplyr::summarise(value = format(round(sum(value, na.rm = TRUE)), big.mark = ",", scientific = FALSE)) %>%
         dplyr::arrange(indicator_code)
 
     } else {
@@ -494,7 +503,7 @@ shinyServer(function(input, output, session) {
     if (!inherits(vr, "error") & !is.null(vr)) {
 
       prepareSNUSummaryTable(vr) %>%
-        dplyr::mutate(value = format(round_trunc(value), big.mark = ", ", scientific = FALSE))
+        dplyr::mutate(value = format(round_trunc(value), big.mark = ",", scientific = FALSE))
 
     } else {
       data.frame(message = "No data is available to display. An error may have occurred.")
@@ -686,7 +695,7 @@ shinyServer(function(input, output, session) {
         wb <- openxlsx::createWorkbook()
         openxlsx::addWorksheet(wb, "Comparison")
         openxlsx::writeData(wb = wb,
-                            sheet = "Comparison", x = d$data$compare)
+                            sheet = "Comparison", x = d$memo$comparison)
 
         openxlsx::saveWorkbook(wb, file = file, overwrite = TRUE)
         sendEventToS3(d, "COMPARISON_DOWNLOAD")
@@ -695,7 +704,9 @@ shinyServer(function(input, output, session) {
 
       if (input$downloadType == "memo") {
         sendEventToS3(d, "MEMO_DOWNLOAD")
-        doc <- downloadMemo(d)
+        doc <- datapackr::generateApprovalMemo(d,
+                                               memo_type = "datapack",
+                                               draft_memo = TRUE )
         print(doc, target = file)
 
       }
@@ -745,28 +756,11 @@ shinyServer(function(input, output, session) {
         d$info$approval_status <- "UNAPPROVED"
         #Generate a unique identifier
         d$info$uuid <- user_input$uuid
+
         #Log the validation to S3
         sendEventToS3(d, "VALIDATE")
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
         if (d$info$tool == "Data Pack") {
-
-          #TODO:Clean this up. Pretty sure this should be in datapackr
-          #Un-allocated does not have a partner/mech/agency but
-          #Needs one for consistent display in the visuals/tables in the app
-
-          d$data$analytics <- d$data$analytics %>%
-            dplyr::mutate(across(
-              c(mechanism_code, mechanism_desc, partner_desc, funding_agency),
-              ~ dplyr::case_when(
-                is.na(.x) &
-                  stringr::str_detect(support_type, "DSD|TA") ~ "Unallocated",
-                is.na(.x) &
-                  stringr:::str_detect(support_type, "Sub-National") ~ "default",
-                is.na(.x) &
-                  stringr:::str_detect(support_type, "No Support Type") ~ "default",
-                TRUE ~ .x
-              )
-            ))
 
           updateSelectInput(session = session, inputId = "downloadType",
                             choices = downloadTypes(tool_type = d$info$tool,
@@ -778,10 +772,13 @@ shinyServer(function(input, output, session) {
             flog.info(paste(d$info$tool, " with PSNUxIM tab found."))
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
-            d <- validatePSNUData(d, d2_session = user_input$d2_session)
+            d <- datapackr::checkPSNUData(d,
+                               d2_session = user_input$d2_session)
             incProgress(0.1, detail = "Validating mechanisms")
             Sys.sleep(0.5)
-            d <- validateMechanisms(d, d2_session = user_input$d2_session)
+            d <- datapackr::checkMechanisms(d,
+                                 cached_mechs_path = "support_files/mechs.rds",
+                                 d2_session = user_input$d2_session)
 
             if (Sys.getenv("SEND_DATAPACK_ARCHIVE") == "TRUE") {
               incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
@@ -791,11 +788,15 @@ shinyServer(function(input, output, session) {
               Sys.sleep(1)
             }
 
-            incProgress(0.1, detail = ("Preparing a prioritization table"))
-            d <- preparePrioTable(d, d2_session = user_input$d2_session)
-            Sys.sleep(1)
-            incProgress(0.1, detail = ("Preparing a partners table"))
-            d <- preparePartnerMemoTable(d, user_input$d2_session)
+            incProgress(0.1, detail = ("Preparing COP memo data"))
+            d <-
+              datapackr::prepareMemoData(
+                d,
+                memo_type = "comparison",
+                include_no_prio = TRUE,
+                d2_session = user_input$d2_session
+              )
+            d <- datapackr::generateComparisonTable(d)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Preparing a modality summary"))
             d <- modalitySummaryTable(d)
@@ -806,13 +807,7 @@ shinyServer(function(input, output, session) {
             incProgress(0.1, detail = ("Performing analytics checks"))
             model_data_path <- "support_files/datapack_model_data.rds"
             full_model_path <- fetchModelFile(model_data_path)
-            d <- checkAnalytics(d, model_data_path = full_model_path, d2_session = user_input$d2_session)
-            Sys.sleep(1)
-            incProgress(0.1, detail = ("Fetching existing COP Memo table"))
-            d <- memo_getPrioritizationTable(d, d2_session = user_input$d2_session)
-            Sys.sleep(1)
-            incProgress(0.1, detail = ("Comparing COP Memo tables"))
-            d <- comparePrioTables(d)
+            d <- datapackr::checkAnalytics(d, model_data_path  = full_model_path, d2_session = user_input$d2_session)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Finishing up."))
             flog.info("Sending validation summary")
@@ -887,31 +882,33 @@ shinyServer(function(input, output, session) {
         flog.info("Datapack with PSNUxIM tab found.")
         incProgress(0.1, detail = ("Checking validation rules"))
         Sys.sleep(0.5)
-        d <- validatePSNUData(d, d2_session = user_input$d2_session)
+        d <- datapackr::checkPSNUData(d,
+                                      validation_rules_path = "data/cop_validation_rules.rds",
+                                      d2_session = user_input$d2_session)
         incProgress(0.1, detail = "Validating mechanisms")
         Sys.sleep(0.5)
-        d <- validateMechanisms(d, d2_session = user_input$d2_session)
+        d <- datapackr::checkMechanisms(d,
+                                        cached_mechs_path = "data/mechs.rds",
+                                        d2_session = user_input$d2_session)
         incProgress(0.1, detail = "Updating prioritization levels from DATIM")
         Sys.sleep(0.5)
-        #Move this to datapackr
-        d <- updateExistingPrioritization(d, d2_session = user_input$d2_session)
-        incProgress(0.1, detail = ("Preparing a prioritization table"))
-        d <- preparePrioTable(d, d2_session = user_input$d2_session)
-        Sys.sleep(1)
-        incProgress(0.1, detail = ("Preparing a partners table"))
-        d <- preparePartnerMemoTable(d, user_input$d2_session)
+        #Update existing prioriziations in the case of an OPU Datapack
+        d <- datapackr:updateExistingPrioritization(d, d2_session = user_input$d2_session)
+        incProgress(0.1, detail = ("Preparing COP memo data"))
+        d <-
+          datapackr::prepareMemoData(
+            d,
+            memo_type = "comparison",
+            include_no_prio = TRUE,
+            d2_session = user_input$d2_session
+          )
+        d <- datapackr::generateComparisonTable(d)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Preparing a modality summary"))
         d <- modalitySummaryTable(d)
         Sys.sleep(1)
         incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
         d <- recencyComparison(d)
-        Sys.sleep(1)
-        incProgress(0.1, detail = ("Fetching existing COP Memo table"))
-        d <- memo_getPrioritizationTable(d, d2_session = user_input$d2_session)
-        Sys.sleep(1)
-        incProgress(0.1, detail = ("Comparing COP Memo tables"))
-        d <- generateComparisonTable(d, d2_session = user_input$d2_session)
         Sys.sleep(1)
         shinyjs::enable("downloadType")
         shinyjs::enable("downloadOutputs")

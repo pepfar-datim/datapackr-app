@@ -58,21 +58,6 @@ fetchSupportFiles <- function(path) {
   return(file_name2)
 }
 
-getOUFromCountryUIDs <- function(country_uids) {
-  ou <- datapackr::valid_PSNUs %>%
-    dplyr::select(ou, ou_id, country_name, country_uid) %>%
-    dplyr::distinct() %>%
-    dplyr::filter(country_uid %in% country_uids) %>%
-    dplyr::select(ou, ou_id) %>%
-    dplyr::distinct()
-
-  if (NROW(ou) != 1) {
-    stop("Datapacks cannot belong to multiple operating units")
-  }
-
-  return(ou)
-}
-
 sendDataPackErrorUI <- function(r) {
   if (!r) {
     showModal(modalDialog(title = "Error",
@@ -110,22 +95,4 @@ createS3BucketTags <- function(d) {
   object_tags <- URLencode(paste(names(object_tags), object_tags, sep = "=", collapse = "&"))
 
   return(object_tags)
-}
-
-assignDedupeMetadata <- function(d) {
-  d$data$analytics <-
-    d$data$analytics %>% dplyr::mutate(
-      funding_agency = dplyr::case_when(
-        mechanism_code %in% c("00000", "00001") ~ "Dedupe",
-        TRUE ~ funding_agency
-      ),
-      partner_desc = dplyr::case_when(
-        mechanism_code %in% c("00000", "00001") ~ "Dedupe",
-        TRUE ~ partner_desc
-      ))
-  return(d)
-}
-
-hasDimensionConstraints <- function(d2_session) {
-  length(d2_session$me$userCredentials$catDimensionConstraints) > 0
 }
