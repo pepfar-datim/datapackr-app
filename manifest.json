@@ -870,8 +870,8 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "master",
-      "GithubSha1": "3c0b42e34eb73458ca3c5511263030d751d7a858",
+      "GithubRef": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
+      "GithubSha1": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -891,18 +891,18 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-03-07 06:13:41 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-03-07 15:04:17 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "master",
-        "RemoteSha": "3c0b42e34eb73458ca3c5511263030d751d7a858",
+        "RemoteRef": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
+        "RemoteSha": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "master",
-        "GithubSHA1": "3c0b42e34eb73458ca3c5511263030d751d7a858",
+        "GithubRef": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
+        "GithubSHA1": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -4551,7 +4551,7 @@
       "checksum": "7b3ced5691db58c459f849bebd2422a3"
     },
     ".Rprofile": {
-      "checksum": "302517ac15a99d10ec0d5ac43b4e800a"
+      "checksum": "4a0a9ed5889f6297e4a19245870c94ac"
     },
     "CHANGELOG.md": {
       "checksum": "a8d104067bbe55c690f8022841693a3b"
@@ -4593,7 +4593,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "fa771318996322781c9220e771c7c1dd"
+      "checksum": "ba07038e425e83c9a7b4f74f2731efb2"
     },
     "inst/extdata/draft_memo_template.docx": {
       "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"
@@ -4684,9 +4684,6 @@
     },
     "support_files/cop20_validation_rules.rds": {
       "checksum": "7e5ec5cd9c33bcdfce134faffd51bfe6"
-    },
-    "support_files/data/mechs.rds": {
-      "checksum": "0e2e009ae1e02b1f3d43c0b87620cebc"
     },
     "support_files/datapack_model_data.rds": {
       "checksum": "d8c3615f133a14d8e1d86399fa788da2"
