@@ -527,7 +527,7 @@ shinyServer(function(input, output, session) {
 
     } else {
       vr %>%
-        dplyr::filter(`Valid` == "FALSE") %>%
+        dplyr::filter(!`Valid`) %>%
         dplyr::select(1:6)
 
     }
