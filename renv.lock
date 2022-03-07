@@ -100,6 +100,13 @@
       "Repository": "CRAN",
       "Hash": "9fe98599ca456d6552421db0d6772d8f"
     },
+    "brio": {
+      "Package": "brio",
+      "Version": "1.1.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "2f01e16ff9571fe70381c7b9ae560dc4"
+    },
     "bslib": {
       "Package": "bslib",
       "Version": "0.3.1",
@@ -113,6 +120,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "648c5b3d71e6a37e3043617489a0a0e9"
+    },
+    "callr": {
+      "Package": "callr",
+      "Version": "3.7.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "461aa75a11ce2400245190ef5d3995df"
     },
     "cellranger": {
       "Package": "cellranger",
@@ -204,10 +218,10 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
-      "RemoteRef": "master",
-      "RemoteSha": "0680c3ce897b93f8e7832dd2068a4e3e8f868b8e",
+      "RemoteRef": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
+      "RemoteSha": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
       "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation,\npepfar-datim/data-pack-commons",
-      "Hash": "4a16aa36fa91a7873fc437735c87d3a2"
+      "Hash": "7253348ed8de4134932f540fa1052681"
     },
     "datimutils": {
       "Package": "datimutils",
@@ -233,6 +247,20 @@
       "RemoteSha": "bc550850e5f767c23e9cc72938438ff7207dba54",
       "Remotes": "pepfar-datim/datimutils",
       "Hash": "81c6ab41721a434aacd3f7492797ae80"
+    },
+    "desc": {
+      "Package": "desc",
+      "Version": "1.4.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "28763d08fadd0b733e3cee9dab4e12fe"
+    },
+    "diffobj": {
+      "Package": "diffobj",
+      "Version": "0.3.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "feb5b7455eba422a2c110bb89852e6a3"
     },
     "digest": {
       "Package": "digest",
@@ -703,6 +731,13 @@
       "Repository": "CRAN",
       "Hash": "01f28d4278f15c76cddbea05899c5d6f"
     },
+    "pkgload": {
+      "Package": "pkgload",
+      "Version": "1.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "463642747f81879e6752485aefb831cf"
+    },
     "plyr": {
       "Package": "plyr",
       "Version": "1.8.6",
@@ -710,12 +745,26 @@
       "Repository": "CRAN",
       "Hash": "ec0e5ab4e5f851f6ef32cd1d1984957f"
     },
+    "praise": {
+      "Package": "praise",
+      "Version": "1.0.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "a555924add98c99d2f411e37e7d25e9f"
+    },
     "prettyunits": {
       "Package": "prettyunits",
       "Version": "1.1.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "95ef9167b75dde9d2ccc3c7528393e7e"
+    },
+    "processx": {
+      "Package": "processx",
+      "Version": "3.5.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "0cbca2bc4d16525d009c4dbba156b37c"
     },
     "progress": {
       "Package": "progress",
@@ -730,6 +779,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "4ab2c43adb4d4699cf3690acd378d75d"
+    },
+    "ps": {
+      "Package": "ps",
+      "Version": "1.6.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "32620e2001c1dce1af49c49dccbb9420"
     },
     "purrr": {
       "Package": "purrr",
@@ -765,6 +821,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "c66b930d20bb6d858cd18e1cebcfae5c"
+    },
+    "rematch2": {
+      "Package": "rematch2",
+      "Version": "2.1.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "76c9e04c712a05848ae7a23d2f170a40"
     },
     "remotes": {
       "Package": "remotes",
@@ -814,6 +877,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "a7ce09cc0ac98041b252d7af4a3cc131"
+    },
+    "rprojroot": {
+      "Package": "rprojroot",
+      "Version": "2.0.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "249d8cd1e74a8f6a26194a91b47f21d1"
     },
     "rstudioapi": {
       "Package": "rstudioapi",
@@ -913,6 +983,13 @@
       "Repository": "CRAN",
       "Hash": "5be9fcf8ef6763e8cb13ab009e273a1d"
     },
+    "testthat": {
+      "Package": "testthat",
+      "Version": "3.0.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "575216c9946ca70016c3ffb9c31709ba"
+    },
     "tibble": {
       "Package": "tibble",
       "Version": "3.1.5",
@@ -996,6 +1073,13 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "ac6ef9ebf3f60eb8f2fe5f0c829e3a08"
+    },
+    "waldo": {
+      "Package": "waldo",
+      "Version": "0.3.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "312b264fae22fdba83b7a74187a24da8"
     },
     "withr": {
       "Package": "withr",
