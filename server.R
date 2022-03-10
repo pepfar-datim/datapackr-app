@@ -609,6 +609,8 @@ shinyServer(function(input, output, session) {
 
   output$downloadOutputs <- downloadHandler(
     filename = function() {
+      d <- validation_results()
+      sane_name <- d$info$sane_name
       prefix <- input$downloadType
       date <- date <- format(Sys.time(), "%Y%m%d_%H%M%S")
 
@@ -620,7 +622,7 @@ shinyServer(function(input, output, session) {
         ".xlsx"
       }
 
-      paste0(prefix, "_", date, suffix)
+      paste0(sane_name, "_", prefix, "_", date, suffix)
     },
     content = function(file) {
 
