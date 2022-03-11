@@ -219,9 +219,7 @@
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
       "RemoteRef": "master",
-      "RemoteSha": "ee4b1fee900e8c93500e220d64caa583224be19c",
-      "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation,\npepfar-datim/data-pack-commons",
-      "Hash": "7e461566663b4ab04919b490a7161fdf"
+      "RemoteSha": "1b57769f84e259b1e49d6c09a892daf2046ec9a7"
     },
     "datimutils": {
       "Package": "datimutils",
