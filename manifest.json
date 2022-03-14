@@ -870,8 +870,8 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
-      "GithubSha1": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
+      "GithubRef": "master",
+      "GithubSha1": "1b57769f84e259b1e49d6c09a892daf2046ec9a7",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -891,7 +891,7 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-03-07 15:04:17 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-03-09 11:47:36 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
@@ -4551,7 +4551,7 @@
       "checksum": "7b3ced5691db58c459f849bebd2422a3"
     },
     ".Rprofile": {
-      "checksum": "4a0a9ed5889f6297e4a19245870c94ac"
+      "checksum": "530caeb19c8561f5145c06fbbc6721d0"
     },
     "CHANGELOG.md": {
       "checksum": "a8d104067bbe55c690f8022841693a3b"
@@ -4605,7 +4605,7 @@
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "8bb769c313f3240c012293def124f0ff"
+      "checksum": "066f3ddd770430db9ca5a8fa7d80cfcb"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
@@ -4692,7 +4692,7 @@
       "checksum": "3631f2012f8986452becc44d3e1ed077"
     },
     "support_files/mechs.rds": {
-      "checksum": "8bb769c313f3240c012293def124f0ff"
+      "checksum": "066f3ddd770430db9ca5a8fa7d80cfcb"
     },
     "support_files/model_data_pack_input_21_20210202_1_flat.rds": {
       "checksum": "75318ab8927e10b549a262f8eb810426"

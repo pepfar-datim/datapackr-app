@@ -655,7 +655,17 @@ shinyServer(function(input, output, session) {
 
       if (input$downloadType == "vr_rules") {
 
-        sheets_with_data <- d$tests[lapply(d$tests, NROW) > 0]
+        sheets_with_data <- d$tests[lapply(d$tests, NROW) > 0] %>%
+        #removes nested lists
+          purrr::map(., ~ .x %>% dplyr::select(-where(is.list))) %>%
+          purrr::map(., function(x) {
+            # caps row count to excel limits
+            if (nrow(x) > 1048575) {
+              x[1:1048575, ]
+            } else {
+              x
+            }
+          })
 
         if (length(sheets_with_data) > 0) {
           sendEventToS3(d, "VR_RULES_DOWNLOAD")
