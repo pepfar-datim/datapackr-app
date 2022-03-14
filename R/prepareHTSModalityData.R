@@ -1,6 +1,6 @@
 prepareHTSModalityData <- function(d) {
 
-  d <- d %>%
+  df <- d %>%
   purrr::pluck("data") %>%
   purrr::pluck("analytics") %>%
   dplyr::filter(!is.na(hts_modality)) %>%
@@ -12,5 +12,5 @@ prepareHTSModalityData <- function(d) {
   dplyr::arrange(resultstatus_inclusive, desc(resultstatus_inclusive)) %>%
   dplyr::mutate(resultstatus_inclusive = factor(resultstatus_inclusive, c("Unknown", "Negative", "Positive")))
 
-  return(d)
+  return(df)
 }
