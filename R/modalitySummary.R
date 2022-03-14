@@ -58,7 +58,7 @@ modalitySummaryTable <- function(d) {
       dplyr::select(Positive, Total) %>%
       dplyr::mutate(hts_modality = "Total") %>%
       dplyr::group_by(hts_modality) %>%
-      dplyr::summarise_all(sum,na.rm = TRUE) %>%
+      dplyr::summarise_all(sum, na.rm = TRUE) %>%
       dplyr::mutate(yield = Positive / Total * 100,
                     modality_share = 100)
 
