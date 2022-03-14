@@ -896,13 +896,13 @@
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
-        "RemoteSha": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
+        "RemoteRef": "master",
+        "RemoteSha": "1b57769f84e259b1e49d6c09a892daf2046ec9a7",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
-        "GithubSHA1": "2b2f70527cc91bb18f67121e3b316eebf707b6a3",
+        "GithubRef": "master",
+        "GithubSHA1": "1b57769f84e259b1e49d6c09a892daf2046ec9a7",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
