@@ -50,7 +50,7 @@ modalitySummaryTable <- function(d) {
     hts %<>%
       tidyr::pivot_wider(names_from = resultstatus_inclusive, values_from = value) %>%
       dplyr::mutate(yield = Positive / (Negative + Positive) * 100,
-                    modality_share = Positive / sum(Positive, na.rm=TRUE) * 100,
+                    modality_share = Positive / sum(Positive, na.rm = TRUE) * 100,
                     Total = Positive + Negative) %>%
       dplyr::select(hts_modality, Positive, Total, yield, modality_share)
 
