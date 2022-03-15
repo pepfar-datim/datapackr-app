@@ -685,12 +685,30 @@ shinyServer(function(input, output, session) {
           ,
           name = "datapack")
         waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
-        flog.info("Fetching support files")
+
         d <- downloadDataPack(d, d2_session = user_input$d2_session)
         openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
         sendEventToS3(d, "DATAPACK_DOWNLOAD")
         flog.info(
-          paste0("Datapack reloaded for for ", d$info$datapack_name),
+          paste0("Datapack reloaded for ", d$info$datapack_name),
+          name = "datapack")
+        waiter_hide()
+      }
+
+
+      if (input$downloadType == "missing_psnuxim_targets") {
+
+        flog.info(
+          paste0("Generation of missing PSNUxIM targets requested for ", d$info$datapack_name)
+          ,
+          name = "datapack")
+        waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
+
+        d <- downloadMissingPSNUxIMTargets(d, d2_session = user_input$d2_session)
+        openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
+        sendEventToS3(d, "MISSING_PSNUXIM_DOWNLOAD")
+        flog.info(
+          paste0("Missing PSNUxIM targets generated reloaded for ", d$info$datapack_name),
           name = "datapack")
         waiter_hide()
       }
