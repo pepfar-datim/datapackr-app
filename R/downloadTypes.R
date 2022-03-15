@@ -1,4 +1,4 @@
-downloadTypes <- function(tool_type="Data Pack", needs_psnuxim=FALSE, memo_authorized = FALSE) {
+downloadTypes <- function(tool_type="Data Pack", needs_psnuxim=FALSE, memo_authorized = FALSE, has_comments_issue = FALSE) {
 
   if (is.null(needs_psnuxim)) {
     needs_psnuxim <- FALSE
@@ -33,6 +33,11 @@ downloadTypes <- function(tool_type="Data Pack", needs_psnuxim=FALSE, memo_autho
 
   if (!memo_authorized) {
     download_types <- download_types[!(download_types %in% c("memo"))]
+  }
+
+  #Remove the PSNUxIM download if they have comments
+  if (has_comments_issue) {
+    download_types <- download_types[!(download_types %in% c("datapack"))]
   }
 
   return(download_types)

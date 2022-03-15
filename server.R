@@ -795,7 +795,8 @@ shinyServer(function(input, output, session) {
           updateSelectInput(session = session, inputId = "downloadType",
                             choices = downloadTypes(tool_type = d$info$tool,
                                                     needs_psnuxim = d$info$needs_psnuxim,
-                                                    memo_authorized = user_input$memo_authorized))
+                                                    memo_authorized = user_input$memo_authorized,
+                                                    has_comments_issue = d$info$has_comments_issue))
 
           if ((d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year == "2022") {
 
