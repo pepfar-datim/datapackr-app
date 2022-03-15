@@ -870,8 +870,8 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "master",
-      "GithubSha1": "1b57769f84e259b1e49d6c09a892daf2046ec9a7",
+      "GithubRef": "append-psnuxim-feature",
+      "GithubSha1": "c0f8826051b2876831c7853fd58eb9eed390ece3",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -891,18 +891,18 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-03-09 11:47:36 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-03-15 09:17:42 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "master",
-        "RemoteSha": "1b57769f84e259b1e49d6c09a892daf2046ec9a7",
+        "RemoteRef": "append-psnuxim-feature",
+        "RemoteSha": "c0f8826051b2876831c7853fd58eb9eed390ece3",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "master",
-        "GithubSHA1": "1b57769f84e259b1e49d6c09a892daf2046ec9a7",
+        "GithubRef": "append-psnuxim-feature",
+        "GithubSHA1": "c0f8826051b2876831c7853fd58eb9eed390ece3",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -4551,7 +4551,7 @@
       "checksum": "7b3ced5691db58c459f849bebd2422a3"
     },
     ".Rprofile": {
-      "checksum": "530caeb19c8561f5145c06fbbc6721d0"
+      "checksum": "591b71e1f96301deae6fe9497932fdcd"
     },
     "CHANGELOG.md": {
       "checksum": "a8d104067bbe55c690f8022841693a3b"
@@ -4564,21 +4564,6 @@
     },
     "config.yml.sample": {
       "checksum": "31c37d9dc0af96e3c9c149f808b3ea48"
-    },
-    "data-raw/process_validation_rules.R": {
-      "checksum": "9672c7f244d20afe35b856d41426cde9"
-    },
-    "data/cop_validation_rules.rds": {
-      "checksum": "0c7fe0e09ef70c9b4a7126e6f22145b5"
-    },
-    "data/cop20_validation_rules.json": {
-      "checksum": "790720097eb1aee73824acf17f1de9bd"
-    },
-    "data/cop21_validation_rules.json": {
-      "checksum": "954c3b7e8c75b788f50f031726a37491"
-    },
-    "data/cop22_validation_rules.json": {
-      "checksum": "e4cfa6951be5eaf2315ff79211266163"
     },
     "data/degs_map.rds": {
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
@@ -4593,10 +4578,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "ba07038e425e83c9a7b4f74f2731efb2"
-    },
-    "inst/extdata/draft_memo_template.docx": {
-      "checksum": "287c479b7fc91cdc8f3836197cf2f5e9"
+      "checksum": "95edea84c76ae4277426f3a48ef88c71"
     },
     "inst/upgradeAnalyticsLogs.R": {
       "checksum": "a45163aed121abf21c7845f176bdf9fa"
@@ -4605,19 +4587,19 @@
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "066f3ddd770430db9ca5a8fa7d80cfcb"
+      "checksum": "1a8321b36a3021261bc39b83a0a900d8"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
     },
     "R/downloadDataPack.R": {
-      "checksum": "58d645f2c392c1cd99bba5d8981f1724"
+      "checksum": "a7da725ef9c310ce72d77794c4e2d931"
     },
     "R/downloadFlatPack.R": {
       "checksum": "3df7267538edea88d3578d78f37bbdeb"
     },
     "R/downloadTypes.R": {
-      "checksum": "08ea1e4f12d50df7bf5fce762f8f3227"
+      "checksum": "d86a290629dfdfd867765d1e5ee7d971"
     },
     "R/kpCascadeChart.R": {
       "checksum": "d7eef99e59f9f9ea084874af81a63307"
@@ -4671,7 +4653,7 @@
       "checksum": "63568a0d8830618fc5ac31536c675198"
     },
     "server.R": {
-      "checksum": "e03c7613520e20a50be3c3c21740beab"
+      "checksum": "d33b51d78bd031e1a74ec02ec8eb7d8b"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
@@ -4692,16 +4674,13 @@
       "checksum": "3631f2012f8986452becc44d3e1ed077"
     },
     "support_files/mechs.rds": {
-      "checksum": "066f3ddd770430db9ca5a8fa7d80cfcb"
+      "checksum": "1a8321b36a3021261bc39b83a0a900d8"
     },
     "support_files/model_data_pack_input_21_20210202_1_flat.rds": {
       "checksum": "75318ab8927e10b549a262f8eb810426"
     },
     "support_files/modifiedValidationRules.json": {
       "checksum": "e8c9c27cc18d80f06ddbfb56155a9ca3"
-    },
-    "support_files/psnuxim_model_data_22.rds": {
-      "checksum": "627bfdd8f7dd159941486437120d1ad7"
     },
     "support_files/README": {
       "checksum": "9cb0faaff95a40f674f7a20ffcda0788"
