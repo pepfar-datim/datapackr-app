@@ -870,13 +870,13 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "append-psnuxim-feature",
-      "GithubSha1": "c0f8826051b2876831c7853fd58eb9eed390ece3",
+      "GithubRef": "dev",
+      "GithubSha1": "98594a294240648833ec67e6872e8195726785a5",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
         "Title": "A Package that Packs and Unpacks all Data Packs",
-        "Version": "5.1.5",
+        "Version": "5.1.6",
         "Date": "2022-03-04",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Chris\", \"Nemarich\", email = \"cnemarich@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Christian\", \"Domaas\", email = \"cdomaas@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Fausto\", \"Lopez\", email = \"flopez@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Jordan\", \"Bales\", email = \"jbales@baosystems.com\",\n        role = c(\"ctb\"))\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
@@ -891,18 +891,18 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-03-15 09:17:42 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-03-16 10:36:07 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "append-psnuxim-feature",
-        "RemoteSha": "c0f8826051b2876831c7853fd58eb9eed390ece3",
+        "RemoteRef": "dev",
+        "RemoteSha": "98594a294240648833ec67e6872e8195726785a5",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "append-psnuxim-feature",
-        "GithubSHA1": "c0f8826051b2876831c7853fd58eb9eed390ece3",
+        "GithubRef": "dev",
+        "GithubSHA1": "98594a294240648833ec67e6872e8195726785a5",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -4548,10 +4548,10 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".RData": {
-      "checksum": "7b3ced5691db58c459f849bebd2422a3"
+      "checksum": "69861bfa00d5b7b7a0bba6d1d2f8e8ca"
     },
     ".Rprofile": {
-      "checksum": "591b71e1f96301deae6fe9497932fdcd"
+      "checksum": "b92d55582ad30e70a97facad2fec4d84"
     },
     "CHANGELOG.md": {
       "checksum": "a8d104067bbe55c690f8022841693a3b"
@@ -4578,7 +4578,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "95edea84c76ae4277426f3a48ef88c71"
+      "checksum": "06589609ef1fe8d9408d3702ee9f7317"
     },
     "inst/upgradeAnalyticsLogs.R": {
       "checksum": "a45163aed121abf21c7845f176bdf9fa"
@@ -4587,7 +4587,7 @@
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "1a8321b36a3021261bc39b83a0a900d8"
+      "checksum": "f5d4452d5460d960b73d63a99f2fa748"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
@@ -4599,7 +4599,7 @@
       "checksum": "3df7267538edea88d3578d78f37bbdeb"
     },
     "R/downloadTypes.R": {
-      "checksum": "d86a290629dfdfd867765d1e5ee7d971"
+      "checksum": "68f284b7ccfaf783f8839522594b4df0"
     },
     "R/kpCascadeChart.R": {
       "checksum": "d7eef99e59f9f9ea084874af81a63307"
@@ -4653,7 +4653,7 @@
       "checksum": "63568a0d8830618fc5ac31536c675198"
     },
     "server.R": {
-      "checksum": "d33b51d78bd031e1a74ec02ec8eb7d8b"
+      "checksum": "11a97fcdb1e7afde13917cbe48c13054"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
@@ -4674,7 +4674,7 @@
       "checksum": "3631f2012f8986452becc44d3e1ed077"
     },
     "support_files/mechs.rds": {
-      "checksum": "1a8321b36a3021261bc39b83a0a900d8"
+      "checksum": "f5d4452d5460d960b73d63a99f2fa748"
     },
     "support_files/model_data_pack_input_21_20210202_1_flat.rds": {
       "checksum": "75318ab8927e10b549a262f8eb810426"
