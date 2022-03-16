@@ -654,18 +654,21 @@ shinyServer(function(input, output, session) {
       }
 
       if (input$downloadType == "vr_rules") {
+        #The exact nature of the tests is unkown, but filter out anything
+        #which is not a
 
-        sheets_with_data <- d$tests[lapply(d$tests, NROW) > 0] %>%
-        #removes nested lists
-          purrr::map(., ~ .x %>% dplyr::select(-where(is.list))) %>%
-          purrr::map(., function(x) {
-            # caps row count to excel limits
-            if (nrow(x) > 1048575) {
-              x[1:1048575, ]
-            } else {
-              x
-            }
-          })
+        is_data_frame <- unlist(lapply(lapply(d$tests,class) , function(x) "data.frame" %in% x))
+
+        d$tests <- d$tests[is_data_frame]
+
+        sheets_with_data <- d$tests[lapply(d$tests, NROW) > 0 ] %>%
+         #Limit the number of rows to the maximum in Excel
+          purrr::map(.,~ dplyr::slice(.x,1:1048575)) %>%
+          #Collapses nested lists to a string which will fit inside of excel
+          purrr::map(., ~ .x %>% dplyr::mutate_if(is.list,function(x)  paste(as.character(x[[1]]),sep="",collapse=","))) %>%
+          #Convert everything to characters and apply Excel limits
+          purrr::map(., ~ .x %>% dplyr::mutate_all(function(x) substring(as.character(x),0,36766)))
+
 
         if (length(sheets_with_data) > 0) {
           sendEventToS3(d, "VR_RULES_DOWNLOAD")
