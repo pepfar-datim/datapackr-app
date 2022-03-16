@@ -870,8 +870,8 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "dev",
-      "GithubSha1": "98594a294240648833ec67e6872e8195726785a5",
+      "GithubRef": "master",
+      "GithubSha1": "a6884ded14993fb6977c60eea9a595d5386d6bdd",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -883,7 +883,7 @@
         "URL": "https://github.com/pepfar-datim/datapackr",
         "BugReports": "https://github.com/pepfar-datim/datapackr",
         "Depends": "R (>= 4.1.0)",
-        "Imports": "dplyr (>= 0.8.3),\ntidyr (>= 1.0.0),\ntidyxl (>= 1.0.4),\nreadxl (>= 1.3.1),\nreadr (>= 1.3.1),\njsonlite (>= 1.6),\npurrr (>= 0.3.3),\ntibble (>= 2.1.3),\nstringr (>= 1.4.0),\nhttr (>= 1.4.0),\nrlist (>= 0.4.6.1),\nmagrittr (>= 1.5),\ncrayon (>= 1.3.4),\nopenxlsx,\nlazyeval,\nmethods,\nstats,\nlubridate (>= 1.7.4),\ndata.table (>= 1.12.8),\ndatimutils,\ndatimvalidation,\ndatapackcommons (>= 0.2.0),\ntidyselect (>= 0.2.5),\nglue (>= 1.3.1),\nrlang (>= 0.4.2),\nassertthat,\nplyr,\nfuzzyjoin (>= 0.1.6),\nR6",
+        "Imports": "dplyr (>= 0.8.3),\ntidyr (>= 1.0.0),\ntidyxl (>= 1.0.4),\nreadxl (>= 1.3.1),\nreadr (>= 1.3.1),\njsonlite (>= 1.6),\npurrr (>= 0.3.3),\ntibble (>= 2.1.3),\nstringr (>= 1.4.0),\nstringi,\nhttr (>= 1.4.0),\nrlist (>= 0.4.6.1),\nmagrittr (>= 1.5),\ncrayon (>= 1.3.4),\nopenxlsx,\nlazyeval,\nmethods,\nstats,\nlubridate (>= 1.7.4),\ndata.table (>= 1.12.8),\ndatimutils,\ndatimvalidation,\ndatapackcommons (>= 0.2.0),\ntidyselect (>= 0.2.5),\nglue (>= 1.3.1),\nrlang (>= 0.4.2),\nassertthat,\nplyr,\nfuzzyjoin (>= 0.1.6),\nR6",
         "Suggests": "devtools (>= 2.0.1),\nhttptest,\ntestthat,\ncellranger,\nrprojroot,\nwaldo,\nparallel,\ngdtools,\nflextable,\nofficer",
         "License": "file LICENSE",
         "Encoding": "UTF-8",
@@ -891,18 +891,18 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-03-16 10:36:07 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-03-16 16:24:43 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "dev",
-        "RemoteSha": "98594a294240648833ec67e6872e8195726785a5",
+        "RemoteRef": "master",
+        "RemoteSha": "a6884ded14993fb6977c60eea9a595d5386d6bdd",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "dev",
-        "GithubSHA1": "98594a294240648833ec67e6872e8195726785a5",
+        "GithubRef": "master",
+        "GithubSHA1": "a6884ded14993fb6977c60eea9a595d5386d6bdd",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -4541,6 +4541,9 @@
     ".~lock.comparison_memo.docx#": {
       "checksum": "e2a132af5bf844eddb121f5652ec7159"
     },
+    ".~lock.foo.xlsx#": {
+      "checksum": "bbbcc1a042c6e66f7862cc68abd70ba2"
+    },
     ".github/pull_request_template.md": {
       "checksum": "2e1511408653c3a2119d0a523eef8178"
     },
@@ -4551,10 +4554,10 @@
       "checksum": "69861bfa00d5b7b7a0bba6d1d2f8e8ca"
     },
     ".Rprofile": {
-      "checksum": "b92d55582ad30e70a97facad2fec4d84"
+      "checksum": "b27ad49440845884ee7987f177502340"
     },
     "CHANGELOG.md": {
-      "checksum": "a8d104067bbe55c690f8022841693a3b"
+      "checksum": "dbd6456923a3e394bf618936259c3b15"
     },
     "comparison_memo.docx": {
       "checksum": "2cc625fa90d3ae15c042ef09c6073195"
@@ -4569,7 +4572,7 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "data/mechs.rds": {
-      "checksum": "8bb769c313f3240c012293def124f0ff"
+      "checksum": "f5d4452d5460d960b73d63a99f2fa748"
     },
     "data/README": {
       "checksum": "23d8254dae346ea59a603eb2a31ebe73"
@@ -4578,7 +4581,10 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "06589609ef1fe8d9408d3702ee9f7317"
+      "checksum": "0f96479b78946695326da6158add97be"
+    },
+    "foo.xlsx": {
+      "checksum": "4b2bb5bddb27e1842612b05d014082df"
     },
     "inst/upgradeAnalyticsLogs.R": {
       "checksum": "a45163aed121abf21c7845f176bdf9fa"
@@ -4605,7 +4611,10 @@
       "checksum": "d7eef99e59f9f9ea084874af81a63307"
     },
     "R/modalitySummary.R": {
-      "checksum": "27388ba335c666a15fe1443cc198ac5f"
+      "checksum": "149211b2fcf8cc339b871d9d1a6dfd14"
+    },
+    "R/prepareHTSModalityData.R": {
+      "checksum": "95cd6f066b8bfb092362bea656697fc6"
     },
     "R/prepareSNUSummaryTable.R": {
       "checksum": "6229926905afc40a2f54ac39e4c5440e"
@@ -4653,7 +4662,7 @@
       "checksum": "63568a0d8830618fc5ac31536c675198"
     },
     "server.R": {
-      "checksum": "11a97fcdb1e7afde13917cbe48c13054"
+      "checksum": "a5287274c1ed81561a1207f4fd16e749"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
