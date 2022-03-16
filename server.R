@@ -654,18 +654,21 @@ shinyServer(function(input, output, session) {
       }
 
       if (input$downloadType == "vr_rules") {
+        #The exact nature of the tests is unkown, but filter out anything
+        #which is not a
 
-        sheets_with_data <- d$tests[lapply(d$tests, NROW) > 0] %>%
-        #removes nested lists
-          purrr::map(., ~ .x %>% dplyr::select(-where(is.list))) %>%
-          purrr::map(., function(x) {
-            # caps row count to excel limits
-            if (nrow(x) > 1048575) {
-              x[1:1048575, ]
-            } else {
-              x
-            }
-          })
+        is_data_frame <- unlist(lapply(lapply(d$tests,class) , function(x) "data.frame" %in% x))
+
+        d$tests <- d$tests[is_data_frame]
+
+        sheets_with_data <- d$tests[lapply(d$tests, NROW) > 0 ] %>%
+         #Limit the number of rows to the maximum in Excel
+          purrr::map(.,~ dplyr::slice(.x,1:1048575)) %>%
+          #Collapses nested lists to a string which will fit inside of excel
+          purrr::map(., ~ .x %>% dplyr::mutate_if(is.list,function(x)  paste(as.character(x[[1]]),sep="",collapse=","))) %>%
+          #Convert everything to characters and apply Excel limits
+          purrr::map(., ~ .x %>% dplyr::mutate_all(function(x) substring(as.character(x),0,36766)))
+
 
         if (length(sheets_with_data) > 0) {
           sendEventToS3(d, "VR_RULES_DOWNLOAD")
@@ -685,12 +688,30 @@ shinyServer(function(input, output, session) {
           ,
           name = "datapack")
         waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
-        flog.info("Fetching support files")
+
         d <- downloadDataPack(d, d2_session = user_input$d2_session)
         openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
         sendEventToS3(d, "DATAPACK_DOWNLOAD")
         flog.info(
-          paste0("Datapack reloaded for for ", d$info$datapack_name),
+          paste0("Datapack reloaded for ", d$info$datapack_name),
+          name = "datapack")
+        waiter_hide()
+      }
+
+
+      if (input$downloadType == "missing_psnuxim_targets") {
+
+        flog.info(
+          paste0("Generation of missing PSNUxIM targets requested for ", d$info$datapack_name)
+          ,
+          name = "datapack")
+        waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
+
+        d <- downloadMissingPSNUxIMTargets(d, d2_session = user_input$d2_session)
+        openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
+        sendEventToS3(d, "MISSING_PSNUXIM_DOWNLOAD")
+        flog.info(
+          paste0("Missing PSNUxIM targets generated reloaded for ", d$info$datapack_name),
           name = "datapack")
         waiter_hide()
       }
@@ -777,7 +798,8 @@ shinyServer(function(input, output, session) {
           updateSelectInput(session = session, inputId = "downloadType",
                             choices = downloadTypes(tool_type = d$info$tool,
                                                     needs_psnuxim = d$info$needs_psnuxim,
-                                                    memo_authorized = user_input$memo_authorized))
+                                                    memo_authorized = user_input$memo_authorized,
+                                                    has_comments_issue = d$info$has_comments_issue))
 
           if ((d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year == "2022") {
 

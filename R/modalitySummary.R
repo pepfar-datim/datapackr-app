@@ -3,17 +3,7 @@ modalitySummaryChart <- function(d) {
   cop_year <- as.numeric(stringr::str_replace(d$info$cop_year, "^20", ""))
   chart_label <- paste0("COP", cop_year, "/FY", cop_year + 1, " Testing Targets")
 
-  chart_data <- d %>%
-    purrr::pluck("data") %>%
-    purrr::pluck("analytics") %>%
-    dplyr::filter(!is.na(hts_modality)) %>%
-    dplyr::filter(!stringr::str_detect(dataelement_name, "HTS_RECENT")) %>% #Temporary fix for DP-542
-    dplyr::filter(!(resultstatus_specific %in% c("Known at Entry Positive", "Known Positives"))) %>%
-    dplyr::group_by(resultstatus_inclusive, hts_modality) %>%
-    dplyr::summarise(value = sum(target_value)) %>%
-    dplyr::ungroup() %>%
-    dplyr::arrange(resultstatus_inclusive, desc(resultstatus_inclusive)) %>%
-    dplyr::mutate(resultstatus_inclusive = factor(resultstatus_inclusive, c("Unknown", "Negative", "Positive")))
+  chart_data <- prepareHTSModalityData(d)
 
   gg <- chart_data %>%
     ggplot(aes(
@@ -42,17 +32,7 @@ modalitySummaryChart <- function(d) {
 
 modalitySummaryTable <- function(d) {
 
-  hts <- d %>%
-    purrr::pluck("data") %>%
-    purrr::pluck("analytics") %>%
-    dplyr::filter(!is.na(hts_modality)) %>%
-    dplyr::filter(!stringr::str_detect(dataelement_name, "HTS_RECENT")) %>% #Temporary fix for DP-542
-    dplyr::filter(!(resultstatus_specific %in% c("Known at Entry Positive", "Known Positives"))) %>%
-    dplyr::group_by(resultstatus_inclusive, hts_modality) %>%
-    dplyr::summarise(value = sum(target_value)) %>%
-    dplyr::ungroup() %>%
-    dplyr::arrange(resultstatus_inclusive, desc(resultstatus_inclusive)) %>%
-    dplyr::mutate(resultstatus_inclusive = factor(resultstatus_inclusive, c("Unknown", "Negative", "Positive")))
+  hts <- prepareHTSModalityData(d)
 
   if (NROW(hts) == 0) {
     return(d)
@@ -70,7 +50,7 @@ modalitySummaryTable <- function(d) {
     hts %<>%
       tidyr::pivot_wider(names_from = resultstatus_inclusive, values_from = value) %>%
       dplyr::mutate(yield = Positive / (Negative + Positive) * 100,
-                    modality_share = Positive / sum(Positive) * 100,
+                    modality_share = Positive / sum(Positive, na.rm=TRUE) * 100,
                     Total = Positive + Negative) %>%
       dplyr::select(hts_modality, Positive, Total, yield, modality_share)
 
@@ -78,7 +58,7 @@ modalitySummaryTable <- function(d) {
       dplyr::select(Positive, Total) %>%
       dplyr::mutate(hts_modality = "Total") %>%
       dplyr::group_by(hts_modality) %>%
-      dplyr::summarise_all(sum) %>%
+      dplyr::summarise_all(sum,na.rm = TRUE) %>%
       dplyr::mutate(yield = Positive / Total * 100,
                     modality_share = 100)
 
