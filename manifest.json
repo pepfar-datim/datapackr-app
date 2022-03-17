@@ -871,7 +871,7 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "master",
-      "GithubSha1": "a6884ded14993fb6977c60eea9a595d5386d6bdd",
+      "GithubSha1": "e5360fc23cd3e320b0d3d505f07b5f1d410b7bc5",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -891,18 +891,18 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-03-16 16:24:43 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-03-17 11:04:14 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "master",
-        "RemoteSha": "a6884ded14993fb6977c60eea9a595d5386d6bdd",
+        "RemoteSha": "e5360fc23cd3e320b0d3d505f07b5f1d410b7bc5",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "master",
-        "GithubSHA1": "a6884ded14993fb6977c60eea9a595d5386d6bdd",
+        "GithubSHA1": "e5360fc23cd3e320b0d3d505f07b5f1d410b7bc5",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -4541,9 +4541,6 @@
     ".~lock.comparison_memo.docx#": {
       "checksum": "e2a132af5bf844eddb121f5652ec7159"
     },
-    ".~lock.foo.xlsx#": {
-      "checksum": "bbbcc1a042c6e66f7862cc68abd70ba2"
-    },
     ".github/pull_request_template.md": {
       "checksum": "2e1511408653c3a2119d0a523eef8178"
     },
@@ -4551,13 +4548,13 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".RData": {
-      "checksum": "69861bfa00d5b7b7a0bba6d1d2f8e8ca"
+      "checksum": "dc3d8fb8be83b9ef2fa4487fb8cca4ea"
     },
     ".Rprofile": {
-      "checksum": "b27ad49440845884ee7987f177502340"
+      "checksum": "ebb04a6b200bbe1e36a5755b7f0b27c4"
     },
     "CHANGELOG.md": {
-      "checksum": "dbd6456923a3e394bf618936259c3b15"
+      "checksum": "a8d104067bbe55c690f8022841693a3b"
     },
     "comparison_memo.docx": {
       "checksum": "2cc625fa90d3ae15c042ef09c6073195"
@@ -4581,7 +4578,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "0f96479b78946695326da6158add97be"
+      "checksum": "e2875e8c07894522cc3bee82d5ed2380"
     },
     "foo.xlsx": {
       "checksum": "4b2bb5bddb27e1842612b05d014082df"
@@ -4593,7 +4590,7 @@
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "f5d4452d5460d960b73d63a99f2fa748"
+      "checksum": "63918ba20148650be2ad179543640869"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
@@ -4683,7 +4680,7 @@
       "checksum": "3631f2012f8986452becc44d3e1ed077"
     },
     "support_files/mechs.rds": {
-      "checksum": "f5d4452d5460d960b73d63a99f2fa748"
+      "checksum": "63918ba20148650be2ad179543640869"
     },
     "support_files/model_data_pack_input_21_20210202_1_flat.rds": {
       "checksum": "75318ab8927e10b549a262f8eb810426"
