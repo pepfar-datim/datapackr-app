@@ -870,8 +870,8 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "fix-validation-rules",
-      "GithubSha1": "ebaa235434ea662c71ce10210d8d96fdff499c0d",
+      "GithubRef": "master",
+      "GithubSha1": "a3089787c09302133cd17a805608274e4eef51ea",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -891,18 +891,18 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-03-21 15:45:23 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-03-21 15:57:57 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "fix-validation-rules",
-        "RemoteSha": "ebaa235434ea662c71ce10210d8d96fdff499c0d",
+        "RemoteRef": "master",
+        "RemoteSha": "a3089787c09302133cd17a805608274e4eef51ea",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "fix-validation-rules",
-        "GithubSHA1": "ebaa235434ea662c71ce10210d8d96fdff499c0d",
+        "GithubRef": "master",
+        "GithubSHA1": "a3089787c09302133cd17a805608274e4eef51ea",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -4551,7 +4551,7 @@
       "checksum": "daaaaf228e597d3bae73e5822b48a42e"
     },
     ".Rprofile": {
-      "checksum": "afcd3184052a9f91d1d85322acb278c1"
+      "checksum": "3a860f86a6636d4c2f2e3eba3d294b96"
     },
     "CHANGELOG.md": {
       "checksum": "a8d104067bbe55c690f8022841693a3b"
@@ -4578,7 +4578,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "70d8fbc767bcd8f24d8026eb3b90fb00"
+      "checksum": "5ca25ad4fae7d081380a6fc24b59450f"
     },
     "foo.xlsx": {
       "checksum": "4b2bb5bddb27e1842612b05d014082df"
