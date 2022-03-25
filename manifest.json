@@ -812,14 +812,14 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "fix-model-ta-distribution",
-      "GithubSha1": "e8ae09b6acff25dd65a983725f714f0819dbc3f1",
+      "GithubRef": "master",
+      "GithubSha1": "6f3a42fde602d84363dbfcc6758432965a1ede1c",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
         "Title": "A Package that Packs and Unpacks all Data Packs",
-        "Version": "5.1.6",
-        "Date": "2022-03-04",
+        "Version": "5.1.7",
+        "Date": "2022-03-24",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Chris\", \"Nemarich\", email = \"cnemarich@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Christian\", \"Domaas\", email = \"cdomaas@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Fausto\", \"Lopez\", email = \"flopez@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Jordan\", \"Bales\", email = \"jbales@baosystems.com\",\n        role = c(\"ctb\"))\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
         "URL": "https://github.com/pepfar-datim/datapackr",
@@ -833,19 +833,19 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.1; ; 2022-03-18 20:23:54 UTC; unix",
+        "Built": "R 4.1.1; ; 2022-03-25 19:58:33 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "fix-model-ta-distribution",
-        "RemoteSha": "e8ae09b6acff25dd65a983725f714f0819dbc3f1",
+        "RemoteRef": "master",
+        "RemoteSha": "6f3a42fde602d84363dbfcc6758432965a1ede1c",
+        "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation,\npepfar-datim/data-pack-commons",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "fix-model-ta-distribution",
-        "GithubSHA1": "e8ae09b6acff25dd65a983725f714f0819dbc3f1",
-        "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
+        "GithubRef": "master",
+        "GithubSHA1": "6f3a42fde602d84363dbfcc6758432965a1ede1c"
       }
     },
     "datimutils": {
@@ -4144,7 +4144,7 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".Rprofile": {
-      "checksum": "4b1e6540de347aeb6415ae3f25a9864b"
+      "checksum": "837d4929b87fbe708854ba2f037f76ed"
     },
     "CHANGELOG.md": {
       "checksum": "a8d104067bbe55c690f8022841693a3b"
