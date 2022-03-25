@@ -667,7 +667,6 @@ shinyServer(function(input, output, session) {
           #Collapses nested lists to a string which will fit inside of excel
           purrr::map(., ~ .x %>% dplyr::mutate_if(is.list,function(x)  paste(as.character(x[[1]]),sep="",collapse=","))) %>%
           #Convert everything to characters and apply Excel limits
-          #Convert everything to characters and apply Excel limits
           purrr::map(., ~ .x %>% dplyr::mutate_if(is.character,function(x) substring(as.character(x),0,36766)))
 
 
