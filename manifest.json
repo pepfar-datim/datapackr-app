@@ -871,13 +871,13 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "master",
-      "GithubSha1": "a3089787c09302133cd17a805608274e4eef51ea",
+      "GithubSha1": "6f3a42fde602d84363dbfcc6758432965a1ede1c",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
         "Title": "A Package that Packs and Unpacks all Data Packs",
-        "Version": "5.1.6",
-        "Date": "2022-03-04",
+        "Version": "5.1.7",
+        "Date": "2022-03-24",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Chris\", \"Nemarich\", email = \"cnemarich@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Christian\", \"Domaas\", email = \"cdomaas@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Fausto\", \"Lopez\", email = \"flopez@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Jordan\", \"Bales\", email = \"jbales@baosystems.com\",\n        role = c(\"ctb\"))\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
         "URL": "https://github.com/pepfar-datim/datapackr",
@@ -891,18 +891,18 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-03-21 15:57:57 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-03-25 08:47:38 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "master",
-        "RemoteSha": "a3089787c09302133cd17a805608274e4eef51ea",
+        "RemoteSha": "6f3a42fde602d84363dbfcc6758432965a1ede1c",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "master",
-        "GithubSHA1": "a3089787c09302133cd17a805608274e4eef51ea",
+        "GithubSHA1": "6f3a42fde602d84363dbfcc6758432965a1ede1c",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -4551,7 +4551,7 @@
       "checksum": "daaaaf228e597d3bae73e5822b48a42e"
     },
     ".Rprofile": {
-      "checksum": "3a860f86a6636d4c2f2e3eba3d294b96"
+      "checksum": "0adc12ec0d6f79844e6a099423e87acb"
     },
     "CHANGELOG.md": {
       "checksum": "a8d104067bbe55c690f8022841693a3b"
@@ -4578,7 +4578,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "5ca25ad4fae7d081380a6fc24b59450f"
+      "checksum": "3b1e33de38a7d597f2b8f865665ccdaf"
     },
     "foo.xlsx": {
       "checksum": "4b2bb5bddb27e1842612b05d014082df"
@@ -4590,7 +4590,7 @@
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "0450852e041d4199b5fbfac4f52761e7"
+      "checksum": "ae6ec0344592e6dac63155d35aec2ef3"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
@@ -4659,7 +4659,7 @@
       "checksum": "63568a0d8830618fc5ac31536c675198"
     },
     "server.R": {
-      "checksum": "a5287274c1ed81561a1207f4fd16e749"
+      "checksum": "49d5381c2bf88c4e394795dc24a53242"
     },
     "support_files/.~lock.cop_20_approval_memo__20210323_095517.xlsx#": {
       "checksum": "0bef07c12dd12344e71bc53358edb424"
@@ -4680,7 +4680,7 @@
       "checksum": "3631f2012f8986452becc44d3e1ed077"
     },
     "support_files/mechs.rds": {
-      "checksum": "0450852e041d4199b5fbfac4f52761e7"
+      "checksum": "ae6ec0344592e6dac63155d35aec2ef3"
     },
     "support_files/model_data_pack_input_21_20210202_1_flat.rds": {
       "checksum": "75318ab8927e10b549a262f8eb810426"
