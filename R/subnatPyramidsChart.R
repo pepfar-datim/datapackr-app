@@ -23,9 +23,9 @@ subnatPyramidsChart <- function(d, epi_graph_filter_results) {
   df %<>%
     dplyr::filter(., indicator_code == "TX_CURR.T" |
                     indicator_code == "TX_PVLS.N.Routine.T" |
-                    indicator_code == "PLHIV.T_1") %>%
-    dplyr::select(age, sex, indicator_code, target_value) %>%
-    dplyr::group_by(age, sex, indicator_code) %>%
+                    indicator_code == "PLHIV.T_1")%>%
+    dplyr::select(age, sex, indicator_code, target_value)%>%
+    dplyr::group_by(age, sex, indicator_code)%>%
     dplyr::summarise(value = sum(target_value)) %>%
     dplyr::ungroup() %>%
     dplyr::rename(Age = age,

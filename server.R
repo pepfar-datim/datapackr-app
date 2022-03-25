@@ -484,6 +484,8 @@ shinyServer(function(input, output, session) {
 
     vr <- validation_results()
 
+    test <- saveRDS(vr,"~/Documents/Repos/datapackr-app/support_files/test.rds")
+
     if (!inherits(vr, "error") & !is.null(vr)) {
 
       prepareSNUSummaryTable(vr) %>%
