@@ -4,6 +4,8 @@ subnatPyramidsChart <- function(d, epi_graph_filter_results) {
     purrr::pluck(., "data") %>%
     purrr::pluck(., "analytics")
 
+  saveRDS(df,"~/Documents/Repos/datapackr-app/support_files/AfterPlucktest.rds")
+
   if (is.null(df)) {
     return(NULL)
   }
