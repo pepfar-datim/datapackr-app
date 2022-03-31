@@ -654,8 +654,8 @@ shinyServer(function(input, output, session) {
       }
 
       if (input$downloadType == "vr_rules") {
-        #The exact nature of the tests is unkown, but filter out anything
-        #which is not a
+        #The exact structure of the tests is unknown, but filter out anything
+        #which is not a data frame.
 
         is_data_frame <- unlist(lapply(lapply(d$tests,class) , function(x) "data.frame" %in% x))
 
