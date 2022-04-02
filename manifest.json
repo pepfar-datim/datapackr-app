@@ -871,8 +871,8 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "master",
-      "GithubSha1": "874ee90386ede19039ef2b019806c0c545834bb6",
+      "GithubRef": "extra-psnuxim-columns",
+      "GithubSha1": "17791dfd7f3d6c5feb3bedf86dc011e0652b4dca",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -892,18 +892,18 @@
         "RoxygenNote": "7.1.2",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.1.2; ; 2022-04-01 12:36:29 UTC; unix",
+        "Built": "R 4.1.2; ; 2022-04-02 05:08:51 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "master",
-        "RemoteSha": "874ee90386ede19039ef2b019806c0c545834bb6",
+        "RemoteRef": "extra-psnuxim-columns",
+        "RemoteSha": "17791dfd7f3d6c5feb3bedf86dc011e0652b4dca",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "master",
-        "GithubSHA1": "874ee90386ede19039ef2b019806c0c545834bb6",
+        "GithubRef": "extra-psnuxim-columns",
+        "GithubSHA1": "17791dfd7f3d6c5feb3bedf86dc011e0652b4dca",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation,\npepfar-datim/data-pack-commons"
       }
     },
@@ -4561,7 +4561,7 @@
       "checksum": "2bcbaf57db07280f0f4bdc97a7f223cf"
     },
     ".Rprofile": {
-      "checksum": "784865bfecfc27a71d4f08ab0cf36b32"
+      "checksum": "dd3401d9a11cf265815943049fc34414"
     },
     "CHANGELOG.md": {
       "checksum": "a8d104067bbe55c690f8022841693a3b"
@@ -4579,7 +4579,7 @@
       "checksum": "651ae07b9d2a8ab71e13c3022e992847"
     },
     "data/mechs.rds": {
-      "checksum": "f5d4452d5460d960b73d63a99f2fa748"
+      "checksum": "fe8265ff5c4212b02462dad6e8cedc0d"
     },
     "data/README": {
       "checksum": "23d8254dae346ea59a603eb2a31ebe73"
@@ -4588,7 +4588,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "a1089130a63b649db77c452f46d7251f"
+      "checksum": "19dc51098319de77a61a907968433db8"
     },
     "foo.xlsx": {
       "checksum": "4b2bb5bddb27e1842612b05d014082df"
