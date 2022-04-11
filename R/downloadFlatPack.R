@@ -20,10 +20,13 @@ downloadFlatPack <- function(d) {
     )
   }
   if (!is.null(d$data$modality_summary)) {
+    formatMST = formatModalitySummaryTable(d)
+
     openxlsx::addWorksheet(wb, "HTS Summary")
     openxlsx::writeDataTable(
       wb = wb,
-      sheet = "HTS Summary", x = formatModalitySummaryTable(d)
+      sheet = "HTS Summary",
+      x = formatMST
     )
   }
   if (!is.null(d$memo$datapack$by_prio)) {
