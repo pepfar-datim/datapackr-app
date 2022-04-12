@@ -822,16 +822,20 @@ shinyServer(function(input, output, session) {
               Sys.sleep(1)
             }
 
-            incProgress(0.1, detail = ("Preparing COP memo data"))
-            d <-
-              datapackr::prepareMemoData(
-                d,
-                memo_type = "comparison",
-                include_no_prio = TRUE,
-                d2_session = user_input$d2_session
-              )
-            d <- datapackr::generateComparisonTable(d)
-            Sys.sleep(1)
+
+            if (user_input$memo_authorized) {
+              incProgress(0.1, detail = ("Preparing COP memo data"))
+              d <-
+                datapackr::prepareMemoData(
+                  d,
+                  memo_type = "comparison",
+                  include_no_prio = TRUE,
+                  d2_session = user_input$d2_session
+                )
+              d <- datapackr::generateComparisonTable(d)
+              Sys.sleep(1)
+            }
+
             incProgress(0.1, detail = ("Preparing a modality summary"))
             d <- modalitySummaryTable(d)
             Sys.sleep(1)
