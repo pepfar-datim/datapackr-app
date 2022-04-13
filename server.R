@@ -340,6 +340,7 @@ shinyServer(function(input, output, session) {
 
 
   output$memo_compare  <-  rpivotTable::renderRpivotTable({
+
     vr <- validation_results()
 
     if (!inherits(vr, "error") & !is.null(vr)) {
@@ -822,9 +823,15 @@ shinyServer(function(input, output, session) {
               Sys.sleep(1)
             }
 
-
+            #Users which have a dimension restriction
+            #Are not going to be able to retrieve
+            #prior data from DATIM. In this case, prepare
+            #the memo, and warn the user of this situation.
+            #The use of the comparison table really only makes
+            #sense of we are dealing with a DataPack OPU but
+            #at the moment, we do not have an easy way to determine
+            incProgress(0.1, detail = ("Preparing COP memo data"))
             if (user_input$memo_authorized) {
-              incProgress(0.1, detail = ("Preparing COP memo data"))
               d <-
                 datapackr::prepareMemoData(
                   d,
@@ -832,9 +839,18 @@ shinyServer(function(input, output, session) {
                   include_no_prio = TRUE,
                   d2_session = user_input$d2_session
                 )
-              d <- datapackr::generateComparisonTable(d)
-              Sys.sleep(1)
+            } else {
+              d <-
+                datapackr::prepareMemoData(
+                  d,
+                  memo_type = "datapack",
+                  include_no_prio = TRUE,
+                  d2_session = user_input$d2_session
+                )
             }
+
+            d <- datapackr::generateComparisonTable(d)
+            Sys.sleep(1)
 
             incProgress(0.1, detail = ("Preparing a modality summary"))
             d <- modalitySummaryTable(d)
@@ -929,6 +945,9 @@ shinyServer(function(input, output, session) {
         incProgress(0.1, detail = "Updating prioritization levels from DATIM")
         Sys.sleep(0.5)
         incProgress(0.1, detail = ("Preparing COP memo data"))
+        #Only execute the comparison if the user has proper authorization
+        #Global agency users cannot retreive prioritization data
+        #from the DATIM analytics API
         d <-
           datapackr::prepareMemoData(
             d,
