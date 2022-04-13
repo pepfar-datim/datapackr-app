@@ -28,7 +28,7 @@ downloadTypes <- function(tool_type="Data Pack", needs_psnuxim=FALSE, memo_autho
   names(download_types) <- download_names
 
   if (tool_type == "OPU Data Pack" | !needs_psnuxim) {
-    download_types <- download_types[!(download_types %in% c("datapack","missing_psnuxim_targets"))]
+    download_types <- download_types[!(download_types %in% c("datapack", "missing_psnuxim_targets"))]
   }
 
   if (!memo_authorized) {

@@ -59,7 +59,9 @@ subnatPyramidsChart <- function(d, epi_graph_filter_results) {
          subtitle = "Comparison of Population with HIV, on Treatment, and Virally Suppressed") +
     geom_hline(yintercept = 0, size = 1) +
     scale_fill_manual(values = c(	"#B2182B", "#EF8A62", "#67A9CF")) +
-    scale_y_continuous(limits = c(-y_lim, y_lim), labels = function(x) scales::comma(abs(x))) +
+    scale_y_continuous(limits = c(-y_lim, y_lim),
+                       breaks = seq(-y_lim, y_lim, by = y_lim / 4),
+                       labels = function(x) scales::comma(abs(x))) +
     theme(legend.position = "bottom",
           legend.title = element_blank(),
           text = element_text(color = "#595959", size = 14),
