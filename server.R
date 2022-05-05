@@ -348,7 +348,9 @@ shinyServer(function(input, output, session) {
         "By Agency" = vr$memo$datapack$by_agency,
         "By Partner" = vr$memo$datapack$by_partner,
         "Comparison" = (
-          vr$memo$comparison %>%
+
+          if ( NROW(vr$memo$comparison) > 0) {
+            vr$memo$comparison %>%
             dplyr::select("Indicator", "Age", "Data Type", "value") %>%
             dplyr::filter(`Data Type` != "Percent diff") %>%
             dplyr::group_by(Indicator, Age, `Data Type`) %>%
@@ -357,7 +359,9 @@ shinyServer(function(input, output, session) {
             id_cols = c(Indicator, Age),
             names_from = `Data Type`
           ) %>%
-            dplyr::filter(Diff != 0)
+            dplyr::filter(Diff != 0) } else {
+              data.frame(message="No differences detected")
+            }
         )
       )
 
