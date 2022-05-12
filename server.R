@@ -357,17 +357,27 @@ shinyServer(function(input, output, session) {
             dplyr::summarise(value = sum(value), .groups = "drop") %>%
             tidyr::pivot_wider(
             id_cols = c(Indicator, Age),
-            names_from = `Data Type`
-          ) %>%
-            dplyr::filter(Diff != 0) } else {
+            names_from = `Data Type` ) %>%
+            dplyr::filter(Diff != "0") } else {
               data.frame(message="No differences detected")
             }
         )
       )
 
       if (!is.null(p_data)) {
-        DT::datatable(p_data)
+        table_options <-
+          list(columnDefs = list(list(
+            targets = as.vector(which(sapply(p_data,"class") == "numeric")), class = "dt-right"
+          )))
+
+        p_data <- p_data %>%
+          dplyr::mutate_if(is.numeric, function(x)
+            prettyNum(x, big.mark = ","))
+
+        DT::datatable(p_data,
+                      option = table_options)
       } else {
+
         NULL
       }
     } else {
@@ -931,7 +941,7 @@ shinyServer(function(input, output, session) {
         Sys.sleep(0.5)
         incProgress(0.1, detail = ("Preparing COP memo data"))
         #Only execute the comparison if the user has proper authorization
-        #Global agency users cannot retreive prioritization data
+        #Global agency users cannot retrieve prioritization data
         #from the DATIM analytics API
         d <-
           datapackr::prepareMemoData(
