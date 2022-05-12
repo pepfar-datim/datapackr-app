@@ -198,16 +198,16 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "5.1.12",
+      "Version": "5.1.13",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
       "RemoteRef": "master",
-      "RemoteSha": "7809d8a4446fb9bd0b43b74fc3df55e146e4fe19",
+      "RemoteSha": "9030aa6ecab58a7f89fe80dc89de6c4ca98b2499",
       "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation,\npepfar-datim/data-pack-commons",
-      "Hash": "9782ee8071d3032feb2374e8a1a3e9d9"
+      "Hash": "3b7366a7e518c273cc1fd4a85f1e7098"
     },
     "datimutils": {
       "Package": "datimutils",
