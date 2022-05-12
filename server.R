@@ -282,13 +282,13 @@ shinyServer(function(input, output, session) {
             fluidRow(
               pickerInput(
                 "memo_pivot_style",
-                label = "Pivot Style",
+                label = "Table Style",
                 choices = c("Prioritization", "By Agency", "By Partner", "Comparison"),
                 selected = "Prioritization"
               )
             ),
             fluidRow(column(width = 12,
-                                   div(rpivotTable::rpivotTableOutput({"memo_compare"})))), # nolint
+                                   div(dataTableOutput({"memo_compare"})))), # nolint
                    fluidRow(tags$h4("Data source: PSNUxIM tab & DATIM")))
 
         ))
@@ -327,7 +327,6 @@ shinyServer(function(input, output, session) {
     vr  <-  validation_results()
 
     if (!inherits(vr, "error") & !is.null(vr)) {
-
       if (is.null(vr$data$analytics)) {
         return(NULL)
       }
@@ -339,50 +338,48 @@ shinyServer(function(input, output, session) {
   })
 
 
-  output$memo_compare  <-  rpivotTable::renderRpivotTable({
-
+  output$memo_compare  <-  DT::renderDataTable({
     vr <- validation_results()
 
     if (!inherits(vr, "error") & !is.null(vr)) {
+      p_data <- switch(
+        input$memo_pivot_style,
+        "Prioritization" = vr$memo$datapack$by_prio,
+        "By Agency" = vr$memo$datapack$by_agency,
+        "By Partner" = vr$memo$datapack$by_partner,
+        "Comparison" = (
 
-      if (is.null(vr$memo$comparison)) {
-        return(NULL)
-      }
-
-      pivot <-  vr  %>%
-        purrr::pluck("memo") %>%
-        purrr::pluck("comparison")
-
-
-    pivot_options <- switch(
-      input$memo_pivot_style,
-      "Prioritization" =   list(
-        rows = c("Indicator", "Age"),
-        cols = c("prioritization"),
-        inclusions = list("Data Type" = list("Proposed"))
-      ),
-      "By Agency" = list(
-        rows = c("Indicator", "Age"),
-        cols = c("Agency"),
-        inclusions = list("Data Type" = list("Proposed"))
-      ),
-      "By Partner" = list(
-        rows = c("Agency","Partner"),
-        cols = c("Indicator", "Age"),
-        inclusions = list("Data Type" = list("Proposed"))
-      ),
-      "Comparison" = list(
-        rows = c("Indicator","Age"),
-        cols = c("Data Type"),
-        inclusions = list("Data Type" = list("Proposed", "Current", "Diff"))
+          if ( NROW(vr$memo$comparison) > 0) {
+            vr$memo$comparison %>%
+            dplyr::select("Indicator", "Age", "Data Type", "value") %>%
+            dplyr::filter(`Data Type` != "Percent diff") %>%
+            dplyr::group_by(Indicator, Age, `Data Type`) %>%
+            dplyr::summarise(value = sum(value), .groups = "drop") %>%
+            tidyr::pivot_wider(
+            id_cols = c(Indicator, Age),
+            names_from = `Data Type` ) %>%
+            dplyr::filter(Diff != "0") } else {
+              data.frame(message="No differences detected")
+            }
+        )
       )
-    )
 
-    rpivotTable(data = pivot,
-                               rows = pivot_options$rows, cols = pivot_options$cols, inclusions = pivot_options$inclusions,
-                               vals = "value", aggregatorName = "Integer Sum", rendererName = "Table", subtotals = TRUE,
-                               width = "70%", height = "700px")
+      if (!is.null(p_data)) {
+        table_options <-
+          list(columnDefs = list(list(
+            targets = as.vector(which(sapply(p_data,"class") == "numeric")), class = "dt-right"
+          )))
 
+        p_data <- p_data %>%
+          dplyr::mutate_if(is.numeric, function(x)
+            prettyNum(x, big.mark = ","))
+
+        DT::datatable(p_data,
+                      option = table_options)
+      } else {
+
+        NULL
+      }
     } else {
       NULL
     }
@@ -944,7 +941,7 @@ shinyServer(function(input, output, session) {
         Sys.sleep(0.5)
         incProgress(0.1, detail = ("Preparing COP memo data"))
         #Only execute the comparison if the user has proper authorization
-        #Global agency users cannot retreive prioritization data
+        #Global agency users cannot retrieve prioritization data
         #from the DATIM analytics API
         d <-
           datapackr::prepareMemoData(
