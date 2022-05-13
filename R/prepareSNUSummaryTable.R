@@ -8,11 +8,7 @@ prepareSNUSummaryTable <- function(d) {
   if (d$info$tool == "Data Pack") {
     df <- dplyr::bind_rows(d$data$MER, d$data$SUBNAT_IMPATT)
   } else if (d$info$tool == "OPU Data Pack") {
-    if (d$info$cop_year == 2020) {
-      df <- d$data$extract
-    } else if (d$info$cop_year == 2021) {
-      df <- d$data$SNUxIM
-    }
+    df <- d$data$SNUxIM
   }
 
   if (NROW(df) == 0) {
