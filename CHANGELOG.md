@@ -1,3 +1,11 @@
+## May 13, 2022
+ * Update to datapackr 5.2.0
+ * Remove processing for COP20 OPUs
+
+## May 12, 2022
+ * Update to datapackr 5.1.13
+ * Fix alignment of app memo tables
+
 ## Mar 04, 2022
  * Update to datapackr 5.1.4
 
