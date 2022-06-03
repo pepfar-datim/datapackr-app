@@ -8,9 +8,14 @@ pacman::p_load(shiny, shinyjs, shinyWidgets, magrittr, dplyr,
 # js ----
 # allows for using the enter button
 jscode_login <- '$(document).keyup(function(e) {
-    if (e.key == "Enter") {
+    var focusedElement = document.activeElement.id;
+    console.log(focusedElement);
+    if (e.key == "Enter" && focusedElement == "user_name") {
+    $("#password").focus();
+    } else if (e.key == "Enter" && focusedElement == "password") {
     $("#login_button").click();
-}});'
+    }
+});'
 
 #Set the maximum file size for the upload file
 options(shiny.maxRequestSize = 150 * 1024 ^ 2)
