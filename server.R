@@ -5,6 +5,17 @@ pacman::p_load(shiny, shinyjs, shinyWidgets, magrittr, dplyr,
                DT, purrr, rpivotTable, waiter,
                flextable, officer, gdtools, digest, fansi)
 
+# js ----
+# allows for using the enter button
+jscode_login <- '$(document).keyup(function(e) {
+    var focusedElement = document.activeElement.id;
+    console.log(focusedElement);
+    if (e.key == "Enter" && focusedElement == "user_name") {
+    $("#password").focus();
+    } else if (e.key == "Enter" && focusedElement == "password") {
+    $("#login_button").click();
+    }
+});'
 
 #Set the maximum file size for the upload file
 options(shiny.maxRequestSize = 150 * 1024 ^ 2)
@@ -174,6 +185,7 @@ shinyServer(function(input, output, session) {
 
     wellPanel(fluidRow(
       #img(src = "pepfar.png", align = "center"),
+      tags$head(tags$script(HTML(jscode_login))), # enter button functionality for login button
       tags$div(HTML('<center><img src="pepfar.png"></center>')),
       h4("Welcome to the DataPack Validation App. Please login with your DATIM credentials:")
     ),
