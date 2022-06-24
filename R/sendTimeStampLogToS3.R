@@ -3,6 +3,7 @@ sendTimeStampLogToS3 <- function(d) {
   #Write an archived copy of the file
   s3 <- paws::s3()
   object_tags <- createS3BucketTags(d)
+  #will need to update the above for this PR
   object_name <-
     paste0("processed/",
            gsub("^20", "cop", d$info$cop_year),
@@ -33,6 +34,7 @@ sendTimeStampLogToS3 <- function(d) {
   read_file <- file(tmp, "rb")
   raw_file <- readBin(read_file, "raw", n = file.size(tmp))
   close(read_file)
+  #will need to update the above for this PR
   object_name <-
     paste0(
       "upload_timestamp/",

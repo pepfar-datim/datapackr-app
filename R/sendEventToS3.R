@@ -13,6 +13,7 @@ sendEventToS3 <- function(d=NULL, event_type, user_input=NULL) {
   tm <- as.POSIXlt(Sys.time(), "UTC")
   ts_file <- strftime(tm, "%Y_%m_%d_%H_%M_%s")
 
+  #will need to update the above for this PR
   object_name <-
     paste0("datapackr_app_events/", ts_file, ".csv")
 

@@ -4,6 +4,7 @@ sendDataPackToS3 <- function(d, datapath) {
   s3 <- paws::s3()
   object_tags <- createS3BucketTags(d)
 
+  #will need to update the above for this PR
   object_name <- paste0("datapack_archives/",
                         gsub(" ", "_", d$info$sane_name), "_", format(Sys.time(), "%Y%m%d_%H%m%s"),
                         ".xlsx")

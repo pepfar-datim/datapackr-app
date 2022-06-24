@@ -972,7 +972,7 @@ shinyServer(function(input, output, session) {
         Sys.sleep(1)
         shinyjs::enable("downloadType")
         shinyjs::enable("downloadOutputs")
-        shinyjs::disable("send_paw")
+        shinyjs::enable("send_paw")
         updatePickerInput(session = session, inputId = "kpCascadeInput",
                           choices = snuSelector(d))
         updatePickerInput(session = session, inputId = "epiCascadeInput",
