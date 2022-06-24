@@ -15,10 +15,6 @@ sendDATIMExportToS3 <- function(d) {
         dplyr::mutate(value = as.character(value))
     }
 
-  # d$info$tool == "OPU Data Pack" PLan to use this but ask jason
-  # Fri Jun 24 13:54:15 2022 --- During meeting Chris recommended
-  # COP Year = = 21 OPU 22 then Datapack
-
   #Need better error checking here.
   write.table(
     datim_export,
@@ -37,12 +33,14 @@ sendDATIMExportToS3 <- function(d) {
 
   object_tags <- createS3BucketTags(d)
 
-  object_name <- paste0("datim_export/", gsub("^20", "cop", d$info$cop_year), "/", d$info$sane_name, ".csv")
-  #will need to update the above for this PR
+  object_name <- paste0("datim_export/",gsub("^20", "cop",d$info$cop_year),
+                        ifelse(d$info$cop_year==2021,"_opu",""), #note this is rather rudimentary,we might want to add some complexity.
+                        "/",d$info$sane_name,".csv")
+
   s3 <- paws::s3()
 
   r <- tryCatch({
-    foo <- s3$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"), #will need to impute if else here for opu
+    foo <- s3$put_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
                          Body = raw_file,
                          Key = object_name,
                          Tagging = object_tags,

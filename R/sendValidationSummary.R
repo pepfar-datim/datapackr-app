@@ -23,12 +23,12 @@ sendValidationSummaryToS3 <- function(d, s3_folder, include_timestamp=FALSE) {
 
   object_tags <- createS3BucketTags(d)
   if (include_timestamp) {
-    #will need to update the above for this PR
     object_name <-
       paste0(
         s3_folder,
         "/",
         gsub("^20", "cop", d$info$cop_year),
+        ifelse(d$info$cop_year==2021,"_opu",""),
         "/",
         d$info$sane_name,
         "_",
@@ -36,11 +36,11 @@ sendValidationSummaryToS3 <- function(d, s3_folder, include_timestamp=FALSE) {
         ".csv"
       )
   } else {
-    #will need to update the above for this PR
     object_name <-
       paste0(s3_folder,
              "/",
              gsub("^20", "cop", d$info$cop_year),
+             ifelse(d$info$cop_year==2021,"_opu",""),
              "/",
              d$info$sane_name,
              ".csv")
