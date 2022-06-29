@@ -5,7 +5,7 @@ sendDataPackToS3 <- function(d, datapath) {
   object_tags <- createS3BucketTags(d)
 
   object_name <- paste0("datapack_archives/",
-                        ifelse(d$info$cop_year==2021,"cop21_opu/",""), #Not sure I like this either, should base it off current cop year - 1 if possible
+                        ifelse(d$info$cop_year==2021,"cop21_opu/",""),
                         gsub(" ", "_", d$info$sane_name),
                         "_",
                         format(Sys.time(), "%Y%m%d_%H%m%s"),
