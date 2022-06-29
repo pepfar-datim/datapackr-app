@@ -823,7 +823,6 @@ shinyServer(function(input, output, session) {
             d <- datapackr::checkMechanisms(d,
                                  d2_session = user_input$d2_session)
 
-            # Tue Jun 28 15:31:40 2022 --- Decided this wasn't needed in standup
             # if (Sys.getenv("SEND_DATAPACK_ARCHIVE") == "TRUE") {
             #   incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
             #   Sys.sleep(0.5)
