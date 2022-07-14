@@ -823,13 +823,13 @@ shinyServer(function(input, output, session) {
             d <- datapackr::checkMechanisms(d,
                                  d2_session = user_input$d2_session)
 
-            if (Sys.getenv("SEND_DATAPACK_ARCHIVE") == "TRUE") {
-              incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
-              Sys.sleep(0.5)
-              r <- sendDataPackToS3(d, inFile$datapath)
-              sendDataPackErrorUI(r)
-              Sys.sleep(1)
-            }
+            # if (Sys.getenv("SEND_DATAPACK_ARCHIVE") == "TRUE") {
+            #   incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
+            #   Sys.sleep(0.5)
+            #   r <- sendDataPackToS3(d, inFile$datapath)
+            #   sendDataPackErrorUI(r)
+            #   Sys.sleep(1)
+            # }
 
             #Users which have a dimension restriction
             #Are not going to be able to retrieve
@@ -951,6 +951,7 @@ shinyServer(function(input, output, session) {
                                         d2_session = user_input$d2_session)
         incProgress(0.1, detail = "Updating prioritization levels from DATIM")
         Sys.sleep(0.5)
+
         incProgress(0.1, detail = ("Preparing COP memo data"))
         #Only execute the comparison if the user has proper authorization
         #Global agency users cannot retrieve prioritization data
@@ -972,7 +973,7 @@ shinyServer(function(input, output, session) {
         Sys.sleep(1)
         shinyjs::enable("downloadType")
         shinyjs::enable("downloadOutputs")
-        shinyjs::disable("send_paw")
+        shinyjs::enable("send_paw")
         updatePickerInput(session = session, inputId = "kpCascadeInput",
                           choices = snuSelector(d))
         updatePickerInput(session = session, inputId = "epiCascadeInput",

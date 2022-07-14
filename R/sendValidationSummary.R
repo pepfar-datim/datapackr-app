@@ -28,6 +28,7 @@ sendValidationSummaryToS3 <- function(d, s3_folder, include_timestamp=FALSE) {
         s3_folder,
         "/",
         gsub("^20", "cop", d$info$cop_year),
+        ifelse(d$info$cop_year==2021,"_opu",""),
         "/",
         d$info$sane_name,
         "_",
@@ -39,6 +40,7 @@ sendValidationSummaryToS3 <- function(d, s3_folder, include_timestamp=FALSE) {
       paste0(s3_folder,
              "/",
              gsub("^20", "cop", d$info$cop_year),
+             ifelse(d$info$cop_year==2021,"_opu",""),
              "/",
              d$info$sane_name,
              ".csv")
