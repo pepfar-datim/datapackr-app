@@ -205,9 +205,9 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datimutils",
-      "RemoteRef": "master",
-      "RemoteSha": "1f81eb3dd872154abdf5d77540e3494bd8468dd8",
-      "Hash": "11361204052bb668789e935b39644f8e"
+      "RemoteRef": "oauth-redux",
+      "RemoteSha": "f7df6df536a5fd094585d9f4beadd23504acbc2d",
+      "Hash": "8ccc27fd5eb3315fbe8400107d9d06a6"
     },
     "datimvalidation": {
       "Package": "datimvalidation",
@@ -546,10 +546,10 @@
     },
     "openssl": {
       "Package": "openssl",
-      "Version": "1.4.5",
+      "Version": "2.0.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "5406fd37ef0bf9b88c8a4f264d6ec220"
+      "Hash": "6d3bef2e305f55c705c674653c7d7d3d"
     },
     "openxlsx": {
       "Package": "openxlsx",
