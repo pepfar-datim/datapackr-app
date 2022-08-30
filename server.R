@@ -123,6 +123,8 @@ d2Session <- R6::R6Class("d2Session",
 )
 
 
+#TODO: Move this to DATIM utils
+#It needs to be here due to scoping issues for now.
 loginToDATIMOAuth <- function(
     base_url = NULL,
     token = NULL,
@@ -139,11 +141,9 @@ loginToDATIMOAuth <- function(
     token <- token #For Shiny
   }
 
-  print(token)
   # form url
   url <- utils::URLencode(URL = paste0(base_url, "api", "/me"))
   handle <- httr::handle(base_url)
-  print(url)
   #Get Request
   r <- httr::GET(
     url,
@@ -304,6 +304,11 @@ shinyServer(function(input, output, session) {
   })
 
   observeEvent(input$logout, {
+
+
+    req(input$logout)
+    # Gets you back to the login without the authorization code at top
+    updateQueryString("?",mode="replace",session=session)
     flog.info(paste0("User ", user_input$d2_session$me$userCredentials$username, " logged out."))
     ready$ok <- FALSE
     user_input$authenticated <- FALSE
@@ -938,7 +943,6 @@ shinyServer(function(input, output, session) {
 
 
       d <- tryCatch({
-        print(user_input$d2_session)
 
         datapackr::unPackTool(inFile$datapath,
                               d2_session = user_input$d2_session)},
