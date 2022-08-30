@@ -38,7 +38,7 @@ if (interactive()) {
   APP_URL <- "http://127.0.0.1:3123/"# This will be your local host path
 } else {
   # deployed URL
-  APP_URL <- "https://rstudio-connect.testing.ap.datim.org/content/152" #This will be your shiny server path
+  APP_URL <- Sys.getenv("APP_URL") #This will be your shiny server path
 }
 
 ################ OAuth Client information #####################################
@@ -225,56 +225,6 @@ shinyServer(function(input, output, session) {
 
   })
 
-  observeEvent(input$login_button, {
-    loginAttempt <- tryCatch({
-        user_input$uuid <- uuid::UUIDgenerate()
-        datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
-          username = input$user_name,
-          password = input$password,
-          d2_session_envir = parent.env(environment())
-        )
-      },
-      # This function throws an error if the login is not successful
-      error = function(e) {
-        flog.info(paste0("User ", input$user_name, " login failed. ", e$message), name = "datapack")
-      }
-    )
-
-    if (exists("d2_default_session")) {
-      if (any(class(d2_default_session) == "d2Session")) {
-        user_input$authenticated <- TRUE
-        user_input$d2_session <- d2_default_session$clone()
-        d2_default_session <- NULL
-
-        # Need to check the user is a member of the PRIME Data Systems Group, COP Memo group, or a super user
-        user_input$memo_authorized <-
-          grepl("VDEqY8YeCEk|ezh8nmc4JbX", user_input$d2_session$me$userGroups) |
-          grepl(
-            "jtzbVV4ZmdP",
-            user_input$d2_session$me$userCredentials$userRoles
-          )
-        flog.info(
-          paste0(
-            "User ",
-            user_input$d2_session$me$userCredentials$username,
-            " logged in."
-          ),
-          name = "datapack"
-        )
-        sendEventToS3(NULL, "LOGIN", user_input = user_input)
-      }
-    } else {
-      sendSweetAlert(
-        session,
-        title = "Login failed",
-        text = substr(loginAttempt, # full error message printed to console
-                      regexpr("User", loginAttempt)[1], # Where to start extract
-                      nchar(loginAttempt)), # Where to end extract
-        type = "error"
-      )
-      sendEventToS3(NULL, "LOGIN_FAILED", user_input = user_input)
-    }
-  })
 
   output$ui_redirect = renderUI({
     #print(input$login_button_oauth) useful for debugging
@@ -391,12 +341,9 @@ shinyServer(function(input, output, session) {
       #img(src = "pepfar.png", align = "center"),
       tags$head(tags$script(HTML(jscode_login))), # enter button functionality for login button
       tags$div(HTML('<center><img src="pepfar.png"></center>')),
-      h4("Welcome to the DataPack Validation App. Please login with your DATIM credentials:")
+      h4("Welcome to the DataPack Validation App. You will be redirected to DATIM to authenticate with your credentials.")
     ),
     fluidRow(
-      textInput("user_name", "Username: ", width = "600px"),
-      passwordInput("password", "Password:", width = "600px"),
-      actionButton("login_button", "Log in!"),
       actionButton("login_button_oauth","Log in with DATIM"),
       uiOutput("ui_hasauth"),
       uiOutput("ui_redirect")
