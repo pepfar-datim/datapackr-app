@@ -43,13 +43,14 @@ if (interactive()) {
 
 ################ OAuth Client information #####################################
 {
-  app <- httr::oauth_app("validation_app", # dhis2 = Name
-                   key = "validation_app",         # dhis2 = Client ID
-                   secret = "e2b0136b0-234e-217d-25cf-34466de8fb9", #dhis2 = Client Secret
+
+  app <- httr::oauth_app(Sys.getenv("OAUTH_APPNAME"),
+                   key = Sys.getenv("OAUTH_KEYAME"),        # dhis2 = Client ID
+                   secret = Sys.getenv("OAUTH_SECRET"), #dhis2 = Client Secret
                    redirect_uri = APP_URL
   )
 
-  api <- httr::oauth_endpoint(base_url = "https://cop-test.datim.org/uaa/oauth",
+  api <- httr::oauth_endpoint(base_url = paste0(Sys.getenv("BASE_URL"),"uaa/oauth"),
                         request=NULL,# Documentation says to leave this NULL for OAuth2
                         authorize = "authorize",
                         access="token"
@@ -293,8 +294,6 @@ shinyServer(function(input, output, session) {
     params <- parseQueryString(session$clientData$url_search)
     req(has_auth_code(params))
 
-
-
       #Manually create a token
       token <- httr::oauth2.0_token(
         app = app,
@@ -320,26 +319,6 @@ shinyServer(function(input, output, session) {
       )
 
     if (exists("d2_default_session")) {
-      print("DINGDONG")
-
-      code <- shiny::parseQueryString(shiny::isolate(session$clientData$url_search))$code
-      print(code)
-      body <- base::list("grant_type" = "authorization_code",
-                         "code" = code,
-                         "client_id" = "validation_app",
-                         "client_secret" = "e2b0136b0-234e-217d-25cf-34466de8fb9",
-                         "redirect_uri" = "http://127.0.0.1:3123/")
-      print(jsonlite::toJSON(body,auto_unbox = TRUE))
-      post <- httr::POST("https://cop-test.datim.org/uaa/oauth/token",
-                         httr::accept_json(),
-                         httr::add_headers("Content-Type" = "application/json"),
-                         httr::authenticate("validation_app","e2b0136b0-234e-217d-25cf-34466de8fb9"),
-                         body = jsonlite::toJSON(body,auto_unbox = TRUE),
-                         httr::verbose())
-      print(httr::content(post,"text"))
-      access_token <- httr::content(post, as = "parsed")$access_token
-      refresh_token <- httr::content(post, as = "parsed")$refresh_token
-      print(refresh_token)
 
         user_input$authenticated  <-  TRUE
         user_input$d2_session  <-  d2_default_session$clone()
