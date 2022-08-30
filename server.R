@@ -44,19 +44,19 @@ if (interactive()) {
 ################ OAuth Client information #####################################
 {
 
-  app <- httr::oauth_app(Sys.getenv("OAUTH_APPNAME"),
+  oauth_app <- httr::oauth_app(Sys.getenv("OAUTH_APPNAME"),
                    key = Sys.getenv("OAUTH_KEYAME"),        # dhis2 = Client ID
                    secret = Sys.getenv("OAUTH_SECRET"), #dhis2 = Client Secret
                    redirect_uri = APP_URL
   )
 
-  api <- httr::oauth_endpoint(base_url = paste0(Sys.getenv("BASE_URL"),"uaa/oauth"),
+  oauth_api <- httr::oauth_endpoint(base_url = paste0(Sys.getenv("BASE_URL"),"uaa/oauth"),
                         request=NULL,# Documentation says to leave this NULL for OAuth2
                         authorize = "authorize",
                         access="token"
   )
 
-  scope <- "ALL"
+  oauth_scope <- "ALL"
 }
 
 has_auth_code <- function(params) {
@@ -64,109 +64,7 @@ has_auth_code <- function(params) {
   return(!is.null(params$code))
 }
 
-getOAuthToken <- function(redirect_uri, app, api, scope) {
 
-  token <- httr::oauth2.0_token(
-    app = app,
-    endpoint = api,
-    scope = scope,
-    use_basic_auth = TRUE,
-    oob_value = redirect_uri,
-    cache = FALSE
-  )
-
-  return(token)
-}
-
-d2Session <- R6::R6Class("d2Session",
-                         #' @title d2Session
-                         public = list(
-                           #' @field  config_path Path to a JSON configuration
-                           #' file.
-                           config_path = NULL,
-                           #' @field  base_url The URL of the server,
-                           #' e.g. https://www.datim.org/.
-                           base_url = NULL,
-                           #' @field  username Your user name.
-                           username = NULL,
-                           #' @field user_orgunit UID of the users assigned
-                           #' organisation unit
-                           user_orgunit = NULL,
-                           #' @field handle An httr handle used to communicate
-                           #' with the DHIS2 instance.
-                           handle = NULL,
-                           #' @field me dhis2 api/me response
-                           me  = NULL,
-                           max_cache_age  = NULL,
-                           token = NULL,
-                           #' @description
-                           #' Create a new DHISLogin object
-                           #' @param config_path Configuration file path
-                           #' @param base_url URL to the server.
-                           #' @param handle httr handle to be used for dhis2
-                           #' connections
-                           #' @param me DHIS2 me response object
-                           initialize = function(config_path = NA_character_,
-                                                 base_url,
-                                                 handle,
-                                                 me,
-                                                 token) {
-                             self$config_path <- config_path
-                             self$me <- me
-                             self$user_orgunit <- me$organisationUnits$id
-                             self$base_url <- base_url
-                             self$username <- me$userCredentials$username
-                             self$handle <- handle
-                             self$token <- token
-                           }
-                         )
-)
-
-
-#TODO: Move this to DATIM utils
-#It needs to be here due to scoping issues for now.
-loginToDATIMOAuth <- function(
-    base_url = NULL,
-    token = NULL,
-    redirect_uri= NULL,
-    app= NULL,
-    api= NULL,
-    scope= NULL,
-    d2_session_name = "d2_default_session",
-    d2_session_envir = parent.frame()) {
-
-  if (is.null(token)) {
-    token <- getOAuthToken(redirect_uri, app, api, scope)
-  } else {
-    token <- token #For Shiny
-  }
-
-  # form url
-  url <- utils::URLencode(URL = paste0(base_url, "api", "/me"))
-  handle <- httr::handle(base_url)
-  #Get Request
-  r <- httr::GET(
-    url,
-    httr::config(token = token),
-    httr::timeout(60),
-    handle = handle
-  )
-
-  if (r$status_code != 200L) {
-    stop("Could not authenticate you with the server!")
-  } else {
-    me <- jsonlite::fromJSON(httr::content(r, as = "text"))
-    # create the session object in the calling environment of the login function
-    assign(d2_session_name,
-           d2Session$new(base_url = base_url,
-                         handle = handle,
-                         me = me,
-                         token = token),
-           envir = d2_session_envir)
-  }
-
-
-}
 shinyServer(function(input, output, session) {
 
   validation_results <- reactive({ validate() }) # nolint
@@ -230,7 +128,7 @@ shinyServer(function(input, output, session) {
     #print(input$login_button_oauth) useful for debugging
     if(!is.null(input$login_button_oauth)){
       if(input$login_button_oauth>0){
-        url <- httr::oauth2.0_authorize_url(api, app, scope = scope)
+        url <- httr::oauth2.0_authorize_url(oauth_api, oauth_app, scope = oauth_scope)
         redirect <- sprintf("location.replace(\"%s\");", url)
         tags$script(HTML(redirect))
       } else NULL
@@ -242,30 +140,36 @@ shinyServer(function(input, output, session) {
 
     #Grabs the code from the url
     params <- parseQueryString(session$clientData$url_search)
+    #Wait until the auth code actually exists
     req(has_auth_code(params))
 
       #Manually create a token
       token <- httr::oauth2.0_token(
-        app = app,
-        endpoint =api,
-        scope = scope,
+        app = oauth_app,
+        endpoint = oauth_api,
+        scope = oauth_scope,
         use_basic_auth = TRUE,
-        oob_value=APP_URL,
+        oob_value = APP_URL,
         cache = FALSE,
-        credentials = httr::oauth2.0_access_token(endpoint = api,
-                                            app = app,
+        credentials = httr::oauth2.0_access_token(endpoint = oauth_api,
+                                            app = oauth_app,
                                             code = params$code,
                                             use_basic_auth = TRUE)
       )
-
+      loginAttempt <- tryCatch({
       user_input$uuid <- uuid::UUIDgenerate()
-      loginToDATIMOAuth(base_url =  Sys.getenv("BASE_URL"),
+      datimutils::loginToDATIMOAuth(base_url =  Sys.getenv("BASE_URL"),
                         token = token,
-                        app=app,
-                        api = api,
+                        app = oauth_app,
+                        api = oauth_api,
                         redirect_uri= APP_URL,
-                        scope = scope,
+                        scope = oauth_scope,
                         d2_session_envir = parent.env(environment())
+      ) },
+      # This function throws an error if the login is not successful
+      error = function(e) {
+        flog.info(paste0("User ", input$user_name, " login failed. ", e$message), name = "datapack")
+      }
       )
 
     if (exists("d2_default_session")) {
@@ -343,7 +247,6 @@ shinyServer(function(input, output, session) {
   output$uiLogin <- renderUI({
 
     wellPanel(fluidRow(
-      #img(src = "pepfar.png", align = "center"),
       tags$head(tags$script(HTML(jscode_login))), # enter button functionality for login button
       tags$div(HTML('<center><img src="pepfar.png"></center>')),
       h4("Welcome to the DataPack Validation App. You will be redirected to DATIM to authenticate with your credentials.")
