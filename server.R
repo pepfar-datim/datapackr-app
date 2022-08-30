@@ -31,6 +31,141 @@ if (!file.exists(Sys.getenv("LOG_PATH"))) {
 flog.appender(appender.console(), name = "datapack")
 
 
+######## APP starts
+if (interactive()) {
+  # testing url
+  options(shiny.port = 3123)
+  APP_URL <- "http://127.0.0.1:3123/"# This will be your local host path
+} else {
+  # deployed URL
+  APP_URL <- "https://rstudio-connect.testing.ap.datim.org/content/152" #This will be your shiny server path
+}
+
+################ OAuth Client information #####################################
+{
+  app <- httr::oauth_app("validation_app", # dhis2 = Name
+                   key = "validation_app",         # dhis2 = Client ID
+                   secret = "e2b0136b0-234e-217d-25cf-34466de8fb9", #dhis2 = Client Secret
+                   redirect_uri = APP_URL
+  )
+
+  api <- httr::oauth_endpoint(base_url = "https://cop-test.datim.org/uaa/oauth",
+                        request=NULL,# Documentation says to leave this NULL for OAuth2
+                        authorize = "authorize",
+                        access="token"
+  )
+
+  scope <- "ALL"
+}
+
+has_auth_code <- function(params) {
+
+  return(!is.null(params$code))
+}
+
+getOAuthToken <- function(redirect_uri, app, api, scope) {
+
+  token <- httr::oauth2.0_token(
+    app = app,
+    endpoint = api,
+    scope = scope,
+    use_basic_auth = TRUE,
+    oob_value = redirect_uri,
+    cache = FALSE
+  )
+
+  return(token)
+}
+
+d2Session <- R6::R6Class("d2Session",
+                         #' @title d2Session
+                         public = list(
+                           #' @field  config_path Path to a JSON configuration
+                           #' file.
+                           config_path = NULL,
+                           #' @field  base_url The URL of the server,
+                           #' e.g. https://www.datim.org/.
+                           base_url = NULL,
+                           #' @field  username Your user name.
+                           username = NULL,
+                           #' @field user_orgunit UID of the users assigned
+                           #' organisation unit
+                           user_orgunit = NULL,
+                           #' @field handle An httr handle used to communicate
+                           #' with the DHIS2 instance.
+                           handle = NULL,
+                           #' @field me dhis2 api/me response
+                           me  = NULL,
+                           max_cache_age  = NULL,
+                           token = NULL,
+                           #' @description
+                           #' Create a new DHISLogin object
+                           #' @param config_path Configuration file path
+                           #' @param base_url URL to the server.
+                           #' @param handle httr handle to be used for dhis2
+                           #' connections
+                           #' @param me DHIS2 me response object
+                           initialize = function(config_path = NA_character_,
+                                                 base_url,
+                                                 handle,
+                                                 me,
+                                                 token) {
+                             self$config_path <- config_path
+                             self$me <- me
+                             self$user_orgunit <- me$organisationUnits$id
+                             self$base_url <- base_url
+                             self$username <- me$userCredentials$username
+                             self$handle <- handle
+                             self$token <- token
+                           }
+                         )
+)
+
+
+loginToDATIMOAuth <- function(
+    base_url = NULL,
+    token = NULL,
+    redirect_uri= NULL,
+    app= NULL,
+    api= NULL,
+    scope= NULL,
+    d2_session_name = "d2_default_session",
+    d2_session_envir = parent.frame()) {
+
+  if (is.null(token)) {
+    token <- getOAuthToken(redirect_uri, app, api, scope)
+  } else {
+    token <- token #For Shiny
+  }
+
+  print(token)
+  # form url
+  url <- utils::URLencode(URL = paste0(base_url, "api", "/me"))
+  handle <- httr::handle(base_url)
+  print(url)
+  #Get Request
+  r <- httr::GET(
+    url,
+    httr::config(token = token),
+    httr::timeout(60),
+    handle = handle
+  )
+
+  if (r$status_code != 200L) {
+    stop("Could not authenticate you with the server!")
+  } else {
+    me <- jsonlite::fromJSON(httr::content(r, as = "text"))
+    # create the session object in the calling environment of the login function
+    assign(d2_session_name,
+           d2Session$new(base_url = base_url,
+                         handle = handle,
+                         me = me,
+                         token = token),
+           envir = d2_session_envir)
+  }
+
+
+}
 shinyServer(function(input, output, session) {
 
   validation_results <- reactive({ validate() }) # nolint
@@ -140,6 +275,96 @@ shinyServer(function(input, output, session) {
     }
   })
 
+  output$ui_redirect = renderUI({
+    #print(input$login_button_oauth) useful for debugging
+    if(!is.null(input$login_button_oauth)){
+      if(input$login_button_oauth>0){
+        url <- httr::oauth2.0_authorize_url(api, app, scope = scope)
+        redirect <- sprintf("location.replace(\"%s\");", url)
+        tags$script(HTML(redirect))
+      } else NULL
+    } else NULL
+  })
+
+  ### Login Button oauth Checks
+  observeEvent(input$login_button_oauth > 0,{
+
+    #Grabs the code from the url
+    params <- parseQueryString(session$clientData$url_search)
+    req(has_auth_code(params))
+
+
+
+      #Manually create a token
+      token <- httr::oauth2.0_token(
+        app = app,
+        endpoint =api,
+        scope = scope,
+        use_basic_auth = TRUE,
+        oob_value=APP_URL,
+        cache = FALSE,
+        credentials = httr::oauth2.0_access_token(endpoint = api,
+                                            app = app,
+                                            code = params$code,
+                                            use_basic_auth = TRUE)
+      )
+
+      user_input$uuid <- uuid::UUIDgenerate()
+      loginToDATIMOAuth(base_url =  Sys.getenv("BASE_URL"),
+                        token = token,
+                        app=app,
+                        api = api,
+                        redirect_uri= APP_URL,
+                        scope = scope,
+                        d2_session_envir = parent.env(environment())
+      )
+
+    if (exists("d2_default_session")) {
+      print("DINGDONG")
+
+      code <- shiny::parseQueryString(shiny::isolate(session$clientData$url_search))$code
+      print(code)
+      body <- base::list("grant_type" = "authorization_code",
+                         "code" = code,
+                         "client_id" = "validation_app",
+                         "client_secret" = "e2b0136b0-234e-217d-25cf-34466de8fb9",
+                         "redirect_uri" = "http://127.0.0.1:3123/")
+      print(jsonlite::toJSON(body,auto_unbox = TRUE))
+      post <- httr::POST("https://cop-test.datim.org/uaa/oauth/token",
+                         httr::accept_json(),
+                         httr::add_headers("Content-Type" = "application/json"),
+                         httr::authenticate("validation_app","e2b0136b0-234e-217d-25cf-34466de8fb9"),
+                         body = jsonlite::toJSON(body,auto_unbox = TRUE),
+                         httr::verbose())
+      print(httr::content(post,"text"))
+      access_token <- httr::content(post, as = "parsed")$access_token
+      refresh_token <- httr::content(post, as = "parsed")$refresh_token
+      print(refresh_token)
+
+        user_input$authenticated  <-  TRUE
+        user_input$d2_session  <-  d2_default_session$clone()
+        d2_default_session <- NULL
+
+        # Need to check the user is a member of the
+        # PRIME Data Systems Group, COP Memo group, or a super user
+        user_input$memo_authorized  <-
+          grepl("VDEqY8YeCEk|ezh8nmc4JbX",
+                user_input$d2_session$me$userGroups) |
+          grepl(
+            "jtzbVV4ZmdP",
+            user_input$d2_session$me$userCredentials$userRoles
+          )
+        flog.info(
+          paste0(
+            "User ",
+            user_input$d2_session$me$userCredentials$username,
+            " logged in."
+          ),
+          name = "datapack"
+        )
+      }
+
+  })
 
   observeEvent(input$epiCascadeInput, {
     epi_graph_filter$snu_filter <- input$epiCascadeInput
@@ -192,7 +417,10 @@ shinyServer(function(input, output, session) {
     fluidRow(
       textInput("user_name", "Username: ", width = "600px"),
       passwordInput("password", "Password:", width = "600px"),
-      actionButton("login_button", "Log in!")
+      actionButton("login_button", "Log in!"),
+      actionButton("login_button_oauth","Log in with DATIM"),
+      uiOutput("ui_hasauth"),
+      uiOutput("ui_redirect")
     ),
     fluidRow(
       tags$hr(),
@@ -784,6 +1012,8 @@ shinyServer(function(input, output, session) {
 
 
       d <- tryCatch({
+        print(user_input$d2_session)
+
         datapackr::unPackTool(inFile$datapath,
                               d2_session = user_input$d2_session)},
         error = function(e) {
@@ -812,6 +1042,8 @@ shinyServer(function(input, output, session) {
                                                     has_comments_issue = d$info$has_comments_issue))
 
           if ((d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year == "2022") {
+
+
 
             flog.info(paste(d$info$tool, " with PSNUxIM tab found."))
             incProgress(0.1, detail = ("Checking validation rules"))
