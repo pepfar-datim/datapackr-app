@@ -818,13 +818,13 @@
       "GithubRepo": "datimutils",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "oauth-redux",
-      "GithubSha1": "f7df6df536a5fd094585d9f4beadd23504acbc2d",
+      "GithubSha1": "5c6b19a404b4bae83a6933ec79db41f135a12309",
       "description": {
         "Package": "datimutils",
         "Type": "Package",
         "Title": "Utilities for interacting with the DATIM api from R",
-        "Version": "0.5.2",
-        "Date": "2022-08-18",
+        "Version": "0.5.3",
+        "Date": "2022-08-30",
         "Authors@R": "\n    c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Jordan\", \"Bales\", email = \"jbales@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Fausto\", \"Lopez\", email = \"flopez@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Chris\", \"Nemarich\", email = \"cnemarich@guidehouse.com\",\n        role = c(\"ctb\"))\n  )",
         "Description": "General utilities for interacting with the DATIM api from R.",
         "URL": "https://github.com/pepfar-datim/datimutils",
@@ -839,18 +839,18 @@
         "VignetteBuilder": "knitr",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut],\n  Sam Garman [aut],\n  Jordan Bales [aut],\n  Fausto Lopez [aut],\n  Chris Nemarich [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.1; ; 2022-08-30 11:15:37 UTC; unix",
+        "Built": "R 4.2.1; ; 2022-08-30 14:18:09 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datimutils",
         "RemoteRef": "oauth-redux",
-        "RemoteSha": "f7df6df536a5fd094585d9f4beadd23504acbc2d",
+        "RemoteSha": "5c6b19a404b4bae83a6933ec79db41f135a12309",
         "GithubHost": "api.github.com",
         "GithubRepo": "datimutils",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "oauth-redux",
-        "GithubSHA1": "f7df6df536a5fd094585d9f4beadd23504acbc2d"
+        "GithubSHA1": "5c6b19a404b4bae83a6933ec79db41f135a12309"
       }
     },
     "datimvalidation": {
@@ -4462,7 +4462,7 @@
       "checksum": "34721a5adf8b1c61c160e847d6dbf22c"
     },
     ".Rprofile": {
-      "checksum": "69daa2502342a1b1ec61fbc4b401f381"
+      "checksum": "89e847a5a338ed06f4e4a384435a81a4"
     },
     "CHANGELOG.md": {
       "checksum": "f7ae895af9a1166943698c0ab59fb49a"
@@ -4552,7 +4552,7 @@
       "checksum": "eef665cd63e15044507de68a54e50b45"
     },
     "server.R": {
-      "checksum": "f330d3f07bc0d44cd6c24d1960194c18"
+      "checksum": "90a85e56960665177d21d4e0a491596d"
     },
     "support_files/datapack_model_data.rds": {
       "checksum": "4945d18ed1d40de049fd60dbc7d348a0"

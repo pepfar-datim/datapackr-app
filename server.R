@@ -156,6 +156,7 @@ shinyServer(function(input, output, session) {
                                             code = params$code,
                                             use_basic_auth = TRUE)
       )
+
       loginAttempt <- tryCatch({
       user_input$uuid <- uuid::UUIDgenerate()
       datimutils::loginToDATIMOAuth(base_url =  Sys.getenv("BASE_URL"),
