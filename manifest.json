@@ -332,70 +332,6 @@
         "Built": "R 4.2.1; x86_64-pc-linux-gnu; 2022-08-24 07:51:30 UTC; unix"
       }
     },
-    "bit": {
-      "Source": "CRAN",
-      "Repository": "https://cloud.r-project.org",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
-      "description": {
-        "Package": "bit",
-        "Type": "Package",
-        "Title": "Classes and Methods for Fast Memory-Efficient Boolean Selections",
-        "Version": "4.0.4",
-        "Date": "2020-08-03",
-        "Author": "Jens Oehlschlägel [aut, cre], Brian Ripley [ctb]",
-        "Maintainer": "Jens Oehlschlägel <Jens.Oehlschlaegel@truecluster.com>",
-        "Depends": "R (>= 2.9.2)",
-        "Suggests": "testthat (>= 0.11.0), roxygen2, knitr, rmarkdown,\nmicrobenchmark, bit64 (>= 4.0.0), ff (>= 4.0.0)",
-        "Description": "Provided are classes for boolean and skewed boolean vectors,\n    fast boolean methods, fast unique and non-unique integer sorting,\n    fast set operations on sorted and unsorted sets of integers, and\n    foundations for ff (range index, compression, chunked processing).",
-        "License": "GPL-2 | GPL-3",
-        "LazyLoad": "yes",
-        "ByteCompile": "yes",
-        "Encoding": "UTF-8",
-        "URL": "https://github.com/truecluster/bit",
-        "VignetteBuilder": "knitr, rmarkdown",
-        "RoxygenNote": "7.1.0.9000",
-        "NeedsCompilation": "yes",
-        "Packaged": "2020-08-03 12:14:34 UTC; jo",
-        "Repository": "CRAN",
-        "Date/Publication": "2020-08-04 04:20:08 UTC",
-        "Built": "R 4.2.1; x86_64-pc-linux-gnu; 2022-08-29 16:30:05 UTC; unix"
-      }
-    },
-    "bit64": {
-      "Source": "CRAN",
-      "Repository": "https://cloud.r-project.org",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
-      "description": {
-        "Package": "bit64",
-        "Type": "Package",
-        "Title": "A S3 Class for Vectors of 64bit Integers",
-        "Version": "4.0.5",
-        "Date": "2020-08-29",
-        "Author": "Jens Oehlschlägel [aut, cre], Leonardo Silvestri [ctb]",
-        "Maintainer": "Jens Oehlschlägel <Jens.Oehlschlaegel@truecluster.com>",
-        "Depends": "R (>= 3.0.1), bit (>= 4.0.0), utils, methods, stats",
-        "Description": "\n Package 'bit64' provides serializable S3 atomic 64bit (signed) integers. \n These are useful for handling database keys and exact counting in +-2^63.\n WARNING: do not use them as replacement for 32bit integers, integer64 are not\n supported for subscripting by R-core and they have different semantics when \n combined with double, e.g. integer64 + double => integer64. \n Class integer64 can be used in vectors, matrices, arrays and data.frames. \n Methods are available for coercion from and to logicals, integers, doubles, \n characters and factors as well as many elementwise and summary functions. \n Many fast algorithmic operations such as 'match' and 'order' support inter-\n active data exploration and manipulation and optionally leverage caching.",
-        "License": "GPL-2 | GPL-3",
-        "LazyLoad": "yes",
-        "ByteCompile": "yes",
-        "URL": "https://github.com/truecluster/bit64",
-        "Encoding": "UTF-8",
-        "Repository": "CRAN",
-        "Repository/R-Forge/Project": "ff",
-        "Repository/R-Forge/Revision": "177",
-        "Repository/R-Forge/DateTimeStamp": "2018-08-17 17:45:18",
-        "Date/Publication": "2020-08-30 07:20:02 UTC",
-        "NeedsCompilation": "yes",
-        "Packaged": "2020-08-29 10:56:45 UTC; jo",
-        "Built": "R 4.2.1; x86_64-pc-linux-gnu; 2022-08-29 16:30:09 UTC; unix"
-      }
-    },
     "bslib": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -519,40 +455,6 @@
         "Repository": "CRAN",
         "Date/Publication": "2022-02-14 10:10:11 UTC",
         "Built": "R 4.2.1; x86_64-pc-linux-gnu; 2022-08-29 16:30:18 UTC; unix"
-      }
-    },
-    "clipr": {
-      "Source": "CRAN",
-      "Repository": "https://cloud.r-project.org",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
-      "description": {
-        "Type": "Package",
-        "Package": "clipr",
-        "Title": "Read and Write from the System Clipboard",
-        "Version": "0.7.1",
-        "Authors@R": "\n    c(person(given = \"Matthew\",\n             family = \"Lincoln\",\n             role = c(\"aut\", \"cre\"),\n             email = \"matthew.d.lincoln@gmail.com\",\n             comment = c(ORCID = \"0000-0002-4387-3384\")),\n      person(given = \"Louis\",\n             family = \"Maddox\",\n             role = \"ctb\"),\n      person(given = \"Steve\",\n             family = \"Simpson\",\n             role = \"ctb\"),\n      person(given = \"Jennifer\",\n             family = \"Bryan\",\n             role = \"ctb\"))",
-        "Description": "Simple utility functions to read from and write to\n    the Windows, OS X, and X11 clipboards.",
-        "License": "GPL-3",
-        "URL": "https://github.com/mdlincoln/clipr",
-        "BugReports": "https://github.com/mdlincoln/clipr/issues",
-        "Imports": "utils",
-        "Suggests": "covr, knitr, rmarkdown, rstudioapi (>= 0.5), testthat (>=\n2.0.0)",
-        "VignetteBuilder": "knitr",
-        "Encoding": "UTF-8",
-        "Language": "en-US",
-        "LazyData": "TRUE",
-        "RoxygenNote": "7.1.1",
-        "SystemRequirements": "xclip (https://github.com/astrand/xclip) or xsel\n(http://www.vergenet.net/~conrad/software/xsel/) for accessing\nthe X11 clipboard",
-        "NeedsCompilation": "no",
-        "Packaged": "2020-10-08 13:13:31 UTC; mlincoln",
-        "Author": "Matthew Lincoln [aut, cre] (<https://orcid.org/0000-0002-4387-3384>),\n  Louis Maddox [ctb],\n  Steve Simpson [ctb],\n  Jennifer Bryan [ctb]",
-        "Maintainer": "Matthew Lincoln <matthew.d.lincoln@gmail.com>",
-        "Repository": "CRAN",
-        "Date/Publication": "2020-10-08 14:00:05 UTC",
-        "Built": "R 4.2.1; ; 2022-08-29 16:30:36 UTC; unix"
       }
     },
     "colorspace": {
@@ -777,39 +679,39 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "master",
-      "GithubSha1": "fd4ed39a02007384b49194ea355ee8d9a388fa6e",
+      "GithubSha1": "56f4d78101c8d249375100cc3afac2392b6ab176",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
         "Title": "A Package that Packs and Unpacks all Data Packs",
-        "Version": "5.2.0",
-        "Date": "2022-04-21",
+        "Version": "5.3.0",
+        "Date": "2022-08-10",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Chris\", \"Nemarich\", email = \"cnemarich@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Christian\", \"Domaas\", email = \"cdomaas@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Fausto\", \"Lopez\", email = \"flopez@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Jordan\", \"Bales\", email = \"jbales@baosystems.com\",\n        role = c(\"ctb\"))\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
         "URL": "https://github.com/pepfar-datim/datapackr",
         "BugReports": "https://github.com/pepfar-datim/datapackr",
         "Depends": "R (>= 4.1.0)",
-        "Imports": "dplyr (>= 0.8.3),\ntidyr (>= 1.0.0),\ntidyxl (>= 1.0.4),\nreadxl (>= 1.3.1),\nreadr (>= 1.3.1),\njsonlite (>= 1.6),\npurrr (>= 0.3.3),\ntibble (>= 2.1.3),\nstringr (>= 1.4.0),\nstringi,\nhttr (>= 1.4.0),\nrlist (>= 0.4.6.1),\nmagrittr (>= 1.5),\ncrayon (>= 1.3.4),\nopenxlsx,\nmethods,\nstats,\nlubridate (>= 1.7.4),\ndata.table (>= 1.12.8),\ndatimutils,\ndatimvalidation,\ntidyselect (>= 0.2.5),\nglue (>= 1.3.1),\nrlang (>= 0.4.2),\nassertthat,\nplyr,\nfuzzyjoin (>= 0.1.6),\nR6",
-        "Suggests": "devtools (>= 2.0.1),\nhttptest,\ntestthat,\ncellranger,\nrprojroot,\nwaldo,\nparallel,\ngdtools,\nflextable,\nofficer",
+        "Imports": "assertthat,\ncrayon (>= 1.3.4),\ndatimutils (>= 0.5.1),\ndatimvalidation,\ndplyr (>= 0.8.3),\nfuzzyjoin (>= 0.1.6),\nhttr (>= 1.4.0),\njsonlite (>= 1.6),\nlubridate,\nmagrittr (>= 1.5),\nmethods,\nopenxlsx,\npurrr (>= 0.3.3),\nreadxl (>= 1.3.1),\nrlang (>= 0.4.2),\nstringr (>= 1.4.0),\ntibble (>= 2.1.3),\ntidyr (>= 1.0.0),\ntidyselect (>= 0.2.5),\ntidyxl (>= 1.0.4)",
+        "Suggests": "devtools (>= 2.0.1),\nhttptest,\ntestthat,\nreadr (>= 1.3.1),\ncellranger,\nrprojroot,\nwaldo,\nparallel,\ngdtools,\nflextable,\nofficer,\nlintr (>= 3.0.0)",
         "License": "file LICENSE",
         "Encoding": "UTF-8",
         "LazyData": "true",
-        "RoxygenNote": "7.1.2",
+        "RoxygenNote": "7.2.0",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.1; ; 2022-08-29 16:35:15 UTC; unix",
+        "Built": "R 4.2.1; ; 2022-09-27 06:13:23 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "master",
-        "RemoteSha": "fd4ed39a02007384b49194ea355ee8d9a388fa6e",
-        "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation",
+        "RemoteSha": "56f4d78101c8d249375100cc3afac2392b6ab176",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "master",
-        "GithubSHA1": "fd4ed39a02007384b49194ea355ee8d9a388fa6e"
+        "GithubSHA1": "56f4d78101c8d249375100cc3afac2392b6ab176",
+        "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation"
       }
     },
     "datimutils": {
@@ -3153,44 +3055,6 @@
         "Built": "R 4.2.1; x86_64-pc-linux-gnu; 2022-08-24 07:54:18 UTC; unix"
       }
     },
-    "readr": {
-      "Source": "CRAN",
-      "Repository": "https://cloud.r-project.org",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
-      "description": {
-        "Package": "readr",
-        "Title": "Read Rectangular Text Data",
-        "Version": "2.0.2",
-        "Authors@R": "\n    c(person(given = \"Hadley\",\n             family = \"Wickham\",\n             role = \"aut\",\n             email = \"hadley@rstudio.com\"),\n      person(given = \"Jim\",\n             family = \"Hester\",\n             role = c(\"aut\", \"cre\"),\n             email = \"jim.hester@rstudio.com\"),\n      person(given = \"Romain\",\n             family = \"Francois\",\n             role = \"ctb\"),\n      person(given = \"RStudio\",\n             role = c(\"cph\", \"fnd\")),\n      person(given = \"https://github.com/mandreyel/\",\n             role = \"cph\",\n             comment = \"mio library\"),\n      person(given = \"Jukka\",\n             family = \"Jylänki\",\n             role = c(\"ctb\", \"cph\"),\n             comment = \"grisu3 implementation\"),\n      person(given = \"Mikkel\",\n             family = \"Jørgensen\",\n             role = c(\"ctb\", \"cph\"),\n             comment = \"grisu3 implementation\"))",
-        "Description": "The goal of 'readr' is to provide a fast and\n    friendly way to read rectangular data (like 'csv', 'tsv', and 'fwf').\n    It is designed to flexibly parse many types of data found in the wild,\n    while still cleanly failing when data unexpectedly changes.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://readr.tidyverse.org, https://github.com/tidyverse/readr",
-        "BugReports": "https://github.com/tidyverse/readr/issues",
-        "Depends": "R (>= 3.1)",
-        "Imports": "cli, clipr, crayon, hms (>= 0.4.1), methods, rlang, R6,\ntibble, vroom (>= 1.5.4), utils, lifecycle (>= 0.2.0)",
-        "Suggests": "covr, curl, dplyr, knitr, rmarkdown, spelling, stringi,\ntestthat, tzdb (>= 0.1.1), waldo, withr, xml2",
-        "LinkingTo": "cpp11, tzdb (>= 0.1.1)",
-        "VignetteBuilder": "knitr",
-        "Config/Needs/website": "pkgdown, tidyverse, tidyverse/tidytemplate",
-        "Config/testthat/edition": "3",
-        "Config/testthat/parallel": "false",
-        "Encoding": "UTF-8",
-        "Language": "en-US",
-        "RoxygenNote": "7.1.1",
-        "SystemRequirements": "C++11",
-        "RdMacros": "lifecycle",
-        "NeedsCompilation": "yes",
-        "Packaged": "2021-09-24 14:15:33 UTC; jhester",
-        "Author": "Hadley Wickham [aut],\n  Jim Hester [aut, cre],\n  Romain Francois [ctb],\n  RStudio [cph, fnd],\n  https://github.com/mandreyel/ [cph] (mio library),\n  Jukka Jylänki [ctb, cph] (grisu3 implementation),\n  Mikkel Jørgensen [ctb, cph] (grisu3 implementation)",
-        "Maintainer": "Jim Hester <jim.hester@rstudio.com>",
-        "Repository": "CRAN",
-        "Date/Publication": "2021-09-27 14:10:08 UTC",
-        "Built": "R 4.2.1; x86_64-pc-linux-gnu; 2022-08-29 16:33:18 UTC; unix"
-      }
-    },
     "readxl": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -4050,39 +3914,6 @@
         "Built": "R 4.2.1; ; 2022-08-29 16:35:46 UTC; unix"
       }
     },
-    "tzdb": {
-      "Source": "CRAN",
-      "Repository": "https://cloud.r-project.org",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
-      "description": {
-        "Package": "tzdb",
-        "Title": "Time Zone Database Information",
-        "Version": "0.2.0",
-        "Authors@R": "\n    c(person(given = \"Davis\",\n             family = \"Vaughan\",\n             role = c(\"aut\", \"cre\"),\n             email = \"davis@rstudio.com\"),\n      person(given = \"Howard\",\n             family = \"Hinnant\",\n             role = \"cph\",\n             comment = \"Author of the included date library\"),\n      person(given = \"RStudio\",\n             role = c(\"cph\", \"fnd\")))",
-        "Description": "Provides an up-to-date copy of the Internet Assigned Numbers\n    Authority (IANA) Time Zone Database. It is updated periodically to\n    reflect changes made by political bodies to time zone boundaries, UTC\n    offsets, and daylight saving time rules. Additionally, this package\n    provides a C++ interface for working with the 'date' library. 'date'\n    provides comprehensive support for working with dates and date-times,\n    which this package exposes to make it easier for other R packages to\n    utilize. Headers are provided for calendar specific calculations,\n    along with a limited interface for time zone manipulations.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://r-lib.github.io/tzdb/, https://github.com/r-lib/tzdb",
-        "BugReports": "https://github.com/r-lib/tzdb/issues",
-        "Depends": "R (>= 3.3)",
-        "Suggests": "covr, testthat (>= 3.0.0)",
-        "LinkingTo": "cpp11 (>= 0.4.0)",
-        "Biarch": "yes",
-        "Config/testthat/edition": "3",
-        "Encoding": "UTF-8",
-        "RoxygenNote": "7.1.2",
-        "SystemRequirements": "C++11",
-        "NeedsCompilation": "yes",
-        "Packaged": "2021-10-27 12:57:38 UTC; davis",
-        "Author": "Davis Vaughan [aut, cre],\n  Howard Hinnant [cph] (Author of the included date library),\n  RStudio [cph, fnd]",
-        "Maintainer": "Davis Vaughan <davis@rstudio.com>",
-        "Repository": "CRAN",
-        "Date/Publication": "2021-10-27 13:20:02 UTC",
-        "Built": "R 4.2.1; x86_64-pc-linux-gnu; 2022-08-29 16:32:27 UTC; unix"
-      }
-    },
     "utf8": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -4197,44 +4028,6 @@
         "Repository": "CRAN",
         "Date/Publication": "2021-04-13 15:00:02 UTC",
         "Built": "R 4.2.1; ; 2022-08-29 16:36:44 UTC; unix"
-      }
-    },
-    "vroom": {
-      "Source": "CRAN",
-      "Repository": "https://cloud.r-project.org",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
-      "description": {
-        "Package": "vroom",
-        "Title": "Read and Write Rectangular Text Data Quickly",
-        "Version": "1.5.5",
-        "Authors@R": "\n    c(person(given = \"Jim\",\n             family = \"Hester\",\n             role = c(\"aut\", \"cre\"),\n             email = \"jim.hester@rstudio.com\",\n             comment = c(ORCID = \"0000-0002-2739-7082\")),\n      person(given = \"Hadley\",\n             family = \"Wickham\",\n             role = \"aut\",\n             email = \"hadley@rstudio.com\",\n             comment = c(ORCID = \"0000-0003-4757-117X\")),\n      person(given = \"https://github.com/mandreyel/\",\n             role = \"cph\",\n             comment = \"mio library\"),\n      person(given = \"Jukka\",\n             family = \"Jylänki\",\n             role = \"cph\",\n             comment = \"grisu3 implementation\"),\n      person(given = \"Mikkel\",\n             family = \"Jørgensen\",\n             role = \"cph\",\n             comment = \"grisu3 implementation\"),\n      person(given = \"RStudio\",\n             role = c(\"cph\", \"fnd\")))",
-        "Description": "The goal of 'vroom' is to read and write data (like\n    'csv', 'tsv' and 'fwf') quickly. When reading it uses a quick initial\n    indexing step, then reads the values lazily , so only the data you\n    actually use needs to be read.  The writer formats the data in\n    parallel and writes to disk asynchronously from formatting.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://vroom.r-lib.org, https://github.com/r-lib/vroom",
-        "BugReports": "https://github.com/r-lib/vroom/issues",
-        "Depends": "R (>= 3.1)",
-        "Imports": "bit64, crayon, cli, glue, hms, lifecycle, methods, rlang (>=\n0.4.2), stats, tibble (>= 2.0.0), tzdb (>= 0.1.1), vctrs (>=\n0.2.0), tidyselect, withr",
-        "Suggests": "archive, bench (>= 1.1.0), covr, curl, dplyr, forcats, fs,\nggplot2, knitr, patchwork, prettyunits, purrr, rmarkdown,\nrstudioapi, scales, spelling, testthat (>= 2.1.0), tidyr,\nwaldo, xml2",
-        "LinkingTo": "progress (>= 1.2.1), cpp11 (>= 0.2.0), tzdb (>= 0.1.1)",
-        "VignetteBuilder": "knitr",
-        "Config/testthat/edition": "3",
-        "Config/testthat/parallel": "false",
-        "Config/Needs/website": "nycflights13",
-        "Copyright": "file COPYRIGHTS",
-        "Encoding": "UTF-8",
-        "Language": "en-US",
-        "RoxygenNote": "7.1.1",
-        "SystemRequirements": "C++11",
-        "NeedsCompilation": "yes",
-        "Packaged": "2021-09-14 13:55:59 UTC; jhester",
-        "Author": "Jim Hester [aut, cre] (<https://orcid.org/0000-0002-2739-7082>),\n  Hadley Wickham [aut] (<https://orcid.org/0000-0003-4757-117X>),\n  https://github.com/mandreyel/ [cph] (mio library),\n  Jukka Jylänki [cph] (grisu3 implementation),\n  Mikkel Jørgensen [cph] (grisu3 implementation),\n  RStudio [cph, fnd]",
-        "Maintainer": "Jim Hester <jim.hester@rstudio.com>",
-        "Repository": "CRAN",
-        "Date/Publication": "2021-09-14 14:20:02 UTC",
-        "Built": "R 4.2.1; x86_64-pc-linux-gnu; 2022-08-29 16:32:36 UTC; unix"
       }
     },
     "waiter": {
@@ -4462,7 +4255,7 @@
       "checksum": "29067c286e19e1adca6532ceae0ef4e8"
     },
     ".Rprofile": {
-      "checksum": "c807c88ae3a9e414ebca72d65bc98663"
+      "checksum": "2403f0b40be1086df62ec8d8b8002260"
     },
     "CHANGELOG.md": {
       "checksum": "f7ae895af9a1166943698c0ab59fb49a"
@@ -4480,13 +4273,13 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "481d2e1d941e6e31ced54a40a4337db2"
+      "checksum": "a25543979aed9bf4a394eff56e426268"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "74a26562a4716efc61edca8dcd28f9ae"
+      "checksum": "656be0ac0f1075b9072edfdfe8ef0852"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
@@ -4558,7 +4351,7 @@
       "checksum": "eef665cd63e15044507de68a54e50b45"
     },
     "server.R": {
-      "checksum": "9e983737c471c3d741812e7cf44aa9ed"
+      "checksum": "1210ba9eeaaa1c1a6bc68c0c3c164336"
     },
     "support_files/datapack_model_data.rds": {
       "checksum": "1c08a82102da9d7a5c1c15c0769f753b"

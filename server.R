@@ -885,8 +885,7 @@ shinyServer(function(input, output, session) {
             flog.info(paste(d$info$tool, " with PSNUxIM tab found."))
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
-            d <- datapackr::checkPSNUData(d,
-                               d2_session = user_input$d2_session)
+            d <- datapackr::checkPSNUData(d)
             incProgress(0.1, detail = "Validating mechanisms")
             Sys.sleep(0.5)
             d <- datapackr::checkMechanisms(d,
@@ -1013,7 +1012,7 @@ shinyServer(function(input, output, session) {
         flog.info("Datapack with PSNUxIM tab found.")
         incProgress(0.1, detail = ("Checking validation rules"))
         Sys.sleep(0.5)
-        d <- datapackr::checkPSNUData(d, d2_session = user_input$d2_session)
+        d <- datapackr::checkPSNUData(d)
         incProgress(0.1, detail = "Validating mechanisms")
         Sys.sleep(0.5)
         d <- datapackr::checkMechanisms(d,
