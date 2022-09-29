@@ -5,7 +5,10 @@ sendDataPackToS3 <- function(d, datapath) {
   object_tags <- createS3BucketTags(d)
 
   object_name <- paste0("datapack_archives/",
-                        gsub(" ", "_", d$info$sane_name), "_", format(Sys.time(), "%Y%m%d_%H%m%s"),
+                        ifelse(d$info$cop_year==2021,"cop21_opu/",""),
+                        gsub(" ", "_", d$info$sane_name),
+                        "_",
+                        format(Sys.time(), "%Y%m%d_%H%m%s"),
                         ".xlsx")
 
   # Load the file as a raw binary
