@@ -886,10 +886,6 @@ shinyServer(function(input, output, session) {
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
             d <- datapackr::checkPSNUData(d)
-            incProgress(0.1, detail = "Validating mechanisms")
-            Sys.sleep(0.5)
-            d <- datapackr::checkMechanisms(d,
-                                 d2_session = user_input$d2_session)
 
             # if (Sys.getenv("SEND_DATAPACK_ARCHIVE") == "TRUE") {
             #   incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
@@ -1013,13 +1009,6 @@ shinyServer(function(input, output, session) {
         incProgress(0.1, detail = ("Checking validation rules"))
         Sys.sleep(0.5)
         d <- datapackr::checkPSNUData(d)
-        incProgress(0.1, detail = "Validating mechanisms")
-        Sys.sleep(0.5)
-        d <- datapackr::checkMechanisms(d,
-                                        d2_session = user_input$d2_session)
-        incProgress(0.1, detail = "Updating prioritization levels from DATIM")
-        Sys.sleep(0.5)
-
         incProgress(0.1, detail = ("Preparing COP memo data"))
         #Only execute the comparison if the user has proper authorization
         #Global agency users cannot retrieve prioritization data
