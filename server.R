@@ -216,7 +216,8 @@ shinyServer(function(input, output, session) {
             "Choose DataPack (Must be XLSX!):",
             accept = c("application/xlsx",
                        ".xlsx"),
-            width = "240px"
+            width = "240px",
+            multiple = T
           ),
           actionButton("validate", "Validate"),
           tags$hr(),
@@ -851,13 +852,33 @@ shinyServer(function(input, output, session) {
       shinyjs::disable("validate")
       incProgress(0.1, detail = ("Unpacking your DataPack"))
 
+      # if multiple files unpack together
+      if (NROW(inFile) > 1) {
 
-      d <- tryCatch({
-        datapackr::unPackTool(inFile$datapath,
-                              d2_session = user_input$d2_session)},
-        error = function(e) {
-          return(e)
-        })
+       tryCatch({
+          dz <- lapply(inFile$datapath, datapackr::unPackTool, d2_session = user_input$d2_session)},
+          error = function(e) {
+            return(e)
+
+          })
+
+        d <- datapackr::mergeDatapack(dz[[1]], dz [[2]])
+        d <- datapackr::mergeDatapack(d, dz[[3]])
+        d <- datapackr::mergeDatapack(d, dz[[4]])
+        rm(dz)
+        gc()
+        d
+
+      } else {
+
+        d <- tryCatch({
+          datapackr::unPackTool(inFile$datapath,
+                                d2_session = user_input$d2_session)},
+          error = function(e) {
+            return(e)
+          })
+
+      }
 
       if (inherits(d, "error")) {
         return("An error occurred. Please contact DATIM support.")
