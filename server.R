@@ -1005,6 +1005,7 @@ shinyServer(function(input, output, session) {
                           choices = downloadTypes(tool_type = d$info$tool,
                                                   needs_psnuxim = FALSE,
                                                   memo_authorized = user_input$memo_authorized))
+
         flog.info("Datapack with PSNUxIM tab found.")
         incProgress(0.1, detail = ("Checking validation rules"))
         Sys.sleep(0.5)
@@ -1028,9 +1029,9 @@ shinyServer(function(input, output, session) {
         incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
         d <- recencyComparison(d)
         Sys.sleep(1)
+        shinyjs::disable("send_paw")
         shinyjs::enable("downloadType")
         shinyjs::enable("downloadOutputs")
-        shinyjs::enable("send_paw")
         updatePickerInput(session = session, inputId = "kpCascadeInput",
                           choices = snuSelector(d))
         updatePickerInput(session = session, inputId = "epiCascadeInput",
