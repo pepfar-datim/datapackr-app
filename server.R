@@ -172,7 +172,7 @@ shinyServer(function(input, output, session) {
       #img(src = "pepfar.png", align = "center"),
       tags$head(tags$script(HTML(jscode_login))), # enter button functionality for login button
       tags$div(HTML('<center><img src="pepfar.png"></center>')),
-      h4("Welcome to the DataPack Validation App. Please login with your DATIM credentials:")
+      h4("Welcome to the Target Setting Tool Validation App. Please login with your DATIM credentials:")
     ),
     fluidRow(
       actionButton("login_button_oauth","Log in with DATIM"),
@@ -182,7 +182,7 @@ shinyServer(function(input, output, session) {
     fluidRow(
       tags$hr(),
       tags$div(HTML("<ul><li><h4>Please be sure you fully populate the PSNUxIM",
-                    " tab when receiving a new DataPack. Consult <a href = ",
+                    " tab when receiving a new Target Setting Tool. Consult <a href = ",
                     "\"https://apps.datim.org/datapack-userguide/\" target = ",
                     "\"blank\" > the user guide</a> for further information!",
                     "</h4></li><li><h4>See the latest updates to the app <a href =",
@@ -194,7 +194,7 @@ shinyServer(function(input, output, session) {
   })
 
   output$authenticated <- renderUI({
-    wiki_url <- a("Datapack User Guide",
+    wiki_url <- a("Target Setting Tool User Guide",
                   href = "https://apps.datim.org/datapack-userguide/",
                   target = "_blank")
 
@@ -213,7 +213,7 @@ shinyServer(function(input, output, session) {
           tags$hr(),
           fileInput(
             "file1",
-            "Choose DataPack (Must be XLSX!):",
+            "Choose Target Setting Tool (Must be XLSX!):",
             accept = c("application/xlsx",
                        ".xlsx"),
             width = "240px"
@@ -237,10 +237,10 @@ shinyServer(function(input, output, session) {
           tabPanel("Messages", tags$ul(uiOutput("messages"))),
           tabPanel("Analytics checks", tags$div(uiOutput("analytics_checks"))),
           tabPanel("Indicator summary", dataTableOutput("indicator_summary"),
-                   tags$h4("Data source: Main DataPack tabs")),
+                   tags$h4("Data source: Main Target Setting Tool tabs")),
           tabPanel("SNU-level summary",
                    dataTableOutput("snu_summary"),
-                   tags$h4("Data source: Main DataPack tabs")),
+                   tags$h4("Data source: Main Target Setting Tool tabs")),
           tabPanel("Validation rules",
                    dataTableOutput("vr_rules"),
                    tags$h4("Data source: PSNUxIM tab")),
@@ -763,7 +763,7 @@ shinyServer(function(input, output, session) {
       if (input$downloadType == "datapack") {
 
         flog.info(
-          paste0("Regeneration of Datapack requested for ", d$info$datapack_name)
+          paste0("Regeneration of Target Setting Tool requested for ", d$info$datapack_name)
           ,
           name = "datapack")
         waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
@@ -772,7 +772,7 @@ shinyServer(function(input, output, session) {
         openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
         sendEventToS3(d, "DATAPACK_DOWNLOAD")
         flog.info(
-          paste0("Datapack reloaded for ", d$info$datapack_name),
+          paste0("Target Setting Tool reloaded for ", d$info$datapack_name),
           name = "datapack")
         waiter_hide()
       }
@@ -849,7 +849,7 @@ shinyServer(function(input, output, session) {
 
       shinyjs::disable("file1")
       shinyjs::disable("validate")
-      incProgress(0.1, detail = ("Unpacking your DataPack"))
+      incProgress(0.1, detail = ("Unpacking your Target Setting Tool"))
 
 
       d <- tryCatch({
@@ -964,7 +964,7 @@ shinyServer(function(input, output, session) {
             showTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
 
           } else if (d$info$has_psnuxim & NROW(d$data$SNUxIM) == 0) {
-            msg <- paste("ERROR! Your DataPack contains a PSNUxIM tab, but the formulas appear to be empty.,
+            msg <- paste("ERROR! Your Target Setting Tool contains a PSNUxIM tab, but the formulas appear to be empty.,
             Please ensure that the formulas have been properly populated in the PSNUxIM tab.")
             d$info$warning_msg <- append(d$info$warning_msg, msg)
             #Enable the UI
@@ -1009,7 +1009,7 @@ shinyServer(function(input, output, session) {
                           choices = downloadTypes(tool_type = d$info$tool,
                                                   needs_psnuxim = FALSE,
                                                   memo_authorized = user_input$memo_authorized))
-        flog.info("Datapack with PSNUxIM tab found.")
+        flog.info("Target Setting Tool with PSNUxIM tab found.")
         incProgress(0.1, detail = ("Checking validation rules"))
         Sys.sleep(0.5)
         d <- datapackr::checkPSNUData(d)
