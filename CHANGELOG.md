@@ -1,3 +1,6 @@
+## Jan 26, 2023
+ * Update to Datapackr 6.0.0
+
 ## May 13, 2022
  * Update to datapackr 5.2.0
  * Remove processing for COP20 OPUs
