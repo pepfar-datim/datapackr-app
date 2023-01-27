@@ -4044,10 +4044,10 @@
       "checksum": "f8a9eb2ccb56697495a8c7cf0d73e8d7"
     },
     ".Rprofile": {
-      "checksum": "edcbcb12352470c2a0266b57a8e37786"
+      "checksum": "84310f980a62894687369995256b6271"
     },
     "CHANGELOG.md": {
-      "checksum": "f7ae895af9a1166943698c0ab59fb49a"
+      "checksum": "e3122a28fe8d68c0347bb9b52d31801a"
     },
     "config.yml.sample": {
       "checksum": "31c37d9dc0af96e3c9c149f808b3ea48"
@@ -4062,13 +4062,13 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "711489100bd8c699ff6b4cb8d170b05b"
+      "checksum": "bc5610b4feb972601e354728d6305554"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "d8ed979405eddf2a788784f174d45efc"
+      "checksum": "96a179c2683244150e7ed123f552b527"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
