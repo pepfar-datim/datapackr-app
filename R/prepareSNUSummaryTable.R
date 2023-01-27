@@ -15,14 +15,14 @@ prepareSNUSummaryTable <- function(d) {
     return(d)
   }
 
-  snus <- datapackr::valid_PSNUs %>%
-    dplyr::select(ou, country_name, snu1, psnu, psnu_uid)
+  snus <- datapackr::getValidOrgUnits(d$info$cop_year) %>%
+    dplyr::select(ou, country_name, snu1, psnu = ou_uid, psnu_uid = uid)
 
   df %<>%
     dplyr::inner_join(snus, by = c("psnuid" = "psnu_uid")) %>%
     dplyr::select(ou, country_name, snu1, psnu, indicator_code, Age, Sex, KeyPop, value) %>%
     dplyr::group_by(ou, country_name, snu1, psnu, indicator_code) %>%
-    dplyr::summarise(value = sum(value, na.rm = TRUE)) %>%
+    dplyr::summarise(value = sum(value, na.rm = TRUE), .groups = "drop") %>%
     dplyr::arrange(indicator_code, ou, country_name, snu1, psnu)
 
   return(df)
