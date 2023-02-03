@@ -650,8 +650,8 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "master",
-      "GithubSha1": "7efe58b8266604167a24f419974d742000e3904e",
+      "GithubRef": "dev",
+      "GithubSha1": "1730e85549493832c1ed292e06a3c19c5dc6d331",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -671,18 +671,18 @@
         "RoxygenNote": "7.2.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.2; ; 2023-01-26 05:55:16 UTC; unix",
+        "Built": "R 4.2.2; ; 2023-02-03 17:42:56 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "master",
-        "RemoteSha": "7efe58b8266604167a24f419974d742000e3904e",
+        "RemoteRef": "dev",
+        "RemoteSha": "1730e85549493832c1ed292e06a3c19c5dc6d331",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "master",
-        "GithubSHA1": "7efe58b8266604167a24f419974d742000e3904e",
+        "GithubRef": "dev",
+        "GithubSHA1": "1730e85549493832c1ed292e06a3c19c5dc6d331",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation"
       }
     },
@@ -4044,7 +4044,7 @@
       "checksum": "f8a9eb2ccb56697495a8c7cf0d73e8d7"
     },
     ".Rprofile": {
-      "checksum": "84310f980a62894687369995256b6271"
+      "checksum": "f933aaccacbe4b993f21a612066c5634"
     },
     "CHANGELOG.md": {
       "checksum": "e3122a28fe8d68c0347bb9b52d31801a"
@@ -4068,7 +4068,7 @@
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "96a179c2683244150e7ed123f552b527"
+      "checksum": "9fd0aa2e9172f8c1ccc872e30ce178aa"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
@@ -4143,7 +4143,7 @@
       "checksum": "729452413f36713c96edd6ecdd7e84bd"
     },
     "support_files/datapack_model_data.rds": {
-      "checksum": "0872eb19e57508bd7776e95370539dde"
+      "checksum": "16c73ef09393da19b32547beb8a2e3d0"
     },
     "support_files/README": {
       "checksum": "9cb0faaff95a40f674f7a20ffcda0788"
