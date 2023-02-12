@@ -218,10 +218,10 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
-      "RemoteRef": "master",
-      "RemoteSha": "4772f32e141fec9174ca7e1563ca3a19b6f6bba9",
+      "RemoteRef": "DP-714-part2-jpp",
+      "RemoteSha": "ec2f50ed6dbda15209bc1b0f5b875a5ced3db82a",
       "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation",
-      "Hash": "06cdc90780cd06ba9669c2fb3dd70436",
+      "Hash": "81a72ba5b9e60a00335fd8e1fbbf800a",
       "Requirements": [
         "assertthat",
         "crayon",
