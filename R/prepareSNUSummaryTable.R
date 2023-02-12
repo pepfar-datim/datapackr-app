@@ -16,7 +16,7 @@ prepareSNUSummaryTable <- function(d) {
   }
 
   snus <- datapackr::getValidOrgUnits(d$info$cop_year) %>%
-    dplyr::select(ou, country_name, snu1, psnu = ou_uid, psnu_uid = uid)
+    dplyr::select(ou, country_name, snu1, psnu = name, psnu_uid = uid)
 
   df %<>%
     dplyr::inner_join(snus, by = c("psnuid" = "psnu_uid")) %>%
