@@ -651,7 +651,7 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "DP-714-part2-jpp",
-      "GithubSha1": "ec2f50ed6dbda15209bc1b0f5b875a5ced3db82a",
+      "GithubSha1": "b78fde0650ff7be68b9025eb6efe2bb4eb45b01f",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -671,18 +671,18 @@
         "RoxygenNote": "7.2.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.2; ; 2023-02-12 13:36:16 UTC; unix",
+        "Built": "R 4.2.2; ; 2023-02-13 16:20:01 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "DP-714-part2-jpp",
-        "RemoteSha": "ec2f50ed6dbda15209bc1b0f5b875a5ced3db82a",
+        "RemoteSha": "b78fde0650ff7be68b9025eb6efe2bb4eb45b01f",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "DP-714-part2-jpp",
-        "GithubSHA1": "ec2f50ed6dbda15209bc1b0f5b875a5ced3db82a",
+        "GithubSHA1": "b78fde0650ff7be68b9025eb6efe2bb4eb45b01f",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation"
       }
     },
@@ -4044,7 +4044,7 @@
       "checksum": "f8a9eb2ccb56697495a8c7cf0d73e8d7"
     },
     ".Rprofile": {
-      "checksum": "35608518f252ef05ad8500672744af1e"
+      "checksum": "ba5292b905357fdfade6d7e5a1df53e8"
     },
     "CHANGELOG.md": {
       "checksum": "e3122a28fe8d68c0347bb9b52d31801a"
@@ -4062,13 +4062,16 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "cf921bd8e90158785e152192e0678914"
+      "checksum": "77e0d8e249780e8e5c3281394d8c994f"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "malawi_memo_comparison.xlsx": {
       "checksum": "d9677ba808e5a1a0aa082087890a332f"
+    },
+    "Malawi.csv": {
+      "checksum": "04163c436d1ac9e191351595df54a8b8"
     },
     "mechs.rds": {
       "checksum": "fc14cfef71594622287729250e7e2cb8"
@@ -4113,7 +4116,7 @@
       "checksum": "0d8a29753034612a14c3a2000d1edf8d"
     },
     "R/sendTimeStampLogToS3.R": {
-      "checksum": "a48901263aac1f0d89c4cf011117f0e5"
+      "checksum": "eb350222b8ad5ecf99c94c204c0111ca"
     },
     "R/sendValidationSummary.R": {
       "checksum": "abc3a6182a720abd9a1882c2695ee590"
