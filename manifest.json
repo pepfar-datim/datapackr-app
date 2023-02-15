@@ -650,8 +650,8 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "DP-714-part2-jpp",
-      "GithubSha1": "772c4936a13ea69d050eca55fa55407785475266",
+      "GithubRef": "cop23-memo",
+      "GithubSha1": "1e4945518489f80d42f349fa322980871b422c86",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -671,18 +671,18 @@
         "RoxygenNote": "7.2.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.2; ; 2023-02-14 14:53:56 UTC; unix",
+        "Built": "R 4.2.2; ; 2023-02-15 07:54:24 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "DP-714-part2-jpp",
-        "RemoteSha": "772c4936a13ea69d050eca55fa55407785475266",
+        "RemoteRef": "cop23-memo",
+        "RemoteSha": "1e4945518489f80d42f349fa322980871b422c86",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "DP-714-part2-jpp",
-        "GithubSHA1": "772c4936a13ea69d050eca55fa55407785475266",
+        "GithubRef": "cop23-memo",
+        "GithubSHA1": "1e4945518489f80d42f349fa322980871b422c86",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation"
       }
     },
@@ -4044,7 +4044,7 @@
       "checksum": "f8a9eb2ccb56697495a8c7cf0d73e8d7"
     },
     ".Rprofile": {
-      "checksum": "b596e29d8d465e322a74abde145688eb"
+      "checksum": "495a5f491fdba8ab5b48dce07d686417"
     },
     "CHANGELOG.md": {
       "checksum": "e3122a28fe8d68c0347bb9b52d31801a"
@@ -4146,10 +4146,10 @@
       "checksum": "eef665cd63e15044507de68a54e50b45"
     },
     "server.R": {
-      "checksum": "729452413f36713c96edd6ecdd7e84bd"
+      "checksum": "9df59d68cc0af75704de2b91ce5c7d29"
     },
     "support_files/datapack_model_data.rds": {
-      "checksum": "16c73ef09393da19b32547beb8a2e3d0"
+      "checksum": "8776f3cd5f646a01d7f6cd3d452b051a"
     },
     "support_files/README": {
       "checksum": "9cb0faaff95a40f674f7a20ffcda0788"
