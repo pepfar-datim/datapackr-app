@@ -880,9 +880,9 @@ shinyServer(function(input, output, session) {
                                                     memo_authorized = user_input$memo_authorized,
                                                     has_comments_issue = d$info$has_comments_issue))
 
-          if ((d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year == "2022") {
+          if ((d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year %in% c("2022","2023")) {
 
-            flog.info(paste(d$info$tool, " with PSNUxIM tab found."))
+            flog.info(paste("COP", d$info$cop_year, d$info$tool, " found."))
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
             d <- datapackr::checkPSNUData(d)
@@ -930,11 +930,16 @@ shinyServer(function(input, output, session) {
             incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
             d <- recencyComparison(d)
             Sys.sleep(1)
-            incProgress(0.1, detail = ("Performing analytics checks"))
-            model_data_path <- "support_files/datapack_model_data.rds"
-            full_model_path <- fetchModelFile(model_data_path)
-            d <- datapackr::checkAnalytics(d, model_data_path  = full_model_path, d2_session = user_input$d2_session)
-            Sys.sleep(1)
+
+            #TODO: Fix analytics checks for COP23
+            if (d$info$cop_year != 2023) {
+              incProgress(0.1, detail = ("Performing analytics checks"))
+              model_data_path <- "support_files/datapack_model_data.rds"
+              full_model_path <- fetchModelFile(model_data_path)
+              d <- datapackr::checkAnalytics(d, model_data_path  = full_model_path, d2_session = user_input$d2_session)
+              Sys.sleep(1)
+            }
+
             incProgress(0.1, detail = ("Finishing up."))
             flog.info("Sending validation summary")
             r <- sendValidationSummaryToS3(d, "validation_error_summary", include_timestamp = TRUE)
