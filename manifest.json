@@ -650,8 +650,8 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "DP-921",
-      "GithubSha1": "7975623f76e7ab6d4d6a3fd82ce5cb3cf54e0751",
+      "GithubRef": "parse-year2",
+      "GithubSha1": "390a4210f8bdf0ca7607c952a8deadc19d2029f4",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -671,18 +671,18 @@
         "RoxygenNote": "7.2.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.2; ; 2023-02-15 10:42:05 UTC; unix",
+        "Built": "R 4.2.2; ; 2023-02-24 08:33:33 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "DP-921",
-        "RemoteSha": "7975623f76e7ab6d4d6a3fd82ce5cb3cf54e0751",
+        "RemoteRef": "parse-year2",
+        "RemoteSha": "390a4210f8bdf0ca7607c952a8deadc19d2029f4",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "DP-921",
-        "GithubSHA1": "7975623f76e7ab6d4d6a3fd82ce5cb3cf54e0751",
+        "GithubRef": "parse-year2",
+        "GithubSHA1": "390a4210f8bdf0ca7607c952a8deadc19d2029f4",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation"
       }
     },
@@ -4044,7 +4044,7 @@
       "checksum": "f8a9eb2ccb56697495a8c7cf0d73e8d7"
     },
     ".Rprofile": {
-      "checksum": "43108c8ac9f615ba2a1428e6fd72d4ea"
+      "checksum": "bac9b3e543374497055027646de0e773"
     },
     "CHANGELOG.md": {
       "checksum": "e3122a28fe8d68c0347bb9b52d31801a"
@@ -4074,7 +4074,7 @@
       "checksum": "04163c436d1ac9e191351595df54a8b8"
     },
     "mechs.rds": {
-      "checksum": "fc14cfef71594622287729250e7e2cb8"
+      "checksum": "ac258d549bb1910adbc69ad308105288"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
@@ -4142,11 +4142,14 @@
     "R/waitingScreens.R": {
       "checksum": "0015e4b08f42b1bd011c9f3c8a970bd4"
     },
+    "R/year2Pivot.R": {
+      "checksum": "78a2afb5e2b6acdd49a2a5f753a08479"
+    },
     "README.md": {
       "checksum": "eef665cd63e15044507de68a54e50b45"
     },
     "server.R": {
-      "checksum": "c207f45293eb61c46f4faf4ba13d4b10"
+      "checksum": "dbe09ea8273d4512d5a9fcba36f55fbc"
     },
     "support_files/datapack_model_data.rds": {
       "checksum": "8776f3cd5f646a01d7f6cd3d452b051a"
