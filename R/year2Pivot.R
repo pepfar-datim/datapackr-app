@@ -8,6 +8,8 @@ year2Pivot <- function(d) {
                     Age = valid_ages.name,
                     Sex = valid_sexes.name,
                     KP = valid_kps.name,
+                    `Data element` = dataelementname,
+                    `CatOptionCombo` = categoryoptioncomboname,
                     value)
 
     rpivotTable(data = pivot_data, rows = c("Indicator","Age","Sex","KP"),

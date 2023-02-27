@@ -651,7 +651,7 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "parse-year2",
-      "GithubSha1": "390a4210f8bdf0ca7607c952a8deadc19d2029f4",
+      "GithubSha1": "f6d781f5c448b122cc009d05223d2867da82f7b2",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -671,18 +671,18 @@
         "RoxygenNote": "7.2.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.2; ; 2023-02-24 08:33:33 UTC; unix",
+        "Built": "R 4.2.2; ; 2023-02-27 14:29:46 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "parse-year2",
-        "RemoteSha": "390a4210f8bdf0ca7607c952a8deadc19d2029f4",
+        "RemoteSha": "f6d781f5c448b122cc009d05223d2867da82f7b2",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "parse-year2",
-        "GithubSHA1": "390a4210f8bdf0ca7607c952a8deadc19d2029f4",
+        "GithubSHA1": "f6d781f5c448b122cc009d05223d2867da82f7b2",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation"
       }
     },
@@ -4044,7 +4044,7 @@
       "checksum": "f8a9eb2ccb56697495a8c7cf0d73e8d7"
     },
     ".Rprofile": {
-      "checksum": "bac9b3e543374497055027646de0e773"
+      "checksum": "feafc21f607d93a823438ef6cc03bae9"
     },
     "CHANGELOG.md": {
       "checksum": "e3122a28fe8d68c0347bb9b52d31801a"
@@ -4143,7 +4143,7 @@
       "checksum": "0015e4b08f42b1bd011c9f3c8a970bd4"
     },
     "R/year2Pivot.R": {
-      "checksum": "78a2afb5e2b6acdd49a2a5f753a08479"
+      "checksum": "7a771796a750e696d8ba2966193e50c1"
     },
     "README.md": {
       "checksum": "eef665cd63e15044507de68a54e50b45"
@@ -4152,7 +4152,7 @@
       "checksum": "dbe09ea8273d4512d5a9fcba36f55fbc"
     },
     "support_files/datapack_model_data.rds": {
-      "checksum": "8776f3cd5f646a01d7f6cd3d452b051a"
+      "checksum": "34d63ee0b561b7a1295892961ab4e387"
     },
     "support_files/README": {
       "checksum": "9cb0faaff95a40f674f7a20ffcda0788"
