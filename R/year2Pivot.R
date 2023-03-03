@@ -1,7 +1,5 @@
 year2Pivot <- function(d) {
 
-
-
   pivot_data_year2 <- d %>%
     purrr::pluck("data") %>%
     purrr::pluck("Year2") %>%
@@ -40,7 +38,7 @@ year2Pivot <- function(d) {
                         values_to = "value")
 
 
-    rpivotTable(data = pivot_data_year2, rows = c("DatElement","Age","Sex","KP"), cols = c("Year"),
+    rpivotTable(data = pivot_data_year2, rows = c("Indicator", "DataElement","CatOptionCombo","Age","Sex","KP"), cols = c("Year"),
                 vals = "value", aggregatorName = "Integer Sum", rendererName = "Table"
                 , width = "70%", height = "700px")
 
