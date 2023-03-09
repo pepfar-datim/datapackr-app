@@ -116,6 +116,7 @@ shinyServer(function(input, output, session) {
      timestampUploadUI(r)
      sendDataPackErrorUI(r)
      r <- sendDATIMExportToS3(d)
+     r <- sendYear2ExportToS3(d)
      sendEventToS3(d, "PAW_EXPORT")
      waiter_hide()
      datimExportUI(r)
@@ -274,6 +275,9 @@ shinyServer(function(input, output, session) {
           tabPanel("PSNUxIM Pivot",
                    fluidRow(column(width = 12, div(rpivotTable::rpivotTableOutput({"pivot"})))), # nolint
                    fluidRow(tags$h4("Data source: PSNUxIM tab"))),
+          tabPanel("Year 2 Pivot",
+                   fluidRow(column(width = 12, div(rpivotTable::rpivotTableOutput({"year2_pivot"})))), # nolint
+                   fluidRow(tags$h4("Data source: Year 2 Tab"))),
           tabPanel(
             "Memo Tables",
             fluidRow(
@@ -412,6 +416,20 @@ shinyServer(function(input, output, session) {
         return(NULL)
       }
       PSNUxIM_pivot(vr)
+
+    } else {
+      NULL
+    }
+  })
+
+  output$year2_pivot  <-  rpivotTable::renderRpivotTable({
+    vr  <-  validation_results()
+
+    if (!inherits(vr, "error") & !is.null(vr)) {
+      if (is.null(vr$data$Year2)) {
+        return(NULL)
+      }
+      year2Pivot(vr)
 
     } else {
       NULL
@@ -880,9 +898,9 @@ shinyServer(function(input, output, session) {
                                                     memo_authorized = user_input$memo_authorized,
                                                     has_comments_issue = d$info$has_comments_issue))
 
-          if ((d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year == "2022") {
+          if ((d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year %in% c("2022","2023")) {
 
-            flog.info(paste(d$info$tool, " with PSNUxIM tab found."))
+            flog.info(paste("COP", d$info$cop_year, d$info$tool, " found."))
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
             d <- datapackr::checkPSNUData(d)

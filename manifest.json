@@ -651,38 +651,38 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "master",
-      "GithubSha1": "4772f32e141fec9174ca7e1563ca3a19b6f6bba9",
+      "GithubSha1": "19e77b5f3b6125230e884e5419643cf36705c044",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
         "Title": "A Package that Packs and Unpacks all Data Packs and Target Setting Tools",
-        "Version": "6.1.0",
-        "Date": "2023-02-08",
+        "Version": "6.2.0",
+        "Date": "2023-03-08",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", email = \"sjackson@baosystems.com\",\n        role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", email = \"jason.p.pickering@gmail.com\",\n        role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", email = \"sgarman@baosystems.com\",\n        role = c(\"aut\")),\n    person(\"Chris\", \"Nemarich\", email = \"cnemarich@guidehouse.com\",\n        role = c(\"ctb\")),\n    person(\"Christian\", \"Domaas\", email = \"cdomaas@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Fausto\", \"Lopez\", email = \"flopez@baosystems.com\",\n        role = c(\"ctb\")),\n    person(\"Jordan\", \"Bales\", email = \"jbales@baosystems.com\",\n        role = c(\"ctb\"))\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
         "URL": "https://github.com/pepfar-datim/datapackr",
         "BugReports": "https://github.com/pepfar-datim/datapackr",
         "Depends": "R (>= 4.1.0),\ndatimutils (>= 0.5.1)",
         "Imports": "assertthat,\ncrayon (>= 1.3.4),\ndatimvalidation,\ndplyr (>= 0.8.3),\nhttr (>= 1.4.0),\njsonlite (>= 1.6),\nlubridate,\nmagrittr (>= 1.5),\nmethods,\nopenxlsx,\npurrr (>= 0.3.3),\nreadxl (>= 1.3.1),\nrlang (>= 0.4.2),\nstringr (>= 1.4.0),\ntibble (>= 2.1.3),\ntidyr (>= 1.0.0),\ntidyselect (>= 0.2.5),\ntidyxl (>= 1.0.4)",
-        "Suggests": "devtools (>= 2.0.1),\nhttptest,\ntestthat,\nreadr (>= 1.3.1),\ncellranger,\nrprojroot,\nwaldo,\nparallel,\ngdtools,\nflextable,\nofficer,\nlintr (>= 3.0.0)",
+        "Suggests": "devtools (>= 2.0.1),\nhttptest,\ntestthat,\nreadr (>= 1.3.1),\ncellranger,\nrprojroot,\nwaldo,\nparallel,\ngdtools,\nflextable,\nofficer,\nlintr (>= 3.0.0),\nstringi",
         "License": "file LICENSE",
         "Encoding": "UTF-8",
         "LazyData": "true",
         "RoxygenNote": "7.2.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.2; ; 2023-02-09 07:18:09 UTC; unix",
+        "Built": "R 4.2.2; ; 2023-03-09 05:31:09 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "master",
-        "RemoteSha": "4772f32e141fec9174ca7e1563ca3a19b6f6bba9",
+        "RemoteSha": "19e77b5f3b6125230e884e5419643cf36705c044",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "master",
-        "GithubSHA1": "4772f32e141fec9174ca7e1563ca3a19b6f6bba9",
+        "GithubSHA1": "19e77b5f3b6125230e884e5419643cf36705c044",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation"
       }
     },
@@ -4044,10 +4044,10 @@
       "checksum": "f8a9eb2ccb56697495a8c7cf0d73e8d7"
     },
     ".Rprofile": {
-      "checksum": "9c2967e440d876a6fb8675af2e9ed8da"
+      "checksum": "5c412666f0666471b177f3310886ace4"
     },
     "CHANGELOG.md": {
-      "checksum": "e3122a28fe8d68c0347bb9b52d31801a"
+      "checksum": "e3c88d5683aadb6b71d474df8a3ae1b0"
     },
     "config.yml.sample": {
       "checksum": "31c37d9dc0af96e3c9c149f808b3ea48"
@@ -4062,7 +4062,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "cf921bd8e90158785e152192e0678914"
+      "checksum": "c515f0620fdc15eee35ce0136078aed4"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
@@ -4070,8 +4070,11 @@
     "malawi_memo_comparison.xlsx": {
       "checksum": "d9677ba808e5a1a0aa082087890a332f"
     },
+    "Malawi.csv": {
+      "checksum": "04163c436d1ac9e191351595df54a8b8"
+    },
     "mechs.rds": {
-      "checksum": "30de6be98689a26ae871b206906dc184"
+      "checksum": "82f4cff8199d013bd1e9fab8862ad24d"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
@@ -4095,7 +4098,7 @@
       "checksum": "e10ee49fe60ef9091ad09285ad103f58"
     },
     "R/prepareSNUSummaryTable.R": {
-      "checksum": "53b3fe2220ec2e4476d80b20612c4839"
+      "checksum": "83f8863eda93aba3e2e9b8f88cb6cc52"
     },
     "R/PSNUxIM_pivot.R": {
       "checksum": "0f57e654d93bcb23cf45201ad6b5b3d0"
@@ -4113,10 +4116,13 @@
       "checksum": "0d8a29753034612a14c3a2000d1edf8d"
     },
     "R/sendTimeStampLogToS3.R": {
-      "checksum": "a48901263aac1f0d89c4cf011117f0e5"
+      "checksum": "eb350222b8ad5ecf99c94c204c0111ca"
     },
     "R/sendValidationSummary.R": {
       "checksum": "abc3a6182a720abd9a1882c2695ee590"
+    },
+    "R/sendYear2ExportToS3.R": {
+      "checksum": "e5e4bbc7b6fdbcde928cb15b527523ea"
     },
     "R/snuSelector.R": {
       "checksum": "68f15e0fa1b571a2401dabdfd68f39f6"
@@ -4139,14 +4145,17 @@
     "R/waitingScreens.R": {
       "checksum": "0015e4b08f42b1bd011c9f3c8a970bd4"
     },
+    "R/year2Pivot.R": {
+      "checksum": "d21764aeb34fcb004fcf3c73b4df5e64"
+    },
     "README.md": {
       "checksum": "eef665cd63e15044507de68a54e50b45"
     },
     "server.R": {
-      "checksum": "729452413f36713c96edd6ecdd7e84bd"
+      "checksum": "469dd383fc78eb24c60184f5985fd128"
     },
     "support_files/datapack_model_data.rds": {
-      "checksum": "16c73ef09393da19b32547beb8a2e3d0"
+      "checksum": "34d63ee0b561b7a1295892961ab4e387"
     },
     "support_files/README": {
       "checksum": "9cb0faaff95a40f674f7a20ffcda0788"
