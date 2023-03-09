@@ -1,3 +1,8 @@
+## March 09, 2023
+ * Add a pivot table for COP23 Year 2 data
+ * Adds initial support for parsing COP23 datapacks
+ * Update to datapackr 6.2.0
+ 
 ## Jan 26, 2023
  * Update to Datapackr 6.0.0
 
