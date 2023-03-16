@@ -214,11 +214,17 @@ shinyServer(function(input, output, session) {
           tags$hr(),
           fileInput(
             "file1",
-            "Choose DataPack (Must be XLSX!):",
+            "Choose main tool (Must be XLSX!):",
             accept = c("application/xlsx",
                        ".xlsx"),
             width = "240px"
           ),
+          fileInput(
+            "file2",
+            "Choose a supporting tool",
+            accept = c("application/xlsx",
+                       ".xlsx"),
+            width = "240px"),
           actionButton("validate", "Validate"),
           tags$hr(),
           selectInput("downloadType", "Download type", NULL),
@@ -855,6 +861,7 @@ shinyServer(function(input, output, session) {
     }
 
     inFile <- input$file1
+    inFile2 <- input$file2
     messages <- ""
 
     if (is.null(inFile)) {
@@ -870,12 +877,24 @@ shinyServer(function(input, output, session) {
       incProgress(0.1, detail = ("Unpacking your DataPack"))
 
 
-      d <- tryCatch({
-        datapackr::unPackTool(inFile$datapath,
-                              d2_session = user_input$d2_session)},
-        error = function(e) {
-          return(e)
-        })
+      if (is.null(inFile2)) {
+        d <- tryCatch({
+          datapackr::unPackTool(inFile$datapath,
+                                d2_session = user_input$d2_session)},
+          error = function(e) {
+            return(e)
+          })
+      } else {
+
+         tryCatch({
+          d <- datapackr::unPackToolSet(datapack_path = inFile$datapath,
+                                   psnuxim_path = inFile2$datapath,
+                                d2_session = user_input$d2_session)},
+          error = function(e) {
+           stop(print(e))
+          })
+      }
+
 
       if (inherits(d, "error")) {
         return("An error occurred. Please contact DATIM support.")
