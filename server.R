@@ -91,8 +91,15 @@ shinyServer(function(input, output, session) {
     ready$ok <- FALSE
   })
 
+  observeEvent(input$file2, {
+    shinyjs::show("validate")
+    shinyjs::enable("validate")
+    ready$ok <- FALSE
+  })
+
   observeEvent(input$validate, {
     shinyjs::disable("file1")
+    shinyjs::disable("file2")
     shinyjs::disable("validate")
     ready$ok <- TRUE
   })
@@ -100,6 +107,7 @@ shinyServer(function(input, output, session) {
   observeEvent(input$reset_input, {
     shinyjs::reset("side-panel")
     shinyjs::enable("file1")
+    shinyjs::enable("file2")
     shinyjs::disable("validate")
     shinyjs::disable("downloadDataPack")
     shinyjs::disable("download_messages")
@@ -214,14 +222,14 @@ shinyServer(function(input, output, session) {
           tags$hr(),
           fileInput(
             "file1",
-            "Choose main tool (Must be XLSX!):",
+            "Choose a DataPack (Must be XLSX!):",
             accept = c("application/xlsx",
                        ".xlsx"),
             width = "240px"
           ),
           fileInput(
             "file2",
-            "Choose a supporting tool",
+            "Choose a PSNUxIM Tool",
             accept = c("application/xlsx",
                        ".xlsx"),
             width = "240px"),
@@ -864,7 +872,7 @@ shinyServer(function(input, output, session) {
     inFile2 <- input$file2
     messages <- ""
 
-    if (is.null(inFile)) {
+    if (is.null(inFile) && is.null(inFile2)) {
       return(NULL)
     }
 
@@ -876,22 +884,34 @@ shinyServer(function(input, output, session) {
       shinyjs::disable("validate")
       incProgress(0.1, detail = ("Unpacking your DataPack"))
 
+     if (!is.null(inFile$datapath) && is.null(inFile2$datapath)){
 
-      if (is.null(inFile2)) {
+       d <- tryCatch({
+         datapackr::unPackTool(inFile$datapath,
+                               d2_session = user_input$d2_session)},
+         error = function(e) {
+           return(e)
+         })
+     }
+
+      if (is.null(inFile$datapath) && !is.null(inFile2$datapath)){
+
         d <- tryCatch({
-          datapackr::unPackTool(inFile$datapath,
+          datapackr::unPackTool(inFile2$datapath,
                                 d2_session = user_input$d2_session)},
           error = function(e) {
             return(e)
           })
-      } else {
+      }
 
-         tryCatch({
-          d <- datapackr::unPackToolSet(datapack_path = inFile$datapath,
-                                   psnuxim_path = inFile2$datapath,
+      if (!is.null(inFile$datapath) && !is.null(inFile2$datapath)){
+
+        d <- tryCatch({
+          datapackr::unPackToolSet(d1 = inFile$datapath,
+                                   d2 = inFile2$datapath,
                                 d2_session = user_input$d2_session)},
           error = function(e) {
-           stop(print(e))
+            return(e)
           })
       }
 
@@ -909,7 +929,8 @@ shinyServer(function(input, output, session) {
         #Log the validation to S3
         sendEventToS3(d, "VALIDATE")
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
-        if (d$info$tool == "Data Pack") {
+        #Data Packs
+        if (d$info$tool %in% c("Data Pack", "PSNUxIM")) {
 
           updateSelectInput(session = session, inputId = "downloadType",
                             choices = downloadTypes(tool_type = d$info$tool,
@@ -1034,56 +1055,59 @@ shinyServer(function(input, output, session) {
             hideTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
           }
         }
+
+        #COP22 OPU DataPacks AKA PSNUxIM Tabs
+        if (d$info$tool == "OPU Data Pack") {
+
+          updateSelectInput(session = session, inputId = "downloadType",
+                            choices = downloadTypes(tool_type = d$info$tool,
+                                                    needs_psnuxim = FALSE,
+                                                    memo_authorized = user_input$memo_authorized))
+
+          flog.info("Datapack with PSNUxIM tab found.")
+          incProgress(0.1, detail = ("Checking validation rules"))
+          Sys.sleep(0.5)
+          d <- datapackr::checkPSNUData(d)
+          incProgress(0.1, detail = ("Preparing COP memo data"))
+          #Only execute the comparison if the user has proper authorization
+          #Global agency users cannot retrieve prioritization data
+          #from the DATIM analytics API
+          d <-
+            datapackr::prepareMemoData(
+              d,
+              memo_type = "comparison",
+              include_no_prio = TRUE,
+              d2_session = user_input$d2_session
+            )
+          d <- datapackr::generateComparisonTable(d)
+          Sys.sleep(1)
+          incProgress(0.1, detail = ("Preparing a modality summary"))
+          d <- modalitySummaryTable(d)
+          Sys.sleep(1)
+          incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
+          d <- recencyComparison(d)
+          Sys.sleep(1)
+          shinyjs::disable("send_paw")
+          shinyjs::enable("downloadType")
+          shinyjs::enable("downloadOutputs")
+          updatePickerInput(session = session, inputId = "kpCascadeInput",
+                            choices = snuSelector(d))
+          updatePickerInput(session = session, inputId = "epiCascadeInput",
+                            choices = snuSelector(d))
+          showTab(inputId = "main-panel", target = "Validation rules")
+          showTab(inputId = "main-panel", target = "HTS Summary Chart")
+          showTab(inputId = "main-panel", target = "HTS Summary Table")
+          showTab(inputId = "main-panel", target = "HTS Yield")
+          showTab(inputId = "main-panel", target = "VLS Testing")
+          showTab(inputId = "main-panel", target = "Epi Cascade Pyramid")
+          showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
+          showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
+          showTab(inputId = "main-panel", target = "HTS Recency")
+          showTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
+        }
       }
 
-      if (d$info$tool == "OPU Data Pack") {
 
-        updateSelectInput(session = session, inputId = "downloadType",
-                          choices = downloadTypes(tool_type = d$info$tool,
-                                                  needs_psnuxim = FALSE,
-                                                  memo_authorized = user_input$memo_authorized))
-
-        flog.info("Datapack with PSNUxIM tab found.")
-        incProgress(0.1, detail = ("Checking validation rules"))
-        Sys.sleep(0.5)
-        d <- datapackr::checkPSNUData(d)
-        incProgress(0.1, detail = ("Preparing COP memo data"))
-        #Only execute the comparison if the user has proper authorization
-        #Global agency users cannot retrieve prioritization data
-        #from the DATIM analytics API
-        d <-
-          datapackr::prepareMemoData(
-            d,
-            memo_type = "comparison",
-            include_no_prio = TRUE,
-            d2_session = user_input$d2_session
-          )
-        d <- datapackr::generateComparisonTable(d)
-        Sys.sleep(1)
-        incProgress(0.1, detail = ("Preparing a modality summary"))
-        d <- modalitySummaryTable(d)
-        Sys.sleep(1)
-        incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
-        d <- recencyComparison(d)
-        Sys.sleep(1)
-        shinyjs::disable("send_paw")
-        shinyjs::enable("downloadType")
-        shinyjs::enable("downloadOutputs")
-        updatePickerInput(session = session, inputId = "kpCascadeInput",
-                          choices = snuSelector(d))
-        updatePickerInput(session = session, inputId = "epiCascadeInput",
-                          choices = snuSelector(d))
-        showTab(inputId = "main-panel", target = "Validation rules")
-        showTab(inputId = "main-panel", target = "HTS Summary Chart")
-        showTab(inputId = "main-panel", target = "HTS Summary Table")
-        showTab(inputId = "main-panel", target = "HTS Yield")
-        showTab(inputId = "main-panel", target = "VLS Testing")
-        showTab(inputId = "main-panel", target = "Epi Cascade Pyramid")
-        showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
-        showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
-        showTab(inputId = "main-panel", target = "HTS Recency")
-        showTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
-      }
 
     })
 
