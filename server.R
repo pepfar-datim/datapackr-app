@@ -70,7 +70,6 @@ shinyServer(function(input, output, session) {
 
   ready <- reactiveValues(ok = FALSE)
 
-
   user_input <- reactiveValues(authenticated = FALSE,
                                  status = "",
                                  d2_session = NULL,
@@ -114,6 +113,7 @@ shinyServer(function(input, output, session) {
     shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
     shinyjs::disable("compare")
+    validation_results <- NULL
     ready$ok <- FALSE
   })
 
@@ -937,6 +937,10 @@ shinyServer(function(input, output, session) {
                                                     needs_psnuxim = d$info$needs_psnuxim,
                                                     memo_authorized = user_input$memo_authorized,
                                                     has_comments_issue = d$info$has_comments_issue))
+
+          if (is.null(d$data$Year2)) {
+            hideTab(inputId = "main-panel", target = "Year 2 Pivot")
+            }
 
           if ((d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year %in% c("2022","2023")) {
 
