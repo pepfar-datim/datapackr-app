@@ -651,7 +651,7 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "cop23-psnu-x-im",
-      "GithubSha1": "7fce2e9926d95e49e13293846b1a6c652e59f95a",
+      "GithubSha1": "c0f9ba5cacc8ee93d830652da9c5c125ed05090a",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -671,18 +671,18 @@
         "RoxygenNote": "7.2.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.2; ; 2023-03-17 14:15:58 UTC; unix",
+        "Built": "R 4.2.2; ; 2023-03-18 05:38:34 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "cop23-psnu-x-im",
-        "RemoteSha": "7fce2e9926d95e49e13293846b1a6c652e59f95a",
+        "RemoteSha": "c0f9ba5cacc8ee93d830652da9c5c125ed05090a",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "cop23-psnu-x-im",
-        "GithubSHA1": "7fce2e9926d95e49e13293846b1a6c652e59f95a",
+        "GithubSHA1": "c0f9ba5cacc8ee93d830652da9c5c125ed05090a",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation"
       }
     },
@@ -4044,7 +4044,7 @@
       "checksum": "91a4efa15a0a5c90634b647819c1a254"
     },
     ".Rprofile": {
-      "checksum": "a23a2cda9e361ccfa347c81d6e457e88"
+      "checksum": "f1c061a00169ca293eb1d4a373d1cc76"
     },
     "CHANGELOG.md": {
       "checksum": "e3c88d5683aadb6b71d474df8a3ae1b0"
@@ -4098,7 +4098,7 @@
       "checksum": "e10ee49fe60ef9091ad09285ad103f58"
     },
     "R/prepareSNUSummaryTable.R": {
-      "checksum": "83f8863eda93aba3e2e9b8f88cb6cc52"
+      "checksum": "95bdb9aa58519b859e0c7d410893ca9e"
     },
     "R/PSNUxIM_pivot.R": {
       "checksum": "0f57e654d93bcb23cf45201ad6b5b3d0"
@@ -4152,7 +4152,7 @@
       "checksum": "eef665cd63e15044507de68a54e50b45"
     },
     "server.R": {
-      "checksum": "d0365276789b2cd5002e80cda18f9b01"
+      "checksum": "fe726af9852fb6a752911b988fc4a88c"
     },
     "support_files/datapack_model_data.rds": {
       "checksum": "34d63ee0b561b7a1295892961ab4e387"
