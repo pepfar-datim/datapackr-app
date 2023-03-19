@@ -932,11 +932,11 @@ shinyServer(function(input, output, session) {
         #Data Packs
         if (d$info$tool %in% c("Data Pack", "PSNUxIM")) {
 
+
+
           updateSelectInput(session = session, inputId = "downloadType",
-                            choices = downloadTypes(tool_type = d$info$tool,
-                                                    needs_psnuxim = d$info$needs_psnuxim,
-                                                    memo_authorized = user_input$memo_authorized,
-                                                    has_comments_issue = d$info$has_comments_issue))
+                            choices = downloadTypes(d,
+                                                    memo_authorized = user_input$memo_authorized))
 
           if (is.null(d$data$Year2)) {
             hideTab(inputId = "main-panel", target = "Year 2 Pivot")
@@ -1064,8 +1064,7 @@ shinyServer(function(input, output, session) {
         if (d$info$tool == "OPU Data Pack") {
 
           updateSelectInput(session = session, inputId = "downloadType",
-                            choices = downloadTypes(tool_type = d$info$tool,
-                                                    needs_psnuxim = FALSE,
+                            choices = downloadTypes(d,
                                                     memo_authorized = user_input$memo_authorized))
 
           flog.info("Datapack with PSNUxIM tab found.")
