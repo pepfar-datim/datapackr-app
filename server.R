@@ -181,7 +181,7 @@ shinyServer(function(input, output, session) {
       #img(src = "pepfar.png", align = "center"),
       tags$head(tags$script(HTML(jscode_login))), # enter button functionality for login button
       tags$div(HTML('<center><img src="pepfar.png"></center>')),
-      h4("Welcome to the DataPack Validation App. Please login with your DATIM credentials:")
+      h4("Welcome to the Target Setting Validation App. Please login with your DATIM credentials:")
     ),
     fluidRow(
       actionButton("login_button_oauth","Log in with DATIM"),
@@ -191,7 +191,7 @@ shinyServer(function(input, output, session) {
     fluidRow(
       tags$hr(),
       tags$div(HTML("<ul><li><h4>Please be sure you fully populate the PSNUxIM",
-                    " tab when receiving a new DataPack. Consult <a href = ",
+                    " tab when receiving a new PSNUxIM Tool. Consult <a href = ",
                     "\"https://apps.datim.org/datapack-userguide/\" target = ",
                     "\"blank\" > the user guide</a> for further information!",
                     "</h4></li><li><h4>See the latest updates to the app <a href =",
@@ -203,7 +203,7 @@ shinyServer(function(input, output, session) {
   })
 
   output$authenticated <- renderUI({
-    wiki_url <- a("Datapack User Guide",
+    wiki_url <- a("Target Setting Tool User Guide",
                   href = "https://apps.datim.org/datapack-userguide/",
                   target = "_blank")
 
@@ -222,17 +222,17 @@ shinyServer(function(input, output, session) {
           tags$hr(),
           fileInput(
             "file1",
-            "Choose a DataPack (Must be XLSX!):",
+            "Choose a Target Setting Tool (Must be an XLSX file!)",
             accept = c("application/xlsx",
                        ".xlsx"),
-            width = "240px"
+            width = "440px"
           ),
           fileInput(
             "file2",
-            "Choose a PSNUxIM Tool",
+            "Choose a PSNUxIM Tool (Must be an XLSX file!):",
             accept = c("application/xlsx",
                        ".xlsx"),
-            width = "240px"),
+            width = "440px"),
           actionButton("validate", "Validate"),
           tags$hr(),
           selectInput("downloadType", "Download type", NULL),
