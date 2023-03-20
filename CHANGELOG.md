@@ -1,3 +1,6 @@
+## March 20, 2023,
+ * Fixed an issue with subnat pyramids chart for COP23 
+
 ## March 09, 2023
  * Add a pivot table for COP23 Year 2 data
  * Adds initial support for parsing COP23 datapacks
