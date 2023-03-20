@@ -650,8 +650,8 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "critical-formulas-fix",
-      "GithubSha1": "64df26205b64a9afe590f73d9d2076c1c4661f0a",
+      "GithubRef": "master",
+      "GithubSha1": "b85deac2e0c383aeb239ba88c3e2b87bea00ff30",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -671,18 +671,18 @@
         "RoxygenNote": "7.2.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.2; ; 2023-03-10 13:10:43 UTC; unix",
+        "Built": "R 4.2.2; ; 2023-03-16 17:25:48 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "critical-formulas-fix",
-        "RemoteSha": "64df26205b64a9afe590f73d9d2076c1c4661f0a",
+        "RemoteRef": "master",
+        "RemoteSha": "b85deac2e0c383aeb239ba88c3e2b87bea00ff30",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "critical-formulas-fix",
-        "GithubSHA1": "64df26205b64a9afe590f73d9d2076c1c4661f0a",
+        "GithubRef": "master",
+        "GithubSHA1": "b85deac2e0c383aeb239ba88c3e2b87bea00ff30",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation"
       }
     },
@@ -4041,10 +4041,10 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".RData": {
-      "checksum": "91a4efa15a0a5c90634b647819c1a254"
+      "checksum": "7ac100a749b6af25c3fa4def49bc7574"
     },
     ".Rprofile": {
-      "checksum": "8a87e97c77f505a7e83f67f9cf435b54"
+      "checksum": "e33c890e7191820159625024e146f5c4"
     },
     "CHANGELOG.md": {
       "checksum": "e3c88d5683aadb6b71d474df8a3ae1b0"
@@ -4074,7 +4074,7 @@
       "checksum": "04163c436d1ac9e191351595df54a8b8"
     },
     "mechs.rds": {
-      "checksum": "f72e0c987a3b807d4f67a816d4502c5d"
+      "checksum": "e0d8bbc497d27df8db32568d24f6c0d5"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
@@ -4092,7 +4092,7 @@
       "checksum": "d7eef99e59f9f9ea084874af81a63307"
     },
     "R/modalitySummary.R": {
-      "checksum": "fb3fcdedb353d32abbe3d2618d9ac900"
+      "checksum": "f1e65daa417fc798d65cfd5b4f5630b4"
     },
     "R/prepareHTSModalityData.R": {
       "checksum": "e10ee49fe60ef9091ad09285ad103f58"
@@ -4110,7 +4110,7 @@
       "checksum": "83707d66a7e2f77b53b6202144bc3217"
     },
     "R/sendDATIMExportToS3.R": {
-      "checksum": "fb31b0ed7f4df7e8684f3cee9d626855"
+      "checksum": "1feb233859b2a9206e1b1549057257ea"
     },
     "R/sendEventToS3.R": {
       "checksum": "0d8a29753034612a14c3a2000d1edf8d"
