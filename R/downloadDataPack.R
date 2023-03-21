@@ -23,11 +23,13 @@ downloadDataPack <- function(d, d2_session) {
 downloadMissingPSNUxIMTargets <- function(d, d2_session) {
 
   if (d$info$cop_year == "2022") {
-    support_file <- fetchSupportFiles("support_files/psnuxim_model_data_22.rds")
+    support_file <-
+      fetchSupportFiles("support_files/psnuxim_model_data_22.rds")
   }
 
   if (d$info$cop_year == "2023") {
-    support_file <- fetchSupportFiles("support_files/psnuxim_model_data_23.rds")
+    support_file <-
+      fetchSupportFiles("support_files/psnuxim_model_data_23.rds")
   }
 
   if (!file.exists(support_file)) {
@@ -35,7 +37,14 @@ downloadMissingPSNUxIMTargets <- function(d, d2_session) {
     stop("WOMP!")
   }
 
-  d <- datapackr::writePSNUxIM(d, snuxim_model_data_path = support_file, d2_session = d2_session, append = FALSE)
+  d <-
+    datapackr::writePSNUxIM(
+      d,
+      snuxim_model_data_path = support_file,
+      d2_session = d2_session,
+      append = FALSE
+    )
+
   unlink(support_file)
 
   return(d)

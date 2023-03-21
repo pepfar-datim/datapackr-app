@@ -721,8 +721,22 @@ shinyServer(function(input, output, session) {
   output$downloadOutputs <- downloadHandler(
     filename = function() {
       d <- validation_results()
+
       sane_name <- d$info$sane_name
-      prefix <- input$downloadType
+
+
+      prefix <- switch(input$downloadType,
+                       "messages" = "Messages",
+                        "cso_flatpack" = "CSO_Flatpack",
+                        "flatpack" = "Flatpack",
+                        "vr_rules" = "Validation_report",
+                        "datapack" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
+                        "missing_psnuxim_targets" = "PSNUxIM_Missing_Targets",
+                        "comparison" = "Comparison",
+                        "memo" = paste("COP", substring(d$info$cop_year,first = 3,last = 4), "_Memo"),
+                         "Other"
+                        )
+
       date <- date <- format(Sys.time(), "%Y%m%d_%H%M%S")
 
       suffix <- if (input$downloadType %in% c("messages")) {
@@ -733,7 +747,7 @@ shinyServer(function(input, output, session) {
         ".xlsx"
       }
 
-      paste0(sane_name, "_", prefix, "_", date, suffix)
+      paste0(prefix, "_", sane_name, "_", date, suffix)
     },
     content = function(file) {
 
