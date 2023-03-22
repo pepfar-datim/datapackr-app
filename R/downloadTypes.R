@@ -22,7 +22,7 @@ downloadTypes <- function(d,
 
   if (is.null(d$data$PSUxIM) || (NROW(d$data$missingCombos) > 0)) {
     download_types <- c(download_types, "datapack")
-    download_names <- c(download_names, "New PNSUxIM")
+    download_names <- c(download_names, "New PSNUxIM")
   }
 
   #If there are no non-equal targets, they can choose to get only the missing PSNUxIM
@@ -39,8 +39,6 @@ downloadTypes <- function(d,
     download_names <- c(download_names, "COP Memo")
   }
 
-  print(download_types)
-  print(download_names)
   names(download_types) <- download_names
 
   return(download_types)

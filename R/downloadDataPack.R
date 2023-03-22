@@ -14,7 +14,9 @@ downloadDataPack <- function(d, d2_session) {
     stop("WOMP!")
   }
 
-  d <- datapackr::writePSNUxIM(d, snuxim_model_data_path = support_file, d2_session = d2_session, append = TRUE)
+  d <- datapackr::writePSNUxIM(d,
+                               snuxim_model_data_path = support_file,
+                               d2_session = d2_session, append = TRUE)
   unlink(support_file)
 
   return(d)
