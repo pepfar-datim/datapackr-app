@@ -1,44 +1,43 @@
-downloadTypes <- function(tool_type="Data Pack", needs_psnuxim=FALSE, memo_authorized = FALSE, has_comments_issue = FALSE) {
-
-  if (is.null(needs_psnuxim)) {
-    needs_psnuxim <- FALSE
-  }
-
+downloadTypes <- function(d,
+                          memo_authorized = FALSE) {
+  #Common types which should always be there.
   download_names <-
-    c(
-      "FlatPack",
+    c("FlatPack",
       "CSO Flatpack",
       "Messages",
       "Validation report",
-      "New PSNUxIM",
-      "Missing PSNUxIM Targets",
-      "Comparison",
-      "COP Memo"
-    )
+      "Comparison")
+
   download_types <-
     c("flatpack",
       "cso_flatpack",
       "messages",
       "vr_rules",
-      "datapack",
-      "missing_psnuxim_targets",
-      "comparison",
-      "memo")
+      "comparison")
+#A completely new PSNUxIM
+#
+
+  if (!d$info$has_psnuxim){
+    download_types <- c(download_types, "datapack")
+    download_names <- c(download_names, "New PSNUxIM")
+  }
+
+#Two ways to "append". Either to the existing datapack
+#or only get the missing rows
+  if ( NROW(d$data$missingCombos) > 0 || NROW(d$tests$non_equal_targets) > 0 ) {
+    download_types <- c(download_types, "missing_psnuxim_targets")
+    download_names <- c(download_names,  "Only Missing PSNUxIM Targets")
+
+    download_types <- c(download_types, "append_missing_psnuxim_targets")
+    download_names <- c(download_names,  "Append Missing PSNUxIM Targets")
+  }
+
+  if (memo_authorized) {
+    download_types <- c(download_types, "memo")
+    download_names <- c(download_names, "COP Memo")
+  }
 
   names(download_types) <- download_names
-
-  if (tool_type == "OPU Data Pack" | !needs_psnuxim) {
-    download_types <- download_types[!(download_types %in% c("datapack", "missing_psnuxim_targets"))]
-  }
-
-  if (!memo_authorized) {
-    download_types <- download_types[!(download_types %in% c("memo"))]
-  }
-
-  #Remove the PSNUxIM download if they have comments
-  if (has_comments_issue) {
-    download_types <- download_types[!(download_types %in% c("datapack"))]
-  }
 
   return(download_types)
 }

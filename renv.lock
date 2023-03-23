@@ -212,16 +212,16 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "6.2.0",
+      "Version": "6.2.1",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
-      "RemoteRef": "master",
-      "RemoteSha": "b85deac2e0c383aeb239ba88c3e2b87bea00ff30",
+      "RemoteRef": "cop23-psnu-x-im",
+      "RemoteSha": "69cabd1912d4f208a3018e3138641b850565310d",
       "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation",
-      "Hash": "abf98fd51e4425a081590724487c909e",
+      "Hash": "7786349dbc99b94e82224999914bceec",
       "Requirements": [
         "assertthat",
         "crayon",
@@ -764,10 +764,10 @@
     },
     "openssl": {
       "Package": "openssl",
-      "Version": "2.0.2",
+      "Version": "2.0.6",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "6d3bef2e305f55c705c674653c7d7d3d",
+      "Hash": "0f7cd2962e3044bb940cca4f4b5cecbe",
       "Requirements": [
         "askpass"
       ]

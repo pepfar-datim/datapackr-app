@@ -1,3 +1,6 @@
+## March 23, 2023
+ * Enhanced support for COP23 PSNUxIM tab parsing and generation
+
 ## March 20, 2023,
  * Fixed an issue with subnat pyramids chart for COP23 
 

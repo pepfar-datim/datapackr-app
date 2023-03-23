@@ -70,7 +70,6 @@ shinyServer(function(input, output, session) {
 
   ready <- reactiveValues(ok = FALSE)
 
-
   user_input <- reactiveValues(authenticated = FALSE,
                                  status = "",
                                  d2_session = NULL,
@@ -91,8 +90,15 @@ shinyServer(function(input, output, session) {
     ready$ok <- FALSE
   })
 
+  observeEvent(input$file2, {
+    shinyjs::show("validate")
+    shinyjs::enable("validate")
+    ready$ok <- FALSE
+  })
+
   observeEvent(input$validate, {
     shinyjs::disable("file1")
+    shinyjs::disable("file2")
     shinyjs::disable("validate")
     ready$ok <- TRUE
   })
@@ -100,12 +106,14 @@ shinyServer(function(input, output, session) {
   observeEvent(input$reset_input, {
     shinyjs::reset("side-panel")
     shinyjs::enable("file1")
+    shinyjs::enable("file2")
     shinyjs::disable("validate")
     shinyjs::disable("downloadDataPack")
     shinyjs::disable("download_messages")
     shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
     shinyjs::disable("compare")
+    validation_results <- NULL
     ready$ok <- FALSE
   })
 
@@ -173,7 +181,7 @@ shinyServer(function(input, output, session) {
       #img(src = "pepfar.png", align = "center"),
       tags$head(tags$script(HTML(jscode_login))), # enter button functionality for login button
       tags$div(HTML('<center><img src="pepfar.png"></center>')),
-      h4("Welcome to the DataPack Validation App. Please login with your DATIM credentials:")
+      h4("Welcome to the Target Setting Validation App. Please login with your DATIM credentials:")
     ),
     fluidRow(
       actionButton("login_button_oauth","Log in with DATIM"),
@@ -183,7 +191,7 @@ shinyServer(function(input, output, session) {
     fluidRow(
       tags$hr(),
       tags$div(HTML("<ul><li><h4>Please be sure you fully populate the PSNUxIM",
-                    " tab when receiving a new DataPack. Consult <a href = ",
+                    " tab when receiving a new PSNUxIM Tool. Consult <a href = ",
                     "\"https://apps.datim.org/datapack-userguide/\" target = ",
                     "\"blank\" > the user guide</a> for further information!",
                     "</h4></li><li><h4>See the latest updates to the app <a href =",
@@ -195,7 +203,7 @@ shinyServer(function(input, output, session) {
   })
 
   output$authenticated <- renderUI({
-    wiki_url <- a("Datapack User Guide",
+    wiki_url <- a("Target Setting Tool User Guide",
                   href = "https://apps.datim.org/datapack-userguide/",
                   target = "_blank")
 
@@ -214,11 +222,17 @@ shinyServer(function(input, output, session) {
           tags$hr(),
           fileInput(
             "file1",
-            "Choose DataPack (Must be XLSX!):",
+            "Choose a Target Setting Tool (Must be an XLSX file!)",
             accept = c("application/xlsx",
                        ".xlsx"),
-            width = "240px"
+            width = "440px"
           ),
+          fileInput(
+            "file2",
+            "Choose a PSNUxIM Tool (Must be an XLSX file!):",
+            accept = c("application/xlsx",
+                       ".xlsx"),
+            width = "440px"),
           actionButton("validate", "Validate"),
           tags$hr(),
           selectInput("downloadType", "Download type", NULL),
@@ -707,8 +721,23 @@ shinyServer(function(input, output, session) {
   output$downloadOutputs <- downloadHandler(
     filename = function() {
       d <- validation_results()
+
       sane_name <- d$info$sane_name
-      prefix <- input$downloadType
+
+
+      prefix <- switch(input$downloadType,
+                       "messages" = "Messages",
+                        "cso_flatpack" = "CSO_Flatpack",
+                        "flatpack" = "Flatpack",
+                        "vr_rules" = "Validation_report",
+                        "datapack" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
+                        "missing_psnuxim_targets" = "PSNUxIM_Missing_Targets",
+                        "append_missing_psnuxim_targets" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
+                        "comparison" = "Comparison",
+                        "memo" = paste("COP", substring(d$info$cop_year,first = 3,last = 4), "_Memo"),
+                         "Other"
+                        )
+
       date <- date <- format(Sys.time(), "%Y%m%d_%H%M%S")
 
       suffix <- if (input$downloadType %in% c("messages")) {
@@ -719,7 +748,7 @@ shinyServer(function(input, output, session) {
         ".xlsx"
       }
 
-      paste0(sane_name, "_", prefix, "_", date, suffix)
+      paste0(prefix, "_", sane_name, "_", date, suffix)
     },
     content = function(file) {
 
@@ -786,7 +815,12 @@ shinyServer(function(input, output, session) {
           name = "datapack")
         waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
 
-        d <- downloadDataPack(d, d2_session = user_input$d2_session)
+        d <- downloadDataPack(d,
+                              d2_session = user_input$d2_session,
+                              append = FALSE,
+                              use_template = TRUE
+                              )
+
         openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
         sendEventToS3(d, "DATAPACK_DOWNLOAD")
         flog.info(
@@ -794,7 +828,6 @@ shinyServer(function(input, output, session) {
           name = "datapack")
         waiter_hide()
       }
-
 
       if (input$downloadType == "missing_psnuxim_targets") {
 
@@ -804,9 +837,36 @@ shinyServer(function(input, output, session) {
           name = "datapack")
         waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
 
-        d <- downloadMissingPSNUxIMTargets(d, d2_session = user_input$d2_session)
+        d <- downloadDataPack(d,
+                                           d2_session = user_input$d2_session,
+                                           append = TRUE,
+                                           use_template = TRUE
+                                           )
+
         openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
         sendEventToS3(d, "MISSING_PSNUXIM_DOWNLOAD")
+        flog.info(
+          paste0("Missing PSNUxIM targets generated reloaded for ", d$info$datapack_name),
+          name = "datapack")
+        waiter_hide()
+      }
+
+      if (input$downloadType == "append_missing_psnuxim_targets") {
+
+        flog.info(
+          paste0("Appending PSNUxIM targets requested for ", d$info$datapack_name)
+          ,
+          name = "datapack")
+        waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
+
+        d <- downloadDataPack(d,
+                                           d2_session = user_input$d2_session,
+                                           append = TRUE,
+                                           use_template = FALSE
+        )
+
+        openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
+        sendEventToS3(d, "APPEND_PSNUXIM_DOWNLOAD")
         flog.info(
           paste0("Missing PSNUxIM targets generated reloaded for ", d$info$datapack_name),
           name = "datapack")
@@ -855,9 +915,10 @@ shinyServer(function(input, output, session) {
     }
 
     inFile <- input$file1
+    inFile2 <- input$file2
     messages <- ""
 
-    if (is.null(inFile)) {
+    if (is.null(inFile) && is.null(inFile2)) {
       return(NULL)
     }
 
@@ -869,13 +930,37 @@ shinyServer(function(input, output, session) {
       shinyjs::disable("validate")
       incProgress(0.1, detail = ("Unpacking your DataPack"))
 
+     if (!is.null(inFile$datapath) && is.null(inFile2$datapath)){
 
-      d <- tryCatch({
-        datapackr::unPackTool(inFile$datapath,
-                              d2_session = user_input$d2_session)},
-        error = function(e) {
-          return(e)
-        })
+       d <- tryCatch({
+         datapackr::unPackTool(inFile$datapath,
+                               d2_session = user_input$d2_session)},
+         error = function(e) {
+           return(e)
+         })
+     }
+
+      if (is.null(inFile$datapath) && !is.null(inFile2$datapath)){
+
+        d <- tryCatch({
+          datapackr::unPackTool(inFile2$datapath,
+                                d2_session = user_input$d2_session)},
+          error = function(e) {
+            return(e)
+          })
+      }
+
+      if (!is.null(inFile$datapath) && !is.null(inFile2$datapath)){
+
+        d <- tryCatch({
+          datapackr::unPackToolSet(d1 = inFile$datapath,
+                                   d2 = inFile2$datapath,
+                                d2_session = user_input$d2_session)},
+          error = function(e) {
+            return(e)
+          })
+      }
+
 
       if (inherits(d, "error")) {
         return("An error occurred. Please contact DATIM support.")
@@ -890,13 +975,18 @@ shinyServer(function(input, output, session) {
         #Log the validation to S3
         sendEventToS3(d, "VALIDATE")
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
-        if (d$info$tool == "Data Pack") {
+        #Data Packs
+        if (d$info$tool %in% c("Data Pack", "PSNUxIM")) {
+
+
 
           updateSelectInput(session = session, inputId = "downloadType",
-                            choices = downloadTypes(tool_type = d$info$tool,
-                                                    needs_psnuxim = d$info$needs_psnuxim,
-                                                    memo_authorized = user_input$memo_authorized,
-                                                    has_comments_issue = d$info$has_comments_issue))
+                            choices = downloadTypes(d,
+                                                    memo_authorized = user_input$memo_authorized))
+
+          if (is.null(d$data$Year2)) {
+            hideTab(inputId = "main-panel", target = "Year 2 Pivot")
+            }
 
           if ((d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year %in% c("2022","2023")) {
 
@@ -1015,56 +1105,58 @@ shinyServer(function(input, output, session) {
             hideTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
           }
         }
+
+        #COP22 OPU DataPacks AKA PSNUxIM Tabs
+        if (d$info$tool == "OPU Data Pack") {
+
+          updateSelectInput(session = session, inputId = "downloadType",
+                            choices = downloadTypes(d,
+                                                    memo_authorized = user_input$memo_authorized))
+
+          flog.info("Datapack with PSNUxIM tab found.")
+          incProgress(0.1, detail = ("Checking validation rules"))
+          Sys.sleep(0.5)
+          d <- datapackr::checkPSNUData(d)
+          incProgress(0.1, detail = ("Preparing COP memo data"))
+          #Only execute the comparison if the user has proper authorization
+          #Global agency users cannot retrieve prioritization data
+          #from the DATIM analytics API
+          d <-
+            datapackr::prepareMemoData(
+              d,
+              memo_type = "comparison",
+              include_no_prio = TRUE,
+              d2_session = user_input$d2_session
+            )
+          d <- datapackr::generateComparisonTable(d)
+          Sys.sleep(1)
+          incProgress(0.1, detail = ("Preparing a modality summary"))
+          d <- modalitySummaryTable(d)
+          Sys.sleep(1)
+          incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
+          d <- recencyComparison(d)
+          Sys.sleep(1)
+          shinyjs::disable("send_paw")
+          shinyjs::enable("downloadType")
+          shinyjs::enable("downloadOutputs")
+          updatePickerInput(session = session, inputId = "kpCascadeInput",
+                            choices = snuSelector(d))
+          updatePickerInput(session = session, inputId = "epiCascadeInput",
+                            choices = snuSelector(d))
+          showTab(inputId = "main-panel", target = "Validation rules")
+          showTab(inputId = "main-panel", target = "HTS Summary Chart")
+          showTab(inputId = "main-panel", target = "HTS Summary Table")
+          showTab(inputId = "main-panel", target = "HTS Yield")
+          showTab(inputId = "main-panel", target = "VLS Testing")
+          showTab(inputId = "main-panel", target = "Epi Cascade Pyramid")
+          showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
+          showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
+          showTab(inputId = "main-panel", target = "HTS Recency")
+          showTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
+        }
       }
 
-      if (d$info$tool == "OPU Data Pack") {
 
-        updateSelectInput(session = session, inputId = "downloadType",
-                          choices = downloadTypes(tool_type = d$info$tool,
-                                                  needs_psnuxim = FALSE,
-                                                  memo_authorized = user_input$memo_authorized))
-
-        flog.info("Datapack with PSNUxIM tab found.")
-        incProgress(0.1, detail = ("Checking validation rules"))
-        Sys.sleep(0.5)
-        d <- datapackr::checkPSNUData(d)
-        incProgress(0.1, detail = ("Preparing COP memo data"))
-        #Only execute the comparison if the user has proper authorization
-        #Global agency users cannot retrieve prioritization data
-        #from the DATIM analytics API
-        d <-
-          datapackr::prepareMemoData(
-            d,
-            memo_type = "comparison",
-            include_no_prio = TRUE,
-            d2_session = user_input$d2_session
-          )
-        d <- datapackr::generateComparisonTable(d)
-        Sys.sleep(1)
-        incProgress(0.1, detail = ("Preparing a modality summary"))
-        d <- modalitySummaryTable(d)
-        Sys.sleep(1)
-        incProgress(0.1, detail = ("Preparing a HTS recency analysis"))
-        d <- recencyComparison(d)
-        Sys.sleep(1)
-        shinyjs::disable("send_paw")
-        shinyjs::enable("downloadType")
-        shinyjs::enable("downloadOutputs")
-        updatePickerInput(session = session, inputId = "kpCascadeInput",
-                          choices = snuSelector(d))
-        updatePickerInput(session = session, inputId = "epiCascadeInput",
-                          choices = snuSelector(d))
-        showTab(inputId = "main-panel", target = "Validation rules")
-        showTab(inputId = "main-panel", target = "HTS Summary Chart")
-        showTab(inputId = "main-panel", target = "HTS Summary Table")
-        showTab(inputId = "main-panel", target = "HTS Yield")
-        showTab(inputId = "main-panel", target = "VLS Testing")
-        showTab(inputId = "main-panel", target = "Epi Cascade Pyramid")
-        showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
-        showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
-        showTab(inputId = "main-panel", target = "HTS Recency")
-        showTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
-      }
 
     })
 
