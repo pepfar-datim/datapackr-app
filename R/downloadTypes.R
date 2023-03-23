@@ -14,25 +14,21 @@ downloadTypes <- function(d,
       "messages",
       "vr_rules",
       "comparison")
+#A completely new PSNUxIM
+#
 
-
-  #Here are two situations when we need a new PSNUxIM
-  # 1) This is a COP23 datapack with no associated PSNUxIM tab
-  # 2) A COP23 datapack which has a PSNUxIM tab attached, but which has missing combos
-
-  if (is.null(d$data$PSUxIM) || (NROW(d$data$missingCombos) > 0)) {
     download_types <- c(download_types, "datapack")
     download_names <- c(download_names, "New PSNUxIM")
-  }
 
-  #If there are no non-equal targets, they can choose to get only the missing PSNUxIM
-  #Targets and append them
-  if (NROW(d$data$missingCombos) > 0 &&
-      NROW(d$tests$non_equal_targets == 0)) {
+#Two ways to "append". Either to the existing datapack
+#or only get the missing rows
+  if ( NROW(d$data$missingCombos) > 0 || NROW(d$tests$non_equal_targets) > 0 ) {
     download_types <- c(download_types, "missing_psnuxim_targets")
-    download_names <- c(download_names,  "Missing PSNUxIM Targets")
-  }
+    download_names <- c(download_names,  "Only Missing PSNUxIM Targets")
 
+    download_types <- c(download_types, "append_missing_psnuxim_targets")
+    download_names <- c(download_names,  "Append Missing PSNUxIM Targets")
+  }
 
   if (memo_authorized) {
     download_types <- c(download_types, "memo")

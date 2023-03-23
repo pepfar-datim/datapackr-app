@@ -732,6 +732,7 @@ shinyServer(function(input, output, session) {
                         "vr_rules" = "Validation_report",
                         "datapack" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
                         "missing_psnuxim_targets" = "PSNUxIM_Missing_Targets",
+                        "append_missing_psnuxim_targets" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
                         "comparison" = "Comparison",
                         "memo" = paste("COP", substring(d$info$cop_year,first = 3,last = 4), "_Memo"),
                          "Other"
@@ -814,7 +815,12 @@ shinyServer(function(input, output, session) {
           name = "datapack")
         waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
 
-        d <- downloadDataPack(d, d2_session = user_input$d2_session)
+        d <- downloadDataPack(d,
+                              d2_session = user_input$d2_session,
+                              append = FALSE,
+                              use_template = TRUE
+                              )
+
         openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
         sendEventToS3(d, "DATAPACK_DOWNLOAD")
         flog.info(
@@ -822,7 +828,6 @@ shinyServer(function(input, output, session) {
           name = "datapack")
         waiter_hide()
       }
-
 
       if (input$downloadType == "missing_psnuxim_targets") {
 
@@ -832,9 +837,36 @@ shinyServer(function(input, output, session) {
           name = "datapack")
         waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
 
-        d <- downloadMissingPSNUxIMTargets(d, d2_session = user_input$d2_session)
+        d <- downloadDataPack(d,
+                                           d2_session = user_input$d2_session,
+                                           append = TRUE,
+                                           use_template = TRUE
+                                           )
+
         openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
         sendEventToS3(d, "MISSING_PSNUXIM_DOWNLOAD")
+        flog.info(
+          paste0("Missing PSNUxIM targets generated reloaded for ", d$info$datapack_name),
+          name = "datapack")
+        waiter_hide()
+      }
+
+      if (input$downloadType == "append_missing_psnuxim_targets") {
+
+        flog.info(
+          paste0("Appending PSNUxIM targets requested for ", d$info$datapack_name)
+          ,
+          name = "datapack")
+        waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
+
+        d <- downloadDataPack(d,
+                                           d2_session = user_input$d2_session,
+                                           append = TRUE,
+                                           use_template = FALSE
+        )
+
+        openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
+        sendEventToS3(d, "APPEND_PSNUXIM_DOWNLOAD")
         flog.info(
           paste0("Missing PSNUxIM targets generated reloaded for ", d$info$datapack_name),
           name = "datapack")

@@ -219,9 +219,9 @@
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
       "RemoteRef": "cop23-psnu-x-im",
-      "RemoteSha": "ebe555c4de43f19cfd8103ad66f0de536b3b50f8",
+      "RemoteSha": "13ed01f71c6bce71b309ca408abbca2342a2ded3",
       "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation",
-      "Hash": "ace6e7de126c45d65f686521fb313675",
+      "Hash": "a238badbc191a47b5b349a32597e239b",
       "Requirements": [
         "assertthat",
         "crayon",
@@ -764,10 +764,10 @@
     },
     "openssl": {
       "Package": "openssl",
-      "Version": "2.0.2",
+      "Version": "2.0.6",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "6d3bef2e305f55c705c674653c7d7d3d",
+      "Hash": "0f7cd2962e3044bb940cca4f4b5cecbe",
       "Requirements": [
         "askpass"
       ]

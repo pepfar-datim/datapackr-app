@@ -1,3 +1,9 @@
+## March 23, 2023
+ * Enhanced support for COP23 PSNUxIM tab parsing and generation
+
+## March 20, 2023,
+ * Fixed an issue with subnat pyramids chart for COP23 
+
 ## March 09, 2023
  * Add a pivot table for COP23 Year 2 data
  * Adds initial support for parsing COP23 datapacks

@@ -11,7 +11,7 @@ sendDATIMExportToS3 <- function(d) {
     } else {
       datim_export <- dplyr::bind_rows(d$datim$subnat_impatt,
                                        d$datim$fy22_prioritizations,
-                                       d$data$UndistributedMER) %>%
+                                       d$datim$UndistributedMER) %>%
         dplyr::mutate(value = as.character(value))
     }
 
