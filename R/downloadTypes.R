@@ -17,8 +17,10 @@ downloadTypes <- function(d,
 #A completely new PSNUxIM
 #
 
+  if (!d$info$has_psnuxim){
     download_types <- c(download_types, "datapack")
     download_names <- c(download_names, "New PSNUxIM")
+  }
 
 #Two ways to "append". Either to the existing datapack
 #or only get the missing rows
