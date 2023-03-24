@@ -4,6 +4,7 @@ kpCascadeChart <- function(d, kpCascadeInput_filter) {
     purrr::pluck(., "data") %>%
     purrr::pluck(., "analytics")
 
+
   if (is.null(df)) {
     return(NULL)
   }
@@ -16,14 +17,17 @@ kpCascadeChart <- function(d, kpCascadeInput_filter) {
     return(NULL)
   }
 
+  needed <- c(
+    "IMPATT.PLHIV (N, SUBNAT, Age/Sex/HIVStatus) TARGET:",
+    "KP_ESTIMATES (N, SUBNAT, PositiveEstimate/HIVStatus) TARGET: Estimated Key Pop",
+    "TX_CURR (N, DSD, KeyPop/HIVStatus) TARGET: Receiving ART",
+    "TX_CURR (N, DSD, Age/Sex/HIVStatus) TARGET: Receiving ART",
+    "TX_PVLS (N, DSD, Age/Sex/Indication/HIVStatus) TARGET: Viral Load Documented",
+    "TX_PVLS (N, DSD, KeyPop/HIVStatus) TARGET: Viral Load Documented"
+  )
+
   df %<>%
-    dplyr::filter(
-      dataelement_name == "IMPATT.PLHIV (N, SUBNAT, Age/Sex/HIVStatus) TARGET:" |
-        dataelement_name == "KP_ESTIMATES (N, SUBNAT, PositiveEstimate/HIVStatus) TARGET: Estimated Key Pop" |
-        dataelement_name == "TX_CURR (N, DSD, Age/Sex/HIVStatus) TARGET: Receiving ART" |
-        dataelement_name == "TX_CURR (N, DSD, KeyPop/HIVStatus) TARGET: Receiving ART" |
-        dataelement_name == "TX_PVLS (N, DSD, Age/Sex/Indication/HIVStatus) TARGET: Viral Load Documented"  |
-        dataelement_name == "TX_PVLS (N, DSD, KeyPop/HIVStatus) TARGET: Viral Load Documented") %>%
+    dplyr::filter(stringr::str_trim(dataelement_name) %in% needed)   %>%
     dplyr::mutate(indicator = ifelse(indicator == "KP_ESTIMATES", "PLHIV", indicator)) %>%
     dplyr::mutate(kp = ifelse(is.na(key_population), "GenPop", "KeyPop")) %>%
     dplyr::select(indicator, kp, target_value) %>%

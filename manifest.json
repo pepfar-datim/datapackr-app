@@ -651,7 +651,7 @@
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
       "GithubRef": "cop23-psnu-x-im",
-      "GithubSha1": "69cabd1912d4f208a3018e3138641b850565310d",
+      "GithubSha1": "1c28145cb2cc42f12b18b7ecbaa919d1e1081ab4",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -671,18 +671,18 @@
         "RoxygenNote": "7.2.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.2; ; 2023-03-23 14:12:07 UTC; unix",
+        "Built": "R 4.2.2; ; 2023-03-24 10:06:20 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
         "RemoteRef": "cop23-psnu-x-im",
-        "RemoteSha": "69cabd1912d4f208a3018e3138641b850565310d",
+        "RemoteSha": "1c28145cb2cc42f12b18b7ecbaa919d1e1081ab4",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "cop23-psnu-x-im",
-        "GithubSHA1": "69cabd1912d4f208a3018e3138641b850565310d",
+        "GithubSHA1": "1c28145cb2cc42f12b18b7ecbaa919d1e1081ab4",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation"
       }
     },
@@ -4041,13 +4041,13 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".RData": {
-      "checksum": "edd16f4844dc42b423dc219b729e3298"
+      "checksum": "7b407ecece04ccf25f5b385a9cd044ef"
     },
     ".Rprofile": {
-      "checksum": "dafe9aac715617738d0dc22529279943"
+      "checksum": "2aeef1a1b02b2b56dc013d1729655cd0"
     },
     "CHANGELOG.md": {
-      "checksum": "b5923ceb83e2aaff6ee864e33dda3af8"
+      "checksum": "c0a285b0dc13276740e510981924e4c5"
     },
     "config.yml.sample": {
       "checksum": "31c37d9dc0af96e3c9c149f808b3ea48"
@@ -4062,7 +4062,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "3a5967fef0ec745507b098e8422e11b8"
+      "checksum": "4b9b260b0f779bdad625b770717de30c"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
@@ -4086,10 +4086,10 @@
       "checksum": "a2461e6e03892e76e14f516b827351b5"
     },
     "R/downloadTypes.R": {
-      "checksum": "aeb0bcc27432e1c4a7fdcedd70532461"
+      "checksum": "c49af9561fba19f3a2286df114e80876"
     },
     "R/kpCascadeChart.R": {
-      "checksum": "d7eef99e59f9f9ea084874af81a63307"
+      "checksum": "fc057f0d89e90ffcd4c9c550aa243412"
     },
     "R/modalitySummary.R": {
       "checksum": "f1e65daa417fc798d65cfd5b4f5630b4"
