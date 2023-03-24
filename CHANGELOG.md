@@ -1,3 +1,7 @@
+## March 24, 2023
+ * Fixed issue with KP Pyramid chart
+ * Better analytics with TST/PSNU combinations
+ 
 ## March 23, 2023
  * Enhanced support for COP23 PSNUxIM tab parsing and generation
 
