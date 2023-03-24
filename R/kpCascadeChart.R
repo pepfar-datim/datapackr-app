@@ -28,6 +28,7 @@ kpCascadeChart <- function(d, kpCascadeInput_filter) {
 
   df %<>%
     dplyr::filter(stringr::str_trim(dataelement_name) %in% needed)   %>%
+    dplyr::filter(indicator_code != "PLHIV_Residents.T_1") %>%
     dplyr::mutate(indicator = ifelse(indicator == "KP_ESTIMATES", "PLHIV", indicator)) %>%
     dplyr::mutate(kp = ifelse(is.na(key_population), "GenPop", "KeyPop")) %>%
     dplyr::select(indicator, kp, target_value) %>%
