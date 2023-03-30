@@ -1,3 +1,8 @@
+## March 30, 2023
+ * Fixed issue with PAW exports when data was allocated
+ * Applied rounding to Year 2 exports
+ * Fixed issue in Year 2 pivot with doubling of PLHIV data
+ 
 ## March 24, 2023
  * Fixed issue with KP Pyramid chart
  * Better analytics with TST/PSNU combinations
