@@ -2,6 +2,7 @@
  * Fixed issue with PAW exports when data was allocated
  * Applied rounding to Year 2 exports
  * Fixed issue in Year 2 pivot with doubling of PLHIV data
+ * Fixed issue with AGYW_PREV not being exported
  
 ## March 24, 2023
  * Fixed issue with KP Pyramid chart
