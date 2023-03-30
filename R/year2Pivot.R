@@ -19,6 +19,7 @@ year2Pivot <- function(d) {
   pivot_data_year1 <- d %>%
     purrr::pluck("data") %>%
     purrr::pluck("analytics") %>%
+    dplyr::filter(fiscal_year == d$info$cop_year) %>%
     dplyr::select(`DataElement` = dataelement_name,
                   `CatOptionCombo` = categoryoptioncombo_name,
                   value = target_value) %>%

@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.2.2",
+    "Version": "4.2.3",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -219,9 +219,9 @@
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
       "RemoteRef": "cop23-psnu-x-im",
-      "RemoteSha": "1c28145cb2cc42f12b18b7ecbaa919d1e1081ab4",
+      "RemoteSha": "5bdf026e5997710f39a5217ac7dbc3a5b34009b0",
       "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation",
-      "Hash": "5c61793758050c350ced86b200d25fb5",
+      "Hash": "0b5d3d9b5b99c4b522944c4297e5979f",
       "Requirements": [
         "assertthat",
         "crayon",

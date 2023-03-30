@@ -36,45 +36,12 @@ downloadFlatPack <- function(d) {
       sheet = "Prioritization (DRAFT)", x = d$memo$datapack$by_prio
     )
   }
-  #Datapack specific
-  if (d$info$tool == "Data Pack") {
 
-    mer_data <- d %>%
-      purrr::pluck(., "data") %>%
-      purrr::pluck(., "MER")
-
-    subnat_impatt <- d %>%
-      purrr::pluck(., "data") %>%
-      purrr::pluck(., "SUBNAT_IMPATT")
-
-    mer_data <- dplyr::bind_rows(mer_data, subnat_impatt)
-    openxlsx::addWorksheet(wb, "MER Data")
-    openxlsx::writeDataTable(wb = wb,
-                             sheet = "MER Data", x = mer_data)
-
-    has_psnu <- d %>%
-      purrr::pluck(., "info") %>%
-      purrr::pluck(., "has_psnuxim")
-
-    if (has_psnu) {
-
-      d$datim$MER$value <- as.character(d$datim$MER$value)
-      d$datim$subnat_impatt$value <- as.character(d$datim$subnat_impatt$value)
-      datim_export <- dplyr::bind_rows(d$datim$MER, d$datim$subnat_impatt)
-
-      openxlsx::addWorksheet(wb, "DATIM export")
-      openxlsx::writeData(wb = wb,
-                          sheet = "DATIM export", x = datim_export)
-    }
-  }
-
-  #OPU specific
-  if (d$info$tool == "OPU Data Pack") {
-
-    openxlsx::addWorksheet(wb, "DATIM export")
-    openxlsx::writeData(wb = wb,
-                        sheet = "DATIM export", x = d$datim$OPU)
-  }
+  #Main export file
+  openxlsx::addWorksheet(wb, "DATIM export")
+  datim_export <- createDATIMExport(d)
+  openxlsx::writeData(wb = wb,
+                      sheet = "DATIM export", x = datim_export)
 
 return(wb)
 }
