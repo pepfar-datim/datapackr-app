@@ -4044,10 +4044,10 @@
       "checksum": "7b407ecece04ccf25f5b385a9cd044ef"
     },
     ".Rprofile": {
-      "checksum": "ca60052771f7c6731c56fc99fc625754"
+      "checksum": "bf925baeaa734ddb07b6befd2fdafb77"
     },
     "CHANGELOG.md": {
-      "checksum": "c0a285b0dc13276740e510981924e4c5"
+      "checksum": "379f5d2717c4b53379db8c699a2c2009"
     },
     "config.yml.sample": {
       "checksum": "31c37d9dc0af96e3c9c149f808b3ea48"
@@ -4062,7 +4062,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "4b9b260b0f779bdad625b770717de30c"
+      "checksum": "17d1c6aacd1b7c0fbd2d6a3d39625862"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
