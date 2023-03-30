@@ -4,7 +4,9 @@ sendYear2ExportToS3 <- function(d, custom_object_name = NULL) {
     #Write the flatpacked output
     tmp <- tempfile()
 
-    datim_export <- d$datim$year2
+    datim_export <- d$datim$year2 %>%
+      dplyr::mutate(value = as.character(round(value)))
+
 
     #Need better error checking here.
     write.table(
