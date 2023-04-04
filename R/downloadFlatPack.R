@@ -1,6 +1,23 @@
 downloadFlatPack <- function(d) {
   #Create a new workbook
   wb <- openxlsx::createWorkbook()
+
+  mer_data <- d %>%
+    purrr::pluck(., "data") %>%
+    purrr::pluck(., "MER")
+
+  subnat_impatt <- d %>%
+    purrr::pluck(., "data") %>%
+    purrr::pluck(., "SUBNAT_IMPATT")
+
+  mer_data <- dplyr::bind_rows(mer_data, subnat_impatt)
+  if (!is.null(mer_data) && NROW(mer_data) > 0) {
+    openxlsx::addWorksheet(wb, "MER Data")
+    openxlsx::writeDataTable(wb = wb,
+                             sheet = "MER Data", x = mer_data)
+
+  }
+
   #Common to both OPUs and Datapacks
   openxlsx::addWorksheet(wb, "Analytics")
   openxlsx::writeDataTable(wb = wb,
@@ -12,6 +29,7 @@ downloadFlatPack <- function(d) {
     wb = wb,
     sheet = "SNU Summary", x = snu_summary
   )
+
   if (!is.null(d$data$recency)) {
     openxlsx::addWorksheet(wb, "HTS Recency")
     openxlsx::writeDataTable(
@@ -19,6 +37,7 @@ downloadFlatPack <- function(d) {
       sheet = "HTS Recency", x = d$data$recency
     )
   }
+
   if (!is.null(d$data$modality_summary)) {
     formatMST = formatModalitySummaryTable(d)
 
