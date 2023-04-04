@@ -3,33 +3,7 @@ sendDATIMExportToS3 <- function(d) {
   tmp <- tempfile()
 
     # Selects the correct dataset to send to PAW if the tool has a PSNUxIM tab
-  if (d$info$cop_year == 2022) {
-    if (d$info$has_psnuxim) {
-      datim_export <- dplyr::bind_rows(d$datim$subnat_impatt,
-                                       d$datim$fy22_prioritizations,
-                                       d$datim$MER) %>%
-        dplyr::mutate(value = as.character(value))
-    } else {
-      datim_export <- dplyr::bind_rows(d$datim$subnat_impatt,
-                                       d$datim$fy22_prioritizations,
-                                       d$datim$UndistributedMER) %>%
-        dplyr::mutate(value = as.character(value))
-    }
-  }
-
-  if (d$info$cop_year == 2023) {
-    if (d$info$has_psnuxim) {
-      datim_export <- dplyr::bind_rows(d$datim$subnat_impatt,
-                                       d$datim$prioritizations,
-                                       d$datim$OPU) %>%
-        dplyr::mutate(value = as.character(value))
-    } else {
-      datim_export <- dplyr::bind_rows(d$datim$subnat_impatt,
-                                       d$datim$prioritizations,
-                                       d$datim$UndistributedMER) %>%
-        dplyr::mutate(value = as.character(value))
-    }
-  }
+  datim_export <- datapackr::createDATIMExport(d)
 
   #Need better error checking here.
   write.table(

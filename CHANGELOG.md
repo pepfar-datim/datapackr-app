@@ -1,3 +1,12 @@
+## April 4, 2023,
+ * Update to datapackr 6.2.1
+ 
+## March 30, 2023
+ * Fixed issue with PAW exports when data was allocated
+ * Applied rounding to Year 2 exports
+ * Fixed issue in Year 2 pivot with doubling of PLHIV data
+ * Fixed issue with AGYW_PREV not being exported
+ 
 ## March 24, 2023
  * Fixed issue with KP Pyramid chart
  * Better analytics with TST/PSNU combinations
@@ -18,8 +27,7 @@
 
 ## May 13, 2022
  * Update to datapackr 5.2.0
- * Remove processing for COP20 OPUs
-
+ * Remove processing for COP20 OPU
 ## May 12, 2022
  * Update to datapackr 5.1.13
  * Fix alignment of app memo tables
