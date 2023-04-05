@@ -59,33 +59,45 @@ fetchSupportFiles <- function(path) {
 }
 
 sendDataPackErrorUI <- function(r) {
-  if (!r) {
-    showModal(modalDialog(title = "Error",
-                          "The Data Pack could not be archived."))
+  if (!is_null(r)) {
+    if (!r) {
+      showModal(modalDialog(title = "Error",
+                            "The Data Pack could not be archived."))
+    }
   }
+
 }
 
 timestampUploadUI <- function(r) {
-  if (!r) {
-    showModal(modalDialog(title = "Error",
-                          "Timestamp log could not be saved to S3."))
+  if (!is.null(r)) {
+    if (!r) {
+      showModal(modalDialog(title = "Error",
+                            "Timestamp log could not be saved to S3."))
+    }
   }
+
 }
 
 validationSummaryUI <- function(r) {
-  if (!r) {
-    shiny::showModal(shiny::modalDialog(title = "Error", "Validation summary could not be sent to AP."))
+  if (!is.null(r)) {
+    if (!r) {
+      shiny::showModal(shiny::modalDialog(title = "Error", "Validation summary could not be sent to AP."))
+    }
   }
+
 }
 
 datimExportUI <- function(r) {
-  if (!r) {
-    shiny::showModal(shiny::modalDialog(title = "Error",
-                                        "DATIM Export could not be sent to S3"))
-  } else {
-    shiny::showModal(shiny::modalDialog(title = "Congrats!",
-                                        "Export to PAW was successful."))
+  if (!is.null(r)) {
+    if (!r) {
+      shiny::showModal(shiny::modalDialog(title = "Error",
+                                          "DATIM Export could not be sent to S3"))
+    } else {
+      shiny::showModal(shiny::modalDialog(title = "Congrats!",
+                                          "Export to PAW was successful."))
+    }
   }
+
 }
 
 createS3BucketTags <- function(d) {
