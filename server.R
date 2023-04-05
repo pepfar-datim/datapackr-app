@@ -169,7 +169,10 @@ shinyServer(function(input, output, session) {
      timestampUploadUI(r)
      sendDataPackErrorUI(r)
      r <- sendDATIMExportToS3(d)
-     r <- sendYear2ExportToS3(d)
+     if (!is.null(d$datim$year2)) {
+       r <- sendYear2ExportToS3(d)
+     }
+
      sendEventToS3(d, "PAW_EXPORT")
      waiter_hide()
      datimExportUI(r)
