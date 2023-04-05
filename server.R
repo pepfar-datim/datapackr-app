@@ -956,7 +956,6 @@ shinyServer(function(input, output, session) {
     }
 
     input_files <- file_input()
-    print(input_files)
     inFile <- input_files$file1
     inFile2 <- input_files$file2
     messages <- ""
@@ -972,8 +971,6 @@ shinyServer(function(input, output, session) {
       shinyjs::disable("file1")
       shinyjs::disable("validate")
       incProgress(0.1, detail = ("Unpacking your DataPack"))
-
-      d <- NULL
 
      if (!is.null(inFile$datapath) && is.null(inFile2$datapath)){
 
