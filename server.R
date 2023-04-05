@@ -86,18 +86,22 @@ shinyServer(function(input, output, session) {
     validation_results() %>% snuSelector()
   })
 
+
+
   observeEvent(input$file1, {
+
     shinyjs::show("validate")
-    shinyjs::enable("validate")
     user_input$file1_state <- 'uploaded'
     ready$ok <- FALSE
+    shinyjs::enable("validate")
   })
 
   observeEvent(input$file2, {
+
     shinyjs::show("validate")
-    shinyjs::enable("validate")
     user_input$file2_state <- 'uploaded'
     ready$ok <- FALSE
+    shinyjs::enable("validate")
   })
 
   observeEvent(input$validate, {
