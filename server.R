@@ -74,6 +74,8 @@ shinyServer(function(input, output, session) {
                                  status = "",
                                  d2_session = NULL,
                                  memo_authorized = FALSE,
+                                 file1_state  = NULL,
+                                 file2_state = NULL,
                                  uuid = NULL)
 
   epi_graph_filter <- reactiveValues(snu_filter = NULL)
@@ -87,12 +89,14 @@ shinyServer(function(input, output, session) {
   observeEvent(input$file1, {
     shinyjs::show("validate")
     shinyjs::enable("validate")
+    user_input$file1_state <- 'uploaded'
     ready$ok <- FALSE
   })
 
   observeEvent(input$file2, {
     shinyjs::show("validate")
     shinyjs::enable("validate")
+    user_input$file2_state <- 'uploaded'
     ready$ok <- FALSE
   })
 
@@ -105,6 +109,8 @@ shinyServer(function(input, output, session) {
 
   observeEvent(input$reset_input, {
     shinyjs::reset("side-panel")
+    shinyjs::reset("file1")
+    shinyjs::reset("file2")
     shinyjs::enable("file1")
     shinyjs::enable("file2")
     shinyjs::disable("validate")
@@ -113,9 +119,44 @@ shinyServer(function(input, output, session) {
     shinyjs::disable("send_paw")
     shinyjs::disable("downloadValidationResults")
     shinyjs::disable("compare")
-    validation_results <- NULL
+    user_input$file1_state <- 'reset'
+    user_input$file2_state <- 'reset'
     ready$ok <- FALSE
   })
+
+  file_input <- reactive({
+
+    file1_state <- user_input$file1_state
+    file2_state <- user_input$file2_state
+
+    if (is.null(file1_state) && is.null(file2_state)) {
+      return(NULL)
+    }
+
+    input_files <- list()
+
+    if (!is.null(file1_state)) {
+      if (file1_state == "uploaded") {
+        input_files$file1 <- input$file1
+      }
+
+      if (file1_state == "reset") {
+        input_files$file1 <- NULL
+      }
+    }
+
+    if (!is.null(file2_state)) {
+      if (file2_state == "uploaded") {
+        input_files$file2 <- input$file2
+      }
+      if (file2_state == "reset") {
+        input_files$file2 <- NULL
+      }
+    }
+
+    input_files
+  })
+
 
   observeEvent(input$send_paw, {
      waiter_show(html = waiting_screen_paw, color = "rgba(128, 128, 128, .8)")
@@ -914,8 +955,10 @@ shinyServer(function(input, output, session) {
       return(NULL)
     }
 
-    inFile <- input$file1
-    inFile2 <- input$file2
+    input_files <- file_input()
+    print(input_files)
+    inFile <- input_files$file1
+    inFile2 <- input_files$file2
     messages <- ""
 
     if (is.null(inFile) && is.null(inFile2)) {
@@ -929,6 +972,8 @@ shinyServer(function(input, output, session) {
       shinyjs::disable("file1")
       shinyjs::disable("validate")
       incProgress(0.1, detail = ("Unpacking your DataPack"))
+
+      d <- NULL
 
      if (!is.null(inFile$datapath) && is.null(inFile2$datapath)){
 
