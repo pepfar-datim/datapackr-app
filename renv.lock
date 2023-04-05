@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.2.2",
+    "Version": "4.2.3",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -141,11 +141,13 @@
     },
     "cli": {
       "Package": "cli",
-      "Version": "3.6.1",
+      "Version": "3.2.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "89e6d8219950eac806ae0c489052048a",
-      "Requirements": []
+      "Hash": "1bdb126893e9ce6aae50ad1d6fc32faf",
+      "Requirements": [
+        "glue"
+      ]
     },
     "colorspace": {
       "Package": "colorspace",
@@ -210,16 +212,16 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "6.2.1",
+      "Version": "6.2.2",
       "Source": "GitHub",
-      "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "datapackr",
       "RemoteUsername": "pepfar-datim",
+      "RemoteRepo": "datapackr",
       "RemoteRef": "master",
-      "RemoteSha": "59d884ec1c583558a780ecb1e54a2db946260c37",
-      "Hash": "6c5b765d1b5e965b7ee7b32ee5bd5b26",
+      "RemoteSha": "4151d966e31bc329c9e6c9d0516239b9e2061af3",
+      "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation",
+      "Hash": "3d6667f80d0413bee03050e22fb32e21",
       "Requirements": [
         "assertthat",
         "crayon",
@@ -273,7 +275,7 @@
       "RemoteRef": "master",
       "RemoteSha": "1b00f04680cdf49206678ebffd9984ba848aab91",
       "Remotes": "pepfar-datim/datimutils",
-      "Hash": "ba1be4991b8d4da145ec2dd6994631eb",
+      "Hash": "806b0f1ee127d4c92616ac5cfcedf24b",
       "Requirements": [
         "ISOweek",
         "assertthat",
@@ -410,10 +412,10 @@
     },
     "fs": {
       "Package": "fs",
-      "Version": "1.6.1",
+      "Version": "1.5.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "f4dcd23b67e33d851d2079f703e8b985",
+      "Hash": "44594a07a42e5f91fac9f93fda6d0109",
       "Requirements": []
     },
     "futile.logger": {
@@ -1080,10 +1082,10 @@
     },
     "remotes": {
       "Package": "remotes",
-      "Version": "2.4.2",
+      "Version": "2.4.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "227045be9aee47e6dda9bb38ac870d67",
+      "Hash": "a85ebb35721573b196317b49ddd2dfe4",
       "Requirements": []
     },
     "renv": {
@@ -1108,10 +1110,10 @@
     },
     "rlang": {
       "Package": "rlang",
-      "Version": "1.1.0",
+      "Version": "1.0.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "dc079ccd156cde8647360f473c1fa718",
+      "Hash": "04884d9a75d778aca22c7154b8333ec9",
       "Requirements": []
     },
     "rmarkdown": {
