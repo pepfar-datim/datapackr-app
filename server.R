@@ -772,13 +772,13 @@ shinyServer(function(input, output, session) {
 
       sane_name <- d$info$sane_name
 
-
       prefix <- switch(input$downloadType,
                        "messages" = "Messages",
                         "cso_flatpack" = "CSO_Flatpack",
                         "flatpack" = "Flatpack",
                         "vr_rules" = "Validation_report",
                         "datapack" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
+                        "update_psnuxim_targets" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
                         "missing_psnuxim_targets" = "PSNUxIM_Missing_Targets",
                         "append_missing_psnuxim_targets" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
                         "comparison" = "Comparison",
@@ -855,7 +855,7 @@ shinyServer(function(input, output, session) {
         }
       }
 
-      if (input$downloadType == "datapack") {
+      if (input$downloadType %in% c("datapack", "update_psnuxim_targets")) {
 
         flog.info(
           paste0("Regeneration of Datapack requested for ", d$info$datapack_name)
