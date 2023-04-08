@@ -218,10 +218,10 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
-      "RemoteRef": "fix-unequal-targets",
-      "RemoteSha": "a219c6b7de3168978b5dd9c10064e7e994247eba",
+      "RemoteRef": "update-psnux-targets",
+      "RemoteSha": "d1b5c6db585fe6d0d5d067e284a77aab58cd5926",
       "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation",
-      "Hash": "92d7e4aca1ac726b2c768343bc596b12",
+      "Hash": "63881ca886017bb56fc70fdb4e07cc59",
       "Requirements": [
         "assertthat",
         "crayon",

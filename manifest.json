@@ -650,8 +650,8 @@
       "Repository": null,
       "GithubRepo": "datapackr",
       "GithubUsername": "pepfar-datim",
-      "GithubRef": "fix-unequal-targets",
-      "GithubSha1": "a219c6b7de3168978b5dd9c10064e7e994247eba",
+      "GithubRef": "update-psnux-targets",
+      "GithubSha1": "d1b5c6db585fe6d0d5d067e284a77aab58cd5926",
       "description": {
         "Package": "datapackr",
         "Type": "Package",
@@ -671,18 +671,18 @@
         "RoxygenNote": "7.2.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.3; ; 2023-04-07 10:57:53 UTC; unix",
+        "Built": "R 4.2.3; ; 2023-04-08 06:47:18 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datapackr",
-        "RemoteRef": "fix-unequal-targets",
-        "RemoteSha": "a219c6b7de3168978b5dd9c10064e7e994247eba",
+        "RemoteRef": "update-psnux-targets",
+        "RemoteSha": "d1b5c6db585fe6d0d5d067e284a77aab58cd5926",
         "GithubHost": "api.github.com",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "fix-unequal-targets",
-        "GithubSHA1": "a219c6b7de3168978b5dd9c10064e7e994247eba",
+        "GithubRef": "update-psnux-targets",
+        "GithubSHA1": "d1b5c6db585fe6d0d5d067e284a77aab58cd5926",
         "Remotes": "pepfar-datim/datimutils,\npepfar-datim/datim-validation"
       }
     },
@@ -4041,10 +4041,10 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".RData": {
-      "checksum": "32fbfce7662fd2f5116f4b97a4703350"
+      "checksum": "8f2f9acdb1d45d17fa41d0d96b3d92f2"
     },
     ".Rprofile": {
-      "checksum": "ac7519605c4ee5fdb3c965242640471d"
+      "checksum": "bae6945db08e8470ee916a4563302ba6"
     },
     "CHANGELOG.md": {
       "checksum": "d53e5926d2ee679ed230b15e429a343d"
@@ -4155,10 +4155,13 @@
       "checksum": "7639ddf4a4968d4333384a1653464992"
     },
     "server.R": {
-      "checksum": "290e1a53a5452505d354bca791aaaa62"
+      "checksum": "138f94c8e2f6248e02c8942402d3888d"
     },
     "support_files/datapack_model_data.rds": {
       "checksum": "34d63ee0b561b7a1295892961ab4e387"
+    },
+    "support_files/psnuxim_model_data_23.rds": {
+      "checksum": "805cd9c207bebd73c45ecd75a3d245a2"
     },
     "support_files/README": {
       "checksum": "9cb0faaff95a40f674f7a20ffcda0788"

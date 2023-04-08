@@ -855,7 +855,7 @@ shinyServer(function(input, output, session) {
         }
       }
 
-      if (input$downloadType %in% c("datapack", "update_psnuxim_targets")) {
+      if (input$downloadType == "datapack") {
 
         flog.info(
           paste0("Regeneration of Datapack requested for ", d$info$datapack_name)
@@ -873,6 +873,24 @@ shinyServer(function(input, output, session) {
         sendEventToS3(d, "DATAPACK_DOWNLOAD")
         flog.info(
           paste0("Datapack reloaded for ", d$info$datapack_name),
+          name = "datapack")
+        waiter_hide()
+      }
+
+
+      if (input$downloadType == "update_psnuxim_targets") {
+        flog.info(
+          paste0("Updating PSNUxIM target values from Main Tabs... ", d$info$datapack_name)
+          ,
+          name = "datapack")
+        waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
+
+        d <- datapackr::updatePSNUxIMTargetValues(d)
+
+        openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
+        sendEventToS3(d, "UPDATED_TARGETS_DOWNLOAD")
+        flog.info(
+          paste0("PSNUxIM targets updated for ", d$info$datapack_name),
           name = "datapack")
         waiter_hide()
       }
