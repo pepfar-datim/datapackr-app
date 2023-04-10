@@ -219,9 +219,9 @@
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
       "RemoteRef": "update-psnux-targets",
-      "RemoteSha": "d1b5c6db585fe6d0d5d067e284a77aab58cd5926",
+      "RemoteSha": "7cc4740d014bcdca7686f9fb639b24146d3e9aec",
       "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation",
-      "Hash": "63881ca886017bb56fc70fdb4e07cc59",
+      "Hash": "29dc3d9111381117f652f182b51cdc19",
       "Requirements": [
         "assertthat",
         "crayon",
