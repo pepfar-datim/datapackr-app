@@ -24,12 +24,17 @@ downloadTypes <- function(d,
 
 #Two ways to "append". Either to the existing datapack
 #or only get the missing rows
-  if ( NROW(d$data$missingCombos) > 0 || NROW(d$tests$non_equal_targets) > 0 ) {
+  if ( NROW(d$data$missingCombos) > 0 ) {
     download_types <- c(download_types, "missing_psnuxim_targets")
     download_names <- c(download_names,  "Only Missing PSNUxIM Targets")
 
     download_types <- c(download_types, "append_missing_psnuxim_targets")
     download_names <- c(download_names,  "Append Missing PSNUxIM Targets")
+  }
+
+  if ( NROW(d$tests$non_equal_targets) > 0 ) {
+    download_types <- c(download_types, "update_psnuxim_targets")
+    download_names <- c(download_names,  "Update PSNUxIM Targets")
   }
 
   if (memo_authorized) {

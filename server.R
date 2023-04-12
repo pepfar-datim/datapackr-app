@@ -772,13 +772,13 @@ shinyServer(function(input, output, session) {
 
       sane_name <- d$info$sane_name
 
-
       prefix <- switch(input$downloadType,
                        "messages" = "Messages",
                         "cso_flatpack" = "CSO_Flatpack",
                         "flatpack" = "Flatpack",
                         "vr_rules" = "Validation_report",
                         "datapack" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
+                        "update_psnuxim_targets" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
                         "missing_psnuxim_targets" = "PSNUxIM_Missing_Targets",
                         "append_missing_psnuxim_targets" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
                         "comparison" = "Comparison",
@@ -873,6 +873,24 @@ shinyServer(function(input, output, session) {
         sendEventToS3(d, "DATAPACK_DOWNLOAD")
         flog.info(
           paste0("Datapack reloaded for ", d$info$datapack_name),
+          name = "datapack")
+        waiter_hide()
+      }
+
+
+      if (input$downloadType == "update_psnuxim_targets") {
+        flog.info(
+          paste0("Updating PSNUxIM target values from Main Tabs... ", d$info$datapack_name)
+          ,
+          name = "datapack")
+        waiter_show(html = waiting_screen_datapack, color = "rgba(128, 128, 128, .8)")
+
+        d <- datapackr::updatePSNUxIMTargetValues(d)
+
+        openxlsx::saveWorkbook(wb = d$tool$wb, file = file, overwrite = TRUE)
+        sendEventToS3(d, "UPDATED_TARGETS_DOWNLOAD")
+        flog.info(
+          paste0("PSNUxIM targets updated for ", d$info$datapack_name),
           name = "datapack")
         waiter_hide()
       }
