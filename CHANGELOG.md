@@ -1,4 +1,8 @@
-## April 4, 2023,
+## April 12, 2023
+ * Update to datapackr 6.2.3
+ * Adds functionality to allow for updating PSNUxIM target values
+ 
+## April 4, 2023
  * Update to datapackr 6.2.1
  
 ## March 30, 2023
