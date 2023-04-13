@@ -1,3 +1,15 @@
+recencyComparison <- function(d) {
+  if (d$info$cop_year == 2022) {
+     d <- recencyComparison_COP22(d)
+  }
+
+  if (d$info$cop_year == 2023) {
+    d <- recencyComparison_COP23(d)
+  }
+
+  d
+}
+
 recencyComparison_COP22 <- function(d) {
   hts_mechs <-
     structure(
@@ -144,15 +156,12 @@ recencyComparison_COP22 <- function(d) {
   return(d)
 }
 
-
 recencyComparison_COP23 <- function(d) {
 
   hts_inds <- cop23_map_DataPack_DATIM_DEs_COCs %>%
     dplyr::select(indicator_code, hts_modality) %>%
     tidyr::drop_na() %>%
     dplyr::distinct()
-
-
 
 
   df <- d %>%
