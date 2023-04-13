@@ -1,4 +1,5 @@
 recencyComparison <- function(d) {
+
   if (d$info$cop_year == 2022) {
      d <- recencyComparison_COP22(d)
   }
@@ -11,6 +12,7 @@ recencyComparison <- function(d) {
 }
 
 recencyComparison_COP22 <- function(d) {
+
   hts_mechs <-
     structure(
       .Data = list(
@@ -195,3 +197,4 @@ recencyComparison_COP23 <- function(d) {
   return(d)
 
 }
+
