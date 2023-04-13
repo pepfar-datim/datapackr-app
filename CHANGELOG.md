@@ -1,4 +1,8 @@
 ## April 12, 2023
+ * Fixed issue with Year 2 pivot 
+ * Fixed issue with HTS Recency for COP23 tools
+ 
+## April 12, 2023
  * Update to datapackr 6.2.3
  * Adds functionality to allow for updating PSNUxIM target values
  
