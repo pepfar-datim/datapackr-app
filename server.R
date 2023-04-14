@@ -1174,7 +1174,7 @@ shinyServer(function(input, output, session) {
         }
 
         #COP22 OPU DataPacks AKA PSNUxIM Tabs
-        if (d$info$tool == "OPU Data Pack") {
+        if (d$info$tool %in% c("OPU Data Pack", "PSNUxIM")) {
 
           updateSelectInput(session = session, inputId = "downloadType",
                             choices = downloadTypes(d,

@@ -2,15 +2,24 @@ downloadFlatPack <- function(d) {
   #Create a new workbook
   wb <- openxlsx::createWorkbook()
 
-  mer_data <- d %>%
-    purrr::pluck(., "data") %>%
-    purrr::pluck(., "MER")
+  if (d$info$tool == "Data Pack") {
 
-  subnat_impatt <- d %>%
-    purrr::pluck(., "data") %>%
-    purrr::pluck(., "SUBNAT_IMPATT")
+      mer_data <- d %>%
+        purrr::pluck(., "data") %>%
+        purrr::pluck(., "MER")
 
-  mer_data <- dplyr::bind_rows(mer_data, subnat_impatt)
+      subnat_impatt <- d %>%
+        purrr::pluck(., "data") %>%
+        purrr::pluck(., "SUBNAT_IMPATT")
+
+      mer_data <- dplyr::bind_rows(mer_data, subnat_impatt)
+
+  }
+
+  if (d$info$tool %in% c("PSNUxIM", "OPU Data Pack")) {
+    mer_data <- d$data$SNUxIM
+  }
+
   if (!is.null(mer_data) && NROW(mer_data) > 0) {
     openxlsx::addWorksheet(wb, "MER Data")
     openxlsx::writeDataTable(wb = wb,

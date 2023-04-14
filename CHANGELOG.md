@@ -1,3 +1,6 @@
+## April 14, 2023
+ * Fixed issue with flatpack downloads with standalone PSNUxIM tools
+
 ## April 12, 2023
  * Fixed issue with Year 2 pivot 
  * Fixed issue with HTS Recency for COP23 tools

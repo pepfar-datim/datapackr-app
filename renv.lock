@@ -219,9 +219,9 @@
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
       "RemoteRef": "master",
-      "RemoteSha": "8c8fac44dd6c06fdadeab9e5fa75728293c8cdc1",
+      "RemoteSha": "6cf0e19cbae7e960b213579c3deafcb720ec5811",
       "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation",
-      "Hash": "c0c275633c2d51dd51977dfe347bda9e",
+      "Hash": "63965c10a75076fca8757d25eabb0e17",
       "Requirements": [
         "assertthat",
         "crayon",
