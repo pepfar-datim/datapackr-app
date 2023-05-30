@@ -1,7 +1,7 @@
 {
   "version": 1,
   "locale": "en_US",
-  "platform": "4.2.2",
+  "platform": "4.2.3",
   "metadata": {
     "appmode": "shiny",
     "primary_rmd": null,
@@ -400,7 +400,7 @@
         "Maintainer": "Carson Sievert <carson@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2022-12-16 10:30:06 UTC",
-        "Built": "R 4.2.0; ; 2022-12-17 12:54:00 UTC; unix"
+        "Built": "R 4.2.1; ; 2022-12-16 17:34:22 UTC; unix"
       }
     },
     "cachem": {
@@ -429,10 +429,9 @@
         "Packaged": "2023-05-01 15:38:38 UTC; winston",
         "Author": "Winston Chang [aut, cre],\n  RStudio [cph, fnd]",
         "Maintainer": "Winston Chang <winston@rstudio.com>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-05-01 16:40:02 UTC",
-        "Built": "R 4.2.0; x86_64-apple-darwin17.0; 2023-05-02 12:23:34 UTC; unix",
-        "Archs": "cachem.so.dSYM"
+        "Built": "R 4.2.3; x86_64-apple-darwin17.0; 2023-05-09 19:20:41 UTC; unix"
       }
     },
     "cellranger": {
@@ -558,10 +557,9 @@
         "Packaged": "2023-03-17 18:02:44 UTC; jeroen",
         "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>),\n  John MacFarlane [cph] (Author of cmark)",
         "Maintainer": "Jeroen Ooms <jeroen@berkeley.edu>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-03-17 18:40:02 UTC",
-        "Built": "R 4.2.0; x86_64-apple-darwin17.0; 2023-03-18 12:53:57 UTC; unix",
-        "Archs": "commonmark.so.dSYM"
+        "Built": "R 4.2.3; x86_64-apple-darwin17.0; 2023-05-09 19:20:32 UTC; unix"
       }
     },
     "cpp11": {
@@ -783,7 +781,7 @@
         "RoxygenNote": "7.2.1",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.2; ; 2023-05-24 18:37:10 UTC; unix",
+        "Built": "R 4.2.3; ; 2023-05-30 16:58:15 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
@@ -825,7 +823,7 @@
         "VignetteBuilder": "knitr",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut],\n  Sam Garman [aut],\n  Jordan Bales [aut],\n  Fausto Lopez [aut],\n  Chris Nemarich [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.2.2; ; 2023-05-24 18:37:06 UTC; unix",
+        "Built": "R 4.2.3; ; 2023-05-15 17:37:52 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
@@ -866,19 +864,19 @@
         "VignetteBuilder": "knitr",
         "RoxygenNote": "7.2.1",
         "Author": "Jason Pickering [aut, cre],\n  Chris Nemarich [ctb],\n  Vlad Shioshvili [ctb],\n  Dennis Banga [ctb],\n  Hiwot Chichaybelu [ctb]",
-        "Built": "R 4.2.2; ; 2023-04-20 14:14:27 UTC; unix",
+        "Built": "R 4.2.3; ; 2023-04-27 17:20:50 UTC; unix",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteUsername": "pepfar-datim",
         "RemoteRepo": "datim-validation",
         "RemoteRef": "master",
         "RemoteSha": "7214f32cc8b21f5466013d8825756322fe9e7353",
+        "Remotes": "pepfar-datim/datimutils",
         "GithubHost": "api.github.com",
         "GithubRepo": "datim-validation",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "master",
-        "GithubSHA1": "7214f32cc8b21f5466013d8825756322fe9e7353",
-        "Remotes": "pepfar-datim/datimutils"
+        "GithubSHA1": "7214f32cc8b21f5466013d8825756322fe9e7353"
       }
     },
     "digest": {
@@ -941,10 +939,9 @@
         "Packaged": "2023-04-19 19:29:34 UTC; hadleywickham",
         "Author": "Hadley Wickham [aut, cre] (<https://orcid.org/0000-0003-4757-117X>),\n  Romain François [aut] (<https://orcid.org/0000-0002-2444-4226>),\n  Lionel Henry [aut],\n  Kirill Müller [aut] (<https://orcid.org/0000-0002-1416-3412>),\n  Davis Vaughan [aut] (<https://orcid.org/0000-0003-4777-038X>),\n  Posit Software, PBC [cph, fnd]",
         "Maintainer": "Hadley Wickham <hadley@posit.co>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-04-20 14:00:03 UTC",
-        "Built": "R 4.2.0; x86_64-apple-darwin17.0; 2023-04-21 13:36:40 UTC; unix",
-        "Archs": "dplyr.so.dSYM"
+        "Built": "R 4.2.3; x86_64-apple-darwin17.0; 2023-05-09 19:19:50 UTC; unix"
       }
     },
     "ellipsis": {
@@ -1248,9 +1245,9 @@
         "Packaged": "2023-04-18 17:20:05 UTC; rich",
         "Author": "Richard Iannone [aut, cre] (<https://orcid.org/0000-0003-3925-190X>),\n  Christophe Dervieux [ctb] (<https://orcid.org/0000-0003-4474-2498>),\n  Winston Chang [ctb],\n  Dave Gandy [ctb, cph] (Font-Awesome font),\n  Posit Software, PBC [cph, fnd]",
         "Maintainer": "Richard Iannone <rich@posit.co>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-04-18 20:30:02 UTC",
-        "Built": "R 4.2.0; ; 2023-04-19 12:59:04 UTC; unix"
+        "Built": "R 4.2.3; ; 2023-05-09 19:20:09 UTC; unix"
       }
     },
     "fontquiver": {
@@ -1537,9 +1534,9 @@
         "Packaged": "2023-03-31 08:04:34 UTC; thomas",
         "Author": "Hadley Wickham [aut] (<https://orcid.org/0000-0003-4757-117X>),\n  Winston Chang [aut] (<https://orcid.org/0000-0002-1576-2126>),\n  Lionel Henry [aut],\n  Thomas Lin Pedersen [aut, cre]\n    (<https://orcid.org/0000-0002-5147-4711>),\n  Kohske Takahashi [aut],\n  Claus Wilke [aut] (<https://orcid.org/0000-0002-7470-9261>),\n  Kara Woo [aut] (<https://orcid.org/0000-0002-5125-4188>),\n  Hiroaki Yutani [aut] (<https://orcid.org/0000-0002-3385-7233>),\n  Dewey Dunnington [aut] (<https://orcid.org/0000-0002-9415-4582>),\n  Posit, PBC [cph, fnd]",
         "Maintainer": "Thomas Lin Pedersen <thomas.pedersen@posit.co>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-04-03 14:10:02 UTC",
-        "Built": "R 4.2.0; ; 2023-04-04 13:14:13 UTC; unix"
+        "Built": "R 4.2.3; ; 2023-05-09 19:18:51 UTC; unix"
       }
     },
     "glue": {
@@ -1605,9 +1602,9 @@
         "Packaged": "2023-03-21 13:17:30 UTC; thomas",
         "Author": "Hadley Wickham [aut],\n  Thomas Lin Pedersen [aut, cre],\n  Posit Software, PBC [cph]",
         "Maintainer": "Thomas Lin Pedersen <thomas.pedersen@posit.co>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-03-21 14:00:05 UTC",
-        "Built": "R 4.2.0; ; 2023-03-22 12:52:31 UTC; unix"
+        "Built": "R 4.2.3; ; 2023-05-09 19:18:47 UTC; unix"
       }
     },
     "highr": {
@@ -1705,10 +1702,9 @@
         "Packaged": "2023-03-22 22:59:42 UTC; cpsievert",
         "Author": "Joe Cheng [aut],\n  Carson Sievert [aut, cre] (<https://orcid.org/0000-0002-4958-2844>),\n  Barret Schloerke [aut] (<https://orcid.org/0000-0001-9986-114X>),\n  Winston Chang [aut] (<https://orcid.org/0000-0002-1576-2126>),\n  Yihui Xie [aut],\n  Jeff Allen [aut],\n  RStudio [cph]",
         "Maintainer": "Carson Sievert <carson@rstudio.com>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-03-23 09:50:06 UTC",
-        "Built": "R 4.2.0; x86_64-apple-darwin17.0; 2023-03-24 12:37:05 UTC; unix",
-        "Archs": "htmltools.so.dSYM"
+        "Built": "R 4.2.3; x86_64-apple-darwin17.0; 2023-05-09 19:19:09 UTC; unix"
       }
     },
     "htmlwidgets": {
@@ -1738,9 +1734,9 @@
         "Packaged": "2023-03-17 15:34:40 UTC; cpsievert",
         "Author": "Ramnath Vaidyanathan [aut, cph],\n  Yihui Xie [aut],\n  JJ Allaire [aut],\n  Joe Cheng [aut],\n  Carson Sievert [aut, cre] (<https://orcid.org/0000-0002-4958-2844>),\n  Kenton Russell [aut, cph],\n  Ellis Hughes [ctb],\n  RStudio [cph]",
         "Maintainer": "Carson Sievert <carson@rstudio.com>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-03-17 16:50:06 UTC",
-        "Built": "R 4.2.0; ; 2023-03-18 13:59:27 UTC; unix"
+        "Built": "R 4.2.3; ; 2023-05-09 19:19:14 UTC; unix"
       }
     },
     "httpcache": {
@@ -2111,10 +2107,9 @@
         "Packaged": "2023-05-01 21:09:55 UTC; winston",
         "Author": "Winston Chang [aut, cre],\n  Joe Cheng [aut],\n  RStudio [cph],\n  Marcus Geelnard [ctb, cph] (TinyCThread library,\n    https://tinycthread.github.io/),\n  Evan Nemerson [ctb, cph] (TinyCThread library,\n    https://tinycthread.github.io/)",
         "Maintainer": "Winston Chang <winston@rstudio.com>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-05-02 18:10:02 UTC",
-        "Built": "R 4.2.0; x86_64-apple-darwin17.0; 2023-05-04 12:33:50 UTC; unix",
-        "Archs": "later.so.dSYM"
+        "Built": "R 4.2.3; x86_64-apple-darwin17.0; 2023-05-09 19:20:13 UTC; unix"
       }
     },
     "lattice": {
@@ -2246,10 +2241,9 @@
         "NeedsCompilation": "yes",
         "Packaged": "2023-02-09 21:36:50 UTC; vspinu",
         "Author": "Vitalie Spinu [aut, cre],\n  Garrett Grolemund [aut],\n  Hadley Wickham [aut],\n  Davis Vaughan [ctb],\n  Ian Lyttle [ctb],\n  Imanuel Costigan [ctb],\n  Jason Law [ctb],\n  Doug Mitarotonda [ctb],\n  Joseph Larmarange [ctb],\n  Jonathan Boiser [ctb],\n  Chel Hee Lee [ctb]",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-02-10 01:30:02 UTC",
-        "Built": "R 4.2.0; x86_64-apple-darwin17.0; 2023-02-10 13:10:12 UTC; unix",
-        "Archs": "lubridate.so.dSYM"
+        "Built": "R 4.2.3; x86_64-apple-darwin17.0; 2023-05-09 18:46:18 UTC; unix"
       }
     },
     "magrittr": {
@@ -3049,9 +3043,9 @@
         "Packaged": "2023-03-21 08:42:46 UTC; kirill",
         "Author": "Kirill Müller [aut, cre] (<https://orcid.org/0000-0002-1416-3412>),\n  Hadley Wickham [aut],\n  RStudio [cph]",
         "Maintainer": "Kirill Müller <kirill@cynkra.com>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-03-22 08:10:02 UTC",
-        "Built": "R 4.2.0; ; 2023-03-23 13:39:00 UTC; unix"
+        "Built": "R 4.2.3; ; 2023-05-09 19:19:41 UTC; unix"
       }
     },
     "piton": {
@@ -3502,10 +3496,9 @@
         "Packaged": "2023-04-28 10:48:43 UTC; lionel",
         "Author": "Lionel Henry [aut, cre],\n  Hadley Wickham [aut],\n  mikefc [cph] (Hash implementation based on Mike's xxhashlite),\n  Yann Collet [cph] (Author of the embedded xxHash library),\n  Posit, PBC [cph, fnd]",
         "Maintainer": "Lionel Henry <lionel@posit.co>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-04-28 22:30:03 UTC",
-        "Built": "R 4.2.0; x86_64-apple-darwin17.0; 2023-04-29 12:06:02 UTC; unix",
-        "Archs": "rlang.so.dSYM"
+        "Built": "R 4.2.3; x86_64-apple-darwin17.0; 2023-05-09 19:18:35 UTC; unix"
       }
     },
     "rmarkdown": {
@@ -3601,10 +3594,9 @@
         "Packaged": "2023-05-03 22:45:10 UTC; cpsievert",
         "Author": "Joe Cheng [aut],\n  Timothy Mastny [aut],\n  Richard Iannone [aut] (<https://orcid.org/0000-0003-3925-190X>),\n  Barret Schloerke [aut] (<https://orcid.org/0000-0001-9986-114X>),\n  Carson Sievert [aut, cre] (<https://orcid.org/0000-0002-4958-2844>),\n  Christophe Dervieux [ctb] (<https://orcid.org/0000-0003-4474-2498>),\n  RStudio [cph, fnd],\n  Sass Open Source Foundation [ctb, cph] (LibSass library),\n  Greter Marcel [ctb, cph] (LibSass library),\n  Mifsud Michael [ctb, cph] (LibSass library),\n  Hampton Catlin [ctb, cph] (LibSass library),\n  Natalie Weizenbaum [ctb, cph] (LibSass library),\n  Chris Eppstein [ctb, cph] (LibSass library),\n  Adams Joseph [ctb, cph] (json.cpp),\n  Trifunovic Nemanja [ctb, cph] (utf8.h)",
         "Maintainer": "Carson Sievert <carson@rstudio.com>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-05-03 23:30:02 UTC",
-        "Built": "R 4.2.0; x86_64-apple-darwin17.0; 2023-05-04 12:53:10 UTC; unix",
-        "Archs": "sass.so.dSYM"
+        "Built": "R 4.2.3; x86_64-apple-darwin17.0; 2023-05-09 19:21:00 UTC; unix"
       }
     },
     "scales": {
@@ -3672,7 +3664,7 @@
         "Maintainer": "Winston Chang <winston@rstudio.com>",
         "Repository": "CRAN",
         "Date/Publication": "2022-12-15 13:10:02 UTC",
-        "Built": "R 4.2.0; ; 2022-12-16 13:14:05 UTC; unix"
+        "Built": "R 4.2.1; ; 2022-12-16 17:36:12 UTC; unix"
       }
     },
     "shinyWidgets": {
@@ -3995,10 +3987,9 @@
         "Packaged": "2023-03-19 09:23:10 UTC; kirill",
         "Author": "Kirill Müller [aut, cre] (<https://orcid.org/0000-0002-1416-3412>),\n  Hadley Wickham [aut],\n  Romain Francois [ctb],\n  Jennifer Bryan [ctb],\n  RStudio [cph, fnd]",
         "Maintainer": "Kirill Müller <kirill@cynkra.com>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-03-20 06:30:02 UTC",
-        "Built": "R 4.2.0; x86_64-apple-darwin17.0; 2023-03-21 12:55:49 UTC; unix",
-        "Archs": "tibble.so.dSYM"
+        "Built": "R 4.2.3; x86_64-apple-darwin17.0; 2023-05-09 19:19:45 UTC; unix"
       }
     },
     "tidyr": {
@@ -4323,10 +4314,9 @@
         "Packaged": "2023-04-19 18:24:24 UTC; davis",
         "Author": "Hadley Wickham [aut],\n  Lionel Henry [aut],\n  Davis Vaughan [aut, cre],\n  data.table team [cph] (Radix sort based on data.table's forder() and\n    their contribution to R's order()),\n  Posit Software, PBC [cph, fnd]",
         "Maintainer": "Davis Vaughan <davis@posit.co>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-04-19 19:30:02 UTC",
-        "Built": "R 4.2.0; x86_64-apple-darwin17.0; 2023-04-20 12:33:56 UTC; unix",
-        "Archs": "vctrs.so.dSYM"
+        "Built": "R 4.2.3; x86_64-apple-darwin17.0; 2023-05-09 19:19:18 UTC; unix"
       }
     },
     "viridisLite": {
@@ -4355,9 +4345,9 @@
         "NeedsCompilation": "no",
         "Packaged": "2023-05-02 21:38:46 UTC; simon",
         "Author": "Simon Garnier [aut, cre],\n  Noam Ross [ctb, cph],\n  Bob Rudis [ctb, cph],\n  Marco Sciaini [ctb, cph],\n  Antônio Pedro Camargo [ctb, cph],\n  Cédric Scherer [ctb, cph]",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-05-02 23:50:02 UTC",
-        "Built": "R 4.2.0; ; 2023-05-03 12:25:56 UTC; unix"
+        "Built": "R 4.2.3; ; 2023-05-09 19:18:49 UTC; unix"
       }
     },
     "waiter": {
@@ -4451,10 +4441,9 @@
         "Packaged": "2023-04-19 22:17:10 UTC; yihui",
         "Author": "Yihui Xie [aut, cre, cph] (<https://orcid.org/0000-0003-0645-5666>),\n  Wush Wu [ctb],\n  Daijiang Li [ctb],\n  Xianying Tan [ctb],\n  Salim Brüggemann [ctb] (<https://orcid.org/0000-0002-5329-5987>),\n  Christophe Dervieux [ctb],\n  Posit Software, PBC [cph, fnd]",
         "Maintainer": "Yihui Xie <xie@yihui.name>",
-        "Repository": "CRAN",
+        "Repository": "RSPM",
         "Date/Publication": "2023-04-20 12:50:02 UTC",
-        "Built": "R 4.2.0; x86_64-apple-darwin17.0; 2023-04-21 12:30:22 UTC; unix",
-        "Archs": "xfun.so.dSYM"
+        "Built": "R 4.2.3; x86_64-apple-darwin17.0; 2023-05-09 19:20:48 UTC; unix"
       }
     },
     "xml2": {
@@ -4586,7 +4575,7 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".Rprofile": {
-      "checksum": "9a781b8bd598fcf3395309c7e59ea1d6"
+      "checksum": "cef09d1ad7b640ed2c2390d09fe919b8"
     },
     "CHANGELOG.md": {
       "checksum": "6d77472052489c942bde2a8c09baa251"
@@ -4608,6 +4597,9 @@
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
+    },
+    "mechs.rds": {
+      "checksum": "509e9b586185d57bbbeb57d749245ff6"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
@@ -4680,6 +4672,12 @@
     },
     "server.R": {
       "checksum": "66dcc6ee6160b3debb27e20dcdbbd090"
+    },
+    "support_files/datapack_model_data.rds": {
+      "checksum": "9a9c2d11f012456814c25d491edb1e76"
+    },
+    "support_files/mechs.rds": {
+      "checksum": "ccaa10317389e2e8ddc68104ffdd60f2"
     },
     "support_files/README": {
       "checksum": "9cb0faaff95a40f674f7a20ffcda0788"
