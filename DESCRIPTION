@@ -9,4 +9,4 @@ Authors@R: c( person("Jason", "Pickering", email =
         "cnemarich@guidehousefederal.com", role = c("aut")),
         person("Jordan", "Bales", email = "jbales@baosystems.com", role
         = c("ctb")) )
-Depends: R (>= 4.1.1)
+Depends: R (>= 4.1.1) 
