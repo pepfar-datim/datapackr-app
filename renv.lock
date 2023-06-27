@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.2.2",
+    "Version": "4.2.3",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -144,7 +144,7 @@
       "Package": "cachem",
       "Version": "1.0.8",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "c35768291560ce302c0a6589f92e837d",
       "Requirements": [
         "fastmap",
@@ -248,16 +248,16 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "6.3.1",
+      "Version": "6.3.2",
       "Source": "GitHub",
+      "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datapackr",
-      "RemoteRef": "master",
-      "RemoteSha": "c665122e5877d2c85bab96991e841f158822103a",
-      "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation",
-      "Hash": "86ff69224ef14fdabcacaa7addadd1d5",
+      "RemoteUsername": "pepfar-datim",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "f4e98ee40a97fb733da20e19541716e441a5967e",
+      "Hash": "ce78abf85b549ee69fbe39d7705d138e",
       "Requirements": [
         "assertthat",
         "crayon",
@@ -311,7 +311,7 @@
       "RemoteRef": "master",
       "RemoteSha": "7214f32cc8b21f5466013d8825756322fe9e7353",
       "Remotes": "pepfar-datim/datimutils",
-      "Hash": "5f4816416db6e9f36664ebf5b586365a",
+      "Hash": "d4cfb73081cd730545daa823cb50bcbe",
       "Requirements": [
         "ISOweek",
         "assertthat",
@@ -342,7 +342,7 @@
       "Package": "dplyr",
       "Version": "1.1.2",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "dea6970ff715ca541c387de363ff405e",
       "Requirements": [
         "R6",
@@ -447,7 +447,7 @@
       "Package": "fontawesome",
       "Version": "0.5.1",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "1e22b8cabbad1eae951a75e9f8b52378",
       "Requirements": [
         "htmltools",
@@ -542,7 +542,7 @@
       "Package": "ggplot2",
       "Version": "3.4.2",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "3a147ee02e85a8941aad9909f1b43b7b",
       "Requirements": [
         "MASS",
@@ -571,7 +571,7 @@
       "Package": "gtable",
       "Version": "0.3.3",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "b44addadb528a0d227794121c00572a0",
       "Requirements": [
         "cli",
@@ -607,7 +607,7 @@
       "Package": "htmltools",
       "Version": "0.5.5",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "ba0240784ad50a62165058a27459304a",
       "Requirements": [
         "base64enc",
@@ -621,7 +621,7 @@
       "Package": "htmlwidgets",
       "Version": "1.6.2",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "a865aa85bcb2697f47505bfd70422471",
       "Requirements": [
         "htmltools",
@@ -755,7 +755,7 @@
       "Package": "later",
       "Version": "1.3.1",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "40401c9cf2bc2259dfe83311c9384710",
       "Requirements": [
         "Rcpp",
@@ -794,7 +794,7 @@
       "Package": "lubridate",
       "Version": "1.9.2",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "e25f18436e3efd42c7c590a1c4c15390",
       "Requirements": [
         "generics",
@@ -1078,7 +1078,7 @@
       "Package": "pillar",
       "Version": "1.9.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "15da5a8412f317beeee6175fbc76f4bb",
       "Requirements": [
         "cli",
@@ -1239,7 +1239,7 @@
       "Package": "rlang",
       "Version": "1.1.1",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "a85c767b55f0bf9b7ad16c6d7baee5bb",
       "Requirements": []
     },
@@ -1277,7 +1277,7 @@
       "Package": "sass",
       "Version": "0.4.6",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "cc3ec7dd33982ef56570229b62d6388e",
       "Requirements": [
         "R6",
@@ -1434,7 +1434,7 @@
       "Package": "tibble",
       "Version": "3.2.1",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "a84e2cc86d07289b3b6f5069df7a004c",
       "Requirements": [
         "fansi",
@@ -1554,7 +1554,7 @@
       "Package": "vctrs",
       "Version": "0.6.2",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "a745bda7aff4734c17294bb41d4e4607",
       "Requirements": [
         "cli",
@@ -1567,7 +1567,7 @@
       "Package": "viridisLite",
       "Version": "0.4.2",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "c826c7c4241b6fc89ff55aaea3fa7491",
       "Requirements": []
     },
@@ -1595,7 +1595,7 @@
       "Package": "xfun",
       "Version": "0.39",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "8f56e9acb54fb525e66464d57ab58bcb",
       "Requirements": []
     },
