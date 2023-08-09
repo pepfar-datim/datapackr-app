@@ -2499,6 +2499,43 @@
         "Built": "R 4.3.0; x86_64-pc-linux-gnu; 2023-06-02 09:11:27 UTC; unix"
       }
     },
+    "openxlsx2": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
+      "description": {
+        "Type": "Package",
+        "Package": "openxlsx2",
+        "Title": "Read, Write and Edit 'xlsx' Files",
+        "Version": "0.8",
+        "Language": "en-US",
+        "Authors@R": "c(\n  person(\"Jordan Mark\", \"Barbone\", email = \"jmbarbone@gmail.com\", role = \"aut\", comment = c(ORCID = \"0000-0001-9788-3628\")),\n  person(\"Jan Marvin\", \"Garbuszus\", email = \"jan.garbuszus@ruhr-uni-bochum.de\", role = c(\"aut\", \"cre\")),\n  person(family = \"openxlsx authors\", role = \"cph\", comment = \"openxlsx package\"),\n  person(\"Arseny\", \"Kapoulkine\", role = c(\"ctb\", \"cph\"), comment = \"Author of included pugixml code\")\n  )",
+        "Description": "Simplifies the creation of 'xlsx' files by\n    providing a high level interface to writing, styling and editing\n    worksheets.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://janmarvin.github.io/openxlsx2/,\nhttps://github.com/JanMarvin/openxlsx2",
+        "BugReports": "https://github.com/JanMarvin/openxlsx2/issues",
+        "Depends": "R (>= 3.5.0)",
+        "Imports": "R6, Rcpp, grDevices, magrittr, stringi, utils, zip",
+        "LinkingTo": "Rcpp",
+        "Suggests": "ggplot2, knitr, mschart (>= 0.4), rmarkdown, rvg, testthat\n(>= 3.0.0), waldo",
+        "VignetteBuilder": "knitr",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.2.3",
+        "Config/testthat/edition": "3",
+        "Config/testthat/parallel": "false",
+        "Config/testthat/start-first": "aaa",
+        "NeedsCompilation": "yes",
+        "Packaged": "2023-08-07 09:25:56 UTC; jmg",
+        "Author": "Jordan Mark Barbone [aut] (<https://orcid.org/0000-0001-9788-3628>),\n  Jan Marvin Garbuszus [aut, cre],\n  openxlsx authors [cph] (openxlsx package),\n  Arseny Kapoulkine [ctb, cph] (Author of included pugixml code)",
+        "Maintainer": "Jan Marvin Garbuszus <jan.garbuszus@ruhr-uni-bochum.de>",
+        "Repository": "CRAN",
+        "Date/Publication": "2023-08-07 10:20:02 UTC",
+        "Built": "R 4.3.1; x86_64-pc-linux-gnu; 2023-08-09 07:22:49 UTC; unix"
+      }
+    },
     "pacman": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -4521,10 +4558,10 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".RData": {
-      "checksum": "9fe46c122267aeda66510a8c709b13a3"
+      "checksum": "f20a30d3dd64bb66919b68379c171de8"
     },
     ".Rprofile": {
-      "checksum": "8f582c9fc95de21f2373815f5c2d7b70"
+      "checksum": "bce0776b96925003a9396903b127b7c1"
     },
     "CHANGELOG.md": {
       "checksum": "0f48d05f87b925de687e02a1e228225f"
@@ -4635,7 +4672,7 @@
       "checksum": "7639ddf4a4968d4333384a1653464992"
     },
     "server.R": {
-      "checksum": "66dcc6ee6160b3debb27e20dcdbbd090"
+      "checksum": "62f05dea99ab95bd3236fe21cb3edbf6"
     },
     "support_files/datapack_model_data.rds": {
       "checksum": "73e9dc54996a6e21de998bbf7f979b7a"

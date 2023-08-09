@@ -896,6 +896,20 @@
         "zip"
       ]
     },
+    "openxlsx2": {
+      "Package": "openxlsx2",
+      "Version": "0.8",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "bc29959226b8d71eb4028d8eb0284996",
+      "Requirements": [
+        "R6",
+        "Rcpp",
+        "magrittr",
+        "stringi",
+        "zip"
+      ]
+    },
     "pacman": {
       "Package": "pacman",
       "Version": "0.5.1",
