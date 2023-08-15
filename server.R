@@ -86,7 +86,46 @@ shinyServer(function(input, output, session) {
     validation_results() %>% snuSelector()
   })
 
+  opu_feature_data <- reactiveValues(data = NULL, time = NULL)
 
+  observeEvent(input$opu_feature_button, {
+
+    print("starting pull ....")
+
+    start_time <- Sys.time()
+
+    shinyjs::disable("opu_feature_button")
+
+    # pull ous
+    operating_units <- datimutils::getOrgUnitGroups("Country", name, fields = "organisationUnits[name,id]", d2_session = user_input$d2_session) %>%
+      filter(name != "Turkmenistan") %>%
+      dplyr::arrange(name) %>%
+      select(country_name = name, id)
+
+    res <- datapackr::getCOPDataFromDATIM(cop_year = 2023, country_uids = paste(operating_units$id, collapse = ","), d2_session = user_input$d2_session)
+
+    end_time <- Sys.time()
+
+    time_diff <- difftime(end_time, start_time, units = "sec")
+
+    print(res)
+
+    opu_feature_data$data <- res
+    opu_feature_data$time <- round(time_diff,1)
+
+    shinyjs::enable("opu_feature_button")
+
+
+  })
+
+
+  output$opu_feature_time <- renderText({
+    paste0("Time to make call in seconds: ", opu_feature_data$time)
+  })
+
+  output$opu_feature_data <- renderDataTable({
+    head(opu_feature_data$data)
+  })
 
   observeEvent(input$file1, {
 
@@ -352,7 +391,13 @@ shinyServer(function(input, output, session) {
             ),
             fluidRow(column(width = 12,
                                    div(dataTableOutput({"memo_compare"})))), # nolint
-                   fluidRow(tags$h4("Data source: PSNUxIM tab & DATIM")))
+                   fluidRow(tags$h4("Data source: PSNUxIM tab & DATIM"))),
+          tabPanel(
+            "OPU FEATURE",
+            actionButton("opu_feature_button", "Pull Data"),
+            fluidRow(column(width = 12, div(textOutput("opu_feature_time")))),
+            fluidRow(column(width = 12, div(dataTableOutput("opu_feature_data"))))
+          )
 
         ))
       ))
