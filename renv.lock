@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.2.2",
+    "Version": "4.3.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -155,7 +155,7 @@
       "Package": "cellranger",
       "Version": "1.1.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "f61dbaec772ccd2e17705c1e872e9e7c",
       "Requirements": [
         "rematch",
@@ -166,7 +166,7 @@
       "Package": "cli",
       "Version": "3.6.1",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "89e6d8219950eac806ae0c489052048a",
       "Requirements": []
     },
@@ -248,16 +248,16 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "7.0.1",
+      "Version": "7.0.0",
       "Source": "GitHub",
-      "Remotes": "pepfar-datim/datim-validation, pepfar-datim/datimutils",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "datapackr",
       "RemoteUsername": "pepfar-datim",
-      "RemoteRef": "master",
-      "RemoteSha": "9275632673e45948db6846513a53c1436cfc0e47",
-      "Hash": "a83daf05b507e735f104f33106092892",
+      "RemoteRepo": "datapackr",
+      "RemoteRef": "DP-1137",
+      "RemoteSha": "4461a25802ee28c21ef322da569001e7fcd9c9a4",
+      "Remotes": "pepfar-datim/datim-validation, pepfar-datim/datimutils",
+      "Hash": "dd78967975dd1b663d92c8dc0dcb1463",
       "Requirements": [
         "assertthat",
         "crayon",
@@ -284,11 +284,11 @@
       "Version": "0.6.0",
       "Source": "GitHub",
       "RemoteType": "github",
+      "RemoteHost": "api.github.com",
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datimutils",
       "RemoteRef": "master",
       "RemoteSha": "31c0be49b3e7d224394c54f1578a0d901b93d8e0",
-      "RemoteHost": "api.github.com",
       "Hash": "ec413295a2039c7e6e6b7b34d88ec021",
       "Requirements": [
         "R6",
@@ -305,13 +305,13 @@
       "Version": "1.3.5",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
       "RemoteUsername": "pepfar-datim",
       "RemoteRepo": "datim-validation",
       "RemoteRef": "master",
       "RemoteSha": "7214f32cc8b21f5466013d8825756322fe9e7353",
+      "RemoteHost": "api.github.com",
       "Remotes": "pepfar-datim/datimutils",
-      "Hash": "5f4816416db6e9f36664ebf5b586365a",
+      "Hash": "d4cfb73081cd730545daa823cb50bcbe",
       "Requirements": [
         "ISOweek",
         "assertthat",
@@ -342,7 +342,7 @@
       "Package": "dplyr",
       "Version": "1.1.2",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "dea6970ff715ca541c387de363ff405e",
       "Requirements": [
         "R6",
@@ -380,7 +380,7 @@
       "Package": "fansi",
       "Version": "1.0.4",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "1d9e7ad3c8312a192dea7d3db0274fde",
       "Requirements": []
     },
@@ -782,7 +782,7 @@
       "Package": "lifecycle",
       "Version": "1.0.3",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "001cecbeac1cff9301bdc3775ee46a86",
       "Requirements": [
         "cli",
@@ -892,6 +892,20 @@
       "Hash": "c03b4c18d42da881fb8e15a085c2b9d6",
       "Requirements": [
         "Rcpp",
+        "stringi",
+        "zip"
+      ]
+    },
+    "openxlsx2": {
+      "Package": "openxlsx2",
+      "Version": "0.8",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "bc29959226b8d71eb4028d8eb0284996",
+      "Requirements": [
+        "R6",
+        "Rcpp",
+        "magrittr",
         "stringi",
         "zip"
       ]
@@ -1078,7 +1092,7 @@
       "Package": "pillar",
       "Version": "1.9.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "15da5a8412f317beeee6175fbc76f4bb",
       "Requirements": [
         "cli",
@@ -1217,10 +1231,10 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "0.16.0",
+      "Version": "1.0.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "c9e8442ab69bc21c9697ecf856c1e6c7",
+      "Hash": "4b22ac016fe54028b88d0c68badbd061",
       "Requirements": []
     },
     "reshape2": {
@@ -1239,7 +1253,7 @@
       "Package": "rlang",
       "Version": "1.1.1",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "a85c767b55f0bf9b7ad16c6d7baee5bb",
       "Requirements": []
     },
@@ -1381,7 +1395,7 @@
       "Package": "stringi",
       "Version": "1.7.12",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "ca8bd84263c77310739d2cf64d84d7c9",
       "Requirements": []
     },
@@ -1389,7 +1403,7 @@
       "Package": "stringr",
       "Version": "1.5.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "671a4d384ae9d32fc47a14e98bfa3dc8",
       "Requirements": [
         "cli",
@@ -1434,7 +1448,7 @@
       "Package": "tibble",
       "Version": "3.2.1",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "a84e2cc86d07289b3b6f5069df7a004c",
       "Requirements": [
         "fansi",
@@ -1450,7 +1464,7 @@
       "Package": "tidyr",
       "Version": "1.3.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "e47debdc7ce599b070c8e78e8ac0cfcf",
       "Requirements": [
         "cli",
@@ -1471,7 +1485,7 @@
       "Package": "tidyselect",
       "Version": "1.2.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "79540e5fcd9e0435af547d885f184fd5",
       "Requirements": [
         "cli",
@@ -1538,7 +1552,7 @@
       "Package": "utf8",
       "Version": "1.2.3",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "1fe17157424bb09c48a8b3b550c753bc",
       "Requirements": []
     },
