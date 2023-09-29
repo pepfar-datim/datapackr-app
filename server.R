@@ -966,6 +966,27 @@ shinyServer(function(input, output, session) {
         params <- list("colGrandTotals" = FALSE,
                        "rowGrandTotals" = FALSE)
 
+        # difference between datapack value and datim value
+        if(!is.null(d$memo$datim$analytics)) {
+
+          # TODO fix join to actual table - now this is a dummy for POC
+          # need second table name for the join
+          diff_memo_data_analytics <-
+            dplyr::full_join(d$memo$datim$analytics, d$data$analytics) %>%
+            select(ou, ou_uid, country_name, mechanism_code, target_value)
+
+          # dummy data as second value for diff right now
+          diff_memo_data_analytics <- diff_memo_data_analytics %>%
+            mutate(target_value2 = sample(1:100, nrow(diff_memo_data_analytics), replace = T)) %>%
+            mutate(diff = target_value - target_value2) %>%
+            select(ou, ou_uid, country_name, mechanism_code, diff)
+
+          # add diff between datapack value and datim value
+          wb <- wb %>%
+            openxlsx2::wb_add_worksheet("Datapack vs Datim") %>%
+            openxlsx2::wb_add_data(x = diff_memo_data_analytics)
+        }
+
         wb <- wb %>%
           openxlsx2::wb_add_worksheet(sheet = "By SNU1") %>%
           openxlsx2::wb_add_pivot_table(
