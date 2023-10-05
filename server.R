@@ -967,19 +967,35 @@ shinyServer(function(input, output, session) {
                        "rowGrandTotals" = FALSE)
 
         # difference between datapack value and datim value
-        if(!is.null(d$memo$datim$analytics)) {
+        if(!is.null(d$memo$datim$analytics) && !is.null(d$data$analytics)) {
 
-          # TODO fix join to actual table - now this is a dummy for POC
-          # need second table name for the join
+          datim <- d$memo$datim$analytics %>%
+            mutate(across(where(is.character), stringr::str_trim)) %>%
+            dplyr::rename(datim_value = target_value)
+
+          datapack <- d$data$analytics  %>%
+            mutate(across(where(is.character), stringr::str_trim)) %>%
+            dplyr::rename(datapack_value = target_value)
+
+          print("datpack value:")
+          print(unique(datapack$mechanism_code))
+          #print(summary(datapack))
+          #print(summary(datapack$datapack_value))
+
+          print("datim value:")
+          print(unique(datim$mechanism_code))
+          #print(summary(datim))
+          #print(summary(datim$datim_value))
+
+          #write.csv(datim[, c("dataelement_id", "categoryoptioncombo_id", "psnu_uid", "fiscal_year", "mechanism_code", "datim_value")], "datim.csv", row.names = F)
+          #write.csv(datapack[, c("dataelement_id", "categoryoptioncombo_id", "psnu_uid", "fiscal_year", "mechanism_code", "datapack_value")], "datapack.csv", row.names = F)
+
           diff_memo_data_analytics <-
-            dplyr::full_join(d$memo$datim$analytics, d$data$analytics) %>%
-            select(ou, ou_uid, country_name, mechanism_code, target_value)
+            dplyr::full_join(datim, datapack, by = c("dataelement_id", "categoryoptioncombo_id", "psnu_uid", "fiscal_year", "mechanism_code")) %>%
+            mutate(diff = datim_value - datapack_value) %>%
+            select(datim_value, datapack_value, diff)
 
-          # dummy data as second value for diff right now
-          diff_memo_data_analytics <- diff_memo_data_analytics %>%
-            mutate(target_value2 = sample(1:100, nrow(diff_memo_data_analytics), replace = T)) %>%
-            mutate(diff = target_value - target_value2) %>%
-            select(ou, ou_uid, country_name, mechanism_code, diff)
+          #write.csv(diff_memo_data_analytics, "diff_memo_data_analytics.csv", row.names = F)
 
           # add diff between datapack value and datim value
           wb <- wb %>%
