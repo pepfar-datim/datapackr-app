@@ -5,7 +5,7 @@ sendDataPackToS3 <- function(d, datapath) {
   object_tags <- createS3BucketTags(d)
 
   object_name <- paste0("datapack_archives/",
-                        ifelse(d$info$cop_year==2021,"cop21_opu/",""),
+                      ifelse(d$info$cop_year==2021,"cop21_opu/",""), # Mon Oct 23 16:14:59 2023 Are we still using this?
                         gsub(" ", "_", d$info$sane_name),
                         "_",
                         format(Sys.time(), "%Y%m%d_%H%m%s"),

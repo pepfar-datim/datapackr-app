@@ -8,6 +8,10 @@ recencyComparison <- function(d) {
     d <- recencyComparison_COP23(d)
   }
 
+  if (d$info$cop_year == 2024) {
+    d <- recencyComparison_COP24(d)
+  }
+
   d
 }
 
