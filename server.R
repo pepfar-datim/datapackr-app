@@ -226,7 +226,6 @@ shinyServer(function(input, output, session) {
   output$uiLogin <- renderUI({
 
     wellPanel(fluidRow(
-      #img(src = "pepfar.png", align = "center"),
       tags$head(tags$script(HTML(jscode_login))), # enter button functionality for login button
       tags$div(HTML('<center><img src="pepfar.png"></center>')),
       h4("Welcome to the Target Setting Validation App. Please login with your DATIM credentials:")
@@ -777,10 +776,10 @@ shinyServer(function(input, output, session) {
                         "cso_flatpack" = "CSO_Flatpack",
                         "flatpack" = "Flatpack",
                         "vr_rules" = "Validation_report",
-                        "datapack" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),# might need updated
-                        "update_psnuxim_targets" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
+                        "datapack" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),# might need update to d$info$cop_year %in% c("2023","2024")
+                        "update_psnuxim_targets" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),# might need update to d$info$cop_year %in% c("2023","2024")
                         "missing_psnuxim_targets" = "PSNUxIM_Missing_Targets",
-                        "append_missing_psnuxim_targets" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
+                        "append_missing_psnuxim_targets" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),# might need update to d$info$cop_year %in% c("2023","2024")
                         "comparison" = "Comparison",
                         "memo" = paste("COP", substring(d$info$cop_year,first = 3,last = 4), "_Memo"),
                          "Other"
