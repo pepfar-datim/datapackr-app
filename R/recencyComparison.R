@@ -1,7 +1,7 @@
 recencyComparison <- function(d) {
 
   if (d$info$cop_year == 2022) {
-     d <- recencyComparison_COP22(d) #Need to check if recencyComparison is deprecated
+     d <- recencyComparison_COP22(d)
   }
 
   if (d$info$cop_year == 2023) {
@@ -202,8 +202,6 @@ recencyComparison_COP23 <- function(d) {
 
 }
 
-# Thu Nov  2 11:07:56 2023 --- Need to confirm with team. Could also refactor
-  # to 1 function after 2022
 recencyComparison_COP24 <- function(d) {
 
   hts_inds <- cop24_map_DataPack_DATIM_DEs_COCs %>%
