@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.3.1",
+    "Version": "4.2.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -298,8 +298,8 @@
       "RemoteHost": "api.github.com",
       "RemoteRepo": "datapackr",
       "RemoteUsername": "pepfar-datim",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "fdf8281ecd65fad1f0d4afdac2a149897baf4938",
+      "RemoteRef": "DP-1034",
+      "RemoteSha": "4c860206c2253ab6df9358f998375f6c96e9897f",
       "Requirements": [
         "R",
         "assertthat",
@@ -322,7 +322,7 @@
         "tidyselect",
         "tidyxl"
       ],
-      "Hash": "94fb47a7e7363485e982ea0acaa7c145"
+      "Hash": "dfaa5c17b0e263ce061ff738a8f8a4d0"
     },
     "datimutils": {
       "Package": "datimutils",
@@ -358,6 +358,7 @@
       "RemoteSha": "7214f32cc8b21f5466013d8825756322fe9e7353",
       "Remotes": "pepfar-datim/datimutils",
       "Remotes": "pepfar-datim/datimutils",
+      "Remotes": "pepfar-datim/datimutils",
       "Requirements": [
         "ISOweek",
         "R",
@@ -376,7 +377,7 @@
         "stringr",
         "xml2"
       ],
-      "Hash": "d4cfb73081cd730545daa823cb50bcbe"
+      "Hash": "d0d02ac2b074218acdafb4882ef2e1fb"
     },
     "digest": {
       "Package": "digest",
