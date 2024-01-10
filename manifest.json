@@ -681,17 +681,17 @@
         "RemoteHost": "api.github.com",
         "RemoteRepo": "datapackr",
         "RemoteUsername": "pepfar-datim",
-        "RemoteRef": "master",
-        "RemoteSha": "71bc328ab4bfa2962aad1a566f8bc0339095a8f2",
+        "RemoteRef": "dp-1186",
+        "RemoteSha": "1840fc6c3e905401d63bc1fac2774007a2f12110",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "master",
-        "GithubSHA1": "71bc328ab4bfa2962aad1a566f8bc0339095a8f2",
+        "GithubRef": "dp-1186",
+        "GithubSHA1": "1840fc6c3e905401d63bc1fac2774007a2f12110",
         "NeedsCompilation": "no",
-        "Packaged": "2023-12-19 18:31:22 UTC; jordanbales",
+        "Packaged": "2024-01-09 22:07:24 UTC; jordanbales",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.3.1; ; 2023-12-19 18:31:39 UTC; unix"
+        "Built": "R 4.3.1; ; 2024-01-09 22:07:40 UTC; unix"
       }
     },
     "datimutils": {
@@ -4055,7 +4055,7 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".Rprofile": {
-      "checksum": "48e7347ce10a33e5ba777fe617b955de"
+      "checksum": "66a2564128683d92e00271c5dec3f6d6"
     },
     "CHANGELOG.md": {
       "checksum": "92e8e4318f833cf3ef5208ad7a2dc620"
@@ -4085,7 +4085,7 @@
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
     },
     "R/downloadDataPack.R": {
-      "checksum": "e0e0d8f83868799923e1b7e0217cf55f"
+      "checksum": "fdaa26f1e990754cab0348528841dbdc"
     },
     "R/downloadFlatPack.R": {
       "checksum": "be067ae25bcef9c39b0ebc9c102f9baf"
@@ -4151,13 +4151,13 @@
       "checksum": "b579634aa06fa17bffc02d205a718490"
     },
     "renv.lock": {
-      "checksum": "2003a353fa74f83ace50c58d8a0c5565"
+      "checksum": "860715c5e30ef28aaa511f4a40853492"
     },
     "server.R": {
       "checksum": "6a827cc7d305def34a1405f29165fb74"
     },
     "support_files/datapack_model_data.rds": {
-      "checksum": "8ec1bb19e15118950721b9e0856acc58"
+      "checksum": "c78ee204f751bca426db329ed7cfe0e4"
     },
     "support_files/mechs.rds": {
       "checksum": "ccaa10317389e2e8ddc68104ffdd60f2"
@@ -4166,7 +4166,7 @@
       "checksum": "136fc0ce1cee0783022df0a84212ddb0"
     },
     "support_files/psnuxim_model_data_23.rds": {
-      "checksum": "511ae0fa143cb5faad0277ea30bf53d0"
+      "checksum": "616d33ec84ea98545542f1b5d6e48e63"
     },
     "support_files/README": {
       "checksum": "9cb0faaff95a40f674f7a20ffcda0788"
