@@ -1114,7 +1114,7 @@ shinyServer(function(input, output, session) {
             hideTab(inputId = "main-panel", target = "Year 2 Pivot")
             }
 
-          if ((d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year %in% c("2022","2023")) {
+          if ((d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year %in% c("2022","2023","2024")) {
 
             flog.info(paste("COP", d$info$cop_year, d$info$tool, " found."))
             incProgress(0.1, detail = ("Checking validation rules"))
@@ -1136,24 +1136,27 @@ shinyServer(function(input, output, session) {
             #The use of the comparison table really only makes
             #sense of we are dealing with a DataPack OPU but
             #at the moment, we do not have an easy way to determine
-            incProgress(0.1, detail = ("Preparing COP memo data"))
-            if (user_input$memo_authorized) {
-              d <-
-                datapackr::prepareMemoData(
-                  d,
-                  memo_type = "comparison",
-                  include_no_prio = TRUE,
-                  d2_session = user_input$d2_session
-                )
-            } else {
-              d <-
-                datapackr::prepareMemoData(
-                  d,
-                  memo_type = "datapack",
-                  include_no_prio = TRUE,
-                  d2_session = user_input$d2_session
-                )
-            }
+
+            # Wed Jan 10 11:25:07 2024 ------------------------------
+            #COMMENTED OUT momentarily
+            # incProgress(0.1, detail = ("Preparing COP memo data"))
+            # if (user_input$memo_authorized) {
+            #   d <-
+            #     datapackr::prepareMemoData(
+            #       d,
+            #       memo_type = "comparison",
+            #       include_no_prio = TRUE,
+            #       d2_session = user_input$d2_session
+            #     )
+            # } else {
+            #   d <-
+            #     datapackr::prepareMemoData(
+            #       d,
+            #       memo_type = "datapack",
+            #       include_no_prio = TRUE,
+            #       d2_session = user_input$d2_session
+            #     )
+            # }
 
             d <- datapackr::generateComparisonTable(d)
             Sys.sleep(1)
@@ -1244,17 +1247,21 @@ shinyServer(function(input, output, session) {
           Sys.sleep(0.5)
           d <- datapackr::checkPSNUData(d)
           incProgress(0.1, detail = ("Preparing COP memo data"))
+
+          # Wed Jan 10 14:51:47 2024 ------------------------------
+          #Removed temporarily to get psnuxim deployed
           #Only execute the comparison if the user has proper authorization
           #Global agency users cannot retrieve prioritization data
           #from the DATIM analytics API
-          d <-
-            datapackr::prepareMemoData(
-              d,
-              memo_type = "comparison",
-              include_no_prio = TRUE,
-              d2_session = user_input$d2_session
-            )
-          d <- datapackr::generateComparisonTable(d)
+          # d <-
+          #   datapackr::prepareMemoData(
+          #     d,
+          #     memo_type = "comparison",
+          #     include_no_prio = TRUE,
+          #     d2_session = user_input$d2_session
+          #   )
+          # d <- datapackr::generateComparisonTable(d)
+
           Sys.sleep(1)
           incProgress(0.1, detail = ("Preparing a modality summary"))
           d <- modalitySummaryTable(d)
