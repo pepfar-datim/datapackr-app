@@ -682,16 +682,16 @@
         "RemoteRepo": "datapackr",
         "RemoteUsername": "pepfar-datim",
         "RemoteRef": "dp-1186",
-        "RemoteSha": "1840fc6c3e905401d63bc1fac2774007a2f12110",
+        "RemoteSha": "cf1fb74633164b5c144140e6c34ef8092ea85ba4",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "dp-1186",
-        "GithubSHA1": "1840fc6c3e905401d63bc1fac2774007a2f12110",
+        "GithubSHA1": "cf1fb74633164b5c144140e6c34ef8092ea85ba4",
         "NeedsCompilation": "no",
-        "Packaged": "2024-01-09 22:07:24 UTC; jordanbales",
+        "Packaged": "2024-01-10 19:41:40 UTC; jordanbales",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.3.1; ; 2024-01-09 22:07:40 UTC; unix"
+        "Built": "R 4.3.1; ; 2024-01-10 19:41:57 UTC; unix"
       }
     },
     "datimutils": {
@@ -4055,7 +4055,7 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".Rprofile": {
-      "checksum": "66a2564128683d92e00271c5dec3f6d6"
+      "checksum": "494c236e33571a0642946682afe34bda"
     },
     "CHANGELOG.md": {
       "checksum": "92e8e4318f833cf3ef5208ad7a2dc620"
@@ -4073,7 +4073,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "b2bdd2a259096a2c7350d3a70438ebd0"
+      "checksum": "9ac5f03a9358b7cbd632c050e7715790"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
@@ -4151,10 +4151,10 @@
       "checksum": "b579634aa06fa17bffc02d205a718490"
     },
     "renv.lock": {
-      "checksum": "860715c5e30ef28aaa511f4a40853492"
+      "checksum": "478e9ba653ad189ad1b46485b9f2d8f8"
     },
     "server.R": {
-      "checksum": "6a827cc7d305def34a1405f29165fb74"
+      "checksum": "6ad9558536ce90c52b92b945bfc8b37a"
     },
     "support_files/datapack_model_data.rds": {
       "checksum": "c78ee204f751bca426db329ed7cfe0e4"
