@@ -11,6 +11,10 @@ downloadDataPack <- function(d,
     support_file <- fetchSupportFiles("support_files/psnuxim_model_data_23.rds")
   }
 
+  if (d$info$cop_year == "2024") {
+    support_file <- fetchSupportFiles("support_files/psnuxim_model_data_24.rds")
+  }
+
   if (!file.exists(support_file)) {
     futile.logger::flog.error("Could not find model support file.")
     stop("WOMP!")
