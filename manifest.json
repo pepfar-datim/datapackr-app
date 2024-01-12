@@ -681,17 +681,17 @@
         "RemoteHost": "api.github.com",
         "RemoteRepo": "datapackr",
         "RemoteUsername": "pepfar-datim",
-        "RemoteRef": "dp-1186-2",
-        "RemoteSha": "feb8107838862dab80d4b0e1ab68e9b043e25ccf",
+        "RemoteRef": "master",
+        "RemoteSha": "71bc328ab4bfa2962aad1a566f8bc0339095a8f2",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "dp-1186-2",
-        "GithubSHA1": "feb8107838862dab80d4b0e1ab68e9b043e25ccf",
+        "GithubRef": "master",
+        "GithubSHA1": "71bc328ab4bfa2962aad1a566f8bc0339095a8f2",
         "NeedsCompilation": "no",
-        "Packaged": "2024-01-12 17:23:00 UTC; jordanbales",
+        "Packaged": "2023-12-19 18:31:22 UTC; jordanbales",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.3.1; ; 2024-01-12 17:23:18 UTC; unix"
+        "Built": "R 4.3.1; ; 2023-12-19 18:31:39 UTC; unix"
       }
     },
     "datimutils": {
@@ -801,14 +801,14 @@
         "Type": "Package",
         "Package": "dplyr",
         "Title": "A Grammar of Data Manipulation",
-        "Version": "1.1.4",
+        "Version": "1.1.2",
         "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0003-4757-117X\")),\n    person(\"Romain\", \"François\", role = \"aut\",\n           comment = c(ORCID = \"0000-0002-2444-4226\")),\n    person(\"Lionel\", \"Henry\", role = \"aut\"),\n    person(\"Kirill\", \"Müller\", role = \"aut\",\n           comment = c(ORCID = \"0000-0002-1416-3412\")),\n    person(\"Davis\", \"Vaughan\", , \"davis@posit.co\", role = \"aut\",\n           comment = c(ORCID = \"0000-0003-4777-038X\")),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n  )",
         "Description": "A fast, consistent tool for working with data frame like\n    objects, both in memory and out of memory.",
         "License": "MIT + file LICENSE",
         "URL": "https://dplyr.tidyverse.org, https://github.com/tidyverse/dplyr",
         "BugReports": "https://github.com/tidyverse/dplyr/issues",
         "Depends": "R (>= 3.5.0)",
-        "Imports": "cli (>= 3.4.0), generics, glue (>= 1.3.2), lifecycle (>=\n1.0.3), magrittr (>= 1.5), methods, pillar (>= 1.9.0), R6,\nrlang (>= 1.1.0), tibble (>= 3.2.0), tidyselect (>= 1.2.0),\nutils, vctrs (>= 0.6.4)",
+        "Imports": "cli (>= 3.4.0), generics, glue (>= 1.3.2), lifecycle (>=\n1.0.3), magrittr (>= 1.5), methods, pillar (>= 1.9.0), R6,\nrlang (>= 1.1.0), tibble (>= 3.2.0), tidyselect (>= 1.2.0),\nutils, vctrs (>= 0.6.0)",
         "Suggests": "bench, broom, callr, covr, DBI, dbplyr (>= 2.2.1), ggplot2,\nknitr, Lahman, lobstr, microbenchmark, nycflights13, purrr,\nrmarkdown, RMySQL, RPostgreSQL, RSQLite, stringi (>= 1.7.6),\ntestthat (>= 3.1.5), tidyr (>= 1.3.0), withr",
         "VignetteBuilder": "knitr",
         "Config/Needs/website": "tidyverse, shiny, pkgdown, tidyverse/tidytemplate",
@@ -817,13 +817,12 @@
         "LazyData": "true",
         "RoxygenNote": "7.2.3",
         "NeedsCompilation": "yes",
-        "Packaged": "2023-11-16 21:48:56 UTC; hadleywickham",
+        "Packaged": "2023-04-19 19:29:34 UTC; hadleywickham",
         "Author": "Hadley Wickham [aut, cre] (<https://orcid.org/0000-0003-4757-117X>),\n  Romain François [aut] (<https://orcid.org/0000-0002-2444-4226>),\n  Lionel Henry [aut],\n  Kirill Müller [aut] (<https://orcid.org/0000-0002-1416-3412>),\n  Davis Vaughan [aut] (<https://orcid.org/0000-0003-4777-038X>),\n  Posit Software, PBC [cph, fnd]",
         "Maintainer": "Hadley Wickham <hadley@posit.co>",
         "Repository": "CRAN",
-        "Date/Publication": "2023-11-17 16:50:02 UTC",
-        "Built": "R 4.3.0; x86_64-apple-darwin20; 2023-11-17 19:44:43 UTC; unix",
-        "Archs": "dplyr.so.dSYM"
+        "Date/Publication": "2023-04-20 14:00:03 UTC",
+        "Built": "R 4.3.1; x86_64-apple-darwin20; 2023-09-05 16:53:56 UTC; unix"
       }
     },
     "ellipsis": {
@@ -888,7 +887,7 @@
         "Package": "fansi",
         "Title": "ANSI Control Sequence Aware String Functions",
         "Description": "Counterparts to R string manipulation functions that account for\n   the effects of ANSI text formatting control sequences.",
-        "Version": "1.0.6",
+        "Version": "1.0.4",
         "Authors@R": "c(\n    person(\"Brodie\", \"Gaslam\", email=\"brodie.gaslam@yahoo.com\",\n    role=c(\"aut\", \"cre\")),\n    person(\"Elliott\", \"Sales De Andrade\", role=\"ctb\"),\n    person(family=\"R Core Team\",\n    email=\"R-core@r-project.org\", role=\"cph\",\n    comment=\"UTF8 byte length calcs from src/util.c\"\n    ))",
         "Depends": "R (>= 3.1.0)",
         "License": "GPL-2 | GPL-3",
@@ -897,16 +896,16 @@
         "VignetteBuilder": "knitr",
         "Suggests": "unitizer, knitr, rmarkdown",
         "Imports": "grDevices, utils",
-        "RoxygenNote": "7.2.3",
+        "RoxygenNote": "7.1.1",
         "Encoding": "UTF-8",
         "Collate": "'constants.R' 'fansi-package.R' 'internal.R' 'load.R' 'misc.R'\n'nchar.R' 'strwrap.R' 'strtrim.R' 'strsplit.R' 'substr2.R'\n'trimws.R' 'tohtml.R' 'unhandled.R' 'normalize.R' 'sgr.R'",
         "NeedsCompilation": "yes",
-        "Packaged": "2023-12-06 00:59:41 UTC; bg",
+        "Packaged": "2023-01-22 17:39:01 UTC; bg",
         "Author": "Brodie Gaslam [aut, cre],\n  Elliott Sales De Andrade [ctb],\n  R Core Team [cph] (UTF8 byte length calcs from src/util.c)",
         "Maintainer": "Brodie Gaslam <brodie.gaslam@yahoo.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2023-12-08 03:30:02 UTC",
-        "Built": "R 4.3.0; x86_64-apple-darwin20; 2023-12-08 03:36:28 UTC; unix",
+        "Date/Publication": "2023-01-22 19:20:02 UTC",
+        "Built": "R 4.3.0; x86_64-apple-darwin20; 2023-04-11 20:08:23 UTC; unix",
         "Archs": "fansi.so.dSYM"
       }
     },
@@ -3208,27 +3207,27 @@
       "description": {
         "Package": "scales",
         "Title": "Scale Functions for Visualization",
-        "Version": "1.3.0",
-        "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = c(\"aut\")),\n    person(\"Thomas Lin\", \"Pedersen\", , \"thomas.pedersen@posit.co\", role = c(\"cre\", \"aut\"),\n           comment = c(ORCID = \"0000-0002-5147-4711\")),\n    person(\"Dana\", \"Seidel\", role = \"aut\"),\n    person(\"Posit, PBC\", role = c(\"cph\", \"fnd\"))\n  )",
+        "Version": "1.2.1",
+        "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", , \"hadley@rstudio.com\", role = c(\"aut\", \"cre\")),\n    person(\"Dana\", \"Seidel\", role = \"aut\"),\n    person(\"RStudio\", role = c(\"cph\", \"fnd\"))\n  )",
         "Description": "Graphical scales map data to aesthetics, and provide methods\n    for automatically determining breaks and labels for axes and legends.",
         "License": "MIT + file LICENSE",
         "URL": "https://scales.r-lib.org, https://github.com/r-lib/scales",
         "BugReports": "https://github.com/r-lib/scales/issues",
-        "Depends": "R (>= 3.6)",
-        "Imports": "cli, farver (>= 2.0.3), glue, labeling, lifecycle, munsell (>=\n0.5), R6, RColorBrewer, rlang (>= 1.0.0), viridisLite",
-        "Suggests": "bit64, covr, dichromat, ggplot2, hms (>= 0.5.0), stringi,\ntestthat (>= 3.0.0)",
+        "Depends": "R (>= 3.2)",
+        "Imports": "farver (>= 2.0.3), labeling, lifecycle, munsell (>= 0.5), R6,\nRColorBrewer, rlang (>= 1.0.0), viridisLite",
+        "Suggests": "bit64, covr, dichromat, ggplot2, hms (>= 0.5.0), stringi,\ntestthat (>= 3.0.0), waldo (>= 0.4.0)",
         "Config/Needs/website": "tidyverse/tidytemplate",
-        "Config/testthat/edition": "3",
         "Encoding": "UTF-8",
         "LazyLoad": "yes",
-        "RoxygenNote": "7.2.3",
-        "NeedsCompilation": "yes",
-        "Packaged": "2023-11-27 20:27:59 UTC; thomas",
-        "Author": "Hadley Wickham [aut],\n  Thomas Lin Pedersen [cre, aut]\n    (<https://orcid.org/0000-0002-5147-4711>),\n  Dana Seidel [aut],\n  Posit, PBC [cph, fnd]",
-        "Maintainer": "Thomas Lin Pedersen <thomas.pedersen@posit.co>",
+        "RoxygenNote": "7.2.1",
+        "Config/testthat/edition": "3",
+        "NeedsCompilation": "no",
+        "Packaged": "2022-08-19 15:35:49 UTC; hadleywickham",
+        "Author": "Hadley Wickham [aut, cre],\n  Dana Seidel [aut],\n  RStudio [cph, fnd]",
+        "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2023-11-28 09:10:06 UTC",
-        "Built": "R 4.3.0; ; 2023-11-28 10:27:52 UTC; unix"
+        "Date/Publication": "2022-08-20 00:10:11 UTC",
+        "Built": "R 4.3.0; ; 2023-04-12 11:14:52 UTC; unix"
       }
     },
     "shiny": {
@@ -3809,7 +3808,7 @@
       "description": {
         "Package": "vctrs",
         "Title": "Vector Helpers",
-        "Version": "0.6.5",
+        "Version": "0.6.2",
         "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = \"aut\"),\n    person(\"Lionel\", \"Henry\", , \"lionel@posit.co\", role = \"aut\"),\n    person(\"Davis\", \"Vaughan\", , \"davis@posit.co\", role = c(\"aut\", \"cre\")),\n    person(\"data.table team\", role = \"cph\",\n           comment = \"Radix sort based on data.table's forder() and their contribution to R's order()\"),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n  )",
         "Description": "Defines new notions of prototype and size that are used to\n    provide tools for consistent and well-founded type-coercion and\n    size-recycling, and are in turn connected to ideas of type- and\n    size-stability useful for analysing function interfaces.",
         "License": "MIT + file LICENSE",
@@ -3825,13 +3824,12 @@
         "Language": "en-GB",
         "RoxygenNote": "7.2.3",
         "NeedsCompilation": "yes",
-        "Packaged": "2023-12-01 16:27:12 UTC; davis",
+        "Packaged": "2023-04-19 18:24:24 UTC; davis",
         "Author": "Hadley Wickham [aut],\n  Lionel Henry [aut],\n  Davis Vaughan [aut, cre],\n  data.table team [cph] (Radix sort based on data.table's forder() and\n    their contribution to R's order()),\n  Posit Software, PBC [cph, fnd]",
         "Maintainer": "Davis Vaughan <davis@posit.co>",
         "Repository": "CRAN",
-        "Date/Publication": "2023-12-01 23:50:02 UTC",
-        "Built": "R 4.3.0; x86_64-apple-darwin20; 2023-12-02 02:40:26 UTC; unix",
-        "Archs": "vctrs.so.dSYM"
+        "Date/Publication": "2023-04-19 19:30:02 UTC",
+        "Built": "R 4.3.1; x86_64-apple-darwin20; 2023-09-05 16:52:22 UTC; unix"
       }
     },
     "viridisLite": {
@@ -4057,7 +4055,7 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".Rprofile": {
-      "checksum": "78b6014bd81ba050ff6e51d596e1ead0"
+      "checksum": "48e7347ce10a33e5ba777fe617b955de"
     },
     "CHANGELOG.md": {
       "checksum": "92e8e4318f833cf3ef5208ad7a2dc620"
@@ -4075,19 +4073,19 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "f0c69eeb10264eda32ad74b1f6e85b44"
+      "checksum": "b2bdd2a259096a2c7350d3a70438ebd0"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "5008c543d4619c934e255be44b179858"
+      "checksum": "d8133bdf9efb0c3b12511c6ba4891f12"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
     },
     "R/downloadDataPack.R": {
-      "checksum": "fdaa26f1e990754cab0348528841dbdc"
+      "checksum": "e0e0d8f83868799923e1b7e0217cf55f"
     },
     "R/downloadFlatPack.R": {
       "checksum": "be067ae25bcef9c39b0ebc9c102f9baf"
@@ -4111,7 +4109,7 @@
       "checksum": "0f57e654d93bcb23cf45201ad6b5b3d0"
     },
     "R/recencyComparison.R": {
-      "checksum": "cc43c41337eda5304bfb7f8b54bd3be9"
+      "checksum": "2029fa056e256f016df1789c54653dd5"
     },
     "R/sendDataPacktoS3.R": {
       "checksum": "83707d66a7e2f77b53b6202144bc3217"
@@ -4153,13 +4151,13 @@
       "checksum": "b579634aa06fa17bffc02d205a718490"
     },
     "renv.lock": {
-      "checksum": "de29af28fcf1fe9b93e91970a3735b25"
+      "checksum": "2003a353fa74f83ace50c58d8a0c5565"
     },
     "server.R": {
-      "checksum": "3cb77fa0f2bad3166e02e529542da919"
+      "checksum": "6a827cc7d305def34a1405f29165fb74"
     },
     "support_files/datapack_model_data.rds": {
-      "checksum": "c78ee204f751bca426db329ed7cfe0e4"
+      "checksum": "8ec1bb19e15118950721b9e0856acc58"
     },
     "support_files/mechs.rds": {
       "checksum": "ccaa10317389e2e8ddc68104ffdd60f2"
@@ -4168,16 +4166,13 @@
       "checksum": "136fc0ce1cee0783022df0a84212ddb0"
     },
     "support_files/psnuxim_model_data_23.rds": {
-      "checksum": "616d33ec84ea98545542f1b5d6e48e63"
+      "checksum": "511ae0fa143cb5faad0277ea30bf53d0"
     },
     "support_files/README": {
       "checksum": "9cb0faaff95a40f674f7a20ffcda0788"
     },
     "ui.R": {
       "checksum": "112ea97d13f284c982d07294b31e4cdd"
-    },
-    "vls.rds": {
-      "checksum": "d8e711d7bbbde2dfec37137654181cdb"
     },
     "www/pepfar.png": {
       "checksum": "cd04d9e778b00519de3e0e2afc97eb28"
