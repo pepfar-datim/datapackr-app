@@ -681,17 +681,17 @@
         "RemoteHost": "api.github.com",
         "RemoteRepo": "datapackr",
         "RemoteUsername": "pepfar-datim",
-        "RemoteRef": "dp-1186",
-        "RemoteSha": "cf1fb74633164b5c144140e6c34ef8092ea85ba4",
+        "RemoteRef": "dp-1186-2",
+        "RemoteSha": "feb8107838862dab80d4b0e1ab68e9b043e25ccf",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
-        "GithubRef": "dp-1186",
-        "GithubSHA1": "cf1fb74633164b5c144140e6c34ef8092ea85ba4",
+        "GithubRef": "dp-1186-2",
+        "GithubSHA1": "feb8107838862dab80d4b0e1ab68e9b043e25ccf",
         "NeedsCompilation": "no",
-        "Packaged": "2024-01-10 19:41:40 UTC; jordanbales",
+        "Packaged": "2024-01-12 17:23:00 UTC; jordanbales",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.3.1; ; 2024-01-10 19:41:57 UTC; unix"
+        "Built": "R 4.3.1; ; 2024-01-12 17:23:18 UTC; unix"
       }
     },
     "datimutils": {
@@ -4057,7 +4057,7 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".Rprofile": {
-      "checksum": "b194c5845372bdb39c192124740c3f63"
+      "checksum": "78b6014bd81ba050ff6e51d596e1ead0"
     },
     "CHANGELOG.md": {
       "checksum": "92e8e4318f833cf3ef5208ad7a2dc620"
@@ -4075,13 +4075,13 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "9ac5f03a9358b7cbd632c050e7715790"
+      "checksum": "f0c69eeb10264eda32ad74b1f6e85b44"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "0db92c8108a2c4b93202b25e1cd98669"
+      "checksum": "5008c543d4619c934e255be44b179858"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
@@ -4153,7 +4153,7 @@
       "checksum": "b579634aa06fa17bffc02d205a718490"
     },
     "renv.lock": {
-      "checksum": "71b65889b91f9e4e6c5916ef67ba3d41"
+      "checksum": "de29af28fcf1fe9b93e91970a3735b25"
     },
     "server.R": {
       "checksum": "3cb77fa0f2bad3166e02e529542da919"
