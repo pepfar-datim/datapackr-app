@@ -777,10 +777,10 @@ shinyServer(function(input, output, session) {
                         "cso_flatpack" = "CSO_Flatpack",
                         "flatpack" = "Flatpack",
                         "vr_rules" = "Validation_report",
-                        "datapack" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
-                        "update_psnuxim_targets" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
+                        "datapack" = "PSNUxIM",
+                        "update_psnuxim_targets" =  "PSNUxIM",
                         "missing_psnuxim_targets" = "PSNUxIM_Missing_Targets",
-                        "append_missing_psnuxim_targets" = ifelse(d$info$cop_year == 2023, "PSNUxIM", "Datapack"),
+                        "append_missing_psnuxim_targets" =  "PSNUxIM",
                         "comparison" = "Comparison",
                         "memo" = paste("COP", substring(d$info$cop_year,first = 3,last = 4), "_Memo"),
                          "Other"
