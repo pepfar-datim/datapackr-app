@@ -682,16 +682,16 @@
         "RemoteRepo": "datapackr",
         "RemoteUsername": "pepfar-datim",
         "RemoteRef": "HEAD",
-        "RemoteSha": "fd06f8c35eee0139fd4af977ab14584c1a260ffc",
+        "RemoteSha": "c7cb599bf09f5c16b5e4402de022dc5ae741c889",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "HEAD",
-        "GithubSHA1": "fd06f8c35eee0139fd4af977ab14584c1a260ffc",
+        "GithubSHA1": "c7cb599bf09f5c16b5e4402de022dc5ae741c889",
         "NeedsCompilation": "no",
-        "Packaged": "2024-01-30 15:37:10 UTC; jordanbales",
+        "Packaged": "2024-01-30 17:15:01 UTC; jordanbales",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.3.1; ; 2024-01-30 15:37:27 UTC; unix"
+        "Built": "R 4.3.1; ; 2024-01-30 17:15:18 UTC; unix"
       }
     },
     "datimutils": {
@@ -4057,7 +4057,7 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".Rprofile": {
-      "checksum": "1cc3f00cdeeed96ca24513e9f4522826"
+      "checksum": "b9280ab9178348645fe8d381dbf33220"
     },
     "CHANGELOG.md": {
       "checksum": "92e8e4318f833cf3ef5208ad7a2dc620"
@@ -4075,7 +4075,7 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "0cd6caa365bd1f75b5950a414612dc83"
+      "checksum": "960ab1ec3b6dfa60119f7efe744aa6e3"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
@@ -4153,7 +4153,7 @@
       "checksum": "b579634aa06fa17bffc02d205a718490"
     },
     "renv.lock": {
-      "checksum": "13003a8f04c64c8c873a0efdbccb2143"
+      "checksum": "7bca419a71737c351334e03fbcea6cd4"
     },
     "server.R": {
       "checksum": "5250951b7be4621d28c7432414bc93b4"
