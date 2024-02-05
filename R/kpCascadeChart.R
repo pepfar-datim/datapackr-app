@@ -22,12 +22,14 @@ kpCascadeChart <- function(d, kpCascadeInput_filter) {
     "KP_ESTIMATES (N, SUBNAT, PositiveEstimate/HIVStatus) TARGET: Estimated Key Pop",
     "TX_CURR (N, DSD, KeyPop/HIVStatus) TARGET: Receiving ART",
     "TX_CURR (N, DSD, Age/Sex/HIVStatus) TARGET: Receiving ART",
-    "TX_PVLS (N, DSD, Age/Sex/Indication/HIVStatus) TARGET: Viral Load Documented",
+    (ifelse(d$info$cop_year == 2024,
+           "TX_PVLS (N, DSD, Age/Sex/HIVStatus) TARGET: 12 Months Viral Load < 1000",
+           "TX_PVLS (N, DSD, Age/Sex/Indication/HIVStatus) TARGET: Viral Load Documented")),
     "TX_PVLS (N, DSD, KeyPop/HIVStatus) TARGET: Viral Load Documented"
   )
 
   df %<>%
-    dplyr::filter(stringr::str_trim(dataelement_name) %in% needed)   %>%
+    dplyr::filter(stringr::str_trim(dataelement_name) %in% needed) %>%
     dplyr::filter(indicator_code != "PLHIV_Residents.T_1") %>%
     dplyr::mutate(indicator = ifelse(indicator == "KP_ESTIMATES", "PLHIV", indicator)) %>%
     dplyr::mutate(kp = ifelse(is.na(key_population), "GenPop", "KeyPop")) %>%
