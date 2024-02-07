@@ -58,6 +58,51 @@ fetchSupportFiles <- function(path) {
   return(file_name2)
 }
 
+
+
+fetchY2File <- function(Y2_path="support_files/datapack_model_data.rds") {
+
+  can_read_file <- file.access(Y2_path, 4) == 0
+  can_write_file <- file.access(dirname(Y2_path), 2) == 0
+  max_cache_age <- "1 day"
+
+  if (file.exists(Y2_path) & can_read_file) {
+    cache_age <- lubridate::interval(file.info(Y2)$mtime, Sys.time())
+    is_fresh <-
+      lubridate::as.duration(cache_age) < lubridate::duration(max_cache_age)
+  } else{
+    is_fresh <- FALSE
+  }
+
+  if (!is_fresh & can_write_file) {
+    datapackr::interactive_print("Fetching new model file from S3")
+    dest_file2 <- fetchSupportFiles(Y2_path)
+
+  } else {
+    datapackr::interactive_print("Found cached model file.")
+    dest_file2 <- paste0(getwd(), "/", Y2_path)
+  }
+
+  return(dest_file)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 sendDataPackErrorUI <- function(r) {
   if (!is_null(r)) {
     if (!r) {
