@@ -1136,7 +1136,7 @@ shinyServer(function(input, output, session) {
             #The use of the comparison table really only makes
             #sense of we are dealing with a DataPack OPU but
             #at the moment, we do not have an easy way to determine
-            if (d$info$cop_year < 2024) {
+            if (d$info$cop_year <= 2024) { # Wed Feb  7 11:38:44 2024 - TEST MOD ONLY
             incProgress(0.1, detail = ("Preparing COP memo data"))
             if (user_input$memo_authorized) {
               d <-
@@ -1246,7 +1246,7 @@ shinyServer(function(input, output, session) {
           Sys.sleep(0.5)
           d <- datapackr::checkPSNUData(d)
           incProgress(0.1, detail = ("Preparing COP memo data"))
-          if (d$info$cop_year < 2024) {
+          if (d$info$cop_year <= 2024) { # Wed Feb  7 11:38:44 2024 - TEST MOD ONLY
           # Only execute the comparison if the user has proper authorization
           # Global agency users cannot retrieve prioritization data
           # from the DATIM analytics API
