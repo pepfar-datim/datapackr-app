@@ -298,8 +298,8 @@
       "RemoteHost": "api.github.com",
       "RemoteRepo": "datapackr",
       "RemoteUsername": "pepfar-datim",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "0bea89bb5a6e33d6763a8f3d2cecbfc928e11ab4",
+      "RemoteRef": "dp-1050",
+      "RemoteSha": "c1f44dfaceeb65fb2028f20f652cf4bc550eeeda",
       "Requirements": [
         "R",
         "assertthat",
@@ -322,7 +322,7 @@
         "tidyselect",
         "tidyxl"
       ],
-      "Hash": "90357d4f6baea868506b8c5f428ec86f"
+      "Hash": "203533c55a748ab0b3acb43b8157b8fc"
     },
     "datimutils": {
       "Package": "datimutils",
@@ -380,14 +380,14 @@
     },
     "digest": {
       "Package": "digest",
-      "Version": "0.6.31",
+      "Version": "0.6.34",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R",
         "utils"
       ],
-      "Hash": "8b708f296afd9ae69f450f9640be8990"
+      "Hash": "7ede2ee9ea8d3edbf1ca84c1e333ad1a"
     },
     "dplyr": {
       "Package": "dplyr",
@@ -1337,7 +1337,7 @@
     },
     "purrr": {
       "Package": "purrr",
-      "Version": "1.0.1",
+      "Version": "1.0.2",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1348,7 +1348,7 @@
         "rlang",
         "vctrs"
       ],
-      "Hash": "d71c815267c640f17ddbf7f16144b4bb"
+      "Hash": "1cba04a4e9414bdefc9dcaa99649a8dc"
     },
     "ragg": {
       "Package": "ragg",
