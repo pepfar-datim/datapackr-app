@@ -34,7 +34,7 @@ fetchModelFile <- function(model_path="support_files/datapack_model_data.rds") {
   return(dest_file)
 }
 
-fetchSupportFiles <- function(path) {
+fetchSupportFiles <- function(path, locally=T) {
 
   s3 <- paws::s3()
   s3_object <-
@@ -42,6 +42,7 @@ fetchSupportFiles <- function(path) {
                   Key = path)
   s3_object_body <- s3_object$Body
 
+  if (locally==T) {
   #Hmm...use of getwd() is really not a good idea.
   file_name2 <- paste0(getwd(), "/", path)
   if (file.exists(file_name2)) {
@@ -55,53 +56,28 @@ fetchSupportFiles <- function(path) {
   if (!file.exists(file_name2)) {
     stop("Could not retreive support file.")
   }
+
+  } else{
+    file_name2 <- s3_object_body %>%
+      rawToChar %>%
+      read.csv(text = ., sep = "|")
+
+    futile.logger::flog.info("Retreived support file in memory")
+  }
+
   return(file_name2)
 }
 
+# paste0("datim_export/cop",d$info$cop_year,"/",d$info$sane_name,"_Y2.csv")
 
+#Bootstrap version
+fetchY2File <- function(Y2_path= paste0("datim_export/cop",24-1,"/",d$info$sane_name,"_Y2.csv")) {
 
-fetchY2File <- function(Y2_path="support_files/datapack_model_data.rds") {
+  datapackr::interactive_print("Fetching last COP year's Year 2 data from S3")
+  Y2File <- fetchSupportFiles(Y2_path, locally=F)
 
-  can_read_file <- file.access(Y2_path, 4) == 0
-  can_write_file <- file.access(dirname(Y2_path), 2) == 0
-  max_cache_age <- "1 day"
-
-  if (file.exists(Y2_path) & can_read_file) {
-    cache_age <- lubridate::interval(file.info(Y2)$mtime, Sys.time())
-    is_fresh <-
-      lubridate::as.duration(cache_age) < lubridate::duration(max_cache_age)
-  } else{
-    is_fresh <- FALSE
-  }
-
-  if (!is_fresh & can_write_file) {
-    datapackr::interactive_print("Fetching new model file from S3")
-    dest_file2 <- fetchSupportFiles(Y2_path)
-
-  } else {
-    datapackr::interactive_print("Found cached model file.")
-    dest_file2 <- paste0(getwd(), "/", Y2_path)
-  }
-
-  return(dest_file)
+  return(Y2File)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 sendDataPackErrorUI <- function(r) {
   if (!is_null(r)) {

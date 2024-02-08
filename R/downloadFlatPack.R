@@ -72,7 +72,7 @@ downloadFlatPack <- function(d) {
                       sheet = "DATIM export", x = datim_export)
 
   #Add previous cop year's year 2 data for comparison
-  previousY2 = formatModalitySummaryTable(d)
+  previousY2 = fetchY2File()
 
   openxlsx::addWorksheet(wb, "Year_2")
   openxlsx::writeDataTable(wb = wb,
