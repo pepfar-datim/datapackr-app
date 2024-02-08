@@ -71,5 +71,12 @@ downloadFlatPack <- function(d) {
   openxlsx::writeData(wb = wb,
                       sheet = "DATIM export", x = datim_export)
 
+  #Add previous cop year's year 2 data for comparison
+  previousY2 = fetchY2File(paste0("datim_export/cop", (d$info$cop_year - 1) %% 100 , "/", d$info$sane_name, "_Y2.csv"))
+
+  openxlsx::addWorksheet(wb, "Year_2")
+  openxlsx::writeDataTable(wb = wb,
+                           sheet = "Year_2", x = previousY2)
+
 return(wb)
 }
