@@ -34,7 +34,7 @@ fetchModelFile <- function(model_path="support_files/datapack_model_data.rds") {
   return(dest_file)
 }
 
-fetchSupportFiles <- function(path) {
+fetchSupportFiles <- function(path, locally=T) {
 
   s3 <- paws::s3()
   s3_object <-
@@ -42,6 +42,7 @@ fetchSupportFiles <- function(path) {
                   Key = path)
   s3_object_body <- s3_object$Body
 
+  if (locally==T) {
   #Hmm...use of getwd() is really not a good idea.
   file_name2 <- paste0(getwd(), "/", path)
   if (file.exists(file_name2)) {
@@ -55,7 +56,26 @@ fetchSupportFiles <- function(path) {
   if (!file.exists(file_name2)) {
     stop("Could not retreive support file.")
   }
+
+  } else{
+    file_name2 <- s3_object_body %>%
+      rawToChar %>%
+      read.csv(text = ., sep = "|")
+
+    futile.logger::flog.info("Retreived support file in memory")
+  }
+
   return(file_name2)
+}
+
+fetchY2File <- function(cop_year, country) {
+
+  Y2_path= paste0("datim_export/cop", (cop_year - 1) %% 100 , "/", country, "_Y2.csv")
+
+  datapackr::interactive_print("Fetching last COP year's Year 2 data from S3")
+  Y2File <- fetchSupportFiles(Y2_path, locally=F)
+
+  return(Y2File)
 }
 
 sendDataPackErrorUI <- function(r) {
