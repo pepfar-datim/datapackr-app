@@ -68,7 +68,9 @@ fetchSupportFiles <- function(path, locally=T) {
   return(file_name2)
 }
 
-fetchY2File <- function(Y2_path) {
+fetchY2File <- function(cop_year, country) {
+
+  Y2_path= paste0("datim_export/cop", (cop_year - 1) %% 100 , "/", country, "_Y2.csv")
 
   datapackr::interactive_print("Fetching last COP year's Year 2 data from S3")
   Y2File <- fetchSupportFiles(Y2_path, locally=F)
