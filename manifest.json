@@ -663,8 +663,8 @@
         "Type": "Package",
         "Package": "datapackr",
         "Title": "A Package that Packs and Unpacks all Data Packs and Target\nSetting Tools",
-        "Version": "7.3.2",
-        "Date": "2024-01-30",
+        "Version": "7.3.3",
+        "Date": "2024-02-09",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", , \"sjackson@baosystems.com\", role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", , \"jason.p.pickering@gmail.com\", role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", , \"sgarman@baosystems.com\", role = \"aut\"),\n    person(\"Chris\", \"Nemarich\", , \"cnemarich@guidehouse.com\", role = \"ctb\"),\n    person(\"Christian\", \"Domaas\", , \"cdomaas@baosystems.com\", role = \"ctb\"),\n    person(\"Fausto\", \"Lopez\", , \"flopez@baosystems.com\", role = \"ctb\"),\n    person(\"Jordan\", \"Bales\", , \"jbales@baosystems.com\", role = \"ctb\")\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
         "License": "file LICENSE",
@@ -682,16 +682,16 @@
         "RemoteRepo": "datapackr",
         "RemoteUsername": "pepfar-datim",
         "RemoteRef": "HEAD",
-        "RemoteSha": "0bea89bb5a6e33d6763a8f3d2cecbfc928e11ab4",
+        "RemoteSha": "e431adb876a8dd9a8c9e62a84b5d559d2d81d1df",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "HEAD",
-        "GithubSHA1": "0bea89bb5a6e33d6763a8f3d2cecbfc928e11ab4",
+        "GithubSHA1": "e431adb876a8dd9a8c9e62a84b5d559d2d81d1df",
         "NeedsCompilation": "no",
-        "Packaged": "2024-01-31 16:40:22 UTC; jordanbales",
+        "Packaged": "2024-02-09 15:53:49 UTC; jordanbales",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.3.1; ; 2024-01-31 16:40:39 UTC; unix"
+        "Built": "R 4.3.1; ; 2024-02-09 15:54:06 UTC; unix"
       }
     },
     "datimutils": {
@@ -774,13 +774,13 @@
       "Repository": "https://cloud.r-project.org",
       "description": {
         "Package": "digest",
-        "Author": "Dirk Eddelbuettel <edd@debian.org> with contributions\n by Antoine Lucas, Jarek Tuszynski, Henrik Bengtsson, Simon Urbanek,\n Mario Frasca, Bryan Lewis, Murray Stokely, Hannes Muehleisen,\n Duncan Murdoch, Jim Hester, Wush Wu, Qiang Kou, Thierry Onkelinx,\n Michel Lang, Viliam Simko, Kurt Hornik, Radford Neal, Kendon Bell,\n Matthew de Queljoe, Ion Suruceanu, Bill Denney, Dirk Schumacher,\n and Winston Chang.",
-        "Version": "0.6.31",
-        "Date": "2022-12-10",
+        "Author": "Dirk Eddelbuettel <edd@debian.org> with contributions\n by Antoine Lucas, Jarek Tuszynski, Henrik Bengtsson, Simon Urbanek,\n Mario Frasca, Bryan Lewis, Murray Stokely, Hannes Muehleisen,\n Duncan Murdoch, Jim Hester, Wush Wu, Qiang Kou, Thierry Onkelinx,\n Michel Lang, Viliam Simko, Kurt Hornik, Radford Neal, Kendon Bell,\n Matthew de Queljoe, Ion Suruceanu, Bill Denney, Dirk Schumacher,\n Winston Chang, Dean Attali, and Michael Chirico.",
+        "Version": "0.6.34",
+        "Date": "2024-01-11",
         "Maintainer": "Dirk Eddelbuettel <edd@debian.org>",
         "Title": "Create Compact Hash Digests of R Objects",
-        "Description": "Implementation of a function 'digest()' for the creation of hash\n digests of arbitrary R objects (using the 'md5', 'sha-1', 'sha-256', 'crc32',\n 'xxhash', 'murmurhash', 'spookyhash' and 'blake3' algorithms) permitting easy\n comparison of R language objects, as well as functions such as'hmac()' to\n create hash-based message authentication code. Please note that this package\n is not meant to be deployed for cryptographic purposes for which more\n comprehensive (and widely tested) libraries such as 'OpenSSL' should be\n used.",
-        "URL": "https://github.com/eddelbuettel/digest,\nhttp://dirk.eddelbuettel.com/code/digest.html",
+        "Description": "Implementation of a function 'digest()' for the creation of hash\n digests of arbitrary R objects (using the 'md5', 'sha-1', 'sha-256', 'crc32',\n 'xxhash', 'murmurhash', 'spookyhash', 'blake3' and 'crc32c' algorithms) permitting\n easy comparison of R language objects, as well as functions such as'hmac()' to\n create hash-based message authentication code. Please note that this package\n is not meant to be deployed for cryptographic purposes for which more\n comprehensive (and widely tested) libraries such as 'OpenSSL' should be\n used.",
+        "URL": "https://github.com/eddelbuettel/digest,\nhttps://dirk.eddelbuettel.com/code/digest.html",
         "BugReports": "https://github.com/eddelbuettel/digest/issues",
         "Depends": "R (>= 3.3.0)",
         "Imports": "utils",
@@ -788,10 +788,11 @@
         "Suggests": "tinytest, simplermarkdown",
         "VignetteBuilder": "simplermarkdown",
         "NeedsCompilation": "yes",
-        "Packaged": "2022-12-10 18:30:14 UTC; edd",
+        "Packaged": "2024-01-11 01:14:07 UTC; edd",
         "Repository": "CRAN",
-        "Date/Publication": "2022-12-11 07:40:02 UTC",
-        "Built": "R 4.3.1; x86_64-apple-darwin20; 2023-09-05 16:49:16 UTC; unix"
+        "Date/Publication": "2024-01-11 13:40:02 UTC",
+        "Built": "R 4.3.0; x86_64-apple-darwin20; 2024-01-11 15:11:44 UTC; unix",
+        "Archs": "digest.so.dSYM"
       }
     },
     "dplyr": {
@@ -2858,29 +2859,30 @@
       "description": {
         "Package": "purrr",
         "Title": "Functional Programming Tools",
-        "Version": "1.0.1",
+        "Version": "1.0.2",
         "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", , \"hadley@rstudio.com\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0003-4757-117X\")),\n    person(\"Lionel\", \"Henry\", , \"lionel@rstudio.com\", role = \"aut\"),\n    person(\"RStudio\", role = c(\"cph\", \"fnd\"))\n  )",
         "Description": "A complete and consistent functional programming toolkit for\n    R.",
         "License": "MIT + file LICENSE",
         "URL": "https://purrr.tidyverse.org/, https://github.com/tidyverse/purrr",
         "BugReports": "https://github.com/tidyverse/purrr/issues",
-        "Depends": "R (>= 3.4.0)",
-        "Imports": "cli (>= 3.4.0), lifecycle (>= 1.0.3), magrittr (>= 1.5.0),\nrlang (>= 0.4.10), vctrs (>= 0.5.0)",
+        "Depends": "R (>= 3.5.0)",
+        "Imports": "cli (>= 3.6.1), lifecycle (>= 1.0.3), magrittr (>= 1.5.0),\nrlang (>= 1.1.1), vctrs (>= 0.6.3)",
         "Suggests": "covr, dplyr (>= 0.7.8), httr, knitr, lubridate, rmarkdown,\ntestthat (>= 3.0.0), tibble, tidyselect",
         "LinkingTo": "cli",
         "VignetteBuilder": "knitr",
         "Biarch": "true",
-        "Config/Needs/website": "tidyverse/tidytemplate",
+        "Config/Needs/website": "tidyverse/tidytemplate, tidyr",
         "Config/testthat/edition": "3",
         "Encoding": "UTF-8",
         "RoxygenNote": "7.2.3",
         "NeedsCompilation": "yes",
-        "Packaged": "2023-01-09 14:36:20 UTC; hadleywickham",
+        "Packaged": "2023-08-08 16:13:31 UTC; hadleywickham",
         "Author": "Hadley Wickham [aut, cre] (<https://orcid.org/0000-0003-4757-117X>),\n  Lionel Henry [aut],\n  RStudio [cph, fnd]",
         "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2023-01-10 14:40:02 UTC",
-        "Built": "R 4.3.1; x86_64-apple-darwin20; 2023-09-05 16:54:23 UTC; unix"
+        "Date/Publication": "2023-08-10 08:20:07 UTC",
+        "Built": "R 4.3.0; x86_64-apple-darwin20; 2023-08-10 09:42:56 UTC; unix",
+        "Archs": "purrr.so.dSYM"
       }
     },
     "ragg": {
@@ -4057,7 +4059,7 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".Rprofile": {
-      "checksum": "8515f5969cf102060699ad801df2f482"
+      "checksum": "ecb4f3c1d1f5612d5a56a98008c0f893"
     },
     "CHANGELOG.md": {
       "checksum": "92e8e4318f833cf3ef5208ad7a2dc620"
@@ -4075,13 +4077,13 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "960ab1ec3b6dfa60119f7efe744aa6e3"
+      "checksum": "5cb15ae86ca71313a4b85ec272edb901"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "5008c543d4619c934e255be44b179858"
+      "checksum": "85aa98b133248bc1f4bbead9c205bedb"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "a57370730a9bc3a9a49d9f162b043a3f"
@@ -4090,13 +4092,13 @@
       "checksum": "fdaa26f1e990754cab0348528841dbdc"
     },
     "R/downloadFlatPack.R": {
-      "checksum": "be067ae25bcef9c39b0ebc9c102f9baf"
+      "checksum": "1c732c3ed591030ac270b97715a4eb8a"
     },
     "R/downloadTypes.R": {
       "checksum": "b4d0ee2e8f1d3fd775a031e52a9b9436"
     },
     "R/kpCascadeChart.R": {
-      "checksum": "c2f1edd4b8322c4c5ba9cdc83787bbb2"
+      "checksum": "00e3894affeaabab583b2ca69f4affdb"
     },
     "R/modalitySummary.R": {
       "checksum": "f1e65daa417fc798d65cfd5b4f5630b4"
@@ -4135,10 +4137,10 @@
       "checksum": "68f15e0fa1b571a2401dabdfd68f39f6"
     },
     "R/subnatPyramidsChart.R": {
-      "checksum": "19c8e4d29eedae3e67b6205ee577da14"
+      "checksum": "d36048b13e5da745739f20d1a6cb6ae4"
     },
     "R/utils.R": {
-      "checksum": "5fdf510ef4da9fd2cf6b48d74cae170a"
+      "checksum": "479c7aa8879fa3363efeaa31de0ceab7"
     },
     "R/vlsTestingChart.R": {
       "checksum": "e5476ccdcf9abc43c2812af661d2416f"
@@ -4153,13 +4155,13 @@
       "checksum": "b579634aa06fa17bffc02d205a718490"
     },
     "renv.lock": {
-      "checksum": "e3ca2892096691d646f8c472ce1d4f52"
+      "checksum": "ab02fbc13bdfa3bec01a90d0a0236b52"
     },
     "server.R": {
       "checksum": "5250951b7be4621d28c7432414bc93b4"
     },
     "support_files/datapack_model_data.rds": {
-      "checksum": "c78ee204f751bca426db329ed7cfe0e4"
+      "checksum": "53465e49fe8200fe8f1cc1ed02cc515b"
     },
     "support_files/mechs.rds": {
       "checksum": "ccaa10317389e2e8ddc68104ffdd60f2"
