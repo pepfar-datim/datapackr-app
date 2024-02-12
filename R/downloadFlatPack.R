@@ -74,9 +74,9 @@ downloadFlatPack <- function(d) {
   #Add previous cop year's year 2 data for comparison
   previousY2 = fetchY2File(d$info$cop_year, d$info$sane_name)
 
-  openxlsx::addWorksheet(wb, "Year_2")
+  openxlsx::addWorksheet(wb, "Notional_FY25")
   openxlsx::writeDataTable(wb = wb,
-                           sheet = "Year_2", x = previousY2)
+                           sheet = "Notional_FY25", x = previousY2)
 
 return(wb)
 }
