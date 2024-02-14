@@ -299,7 +299,7 @@
       "RemoteRepo": "datapackr",
       "RemoteUsername": "pepfar-datim",
       "RemoteRef": "DP-1198-create-paw-export",
-      "RemoteSha": "2d8bb5b6371dff71f55916e72dd7afd95a32c918",
+      "RemoteSha": "36c5a4f15278b57656a7b03d1dd461072eddd83c",
       "Requirements": [
         "R",
         "assertthat",
@@ -322,7 +322,7 @@
         "tidyselect",
         "tidyxl"
       ],
-      "Hash": "ef3f4205dce89f0d8766cacbe489148d"
+      "Hash": "7b8095d546f3cfd71956d9ffc121eaa8"
     },
     "datimutils": {
       "Package": "datimutils",
