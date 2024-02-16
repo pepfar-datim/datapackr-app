@@ -298,8 +298,8 @@
       "RemoteHost": "api.github.com",
       "RemoteRepo": "datapackr",
       "RemoteUsername": "pepfar-datim",
-      "RemoteRef": "DP-1198-create-paw-export",
-      "RemoteSha": "36c5a4f15278b57656a7b03d1dd461072eddd83c",
+      "RemoteRef": "dev",
+      "RemoteSha": "ea435b85a18d64945974512eee53109add7998ab",
       "Requirements": [
         "R",
         "assertthat",
@@ -322,7 +322,7 @@
         "tidyselect",
         "tidyxl"
       ],
-      "Hash": "7b8095d546f3cfd71956d9ffc121eaa8"
+      "Hash": "ed411c9efa07729a3b1ff0865e9bee79"
     },
     "datimutils": {
       "Package": "datimutils",
