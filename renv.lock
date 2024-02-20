@@ -291,7 +291,7 @@
     },
     "datapackr": {
       "Package": "datapackr",
-      "Version": "7.3.3",
+      "Version": "7.3.4",
       "Source": "GitHub",
       "Remotes": "pepfar-datim/datim-validation, pepfar-datim/datimutils",
       "RemoteType": "github",
@@ -299,7 +299,7 @@
       "RemoteRepo": "datapackr",
       "RemoteUsername": "pepfar-datim",
       "RemoteRef": "HEAD",
-      "RemoteSha": "e431adb876a8dd9a8c9e62a84b5d559d2d81d1df",
+      "RemoteSha": "b4a3ed97db394aa357f6fcdd6cec58ca8425e4e4",
       "Requirements": [
         "R",
         "assertthat",
@@ -322,7 +322,7 @@
         "tidyselect",
         "tidyxl"
       ],
-      "Hash": "da42c9f9aafcb35b88a78b58b87e3296"
+      "Hash": "e3b58562260506c09add9b983ef6919d"
     },
     "datimutils": {
       "Package": "datimutils",
