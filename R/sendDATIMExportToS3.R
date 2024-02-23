@@ -2,8 +2,7 @@ sendDATIMExportToS3 <- function(d) {
   #Write the flatpacked output
   tmp <- tempfile()
 
-    # Selects the correct dataset to send to PAW if the tool has a PSNUxIM tab
-  #datim_export <- datapackr::createDATIMExport(d)
+  # Selects the correct dataset to send to PAW if the tool has a PSNUxIM tab
   datim_export <- datapackr::createPAWExport(d)
 
   #Need better error checking here.

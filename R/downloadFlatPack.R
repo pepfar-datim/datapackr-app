@@ -67,7 +67,6 @@ downloadFlatPack <- function(d) {
 
   #Main export file
   openxlsx::addWorksheet(wb, "DATIM export")
-  #datim_export <- createDATIMExport(d)
   datim_export <- datapackr::createPAWExport(d)
   openxlsx::writeData(wb = wb,
                       sheet = "DATIM export", x = datim_export)
