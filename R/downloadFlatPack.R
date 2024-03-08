@@ -58,10 +58,10 @@ downloadFlatPack <- function(d) {
     )
   }
   if (!is.null(d$memo$datapack$by_prio)) {
-    openxlsx::addWorksheet(wb, "Prioritization (DRAFT)")
+    openxlsx::addWorksheet(wb, "Memo Tables")
     openxlsx::writeData(
       wb = wb,
-      sheet = "Prioritization (DRAFT)", x = d$memo$datapack$by_prio
+      sheet = "Memo Tables", x = d$memo$datapack$by_prio
     )
   }
 
