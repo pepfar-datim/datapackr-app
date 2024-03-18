@@ -80,7 +80,7 @@ downloadFlatPack <- function(d) {
   },
   error = function(e) {
     interactive_warning( paste0("No data present from last year to populate",
-                                "Notional_FY",
+                                " Notional_FY ",
                                 (d$info$cop_year + 1) %% 100, "tab"))
     return(NULL)
   }
