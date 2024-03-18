@@ -8,6 +8,7 @@ downloadCSOFlatPack <- function(d) {
     dplyr::filter(indicator_code %in% cso_indicators) %>%
     dplyr::filter(stringr::str_detect(psnu, "_Military", negate = TRUE)) %>%
     dplyr::group_by(ou,
+                    fiscal_year,
                     country_name,
                     snu1,
                     psnu,

@@ -1191,7 +1191,7 @@ shinyServer(function(input, output, session) {
             showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
             showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
             showTab(inputId = "main-panel", target = "HTS Recency")
-            showTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
+            showTab(inputId = "main-panel", target = "Memo Tables")
 
           } else if (d$info$has_psnuxim & NROW(d$data$SNUxIM) == 0) {
             msg <- paste("ERROR! Your DataPack contains a PSNUxIM tab, but the formulas appear to be empty.,
@@ -1211,7 +1211,7 @@ shinyServer(function(input, output, session) {
             hideTab(inputId = "main-panel", target = "KP Cascade Pyramid")
             hideTab(inputId = "main-panel", target = "PSNUxIM Pivot")
             hideTab(inputId = "main-panel", target = "HTS Recency")
-            hideTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
+            hideTab(inputId = "main-panel", target = "Memo Tables")
 
           } else {
             #This should occur when there is no PSNUxIM tab and they want
@@ -1228,7 +1228,7 @@ shinyServer(function(input, output, session) {
             hideTab(inputId = "main-panel", target = "KP Cascade Pyramid")
             hideTab(inputId = "main-panel", target = "PSNUxIM Pivot")
             hideTab(inputId = "main-panel", target = "HTS Recency")
-            hideTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
+            hideTab(inputId = "main-panel", target = "Memo Tables")
           }
         }
 
@@ -1278,7 +1278,7 @@ shinyServer(function(input, output, session) {
           showTab(inputId = "main-panel", target = "KP Cascade Pyramid")
           showTab(inputId = "main-panel", target = "PSNUxIM Pivot")
           showTab(inputId = "main-panel", target = "HTS Recency")
-          showTab(inputId = "main-panel", target = "Prioritization (DRAFT)")
+          showTab(inputId = "main-panel", target = "Memo Tables")
         }
       }
 
