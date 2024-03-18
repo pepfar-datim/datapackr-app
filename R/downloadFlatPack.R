@@ -76,7 +76,6 @@ downloadFlatPack <- function(d) {
 
   openxlsx::addWorksheet(wb, paste0("Notional_", (d$info$cop_year - 1) %% 100))
   openxlsx::writeDataTable(wb = wb,
-<<<<<<< HEAD
                            sheet = paste0("Notional_FY", (d$info$cop_year + 1) %% 100), x = previousY2)
   },
   error = function(e) {
@@ -86,9 +85,6 @@ downloadFlatPack <- function(d) {
     return(NULL)
   }
   )
-=======
-                           sheet = paste0("Notional_",  (d$info$cop_year - 1) %% 100), x = previousY2)
->>>>>>> parent of ebd42b3 (Wrap y2 tab logic in a try catch)
 
 return(wb)
 }
