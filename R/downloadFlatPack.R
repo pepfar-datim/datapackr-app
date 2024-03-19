@@ -72,11 +72,20 @@ downloadFlatPack <- function(d) {
                       sheet = "DATIM export", x = datim_export)
 
   #Add previous cop year's year 2 data for comparison
-  previousY2 = fetchY2File(d$info$cop_year, d$info$sane_name)
+  #Using try catch as a pseudo if else here, If an error is thrown, do not create the tab
+  tryCatch({previousY2 = fetchY2File(d$info$cop_year, d$info$sane_name)
 
-  openxlsx::addWorksheet(wb, "Notional_FY25")
+  openxlsx::addWorksheet(wb, paste0("Notional_FY", (d$info$cop_year + 1) %% 100))
   openxlsx::writeDataTable(wb = wb,
-                           sheet = "Notional_FY25", x = previousY2)
+                           sheet = paste0("Notional_FY", (d$info$cop_year + 1) %% 100), x = previousY2)
+  },
+  error = function(e) {
+    interactive_warning( paste0("No Year 2 data present from last year to populate",
+                                " Notional_FY",
+                                (d$info$cop_year + 1) %% 100, " tab"))
+    return(NULL)
+  }
+  )
 
 return(wb)
 }

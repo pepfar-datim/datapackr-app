@@ -38,8 +38,14 @@ fetchSupportFiles <- function(path, locally=T) {
 
   s3 <- paws::s3()
   s3_object <-
+    tryCatch({
     s3$get_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
                   Key = path)
+    },
+    error = function(e) {
+      interactive_warning("Could not retreive support file data from S3")
+      return(NULL)
+    })
   s3_object_body <- s3_object$Body
 
   if (locally==T) {
@@ -49,9 +55,13 @@ fetchSupportFiles <- function(path, locally=T) {
     unlink(file_name2)
   }
 
-  con <- file(file_name2, "wb")
+  tryCatch({con <- file(file_name2, "wb")
   writeBin(s3_object_body, con = con)
-  close(con)
+  close(con)    },
+  error = function(e) {
+    interactive_warning("Could not save support file locally")
+    return(NULL)
+  })
   futile.logger::flog.info(paste0("Retreived support file to ", file_name2))
   if (!file.exists(file_name2)) {
     stop("Could not retreive support file.")
