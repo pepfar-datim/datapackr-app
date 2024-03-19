@@ -69,7 +69,7 @@ fetchSupportFiles <- function(path, locally=T) {
   return(file_name2)
     },
   error = function(e) {
-    interactive_warning("Could not retreive last COP year's Year 2 data from S3")
+    interactive_warning("Could not retreive support file data from S3")
     return(NULL)
   })
 }
