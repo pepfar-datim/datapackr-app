@@ -41,6 +41,11 @@ fetchSupportFiles <- function(path, locally=T) {
     tryCatch({
     s3$get_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
                   Key = path)
+    },
+    error = function(e) {
+      interactive_warning("Could not retreive support file data from S3")
+      return(NULL)
+    })
   s3_object_body <- s3_object$Body
 
   if (locally==T) {
@@ -67,11 +72,6 @@ fetchSupportFiles <- function(path, locally=T) {
   }
 
   return(file_name2)
-    },
-  error = function(e) {
-    interactive_warning("Could not retreive support file data from S3")
-    return(NULL)
-  })
 }
 
 fetchY2File <- function(cop_year, country) {
