@@ -37,10 +37,7 @@ fetchModelFile <- function(model_path="support_files/datapack_model_data.rds") {
 fetchSupportFiles <- function(path, locally=T) {
 
   s3 <- paws::s3()
-
-
   s3_object <-
-    tryCatch({
     s3$get_object(Bucket = Sys.getenv("AWS_S3_BUCKET"),
                   Key = path)
   s3_object_body <- s3_object$Body
@@ -69,13 +66,6 @@ fetchSupportFiles <- function(path, locally=T) {
   }
 
   return(file_name2)
-  },
-
-  error = function(e) {
-    interactive_warning("Could not retreive last COP year's Year 2 data from S3")
-    return(NULL)
-  })
-
 }
 
 fetchY2File <- function(cop_year, country) {
