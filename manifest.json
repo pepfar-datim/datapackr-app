@@ -663,35 +663,35 @@
         "Type": "Package",
         "Package": "datapackr",
         "Title": "A Package that Packs and Unpacks all Data Packs and Target\nSetting Tools",
-        "Version": "7.4.1",
-        "Date": "2024-03-15",
+        "Version": "7.4.3",
+        "Date": "2024-04-10",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", , \"sjackson@baosystems.com\", role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", , \"jason.p.pickering@gmail.com\", role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", , \"sgarman@baosystems.com\", role = \"aut\"),\n    person(\"Chris\", \"Nemarich\", , \"cnemarich@guidehouse.com\", role = \"ctb\"),\n    person(\"Christian\", \"Domaas\", , \"cdomaas@baosystems.com\", role = \"ctb\"),\n    person(\"Fausto\", \"Lopez\", , \"flopez@baosystems.com\", role = \"ctb\"),\n    person(\"Jordan\", \"Bales\", , \"jbales@baosystems.com\", role = \"ctb\")\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
         "License": "file LICENSE",
         "URL": "https://github.com/pepfar-datim/datapackr",
         "BugReports": "https://github.com/pepfar-datim/datapackr",
         "Depends": "datimutils (>= 0.5.1), R (>= 4.1.0)",
-        "Imports": "assertthat, crayon (>= 1.3.4), datimvalidation, dplyr (>=\n0.8.3), httr (>= 1.4.0), jsonlite (>= 1.6), lubridate, magrittr\n(>= 1.5), methods, openxlsx, purrr (>= 0.3.3), readxl (>=\n1.3.1), rlang (>= 0.4.2), stringr (>= 1.4.0), tibble (>=\n2.1.3), tidyr (>= 1.0.0), tidyselect (>= 0.2.5), tidyxl (>=\n1.0.4)",
-        "Suggests": "cellranger, devtools (>= 2.0.1), flextable, gdtools,\nhttptest, lintr (>= 3.0.0), officer, parallel, readr (>=\n1.3.1), rprojroot, stringi, testthat, waldo",
+        "Imports": "assertthat, crayon (>= 1.3.4), datimvalidation, dplyr (>=\n0.8.3), lubridate, magrittr (>= 1.5), methods, openxlsx, purrr\n(>= 0.3.3), readxl (>= 1.3.1), rlang (>= 0.4.2), stringr (>=\n1.4.0), tibble (>= 2.1.3), tidyr (>= 1.0.0), tidyselect (>=\n0.2.5), tidyxl (>= 1.0.4)",
+        "Suggests": "cellranger, devtools (>= 2.0.1), flextable, gdtools,\nhttptest, httr (>= 1.4.0), jsonlite (>= 1.6), lintr (>= 3.0.0),\nofficer, parallel, readr (>= 1.3.1), rprojroot, stringi,\ntestthat, waldo",
         "Remotes": "pepfar-datim/datim-validation, pepfar-datim/datimutils",
         "Encoding": "UTF-8",
         "LazyData": "true",
-        "RoxygenNote": "7.2.3",
+        "RoxygenNote": "7.3.1",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
         "RemoteRepo": "datapackr",
         "RemoteUsername": "pepfar-datim",
         "RemoteRef": "HEAD",
-        "RemoteSha": "489ebbd2a2a368acbf19d78ee217611dc6305a9e",
+        "RemoteSha": "13d662d43d915043d17c47056956de0fa91e5eab",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "HEAD",
-        "GithubSHA1": "489ebbd2a2a368acbf19d78ee217611dc6305a9e",
+        "GithubSHA1": "13d662d43d915043d17c47056956de0fa91e5eab",
         "NeedsCompilation": "no",
-        "Packaged": "2024-03-15 11:57:01 UTC; jordanbales",
+        "Packaged": "2024-04-11 23:43:18 UTC; jordanbales",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.3.1; ; 2024-03-15 11:57:17 UTC; unix"
+        "Built": "R 4.3.1; ; 2024-04-11 23:43:34 UTC; unix"
       }
     },
     "datimutils": {
@@ -4059,7 +4059,7 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".Rprofile": {
-      "checksum": "cc63dd4b8995eb55bf21c3124a91898b"
+      "checksum": "33c57520b91a8f9c2d0fb99e57a5144a"
     },
     "CHANGELOG.md": {
       "checksum": "92e8e4318f833cf3ef5208ad7a2dc620"
@@ -4077,13 +4077,13 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "38fcf215eaaf52577d0c40cafe01aa29"
+      "checksum": "59e14c4972c1cff9a7f09624dd55008a"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "e1c6dee405d2d2b5cdf24f534132d6bf"
+      "checksum": "647ed4b50187ff87af9a15bcc8d9f30f"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "f3cb112d6470d42e04dbdd94d0c4129a"
@@ -4092,7 +4092,7 @@
       "checksum": "fdaa26f1e990754cab0348528841dbdc"
     },
     "R/downloadFlatPack.R": {
-      "checksum": "47350ff823d34d0fb1de2ff82e06dd53"
+      "checksum": "a988788d90d7f2f43be2141f867bfb3c"
     },
     "R/downloadTypes.R": {
       "checksum": "b4d0ee2e8f1d3fd775a031e52a9b9436"
@@ -4140,7 +4140,7 @@
       "checksum": "d36048b13e5da745739f20d1a6cb6ae4"
     },
     "R/utils.R": {
-      "checksum": "479c7aa8879fa3363efeaa31de0ceab7"
+      "checksum": "53d6d0f7dc86c6c59de560ad63d1d451"
     },
     "R/vlsTestingChart.R": {
       "checksum": "e5476ccdcf9abc43c2812af661d2416f"
@@ -4155,7 +4155,7 @@
       "checksum": "b579634aa06fa17bffc02d205a718490"
     },
     "renv.lock": {
-      "checksum": "6a0dd143b4832fc024ca6c94ee3932ae"
+      "checksum": "d1a120fb2befa47aa30e799826071f6f"
     },
     "server.R": {
       "checksum": "c4e4a2d483cfb8922ba45f2784fed66e"
