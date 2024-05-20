@@ -73,7 +73,7 @@ downloadFlatPack <- function(d) {
 
   #Add previous cop year's year 2 data for comparison
   #Using try catch as a pseudo if else here, If an error is thrown, do not create the tab
-  tryCatch({previousY2 = fetchY2File(d$info$cop_year, d$info$sane_name)
+  tryCatch({previousY2 <- fetchY2File(d$info$cop_year, d$info$country_uids)
 
   openxlsx::addWorksheet(wb, paste0("Notional_FY", (d$info$cop_year + 1) %% 100))
   openxlsx::writeDataTable(wb = wb,

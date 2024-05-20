@@ -163,14 +163,29 @@ shinyServer(function(input, output, session) {
 
 
   observeEvent(input$send_paw, {
+
      waiter_show(html = waiting_screen_paw, color = "rgba(128, 128, 128, .8)")
      d <- validation_results()
      r <- sendTimeStampLogToS3(d)
      timestampUploadUI(r)
      sendDataPackErrorUI(r)
-     r <- sendDATIMExportToS3(d)
+
+     r <- sendDATIMExportToS3(d, job_type = "target_setting_tool")
+
+     if (!r) {
+       flog.error(paste0("Error uploading Target Setting Tool to PDAP"))
+       waiter_hide()
+       return()
+     }
+
      if (!is.null(d$datim$year2)) {
-       r <- sendYear2ExportToS3(d)
+       r <- sendDATIMExportToS3(d, job_type = "year_two_targets")
+     }
+
+     if (!r) {
+       flog.error(paste0("Error uploading Year 2 targets to PDAP"))
+       waiter_hide()
+       return()
      }
 
      sendEventToS3(d, "PAW_EXPORT")
@@ -1165,9 +1180,16 @@ shinyServer(function(input, output, session) {
             d <- recencyComparison(d)
             Sys.sleep(1)
             incProgress(0.1, detail = ("Performing analytics checks"))
-            model_data_path <- "support_files/datapack_model_data.rds"
-            full_model_path <- fetchModelFile(model_data_path)
-            d <- datapackr::checkAnalytics(d, model_data_path  = full_model_path, d2_session = user_input$d2_session)
+
+            tryCatch({
+              model_data_path <- "support_files/datapack_model_data.rds"
+              full_model_path <- fetchModelFile(model_data_path)
+              d <- datapackr::checkAnalytics(d, model_data_path  = full_model_path, d2_session = user_input$d2_session)
+            }, error = function(e) {
+              flog.error("Error fetching support file")
+              flog.error(e)
+              d$info$analytics_error <- TRUE
+            })
             Sys.sleep(1)
             incProgress(0.1, detail = ("Finishing up."))
             flog.info("Sending validation summary")
