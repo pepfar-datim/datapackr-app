@@ -262,7 +262,8 @@ shinyServer(function(input, output, session) {
                     "target = \"blank\">here.</h4></a></li></ul>"))
     ),
     tags$hr(),
-    fluidRow(HTML(getVersionInfo())))
+    fluidRow(HTML(getVersionInfo())),
+    fluidRow(HTML(getReleaseDate())))
   })
 
   output$authenticated <- renderUI({

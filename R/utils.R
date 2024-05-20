@@ -8,6 +8,16 @@ getVersionInfo <- function() {
     paste(., "</p></div>")
 }
 
+getReleaseDate <- function() {
+
+  currDCF <- read.dcf("DESCRIPTION")
+  currReleaseDate <- currDCF[1, "Date"]
+
+  paste0("Release Date: ", currReleaseDate) %>%
+    paste('<div style="font-size:small;text-align: center;"><p>', .) %>%
+    paste(., "</p></div>")
+}
+
 fetchModelFile <- function(model_path="support_files/datapack_model_data.rds") {
 
   can_read_file <- file.access(model_path, 4) == 0
