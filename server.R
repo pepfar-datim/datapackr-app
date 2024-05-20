@@ -3,7 +3,7 @@ pacman::p_load(shiny, shinyjs, shinyWidgets, magrittr, dplyr,
                datimvalidation, ggplot2, datimutils,
                futile.logger, paws, datapackr, scales,
                DT, purrr, rpivotTable, waiter,
-               flextable, officer, gdtools, digest, fansi)
+               flextable, officer, gdtools, digest, fansi, aws.signature)
 
 # js ----
 # allows for using the enter button
