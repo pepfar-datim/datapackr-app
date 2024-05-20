@@ -4183,10 +4183,10 @@
       "checksum": "69b4efe3889e2ba93e291871ac131fd6"
     },
     ".Rprofile": {
-      "checksum": "aa761e0e4a25735de635d823e766224e"
+      "checksum": "4e1f3d59bf2efe0342e0f29d12901ed4"
     },
     "CHANGELOG.md": {
-      "checksum": "92e8e4318f833cf3ef5208ad7a2dc620"
+      "checksum": "cceea3a040d62a884b24e591a8b210d2"
     },
     "config.yml.sample": {
       "checksum": "31c37d9dc0af96e3c9c149f808b3ea48"
@@ -4201,19 +4201,10 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "29a15d08c25307f439f15c3775290bbe"
+      "checksum": "5ff7f2add13958238477f00218262fff"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
-    },
-    "malawi_memo_comparison.xlsx": {
-      "checksum": "d9677ba808e5a1a0aa082087890a332f"
-    },
-    "Malawi.csv": {
-      "checksum": "04163c436d1ac9e191351595df54a8b8"
-    },
-    "mechs.rds": {
-      "checksum": "2de1ab24c51c1debf2ba981d34249475"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "f3cb112d6470d42e04dbdd94d0c4129a"
@@ -4273,7 +4264,7 @@
       "checksum": "4ea93828476c0fff15ee5d9b4857c1f1"
     },
     "R/utils.R": {
-      "checksum": "1b375becdb5fbeeaf6135298c1773805"
+      "checksum": "5d466943d4b9ff9a5d5e0812fbca5abb"
     },
     "R/vlsTestingChart.R": {
       "checksum": "e5476ccdcf9abc43c2812af661d2416f"
@@ -4290,17 +4281,8 @@
     "renv.lock": {
       "checksum": "f4375920953fad11ab3935888bbcc603"
     },
-    "Rwanda_test.xlsx": {
-      "checksum": "7639ddf4a4968d4333384a1653464992"
-    },
     "server.R": {
-      "checksum": "9e2248548d96222768354899f262cc9e"
-    },
-    "support_files/datapack_model_data.rds": {
-      "checksum": "e60f20bcda601a86d9b4ec2b074f6e16"
-    },
-    "support_files/psnuxim_model_data_23.rds": {
-      "checksum": "22eb2e7ef7f5461872377be1985ac12d"
+      "checksum": "807ae83f7a1c46aa14ad4e8a7c95197b"
     },
     "support_files/README": {
       "checksum": "9cb0faaff95a40f674f7a20ffcda0788"
@@ -4310,9 +4292,6 @@
     },
     "www/pepfar.png": {
       "checksum": "cd04d9e778b00519de3e0e2afc97eb28"
-    },
-    "Zambia.csv": {
-      "checksum": "f18b30d54c4cd0ed1a10c76cfaa4e3da"
     }
   },
   "users": null
