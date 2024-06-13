@@ -1114,7 +1114,7 @@ shinyServer(function(input, output, session) {
             hideTab(inputId = "main-panel", target = "Year 2 Pivot")
             }
 
-          if ((d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year %in% c("2022","2023","2024")) {
+          if ((d$info$has_psnuxim & NROW(d$data$SNUxIM) > 0) | d$info$cop_year %in% c("2023","2024","2025")) {
 
             flog.info(paste("COP", d$info$cop_year, d$info$tool, " found."))
             incProgress(0.1, detail = ("Checking validation rules"))
