@@ -15,9 +15,7 @@ sendEventToS3 <- function(d=NULL, event_type, user_input=NULL) {
 
   object_name <-
     paste0("datapackr_app_events/",
-           ifelse(d$info$cop_year==2021,
-                  "cop21_opu",
-                  gsub("^20", "cop",d$info$cop_year)),
+           gsub("^20", "cop",d$info$cop_year),
            "/",
            ts_file, ".csv")
 
