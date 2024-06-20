@@ -966,6 +966,28 @@ shinyServer(function(input, output, session) {
         params <- list("colGrandTotals" = FALSE,
                        "rowGrandTotals" = FALSE)
 
+        # difference between datapack value and datim value
+        if(!is.null(d$memo$datim$analytics) && !is.null(d$data$analytics)) {
+
+          datim <- d$memo$datim$analytics %>%
+            mutate(across(where(is.character), stringr::str_trim)) %>%
+            dplyr::rename(datim_value = target_value)
+
+          datapack <- d$data$analytics  %>%
+            mutate(across(where(is.character), stringr::str_trim)) %>%
+            dplyr::rename(datapack_value = target_value)
+
+          diff_memo_data_analytics <-
+            dplyr::full_join(datim, datapack, by = c("dataelement_id", "categoryoptioncombo_id", "psnu_uid", "fiscal_year", "mechanism_code")) %>%
+            mutate(diff = datim_value - datapack_value) %>%
+            select(datim_value, datapack_value, diff)
+
+          # add diff between datapack value and datim value
+          wb <- wb %>%
+            openxlsx2::wb_add_worksheet("Datapack vs Datim") %>%
+            openxlsx2::wb_add_data(x = diff_memo_data_analytics)
+        }
+
         wb <- wb %>%
           openxlsx2::wb_add_worksheet(sheet = "By SNU1") %>%
           openxlsx2::wb_add_pivot_table(
