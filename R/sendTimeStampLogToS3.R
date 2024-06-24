@@ -39,7 +39,6 @@ sendTimeStampLogToS3 <- function(d) {
     paste0(
       "upload_timestamp/",
       gsub("^20", "cop", d$info$cop_year),
-      ifelse(d$info$cop_year==2021,"_opu",""),
       "/",
       d$info$sane_name,
       ".csv"
