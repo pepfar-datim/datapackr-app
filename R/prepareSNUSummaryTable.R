@@ -7,7 +7,7 @@ prepareSNUSummaryTable <- function(d) {
 
   if (d$info$tool == "Data Pack") {
     df <- dplyr::bind_rows(d$data$MER, d$data$SUBNAT_IMPATT)
-  } else if (d$info$tool %in% c("OPU Data Pack", "PSNUxIM")) {
+  } else if (d$info$tool == "PSNUxIM") {
     df <- d$data$SNUxIM
   }
 

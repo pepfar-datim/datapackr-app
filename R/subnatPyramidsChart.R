@@ -20,13 +20,12 @@ subnatPyramidsChart <- function(d, epi_graph_filter_results) {
   df$age[df$indicator_code == "TX_CURR.T" &
            df$age %in% c("50-54", "55-59", "60-64", "65+")] <- "50+"
 
-  plhiv_code <- ifelse(d$info$cop_year >= 2023, "PLHIV.T", "PLHIV.T_1")
   txpvls_code <- ifelse(d$info$cop_year == 2024, "TX_PVLS.N.T", "TX_PVLS.N.Routine.T")
 
   df %<>%
     dplyr::filter(., indicator_code == "TX_CURR.T" |
                     indicator_code == txpvls_code |
-                    indicator_code == plhiv_code) %>%
+                    indicator_code == "PLHIV.T") %>%
     dplyr::select(age, sex, indicator_code, target_value) %>%
     dplyr::group_by(age, sex, indicator_code) %>%
     dplyr::summarise(value = sum(target_value)) %>%
@@ -35,7 +34,7 @@ subnatPyramidsChart <- function(d, epi_graph_filter_results) {
                   Sex = sex) %>%
     dplyr::arrange(indicator_code, desc(indicator_code)) %>%
     dplyr::mutate(indicator_code = ifelse(
-      indicator_code == plhiv_code, "PLHIV", ifelse(
+      indicator_code == "PLHIV.T", "PLHIV", ifelse(
         indicator_code == "TX_CURR.T", "TX_CURR", ifelse(
           indicator_code == txpvls_code, "TX_PVLS", NA))))
 

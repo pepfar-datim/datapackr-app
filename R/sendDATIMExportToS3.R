@@ -24,7 +24,6 @@ sendDATIMExportToS3 <- function(d) {
   object_tags <- createS3BucketTags(d)
 
   object_name <- paste0("datim_export/",gsub("^20", "cop",d$info$cop_year),
-                        ifelse(d$info$cop_year==2021,"_opu",""),
                         "/",d$info$sane_name,".csv")
 
   s3 <- paws::s3()
