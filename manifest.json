@@ -663,8 +663,8 @@
         "Type": "Package",
         "Package": "datapackr",
         "Title": "A Package that Packs and Unpacks all Data Packs and Target\nSetting Tools",
-        "Version": "7.5.0",
-        "Date": "2024-05-28",
+        "Version": "7.6.0",
+        "Date": "2024-06-28",
         "Authors@R": "c(\n    person(\"Scott\", \"Jackson\", , \"sjackson@baosystems.com\", role = c(\"aut\", \"cre\")),\n    person(\"Jason\", \"Pickering\", , \"jason.p.pickering@gmail.com\", role = c(\"aut\", \"rev\")),\n    person(\"Sam\", \"Garman\", , \"sgarman@baosystems.com\", role = \"aut\"),\n    person(\"Chris\", \"Nemarich\", , \"cnemarich@guidehouse.com\", role = \"ctb\"),\n    person(\"Christian\", \"Domaas\", , \"cdomaas@baosystems.com\", role = \"ctb\"),\n    person(\"Fausto\", \"Lopez\", , \"flopez@baosystems.com\", role = \"ctb\"),\n    person(\"Jordan\", \"Bales\", , \"jbales@baosystems.com\", role = \"ctb\")\n  )",
         "Description": "Generates and processes PEPFAR Data Packs and Site Tools.",
         "License": "file LICENSE",
@@ -682,16 +682,16 @@
         "RemoteRepo": "datapackr",
         "RemoteUsername": "pepfar-datim",
         "RemoteRef": "HEAD",
-        "RemoteSha": "65ebf58c48629eadcfa33ccd2f85af72378c6af0",
+        "RemoteSha": "beac6981d13e175aa4027fda3db0482a200ca529",
         "GithubRepo": "datapackr",
         "GithubUsername": "pepfar-datim",
         "GithubRef": "HEAD",
-        "GithubSHA1": "65ebf58c48629eadcfa33ccd2f85af72378c6af0",
+        "GithubSHA1": "beac6981d13e175aa4027fda3db0482a200ca529",
         "NeedsCompilation": "no",
-        "Packaged": "2024-05-30 12:53:48 UTC; jordanbales",
+        "Packaged": "2024-07-01 15:39:55 UTC; jordanbales",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.3.1; ; 2024-05-30 12:54:05 UTC; unix"
+        "Built": "R 4.3.1; ; 2024-07-01 15:40:13 UTC; unix"
       }
     },
     "datimutils": {
@@ -4059,7 +4059,7 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".Rprofile": {
-      "checksum": "1b543a8682934513dc111aa3fb5f220e"
+      "checksum": "652394bb105e2cc51e96ba3d074f3136"
     },
     "CHANGELOG.md": {
       "checksum": "92e8e4318f833cf3ef5208ad7a2dc620"
@@ -4077,19 +4077,19 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "5ff7f2add13958238477f00218262fff"
+      "checksum": "c5993f92fb25beb6e6f1a76db379e56e"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "647ed4b50187ff87af9a15bcc8d9f30f"
+      "checksum": "f6008044f33ff5fee71b11a8023d257e"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "f3cb112d6470d42e04dbdd94d0c4129a"
     },
     "R/downloadDataPack.R": {
-      "checksum": "fdaa26f1e990754cab0348528841dbdc"
+      "checksum": "0742b14cdd9c09fd27f33b720b6ba48f"
     },
     "R/downloadFlatPack.R": {
       "checksum": "a988788d90d7f2f43be2141f867bfb3c"
@@ -4107,7 +4107,7 @@
       "checksum": "e10ee49fe60ef9091ad09285ad103f58"
     },
     "R/prepareSNUSummaryTable.R": {
-      "checksum": "95bdb9aa58519b859e0c7d410893ca9e"
+      "checksum": "9909c72ee841728fc8c276df6c014d63"
     },
     "R/PSNUxIM_pivot.R": {
       "checksum": "0f57e654d93bcb23cf45201ad6b5b3d0"
@@ -4116,19 +4116,19 @@
       "checksum": "cc43c41337eda5304bfb7f8b54bd3be9"
     },
     "R/sendDataPacktoS3.R": {
-      "checksum": "83707d66a7e2f77b53b6202144bc3217"
+      "checksum": "cd4baace3c1debb120b23e6ea32afedd"
     },
     "R/sendDATIMExportToS3.R": {
-      "checksum": "d6396ab74f95be539c9e09e179548ab7"
+      "checksum": "4f6d30460a6090847ce29d1735c1f232"
     },
     "R/sendEventToS3.R": {
-      "checksum": "0d8a29753034612a14c3a2000d1edf8d"
+      "checksum": "c2aa65bfcea3ccf54f0a55225765b11d"
     },
     "R/sendTimeStampLogToS3.R": {
-      "checksum": "eb350222b8ad5ecf99c94c204c0111ca"
+      "checksum": "04d7b339d3b892a87be42099a0eaa39d"
     },
     "R/sendValidationSummary.R": {
-      "checksum": "abc3a6182a720abd9a1882c2695ee590"
+      "checksum": "e95ee88005bfedefdf46031fb9501044"
     },
     "R/sendYear2ExportToS3.R": {
       "checksum": "ef7ba4071a45b0cc144fe2acf59cea5f"
@@ -4137,7 +4137,7 @@
       "checksum": "68f15e0fa1b571a2401dabdfd68f39f6"
     },
     "R/subnatPyramidsChart.R": {
-      "checksum": "d36048b13e5da745739f20d1a6cb6ae4"
+      "checksum": "9246eed04e449d485b7ce1f4dfc09891"
     },
     "R/utils.R": {
       "checksum": "53d6d0f7dc86c6c59de560ad63d1d451"
@@ -4155,13 +4155,13 @@
       "checksum": "b579634aa06fa17bffc02d205a718490"
     },
     "renv.lock": {
-      "checksum": "729b7728c22d002fcf210dd729d29036"
+      "checksum": "00ca90cec394aef532591b761d4bb759"
     },
     "server.R": {
-      "checksum": "c4e4a2d483cfb8922ba45f2784fed66e"
+      "checksum": "016ff607c14fd9ba9edff09d2c89b7b2"
     },
     "support_files/datapack_model_data.rds": {
-      "checksum": "e60f20bcda601a86d9b4ec2b074f6e16"
+      "checksum": "dbd6f4314e1a24a8858d0219c9ea00a4"
     },
     "support_files/mechs.rds": {
       "checksum": "ccaa10317389e2e8ddc68104ffdd60f2"
