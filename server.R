@@ -719,12 +719,12 @@ shinyServer(function(input, output, session) {
         messages %<>%
           dplyr::mutate(level = factor(level, levels = c("ERROR", "WARNING", "INFO"))) %>%
           dplyr::arrange(level) %>%
-          distinct() %>%
           dplyr::mutate(msg_html =
                           dplyr::case_when(
                             level == "ERROR" ~ paste('<li><p style = "color:red"><b>', message, "</b></p></li>"),
                             TRUE ~ paste("<li><p>", message, "</p></li>")
                           ))
+
         messages_sorted <-
           paste0("<ul>", paste(messages$msg_html, sep = "", collapse = ""), "</ul>")
 
@@ -1103,6 +1103,9 @@ shinyServer(function(input, output, session) {
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
         #Data Packs
         if (d$info$tool %in% c("Data Pack", "PSNUxIM")) {
+
+
+
           updateSelectInput(session = session, inputId = "downloadType",
                             choices = downloadTypes(d,
                                                     memo_authorized = user_input$memo_authorized))
@@ -1116,7 +1119,7 @@ shinyServer(function(input, output, session) {
             flog.info(paste("COP", d$info$cop_year, d$info$tool, " found."))
             incProgress(0.1, detail = ("Checking validation rules"))
             Sys.sleep(0.5)
-            d <- datapackr::checkPSNUData(d) #Checks PSNU once
+            d <- datapackr::checkPSNUData(d)
 
             # if (Sys.getenv("SEND_DATAPACK_ARCHIVE") == "TRUE") {
             #   incProgress(0.1, detail = ("Saving a copy of your submission to the archives"))
@@ -1239,7 +1242,7 @@ shinyServer(function(input, output, session) {
           flog.info("Datapack with PSNUxIM tab found.")
           incProgress(0.1, detail = ("Checking validation rules"))
           Sys.sleep(0.5)
-          d <- datapackr::checkPSNUData(d) #Checks PSNU twice
+          d <- datapackr::checkPSNUData(d)
           incProgress(0.1, detail = ("Preparing COP memo data"))
           # Only execute the comparison if the user has proper authorization
           # Global agency users cannot retrieve prioritization data
