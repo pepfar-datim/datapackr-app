@@ -2,21 +2,22 @@ downloadTypes <- function(d,
                           memo_authorized = FALSE) {
   #Common types which should always be there.
   download_names <-
-    c("FlatPack",
+    list("FlatPack",
       "CSO Flatpack",
       "Messages",
       "Validation report",
-      "Comparison")
+      "Comparison",
+      "Comparison plus")
 
   download_types <-
     c("flatpack",
       "cso_flatpack",
       "messages",
       "vr_rules",
-      "comparison")
-#A completely new PSNUxIM
-#
+      "comparison",
+      "comparison_plus")
 
+#A completely new PSNUxIM
   if (!d$info$has_psnuxim){
     download_types <- c(download_types, "datapack")
     download_names <- c(download_names, "New PSNUxIM")
