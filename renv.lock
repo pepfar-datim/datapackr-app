@@ -1051,7 +1051,7 @@
     },
     "openxlsx2": {
       "Package": "openxlsx2",
-      "Version": "0.8",
+      "Version": "1.8",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1064,7 +1064,7 @@
         "utils",
         "zip"
       ],
-      "Hash": "bc29959226b8d71eb4028d8eb0284996"
+      "Hash": "85689fab8522a648808227abcc3b1706"
     },
     "pacman": {
       "Package": "pacman",
