@@ -2,7 +2,7 @@ downloadTypes <- function(d,
                           memo_authorized = FALSE) {
   #Common types which should always be there.
   download_names <-
-    list("FlatPack",
+    c("FlatPack",
       "CSO Flatpack",
       "Messages",
       "Validation report",
