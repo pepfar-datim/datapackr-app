@@ -1024,7 +1024,7 @@ shinyServer(function(input, output, session) {
         waiter_show(html = waiting_screen_comparison, color = "rgba(128, 128, 128, .8)")
         #Create a new workbook
         flog.info(
-          paste0("Comparison requested for ", d$info$datapack_name)
+          paste0("Comparison plus requested for ", d$info$datapack_name)
           ,
           name = "datapack"
         )
