@@ -1,15 +1,13 @@
-downloadComparison <- function(d, expanded = FALSE) {
+downloadComparison <- function(d, plus=TRUE) {
 
   comparison_table <-
     d$memo$comparison %>%
     dplyr::rename(data_type = "Data Type") %>%
     dplyr::filter(data_type %in% c("Current", "Diff", "Proposed")) %>%
-    dplyr::filter(Identical == "FALSE") %>%
-    dplyr::select(!(Identical))
-
-  if (NROW(comparison_table) == 0L || is.null(comparison_table)) {
-    return(NULL)
-  }
+    { if (plus == FALSE)
+      dplyr::filter(., Identical == "FALSE") %>%
+        dplyr::select(., !(Identical)) else .
+    }
 
   wb <- openxlsx2::wb_workbook() %>%
     openxlsx2::wb_add_worksheet("Comparison data") %>%
@@ -66,4 +64,6 @@ downloadComparison <- function(d, expanded = FALSE) {
       data = "value",
       params = params
     )
+
+  return(wb)
 }
