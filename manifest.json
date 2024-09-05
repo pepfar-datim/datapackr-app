@@ -688,10 +688,10 @@
         "GithubRef": "HEAD",
         "GithubSHA1": "8fc4abff7f29bc3326e7ab3fdf6848b43bc0e4c0",
         "NeedsCompilation": "no",
-        "Packaged": "2024-07-22 20:39:48 UTC; jordanbales",
+        "Packaged": "2024-08-07 23:34:50 UTC; jordanbales",
         "Author": "Scott Jackson [aut, cre],\n  Jason Pickering [aut, rev],\n  Sam Garman [aut],\n  Chris Nemarich [ctb],\n  Christian Domaas [ctb],\n  Fausto Lopez [ctb],\n  Jordan Bales [ctb]",
         "Maintainer": "Scott Jackson <sjackson@baosystems.com>",
-        "Built": "R 4.3.1; ; 2024-07-22 20:40:05 UTC; unix"
+        "Built": "R 4.3.1; ; 2024-08-07 23:35:07 UTC; unix"
       }
     },
     "datimutils": {
@@ -2216,9 +2216,9 @@
         "Type": "Package",
         "Package": "openxlsx2",
         "Title": "Read, Write and Edit 'xlsx' Files",
-        "Version": "0.8",
+        "Version": "1.8",
         "Language": "en-US",
-        "Authors@R": "c(\n  person(\"Jordan Mark\", \"Barbone\", email = \"jmbarbone@gmail.com\", role = \"aut\", comment = c(ORCID = \"0000-0001-9788-3628\")),\n  person(\"Jan Marvin\", \"Garbuszus\", email = \"jan.garbuszus@ruhr-uni-bochum.de\", role = c(\"aut\", \"cre\")),\n  person(family = \"openxlsx authors\", role = \"cph\", comment = \"openxlsx package\"),\n  person(\"Arseny\", \"Kapoulkine\", role = c(\"ctb\", \"cph\"), comment = \"Author of included pugixml code\")\n  )",
+        "Authors@R": "c(\n  person(\"Jordan Mark\", \"Barbone\", email = \"jmbarbone@gmail.com\", role = \"aut\", comment = c(ORCID = \"0000-0001-9788-3628\")),\n  person(\"Jan Marvin\", \"Garbuszus\", email = \"jan.garbuszus@ruhr-uni-bochum.de\", role = c(\"aut\", \"cre\")),\n  person(\"Oliver\", \"Roy\", role = \"ctb\"),\n  person(family = \"openxlsx authors\", role = \"cph\", comment = \"openxlsx package\"),\n  person(\"Arseny\", \"Kapoulkine\", role = c(\"ctb\", \"cph\"), comment = \"Author of included pugixml code\")\n  )",
         "Description": "Simplifies the creation of 'xlsx' files by\n    providing a high level interface to writing, styling and editing\n    worksheets.",
         "License": "MIT + file LICENSE",
         "URL": "https://janmarvin.github.io/openxlsx2/,\nhttps://github.com/JanMarvin/openxlsx2",
@@ -2229,17 +2229,16 @@
         "Suggests": "ggplot2, knitr, mschart (>= 0.4), rmarkdown, rvg, testthat\n(>= 3.0.0), waldo",
         "VignetteBuilder": "knitr",
         "Encoding": "UTF-8",
-        "RoxygenNote": "7.2.3",
+        "RoxygenNote": "7.3.2",
         "Config/testthat/edition": "3",
-        "Config/testthat/parallel": "false",
-        "Config/testthat/start-first": "aaa",
+        "Config/testthat/parallel": "true",
         "NeedsCompilation": "yes",
-        "Packaged": "2023-08-07 09:25:56 UTC; jmg",
-        "Author": "Jordan Mark Barbone [aut] (<https://orcid.org/0000-0001-9788-3628>),\n  Jan Marvin Garbuszus [aut, cre],\n  openxlsx authors [cph] (openxlsx package),\n  Arseny Kapoulkine [ctb, cph] (Author of included pugixml code)",
+        "Packaged": "2024-07-05 14:02:03 UTC; janmarvingarbuszus",
+        "Author": "Jordan Mark Barbone [aut] (<https://orcid.org/0000-0001-9788-3628>),\n  Jan Marvin Garbuszus [aut, cre],\n  Oliver Roy [ctb],\n  openxlsx authors [cph] (openxlsx package),\n  Arseny Kapoulkine [ctb, cph] (Author of included pugixml code)",
         "Maintainer": "Jan Marvin Garbuszus <jan.garbuszus@ruhr-uni-bochum.de>",
         "Repository": "CRAN",
-        "Date/Publication": "2023-08-07 10:20:02 UTC",
-        "Built": "R 4.3.1; x86_64-apple-darwin20; 2023-09-05 16:56:32 UTC; unix"
+        "Date/Publication": "2024-07-07 10:30:28 UTC",
+        "Built": "R 4.3.1; x86_64-apple-darwin20; 2024-08-07 23:18:52 UTC; unix"
       }
     },
     "pacman": {
@@ -4059,7 +4058,7 @@
       "checksum": "acaf71d309872f84277402fc3cc464a6"
     },
     ".Rprofile": {
-      "checksum": "4472613f8bc71b6584b660ddefef395c"
+      "checksum": "bc3e0e564514a4eea7302fdd1fa6ab39"
     },
     "CHANGELOG.md": {
       "checksum": "92e8e4318f833cf3ef5208ad7a2dc620"
@@ -4077,13 +4076,13 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "DESCRIPTION": {
-      "checksum": "71d806a5eb203b87096f826ff65abffc"
+      "checksum": "abf5f5e4a2e3c2f5747bba7dbd8ee57a"
     },
     "LICENSE": {
       "checksum": "9b62b5c75bb467271d2729f6639a8259"
     },
     "mechs.rds": {
-      "checksum": "73aa5d92332942b599a6ae08d3da31cb"
+      "checksum": "c6a807c9c80f15a7670daa552997ee21"
     },
     "R/downloadCSOFlatPack.R": {
       "checksum": "f3cb112d6470d42e04dbdd94d0c4129a"
@@ -4095,7 +4094,7 @@
       "checksum": "a988788d90d7f2f43be2141f867bfb3c"
     },
     "R/downloadTypes.R": {
-      "checksum": "b4d0ee2e8f1d3fd775a031e52a9b9436"
+      "checksum": "aa4ae09714795a2d2b7a333d6b774123"
     },
     "R/kpCascadeChart.R": {
       "checksum": "00e3894affeaabab583b2ca69f4affdb"
@@ -4155,13 +4154,13 @@
       "checksum": "b579634aa06fa17bffc02d205a718490"
     },
     "renv.lock": {
-      "checksum": "011d8c71e1ee664511225f02c50604ef"
+      "checksum": "79273dc2dffdd9320827ae2569e7f7e7"
     },
     "server.R": {
-      "checksum": "016ff607c14fd9ba9edff09d2c89b7b2"
+      "checksum": "be4a71833b41cfff2f9cdce64e5625c4"
     },
     "support_files/datapack_model_data.rds": {
-      "checksum": "dbd6f4314e1a24a8858d0219c9ea00a4"
+      "checksum": "ec9ab71f0112cb216c45647ff5cf0a61"
     },
     "support_files/mechs.rds": {
       "checksum": "ccaa10317389e2e8ddc68104ffdd60f2"
