@@ -1,8 +1,8 @@
 Package: datapackr-app
 Type: Shiny App
 Title: Self-service app for parsing and validation of Target Setting Tools
-Version: 3.0.0
-Date: 2024-09-05
+Version: 3.0.1
+Date: 2024-10-01
 Authors@R: c( person("Jason", "Pickering", email =
         "jason@dhis2.org", role = c("aut", "cre")),
         person("Chris", "Nemarich", email =
