@@ -283,6 +283,8 @@ shinyServer(function(input, output, session) {
             width = "440px"),
           actionButton("validate", "Validate"),
           tags$hr(),
+          p(id = "tool_info", ""),
+          tags$hr(),
           selectInput("downloadType", "Download type", NULL),
           downloadButton("downloadOutputs", "Download"),
           tags$hr(),
@@ -1043,9 +1045,12 @@ shinyServer(function(input, output, session) {
         #Log the validation to S3
         sendEventToS3(d, "VALIDATE")
         flog.info(paste0("Initiating validation of ", d$info$datapack_name, " DataPack."), name = "datapack")
+
+        #This displays the cop year in the side bar AFTER validation
+        html("tool_info", paste0("You have validated a COP ", d$info$cop_year, " Tool"))
+
         #Data Packs
         if (d$info$tool %in% c("Data Pack", "PSNUxIM")) {
-
 
 
           updateSelectInput(session = session, inputId = "downloadType",
