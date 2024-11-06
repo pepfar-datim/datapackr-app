@@ -786,9 +786,7 @@ shinyServer(function(input, output, session) {
 
       date <- date <- format(Sys.time(), "%Y%m%d_%H%M%S")
 
-      suffix <- if (input$downloadType %in% c("messages")) {
-        ".txt"
-      } else if (input$downloadType %in% c("memo")) {
+      suffix <- if (input$downloadType %in% c("memo")) {
         ".docx"
       } else {
         ".xlsx"
@@ -802,7 +800,11 @@ shinyServer(function(input, output, session) {
 
       if (input$downloadType == "messages") {
         sendEventToS3(d, "MESSAGE_DOWNLOAD")
-        writeLines(d$info$messages$message, file)
+        messages_df <- data.frame( Tool = d$info$messages$tool,
+                                   Severity = d$info$messages$level,
+                                   Message = d$info$messages$message) %>%
+          dplyr::arrange(`Severity`,`Tool`)
+        openxlsx::write.xlsx(messages_df, file = file)
       }
 
       if (input$downloadType == "cso_flatpack") {
