@@ -297,7 +297,7 @@ shinyServer(function(input, output, session) {
         mainPanel(tabsetPanel(
           id = "main-panel",
           type = "tabs",
-          tabPanel("Messages", tags$ul(uiOutput("messages"))),
+          tabPanel("Messages", dataTableOutput("messages")),
           tabPanel("Analytics checks", tags$div(uiOutput("analytics_checks"))),
           tabPanel("Indicator summary", dataTableOutput("indicator_summary"),
                    tags$h4("Data source: Main DataPack tabs")),
@@ -692,7 +692,7 @@ shinyServer(function(input, output, session) {
     }
   })
 
-  output$messages <- renderUI({
+  output$messages <- DT::renderDataTable({
 
     vr <- validation_results()
 
@@ -704,35 +704,32 @@ shinyServer(function(input, output, session) {
 
     if (inherits(vr, "error")) {
       return(paste0("ERROR! ", vr$message))
-
-    } else {
+    }
 
       messages <- validation_results() %>%
         purrr::pluck(., "info") %>%
         purrr::pluck(., "messages")
 
 
-      if (length(messages$message) > 0) {
+      messages_df <- data.frame( Tool = messages$tool, Severity = messages$level, Message = messages$message) %>%
+        dplyr::arrange(`Severity`,`Tool`)
 
-        class(messages) <- "data.frame"
-
-        messages %<>%
-          dplyr::mutate(level = factor(level, levels = c("ERROR", "WARNING", "INFO"))) %>%
-          dplyr::arrange(level) %>%
-          dplyr::mutate(msg_html =
-                          dplyr::case_when(
-                            level == "ERROR" ~ paste('<li><p style = "color:red"><b>', message, "</b></p></li>"),
-                            TRUE ~ paste("<li><p>", message, "</p></li>")
-                          ))
-
-        messages_sorted <-
-          paste0("<ul>", paste(messages$msg_html, sep = "", collapse = ""), "</ul>")
-
-        shiny::HTML(messages_sorted)
-      } else {
-        tags$li("No Issues with Integrity Checks: Congratulations!")
-      }
+      if (NROW(messages_df) > 0) {
+        #Display this as a data table
+        DT::datatable(messages_df,
+                      options = list(pageLength = 25, columnDefs = list(list(
+                        className = "dt-center", targets = 2),
+                        list(
+                          className = "dt-left", targets = 3)
+                      ))) %>% formatStyle(
+          'Severity',
+          target = 'row',
+          backgroundColor = styleEqual(c("ERROR", "WARNING", "INFO"), c('#FF6347', '#FFFFFF', '#ADD8E6'))
+        )
+    } else {
+      data.frame(message = "Congratulations! No integrity issues were found!")
     }
+
   })
 
   output$analytics_checks <- renderUI({
@@ -789,9 +786,7 @@ shinyServer(function(input, output, session) {
 
       date <- date <- format(Sys.time(), "%Y%m%d_%H%M%S")
 
-      suffix <- if (input$downloadType %in% c("messages")) {
-        ".txt"
-      } else if (input$downloadType %in% c("memo")) {
+      suffix <- if (input$downloadType %in% c("memo")) {
         ".docx"
       } else {
         ".xlsx"
@@ -805,7 +800,11 @@ shinyServer(function(input, output, session) {
 
       if (input$downloadType == "messages") {
         sendEventToS3(d, "MESSAGE_DOWNLOAD")
-        writeLines(d$info$messages$message, file)
+        messages_df <- data.frame( Tool = d$info$messages$tool,
+                                   Severity = d$info$messages$level,
+                                   Message = d$info$messages$message) %>%
+          dplyr::arrange(`Severity`,`Tool`)
+        openxlsx::write.xlsx(messages_df, file = file)
       }
 
       if (input$downloadType == "cso_flatpack") {
