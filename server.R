@@ -1082,6 +1082,8 @@ shinyServer(function(input, output, session) {
             #The use of the comparison table really only makes
             #sense of we are dealing with a DataPack OPU but
             #at the moment, we do not have an easy way to determine
+            # Fri Nov 22 08:59:11 2024 ------------------------------ TEMPORARY UNTIL MEMO values available
+            if (d$info$cop_year < 2025) {
             incProgress(0.1, detail = ("Preparing COP memo data"))
             if (user_input$memo_authorized) {
               d <-
@@ -1103,6 +1105,7 @@ shinyServer(function(input, output, session) {
 
             d <- datapackr::generateComparisonTable(d, expanded = TRUE)
             Sys.sleep(1)
+            }#TEMPORARY until memo released
 
             incProgress(0.1, detail = ("Preparing a modality summary"))
             d <- modalitySummaryTable(d)
@@ -1190,6 +1193,8 @@ shinyServer(function(input, output, session) {
           Sys.sleep(0.5)
           d <- datapackr::checkPSNUData(d)
           incProgress(0.1, detail = ("Preparing COP memo data"))
+          # Fri Nov 22 09:00:56 2024 ---TEMPORARY until memo released
+          if (d$info$cop_year < 2025) {
           # Only execute the comparison if the user has proper authorization
           # Global agency users cannot retrieve prioritization data
           # from the DATIM analytics API
@@ -1201,6 +1206,7 @@ shinyServer(function(input, output, session) {
               d2_session = user_input$d2_session
             )
           d <- datapackr::generateComparisonTable(d, expanded = TRUE)
+          }#TEMPORARY until memo released
           Sys.sleep(1)
           incProgress(0.1, detail = ("Preparing a modality summary"))
           d <- modalitySummaryTable(d)
