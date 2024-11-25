@@ -252,7 +252,7 @@ shinyServer(function(input, output, session) {
 
   output$authenticated <- renderUI({
     wiki_url <- a("Target Setting Tool User Guide",
-                  href = "https://apps.datim.org/datapack-userguide/",
+                  href = "https://apps.datim.org/target-setting-userguide/",
                   target = "_blank")
 
     fluidPage(
