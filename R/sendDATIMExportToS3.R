@@ -22,7 +22,7 @@ sendDATIMExportToS3 <- function(d, job_type) {
     futile.logger::flog.error(paste0("Failed to inititate ",  job_type, "job type."), name = "datapack")
     return(FALSE)
   }
-
+}
 # sendDATIMExportToS3 <- function(d) {
 #   #Write the flatpacked output
 #   tmp <- tempfile()
