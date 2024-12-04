@@ -3,7 +3,7 @@ pacman::p_load(shiny, shinyjs, shinyWidgets, magrittr, dplyr,
                datimvalidation, ggplot2, datimutils,
                futile.logger, paws, datapackr, scales,
                DT, purrr, rpivotTable, waiter,
-               flextable, officer, gdtools, digest, fansi)
+               flextable, officer, gdtools, digest, fansi, aws.signature)
 
 # js ----
 # allows for using the enter button
@@ -168,9 +168,23 @@ shinyServer(function(input, output, session) {
      r <- sendTimeStampLogToS3(d)
      timestampUploadUI(r)
      sendDataPackErrorUI(r)
-     r <- sendDATIMExportToS3(d)
+
+     r <- sendDATIMExportToS3(d, job_type = "target_setting_tool")
+
+     if (!r) {
+       flog.error(paste0("Error uploading Target Setting Tool to PDAP"))
+       waiter_hide()
+       return()
+     }
+
      if (!is.null(d$datim$year2)) {
-       r <- sendYear2ExportToS3(d)
+       r <- sendDATIMExportToS3(d, job_type = "year_two_targets")
+     }
+
+     if (!r) {
+       flog.error(paste0("Error uploading Year 2 targets to PDAP"))
+       waiter_hide()
+       return()
      }
 
      sendEventToS3(d, "PAW_EXPORT")
@@ -247,7 +261,8 @@ shinyServer(function(input, output, session) {
                     "target = \"blank\">here.</h4></a></li></ul>"))
     ),
     tags$hr(),
-    fluidRow(HTML(getVersionInfo())))
+    fluidRow(HTML(getVersionInfo())),
+    fluidRow(HTML(getReleaseDate())))
   })
 
   output$authenticated <- renderUI({
