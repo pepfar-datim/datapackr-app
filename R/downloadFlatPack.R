@@ -71,6 +71,7 @@ downloadFlatPack <- function(d) {
   openxlsx::writeData(wb = wb,
                       sheet = "DATIM export", x = datim_export)
 
+  if (d$info$cop_year < 2025) {
   #Add previous cop year's year 2 data for comparison
   #Using try catch as a pseudo if else here, If an error is thrown, do not create the tab
   tryCatch({previousY2 = fetchY2File(d$info$cop_year, d$info$sane_name)
@@ -86,6 +87,7 @@ downloadFlatPack <- function(d) {
     return(NULL)
   }
   )
+  }
 
 return(wb)
 }
