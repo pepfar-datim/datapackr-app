@@ -8,6 +8,8 @@ sendDATIMExportToS3 <- function(d, job_type) {
     datapackr::uploadDATIMExportToPDAP(raw_file = raw_file,
                                        job_type = job_type,
                                        content_type = "text/csv")
+  print(file_location)
+
   resp <-
     datapackr::initiatePDAPJob(
       job_type = job_type,
