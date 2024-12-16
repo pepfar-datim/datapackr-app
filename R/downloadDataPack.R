@@ -12,7 +12,7 @@ downloadDataPack <- function(d,
   }
   #Update BEFORE go live in December
   if (d$info$cop_year == "2025") {
-    support_file <- fetchSupportFiles("support_files/psnuxim_model_data_24.rds")
+    support_file <- fetchSupportFiles("support_files/psnuxim_model_data_25.rds")
   }
 
   if (!file.exists(support_file)) {
